@@ -1,23 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap');
-@layer theme, base, element-plus, components, utilities;
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@600;700&display=swap');
+@layer theme, base, components, utilities;
 @import "tailwindcss/theme.css" layer(theme);
 @import "tailwindcss/preflight.css" layer(base);
-@import "element-plus/dist/index.css" layer(element-plus);
-@import "./element-plus.css" layer(components);
 @import "tailwindcss/utilities.css" layer(utilities) source("../");
 
 @theme {
-  --color-blue-500: #2453c7;
-  --color-blue-600: #183f9f;
-  --color-blue-700: #12327f;
-  --color-blue-800: #0e2868;
+  --color-green-500: #3c7655;
+  --color-green-600: #285e43;
+  --color-green-700: #1f4d35;
+  --color-green-800: #173c29;
 }
 
 @layer base {
   :root {
     font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
-    color: #10233b;
-    background: #f4f7fb;
+    color: #17251d;
+    background: #f7f9f5;
     font-synthesis: none;
   }
 
@@ -28,7 +26,7 @@
   body {
     min-width: 320px;
     margin: 0;
-    background: #f4f7fb;
+    background: #f7f9f5;
   }
 
   a {

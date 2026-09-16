@@ -1,101 +1,56 @@
-# 408 简纲 · AI 原生的考研电子教材
+# 数学二知识库
 
-[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+一个可全文搜索的考研数学二公式、结论与题型知识库。
 
-> 本项目所有知识内容采用 **CC BY 4.0** 协议开源：允许任何人复制、修改、分发、甚至商业使用，**唯一要求**是署名 —— 注明原作者与出处即可。代码部分沿用同样的宽松原则。
+**在线站点：** [https://louise-zqf.github.io/postgraduate-exam-website/](https://louise-zqf.github.io/postgraduate-exam-website/)
 
-## 愿景
+## 当前内容
 
-我们想用开源的方式，**共创、共建、共享** 一份新一代的 **AI 原生电子教材**。
+- 高等数学 6 章：极限、一元微分、一元积分、微分方程、多元微分、二重积分
+- 线性代数 6 章：行列式、矩阵、向量、线性方程组、特征值与相似矩阵、二次型
+- 184 个可搜索知识条目
+- Markdown 正文与 KaTeX 公式渲染
+- 中文近义词归一搜索，支持从搜索结果直达条目
 
-- **AI原生**：所有内容通过MCP接入AI，学习者无需付费，只需要一个API-Key，就可以访问到网站的所有数据。你能想象到的所有功能都可以做。真题统计/AI出题/知识点学习等等，AI的上限在于想象力。所有人可以通过AI来参与社区，通过AI提出修改意见，通过AI贡献自己的代码。网站没有后端，只有纯页面和MCP代码。（这是未来愿景，目前还未开发）
-- **可交互动画**：放弃传统教材形式的文字和图片展开，推崇使用交互式动画解释复杂概念。（目前交互式动画只覆盖率一小部分）
-- **最小集原则**：Less is more —— 以真题和考试大纲为本，把无关考试的内容全部砍掉，只保留应试内容。
-
-## 开源精神如何让社区中的每个人都受益
-
-考研是一场孤独的长跑，但开源社区让你不必一个人走。
-
-- **输出才是真懂**：当你为某个知识点撰写讲解、修正一处错误、补一段动画时，你会把这个知识点完整的逻辑从头到尾过一遍，在这个过程中，你可能会发现你其实并没有完全搞懂所有的逻辑。因此，你可以通过输出知识来检验、巩固自己的理解。同时，你的输出会有开源社区的反馈，大家互相反馈互相检验。
-- **结识志同道合的朋友**：在社区里，你会遇到同样在备战 408 的伙伴，或是热爱开源精神的共建者，大家互相纠错、互相启发，效果远远大于单打独斗。
-- **人人为我，我为人人**：如果社区中的每个人都深度参与，那么这个社区内部的成员会不断受益，最终我们每个人都会有长足的进步。
-
-## 如何通过 GitHub 贡献
-
-### 1. 准备
+## 本地运行
 
 ```bash
-# Fork 本仓库到自己的账号下，然后克隆到本地
-git clone https://github.com/<你的用户名>/postgraduate-exam-website.git
-cd postgraduate-exam-website
-
-# 安装依赖
-npm install
-
-# 本地启动开发服务器（默认 http://localhost:5173）
+npm ci
 npm run dev
 ```
 
-### 2. 选择贡献方式
-
-| 贡献类型 | 操作位置 | 说明 |
-| --- | --- | --- |
-| 新增 / 修订知识点讲解 | `client/src/content/knowledge-articles/` | 按 `book/chapter/article.ts` 结构新增文件并注册到 `index.ts` |
-| 新增可视化动画 | `client/src/animations/` | Manim 风格的代码动画，参考各目录下 `README.md` |
-| 补充 / 修正真题 | `client/public/exams/<年份>/paper.json` | 静态题库，遵循 manifest 结构 |
-| 修订搜索词典 / 同义词 | `client/public/search/408-terms.txt`、`synonyms.json` | 直接编辑文本即可 |
-| 修订 UI / 交互 bug | `client/src/views/`、`client/src/components/` | Vue 3 + TypeScript |
-| 修订共建者名单 | `client/src/content/contributors.ts` | 加一行即可在首页滚动栏展示 |
-
-### 3. 校验与提交
+生产构建：
 
 ```bash
-# 校验知识树结构与文章注册
-npm run validate:content
-
-# 知识内容校验 + 前端构建
 npm run build
 ```
 
-构建通过后，提交并推送到自己的 Fork：
+## 如何继续补充资料
 
-```bash
-git checkout -b feat/your-topic
-git add .
-git commit -m "feat(knowledge): 新增 XXX 知识点讲解"
-git push origin feat/your-topic
+内容的唯一数据源是：
+
+```text
+content/数学二公式与结论大全.md
 ```
 
-### 4. 发起 Pull Request
+章节使用固定的 Markdown 层级：
 
-在 GitHub 上向本仓库的 `main` 分支发起 PR，在描述中说明：
+```markdown
+## 第一部分　高等数学
+### 第一章　极限
+#### 某个可搜索的知识点名称
 
-- 改了什么、为什么改
-- 涉及哪些知识点 / 题目 / 动画
-- 是否本地构建通过
-
-维护者会在 Review 通过后合并，你的名字会自动出现在首页共建者滚动栏。
-
----
-
-## 启动
-
-```bash
-npm install
-npm run dev
+知识点正文……
 ```
 
-前端默认运行在 http://localhost:5173
+修改这份文档后运行 `npm run build:content`，即可重新生成目录和搜索数据。`npm run dev` 与 `npm run build` 也会自动执行这一步。
 
-## 常用命令
+## 部署
 
-```bash
-npm run build                # 知识内容校验 + 前端构建
-npm run validate:content     # 校验知识树结构与文章注册
-```
+`master` 分支每次推送后，GitHub Actions 会自动构建并部署到 GitHub Pages。站点使用 Hash 路由，可在项目二级目录下直接刷新。
 
-## 真题数据
+## 技术栈
 
-- 静态题库：`client/public/exams/`（manifest / index / 逐年 paper + images）
-- 读取入口：`client/src/services/examRepository.ts`
+Vue 3、TypeScript、Vite、Vue Router、Marked、KaTeX、DOMPurify。
+
+> 本项目基于 [liangbohan/postgraduate-exam-website](https://github.com/liangbohan/postgraduate-exam-website) 的项目结构改造。

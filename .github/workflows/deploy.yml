@@ -1,7 +1,7 @@
 name: Deploy to GitHub Pages
 
 # 触发条件：
-#   - 向 main 分支 push 时自动构建并发布
+#   - 向 master 分支 push 时自动构建并发布
 #   - Actions 页面手动触发（workflow_dispatch），方便手动重发
 on:
   push:
@@ -40,7 +40,7 @@ jobs:
       - name: Install dependencies
         run: npm ci --include=dev
 
-      - name: Build (validate content + rebuild exams + rebuild search index + frontend)
+      - name: Build math content and frontend
         run: npm run build
         env:
           # Vite base：二级目录部署 → /<仓库名>/（可按需自定义域名覆盖）

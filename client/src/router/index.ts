@@ -30,20 +30,11 @@ const router = createRouter({
       component: () => import("@/views/SearchPage.vue"),
     },
     {
-      path: "/knowledge/:bookId?/:sectionId?",
+      path: "/knowledge/:chapterId?/:topicId?",
       name: "knowledge",
       component: () => import("@/views/KnowledgePage.vue"),
     },
-    {
-      path: "/knowledge-editor/:pointId?",
-      name: "knowledge-editor",
-      component: () => import("@/views/KnowledgeEditorPage.vue"),
-    },
-    {
-      path: "/exams",
-      name: "exams",
-      component: () => import("@/views/ExamPage.vue"),
-    },
+    { path: '/:pathMatch(.*)*', redirect: '/' },
   ],
 });
 

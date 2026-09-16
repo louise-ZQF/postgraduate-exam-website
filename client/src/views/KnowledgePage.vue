@@ -1,402 +1,88 @@
 <script setup lang="ts">
-import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { content, knowledgeBooks } from '@/content'
-import { resolveKnowledgeArticle } from '@/content/knowledge-articles/registry'
-import type { KnowledgeArticleData } from '@/content/knowledge-articles/types'
-import type { Book, ExamKnowledgeLink, KnowledgePoint, Section } from '@/types'
-import KnowledgeSidebar from '@/components/knowledge/KnowledgeSidebar.vue'
-import KnowledgeArticle from '@/components/knowledge/KnowledgeArticle.vue'
-import KnowledgeToc from '@/components/knowledge/KnowledgeToc.vue'
-import DoubleChevronIcon from '@/components/icons/DoubleChevronIcon.vue'
-import BrandLogo from '@/components/BrandLogo.vue'
-
-type SectionArticleEntry = {
-  point: KnowledgePoint
-  article: KnowledgeArticleData
-  examLinks: ExamKnowledgeLink[]
-}
+import MathHeader from '@/components/MathHeader.vue'
+import MathMarkdown from '@/components/MathMarkdown.vue'
+import { mathChapters, mathTopics } from '@/generated/math2-content'
 
 const route = useRoute()
 const router = useRouter()
-const book = ref<Book>()
-const section = ref<Section>()
-const articleEntries = ref<SectionArticleEntry[]>([])
-const loading = ref(true)
-const error = ref('')
-const leftHovered = ref(false)
-const rightHovered = ref(false)
-const leftPinned = ref(false)
-const rightPinned = ref(false)
-const compactLayout = ref(false)
-const sidebarQuery = ref('')
-// 回车跳转到搜索页并展示该关键词的搜索结果
-function onSearchKeydown(e: KeyboardEvent) {
-  if (e.key !== 'Enter') return
-  e.preventDefault()
-  const q = sidebarQuery.value.trim()
-  if (!q) return
-  router.push({ name: 'search', query: { q } })
-}
-const LEFT_DRAWER_WIDTH = 304
-const RIGHT_DRAWER_WIDTH = 270
-// 有搜索内容时也保持侧栏展开，避免失焦后侧栏收回
-// 移动端（compactLayout）不依赖 hover：触摸设备 mouseenter/leave 行为不可靠
-const leftOpen = computed(() => compactLayout.value
-  ? leftPinned.value
-  : (leftPinned.value || leftHovered.value || !!sidebarQuery.value.trim()))
-const rightOpen = computed(() => compactLayout.value
-  ? rightPinned.value
-  : (rightPinned.value || rightHovered.value))
+const menuOpen = ref(false)
 
-/** 移动端点击遮罩关闭所有边栏 */
-function closeMobileDrawers() {
-  leftPinned.value = false
-  leftHovered.value = false
-  rightPinned.value = false
-  rightHovered.value = false
-}
-const readerColumns = computed(() => compactLayout.value
-  ? 'minmax(0,1fr)'
-  : `${leftOpen.value ? LEFT_DRAWER_WIDTH : 0}px minmax(0,1fr) ${rightOpen.value ? RIGHT_DRAWER_WIDTH : 0}px`)
+const chapter = computed(() => mathChapters.find((item) => item.id === route.params.chapterId) ?? mathChapters[0])
+const topic = computed(() => chapter.value.topics.find((item) => item.id === route.params.topicId) ?? chapter.value.topics[0])
+const flatIndex = computed(() => mathTopics.findIndex((item) => item.id === topic.value?.id))
+const previous = computed(() => flatIndex.value > 0 ? mathTopics[flatIndex.value - 1] : null)
+const next = computed(() => flatIndex.value >= 0 && flatIndex.value < mathTopics.length - 1 ? mathTopics[flatIndex.value + 1] : null)
 
-const routeContentId = computed(() => String(route.params.sectionId || ''))
-const bookId = computed(() => String(route.params.bookId || knowledgeBooks[0]?.id || 'computer-network'))
-const books = knowledgeBooks
-const tocEntries = computed(() => articleEntries.value.map((entry) => ({
-  id: entry.point.id,
-  title: entry.point.title,
-  article: entry.article,
-})))
-
-/** 本节所有文章的关联真题（跨文章去重），用于「本节真题」入口 */
-const sectionExam = computed(() => {
-  const blockIds = new Set<string>()
-  const examIds = new Set<string>()
-  for (const entry of articleEntries.value) {
-    for (const link of entry.examLinks) {
-      blockIds.add(link.knowledgeBlockId)
-      examIds.add(link.examId)
-    }
-  }
-  return { blockIds: Array.from(blockIds), examCount: examIds.size }
-})
-function findSelectedSection(id: string) {
-  if (!book.value) return undefined
-  for (const chapter of book.value.chapters) {
-    for (const candidate of chapter.sections) {
-      if (candidate.id === id || candidate.points.some((point) => point.id === id)) {
-        return candidate
-      }
-    }
-  }
-  return undefined
+function routeFor(item: typeof mathTopics[number]) {
+  return `/knowledge/${item.chapterId}/${item.id}`
 }
 
-const activeSectionId = computed(() =>
-  findSelectedSection(routeContentId.value)?.id || section.value?.id || '',
-)
-async function loadSection(id: string) {
-  if (!book.value) return
-  loading.value = true
-  error.value = ''
+watch(() => route.fullPath, () => {
+  menuOpen.value = false
+  window.scrollTo({ top: 0, behavior: 'auto' })
+}, { immediate: true })
 
-  try {
-    const nextSection = findSelectedSection(id)
-    if (!nextSection) {
-      const firstSection = book.value.chapters[0]?.sections[0]
-      if (firstSection) {
-        await router.replace({
-          name: 'knowledge',
-          params: { bookId: bookId.value, sectionId: firstSection.id },
-          query: route.query,
-        })
-      }
-      return
-    }
-
-    // 兼容旧的 KnowledgePoint 链接，并把地址统一到两层目录的 Section。
-    if (id !== nextSection.id) {
-      await router.replace({
-        name: 'knowledge',
-        params: { bookId: bookId.value, sectionId: nextSection.id },
-        query: route.query,
-      })
-      return
-    }
-
-    const nextEntries = nextSection.points.map((point) => ({
-      point,
-      article: resolveKnowledgeArticle(point),
-    }))
-    const blockIds = nextEntries.flatMap(({ article }) =>
-      article.subpoints.flatMap((subpoint) => subpoint.blocks.map((block) => block.id)),
-    )
-
-    let links: ExamKnowledgeLink[] = []
-    try {
-      links = await content.getKnowledgeLinks(blockIds)
-    } catch {
-      // 真题接口不可用时仍然优先显示静态知识正文。
-    }
-
-    section.value = nextSection
-    articleEntries.value = nextEntries.map(({ point, article }) => {
-      const articleBlockIds = new Set(
-        article.subpoints.flatMap((subpoint) => subpoint.blocks.map((block) => block.id)),
-      )
-      return {
-        point,
-        article,
-        examLinks: links.filter((link) => articleBlockIds.has(link.knowledgeBlockId)),
-      }
-    })
-  } catch {
-    error.value = '本节内容没有加载出来，请检查知识目录与文章注册。'
-  } finally {
-    loading.value = false
-    await nextTick()
-    scrollToRequestedBlock()
-  }
+if (!route.params.chapterId || !route.params.topicId) {
+  const firstChapter = mathChapters[0]
+  const firstTopic = firstChapter?.topics[0]
+  if (firstChapter && firstTopic) router.replace(`/knowledge/${firstChapter.id}/${firstTopic.id}`)
 }
-
-const requestedBlock = computed(() => String(route.query.block || ''))
-
-function scrollToRequestedBlock(retry = 0) {
-  const id = requestedBlock.value
-  if (!id) return
-  const el = document.getElementById(id)
-  if (el) {
-    // 使用 scrollTop 直接设置，比 scrollIntoView 更可靠（不受 smooth 滚动打断影响）
-    const top = el.getBoundingClientRect().top + window.scrollY - window.innerHeight / 2
-    document.documentElement.scrollTop = Math.max(0, top)
-  } else if (retry < 5) {
-    // 元素还没渲染出来，延迟重试
-    setTimeout(() => scrollToRequestedBlock(retry + 1), 100)
-  }
-}
-
-// loading 变为 false 时，如果有 block 参数则滚动（处理 watch 触发时 loading 为 true 被跳过的情况）
-watch(loading, (isLoading) => {
-  if (!isLoading && section.value && requestedBlock.value) {
-    nextTick().then(() => scrollToRequestedBlock(0))
-  }
-})
-
-watch(requestedBlock, () => {
-  if (!section.value) return
-  if (loading.value) return // 等 loading 变为 false 时由上面的 watch 接管
-  nextTick().then(() => scrollToRequestedBlock(0))
-})
-
-function selectSection(id: string) {
-  router.push({ name: 'knowledge', params: { bookId: bookId.value, sectionId: id } })
-}
-
-function selectBook(id: string) {
-  router.push({ name: 'knowledge', params: { bookId: id, sectionId: undefined } })
-}
-
-function toggleLeftPin() {
-  leftPinned.value = !leftPinned.value
-}
-
-function toggleRightPin() {
-  rightPinned.value = !rightPinned.value
-}
-
-function updateLayoutMode() {
-  compactLayout.value = window.innerWidth < 1024
-}
-
-async function loadBook() {
-  loading.value = true
-  error.value = ''
-  try {
-    book.value = await content.getBook(bookId.value)
-    if (!routeContentId.value) {
-      const firstSection = book.value.chapters[0]?.sections[0]
-      if (firstSection) {
-        await router.replace({
-          name: 'knowledge',
-          params: { bookId: bookId.value, sectionId: firstSection.id },
-        })
-      }
-      return
-    }
-    await loadSection(routeContentId.value)
-  } catch {
-    error.value = '知识目录没有加载出来，请检查 content/knowledge-tree.ts。'
-    loading.value = false
-  }
-}
-
-watch(bookId, () => {
-  void loadBook()
-})
-watch(routeContentId, (id) => {
-  if (!id || !book.value || book.value.id !== bookId.value) return
-  void loadSection(id)
-})
-onMounted(() => {
-  updateLayoutMode()
-  window.addEventListener('resize', updateLayoutMode, { passive: true })
-  void loadBook()
-})
-onBeforeUnmount(() => {
-  window.removeEventListener('resize', updateLayoutMode)
-})
 </script>
 
 <template>
-  <div
-    class="relative grid min-h-screen overflow-x-clip bg-[#e9eef5] transition-[grid-template-columns] duration-500 ease-[cubic-bezier(.22,1,.36,1)]"
-    :style="{ gridTemplateColumns: readerColumns }"
-  >
-    <!-- 移动端遮罩：边栏展开时显示，点击关闭 -->
-    <div
-      v-if="compactLayout && (leftOpen || rightOpen)"
-      class="fixed inset-0 z-20 bg-black/30 backdrop-blur-[2px]"
-      @click="closeMobileDrawers"
-    ></div>
-
-    <div
-      class="fixed inset-y-0 left-0 z-50 w-7 cursor-e-resize"
-      aria-label="悬停展开书籍目录"
-      @mouseenter="leftHovered = true"
-      @click="leftPinned = true"
-    >
-      <span
-        v-if="!leftOpen"
-        class="absolute left-0 top-1/2 grid h-20 w-6 -translate-y-1/2 place-items-center border border-l-0 border-[#cbd5e1] bg-white/90 text-[#31559e] shadow-lg backdrop-blur rounded-r-sm"
-      >
-        <DoubleChevronIcon class="h-4 w-4" />
-      </span>
-    </div>
-
-    <aside
-      class="sticky top-0 z-30 flex h-screen min-w-0 flex-col overflow-hidden border-r border-[#d3dce8] bg-[#f6f8fb] transition-[opacity,transform] duration-300 max-lg:fixed max-lg:inset-y-0 max-lg:left-0 max-lg:w-[min(304px,88vw)] max-lg:shadow-[20px_0_70px_rgba(15,23,42,.18)]"
-      :class="leftOpen ? 'translate-x-0 opacity-100' : 'pointer-events-none opacity-0 max-lg:-translate-x-full'"
-      @mouseenter="leftHovered = true"
-      @mouseleave="leftHovered = false"
-    >
-      <header class="shrink-0 border-b border-[#d8e0eb] px-5 pb-5 pt-6">
-        <div class="mb-5 flex items-center justify-between gap-3">
-          <BrandLogo />
-          <button
-            type="button"
-            class="grid h-9 w-9 place-items-center border transition"
-            :class="leftPinned ? 'border-[#12327f] bg-[#12327f] text-white' : 'border-[#cbd5e1] bg-white text-slate-500 hover:border-[#12327f] hover:text-[#12327f]'"
-            :aria-label="leftPinned ? '取消固定书籍目录' : '固定书籍目录'"
-            :title="leftPinned ? '取消固定' : '固定目录'"
-            @click="toggleLeftPin"
-          >
-            <svg class="h-4 w-4 transition-transform" :class="leftPinned ? '-rotate-45' : ''" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-              <path d="M12 17v5M7 3h10M8 3l1 7-3 4h12l-3-4 1-7" stroke-linecap="square" stroke-linejoin="miter" />
-            </svg>
-          </button>
-        </div>
-        <label class="relative mb-5 block">
-          <span class="sr-only">搜索知识目录</span>
-          <svg class="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg>
-          <input
-            v-model="sidebarQuery"
-            type="search"
-            class="h-10 w-full rounded-xl border border-[#d5deea] bg-white pl-9 pr-3 text-[13px] outline-none transition placeholder:text-slate-400 hover:border-[#aebbd0] focus:border-[#6686c7]"
-            placeholder="搜索知识点（回车前往搜索页）"
-            autocomplete="off"
-            spellcheck="false"
-            @keydown="onSearchKeydown"
-          />
-        </label>
-        <p class="mb-2 mt-0 text-[11px] font-semibold tracking-[.08em] text-slate-500">选择书籍</p>
-        <label class="group relative block min-w-0 cursor-pointer">
-          <select
-            class="w-full cursor-pointer appearance-none truncate border-0 bg-transparent py-0 pr-7 text-[20px] font-semibold tracking-[-.03em] text-[#071225] outline-none"
-            :value="bookId"
-            aria-label="选择教材"
-            @change="selectBook(($event.target as HTMLSelectElement).value)"
-          >
-            <option v-for="bookItem in books" :key="bookItem.id" :value="bookItem.id">{{ bookItem.title }}</option>
-          </select>
-          <span class="pointer-events-none absolute right-1 top-1/2 -translate-y-1/2 text-xs text-slate-400">⌄</span>
-        </label>
-      </header>
-      <KnowledgeSidebar
-        v-if="book"
-        class="min-h-0 flex-1"
-        :chapters="book.chapters"
-        :active-section-id="activeSectionId"
-        :open="leftOpen"
-        @select-section="selectSection"
-      />
-      <div v-else class="px-5 py-10 text-sm text-slate-500">正在建立知识目录…</div>
-    </aside>
-
-    <main class="min-w-0 px-[clamp(12px,3vw,46px)] py-[clamp(12px,3vw,38px)] transition-[padding] duration-500 ease-[cubic-bezier(.22,1,.36,1)]">
-      <div class="mx-auto min-h-[calc(100vh-32px)] max-w-[1180px] border border-[#d9e1eb] bg-white px-[clamp(24px,5vw,76px)] pb-24 pt-[clamp(34px,5vw,66px)] shadow-[0_24px_80px_rgba(25,39,61,.07)] max-sm:px-5">
-        <div v-if="error" class="border-l-[3px] border-orange-400 bg-orange-50 px-5 py-4 text-orange-800">{{ error }}</div>
-        <template v-else-if="section">
-          <header class="mb-10 border-b border-[#dce3ec] pb-7 flex items-baseline gap-4">
-            <h1 class="m-0 text-[clamp(1.7rem,3vw,2.25rem)] font-semibold leading-tight tracking-[-.045em] text-[#071225]">{{ section.title }}</h1>
-            <RouterLink
-              v-if="sectionExam.examCount"
-              :to="{ name: 'exams', query: { knowledgeBlockIds: sectionExam.blockIds.join(',') } }"
-              class="group mt-3 inline-flex items-baseline gap-1.5 border-b border-[#8ea7d9] pb-0.5 text-[13px] font-semibold tracking-wide text-[#31559e] transition-colors hover:border-[#12327f] hover:text-[#12327f]"
-            >
-              <span class="font-bold text-[#12327f]">{{ sectionExam.examCount }}</span>
-              <span>道关联真题</span>
-              <span class="transition-transform duration-150 group-hover:translate-x-0.5" aria-hidden="true">→</span>
-            </RouterLink>
-          </header>
-
-          <div data-testid="knowledge-article-column" class="min-w-0">
-            <section
-              v-for="(entry, index) in articleEntries"
-              :key="entry.point.id"
-              class="border-t border-[#dce3ec] py-16 first:border-t-0 first:pt-0"
-            >
-              <header :id="`article-${entry.point.id}`" class="mb-10 scroll-mt-16">
-                <h2 class="m-0 text-[clamp(2.15rem,4vw,3.1rem)] font-semibold leading-tight tracking-[-.055em] text-[#071225]">
-                  <span class="mb-2 block font-mono text-[.34em] font-bold tracking-[.16em] text-[#31559e]">ARTICLE {{ String(index + 1).padStart(2, '0') }}</span>
-                  {{ entry.point.title }}
-                </h2>
-              </header>
-              <KnowledgeArticle :article="entry.article" :exam-links="entry.examLinks" />
-            </section>
-          </div>
+  <div class="knowledge-page">
+    <MathHeader />
+    <button class="mobile-menu" type="button" @click="menuOpen = !menuOpen">☰ 章节目录</button>
+    <div class="reader">
+      <aside :class="{ open: menuOpen }">
+        <div class="aside-title"><span>CONTENTS</span><b>知识目录</b></div>
+        <template v-for="partId in ['calculus', 'linear-algebra']" :key="partId">
+          <div class="part-label">{{ partId === 'calculus' ? '高等数学' : '线性代数' }}</div>
+          <details v-for="item in mathChapters.filter((c) => c.partId === partId)" :key="item.id" :open="item.id === chapter.id">
+            <summary :class="{ active: item.id === chapter.id }">{{ item.title }}</summary>
+            <nav>
+              <RouterLink v-for="child in item.topics" :key="child.id" :to="`/knowledge/${item.id}/${child.id}`" :class="{ active: child.id === topic?.id }">{{ child.title }}</RouterLink>
+            </nav>
+          </details>
         </template>
-        <div v-else-if="loading" class="py-24 text-center text-sm text-slate-500">知识内容正在加载…</div>
-      </div>
-    </main>
+      </aside>
 
-    <aside
-      class="sticky top-0 z-30 h-screen min-w-0 overflow-hidden border-l border-[#d3dce8] bg-[#f6f8fb] transition-[opacity,transform] duration-300 max-lg:fixed max-lg:inset-y-0 max-lg:right-0 max-lg:w-[min(270px,84vw)] max-lg:shadow-[-20px_0_70px_rgba(15,23,42,.18)]"
-      :class="rightOpen ? 'translate-x-0 opacity-100' : 'pointer-events-none opacity-0 max-lg:translate-x-full'"
-      @mouseenter="rightHovered = true"
-      @mouseleave="rightHovered = false"
-    >
-      <KnowledgeToc
-        v-if="section"
-        :entries="tocEntries"
-        :pinned="rightPinned"
-        class="h-full"
-        @toggle-pin="toggleRightPin"
-      />
-    </aside>
+      <button v-if="menuOpen" class="menu-mask" aria-label="关闭目录" @click="menuOpen = false"></button>
 
-    <div
-      class="fixed inset-y-0 right-0 z-50 w-7 cursor-w-resize"
-      aria-label="悬停展开本节目录"
-      @mouseenter="rightHovered = true"
-      @click="rightPinned = true"
-    >
-      <span
-        v-if="!rightOpen"
-        class="absolute right-0 top-1/2 grid h-20 w-6 -translate-y-1/2 place-items-center border border-r-0 border-[#cbd5e1] bg-white/90 text-[#31559e] shadow-lg backdrop-blur rounded-l-sm"
-      >
-        <DoubleChevronIcon class="h-4 w-4 rotate-180" />
-      </span>
+      <main v-if="topic">
+        <div class="breadcrumb"><RouterLink to="/">首页</RouterLink><span>/</span>{{ chapter.partTitle }}<span>/</span>{{ chapter.title }}</div>
+        <article>
+          <header>
+            <div class="topic-number">{{ String(flatIndex + 1).padStart(3, '0') }} / {{ mathTopics.length }}</div>
+            <h1>{{ topic.title }}</h1>
+            <p>{{ topic.summary }}</p>
+          </header>
+          <MathMarkdown :source="topic.body" />
+        </article>
+
+        <nav class="pager" aria-label="上一条和下一条">
+          <RouterLink v-if="previous" :to="routeFor(previous)" class="previous"><small>← 上一条</small><b>{{ previous.title }}</b></RouterLink><span v-else></span>
+          <RouterLink v-if="next" :to="routeFor(next)" class="next"><small>下一条 →</small><b>{{ next.title }}</b></RouterLink>
+        </nav>
+      </main>
     </div>
   </div>
 </template>
+
+<style scoped>
+.knowledge-page { min-height: 100vh; background: #f7f9f5; color: #1a291f; }
+.reader { width: min(1500px, 100%); margin: 0 auto; display: grid; grid-template-columns: 310px minmax(0, 1fr); }
+aside { position: sticky; top: 68px; height: calc(100vh - 68px); overflow-y: auto; border-right: 1px solid #dfe6df; padding: 31px 22px 60px; background: #f2f5f0; scrollbar-width: thin; }
+.aside-title { display: grid; margin: 0 8px 30px; }.aside-title span { color: #a2713c; font-family: Manrope, sans-serif; font-size: 9px; font-weight: 800; letter-spacing: .2em; }.aside-title b { margin-top: 7px; font-family: "Noto Serif SC", "Songti SC", serif; font-size: 24px; }
+.part-label { margin: 25px 8px 9px; color: #869188; font-size: 10px; font-weight: 700; letter-spacing: .17em; }
+details { border-top: 1px solid #e0e6e0; }summary { position: relative; padding: 13px 22px 13px 8px; color: #59675e; cursor: pointer; font-size: 13px; font-weight: 650; list-style: none; }summary::-webkit-details-marker { display: none; }summary::after { position: absolute; right: 7px; content: '+'; color: #9aa59d; }details[open] summary::after { content: '−'; }summary.active { color: #23563c; }
+details nav { display: grid; padding: 1px 0 11px 8px; }details nav a { position: relative; border-left: 1px solid #d5dfd6; padding: 7px 8px 7px 15px; color: #718078; font-size: 12px; line-height: 1.45; }details nav a:hover { color: #285d42; }details nav a.active { border-left-color: #337552; background: linear-gradient(90deg, rgba(58,116,83,.09), transparent); color: #24593e; font-weight: 700; }details nav a.active::before { position: absolute; top: 12px; left: -3px; width: 5px; height: 5px; border-radius: 50%; content: ''; background: #337552; }
+main { width: min(860px, calc(100% - 64px)); margin: 0 auto; padding: 43px 0 90px; }.breadcrumb { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 23px; color: #8b968e; font-size: 11px; }.breadcrumb a:hover { color: #2b6045; }.breadcrumb span { color: #c0c8c1; }
+article { border: 1px solid #dfe6df; border-radius: 8px; padding: 47px clamp(26px, 6vw, 68px) 58px; background: white; box-shadow: 0 16px 45px rgba(45,68,53,.045); }article > header { margin-bottom: 42px; border-bottom: 1px solid #e1e7e1; padding-bottom: 33px; }.topic-number { color: #a16e35; font-family: Manrope, sans-serif; font-size: 10px; font-weight: 800; letter-spacing: .15em; }h1 { margin: 11px 0 13px; color: #15291c; font-family: "Noto Serif SC", "Songti SC", serif; font-size: clamp(30px, 4vw, 42px); line-height: 1.3; }article header p { margin: 0; color: #7b887f; font-size: 13px; line-height: 1.75; }
+.pager { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 17px; }.pager a { display: grid; gap: 7px; min-height: 78px; border: 1px solid #dfe6df; border-radius: 8px; padding: 15px 18px; background: white; transition: .18s ease; }.pager a:hover { border-color: #abc0b0; transform: translateY(-1px); }.pager small { color: #8a978e; }.pager b { color: #345343; font-size: 13px; }.pager .next { text-align: right; }
+.mobile-menu, .menu-mask { display: none; }
+@media (max-width: 900px) { .reader { grid-template-columns: 1fr; }.mobile-menu { position: fixed; right: 14px; bottom: 18px; z-index: 75; display: block; border: 0; border-radius: 999px; padding: 12px 18px; background: #285e43; color: white; box-shadow: 0 8px 24px rgba(31,72,49,.25); font-weight: 700; }aside { position: fixed; top: 0; left: 0; z-index: 80; width: min(330px, 88vw); height: 100vh; transform: translateX(-102%); transition: transform .25s ease; box-shadow: 20px 0 50px rgba(20,38,27,.16); }aside.open { transform: translateX(0); }.menu-mask { position: fixed; inset: 0; z-index: 70; display: block; border: 0; background: rgba(16,28,21,.32); }main { width: min(760px, calc(100% - 32px)); padding-top: 30px; } }
+@media (max-width: 560px) { article { border-right: 0; border-left: 0; border-radius: 0; padding: 34px 18px 44px; }main { width: 100%; }.breadcrumb { padding: 0 18px; }.pager { padding: 0 12px; }.pager b { display: -webkit-box; overflow: hidden; -webkit-line-clamp: 2; -webkit-box-orient: vertical; } }
+</style>

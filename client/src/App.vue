@@ -38,7 +38,7 @@ import { isNavigating } from '@/router'
   left: 0;
   height: 3px;
   width: 100%;
-  background: linear-gradient(90deg, #2d68ef 0%, #38bdf8 50%, #2d68ef 100%);
+  background: linear-gradient(90deg, #285e43 0%, #9fbda9 50%, #285e43 100%);
   background-size: 200% 100%;
   animation: route-loading-slide 1.2s ease-in-out infinite;
 }
@@ -63,7 +63,7 @@ import { isNavigating } from '@/router'
   width: 40px;
   height: 40px;
   border: 3px solid #e4eaf2;
-  border-top-color: #2d68ef;
+  border-top-color: #285e43;
   border-radius: 50%;
   animation: route-spin 0.8s linear infinite;
 }
@@ -74,7 +74,7 @@ import { isNavigating } from '@/router'
 
 .route-loading-text {
   font-size: 14px;
-  color: #4f6aa0;
+  color: #53675b;
   font-weight: 500;
 }
 </style>

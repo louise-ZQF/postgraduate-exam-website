@@ -1,0 +1,104 @@
+import { mathTopics } from '@/generated/math2-content'
+import type { MathSearchResult } from './types'
+
+const SYNONYM_GROUPS = [
+  ['判断', '判定'],
+  ['求导', '导数', '微分'],
+  ['不定积分', '原函数'],
+  ['定积分', '牛顿-莱布尼茨公式'],
+  ['相似对角化', '对角化'],
+  ['特征向量', '特征矢量'],
+  ['线性无关', '无关'],
+  ['线性相关', '相关'],
+  ['同解', '解相同'],
+]
+
+export function normalizeMathQuery(value: string): string {
+  return value
+    .normalize('NFKC')
+    .toLowerCase()
+    .replace(/判断/g, '判定')
+    .replace(/特征矢量/g, '特征向量')
+    .replace(/[\s　、，,。.；;:：()（）\[\]【】]/g, '')
+}
+
+function queryTerms(query: string): string[] {
+  const raw = query.trim()
+  const terms = new Set<string>([raw, normalizeMathQuery(raw)])
+  const compact = raw.replace(/[\s　]+/g, '')
+  if (compact.length >= 2) terms.add(compact)
+
+  for (const group of SYNONYM_GROUPS) {
+    const matched = group.find((item) => raw.includes(item))
+    if (!matched) continue
+    group.forEach((item) => terms.add(raw.replace(matched, item)))
+  }
+
+  raw.split(/[\s　、，,。.\/；;:：]+/).filter((item) => item.length >= 2).forEach((item) => terms.add(item))
+  return [...terms].filter(Boolean)
+}
+
+function firstMatchingSnippet(text: string, terms: string[], maxLength = 118): string {
+  const compact = text.replace(/\s+/g, ' ').trim()
+  if (!compact) return ''
+  let hit = -1
+  for (const term of terms.sort((a, b) => b.length - a.length)) {
+    const index = compact.toLowerCase().indexOf(term.toLowerCase())
+    if (index >= 0 && (hit < 0 || index < hit)) hit = index
+  }
+  if (hit < 0) return compact.slice(0, maxLength) + (compact.length > maxLength ? '…' : '')
+  const start = Math.max(0, hit - 34)
+  const end = Math.min(compact.length, start + maxLength)
+  return `${start > 0 ? '…' : ''}${compact.slice(start, end)}${end < compact.length ? '…' : ''}`
+}
+
+export function searchMath(query: string, limit = 20): MathSearchResult[] {
+  const trimmed = query.trim()
+  if (!trimmed) return []
+  const terms = queryTerms(trimmed)
+  const normalizedQuery = normalizeMathQuery(trimmed)
+
+  return mathTopics
+    .map((topic) => {
+      const title = topic.title.toLowerCase()
+      const normalizedTitle = normalizeMathQuery(topic.title)
+      const body = topic.searchText.toLowerCase()
+      const normalizedBody = normalizeMathQuery(topic.searchText)
+      let score = 0
+
+      if (title.includes(trimmed.toLowerCase())) score += 220
+      if (normalizedTitle.includes(normalizedQuery)) score += 190
+      if (body.includes(trimmed.toLowerCase())) score += 82
+      if (normalizedBody.includes(normalizedQuery)) score += 70
+
+      for (const term of terms) {
+        const normalizedTerm = normalizeMathQuery(term)
+        if (!normalizedTerm) continue
+        if (normalizedTitle.includes(normalizedTerm)) score += 42 + normalizedTerm.length * 3
+        if (normalizedBody.includes(normalizedTerm)) score += 8 + Math.min(normalizedTerm.length, 8)
+      }
+
+      return {
+        ...topic,
+        score,
+        snippet: firstMatchingSnippet(topic.searchText, terms),
+      }
+    })
+    .filter((topic) => topic.score > 0)
+    .sort((a, b) => b.score - a.score || a.chapterId.localeCompare(b.chapterId) || a.id.localeCompare(b.id))
+    .slice(0, limit)
+}
+
+export function escapeHtml(value: string): string {
+  return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+}
+
+export function highlightMatch(value: string, query: string): string {
+  const escaped = escapeHtml(value)
+  const terms = queryTerms(query)
+    .filter((term) => term.length >= 2 && value.toLowerCase().includes(term.toLowerCase()))
+    .sort((a, b) => b.length - a.length)
+  if (!terms.length) return escaped
+  const pattern = terms.map((term) => term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')
+  return escaped.replace(new RegExp(`(${pattern})`, 'gi'), '<mark>$1</mark>')
+}

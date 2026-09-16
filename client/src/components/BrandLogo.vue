@@ -1,15 +1,17 @@
 <template>
-  <RouterLink
-    to="/"
-    aria-label="返回首页"
-    class="group inline-flex items-center gap-2.5 font-mono text-[12px] font-bold tracking-[.16em] text-[#12327f]"
-  >
-    <svg class="h-7 w-8 overflow-visible" viewBox="0 0 34 28" aria-hidden="true">
-      <path d="M6 14 26 5M6 14l20 9" fill="none" stroke="currentColor" stroke-width="1.5" opacity=".72" />
-      <circle cx="6" cy="14" r="4" fill="#1d4ed8" />
-      <circle cx="26" cy="5" r="4" fill="#38bdf8" />
-      <circle cx="26" cy="23" r="4" fill="#06b6d4" />
-    </svg>
-    <span class="transition-colors group-hover:text-[#071225]">408 简纲</span>
+  <RouterLink to="/" aria-label="返回数学二知识库首页" class="brand">
+    <span class="mark" aria-hidden="true">
+      <svg viewBox="0 0 44 34"><path d="M4 27 15 8l9 19L34 5l6 22"/><path d="M8 23h31"/></svg>
+    </span>
+    <span><b>数学二知识库</b><small>MATH Ⅱ INDEX</small></span>
   </RouterLink>
 </template>
+
+<style scoped>
+.brand { display: inline-flex; align-items: center; gap: 10px; width: max-content; color: #1b3d2a; }
+.mark { display: grid; width: 35px; height: 35px; place-items: center; border-radius: 8px; background: #285c42; color: white; box-shadow: 0 5px 14px rgba(40,92,66,.18); }
+.mark svg { width: 27px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.brand > span:last-child { display: grid; line-height: 1.05; }
+b { font-size: 14px; letter-spacing: .04em; }
+small { margin-top: 5px; color: #7d8c81; font-family: Manrope, sans-serif; font-size: 8px; font-weight: 700; letter-spacing: .16em; }
+</style>

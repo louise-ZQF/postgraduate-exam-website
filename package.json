@@ -1,24 +1,20 @@
 {
-  "name": "408-simple",
-  "version": "0.1.0",
+  "name": "math2-knowledge-base",
+  "version": "1.0.0",
   "private": true,
   "license": "CC-BY-4.0",
-  "author": "liangbohan",
-  "description": "408 计算机学科考研电子教材（开源、AI 原生、极简、可视化）",
+  "author": "louise-ZQF",
+  "description": "可全文搜索的考研数学二公式、结论与题型知识库",
   "repository": {
     "type": "git",
-    "url": "https://github.com/liangbohan/postgraduate-exam-website"
+    "url": "https://github.com/louise-ZQF/postgraduate-exam-website"
   },
-  "homepage": "https://liangbohan.github.io/postgraduate-exam-website/",
-  "keywords": ["408", "kaoyan", "考研", "计算机", "csapp", "datastructure", "os", "computer-network"],
+  "homepage": "https://louise-zqf.github.io/postgraduate-exam-website/",
+  "keywords": ["数学二", "kaoyan", "考研", "高等数学", "线性代数", "公式"],
   "workspaces": ["client"],
   "scripts": {
-    "dev": "npm run rebuild:exams && node scripts/build-search-index.cjs && npm run dev -w client",
-    "build": "npm run rebuild:exams && npm run validate && node scripts/build-search-index.cjs && npm run build -w client",
-    "build:search-index": "node scripts/build-search-index.cjs",
-    "rebuild:exams": "node scripts/rebuild-exam-index.mjs",
-    "validate": "npm run validate:content && npm run validate:exams",
-    "validate:content": "node scripts/validate_knowledge_content.mjs",
-    "validate:exams": "node scripts/validate_exam_content.mjs"
+    "dev": "npm run build:content && npm run dev -w client",
+    "build": "npm run build:content && npm run build -w client",
+    "build:content": "node scripts/build-math-content.mjs"
   }
 }
