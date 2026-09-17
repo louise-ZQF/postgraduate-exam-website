@@ -8,7 +8,7 @@
 
 - 高等数学 6 章：极限、一元微分、一元积分、微分方程、多元微分、二重积分
 - 线性代数 6 章：行列式、矩阵、向量、线性方程组、特征值与相似矩阵、二次型
-- 184 个可搜索知识条目
+- 60 个大观园主题型、529 个可检索的细分题型
 - Markdown 正文与 KaTeX 公式渲染
 - 中文近义词归一搜索，支持从搜索结果直达条目
 
@@ -30,7 +30,8 @@ npm run build
 内容的唯一数据源是：
 
 ```text
-content/数学二公式与结论大全.md
+content/approved/高等数学.md
+content/approved/线性代数.md
 ```
 
 章节使用固定的 Markdown 层级：
@@ -43,7 +44,7 @@ content/数学二公式与结论大全.md
 知识点正文……
 ```
 
-修改这份文档后运行 `npm run build:content`，即可重新生成目录和搜索数据。`npm run dev` 与 `npm run build` 也会自动执行这一步。
+修改这两份文档后运行 `npm run build:content`，即可重新生成目录和搜索数据。`npm run dev` 与 `npm run build` 也会自动执行这一步。
 
 ## 部署
 

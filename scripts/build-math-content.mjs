@@ -5,11 +5,16 @@ import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..')
-const sourcePath = resolve(projectRoot, 'content/数学二三资料精编.md')
+const sourcePaths = [
+  resolve(projectRoot, 'content/approved/高等数学.md'),
+  resolve(projectRoot, 'content/approved/线性代数.md'),
+]
 const outputPath = resolve(projectRoot, 'client/src/generated/math2-content.ts')
 const daguanyuanPath = resolve(projectRoot, 'content/daguanyuan-math2-types.json')
 
-const source = readFileSync(sourcePath, 'utf8').replace(/\r\n/g, '\n')
+const source = sourcePaths
+  .map((sourcePath) => readFileSync(sourcePath, 'utf8').replace(/\r\n/g, '\n'))
+  .join('\n\n')
 const lines = source.split('\n')
 const daguanyuanTypes = JSON.parse(readFileSync(daguanyuanPath, 'utf8'))
 
@@ -144,7 +149,7 @@ function daguanyuanGroup(chapterTitle, title) {
   if (chapterTitle.includes('行列式')) {
     if (/余子式/.test(title)) return '(代数)余子式相关问题'
     if (/多项式|参数因子|次数|f\(x\)/.test(title)) return '多项式 $f(x)$ 以行列式形式给出'
-    if (/克拉默/.test(title)) return 'Cramer法则'
+    if (/克拉默/.test(title)) return '克拉默法则'
     if (/抽象|矩阵乘积|转置|逆矩阵|伴随矩阵|秩一|特征值|可逆性|证明行列式/.test(title)) return '抽象行列式计算'
     return '具体行列式计算'
   }
@@ -212,7 +217,7 @@ for (const chapter of chapters) {
   const grouped = new Map()
   for (const topic of chapter.topics) {
     if (/求两个生成空间的公共向量/.test(topic.title)) continue
-    const title = daguanyuanGroup(chapter.title, topic.title)
+    const title = topic.title
     const chapterKey = daguanyuanChapterKey(chapter.title)
     if (!daguanyuanTypes[chapterKey]?.[title]) {
       throw new Error(`题型名称不在大观园分类中：${chapterKey} > ${title}（原题型：${topic.title}）`)
@@ -247,13 +252,17 @@ if (chapters.length !== 12) {
 }
 
 const topicCount = chapters.reduce((total, chapter) => total + chapter.topics.length, 0)
+const detailedTypeCount = Object.values(daguanyuanTypes).reduce(
+  (chapterTotal, groups) => chapterTotal + Object.values(groups).reduce((groupTotal, rows) => groupTotal + rows.length, 0),
+  0,
+)
 if (topicCount < 45) {
   throw new Error(`知识点数量异常：${topicCount}`)
 }
 
-const banner = `/* 此文件由 scripts/build-math-content.mjs 根据大观园数学二分类与精编公式内容自动生成，请勿手工修改。 */\n`
-const output = `${banner}import type { MathChapter } from '@/math/types'\n\nexport const mathChapters: MathChapter[] = ${JSON.stringify(chapters, null, 2)}\n\nexport const mathTopics = mathChapters.flatMap((chapter) => chapter.topics.map((topic) => ({ ...topic, chapterId: chapter.id, chapterTitle: chapter.title, partId: chapter.partId, partTitle: chapter.partTitle })))\n\nexport const mathContentStats = { chapters: mathChapters.length, topics: mathTopics.length }\n`
+const banner = `/* 此文件由 scripts/build-math-content.mjs 根据大观园分类、原始知识点 PDF 与用户指定资料自动生成，请勿手工修改。 */\n`
+const output = `${banner}import type { MathChapter } from '@/math/types'\n\nexport const mathChapters: MathChapter[] = ${JSON.stringify(chapters, null, 2)}\n\nexport const mathTopics = mathChapters.flatMap((chapter) => chapter.topics.map((topic) => ({ ...topic, chapterId: chapter.id, chapterTitle: chapter.title, partId: chapter.partId, partTitle: chapter.partTitle })))\n\nexport const mathContentStats = { chapters: mathChapters.length, topics: mathTopics.length, detailedTypes: ${detailedTypeCount} }\n`
 
 mkdirSync(dirname(outputPath), { recursive: true })
 writeFileSync(outputPath, output)
-console.log(`[数学二内容] 已生成 ${chapters.length} 章、${topicCount} 个可搜索知识点`)
+console.log(`[数学二内容] 已生成 ${chapters.length} 章、${topicCount} 个主题型、${detailedTypeCount} 个细分题型`)

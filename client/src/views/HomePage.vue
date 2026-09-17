@@ -32,7 +32,7 @@ function search(value = query.value) {
 
         <div class="stats" aria-label="内容统计">
           <div><strong>{{ mathContentStats.chapters }}</strong><span>章体系目录</span></div>
-          <div><strong>{{ mathContentStats.topics }}</strong><span>个知识条目</span></div>
+          <div><strong>{{ mathContentStats.detailedTypes }}</strong><span>个细分题型</span></div>
           <div><strong>100%</strong><span>数学二范围</span></div>
         </div>
       </section>
