@@ -32,7 +32,12 @@ function submit() {
 
       <div v-if="query.trim()" class="result-meta">为“<b>{{ query }}</b>”找到 <strong>{{ results.length }}</strong> 条相关内容</div>
       <section v-if="results.length" class="results">
-        <RouterLink v-for="result in results" :key="result.id" :to="`/knowledge/${result.chapterId}/${result.id}`" class="result-card">
+        <RouterLink
+          v-for="result in results"
+          :key="result.id"
+          :to="{ name: 'knowledge', params: { chapterId: result.chapterId }, query: { section: result.id } }"
+          class="result-card"
+        >
           <div class="result-path">{{ result.partTitle }} <span>/</span> {{ result.chapterTitle }}</div>
           <h2 v-html="highlightMatch(result.title, query)"></h2>
           <p v-html="highlightMatch(result.snippet, query)"></p>

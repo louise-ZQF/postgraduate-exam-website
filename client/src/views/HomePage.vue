@@ -45,11 +45,11 @@ function search(value = query.value) {
             <RouterLink
               v-for="chapter in mathChapters.filter((item) => item.partId === part)"
               :key="chapter.id"
-              :to="`/knowledge/${chapter.id}/${chapter.topics[0]?.id}`"
+              :to="`/knowledge/${chapter.id}`"
               class="chapter-card"
             >
               <span class="chapter-no">{{ String(mathChapters.indexOf(chapter) + 1).padStart(2, '0') }}</span>
-              <div><b>{{ chapter.title.replace(/^第[一二三四五六]+章　/, '') }}</b><small>{{ chapter.topics.length }} 个知识点</small></div>
+              <div><b>{{ chapter.title.replace(/^第[一二三四五六]+章　/, '') }}</b><small>{{ chapter.topics.length }} 个章内条目</small></div>
               <span class="arrow">↗</span>
             </RouterLink>
           </div>

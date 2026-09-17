@@ -44,6 +44,7 @@ const html = computed(() => {
 
 <style scoped>
 .math-markdown { color: #26352d; font-size: 16px; line-height: 1.9; overflow-wrap: anywhere; }
+.math-markdown :deep(h3) { margin: 30px 0 12px; color: #173322; font-size: 21px; line-height: 1.5; }
 .math-markdown :deep(h5) { margin: 34px 0 12px; color: #15271d; font-size: 19px; line-height: 1.45; font-weight: 750; }
 .math-markdown :deep(h5:first-child) { margin-top: 2px; }
 .math-markdown :deep(p) { margin: 11px 0; }

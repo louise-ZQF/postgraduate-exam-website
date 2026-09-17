@@ -5,7 +5,7 @@ import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..')
-const sourcePath = resolve(projectRoot, 'content/数学二公式与结论大全.md')
+const sourcePath = resolve(projectRoot, 'content/数学二三资料精编.md')
 const outputPath = resolve(projectRoot, 'client/src/generated/math2-content.ts')
 
 const source = readFileSync(sourcePath, 'utf8').replace(/\r\n/g, '\n')
@@ -105,7 +105,7 @@ if (topicCount < 180) {
   throw new Error(`知识点数量异常：${topicCount}`)
 }
 
-const banner = `/* 此文件由 scripts/build-math-content.mjs 根据 content/数学二公式与结论大全.md 自动生成，请勿手工修改。 */\n`
+const banner = `/* 此文件由 scripts/build-math-content.mjs 根据 content/数学二三资料精编.md 自动生成，请勿手工修改。 */\n`
 const output = `${banner}import type { MathChapter } from '@/math/types'\n\nexport const mathChapters: MathChapter[] = ${JSON.stringify(chapters, null, 2)}\n\nexport const mathTopics = mathChapters.flatMap((chapter) => chapter.topics.map((topic) => ({ ...topic, chapterId: chapter.id, chapterTitle: chapter.title, partId: chapter.partId, partTitle: chapter.partTitle })))\n\nexport const mathContentStats = { chapters: mathChapters.length, topics: mathTopics.length }\n`
 
 mkdirSync(dirname(outputPath), { recursive: true })

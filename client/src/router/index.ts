@@ -15,6 +15,8 @@ const router = createRouter({
   history: createWebHashHistory(),
   scrollBehavior: (to, from, savedPosition) => {
     if (savedPosition) return savedPosition
+    const section = String(to.query.section ?? '')
+    if (/^[a-z0-9-]+$/.test(section)) return { el: `#${section}`, top: 88 }
     if (to.path === from.path) return undefined
     return { top: 0 }
   },

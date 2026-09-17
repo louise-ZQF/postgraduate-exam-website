@@ -6,7 +6,7 @@ const SYNONYM_GROUPS = [
   ['求导', '导数', '微分'],
   ['不定积分', '原函数'],
   ['定积分', '牛顿-莱布尼茨公式'],
-  ['相似对角化', '对角化'],
+  ['相似对角化判断', '相似对角化判定', '判断矩阵能否相似对角化', '相似对角化', '对角化'],
   ['特征向量', '特征矢量'],
   ['线性无关', '无关'],
   ['线性相关', '相关'],
@@ -52,7 +52,7 @@ function firstMatchingSnippet(text: string, terms: string[], maxLength = 118): s
   return `${start > 0 ? '…' : ''}${compact.slice(start, end)}${end < compact.length ? '…' : ''}`
 }
 
-export function searchMath(query: string, limit = 20): MathSearchResult[] {
+export function searchMath(query: string, limit = 8): MathSearchResult[] {
   const trimmed = query.trim()
   if (!trimmed) return []
   const terms = queryTerms(trimmed)
