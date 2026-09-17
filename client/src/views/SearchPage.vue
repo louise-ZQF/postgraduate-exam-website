@@ -2,7 +2,7 @@
 import { computed, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import MathHeader from '@/components/MathHeader.vue'
-import { highlightMatch, searchMath } from '@/math/search'
+import { highlightMatch, plainMathText, searchMath } from '@/math/search'
 
 const route = useRoute()
 const router = useRouter()
@@ -39,7 +39,7 @@ function submit() {
           class="result-card"
         >
           <div class="result-path">{{ result.partTitle }} <span>/</span> {{ result.chapterTitle }}</div>
-          <h2 v-html="highlightMatch(result.title, query)"></h2>
+          <h2 v-html="highlightMatch(plainMathText(result.title), query)"></h2>
           <p v-html="highlightMatch(result.snippet, query)"></p>
           <span class="open">↗</span>
         </RouterLink>

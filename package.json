@@ -15,7 +15,6 @@
   "scripts": {
     "dev": "npm run build:content && npm run dev -w client",
     "build": "npm run build:content && npm run build -w client",
-    "curate:content": "node scripts/curate-primary-content.mjs",
     "build:content": "node scripts/build-math-content.mjs"
   }
 }

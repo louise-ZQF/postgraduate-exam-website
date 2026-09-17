@@ -93,6 +93,24 @@ export function escapeHtml(value: string): string {
   return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
 }
 
+export function plainMathText(value: string): string {
+  return value
+    .replace(/\\\((.*?)\\\)/g, '$1')
+    .replace(/\$([^$\n]+)\$/g, '$1')
+    .replace(/\\,/g, ' ')
+    .replace(/\\(?:mathbf|mathrm|text)\{([^{}]*)\}/g, '$1')
+    .replace(/\\(?:top|sim|pm|mp|ne|le|ge)/g, (token) => ({
+      '\\top': 'T',
+      '\\sim': '相似',
+      '\\pm': '±',
+      '\\mp': '∓',
+      '\\ne': '≠',
+      '\\le': '≤',
+      '\\ge': '≥',
+    })[token] ?? token)
+    .replace(/[{}]/g, '')
+}
+
 export function highlightMatch(value: string, query: string): string {
   const escaped = escapeHtml(value)
   const terms = queryTerms(query)

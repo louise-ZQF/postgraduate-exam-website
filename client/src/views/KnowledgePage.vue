@@ -73,10 +73,10 @@ if (!route.params.chapterId) {
               v-for="item in chapter.topics"
               :key="item.id"
               :to="{ name: 'knowledge', params: { chapterId: chapter.id }, query: { section: item.id } }"
-            >{{ item.title }}</RouterLink>
+            ><MathMarkdown :source="item.title" inline /></RouterLink>
           </nav>
           <section v-for="item in chapter.topics" :id="item.id" :key="item.id" class="chapter-section">
-            <h2>{{ item.title }}</h2>
+            <h2><MathMarkdown :source="item.title" inline /></h2>
             <MathMarkdown :source="item.body" />
           </section>
         </article>
