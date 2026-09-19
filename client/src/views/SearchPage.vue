@@ -34,8 +34,8 @@ function submit() {
       <section v-if="results.length" class="results">
         <RouterLink
           v-for="result in results"
-          :key="result.id"
-          :to="{ name: 'knowledge', params: { chapterId: result.chapterId }, query: { section: result.id } }"
+          :key="result.resultId"
+          :to="{ name: 'knowledge', params: { chapterId: result.chapterId }, query: { section: result.targetId } }"
           class="result-card"
         >
           <div class="result-path">{{ result.partTitle }} <span>/</span> {{ result.chapterTitle }}</div>

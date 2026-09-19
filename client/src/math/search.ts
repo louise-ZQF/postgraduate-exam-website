@@ -35,6 +35,20 @@ function queryTerms(query: string): string[] {
   }
 
   raw.split(/[\s　、，,。.\/；;:：]+/).filter((item) => item.length >= 2).forEach((item) => terms.add(item))
+
+  // 中文搜索通常不会加空格。补充 2—6 字连续片段，使“参数方程二阶导数”
+  // 能命中“参数方程的一阶和二阶求导公式”，同时保留完整短语的最高权重。
+  for (const value of [...terms]) {
+    const normalized = normalizeMathQuery(value)
+    for (const match of normalized.matchAll(/[\u3400-\u9fff]+/g)) {
+      const text = match[0]
+      for (let length = 2; length <= Math.min(6, text.length); length++) {
+        for (let start = 0; start + length <= text.length; start++) {
+          terms.add(text.slice(start, start + length))
+        }
+      }
+    }
+  }
   return [...terms].filter(Boolean)
 }
 
@@ -59,30 +73,43 @@ export function searchMath(query: string, limit = 8): MathSearchResult[] {
   const normalizedQuery = normalizeMathQuery(trimmed)
 
   return mathTopics
-    .map((topic) => {
-      const title = topic.title.toLowerCase()
-      const normalizedTitle = normalizeMathQuery(topic.title)
-      const body = topic.searchText.toLowerCase()
-      const normalizedBody = normalizeMathQuery(topic.searchText)
-      let score = 0
+    .flatMap((topic) => {
+      const candidates = topic.anchors.length
+        ? topic.anchors
+        : [{ id: topic.id, title: topic.title, searchText: topic.searchText, summary: topic.summary }]
 
-      if (title.includes(trimmed.toLowerCase())) score += 220
-      if (normalizedTitle.includes(normalizedQuery)) score += 190
-      if (body.includes(trimmed.toLowerCase())) score += 82
-      if (normalizedBody.includes(normalizedQuery)) score += 70
+      return candidates.map((candidate) => {
+        const title = candidate.title.toLowerCase()
+        const normalizedTitle = normalizeMathQuery(candidate.title)
+        const body = candidate.searchText.toLowerCase()
+        const normalizedBody = normalizeMathQuery(candidate.searchText)
+        let score = 0
 
-      for (const term of terms) {
-        const normalizedTerm = normalizeMathQuery(term)
-        if (!normalizedTerm) continue
-        if (normalizedTitle.includes(normalizedTerm)) score += 42 + normalizedTerm.length * 3
-        if (normalizedBody.includes(normalizedTerm)) score += 8 + Math.min(normalizedTerm.length, 8)
-      }
+        if (title === trimmed.toLowerCase()) score += 1000
+        if (normalizedTitle === normalizedQuery) score += 900
+        if (title.includes(trimmed.toLowerCase())) score += 220
+        if (normalizedTitle.includes(normalizedQuery)) score += 190
+        if (body.includes(trimmed.toLowerCase())) score += 82
+        if (normalizedBody.includes(normalizedQuery)) score += 70
 
-      return {
-        ...topic,
-        score,
-        snippet: firstMatchingSnippet(topic.searchText, terms),
-      }
+        for (const term of terms) {
+          const normalizedTerm = normalizeMathQuery(term)
+          if (!normalizedTerm) continue
+          if (normalizedTitle.includes(normalizedTerm)) score += 42 + normalizedTerm.length * 3
+          if (normalizedBody.includes(normalizedTerm)) score += 8 + Math.min(normalizedTerm.length, 8)
+        }
+
+        return {
+          ...topic,
+          title: candidate.title,
+          searchText: candidate.searchText,
+          summary: candidate.summary,
+          score,
+          snippet: firstMatchingSnippet(candidate.searchText, terms),
+          resultId: candidate.id,
+          targetId: candidate.id,
+        }
+      })
     })
     .filter((topic) => topic.score > 0)
     .sort((a, b) => b.score - a.score || a.chapterId.localeCompare(b.chapterId) || a.id.localeCompare(b.id))

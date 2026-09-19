@@ -53,6 +53,22 @@ function conciseBody(markdown) {
     .trim()
 }
 
+function searchableAnchors(topicId, markdown) {
+  const matches = [...markdown.matchAll(/^#####\s+(.+)$/gm)]
+  return matches.map((match, index) => {
+    const title = match[1].trim()
+    const bodyStart = (match.index ?? 0) + match[0].length
+    const bodyEnd = matches[index + 1]?.index ?? markdown.length
+    const body = markdown.slice(bodyStart, bodyEnd).trim()
+    return {
+      id: `${topicId}-anchor-${String(index + 1).padStart(3, '0')}`,
+      title,
+      searchText: compactText(`${title}\n${body}`),
+      summary: makeSummary(body),
+    }
+  })
+}
+
 const chapters = []
 let currentPart = null
 let currentChapter = null
@@ -237,12 +253,14 @@ for (const chapter of chapters) {
     const directory = typeDirectory(chapter.title, title)
     const bodies = [...new Set(topics.map((topic) => conciseBody(topic.body)).filter(Boolean))]
     const body = [directory, ...bodies].filter(Boolean).join('\n\n---\n\n')
+    const id = `${chapter.id}-${String(index + 1).padStart(3, '0')}`
     return {
-      id: `${chapter.id}-${String(index + 1).padStart(3, '0')}`,
+      id,
       title,
       body,
       searchText: compactText(`${title}\n${directory}\n${topics.map((topic) => `${topic.title}\n${topic.searchText}`).join('\n')}`),
       summary: makeSummary(body),
+      anchors: searchableAnchors(id, body),
     }
     })
 }

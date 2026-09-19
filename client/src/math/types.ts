@@ -1,9 +1,17 @@
+export type MathAnchor = {
+  id: string
+  title: string
+  summary: string
+  searchText: string
+}
+
 export type MathTopic = {
   id: string
   title: string
   body: string
   summary: string
   searchText: string
+  anchors: MathAnchor[]
 }
 
 export type MathChapter = {
@@ -21,4 +29,6 @@ export type MathSearchResult = MathTopic & {
   partTitle: string
   score: number
   snippet: string
+  resultId: string
+  targetId: string
 }
