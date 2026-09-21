@@ -221,14 +221,6 @@ function daguanyuanChapterKey(chapterTitle) {
     .replace(/（.*?）/g, '')
 }
 
-function typeDirectory(chapterTitle, groupTitle) {
-  const chapterKey = daguanyuanChapterKey(chapterTitle)
-  const rows = daguanyuanTypes[chapterKey]?.[groupTitle] ?? []
-  if (!rows.length) return ''
-  const names = [...new Set(rows.map((row) => row.name))]
-  return `<details class="type-directory">\n<summary>大观园细分题型（${names.length}）</summary>\n<ul>\n${names.map((name) => `<li>${name}</li>`).join('\n')}\n</ul>\n</details>`
-}
-
 for (const chapter of chapters) {
   const grouped = new Map()
   for (const topic of chapter.topics) {
@@ -250,15 +242,14 @@ for (const chapter of chapters) {
   chapter.topics = [...grouped.entries()]
     .sort(([left], [right]) => groupOrder.indexOf(left) - groupOrder.indexOf(right))
     .map(([title, topics], index) => {
-    const directory = typeDirectory(chapter.title, title)
     const bodies = [...new Set(topics.map((topic) => conciseBody(topic.body)).filter(Boolean))]
-    const body = [directory, ...bodies].filter(Boolean).join('\n\n---\n\n')
+    const body = bodies.join('\n\n---\n\n')
     const id = `${chapter.id}-${String(index + 1).padStart(3, '0')}`
     return {
       id,
       title,
       body,
-      searchText: compactText(`${title}\n${directory}\n${topics.map((topic) => `${topic.title}\n${topic.searchText}`).join('\n')}`),
+      searchText: compactText(`${title}\n${topics.map((topic) => `${topic.title}\n${topic.searchText}`).join('\n')}`),
       summary: makeSummary(body),
       anchors: searchableAnchors(id, body),
     }
@@ -270,8 +261,8 @@ if (chapters.length !== 12) {
 }
 
 const topicCount = chapters.reduce((total, chapter) => total + chapter.topics.length, 0)
-const detailedTypeCount = Object.values(daguanyuanTypes).reduce(
-  (chapterTotal, groups) => chapterTotal + Object.values(groups).reduce((groupTotal, rows) => groupTotal + rows.length, 0),
+const anchorCount = chapters.reduce(
+  (total, chapter) => total + chapter.topics.reduce((chapterTotal, topic) => chapterTotal + topic.anchors.length, 0),
   0,
 )
 if (topicCount < 45) {
@@ -279,8 +270,8 @@ if (topicCount < 45) {
 }
 
 const banner = `/* 此文件由 scripts/build-math-content.mjs 根据大观园分类、原始知识点 PDF 与用户指定资料自动生成，请勿手工修改。 */\n`
-const output = `${banner}import type { MathChapter } from '@/math/types'\n\nexport const mathChapters: MathChapter[] = ${JSON.stringify(chapters, null, 2)}\n\nexport const mathTopics = mathChapters.flatMap((chapter) => chapter.topics.map((topic) => ({ ...topic, chapterId: chapter.id, chapterTitle: chapter.title, partId: chapter.partId, partTitle: chapter.partTitle })))\n\nexport const mathContentStats = { chapters: mathChapters.length, topics: mathTopics.length, detailedTypes: ${detailedTypeCount} }\n`
+const output = `${banner}import type { MathChapter } from '@/math/types'\n\nexport const mathChapters: MathChapter[] = ${JSON.stringify(chapters, null, 2)}\n\nexport const mathTopics = mathChapters.flatMap((chapter) => chapter.topics.map((topic) => ({ ...topic, chapterId: chapter.id, chapterTitle: chapter.title, partId: chapter.partId, partTitle: chapter.partTitle })))\n\nexport const mathContentStats = { chapters: mathChapters.length, topics: mathTopics.length, anchors: ${anchorCount} }\n`
 
 mkdirSync(dirname(outputPath), { recursive: true })
 writeFileSync(outputPath, output)
-console.log(`[数学二内容] 已生成 ${chapters.length} 章、${topicCount} 个主题型、${detailedTypeCount} 个细分题型`)
+console.log(`[数学二内容] 已生成 ${chapters.length} 章、${topicCount} 个章节主题、${anchorCount} 个可搜索条目`)

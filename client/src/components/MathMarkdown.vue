@@ -64,10 +64,5 @@ const html = computed(() => {
 .math-markdown :deep(.katex) { color: #15291d; }
 .math-markdown :deep(strong) { color: #183c29; font-weight: 750; }
 .math-markdown :deep(code) { border-radius: 4px; padding: 2px 5px; background: #eef3ef; color: #315a43; }
-.math-markdown :deep(.type-directory) { margin: 0 0 28px; border: 1px solid #dce5dd; border-radius: 8px; background: #f7faf7; }
-.math-markdown :deep(.type-directory summary) { padding: 13px 16px; color: #315b43; cursor: pointer; font-weight: 700; }
-.math-markdown :deep(.type-directory ul) { max-height: 420px; margin: 0; overflow-y: auto; border-top: 1px solid #e0e7e1; padding: 12px 18px 14px 36px; columns: 2; column-gap: 30px; }
-.math-markdown :deep(.type-directory li) { break-inside: avoid; color: #52665a; font-size: 14px; line-height: 1.55; }
 @media (max-width: 640px) { .math-markdown { font-size: 15px; line-height: 1.82; } .math-markdown :deep(table) { display: block; overflow-x: auto; white-space: nowrap; } }
-@media (max-width: 640px) { .math-markdown :deep(.type-directory ul) { columns: 1; } }
 </style>
