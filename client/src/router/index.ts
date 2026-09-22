@@ -32,6 +32,11 @@ const router = createRouter({
       component: () => import("@/views/SearchPage.vue"),
     },
     {
+      path: "/favorites",
+      name: "favorites",
+      component: () => import("@/views/FavoritesPage.vue"),
+    },
+    {
       path: "/knowledge/:chapterId?/:topicId?",
       name: "knowledge",
       component: () => import("@/views/KnowledgePage.vue"),

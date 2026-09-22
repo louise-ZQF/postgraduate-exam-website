@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import { computed, nextTick, onMounted, ref, watch } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import MathHeader from '@/components/MathHeader.vue'
 import MathMarkdown from '@/components/MathMarkdown.vue'
 import { mathChapters } from '@/generated/math2-content'
+import { FAVORITES_CHANGED_EVENT, readFavorites, toggleFavorite } from '@/math/favorites'
+import { plainMathText } from '@/math/search'
 
 const route = useRoute()
 const router = useRouter()
@@ -18,16 +20,54 @@ function routeFor(item: typeof mathChapters[number]) {
   return `/knowledge/${item.id}`
 }
 
-async function scrollToRequestedSection() {
-  await nextTick()
+function decorateFavoriteButtons() {
+  const favoriteIds = new Set(readFavorites().map((item) => item.id))
   for (const topic of chapter.value.topics) {
     const section = document.getElementById(topic.id)
     const headings = section?.querySelectorAll<HTMLElement>('.math-markdown h5') ?? []
     topic.anchors.forEach((anchor, index) => {
       const heading = headings[index]
-      if (heading) heading.id = anchor.id
+      if (!heading) return
+      heading.id = anchor.id
+      let button = heading.querySelector<HTMLButtonElement>('.anchor-favorite-button')
+      if (!button) {
+        button = document.createElement('button')
+        button.type = 'button'
+        button.className = 'anchor-favorite-button'
+        button.dataset.favoriteId = anchor.id
+        heading.append(button)
+      }
+      const active = favoriteIds.has(anchor.id)
+      button.classList.toggle('active', active)
+      button.textContent = active ? '★ 已收藏' : '☆ 收藏'
+      button.setAttribute('aria-label', (active ? '取消收藏：' : '收藏：') + plainMathText(anchor.title))
     })
   }
+}
+
+function handleArticleClick(event: MouseEvent) {
+  const button = (event.target as HTMLElement).closest<HTMLButtonElement>('.anchor-favorite-button')
+  const favoriteId = button?.dataset.favoriteId
+  if (!favoriteId) return
+  for (const topic of chapter.value.topics) {
+    const anchor = topic.anchors.find((item) => item.id === favoriteId)
+    if (!anchor) continue
+    toggleFavorite({
+      id: anchor.id,
+      title: plainMathText(anchor.title),
+      summary: anchor.summary,
+      chapterId: chapter.value.id,
+      chapterTitle: chapter.value.title,
+      partTitle: chapter.value.partTitle,
+    })
+    decorateFavoriteButtons()
+    return
+  }
+}
+
+async function scrollToRequestedSection() {
+  await nextTick()
+  decorateFavoriteButtons()
   document.querySelectorAll('.search-target').forEach((item) => item.classList.remove('search-target'))
   const requested = String(route.query.section ?? route.params.topicId ?? '')
   if (!requested) {
@@ -46,7 +86,16 @@ watch(() => route.fullPath, async () => {
   await scrollToRequestedSection()
 }, { flush: 'post' })
 
-onMounted(scrollToRequestedSection)
+onMounted(() => {
+  scrollToRequestedSection()
+  window.addEventListener(FAVORITES_CHANGED_EVENT, decorateFavoriteButtons)
+  window.addEventListener('storage', decorateFavoriteButtons)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener(FAVORITES_CHANGED_EVENT, decorateFavoriteButtons)
+  window.removeEventListener('storage', decorateFavoriteButtons)
+})
 
 if (!route.params.chapterId) {
   const firstChapter = mathChapters[0]
@@ -74,7 +123,7 @@ if (!route.params.chapterId) {
 
       <main v-if="chapter">
         <div class="breadcrumb"><RouterLink to="/">首页</RouterLink><span>/</span>{{ chapter.partTitle }}<span>/</span>{{ chapter.title }}</div>
-        <article>
+        <article @click="handleArticleClick">
           <header>
             <div class="topic-number">CHAPTER {{ String(chapterIndex + 1).padStart(2, '0') }} / {{ mathChapters.length }}</div>
             <h1>{{ chapter.title }}</h1>
@@ -115,6 +164,7 @@ article { border: 1px solid #dfe6df; border-radius: 8px; padding: 47px clamp(26p
 .chapter-toc { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 20px; margin: -8px 0 42px; border-bottom: 1px solid #e5eae5; padding-bottom: 34px; }.chapter-toc a { color: #456654; font-size: 13px; line-height: 1.5; }.chapter-toc a:hover { color: #1f5a3a; text-decoration: underline; text-underline-offset: 3px; }.chapter-section { scroll-margin-top: 88px; padding: 8px 0 42px; }.chapter-section + .chapter-section { border-top: 1px solid #e4e9e4; padding-top: 40px; }.chapter-section > h2 { margin: 0 0 22px; color: #173322; font-family: "Noto Serif SC", "Songti SC", serif; font-size: 28px; line-height: 1.4; }
 .chapter-section :deep(h5[id]) { scroll-margin-top: 92px; border-radius: 6px; transition: background-color .2s ease, box-shadow .2s ease; }
 .chapter-section :deep(h5.search-target) { margin-left: -10px; padding: 8px 10px; background: #fff4cf; box-shadow: 0 0 0 1px #ead38b; }
+.chapter-section :deep(.anchor-favorite-button) { float: right; margin: -2px 0 0 14px; border: 1px solid #d7e1d9; border-radius: 999px; padding: 5px 9px; background: #f8faf8; color: #68786e; cursor: pointer; font-family: system-ui, sans-serif; font-size: 11px; font-weight: 600; }.chapter-section :deep(.anchor-favorite-button:hover), .chapter-section :deep(.anchor-favorite-button.active) { border-color: #cba66a; background: #fff8e8; color: #916126; }
 .pager { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 17px; }.pager a { display: grid; gap: 7px; min-height: 78px; border: 1px solid #dfe6df; border-radius: 8px; padding: 15px 18px; background: white; transition: .18s ease; }.pager a:hover { border-color: #abc0b0; transform: translateY(-1px); }.pager small { color: #8a978e; }.pager b { color: #345343; font-size: 13px; }.pager .next { text-align: right; }
 .mobile-menu, .menu-mask { display: none; }
 @media (max-width: 900px) { .reader { grid-template-columns: 1fr; }.mobile-menu { position: fixed; right: 14px; bottom: 18px; z-index: 75; display: block; border: 0; border-radius: 999px; padding: 12px 18px; background: #285e43; color: white; box-shadow: 0 8px 24px rgba(31,72,49,.25); font-weight: 700; }aside { position: fixed; top: 0; left: 0; z-index: 80; width: min(330px, 88vw); height: 100vh; transform: translateX(-102%); transition: transform .25s ease; box-shadow: 20px 0 50px rgba(20,38,27,.16); }aside.open { transform: translateX(0); }.menu-mask { position: fixed; inset: 0; z-index: 70; display: block; border: 0; background: rgba(16,28,21,.32); }main { width: min(760px, calc(100% - 32px)); padding-top: 30px; } }
