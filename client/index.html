@@ -11,6 +11,33 @@
          - ico: 覆盖 Safari / 旧浏览器 / PWA 安装时的降级图标 -->
     <link rel="icon" type="image/svg+xml" href="%BASE_URL%favicon.svg" sizes="any" />
     <title>数学二知识库 · 公式与题型全文搜索</title>
+    <script>
+      // GitHub Pages 发布新版后，旧标签页可能仍引用已被替换的哈希资源。
+      // 捕获资源加载失败并带时间戳刷新一次，避免页面停在空白状态。
+      ;(() => {
+        const key = 'math2-stale-assets-reload'
+        const refreshOnce = () => {
+          const lastAttempt = Number(sessionStorage.getItem(key) || 0)
+          if (Date.now() - lastAttempt < 60_000) return
+          sessionStorage.setItem(key, String(Date.now()))
+          const url = new URL(window.location.href)
+          url.searchParams.set('refresh', String(Date.now()))
+          window.location.replace(url)
+        }
+
+        window.addEventListener('vite:preloadError', (event) => {
+          event.preventDefault()
+          refreshOnce()
+        })
+
+        window.addEventListener('error', (event) => {
+          const target = event.target
+          if (!(target instanceof HTMLElement)) return
+          const assetUrl = target.getAttribute('src') || target.getAttribute('href') || ''
+          if (assetUrl.includes('/assets/')) refreshOnce()
+        }, true)
+      })()
+    </script>
   </head>
   <body>
     <div id="app"></div>
