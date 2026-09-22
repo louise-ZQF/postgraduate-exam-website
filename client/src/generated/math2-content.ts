@@ -32,36 +32,78 @@ export const mathChapters: MathChapter[] = [
       {
         "id": "calculus-01-002",
         "title": "极限",
-        "body": "##### 常用等价式与展开式\n\n**极限运算法则**　若 \\(\\lim f=A,\\lim g=B\\)，则\n\n\\[\n\\lim(af+bg)=aA+bB,\\qquad\n\\lim(fg)=AB,\\qquad\n\\lim\\frac fg=\\frac AB\\quad(B\\ne0).\n\\]\n\n若 \\(\\varphi(x)\\to u_0\\)，且 \\(f\\) 在 \\(u_0\\) 连续，则\n\n\\[\n\\lim f(\\varphi(x))=f(u_0).\n\\]\n\n当 \\(x\\to0\\) 时：\n\n\\[\n\\sin x\\sim x,\\quad \\tan x\\sim x,\\quad \\arcsin x\\sim x,\\quad \\arctan x\\sim x,\n\\]\n\n\\[\ne^x-1\\sim x,\\quad \\ln(1+x)\\sim x,\\quad (1+x)^a-1\\sim ax,\n\\]\n\n\\[\n1-\\cos x\\sim \\frac{x^2}{2},\\qquad a^x-1\\sim x\\ln a.\n\\]\n\n高阶常用等价式：\n\n\\[\nx-\\sin x\\sim\\frac{x^3}{6},\\qquad\n\\tan x-x\\sim\\frac{x^3}{3},\n\\]\n\n\\[\n\\arcsin x-x\\sim\\frac{x^3}{6},\\qquad\nx-\\arctan x\\sim\\frac{x^3}{3}.\n\\]\n\n若 \\(u(x)\\to0\\)，则可把上式中的 \\(x\\) 换成 \\(u(x)\\)。更一般地，若 \\(u\\to0\\)、\\(uv\\to0\\)，则\n\n\\[\n(1+u)^v-1\\sim uv.\n\\]\n\n常用麦克劳林公式：\n\n\\[\ne^x=1+x+\\frac{x^2}{2!}+\\frac{x^3}{3!}+o(x^3),\n\\]\n\n\\[\n\\sin x=x-\\frac{x^3}{3!}+o(x^3),\\qquad\n\\cos x=1-\\frac{x^2}{2!}+\\frac{x^4}{4!}+o(x^4),\n\\]\n\n\\[\n\\ln(1+x)=x-\\frac{x^2}{2}+\\frac{x^3}{3}+o(x^3),\n\\]\n\n\\[\n(1+x)^a=1+ax+\\frac{a(a-1)}{2}x^2+o(x^2).\n\\]\n\n任意指定阶数的麦克劳林公式：\n\n\\[\ne^x=\\sum_{k=0}^{n}\\frac{x^k}{k!}+o(x^n),\n\\]\n\n\\[\n\\sin x=\\sum_{k=0}^{n}\\frac{(-1)^k x^{2k+1}}{(2k+1)!}+o(x^{2n+1}),\n\\]\n\n\\[\n\\cos x=\\sum_{k=0}^{n}\\frac{(-1)^k x^{2k}}{(2k)!}+o(x^{2n}),\n\\]\n\n\\[\n\\ln(1+x)=\\sum_{k=1}^{n}\\frac{(-1)^{k-1}}k x^k+o(x^n),\n\\]\n\n\\[\n(1+x)^a=\\sum_{k=0}^{n}\\frac{a(a-1)\\cdots(a-k+1)}{k!}x^k+o(x^n).\n\\]\n\n补充展开式：\n\n\\[\n\\tan x=x+\\frac{x^3}{3}+o(x^3),\\quad\n\\arcsin x=x+\\frac{x^3}{6}+o(x^3),\\quad\n\\arctan x=x-\\frac{x^3}{3}+o(x^3),\n\\]\n\n\\[\n\\frac1{1-x}=1+x+x^2+\\cdots+x^n+o(x^n),\n\\]\n\n\\[\n\\frac1{1+x}=1-x+x^2-\\cdots+(-1)^nx^n+o(x^n).\n\\]\n\n##### 各类未定式\n\n- \\(0/0\\)、\\(\\infty/\\infty\\)：先化简、等价替换或洛必达；洛必达前必须确认型别和条件。\n- \\(0\\cdot\\infty\\)：改写成商。\n- \\(\\infty-\\infty\\)：通分、有理化或提取主项。\n- \\(1^\\infty\\)、\\(0^0\\)、\\(\\infty^0\\)：设原式为 \\(y\\)，先求 \\(\\ln y\\)，最后取指数。\n- 分子分母相减严重时，展开到第一个不抵消的项；不必把所有因子展开到同一阶。\n\n**洛必达法则**　当 \\(f/g\\) 为 \\(0/0\\) 型或 \\(\\infty/\\infty\\) 型，并满足相应可导条件，且导数之比的极限存在或为无穷时：\n\n\\[\n\\lim\\frac{f(x)}{g(x)}=\\lim\\frac{f'(x)}{g'(x)}.\n\\]\n\n洛必达后若仍是相同未定式可以继续使用；每次都要重新检查型别。等价无穷小只能直接替换乘积或商中的因子，和差中的替换必须保证不会丢掉抵消后的首个非零项。\n\n##### 数列与积分型极限\n\n两个重要极限：\n\n\\[\n\\lim_{x\\to0}\\frac{\\sin x}{x}=1,\\qquad\n\\lim_{x\\to0}(1+x)^{1/x}=e,\n\\]\n\n以及等价形式\n\n\\[\n\\lim_{n\\to\\infty}\\left(1+\\frac1n\\right)^n=e,\\qquad\n\\lim_{x\\to\\infty}\\left(1+\\frac ax\\right)^x=e^a.\n\\]\n\n\\[\n\\lim_{n\\to\\infty}\\frac1n\\sum_{k=1}^n f\\!\\left(\\frac{k}{n}\\right)=\\int_0^1 f(x)\\,dx.\n\\]\n\n一般区间 \\([a,b]\\) 的和要整理成“函数值乘小区间宽度”。乘积先取对数化为和。递推数列先证单调有界，再令极限为 \\(L\\) 代回递推式；代数方程有多个根时，用数列范围筛选。\n\n夹逼准则：若在去心邻域内 \\(g(x)\\le f(x)\\le h(x)\\)，且 \\(g,h\\to A\\)，则 \\(f\\to A\\)。单调有界数列一定收敛；递增数列的极限是其上确界，递减数列的极限是其下确界。\n\n##### 无穷小阶数\n\n若\n\n\\[\n\\lim\\frac{\\alpha(x)}{\\beta(x)}=\n\\begin{cases}\n0,&\\alpha\\text{ 比 }\\beta\\text{ 高阶},\\\\\nc\\ne0,&\\alpha\\text{ 与 }\\beta\\text{ 同阶},\\\\\n1,&\\alpha\\sim\\beta,\\\\\n\\infty,&\\alpha\\text{ 比 }\\beta\\text{ 低阶}.\n\\end{cases}\n\\]\n\n“无界”不等于“趋于无穷大”；趋于无穷大一定无界，反过来不成立。\n\n若 \\(f(x)\\sim g(x)\\)、二者在去心邻域内同号且积分存在，则在相应端点附近\n\n\\[\n\\int_{x_0}^{x}f(t)\\,dt\\sim\\int_{x_0}^{x}g(t)\\,dt.\n\\]\n\n##### 渐近线与极限给出的函数\n\n\\[\nx=x_0:\\ \\lim_{x\\to x_0}f(x)=\\infty,\n\\]\n\n\\[\ny=b:\\ \\lim_{x\\to\\pm\\infty}f(x)=b,\n\\]\n\n\\[\ny=kx+b:\\ k=\\lim_{x\\to\\pm\\infty}\\frac{f(x)}x,\\quad\nb=\\lim_{x\\to\\pm\\infty}[f(x)-kx].\n\\]\n\n含参数极限存在时，先让左右极限相等，再排除分母为零或表达式无意义的参数。极限中出现\n\n\\[\n\\frac{f(x)-f(x_0)}{x-x_0}\n\\]\n\n时，直接按导数定义识别。",
-        "searchText": "极限 极限 极限 常用等价式与展开式 极限运算法则 若 f=A, g=B，则 公式 若 (x) u 0，且 f 在 u 0 连续，则 公式 当 x 0 时： 公式 公式 公式 高阶常用等价式： 公式 公式 若 u(x) 0，则可把上式中的 x 换成 u(x)。更一般地，若 u 0、uv 0，则 公式 常用麦克劳林公式： 公式 公式 公式 公式 任意指定阶数的麦克劳林公式： 公式 公式 公式 公式 公式 补充展开式： 公式 公式 公式 各类未定式 0/0、 / ：先化简、等价替换或洛必达；洛必达前必须确认型别和条件。 0 ：改写成商。 - ：通分、有理化或提取主项。 1^ 、0^0、 ^0：设原式为 y，先求 y，最后取指数。 分子分母相减严重时，展开到第一个不抵消的项；不必把所有因子展开到同一阶。 洛必达法则 当 f/g 为 0/0 型或 / 型，并满足相应可导条件，且导数之比的极限存在或为无穷时： 公式 洛必达后若仍是相同未定式可以继续使用；每次都要重新检查型别。等价无穷小只能直接替换乘积或商中的因子，和差中的替换必须保证不会丢掉抵消后的首个非零项。 数列与积分型极限 两个重要极限： 公式 以及等价形式 公式 公式 一般区间 [a,b] 的和要整理成“函数值乘小区间宽度”。乘积先取对数化为和。递推数列先证单调有界，再令极限为 L 代回递推式；代数方程有多个根时，用数列范围筛选。 夹逼准则：若在去心邻域内 g(x) f(x) h(x)，且 g,h A，则 f A。单调有界数列一定收敛；递增数列的极限是其上确界，递减数列的极限是其下确界。 无穷小阶数 若 公式 “无界”不等于“趋于无穷大”；趋于无穷大一定无界，反过来不成立。 若 f(x) g(x)、二者在去心邻域内同号且积分存在，则在相应端点附近 公式 渐近线与极限给出的函数 公式 公式 公式 含参数极限存在时，先让左右极限相等，再排除分母为零或表达式无意义的参数。极限中出现 公式 时，直接按导数定义识别。",
+        "body": "##### 常用等价式与展开式\n\n**极限运算法则**　若 \\(\\lim f=A,\\lim g=B\\)，则\n\n\\[\n\\lim(af+bg)=aA+bB,\\qquad\n\\lim(fg)=AB,\\qquad\n\\lim\\frac fg=\\frac AB\\quad(B\\ne0).\n\\]\n\n若 \\(\\varphi(x)\\to u_0\\)，且 \\(f\\) 在 \\(u_0\\) 连续，则\n\n\\[\n\\lim f(\\varphi(x))=f(u_0).\n\\]\n\n当 \\(x\\to0\\) 时：\n\n\\[\n\\sin x\\sim x,\\quad \\tan x\\sim x,\\quad \\arcsin x\\sim x,\\quad \\arctan x\\sim x,\n\\]\n\n\\[\ne^x-1\\sim x,\\quad \\ln(1+x)\\sim x,\\quad (1+x)^a-1\\sim ax,\n\\]\n\n\\[\n1-\\cos x\\sim \\frac{x^2}{2},\\qquad a^x-1\\sim x\\ln a.\n\\]\n\n高阶常用等价式：\n\n\\[\nx-\\sin x\\sim\\frac{x^3}{6},\\qquad\n\\tan x-x\\sim\\frac{x^3}{3},\n\\]\n\n\\[\n\\arcsin x-x\\sim\\frac{x^3}{6},\\qquad\nx-\\arctan x\\sim\\frac{x^3}{3}.\n\\]\n\n若 \\(u(x)\\to0\\)，则可把上式中的 \\(x\\) 换成 \\(u(x)\\)。更一般地，若 \\(u\\to0\\)、\\(uv\\to0\\)，则\n\n\\[\n(1+u)^v-1\\sim uv.\n\\]\n\n##### 指数函数的泰勒展开式\n\n\\[\ne^x=\\sum_{n=0}^{\\infty}\\frac{x^n}{n!}\n=1+x+\\frac{x^2}{2!}+\\cdots+\\frac{x^n}{n!}+\\cdots,\n\\qquad -\\infty<x<+\\infty.\n\\]\n\n##### 几何级数的泰勒展开式\n\n\\[\n\\frac1{1+x}=\\sum_{n=0}^{\\infty}(-1)^n x^n\n=1-x+x^2-x^3+\\cdots+(-1)^n x^n+\\cdots,\n\\qquad -1<x<1.\n\\]\n\n\\[\n\\frac1{1-x}=\\sum_{n=0}^{\\infty}x^n\n=1+x+x^2+\\cdots+x^n+\\cdots,\n\\qquad -1<x<1.\n\\]\n\n##### 对数函数的泰勒展开式\n\n\\[\n\\ln(1+x)=\\sum_{n=1}^{\\infty}(-1)^{n-1}\\frac{x^n}{n}\n=x-\\frac{x^2}{2}+\\frac{x^3}{3}-\\frac{x^4}{4}+\\cdots\n+(-1)^{n-1}\\frac{x^n}{n}+\\cdots,\n\\qquad -1<x\\le1.\n\\]\n\n##### 正弦函数的泰勒展开式\n\n\\[\n\\sin x=\\sum_{n=0}^{\\infty}(-1)^n\\frac{x^{2n+1}}{(2n+1)!}\n=x-\\frac{x^3}{3!}+\\frac{x^5}{5!}-\\frac{x^7}{7!}+\\cdots\n+(-1)^n\\frac{x^{2n+1}}{(2n+1)!}+\\cdots,\n\\qquad -\\infty<x<+\\infty.\n\\]\n\n##### 余弦函数的泰勒展开式\n\n\\[\n\\cos x=\\sum_{n=0}^{\\infty}(-1)^n\\frac{x^{2n}}{(2n)!}\n=1-\\frac{x^2}{2!}+\\frac{x^4}{4!}-\\frac{x^6}{6!}+\\cdots\n+(-1)^n\\frac{x^{2n}}{(2n)!}+\\cdots,\n\\qquad -\\infty<x<+\\infty.\n\\]\n\n##### 幂函数的泰勒展开式\n\n\\[\n(1+x)^a=\\sum_{n=0}^{\\infty}\\frac{a(a-1)\\cdots(a-n+1)}{n!}x^n\n=1+ax+\\frac{a(a-1)}{2!}x^2+\\cdots,\n\\qquad |x|<1.\n\\]\n\n##### 其他常用展开式\n\n\\[\n\\tan x=x+\\frac{x^3}{3}+o(x^3),\\quad\n\\arcsin x=x+\\frac{x^3}{6}+o(x^3),\\quad\n\\arctan x=x-\\frac{x^3}{3}+o(x^3),\n\\]\n\n##### 各类未定式\n\n- \\(0/0\\)、\\(\\infty/\\infty\\)：先化简、等价替换或洛必达；洛必达前必须确认型别和条件。\n- \\(0\\cdot\\infty\\)：改写成商。\n- \\(\\infty-\\infty\\)：通分、有理化或提取主项。\n- \\(1^\\infty\\)、\\(0^0\\)、\\(\\infty^0\\)：设原式为 \\(y\\)，先求 \\(\\ln y\\)，最后取指数。\n- 分子分母相减严重时，展开到第一个不抵消的项；不必把所有因子展开到同一阶。\n\n**洛必达法则**　当 \\(f/g\\) 为 \\(0/0\\) 型或 \\(\\infty/\\infty\\) 型，并满足相应可导条件，且导数之比的极限存在或为无穷时：\n\n\\[\n\\lim\\frac{f(x)}{g(x)}=\\lim\\frac{f'(x)}{g'(x)}.\n\\]\n\n洛必达后若仍是相同未定式可以继续使用；每次都要重新检查型别。等价无穷小只能直接替换乘积或商中的因子，和差中的替换必须保证不会丢掉抵消后的首个非零项。\n\n##### 数列与积分型极限\n\n两个重要极限：\n\n\\[\n\\lim_{x\\to0}\\frac{\\sin x}{x}=1,\\qquad\n\\lim_{x\\to0}(1+x)^{1/x}=e,\n\\]\n\n以及等价形式\n\n\\[\n\\lim_{n\\to\\infty}\\left(1+\\frac1n\\right)^n=e,\\qquad\n\\lim_{x\\to\\infty}\\left(1+\\frac ax\\right)^x=e^a.\n\\]\n\n\\[\n\\lim_{n\\to\\infty}\\frac1n\\sum_{k=1}^n f\\!\\left(\\frac{k}{n}\\right)=\\int_0^1 f(x)\\,dx.\n\\]\n\n一般区间 \\([a,b]\\) 的和要整理成“函数值乘小区间宽度”。乘积先取对数化为和。递推数列先证单调有界，再令极限为 \\(L\\) 代回递推式；代数方程有多个根时，用数列范围筛选。\n\n夹逼准则：若在去心邻域内 \\(g(x)\\le f(x)\\le h(x)\\)，且 \\(g,h\\to A\\)，则 \\(f\\to A\\)。单调有界数列一定收敛；递增数列的极限是其上确界，递减数列的极限是其下确界。\n\n##### 无穷小阶数\n\n若\n\n\\[\n\\lim\\frac{\\alpha(x)}{\\beta(x)}=\n\\begin{cases}\n0,&\\alpha\\text{ 比 }\\beta\\text{ 高阶},\\\\\nc\\ne0,&\\alpha\\text{ 与 }\\beta\\text{ 同阶},\\\\\n1,&\\alpha\\sim\\beta,\\\\\n\\infty,&\\alpha\\text{ 比 }\\beta\\text{ 低阶}.\n\\end{cases}\n\\]\n\n“无界”不等于“趋于无穷大”；趋于无穷大一定无界，反过来不成立。\n\n若 \\(f(x)\\sim g(x)\\)、二者在去心邻域内同号且积分存在，则在相应端点附近\n\n\\[\n\\int_{x_0}^{x}f(t)\\,dt\\sim\\int_{x_0}^{x}g(t)\\,dt.\n\\]\n\n##### 渐近线与极限给出的函数\n\n\\[\nx=x_0:\\ \\lim_{x\\to x_0}f(x)=\\infty,\n\\]\n\n\\[\ny=b:\\ \\lim_{x\\to\\pm\\infty}f(x)=b,\n\\]\n\n\\[\ny=kx+b:\\ k=\\lim_{x\\to\\pm\\infty}\\frac{f(x)}x,\\quad\nb=\\lim_{x\\to\\pm\\infty}[f(x)-kx].\n\\]\n\n含参数极限存在时，先让左右极限相等，再排除分母为零或表达式无意义的参数。极限中出现\n\n\\[\n\\frac{f(x)-f(x_0)}{x-x_0}\n\\]\n\n时，直接按导数定义识别。",
+        "searchText": "极限 极限 极限 常用等价式与展开式 极限运算法则 若 f=A, g=B，则 公式 若 (x) u 0，且 f 在 u 0 连续，则 公式 当 x 0 时： 公式 公式 公式 高阶常用等价式： 公式 公式 若 u(x) 0，则可把上式中的 x 换成 u(x)。更一般地，若 u 0、uv 0，则 公式 指数函数的泰勒展开式 公式 几何级数的泰勒展开式 公式 公式 对数函数的泰勒展开式 公式 正弦函数的泰勒展开式 公式 余弦函数的泰勒展开式 公式 幂函数的泰勒展开式 公式 其他常用展开式 公式 各类未定式 0/0、 / ：先化简、等价替换或洛必达；洛必达前必须确认型别和条件。 0 ：改写成商。 - ：通分、有理化或提取主项。 1^ 、0^0、 ^0：设原式为 y，先求 y，最后取指数。 分子分母相减严重时，展开到第一个不抵消的项；不必把所有因子展开到同一阶。 洛必达法则 当 f/g 为 0/0 型或 / 型，并满足相应可导条件，且导数之比的极限存在或为无穷时： 公式 洛必达后若仍是相同未定式可以继续使用；每次都要重新检查型别。等价无穷小只能直接替换乘积或商中的因子，和差中的替换必须保证不会丢掉抵消后的首个非零项。 数列与积分型极限 两个重要极限： 公式 以及等价形式 公式 公式 一般区间 [a,b] 的和要整理成“函数值乘小区间宽度”。乘积先取对数化为和。递推数列先证单调有界，再令极限为 L 代回递推式；代数方程有多个根时，用数列范围筛选。 夹逼准则：若在去心邻域内 g(x) f(x) h(x)，且 g,h A，则 f A。单调有界数列一定收敛；递增数列的极限是其上确界，递减数列的极限是其下确界。 无穷小阶数 若 公式 “无界”不等于“趋于无穷大”；趋于无穷大一定无界，反过来不成立。 若 f(x) g(x)、二者在去心邻域内同号且积分存在，则在相应端点附近 公式 渐近线与极限给出的函数 公式 公式 公式 含参数极限存在时，先让左右极限相等，再排除分母为零或表达式无意义的参数。极限中出现 公式 时，直接按导数定义识别。",
         "summary": "常用等价式与展开式 极限运算法则 若 f=A, g=B，则 公式 若 (x) u 0，且 f 在 u 0 连续，则 公式 当 x 0 时： 公式 公式 公式 高阶常用等价式： 公式 公式 若 u(x) 0，则可把上式中的 x 换成 u(x)。更一般地，若 …",
         "anchors": [
           {
             "id": "calculus-01-002-anchor-001",
             "title": "常用等价式与展开式",
-            "searchText": "常用等价式与展开式 极限运算法则 若 f=A, g=B，则 公式 若 (x) u 0，且 f 在 u 0 连续，则 公式 当 x 0 时： 公式 公式 公式 高阶常用等价式： 公式 公式 若 u(x) 0，则可把上式中的 x 换成 u(x)。更一般地，若 u 0、uv 0，则 公式 常用麦克劳林公式： 公式 公式 公式 公式 任意指定阶数的麦克劳林公式： 公式 公式 公式 公式 公式 补充展开式： 公式 公式 公式",
+            "searchText": "常用等价式与展开式 极限运算法则 若 f=A, g=B，则 公式 若 (x) u 0，且 f 在 u 0 连续，则 公式 当 x 0 时： 公式 公式 公式 高阶常用等价式： 公式 公式 若 u(x) 0，则可把上式中的 x 换成 u(x)。更一般地，若 u 0、uv 0，则 公式",
             "summary": "极限运算法则 若 f=A, g=B，则 公式 若 (x) u 0，且 f 在 u 0 连续，则 公式 当 x 0 时： 公式 公式 公式 高阶常用等价式： 公式 公式 若 u(x) 0，则可把上式中的 x 换成 u(x)。更一般地，若 u 0、uv 0，则…"
           },
           {
             "id": "calculus-01-002-anchor-002",
+            "title": "指数函数的泰勒展开式",
+            "searchText": "指数函数的泰勒展开式 公式",
+            "summary": "公式"
+          },
+          {
+            "id": "calculus-01-002-anchor-003",
+            "title": "几何级数的泰勒展开式",
+            "searchText": "几何级数的泰勒展开式 公式 公式",
+            "summary": "公式 公式"
+          },
+          {
+            "id": "calculus-01-002-anchor-004",
+            "title": "对数函数的泰勒展开式",
+            "searchText": "对数函数的泰勒展开式 公式",
+            "summary": "公式"
+          },
+          {
+            "id": "calculus-01-002-anchor-005",
+            "title": "正弦函数的泰勒展开式",
+            "searchText": "正弦函数的泰勒展开式 公式",
+            "summary": "公式"
+          },
+          {
+            "id": "calculus-01-002-anchor-006",
+            "title": "余弦函数的泰勒展开式",
+            "searchText": "余弦函数的泰勒展开式 公式",
+            "summary": "公式"
+          },
+          {
+            "id": "calculus-01-002-anchor-007",
+            "title": "幂函数的泰勒展开式",
+            "searchText": "幂函数的泰勒展开式 公式",
+            "summary": "公式"
+          },
+          {
+            "id": "calculus-01-002-anchor-008",
+            "title": "其他常用展开式",
+            "searchText": "其他常用展开式 公式",
+            "summary": "公式"
+          },
+          {
+            "id": "calculus-01-002-anchor-009",
             "title": "各类未定式",
             "searchText": "各类未定式 0/0、 / ：先化简、等价替换或洛必达；洛必达前必须确认型别和条件。 0 ：改写成商。 - ：通分、有理化或提取主项。 1^ 、0^0、 ^0：设原式为 y，先求 y，最后取指数。 分子分母相减严重时，展开到第一个不抵消的项；不必把所有因子展开到同一阶。 洛必达法则 当 f/g 为 0/0 型或 / 型，并满足相应可导条件，且导数之比的极限存在或为无穷时： 公式 洛必达后若仍是相同未定式可以继续使用；每次都要重新检查型别。等价无穷小只能直接替换乘积或商中的因子，和差中的替换必须保证不会丢掉抵消后的首个非零项。",
             "summary": "0/0、 / ：先化简、等价替换或洛必达；洛必达前必须确认型别和条件。 0 ：改写成商。 - ：通分、有理化或提取主项。 1^ 、0^0、 ^0：设原式为 y，先求 y，最后取指数。 分子分母相减严重时，展开到第一个不抵消的项；不必把所有因子展开到同一阶。…"
           },
           {
-            "id": "calculus-01-002-anchor-003",
+            "id": "calculus-01-002-anchor-010",
             "title": "数列与积分型极限",
             "searchText": "数列与积分型极限 两个重要极限： 公式 以及等价形式 公式 公式 一般区间 [a,b] 的和要整理成“函数值乘小区间宽度”。乘积先取对数化为和。递推数列先证单调有界，再令极限为 L 代回递推式；代数方程有多个根时，用数列范围筛选。 夹逼准则：若在去心邻域内 g(x) f(x) h(x)，且 g,h A，则 f A。单调有界数列一定收敛；递增数列的极限是其上确界，递减数列的极限是其下确界。",
             "summary": "两个重要极限： 公式 以及等价形式 公式 公式 一般区间 [a,b] 的和要整理成“函数值乘小区间宽度”。乘积先取对数化为和。递推数列先证单调有界，再令极限为 L 代回递推式；代数方程有多个根时，用数列范围筛选。 夹逼准则：若在去心邻域内 g(x) f(x…"
           },
           {
-            "id": "calculus-01-002-anchor-004",
+            "id": "calculus-01-002-anchor-011",
             "title": "无穷小阶数",
             "searchText": "无穷小阶数 若 公式 “无界”不等于“趋于无穷大”；趋于无穷大一定无界，反过来不成立。 若 f(x) g(x)、二者在去心邻域内同号且积分存在，则在相应端点附近 公式",
             "summary": "若 公式 “无界”不等于“趋于无穷大”；趋于无穷大一定无界，反过来不成立。 若 f(x) g(x)、二者在去心邻域内同号且积分存在，则在相应端点附近 公式"
           },
           {
-            "id": "calculus-01-002-anchor-005",
+            "id": "calculus-01-002-anchor-012",
             "title": "渐近线与极限给出的函数",
             "searchText": "渐近线与极限给出的函数 公式 公式 公式 含参数极限存在时，先让左右极限相等，再排除分母为零或表达式无意义的参数。极限中出现 公式 时，直接按导数定义识别。",
             "summary": "公式 公式 公式 含参数极限存在时，先让左右极限相等，再排除分母为零或表达式无意义的参数。极限中出现 公式 时，直接按导数定义识别。"
@@ -1290,4 +1332,4 @@ export const mathChapters: MathChapter[] = [
 
 export const mathTopics = mathChapters.flatMap((chapter) => chapter.topics.map((topic) => ({ ...topic, chapterId: chapter.id, chapterTitle: chapter.title, partId: chapter.partId, partTitle: chapter.partTitle })))
 
-export const mathContentStats = { chapters: mathChapters.length, topics: mathTopics.length, anchors: 111 }
+export const mathContentStats = { chapters: mathChapters.length, topics: mathTopics.length, anchors: 118 }
