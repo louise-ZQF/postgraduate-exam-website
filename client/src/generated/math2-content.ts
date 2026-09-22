@@ -301,8 +301,8 @@ export const mathChapters: MathChapter[] = [
       {
         "id": "calculus-02-004",
         "title": "微分中值定理",
-        "body": "##### 三个定理\n\n费马定理：若 \\(x_0\\) 是定义域内部的极值点，且 \\(f\\) 在 \\(x_0\\) 可导，则 \\(f'(x_0)=0\\)。\n\n罗尔定理：连续于 \\([a,b]\\)、可导于 \\((a,b)\\)、且 \\(f(a)=f(b)\\)，则存在 \\(\\xi\\in(a,b)\\)，使 \\(f'(\\xi)=0\\)。\n\n拉格朗日中值定理：若 \\(f\\) 在 \\([a,b]\\) 上连续、在 \\((a,b)\\) 内可导，则存在 \\(\\xi\\in(a,b)\\)，使\n\n\\[\nf(b)-f(a)=f'(\\xi)(b-a).\n\\]\n\n柯西中值定理：若 \\(f,g\\) 在 \\([a,b]\\) 上连续、在 \\((a,b)\\) 内可导，且 \\(g'(x)\\ne0\\)，则存在 \\(\\xi\\in(a,b)\\)，使\n\n\\[\n\\frac{f(b)-f(a)}{g(b)-g(a)}=\\frac{f'(\\xi)}{g'(\\xi)}.\n\\]\n\n##### 泰勒公式\n\n\\[\nf(x)=\\sum_{k=0}^{n}\\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k+R_n(x).\n\\]\n\n带拉格朗日余项时：\n\n\\[\nR_n(x)=\\frac{f^{(n+1)}(\\xi)}{(n+1)!}(x-x_0)^{n+1}.\n\\]\n\n佩亚诺余项形式：\n\n\\[\nf(x)=\\sum_{k=0}^{n}\\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k\n+o\\!\\left((x-x_0)^n\\right).\n\\]\n\n证明题出现两个不同点的函数值时优先考虑中值定理；要求含高阶导数、精确阶数或不等式估计时优先考虑泰勒公式。",
-        "searchText": "微分中值定理 微分中值定理 微分中值定理 三个定理 费马定理：若 x 0 是定义域内部的极值点，且 f 在 x 0 可导，则 f'(x 0)=0。 罗尔定理：连续于 [a,b]、可导于 (a,b)、且 f(a)=f(b)，则存在 (a,b)，使 f'( )=0。 拉格朗日中值定理：若 f 在 [a,b] 上连续、在 (a,b) 内可导，则存在 (a,b)，使 公式 柯西中值定理：若 f,g 在 [a,b] 上连续、在 (a,b) 内可导，且 g'(x) 0，则存在 (a,b)，使 公式 泰勒公式 公式 带拉格朗日余项时： 公式 佩亚诺余项形式： 公式 证明题出现两个不同点的函数值时优先考虑中值定理；要求含高阶导数、精确阶数或不等式估计时优先考虑泰勒公式。",
+        "body": "##### 三个定理\n\n费马定理：若 \\(x_0\\) 是定义域内部的极值点，且 \\(f\\) 在 \\(x_0\\) 可导，则 \\(f'(x_0)=0\\)。\n\n罗尔定理：连续于 \\([a,b]\\)、可导于 \\((a,b)\\)、且 \\(f(a)=f(b)\\)，则存在 \\(\\xi\\in(a,b)\\)，使 \\(f'(\\xi)=0\\)。\n\n拉格朗日中值定理：若 \\(f\\) 在 \\([a,b]\\) 上连续、在 \\((a,b)\\) 内可导，则存在 \\(\\xi\\in(a,b)\\)，使\n\n\\[\nf(b)-f(a)=f'(\\xi)(b-a).\n\\]\n\n柯西中值定理：若 \\(f,g\\) 在 \\([a,b]\\) 上连续、在 \\((a,b)\\) 内可导，且 \\(g'(x)\\ne0\\)，则存在 \\(\\xi\\in(a,b)\\)，使\n\n\\[\n\\frac{f(b)-f(a)}{g(b)-g(a)}=\\frac{f'(\\xi)}{g'(\\xi)}.\n\\]\n\n##### 泰勒展开式公式\n\n\\[\n\\begin{aligned}\nf(x)\n&=\\sum_{k=0}^{n}\\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k+R_n(x)\\\\\n&=f(x_0)+f'(x_0)(x-x_0)+\\frac{f''(x_0)}{2!}(x-x_0)^2+\\cdots\n+\\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n+R_n(x).\n\\end{aligned}\n\\]\n\n拉格朗日余项：\n\n\\[\nR_n(x)=\\frac{f^{(n+1)}(\\xi)}{(n+1)!}(x-x_0)^{n+1}.\n\\]\n\n佩亚诺余项：\n\n\\[\nR_n(x)=o\\!\\left((x-x_0)^n\\right).\n\\]\n\n##### 麦克劳林展开式公式\n\n\\[\n\\begin{aligned}\nf(x)\n&=\\sum_{k=0}^{n}\\frac{f^{(k)}(0)}{k!}x^k+R_n(x)\\\\\n&=f(0)+f'(0)x+\\frac{f''(0)}{2!}x^2+\\cdots\n+\\frac{f^{(n)}(0)}{n!}x^n+R_n(x).\n\\end{aligned}\n\\]\n\n佩亚诺余项：\n\n\\[\nR_n(x)=o(x^n).\n\\]\n\n若余项趋于零，则\n\n\\[\nf(x)=\\sum_{n=0}^{\\infty}\\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n\n=f(x_0)+f'(x_0)(x-x_0)+\\frac{f''(x_0)}{2!}(x-x_0)^2+\\cdots,\n\\]\n\n\\[\nf(x)=\\sum_{n=0}^{\\infty}\\frac{f^{(n)}(0)}{n!}x^n\n=f(0)+f'(0)x+\\frac{f''(0)}{2!}x^2+\\cdots.\n\\]\n\n证明题出现两个不同点的函数值时优先考虑中值定理；要求含高阶导数、精确阶数或不等式估计时优先考虑泰勒公式。",
+        "searchText": "微分中值定理 微分中值定理 微分中值定理 三个定理 费马定理：若 x 0 是定义域内部的极值点，且 f 在 x 0 可导，则 f'(x 0)=0。 罗尔定理：连续于 [a,b]、可导于 (a,b)、且 f(a)=f(b)，则存在 (a,b)，使 f'( )=0。 拉格朗日中值定理：若 f 在 [a,b] 上连续、在 (a,b) 内可导，则存在 (a,b)，使 公式 柯西中值定理：若 f,g 在 [a,b] 上连续、在 (a,b) 内可导，且 g'(x) 0，则存在 (a,b)，使 公式 泰勒展开式公式 公式 拉格朗日余项： 公式 佩亚诺余项： 公式 麦克劳林展开式公式 公式 佩亚诺余项： 公式 若余项趋于零，则 公式 公式 证明题出现两个不同点的函数值时优先考虑中值定理；要求含高阶导数、精确阶数或不等式估计时优先考虑泰勒公式。",
         "summary": "三个定理 费马定理：若 x 0 是定义域内部的极值点，且 f 在 x 0 可导，则 f'(x 0)=0。 罗尔定理：连续于 [a,b]、可导于 (a,b)、且 f(a)=f(b)，则存在 (a,b)，使 f'( )=0。 拉格朗日中值定理：若 f 在 [a…",
         "anchors": [
           {
@@ -313,9 +313,15 @@ export const mathChapters: MathChapter[] = [
           },
           {
             "id": "calculus-02-004-anchor-002",
-            "title": "泰勒公式",
-            "searchText": "泰勒公式 公式 带拉格朗日余项时： 公式 佩亚诺余项形式： 公式 证明题出现两个不同点的函数值时优先考虑中值定理；要求含高阶导数、精确阶数或不等式估计时优先考虑泰勒公式。",
-            "summary": "公式 带拉格朗日余项时： 公式 佩亚诺余项形式： 公式 证明题出现两个不同点的函数值时优先考虑中值定理；要求含高阶导数、精确阶数或不等式估计时优先考虑泰勒公式。"
+            "title": "泰勒展开式公式",
+            "searchText": "泰勒展开式公式 公式 拉格朗日余项： 公式 佩亚诺余项： 公式",
+            "summary": "公式 拉格朗日余项： 公式 佩亚诺余项： 公式"
+          },
+          {
+            "id": "calculus-02-004-anchor-003",
+            "title": "麦克劳林展开式公式",
+            "searchText": "麦克劳林展开式公式 公式 佩亚诺余项： 公式 若余项趋于零，则 公式 公式 证明题出现两个不同点的函数值时优先考虑中值定理；要求含高阶导数、精确阶数或不等式估计时优先考虑泰勒公式。",
+            "summary": "公式 佩亚诺余项： 公式 若余项趋于零，则 公式 公式 证明题出现两个不同点的函数值时优先考虑中值定理；要求含高阶导数、精确阶数或不等式估计时优先考虑泰勒公式。"
           }
         ]
       }
@@ -1332,4 +1338,4 @@ export const mathChapters: MathChapter[] = [
 
 export const mathTopics = mathChapters.flatMap((chapter) => chapter.topics.map((topic) => ({ ...topic, chapterId: chapter.id, chapterTitle: chapter.title, partId: chapter.partId, partTitle: chapter.partTitle })))
 
-export const mathContentStats = { chapters: mathChapters.length, topics: mathTopics.length, anchors: 118 }
+export const mathContentStats = { chapters: mathChapters.length, topics: mathTopics.length, anchors: 119 }
