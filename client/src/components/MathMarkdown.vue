@@ -47,22 +47,25 @@ const html = computed(() => {
 <template><component :is="inline ? 'span' : 'div'" class="math-markdown" :class="{ inline }" v-html="html" /></template>
 
 <style scoped>
-.math-markdown { color: #26352d; font-size: 16px; line-height: 1.9; overflow-wrap: anywhere; }
+.math-markdown { color: #263b31; font-size: 16.5px; line-height: 1.92; overflow-wrap: anywhere; }
 .math-markdown.inline { display: inline; color: inherit; font: inherit; line-height: inherit; }
-.math-markdown :deep(h3) { margin: 30px 0 12px; color: #173322; font-size: 21px; line-height: 1.5; }
-.math-markdown :deep(h5) { margin: 34px 0 12px; color: #15271d; font-size: 19px; line-height: 1.45; font-weight: 750; }
+.math-markdown :deep(h3) { margin: 32px 0 13px; color: #173725; font-family: ui-serif, "Songti SC", STSong, serif; font-size: 22px; line-height: 1.5; }
+.math-markdown :deep(h5) { position: relative; margin: 38px 0 14px; padding-left: 14px; color: #112a1d; font-size: 20px; line-height: 1.48; font-weight: 760; letter-spacing: -.01em; }
+.math-markdown :deep(h5)::before { position: absolute; top: .27em; bottom: .22em; left: 0; width: 4px; border-radius: 99px; content: ''; background: linear-gradient(#c88b3f, #a96b24); }
 .math-markdown :deep(h5:first-child) { margin-top: 2px; }
-.math-markdown :deep(p) { margin: 11px 0; }
-.math-markdown :deep(ul), .math-markdown :deep(ol) { margin: 11px 0; padding-left: 1.6em; }
-.math-markdown :deep(li) { margin: 6px 0; }
-.math-markdown :deep(blockquote) { margin: 18px 0; border-left: 3px solid #b6cdbf; padding: 10px 16px; background: #f3f7f3; color: #53675b; }
-.math-markdown :deep(hr) { margin: 34px 0; border: 0; border-top: 1px solid #e1e7e1; }
+.math-markdown :deep(p) { margin: 12px 0; }
+.math-markdown :deep(ul), .math-markdown :deep(ol) { margin: 13px 0; padding-left: 1.65em; }
+.math-markdown :deep(li) { margin: 7px 0; padding-left: .1em; }
+.math-markdown :deep(li::marker) { color: #4c7a61; }
+.math-markdown :deep(blockquote) { margin: 20px 0; border: 1px solid #dce7e0; border-left: 4px solid #679178; border-radius: 0 10px 10px 0; padding: 12px 17px; background: #f1f7f3; color: #4d6558; }
+.math-markdown :deep(hr) { margin: 38px 0; border: 0; border-top: 1px solid #dfe7e2; }
 .math-markdown :deep(table) { width: 100%; margin: 18px 0; border-collapse: collapse; font-size: 15px; }
-.math-markdown :deep(th), .math-markdown :deep(td) { border: 1px solid #dce5dd; padding: 10px 12px; text-align: left; vertical-align: top; }
-.math-markdown :deep(th) { background: #f0f5f1; color: #253b2e; }
-.math-markdown :deep(.katex-display) { margin: 20px 0; padding: 13px 8px; overflow-x: auto; overflow-y: hidden; border-radius: 8px; background: #fafcf9; }
+.math-markdown :deep(th), .math-markdown :deep(td) { border: 1px solid #d9e4dd; padding: 11px 13px; text-align: left; vertical-align: top; }
+.math-markdown :deep(th) { background: #edf4f0; color: #203a2c; }
+.math-markdown :deep(tr:nth-child(even) td) { background: #fafcfb; }
+.math-markdown :deep(.katex-display) { margin: 21px 0; border: 1px solid #e0e8e3; border-left: 4px solid #b6cbbf; border-radius: 11px; padding: 16px 12px; overflow-x: auto; overflow-y: hidden; background: linear-gradient(120deg, #f8fbf9, #fcfdfc); box-shadow: inset 0 1px 0 white; }
 .math-markdown :deep(.katex) { color: #15291d; }
-.math-markdown :deep(strong) { color: #183c29; font-weight: 750; }
-.math-markdown :deep(code) { border-radius: 4px; padding: 2px 5px; background: #eef3ef; color: #315a43; }
-@media (max-width: 640px) { .math-markdown { font-size: 15px; line-height: 1.82; } .math-markdown :deep(table) { display: block; overflow-x: auto; white-space: nowrap; } }
+.math-markdown :deep(strong) { color: #17452f; font-weight: 760; }
+.math-markdown :deep(code) { border: 1px solid #dce6e0; border-radius: 5px; padding: 2px 5px; background: #edf3ef; color: #27583e; }
+@media (max-width: 640px) { .math-markdown { font-size: 16px; line-height: 1.86; }.math-markdown :deep(h5) { font-size: 18px; }.math-markdown :deep(.katex-display) { margin-right: -8px; margin-left: -8px; border-radius: 9px; padding: 14px 8px; }.math-markdown :deep(table) { display: block; overflow-x: auto; white-space: nowrap; } }
 </style>

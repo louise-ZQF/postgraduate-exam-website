@@ -8,10 +8,11 @@
 </template>
 
 <style scoped>
-.brand { display: inline-flex; align-items: center; gap: 10px; width: max-content; color: #1b3d2a; }
-.mark { display: grid; width: 35px; height: 35px; place-items: center; border-radius: 8px; background: #285c42; color: white; box-shadow: 0 5px 14px rgba(40,92,66,.18); }
-.mark svg { width: 27px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.brand { display: inline-flex; align-items: center; gap: 11px; width: max-content; color: #153a2a; }
+.mark { position: relative; display: grid; width: 38px; height: 38px; place-items: center; overflow: hidden; border: 1px solid rgba(255,255,255,.22); border-radius: 11px; background: linear-gradient(145deg, #2f7455, #174936); color: white; box-shadow: 0 7px 18px rgba(25,75,52,.2); }
+.mark::after { position: absolute; top: -12px; right: -8px; width: 26px; height: 26px; border-radius: 50%; content: ''; background: rgba(255,255,255,.12); }
+.mark svg { position: relative; z-index: 1; width: 28px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
 .brand > span:last-child { display: grid; line-height: 1.05; }
-b { font-size: 14px; letter-spacing: .04em; }
-small { margin-top: 5px; color: #7d8c81; font-family: Manrope, sans-serif; font-size: 8px; font-weight: 700; letter-spacing: .16em; }
+b { font-size: 15px; letter-spacing: .035em; }
+small { margin-top: 5px; color: #73877b; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 8px; font-weight: 700; letter-spacing: .14em; }
 </style>

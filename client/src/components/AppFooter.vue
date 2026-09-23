@@ -8,8 +8,9 @@
 </template>
 
 <style scoped>
-.app-footer { width: 100%; border-top: 1px solid #e0e6e0; padding: 24px 20px; background: #f2f5f0; color: #879289; font-size: 11px; }
-.footer-inner { width: min(1050px, 100%); margin: auto; display: flex; justify-content: space-between; gap: 18px; }
-.footer-inner a { color: #496b58; }
+.app-footer { width: 100%; border-top: 1px solid #d7e2dc; padding: 27px 20px; background: #eaf0ec; color: #74857b; font-size: 11px; }
+.footer-inner { width: min(1080px, 100%); margin: auto; display: flex; justify-content: space-between; gap: 18px; }
+.footer-inner a { color: #315f49; font-weight: 650; }
+.footer-inner a:hover { color: #174b36; }
 @media (max-width: 600px) { .footer-inner { flex-direction: column; text-align: center; } }
 </style>
