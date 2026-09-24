@@ -1,4 +1,4 @@
-export type GraphCategory = '基本函数' | '分式函数' | '指数对数' | '三角函数' | '反三角函数' | '常考组合'
+export type GraphCategory = '基本函数' | '分式函数' | '指数对数' | '三角函数' | '反三角函数'
 
 export interface GraphSegment {
   from: number
@@ -31,7 +31,7 @@ export interface FunctionGraph {
 
 const segment = (from: number, to: number, fn: (x: number) => number): GraphSegment => ({ from, to, fn })
 
-export const graphCategories: GraphCategory[] = ['基本函数', '分式函数', '指数对数', '三角函数', '反三角函数', '常考组合']
+export const graphCategories: GraphCategory[] = ['基本函数', '分式函数', '指数对数', '三角函数', '反三角函数']
 
 export const functionGraphs: FunctionGraph[] = [
   {
@@ -240,6 +240,65 @@ export const functionGraphs: FunctionGraph[] = [
     points: [{ x: 0, y: 0, label: 'O' }],
   },
   {
+    id: 'cotangent',
+    title: '余切函数',
+    formula: 'y = cot x',
+    category: '三角函数',
+    aliases: '余切 周期 奇函数',
+    domain: 'x ≠ kπ',
+    range: 'ℝ',
+    conclusion: '奇函数，在每个连续区间内单调递减，最小正周期为 π。',
+    xRange: [-3.5, 3.5],
+    yRange: [-4, 4],
+    segments: [
+      segment(-Math.PI + 0.04, -0.04, (x) => 1 / Math.tan(x)),
+      segment(0.04, Math.PI - 0.04, (x) => 1 / Math.tan(x)),
+    ],
+    verticalAsymptotes: [-Math.PI, 0, Math.PI],
+    points: [{ x: Math.PI / 2, y: 0, label: 'π/2' }, { x: -Math.PI / 2, y: 0, label: '-π/2' }],
+  },
+  {
+    id: 'secant',
+    title: '正割函数',
+    formula: 'y = sec x',
+    category: '三角函数',
+    aliases: '正割 余弦倒数 周期 偶函数',
+    domain: 'x ≠ π/2+kπ',
+    range: '(-∞,-1]∪[1,+∞)',
+    conclusion: '偶函数，最小正周期为 2π；图像不会进入 -1<y<1。',
+    xRange: [-2 * Math.PI, 2 * Math.PI],
+    yRange: [-4, 4],
+    segments: [
+      segment(-2 * Math.PI, -3 * Math.PI / 2 - 0.04, (x) => 1 / Math.cos(x)),
+      segment(-3 * Math.PI / 2 + 0.04, -Math.PI / 2 - 0.04, (x) => 1 / Math.cos(x)),
+      segment(-Math.PI / 2 + 0.04, Math.PI / 2 - 0.04, (x) => 1 / Math.cos(x)),
+      segment(Math.PI / 2 + 0.04, 3 * Math.PI / 2 - 0.04, (x) => 1 / Math.cos(x)),
+      segment(3 * Math.PI / 2 + 0.04, 2 * Math.PI, (x) => 1 / Math.cos(x)),
+    ],
+    verticalAsymptotes: [-3 * Math.PI / 2, -Math.PI / 2, Math.PI / 2, 3 * Math.PI / 2],
+    points: [{ x: 0, y: 1, label: '(0,1)' }, { x: Math.PI, y: -1, label: '(π,-1)' }],
+  },
+  {
+    id: 'cosecant',
+    title: '余割函数',
+    formula: 'y = csc x',
+    category: '三角函数',
+    aliases: '余割 正弦倒数 周期 奇函数',
+    domain: 'x ≠ kπ',
+    range: '(-∞,-1]∪[1,+∞)',
+    conclusion: '奇函数，最小正周期为 2π；图像不会进入 -1<y<1。',
+    xRange: [-2 * Math.PI, 2 * Math.PI],
+    yRange: [-4, 4],
+    segments: [
+      segment(-2 * Math.PI + 0.04, -Math.PI - 0.04, (x) => 1 / Math.sin(x)),
+      segment(-Math.PI + 0.04, -0.04, (x) => 1 / Math.sin(x)),
+      segment(0.04, Math.PI - 0.04, (x) => 1 / Math.sin(x)),
+      segment(Math.PI + 0.04, 2 * Math.PI - 0.04, (x) => 1 / Math.sin(x)),
+    ],
+    verticalAsymptotes: [-2 * Math.PI, -Math.PI, 0, Math.PI, 2 * Math.PI],
+    points: [{ x: Math.PI / 2, y: 1, label: '(π/2,1)' }, { x: -Math.PI / 2, y: -1, label: '(-π/2,-1)' }],
+  },
+  {
     id: 'arcsine',
     title: '反正弦函数',
     formula: 'y = arcsin x',
@@ -283,48 +342,18 @@ export const functionGraphs: FunctionGraph[] = [
     points: [{ x: 0, y: 0, label: 'O' }],
   },
   {
-    id: 'x-exp-minus-x',
-    title: '指数乘积函数',
-    formula: 'y = xe⁻ˣ',
-    category: '常考组合',
-    aliases: '指数乘积 极值',
+    id: 'arccotangent',
+    title: '反余切函数',
+    formula: 'y = arccot x',
+    category: '反三角函数',
+    aliases: '反余切',
     domain: 'ℝ',
-    range: '(-∞,1/e]',
-    conclusion: 'x=1 时取最大值 1/e；x→+∞ 时趋于 0。',
-    xRange: [-1.5, 6],
-    yRange: [-4, 1],
-    segments: [segment(-1.3, 6, (x) => x * Math.exp(-x))],
-    horizontalAsymptotes: [0],
-    points: [{ x: 0, y: 0, label: 'O' }, { x: 1, y: 1 / Math.E, label: '(1,1/e)' }],
-  },
-  {
-    id: 'log-over-x',
-    title: '对数商函数',
-    formula: 'y = (ln x)/x',
-    category: '常考组合',
-    aliases: '对数除以x 极值',
-    domain: '(0,+∞)',
-    range: '(-∞,1/e]',
-    conclusion: 'x=e 时取最大值 1/e；x→+∞ 时趋于 0。',
-    xRange: [-0.6, 7],
-    yRange: [-4, 1],
-    segments: [segment(0.04, 7, (x) => Math.log(x) / x)],
-    verticalAsymptotes: [0],
-    horizontalAsymptotes: [0],
-    points: [{ x: 1, y: 0, label: '(1,0)' }, { x: Math.E, y: 1 / Math.E, label: '(e,1/e)' }],
-  },
-  {
-    id: 'x-power-x',
-    title: '幂指函数',
-    formula: 'y = xˣ',
-    category: '常考组合',
-    aliases: '幂指函数 对数求导 极值',
-    domain: '(0,+∞)',
-    range: '[e⁻¹ᐟᵉ,+∞)',
-    conclusion: 'x=1/e 时取最小值 e⁻¹ᐟᵉ，对数求导最方便。',
-    xRange: [-0.5, 3],
-    yRange: [-0.2, 5],
-    segments: [segment(0.015, 2.25, (x) => x ** x)],
-    points: [{ x: 1 / Math.E, y: Math.exp(-1 / Math.E), label: 'x=1/e' }, { x: 1, y: 1, label: '(1,1)' }],
+    range: '(0,π)',
+    conclusion: '在 ℝ 上单调递减；y=0、y=π 是水平渐近线。',
+    xRange: [-6, 6],
+    yRange: [-0.4, 3.6],
+    segments: [segment(-6, 6, (x) => Math.PI / 2 - Math.atan(x))],
+    horizontalAsymptotes: [0, Math.PI],
+    points: [{ x: 0, y: Math.PI / 2, label: '(0,π/2)' }],
   },
 ]
