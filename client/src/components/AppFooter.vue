@@ -1,7 +1,7 @@
 <template>
   <footer class="app-footer">
     <div class="footer-inner">
-      <span>数学二知识库 · 公式、结论与题型索引</span>
+      <span>数学二知识库 · 公式、结论与常见函数图像</span>
       <a href="https://github.com/louise-ZQF/postgraduate-exam-website" target="_blank" rel="noreferrer">在 GitHub 上查看源码 ↗</a>
     </div>
   </footer>

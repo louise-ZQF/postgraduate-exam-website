@@ -95,6 +95,7 @@ onBeforeUnmount(() => {
       </div>
       <nav aria-label="主导航">
         <RouterLink to="/knowledge">知识目录</RouterLink>
+        <RouterLink to="/graphs">常见图像</RouterLink>
         <RouterLink to="/search">全文搜索</RouterLink>
         <RouterLink to="/favorites">待背收藏<span v-if="favoriteCount" class="favorite-count">{{ favoriteCount }}</span></RouterLink>
         <a href="https://github.com/louise-ZQF/postgraduate-exam-website" target="_blank" rel="noreferrer">GitHub</a>
