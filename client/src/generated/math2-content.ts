@@ -477,54 +477,60 @@ export const mathChapters: MathChapter[] = [
       {
         "id": "calculus-03-002",
         "title": "积分应用",
-        "body": "##### 函数平均值、平面面积、旋转体体积与截面体积\n\n\\[\nf_{\\text{平均}}=\\frac1{b-a}\\int_a^b f(x)\\,dx.\n\\]\n\n直角坐标面积：\n\n\\[\nS=\\int_a^b|f(x)-g(x)|\\,dx.\n\\]\n\n参数方程 \\(x=x(t),y=y(t)\\) 下：\n\n\\[\nS=\\left|\\int_\\alpha^\\beta y(t)x'(t)\\,dt\\right|.\n\\]\n\n极坐标面积：\n\n\\[\nS=\\frac12\\int_\\alpha^\\beta r(\\theta)^2\\,d\\theta.\n\\]\n\n绕 \\(x\\) 轴旋转：\n\n\\[\nV=\\pi\\int_a^b\\bigl(R(x)^2-r(x)^2\\bigr)\\,dx.\n\\]\n\n绕竖直直线 \\(x=c\\) 旋转，用圆柱壳：\n\n\\[\nV=2\\pi\\int_a^b |x-c|\\,h(x)\\,dx.\n\\]\n\n绕水平直线 \\(y=c\\) 旋转时同理：垫片法为\n\n\\[\nV=\\pi\\int_a^b\\bigl(R(x)^2-r(x)^2\\bigr)\\,dx,\n\\]\n\n其中 \\(R,r\\) 是图形到旋转轴的外、内距离。若改用水平薄条，则圆柱壳公式为\n\n\\[\nV=2\\pi\\int_c^d |y-c|\\,h(y)\\,dy.\n\\]\n\n已知截面积 \\(A(x)\\)：\n\n\\[\nV=\\int_a^b A(x)\\,dx.\n\\]\n\n平面区域 \\(D\\) 绕不过区域内部的直线 \\(L\\) 旋转时，也可直接写成\n\n\\[\nV=2\\pi\\iint_D d((x,y),L)\\,dA,\n\\]\n\n其中 \\(d((x,y),L)\\) 是点到旋转轴的距离。\n\n##### 弧长与旋转曲面面积\n\n\\[\nL=\\int_a^b\\sqrt{1+[y'(x)]^2}\\,dx.\n\\]\n\n参数方程：\n\n\\[\nL=\\int_\\alpha^\\beta\\sqrt{[x'(t)]^2+[y'(t)]^2}\\,dt.\n\\]\n\n极坐标：\n\n\\[\nL=\\int_\\alpha^\\beta\\sqrt{r^2+(r')^2}\\,d\\theta.\n\\]\n\n绕 \\(x\\) 轴的曲面面积：\n\n\\[\nS=2\\pi\\int_a^b |y|\\sqrt{1+(y')^2}\\,dx.\n\\]\n\n绕 \\(y\\) 轴的曲面面积：\n\n\\[\nS=2\\pi\\int_a^b |x|\\sqrt{1+(y')^2}\\,dx.\n\\]\n\n参数方程 \\(x=x(t),y=y(t)\\) 绕 \\(x\\) 轴旋转：\n\n\\[\nS=2\\pi\\int_\\alpha^\\beta |y(t)|\n\\sqrt{[x'(t)]^2+[y'(t)]^2}\\,dt.\n\\]\n\n极坐标曲线绕极轴旋转：\n\n\\[\nS=2\\pi\\int_\\alpha^\\beta |r(\\theta)\\sin\\theta|\n\\sqrt{r(\\theta)^2+[r'(\\theta)]^2}\\,d\\theta.\n\\]\n\n##### 变力做功与抽水公式\n\n\\[\nW=\\int_a^bF(x)\\,dx.\n\\]\n\n抽水问题中，若横截面积为 \\(A(x)\\)、移动距离为 \\(s(x)\\)，则\n\n\\[\nW=\\rho g\\int_a^b A(x)s(x)\\,dx.\n\\]\n\n##### 液体压力公式\n\n横条深度为 \\(h(y)\\)、长度为 \\(L(y)\\) 时：\n\n\\[\ndP=\\rho g h(y)L(y)\\,dy,\\qquad\nP=\\rho g\\int_c^d h(y)L(y)\\,dy.\n\\]\n\n##### 万有引力公式\n\n质量为 \\(M\\) 的质点对线密度为 \\(\\lambda(x)\\) 的细杆微元产生的引力大小为\n\n\\[\ndF=G\\frac{M\\,dm}{r(x)^2}\n=G\\frac{M\\lambda(x)}{r(x)^2}\\,dx.\n\\]\n\n沿同一直线且方向不变时：\n\n\\[\nF=GM\\int_a^b\\frac{\\lambda(x)}{r(x)^2}\\,dx.\n\\]\n\n##### 直杆质心公式\n\n直杆位于 \\([a,b]\\)，线密度为 \\(\\lambda(x)\\)：\n\n\\[\nm=\\int_a^b\\lambda(x)\\,dx,\n\\qquad\n\\bar x=\\frac{\\int_a^b x\\lambda(x)\\,dx}{\\int_a^b\\lambda(x)\\,dx}.\n\\]\n\n若密度为常数，则\n\n\\[\n\\bar x=\\frac{a+b}{2}.\n\\]\n\n##### 曲线形细线质心公式\n\n若细线由参数方程 \\(x=x(t),y=y(t)\\)、\\(\\alpha\\le t\\le\\beta\\) 给出，线密度为 \\(\\lambda(x,y)\\)，记\n\n\\[\nq(t)=\\sqrt{[x'(t)]^2+[y'(t)]^2},\n\\]\n\n则全部量仍是一元积分：\n\n\\[\nm=\\int_\\alpha^\\beta\\lambda(x(t),y(t))q(t)\\,dt,\n\\]\n\n\\[\nM_x=\\int_\\alpha^\\beta y(t)\\lambda(x(t),y(t))q(t)\\,dt,\n\\qquad\nM_y=\\int_\\alpha^\\beta x(t)\\lambda(x(t),y(t))q(t)\\,dt,\n\\]\n\n\\[\n\\bar x=\\frac{M_y}{m},\n\\qquad\n\\bar y=\\frac{M_x}{m}.\n\\]\n\n若曲线为 \\(y=f(x)\\)，直接取 \\(t=x\\)，此时\n\n\\[\nq(x)=\\sqrt{1+[f'(x)]^2}.\n\\]\n\n##### 平面薄片质心公式\n\n薄片区域为 \\(D\\)，面密度为 \\(\\rho(x,y)\\)：\n\n\\[\nm=\\iint_D\\rho(x,y)\\,dA,\n\\]\n\n\\[\nM_x=\\iint_D y\\rho(x,y)\\,dA,\n\\qquad\nM_y=\\iint_D x\\rho(x,y)\\,dA,\n\\]\n\n\\[\n\\bar x=\\frac{M_y}{m}\n=\\frac{\\iint_Dx\\rho(x,y)\\,dA}{\\iint_D\\rho(x,y)\\,dA},\n\\]\n\n\\[\n\\bar y=\\frac{M_x}{m}\n=\\frac{\\iint_Dy\\rho(x,y)\\,dA}{\\iint_D\\rho(x,y)\\,dA}.\n\\]\n\n这里 \\(M_x\\) 是对 \\(x\\) 轴的矩，积分中乘的是 \\(y\\)；\\(M_y\\) 是对 \\(y\\) 轴的矩，积分中乘的是 \\(x\\)。",
-        "searchText": "积分应用 积分应用 积分应用 函数平均值、平面面积、旋转体体积与截面体积 公式 直角坐标面积： 公式 参数方程 x=x(t),y=y(t) 下： 公式 极坐标面积： 公式 绕 x 轴旋转： 公式 绕竖直直线 x=c 旋转，用圆柱壳： 公式 绕水平直线 y=c 旋转时同理：垫片法为 公式 其中 R,r 是图形到旋转轴的外、内距离。若改用水平薄条，则圆柱壳公式为 公式 已知截面积 A(x)： 公式 平面区域 D 绕不过区域内部的直线 L 旋转时，也可直接写成 公式 其中 d((x,y),L) 是点到旋转轴的距离。 弧长与旋转曲面面积 公式 参数方程： 公式 极坐标： 公式 绕 x 轴的曲面面积： 公式 绕 y 轴的曲面面积： 公式 参数方程 x=x(t),y=y(t) 绕 x 轴旋转： 公式 极坐标曲线绕极轴旋转： 公式 变力做功与抽水公式 公式 抽水问题中，若横截面积为 A(x)、移动距离为 s(x)，则 公式 液体压力公式 横条深度为 h(y)、长度为 L(y) 时： 公式 万有引力公式 质量为 M 的质点对线密度为 (x) 的细杆微元产生的引力大小为 公式 沿同一直线且方向不变时： 公式 直杆质心公式 直杆位于 [a,b]，线密度为 (x)： 公式 若密度为常数，则 公式 曲线形细线质心公式 若细线由参数方程 x=x(t),y=y(t)、 t 给出，线密度为 (x,y)，记 公式 则全部量仍是一元积分： 公式 公式 公式 若曲线为 y=f(x)，直接取 t=x，此时 公式 平面薄片质心公式 薄片区域为 D，面密度为 (x,y)： 公式 公式 公式 公式 这里 M x 是对 x 轴的矩，积分中乘的是 y；M y 是对 y 轴的矩，积分中乘的是 x。",
-        "summary": "函数平均值、平面面积、旋转体体积与截面体积 公式 直角坐标面积： 公式 参数方程 x=x(t),y=y(t) 下： 公式 极坐标面积： 公式 绕 x 轴旋转： 公式 绕竖直直线 x=c 旋转，用圆柱壳： 公式 绕水平直线 y=c 旋转时同理：垫片法为 公式…",
+        "body": "##### 函数平均值、平面面积、旋转体体积与截面体积\n\n\\[\nf_{\\text{平均}}=\\frac1{b-a}\\int_a^b f(x)\\,dx.\n\\]\n\n直角坐标面积：\n\n\\[\nS=\\int_a^b|f(x)-g(x)|\\,dx.\n\\]\n\n参数方程 \\(x=x(t),y=y(t)\\) 下：\n\n\\[\nS=\\left|\\int_\\alpha^\\beta y(t)x'(t)\\,dt\\right|.\n\\]\n\n极坐标面积：\n\n\\[\nS=\\frac12\\int_\\alpha^\\beta r(\\theta)^2\\,d\\theta.\n\\]\n\n##### 旋转体体积公式一览：绕 x 轴、绕 y 轴\n\n普通方程 \\(y=f(x)\\)，\\(a\\le x\\le b\\)：\n\n\\[\n\\text{绕 }x\\text{ 轴：}\\qquad\nV_x=\\pi\\int_a^b[f(x)]^2\\,dx.\n\\]\n\n\\[\n\\text{绕 }y\\text{ 轴：}\\qquad\nV_y=2\\pi\\int_a^b x f(x)\\,dx.\n\\]\n\n参数方程 \\(x=x(t),\\ y=y(t)\\)，\\(\\alpha\\le t\\le\\beta\\)：\n\n\\[\n\\text{绕 }x\\text{ 轴：}\\qquad\nV_x=\\pi\\int_\\alpha^\\beta y(t)^2\\,|x'(t)|\\,dt.\n\\]\n\n\\[\n\\text{绕 }y\\text{ 轴：}\\qquad\nV_y=2\\pi\\int_\\alpha^\\beta |x(t)y(t)x'(t)|\\,dt.\n\\]\n\n以上按图形在第一象限书写；不在第一象限时，旋转半径和图形高度均取正值。\n\n已知截面积 \\(A(x)\\)：\n\n\\[\nV=\\int_a^b A(x)\\,dx.\n\\]\n\n##### 弧长与旋转曲面面积\n\n\\[\nL=\\int_a^b\\sqrt{1+[y'(x)]^2}\\,dx.\n\\]\n\n参数方程：\n\n\\[\nL=\\int_\\alpha^\\beta\\sqrt{[x'(t)]^2+[y'(t)]^2}\\,dt.\n\\]\n\n极坐标：\n\n\\[\nL=\\int_\\alpha^\\beta\\sqrt{r^2+(r')^2}\\,d\\theta.\n\\]\n\n绕 \\(x\\) 轴的曲面面积：\n\n\\[\nS=2\\pi\\int_a^b |y|\\sqrt{1+(y')^2}\\,dx.\n\\]\n\n绕 \\(y\\) 轴的曲面面积：\n\n\\[\nS=2\\pi\\int_a^b |x|\\sqrt{1+(y')^2}\\,dx.\n\\]\n\n参数方程 \\(x=x(t),y=y(t)\\) 绕 \\(x\\) 轴旋转：\n\n\\[\nS=2\\pi\\int_\\alpha^\\beta |y(t)|\n\\sqrt{[x'(t)]^2+[y'(t)]^2}\\,dt.\n\\]\n\n极坐标曲线绕极轴旋转：\n\n\\[\nS=2\\pi\\int_\\alpha^\\beta |r(\\theta)\\sin\\theta|\n\\sqrt{r(\\theta)^2+[r'(\\theta)]^2}\\,d\\theta.\n\\]\n\n##### 变力做功与抽水公式\n\n\\[\nW=\\int_a^bF(x)\\,dx.\n\\]\n\n抽水问题中，若横截面积为 \\(A(x)\\)、移动距离为 \\(s(x)\\)，则\n\n\\[\nW=\\rho g\\int_a^b A(x)s(x)\\,dx.\n\\]\n\n##### 液体压力公式\n\n横条深度为 \\(h(y)\\)、长度为 \\(L(y)\\) 时：\n\n\\[\ndP=\\rho g h(y)L(y)\\,dy,\\qquad\nP=\\rho g\\int_c^d h(y)L(y)\\,dy.\n\\]\n\n##### 万有引力公式\n\n质量为 \\(M\\) 的质点对线密度为 \\(\\lambda(x)\\) 的细杆微元产生的引力大小为\n\n\\[\ndF=G\\frac{M\\,dm}{r(x)^2}\n=G\\frac{M\\lambda(x)}{r(x)^2}\\,dx.\n\\]\n\n沿同一直线且方向不变时：\n\n\\[\nF=GM\\int_a^b\\frac{\\lambda(x)}{r(x)^2}\\,dx.\n\\]\n\n##### 直杆质心公式\n\n直杆位于 \\([a,b]\\)，线密度为 \\(\\lambda(x)\\)：\n\n\\[\nm=\\int_a^b\\lambda(x)\\,dx,\n\\qquad\n\\bar x=\\frac{\\int_a^b x\\lambda(x)\\,dx}{\\int_a^b\\lambda(x)\\,dx}.\n\\]\n\n若密度为常数，则\n\n\\[\n\\bar x=\\frac{a+b}{2}.\n\\]\n\n##### 曲线形细线质心公式\n\n若细线由参数方程 \\(x=x(t),y=y(t)\\)、\\(\\alpha\\le t\\le\\beta\\) 给出，线密度为 \\(\\lambda(x,y)\\)，记\n\n\\[\nq(t)=\\sqrt{[x'(t)]^2+[y'(t)]^2},\n\\]\n\n则全部量仍是一元积分：\n\n\\[\nm=\\int_\\alpha^\\beta\\lambda(x(t),y(t))q(t)\\,dt,\n\\]\n\n\\[\nM_x=\\int_\\alpha^\\beta y(t)\\lambda(x(t),y(t))q(t)\\,dt,\n\\qquad\nM_y=\\int_\\alpha^\\beta x(t)\\lambda(x(t),y(t))q(t)\\,dt,\n\\]\n\n\\[\n\\bar x=\\frac{M_y}{m},\n\\qquad\n\\bar y=\\frac{M_x}{m}.\n\\]\n\n若曲线为 \\(y=f(x)\\)，直接取 \\(t=x\\)，此时\n\n\\[\nq(x)=\\sqrt{1+[f'(x)]^2}.\n\\]\n\n##### 平面薄片质心公式\n\n薄片区域为 \\(D\\)，面密度为 \\(\\rho(x,y)\\)：\n\n\\[\nm=\\iint_D\\rho(x,y)\\,dA,\n\\]\n\n\\[\nM_x=\\iint_D y\\rho(x,y)\\,dA,\n\\qquad\nM_y=\\iint_D x\\rho(x,y)\\,dA,\n\\]\n\n\\[\n\\bar x=\\frac{M_y}{m}\n=\\frac{\\iint_Dx\\rho(x,y)\\,dA}{\\iint_D\\rho(x,y)\\,dA},\n\\]\n\n\\[\n\\bar y=\\frac{M_x}{m}\n=\\frac{\\iint_Dy\\rho(x,y)\\,dA}{\\iint_D\\rho(x,y)\\,dA}.\n\\]\n\n这里 \\(M_x\\) 是对 \\(x\\) 轴的矩，积分中乘的是 \\(y\\)；\\(M_y\\) 是对 \\(y\\) 轴的矩，积分中乘的是 \\(x\\)。",
+        "searchText": "积分应用 积分应用 积分应用 函数平均值、平面面积、旋转体体积与截面体积 公式 直角坐标面积： 公式 参数方程 x=x(t),y=y(t) 下： 公式 极坐标面积： 公式 旋转体体积公式一览：绕 x 轴、绕 y 轴 普通方程 y=f(x)，a x b： 公式 公式 参数方程 x=x(t),\\ y=y(t)， t ： 公式 公式 以上按图形在第一象限书写；不在第一象限时，旋转半径和图形高度均取正值。 已知截面积 A(x)： 公式 弧长与旋转曲面面积 公式 参数方程： 公式 极坐标： 公式 绕 x 轴的曲面面积： 公式 绕 y 轴的曲面面积： 公式 参数方程 x=x(t),y=y(t) 绕 x 轴旋转： 公式 极坐标曲线绕极轴旋转： 公式 变力做功与抽水公式 公式 抽水问题中，若横截面积为 A(x)、移动距离为 s(x)，则 公式 液体压力公式 横条深度为 h(y)、长度为 L(y) 时： 公式 万有引力公式 质量为 M 的质点对线密度为 (x) 的细杆微元产生的引力大小为 公式 沿同一直线且方向不变时： 公式 直杆质心公式 直杆位于 [a,b]，线密度为 (x)： 公式 若密度为常数，则 公式 曲线形细线质心公式 若细线由参数方程 x=x(t),y=y(t)、 t 给出，线密度为 (x,y)，记 公式 则全部量仍是一元积分： 公式 公式 公式 若曲线为 y=f(x)，直接取 t=x，此时 公式 平面薄片质心公式 薄片区域为 D，面密度为 (x,y)： 公式 公式 公式 公式 这里 M x 是对 x 轴的矩，积分中乘的是 y；M y 是对 y 轴的矩，积分中乘的是 x。",
+        "summary": "函数平均值、平面面积、旋转体体积与截面体积 公式 直角坐标面积： 公式 参数方程 x=x(t),y=y(t) 下： 公式 极坐标面积： 公式 旋转体体积公式一览：绕 x 轴、绕 y 轴 普通方程 y=f(x)，a x b： 公式 公式 参数方程 x=x(t…",
         "anchors": [
           {
             "id": "calculus-03-002-anchor-001",
             "title": "函数平均值、平面面积、旋转体体积与截面体积",
-            "searchText": "函数平均值、平面面积、旋转体体积与截面体积 公式 直角坐标面积： 公式 参数方程 x=x(t),y=y(t) 下： 公式 极坐标面积： 公式 绕 x 轴旋转： 公式 绕竖直直线 x=c 旋转，用圆柱壳： 公式 绕水平直线 y=c 旋转时同理：垫片法为 公式 其中 R,r 是图形到旋转轴的外、内距离。若改用水平薄条，则圆柱壳公式为 公式 已知截面积 A(x)： 公式 平面区域 D 绕不过区域内部的直线 L 旋转时，也可直接写成 公式 其中 d((x,y),L) 是点到旋转轴的距离。",
-            "summary": "公式 直角坐标面积： 公式 参数方程 x=x(t),y=y(t) 下： 公式 极坐标面积： 公式 绕 x 轴旋转： 公式 绕竖直直线 x=c 旋转，用圆柱壳： 公式 绕水平直线 y=c 旋转时同理：垫片法为 公式 其中 R,r 是图形到旋转轴的外、内距离。…"
+            "searchText": "函数平均值、平面面积、旋转体体积与截面体积 公式 直角坐标面积： 公式 参数方程 x=x(t),y=y(t) 下： 公式 极坐标面积： 公式",
+            "summary": "公式 直角坐标面积： 公式 参数方程 x=x(t),y=y(t) 下： 公式 极坐标面积： 公式"
           },
           {
             "id": "calculus-03-002-anchor-002",
+            "title": "旋转体体积公式一览：绕 x 轴、绕 y 轴",
+            "searchText": "旋转体体积公式一览：绕 x 轴、绕 y 轴 普通方程 y=f(x)，a x b： 公式 公式 参数方程 x=x(t),\\ y=y(t)， t ： 公式 公式 以上按图形在第一象限书写；不在第一象限时，旋转半径和图形高度均取正值。 已知截面积 A(x)： 公式",
+            "summary": "普通方程 y=f(x)，a x b： 公式 公式 参数方程 x=x(t),\\ y=y(t)， t ： 公式 公式 以上按图形在第一象限书写；不在第一象限时，旋转半径和图形高度均取正值。 已知截面积 A(x)： 公式"
+          },
+          {
+            "id": "calculus-03-002-anchor-003",
             "title": "弧长与旋转曲面面积",
             "searchText": "弧长与旋转曲面面积 公式 参数方程： 公式 极坐标： 公式 绕 x 轴的曲面面积： 公式 绕 y 轴的曲面面积： 公式 参数方程 x=x(t),y=y(t) 绕 x 轴旋转： 公式 极坐标曲线绕极轴旋转： 公式",
             "summary": "公式 参数方程： 公式 极坐标： 公式 绕 x 轴的曲面面积： 公式 绕 y 轴的曲面面积： 公式 参数方程 x=x(t),y=y(t) 绕 x 轴旋转： 公式 极坐标曲线绕极轴旋转： 公式"
           },
           {
-            "id": "calculus-03-002-anchor-003",
+            "id": "calculus-03-002-anchor-004",
             "title": "变力做功与抽水公式",
             "searchText": "变力做功与抽水公式 公式 抽水问题中，若横截面积为 A(x)、移动距离为 s(x)，则 公式",
             "summary": "公式 抽水问题中，若横截面积为 A(x)、移动距离为 s(x)，则 公式"
           },
           {
-            "id": "calculus-03-002-anchor-004",
+            "id": "calculus-03-002-anchor-005",
             "title": "液体压力公式",
             "searchText": "液体压力公式 横条深度为 h(y)、长度为 L(y) 时： 公式",
             "summary": "横条深度为 h(y)、长度为 L(y) 时： 公式"
           },
           {
-            "id": "calculus-03-002-anchor-005",
+            "id": "calculus-03-002-anchor-006",
             "title": "万有引力公式",
             "searchText": "万有引力公式 质量为 M 的质点对线密度为 (x) 的细杆微元产生的引力大小为 公式 沿同一直线且方向不变时： 公式",
             "summary": "质量为 M 的质点对线密度为 (x) 的细杆微元产生的引力大小为 公式 沿同一直线且方向不变时： 公式"
           },
           {
-            "id": "calculus-03-002-anchor-006",
+            "id": "calculus-03-002-anchor-007",
             "title": "直杆质心公式",
             "searchText": "直杆质心公式 直杆位于 [a,b]，线密度为 (x)： 公式 若密度为常数，则 公式",
             "summary": "直杆位于 [a,b]，线密度为 (x)： 公式 若密度为常数，则 公式"
           },
           {
-            "id": "calculus-03-002-anchor-007",
+            "id": "calculus-03-002-anchor-008",
             "title": "曲线形细线质心公式",
             "searchText": "曲线形细线质心公式 若细线由参数方程 x=x(t),y=y(t)、 t 给出，线密度为 (x,y)，记 公式 则全部量仍是一元积分： 公式 公式 公式 若曲线为 y=f(x)，直接取 t=x，此时 公式",
             "summary": "若细线由参数方程 x=x(t),y=y(t)、 t 给出，线密度为 (x,y)，记 公式 则全部量仍是一元积分： 公式 公式 公式 若曲线为 y=f(x)，直接取 t=x，此时 公式"
           },
           {
-            "id": "calculus-03-002-anchor-008",
+            "id": "calculus-03-002-anchor-009",
             "title": "平面薄片质心公式",
             "searchText": "平面薄片质心公式 薄片区域为 D，面密度为 (x,y)： 公式 公式 公式 公式 这里 M x 是对 x 轴的矩，积分中乘的是 y；M y 是对 y 轴的矩，积分中乘的是 x。",
             "summary": "薄片区域为 D，面密度为 (x,y)： 公式 公式 公式 公式 这里 M x 是对 x 轴的矩，积分中乘的是 y；M y 是对 y 轴的矩，积分中乘的是 x。"
@@ -1760,4 +1766,4 @@ export const mathChapters: MathChapter[] = [
 
 export const mathTopics = mathChapters.flatMap((chapter) => chapter.topics.map((topic) => ({ ...topic, chapterId: chapter.id, chapterTitle: chapter.title, partId: chapter.partId, partTitle: chapter.partTitle })))
 
-export const mathContentStats = { chapters: mathChapters.length, topics: mathTopics.length, anchors: 187 }
+export const mathContentStats = { chapters: mathChapters.length, topics: mathTopics.length, anchors: 188 }
