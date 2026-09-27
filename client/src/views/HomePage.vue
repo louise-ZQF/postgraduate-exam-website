@@ -21,7 +21,7 @@ function search(value = query.value) {
       <section class="hero">
         <div class="eyebrow"><span></span>考研数学二 · 公式与结论知识库</div>
         <h1>搜公式、查结论，<em>直接定位。</em></h1>
-        <p class="lead">数学二的定义、定理、公式和判定条件集中在这里。输入中文名称，直接跳到对应条目。</p>
+        <p class="lead">数学二的定义、定理、公式和判定条件集中在这里。输入几个关键词，直接找到相关条目。</p>
 
         <form class="hero-search" @submit.prevent="search()">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16.5 16.5 4 4"/></svg>

@@ -67,14 +67,14 @@ function toggleResultFavorite(result: MathSearchResult) {
       <div class="search-intro">
         <span>FULL-TEXT SEARCH</span>
         <h1>全文搜索</h1>
-        <p>同时检索知识点名称、公式名、判定条件与正文。</p>
+        <p>输入几个关键词即可，词序不限；同时检索名称与正文。</p>
       </div>
       <form class="search-box" @submit.prevent="submit">
         <input v-model="query" maxlength="30" autofocus placeholder="例如：相似对角化判断" aria-label="搜索关键词" />
         <button type="submit">搜索</button>
       </form>
 
-      <div v-if="query.trim()" class="result-meta">为“<b>{{ query }}</b>”找到 <strong>{{ results.length }}</strong> 条相关内容</div>
+      <div v-if="query.trim()" class="result-meta">“<b>{{ query }}</b>”的相关内容：<strong>{{ results.length }}</strong> 条（最多显示 8 条）</div>
       <section v-if="results.length" class="results">
         <article
           v-for="result in results"
@@ -100,7 +100,7 @@ function toggleResultFavorite(result: MathSearchResult) {
         </article>
       </section>
       <section v-else-if="query.trim()" class="empty">
-        <div>∅</div><h2>没有找到相关内容</h2><p>试试缩短关键词，或搜索公式的中文名称。</p>
+        <div>∅</div><h2>没有找到相关内容</h2><p>试试减少一个关键词，或换用更常见的说法。</p>
       </section>
       <section v-else class="empty"><div>⌕</div><h2>输入一个知识点</h2><p>例如“求导公式一览”“同解判定”或“正定二次型”。</p></section>
     </main>
