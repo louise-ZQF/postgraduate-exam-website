@@ -107,9 +107,9 @@ export const functionGraphs: FunctionGraph[] = [
   {
     id: 'reciprocal',
     title: '反比例函数',
-    formula: 'y = 1/x',
+    formula: '\\(y=\\frac{1}{x}\\)',
     category: '分式函数',
-    aliases: '双曲线 倒数 奇函数',
+    aliases: '双曲线 倒数 奇函数 1/x',
     domain: 'ℝ∖{0}',
     range: 'ℝ∖{0}',
     conclusion: '奇函数；x=0、y=0 是渐近线。',
@@ -123,9 +123,9 @@ export const functionGraphs: FunctionGraph[] = [
   {
     id: 'reciprocal-square',
     title: '平方反比例函数',
-    formula: 'y = 1/x²',
+    formula: '\\(y=\\frac{1}{x^2}\\)',
     category: '分式函数',
-    aliases: '倒数平方 偶函数',
+    aliases: '倒数平方 偶函数 1/x²',
     domain: 'ℝ∖{0}',
     range: '(0,+∞)',
     conclusion: '偶函数；x=0、y=0 是渐近线。',
@@ -208,7 +208,7 @@ export const functionGraphs: FunctionGraph[] = [
     xRange: [-2 * Math.PI, 2 * Math.PI],
     yRange: [-1.5, 1.5],
     segments: [segment(-2 * Math.PI, 2 * Math.PI, (x) => Math.sin(x))],
-    points: [{ x: 0, y: 0, label: 'O' }, { x: Math.PI / 2, y: 1, label: 'π/2' }],
+    points: [{ x: 0, y: 0, label: 'O' }, { x: Math.PI / 2, y: 1 }],
   },
   {
     id: 'cosine',
@@ -255,7 +255,7 @@ export const functionGraphs: FunctionGraph[] = [
       segment(0.04, Math.PI - 0.04, (x) => 1 / Math.tan(x)),
     ],
     verticalAsymptotes: [-Math.PI, 0, Math.PI],
-    points: [{ x: Math.PI / 2, y: 0, label: 'π/2' }, { x: -Math.PI / 2, y: 0, label: '-π/2' }],
+    points: [{ x: Math.PI / 2, y: 0 }, { x: -Math.PI / 2, y: 0 }],
   },
   {
     id: 'secant',
@@ -296,7 +296,7 @@ export const functionGraphs: FunctionGraph[] = [
       segment(Math.PI + 0.04, 2 * Math.PI - 0.04, (x) => 1 / Math.sin(x)),
     ],
     verticalAsymptotes: [-2 * Math.PI, -Math.PI, 0, Math.PI, 2 * Math.PI],
-    points: [{ x: Math.PI / 2, y: 1, label: '(π/2,1)' }, { x: -Math.PI / 2, y: -1, label: '(-π/2,-1)' }],
+    points: [{ x: Math.PI / 2, y: 1 }, { x: -Math.PI / 2, y: -1 }],
   },
   {
     id: 'arcsine',
@@ -324,7 +324,7 @@ export const functionGraphs: FunctionGraph[] = [
     xRange: [-1.5, 1.5],
     yRange: [-0.5, 3.7],
     segments: [segment(-1, 1, (x) => Math.acos(x))],
-    points: [{ x: 0, y: Math.PI / 2, label: '(0,π/2)' }],
+    points: [{ x: 0, y: Math.PI / 2 }],
   },
   {
     id: 'arctangent',
@@ -354,6 +354,6 @@ export const functionGraphs: FunctionGraph[] = [
     yRange: [-0.4, 3.6],
     segments: [segment(-6, 6, (x) => Math.PI / 2 - Math.atan(x))],
     horizontalAsymptotes: [0, Math.PI],
-    points: [{ x: 0, y: Math.PI / 2, label: '(0,π/2)' }],
+    points: [{ x: 0, y: Math.PI / 2 }],
   },
 ]

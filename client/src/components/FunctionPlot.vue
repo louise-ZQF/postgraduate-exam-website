@@ -45,7 +45,7 @@ const yAxis = computed(() => props.graph.xRange[0] <= 0 && props.graph.xRange[1]
 </script>
 
 <template>
-  <svg class="function-plot" :viewBox="`0 0 ${width} ${height}`" role="img" :aria-label="`${graph.formula} 的函数图像`">
+  <svg class="function-plot" :viewBox="`0 0 ${width} ${height}`" role="img" :aria-label="`${graph.title}的函数图像`">
     <defs>
       <linearGradient :id="`curve-${graph.id}`" x1="0" y1="0" x2="1" y2="1">
         <stop offset="0" stop-color="#b9792f" />

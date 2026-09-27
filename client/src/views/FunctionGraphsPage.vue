@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import MathHeader from '@/components/MathHeader.vue'
+import MathMarkdown from '@/components/MathMarkdown.vue'
 import FunctionPlot from '@/components/FunctionPlot.vue'
 import { functionGraphs, graphCategories, type GraphCategory } from '@/math/functionGraphs'
 
@@ -66,7 +67,7 @@ function categoryCount(category: GraphCategory) {
             <header>
               <span class="graph-index">{{ String(index + 1).padStart(2, '0') }}</span>
               <div><small>{{ graph.category }}</small><h3>{{ graph.title }}</h3></div>
-              <strong>{{ graph.formula }}</strong>
+              <strong><MathMarkdown :source="graph.formula" inline /></strong>
             </header>
             <FunctionPlot :graph="graph" />
             <dl>
