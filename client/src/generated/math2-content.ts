@@ -86,8 +86,8 @@ export const mathChapters: MathChapter[] = [
       {
         "id": "calculus-01-002",
         "title": "极限",
-        "body": "##### 极限运算法则、等价无穷小与高阶无穷小公式\n\n**极限运算法则**　若 \\(\\lim f=A,\\lim g=B\\)，则\n\n\\[\n\\lim(af+bg)=aA+bB,\\qquad\n\\lim(fg)=AB,\\qquad\n\\lim\\frac fg=\\frac AB\\quad(B\\ne0).\n\\]\n\n若 \\(\\varphi(x)\\to u_0\\)，且 \\(f\\) 在 \\(u_0\\) 连续，则\n\n\\[\n\\lim f(\\varphi(x))=f(u_0).\n\\]\n\n当 \\(x\\to0\\) 时：\n\n\\[\n\\sin x\\sim x,\\quad \\tan x\\sim x,\\quad \\arcsin x\\sim x,\\quad \\arctan x\\sim x,\n\\]\n\n\\[\ne^x-1\\sim x,\\quad \\ln(1+x)\\sim x,\\quad (1+x)^a-1\\sim ax,\n\\]\n\n\\[\n1-\\cos x\\sim \\frac{x^2}{2},\\qquad a^x-1\\sim x\\ln a.\n\\]\n\n高阶常用等价式：\n\n\\[\nx-\\sin x\\sim\\frac{x^3}{6},\\qquad\n\\tan x-x\\sim\\frac{x^3}{3},\n\\]\n\n\\[\n\\arcsin x-x\\sim\\frac{x^3}{6},\\qquad\nx-\\arctan x\\sim\\frac{x^3}{3}.\n\\]\n\n\\[\nx-\\ln(1+x)\\sim\\frac{x^2}{2},\\qquad\n\\ln\\!\\left(x+\\sqrt{1+x^2}\\right)-x\\sim-\\frac{x^3}{6}.\n\\]\n\n等价无穷小的等价判据：\n\n\\[\n\\alpha\\sim\\beta\n\\Longleftrightarrow \\alpha-\\beta=o(\\alpha)\n\\Longleftrightarrow \\alpha-\\beta=o(\\beta).\n\\]\n\n若 \\(u(x)\\to0\\)，则可把上式中的 \\(x\\) 换成 \\(u(x)\\)。更一般地，若 \\(u\\to0\\)、\\(uv\\to0\\)，则\n\n\\[\n(1+u)^v-1\\sim uv.\n\\]\n\n##### 指数函数的泰勒展开式\n\n\\[\ne^x=\\sum_{n=0}^{\\infty}\\frac{x^n}{n!}\n=1+x+\\frac{x^2}{2!}+\\cdots+\\frac{x^n}{n!}+\\cdots,\n\\qquad -\\infty<x<+\\infty.\n\\]\n\n##### 几何级数的泰勒展开式\n\n\\[\n\\frac1{1+x}=\\sum_{n=0}^{\\infty}(-1)^n x^n\n=1-x+x^2-x^3+\\cdots+(-1)^n x^n+\\cdots,\n\\qquad -1<x<1.\n\\]\n\n\\[\n\\frac1{1-x}=\\sum_{n=0}^{\\infty}x^n\n=1+x+x^2+\\cdots+x^n+\\cdots,\n\\qquad -1<x<1.\n\\]\n\n##### 对数函数的泰勒展开式\n\n\\[\n\\ln(1+x)=\\sum_{n=1}^{\\infty}(-1)^{n-1}\\frac{x^n}{n}\n=x-\\frac{x^2}{2}+\\frac{x^3}{3}-\\frac{x^4}{4}+\\cdots\n+(-1)^{n-1}\\frac{x^n}{n}+\\cdots,\n\\qquad -1<x\\le1.\n\\]\n\n##### 正弦函数的泰勒展开式\n\n\\[\n\\sin x=\\sum_{n=0}^{\\infty}(-1)^n\\frac{x^{2n+1}}{(2n+1)!}\n=x-\\frac{x^3}{3!}+\\frac{x^5}{5!}-\\frac{x^7}{7!}+\\cdots\n+(-1)^n\\frac{x^{2n+1}}{(2n+1)!}+\\cdots,\n\\qquad -\\infty<x<+\\infty.\n\\]\n\n##### 余弦函数的泰勒展开式\n\n\\[\n\\cos x=\\sum_{n=0}^{\\infty}(-1)^n\\frac{x^{2n}}{(2n)!}\n=1-\\frac{x^2}{2!}+\\frac{x^4}{4!}-\\frac{x^6}{6!}+\\cdots\n+(-1)^n\\frac{x^{2n}}{(2n)!}+\\cdots,\n\\qquad -\\infty<x<+\\infty.\n\\]\n\n##### 幂函数的泰勒展开式\n\n\\[\n(1+x)^a=\\sum_{n=0}^{\\infty}\\frac{a(a-1)\\cdots(a-n+1)}{n!}x^n\n=1+ax+\\frac{a(a-1)}{2!}x^2+\\cdots,\n\\qquad |x|<1.\n\\]\n\n##### 其他常用展开式\n\n\\[\n\\tan x=x+\\frac{x^3}{3}+o(x^3),\\quad\n\\arcsin x=x+\\frac{x^3}{6}+o(x^3),\\quad\n\\arctan x=x-\\frac{x^3}{3}+o(x^3),\n\\]\n\n\\[\n\\sqrt{1+x}=1+\\frac x2-\\frac{x^2}{8}+o(x^2),\n\\]\n\n\\[\n\\ln\\!\\left(x+\\sqrt{1+x^2}\\right)\n=x-\\frac{x^3}{6}+o(x^3).\n\\]\n\n##### 七类未定式、洛必达法则与幂指函数极限\n\n- \\(\\frac00\\)、\\(\\frac{\\infty}{\\infty}\\)：先化简、等价替换或洛必达；洛必达前必须确认型别和条件。\n- \\(0\\cdot\\infty\\)：改写成商。\n- \\(\\infty-\\infty\\)：通分、有理化或提取主项。\n- \\(1^\\infty\\)、\\(0^0\\)、\\(\\infty^0\\)：设原式为 \\(y\\)，先求 \\(\\ln y\\)，最后取指数。\n- 分子分母相减严重时，展开到第一个不抵消的项；不必把所有因子展开到同一阶。\n\n**洛必达法则**　当 \\(\\frac fg\\) 为 \\(\\frac00\\) 型或 \\(\\frac{\\infty}{\\infty}\\) 型，并满足相应可导条件，且导数之比的极限存在或为无穷时：\n\n\\[\n\\lim\\frac{f(x)}{g(x)}=\\lim\\frac{f'(x)}{g'(x)}.\n\\]\n\n洛必达后若仍是相同未定式可以继续使用；每次都要重新检查型别。等价无穷小只能直接替换乘积或商中的因子，和差中的替换必须保证不会丢掉抵消后的首个非零项。\n\n幂指型极限统一公式：\n\n\\[\n\\lim f(x)^{g(x)}\n=\\exp\\!\\left(\\lim g(x)\\ln f(x)\\right)\\qquad(f(x)>0).\n\\]\n\n特别地，若 \\(u(x)\\to0\\)、\\(v(x)\\to\\infty\\)、\\(u(x)v(x)\\to A\\)，则\n\n\\[\n[1+u(x)]^{v(x)}\\to e^A.\n\\]\n\n##### 两个重要极限、数列极限、黎曼和与递推数列\n\n两个重要极限：\n\n\\[\n\\lim_{x\\to0}\\frac{\\sin x}{x}=1,\\qquad\n\\lim_{x\\to0}(1+x)^{\\frac1x}=e,\n\\]\n\n以及等价形式\n\n\\[\n\\lim_{n\\to\\infty}\\left(1+\\frac1n\\right)^n=e,\\qquad\n\\lim_{x\\to\\infty}\\left(1+\\frac ax\\right)^x=e^a.\n\\]\n\n\\[\n\\lim_{n\\to\\infty}a^{\\frac1n}=1\\quad(a>0),\\qquad\n\\lim_{n\\to\\infty}n^{\\frac1n}=1.\n\\]\n\n若 \\(a_1,\\ldots,a_m>0\\)，则\n\n\\[\n\\lim_{n\\to\\infty}\\sqrt[n]{a_1^n+a_2^n+\\cdots+a_m^n}\n=\\max\\{a_1,a_2,\\ldots,a_m\\}.\n\\]\n\n若 \\(a_0b_0\\ne0\\)，则\n\n\\[\n\\lim_{x\\to\\infty}\n\\frac{a_0x^n+a_1x^{n-1}+\\cdots+a_n}\n{b_0x^m+b_1x^{m-1}+\\cdots+b_m}\n=\n\\begin{cases}\n0,&n<m,\\\\\n\\dfrac{a_0}{b_0},&n=m,\\\\\n\\infty\\text{ 或 }-\\infty,&n>m,\n\\end{cases}\n\\]\n\n最后一种情形的符号由最高次项决定。\n\n\\[\n\\lim_{n\\to\\infty}\\frac1n\\sum_{k=1}^n f\\!\\left(\\frac{k}{n}\\right)=\\int_0^1 f(x)\\,dx.\n\\]\n\n一般区间 \\([a,b]\\) 的和要整理成“函数值乘小区间宽度”。乘积先取对数化为和。递推数列先证单调有界，再令极限为 \\(L\\) 代回递推式；代数方程有多个根时，用数列范围筛选。\n\n夹逼准则：若在去心邻域内 \\(g(x)\\le f(x)\\le h(x)\\)，且 \\(g,h\\to A\\)，则 \\(f\\to A\\)。单调有界数列一定收敛；递增数列的极限是其上确界，递减数列的极限是其下确界。\n\n##### 极限存在、左右极限、局部有界性、保号性与保序性\n\n\\[\n\\lim_{x\\to x_0}f(x)=A\n\\Longleftrightarrow\n\\lim_{x\\to x_0^-}f(x)=\\lim_{x\\to x_0^+}f(x)=A.\n\\]\n\n有限极限存在时，函数在该点的某个去心邻域内有界；若 \\(A>0\\)，则该邻域内 \\(f(x)>0\\)。若附近恒有 \\(f(x)\\le g(x)\\)，且两边极限都存在，则\n\n\\[\n\\lim f(x)\\le\\lim g(x).\n\\]\n\n##### 夹逼准则、无穷小乘有界量与递推数列压缩估计\n\n\\[\ng(x)\\le f(x)\\le h(x),\\qquad g(x),h(x)\\to A\n\\Longrightarrow f(x)\\to A.\n\\]\n\n\\[\n\\alpha(x)\\to0,\\qquad \\beta(x)\\text{ 有界}\n\\Longrightarrow \\alpha(x)\\beta(x)\\to0.\n\\]\n\n若递推数列在一个不变区间内满足\n\n\\[\n|a_{n+1}-A|\\le q|a_n-A|,\\qquad 0<q<1,\n\\]\n\n则\n\n\\[\n|a_n-A|\\le q^{n-1}|a_1-A|\\to0.\n\\]\n\n##### 数列乘积、无限乘积与对数化\n\n各因子为正时，乘积先取对数：\n\n\\[\nu_n=\\prod_{k=1}^n a_k\n\\Longrightarrow\n\\ln u_n=\\sum_{k=1}^n\\ln a_k.\n\\]\n\n常用望远镜乘积：\n\n\\[\n(1-x)(1+x)(1+x^2)\\cdots(1+x^{2^n})=1-x^{2^{n+1}}.\n\\]\n\n##### 无穷小阶数、等价判据与积分等价\n\n若\n\n\\[\n\\lim\\frac{\\alpha(x)}{\\beta(x)}=\n\\begin{cases}\n0,&\\alpha\\text{ 比 }\\beta\\text{ 高阶},\\\\\nc\\ne0,&\\alpha\\text{ 与 }\\beta\\text{ 同阶},\\\\\n1,&\\alpha\\sim\\beta,\\\\\n\\infty,&\\alpha\\text{ 比 }\\beta\\text{ 低阶}.\n\\end{cases}\n\\]\n\n“无界”不等于“趋于无穷大”；趋于无穷大一定无界，反过来不成立。\n\n若 \\(f(x)\\sim g(x)\\)、二者在去心邻域内同号且积分存在，则在相应端点附近\n\n\\[\n\\int_{x_0}^{x}f(t)\\,dt\\sim\\int_{x_0}^{x}g(t)\\,dt.\n\\]\n\n若 \\(f(t)\\sim c t^m\\ (t\\to0^+)\\)、\\(\\varphi(x)\\sim d x^n\\ (x\\to0^+)\\)，其中\n\\(c\\ne0\\)、\\(d>0\\)、\\(m,n\\) 为非负整数，则\n\n\\[\n\\int_0^{\\varphi(x)}f(t)\\,dt\n\\sim\\frac{c}{m+1}[\\varphi(x)]^{m+1}\n\\sim\\frac{cd^{m+1}}{m+1}x^{n(m+1)}.\n\\]\n\n##### 含参数极限、导数定义型极限与三类渐近线\n\n\\[\nx=x_0:\\ \\lim_{x\\to x_0}f(x)=\\infty,\n\\]\n\n\\[\ny=b:\\ \\lim_{x\\to\\pm\\infty}f(x)=b,\n\\]\n\n\\[\ny=kx+b:\\ k=\\lim_{x\\to\\pm\\infty}\\frac{f(x)}x,\\quad\nb=\\lim_{x\\to\\pm\\infty}[f(x)-kx].\n\\]\n\n含参数极限存在时，先让左右极限相等，再排除分母为零或表达式无意义的参数。极限中出现\n\n\\[\n\\frac{f(x)-f(x_0)}{x-x_0}\n\\]\n\n时，直接按导数定义识别。",
-        "searchText": "极限 极限 极限 极限运算法则、等价无穷小与高阶无穷小公式 极限运算法则 若 f=A, g=B，则 公式 若 (x) u 0，且 f 在 u 0 连续，则 公式 当 x 0 时： 公式 公式 公式 高阶常用等价式： 公式 公式 公式 等价无穷小的等价判据： 公式 若 u(x) 0，则可把上式中的 x 换成 u(x)。更一般地，若 u 0、uv 0，则 公式 指数函数的泰勒展开式 公式 几何级数的泰勒展开式 公式 公式 对数函数的泰勒展开式 公式 正弦函数的泰勒展开式 公式 余弦函数的泰勒展开式 公式 幂函数的泰勒展开式 公式 其他常用展开式 公式 公式 公式 七类未定式、洛必达法则与幂指函数极限 00、 ：先化简、等价替换或洛必达；洛必达前必须确认型别和条件。 0 ：改写成商。 - ：通分、有理化或提取主项。 1^ 、0^0、 ^0：设原式为 y，先求 y，最后取指数。 分子分母相减严重时，展开到第一个不抵消的项；不必把所有因子展开到同一阶。 洛必达法则 当 fg 为 00 型或 型，并满足相应可导条件，且导数之比的极限存在或为无穷时： 公式 洛必达后若仍是相同未定式可以继续使用；每次都要重新检查型别。等价无穷小只能直接替换乘积或商中的因子，和差中的替换必须保证不会丢掉抵消后的首个非零项。 幂指型极限统一公式： 公式 特别地，若 u(x) 0、v(x) 、u(x)v(x) A，则 公式 两个重要极限、数列极限、黎曼和与递推数列 两个重要极限： 公式 以及等价形式 公式 公式 若 a 1, ,a m 0，则 公式 若 a 0b 0 0，则 公式 最后一种情形的符号由最高次项决定。 公式 一般区间 [a,b] 的和要整理成“函数值乘小区间宽度”。乘积先取对数化为和。递推数列先证单调有界，再令极限为 L 代回递推式；代数方程有多个根时，用数列范围筛选。 夹逼准则：若在去心邻域内 g(x) f(x) h(x)，且 g,h A，则 f A。单调有界数列一定收敛；递增数列的极限是其上确界，递减数列的极限是其下确界。 极限存在、左右极限、局部有界性、保号性与保序性 公式 有限极限存在时，函数在该点的某个去心邻域内有界；若 A 0，则该邻域内 f(x) 0。若附近恒有 f(x) g(x)，且两边极限都存在，则 公式 夹逼准则、无穷小乘有界量与递推数列压缩估计 公式 公式 若递推数列在一个不变区间内满足 公式 则 公式 数列乘积、无限乘积与对数化 各因子为正时，乘积先取对数： 公式 常用望远镜乘积： 公式 无穷小阶数、等价判据与积分等价 若 公式 “无界”不等于“趋于无穷大”；趋于无穷大一定无界，反过来不成立。 若 f(x) g(x)、二者在去心邻域内同号且积分存在，则在相应端点附近 公式 若 f(t) c t^m\\ (t 0^+)、 (x) d x^n\\ (x 0^+)，其中 c 0、d 0、m,n 为非负整数，则 公式 含参数极限、导数定义型极限与三类渐近线 公式 公式 公式 含参数极限存在时，先让左右极限相等，再排除分母为零或表达式无意义的参数。极限中出现 公式 时，直接按导数定义识别。",
+        "body": "##### 极限运算法则、等价无穷小与高阶无穷小公式\n\n**极限运算法则**　若 \\(\\lim f=A,\\lim g=B\\)，则\n\n\\[\n\\lim(af+bg)=aA+bB,\\qquad\n\\lim(fg)=AB,\\qquad\n\\lim\\frac fg=\\frac AB\\quad(B\\ne0).\n\\]\n\n若 \\(\\varphi(x)\\to u_0\\)，且 \\(f\\) 在 \\(u_0\\) 连续，则\n\n\\[\n\\lim f(\\varphi(x))=f(u_0).\n\\]\n\n当 \\(x\\to0\\) 时：\n\n\\[\n\\sin x\\sim x,\\quad \\tan x\\sim x,\\quad \\arcsin x\\sim x,\\quad \\arctan x\\sim x,\n\\]\n\n\\[\ne^x-1\\sim x,\\quad \\ln(1+x)\\sim x,\\quad (1+x)^a-1\\sim ax,\n\\]\n\n\\[\n1-\\cos x\\sim \\frac{x^2}{2},\\qquad a^x-1\\sim x\\ln a.\n\\]\n\n高阶常用等价式：\n\n\\[\nx-\\sin x\\sim\\frac{x^3}{6},\\qquad\n\\tan x-x\\sim\\frac{x^3}{3},\n\\]\n\n\\[\n\\arcsin x-x\\sim\\frac{x^3}{6},\\qquad\nx-\\arctan x\\sim\\frac{x^3}{3}.\n\\]\n\n\\[\nx-\\ln(1+x)\\sim\\frac{x^2}{2},\\qquad\n\\ln\\!\\left(x+\\sqrt{1+x^2}\\right)-x\\sim-\\frac{x^3}{6}.\n\\]\n\n等价无穷小的等价判据：\n\n\\[\n\\alpha\\sim\\beta\n\\Longleftrightarrow \\alpha-\\beta=o(\\alpha)\n\\Longleftrightarrow \\alpha-\\beta=o(\\beta).\n\\]\n\n若 \\(u(x)\\to0\\)，则可把上式中的 \\(x\\) 换成 \\(u(x)\\)。更一般地，若 \\(u\\to0\\)、\\(uv\\to0\\)，则\n\n\\[\n(1+u)^v-1\\sim uv.\n\\]\n\n##### 常用泰勒展开式（集中速查）\n\n指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 \\(x\\to0\\) 时，只记到做题所需的阶数：\n\n\\[\n\\begin{aligned}\ne^x&=1+x+\\frac{x^2}{2}+\\frac{x^3}{6}+o(x^3),\\\\\n\\frac1{1-x}&=1+x+x^2+x^3+o(x^3),\\\\\n\\frac1{1+x}&=1-x+x^2-x^3+o(x^3),\\\\\n\\ln(1+x)&=x-\\frac{x^2}{2}+\\frac{x^3}{3}+o(x^3),\\\\\n\\sin x&=x-\\frac{x^3}{6}+\\frac{x^5}{120}+o(x^5),\\\\\n\\cos x&=1-\\frac{x^2}{2}+\\frac{x^4}{24}+o(x^4),\\\\\n(1+x)^a&=1+ax+\\frac{a(a-1)}{2}x^2+\\frac{a(a-1)(a-2)}{6}x^3+o(x^3).\n\\end{aligned}\n\\]\n\n补充几个常用三阶式：\n\n\\[\n\\tan x=x+\\frac{x^3}{3}+o(x^3),\\quad\n\\arcsin x=x+\\frac{x^3}{6}+o(x^3),\\quad\n\\arctan x=x-\\frac{x^3}{3}+o(x^3),\n\\]\n\n\\[\n\\sqrt{1+x}=1+\\frac{x}{2}-\\frac{x^2}{8}+o(x^2),\\qquad\n\\ln\\!\\left(x+\\sqrt{1+x^2}\\right)=x-\\frac{x^3}{6}+o(x^3).\n\\]\n\n通用公式（\\(x_0=0\\) 时即麦克劳林公式）：\n\n\\[\nf(x)=\\sum_{k=0}^{n}\\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k+R_n(x).\n\\]\n\n求等价无穷小时用佩亚诺余项 \\(R_n(x)=o((x-x_0)^n)\\)；需要估计误差时可用拉格朗日余项 \\(R_n(x)=\\frac{f^{(n+1)}(\\xi)}{(n+1)!}(x-x_0)^{n+1}\\)。不要在和差中只替换最低阶等价式，先看前几项是否抵消。\n\n##### 七类未定式、洛必达法则与幂指函数极限\n\n- \\(\\frac00\\)、\\(\\frac{\\infty}{\\infty}\\)：先化简、等价替换或洛必达；洛必达前必须确认型别和条件。\n- \\(0\\cdot\\infty\\)：改写成商。\n- \\(\\infty-\\infty\\)：通分、有理化或提取主项。\n- \\(1^\\infty\\)、\\(0^0\\)、\\(\\infty^0\\)：设原式为 \\(y\\)，先求 \\(\\ln y\\)，最后取指数。\n- 分子分母相减严重时，展开到第一个不抵消的项；不必把所有因子展开到同一阶。\n\n**洛必达法则**　当 \\(\\frac fg\\) 为 \\(\\frac00\\) 型或 \\(\\frac{\\infty}{\\infty}\\) 型，并满足相应可导条件，且导数之比的极限存在或为无穷时：\n\n\\[\n\\lim\\frac{f(x)}{g(x)}=\\lim\\frac{f'(x)}{g'(x)}.\n\\]\n\n洛必达后若仍是相同未定式可以继续使用；每次都要重新检查型别。等价无穷小只能直接替换乘积或商中的因子，和差中的替换必须保证不会丢掉抵消后的首个非零项。\n\n幂指型极限统一公式：\n\n\\[\n\\lim f(x)^{g(x)}\n=\\exp\\!\\left(\\lim g(x)\\ln f(x)\\right)\\qquad(f(x)>0).\n\\]\n\n特别地，若 \\(u(x)\\to0\\)、\\(v(x)\\to\\infty\\)、\\(u(x)v(x)\\to A\\)，则\n\n\\[\n[1+u(x)]^{v(x)}\\to e^A.\n\\]\n\n##### 两个重要极限、数列极限、黎曼和与递推数列\n\n两个重要极限：\n\n\\[\n\\lim_{x\\to0}\\frac{\\sin x}{x}=1,\\qquad\n\\lim_{x\\to0}(1+x)^{\\frac1x}=e,\n\\]\n\n以及等价形式\n\n\\[\n\\lim_{n\\to\\infty}\\left(1+\\frac1n\\right)^n=e,\\qquad\n\\lim_{x\\to\\infty}\\left(1+\\frac ax\\right)^x=e^a.\n\\]\n\n\\[\n\\lim_{n\\to\\infty}a^{\\frac1n}=1\\quad(a>0),\\qquad\n\\lim_{n\\to\\infty}n^{\\frac1n}=1.\n\\]\n\n若 \\(a_1,\\ldots,a_m>0\\)，则\n\n\\[\n\\lim_{n\\to\\infty}\\sqrt[n]{a_1^n+a_2^n+\\cdots+a_m^n}\n=\\max\\{a_1,a_2,\\ldots,a_m\\}.\n\\]\n\n若 \\(a_0b_0\\ne0\\)，则\n\n\\[\n\\lim_{x\\to\\infty}\n\\frac{a_0x^n+a_1x^{n-1}+\\cdots+a_n}\n{b_0x^m+b_1x^{m-1}+\\cdots+b_m}\n=\n\\begin{cases}\n0,&n<m,\\\\\n\\dfrac{a_0}{b_0},&n=m,\\\\\n\\infty\\text{ 或 }-\\infty,&n>m,\n\\end{cases}\n\\]\n\n最后一种情形的符号由最高次项决定。\n\n\\[\n\\lim_{n\\to\\infty}\\frac1n\\sum_{k=1}^n f\\!\\left(\\frac{k}{n}\\right)=\\int_0^1 f(x)\\,dx.\n\\]\n\n一般区间 \\([a,b]\\) 的和要整理成“函数值乘小区间宽度”。乘积先取对数化为和。递推数列先证单调有界，再令极限为 \\(L\\) 代回递推式；代数方程有多个根时，用数列范围筛选。\n\n夹逼准则：若在去心邻域内 \\(g(x)\\le f(x)\\le h(x)\\)，且 \\(g,h\\to A\\)，则 \\(f\\to A\\)。单调有界数列一定收敛；递增数列的极限是其上确界，递减数列的极限是其下确界。\n\n##### 极限存在、左右极限、局部有界性、保号性与保序性\n\n\\[\n\\lim_{x\\to x_0}f(x)=A\n\\Longleftrightarrow\n\\lim_{x\\to x_0^-}f(x)=\\lim_{x\\to x_0^+}f(x)=A.\n\\]\n\n有限极限存在时，函数在该点的某个去心邻域内有界；若 \\(A>0\\)，则该邻域内 \\(f(x)>0\\)。若附近恒有 \\(f(x)\\le g(x)\\)，且两边极限都存在，则\n\n\\[\n\\lim f(x)\\le\\lim g(x).\n\\]\n\n##### 夹逼准则、无穷小乘有界量与递推数列压缩估计\n\n\\[\ng(x)\\le f(x)\\le h(x),\\qquad g(x),h(x)\\to A\n\\Longrightarrow f(x)\\to A.\n\\]\n\n\\[\n\\alpha(x)\\to0,\\qquad \\beta(x)\\text{ 有界}\n\\Longrightarrow \\alpha(x)\\beta(x)\\to0.\n\\]\n\n若递推数列在一个不变区间内满足\n\n\\[\n|a_{n+1}-A|\\le q|a_n-A|,\\qquad 0<q<1,\n\\]\n\n则\n\n\\[\n|a_n-A|\\le q^{n-1}|a_1-A|\\to0.\n\\]\n\n##### 数列乘积、无限乘积与对数化\n\n各因子为正时，乘积先取对数：\n\n\\[\nu_n=\\prod_{k=1}^n a_k\n\\Longrightarrow\n\\ln u_n=\\sum_{k=1}^n\\ln a_k.\n\\]\n\n常用望远镜乘积：\n\n\\[\n(1-x)(1+x)(1+x^2)\\cdots(1+x^{2^n})=1-x^{2^{n+1}}.\n\\]\n\n##### 无穷小阶数、等价判据与积分等价\n\n若\n\n\\[\n\\lim\\frac{\\alpha(x)}{\\beta(x)}=\n\\begin{cases}\n0,&\\alpha\\text{ 比 }\\beta\\text{ 高阶},\\\\\nc\\ne0,&\\alpha\\text{ 与 }\\beta\\text{ 同阶},\\\\\n1,&\\alpha\\sim\\beta,\\\\\n\\infty,&\\alpha\\text{ 比 }\\beta\\text{ 低阶}.\n\\end{cases}\n\\]\n\n“无界”不等于“趋于无穷大”；趋于无穷大一定无界，反过来不成立。\n\n若 \\(f(x)\\sim g(x)\\)、二者在去心邻域内同号且积分存在，则在相应端点附近\n\n\\[\n\\int_{x_0}^{x}f(t)\\,dt\\sim\\int_{x_0}^{x}g(t)\\,dt.\n\\]\n\n若 \\(f(t)\\sim c t^m\\ (t\\to0^+)\\)、\\(\\varphi(x)\\sim d x^n\\ (x\\to0^+)\\)，其中\n\\(c\\ne0\\)、\\(d>0\\)、\\(m,n\\) 为非负整数，则\n\n\\[\n\\int_0^{\\varphi(x)}f(t)\\,dt\n\\sim\\frac{c}{m+1}[\\varphi(x)]^{m+1}\n\\sim\\frac{cd^{m+1}}{m+1}x^{n(m+1)}.\n\\]\n\n##### 含参数极限、导数定义型极限与三类渐近线\n\n\\[\nx=x_0:\\ \\lim_{x\\to x_0}f(x)=\\infty,\n\\]\n\n\\[\ny=b:\\ \\lim_{x\\to\\pm\\infty}f(x)=b,\n\\]\n\n\\[\ny=kx+b:\\ k=\\lim_{x\\to\\pm\\infty}\\frac{f(x)}x,\\quad\nb=\\lim_{x\\to\\pm\\infty}[f(x)-kx].\n\\]\n\n含参数极限存在时，先让左右极限相等，再排除分母为零或表达式无意义的参数。极限中出现\n\n\\[\n\\frac{f(x)-f(x_0)}{x-x_0}\n\\]\n\n时，直接按导数定义识别。",
+        "searchText": "极限 极限 极限 极限运算法则、等价无穷小与高阶无穷小公式 极限运算法则 若 f=A, g=B，则 公式 若 (x) u 0，且 f 在 u 0 连续，则 公式 当 x 0 时： 公式 公式 公式 高阶常用等价式： 公式 公式 公式 等价无穷小的等价判据： 公式 若 u(x) 0，则可把上式中的 x 换成 u(x)。更一般地，若 u 0、uv 0，则 公式 常用泰勒展开式（集中速查） 指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 x 0 时，只记到做题所需的阶数： 公式 补充几个常用三阶式： 公式 公式 通用公式（x 0=0 时即麦克劳林公式）： 公式 求等价无穷小时用佩亚诺余项 R n(x)=o((x-x 0)^n)；需要估计误差时可用拉格朗日余项 R n(x)= f^ (n+1) ( ) (n+1)! (x-x 0)^ n+1 。不要在和差中只替换最低阶等价式，先看前几项是否抵消。 七类未定式、洛必达法则与幂指函数极限 00、 ：先化简、等价替换或洛必达；洛必达前必须确认型别和条件。 0 ：改写成商。 - ：通分、有理化或提取主项。 1^ 、0^0、 ^0：设原式为 y，先求 y，最后取指数。 分子分母相减严重时，展开到第一个不抵消的项；不必把所有因子展开到同一阶。 洛必达法则 当 fg 为 00 型或 型，并满足相应可导条件，且导数之比的极限存在或为无穷时： 公式 洛必达后若仍是相同未定式可以继续使用；每次都要重新检查型别。等价无穷小只能直接替换乘积或商中的因子，和差中的替换必须保证不会丢掉抵消后的首个非零项。 幂指型极限统一公式： 公式 特别地，若 u(x) 0、v(x) 、u(x)v(x) A，则 公式 两个重要极限、数列极限、黎曼和与递推数列 两个重要极限： 公式 以及等价形式 公式 公式 若 a 1, ,a m 0，则 公式 若 a 0b 0 0，则 公式 最后一种情形的符号由最高次项决定。 公式 一般区间 [a,b] 的和要整理成“函数值乘小区间宽度”。乘积先取对数化为和。递推数列先证单调有界，再令极限为 L 代回递推式；代数方程有多个根时，用数列范围筛选。 夹逼准则：若在去心邻域内 g(x) f(x) h(x)，且 g,h A，则 f A。单调有界数列一定收敛；递增数列的极限是其上确界，递减数列的极限是其下确界。 极限存在、左右极限、局部有界性、保号性与保序性 公式 有限极限存在时，函数在该点的某个去心邻域内有界；若 A 0，则该邻域内 f(x) 0。若附近恒有 f(x) g(x)，且两边极限都存在，则 公式 夹逼准则、无穷小乘有界量与递推数列压缩估计 公式 公式 若递推数列在一个不变区间内满足 公式 则 公式 数列乘积、无限乘积与对数化 各因子为正时，乘积先取对数： 公式 常用望远镜乘积： 公式 无穷小阶数、等价判据与积分等价 若 公式 “无界”不等于“趋于无穷大”；趋于无穷大一定无界，反过来不成立。 若 f(x) g(x)、二者在去心邻域内同号且积分存在，则在相应端点附近 公式 若 f(t) c t^m\\ (t 0^+)、 (x) d x^n\\ (x 0^+)，其中 c 0、d 0、m,n 为非负整数，则 公式 含参数极限、导数定义型极限与三类渐近线 公式 公式 公式 含参数极限存在时，先让左右极限相等，再排除分母为零或表达式无意义的参数。极限中出现 公式 时，直接按导数定义识别。",
         "summary": "极限运算法则、等价无穷小与高阶无穷小公式 极限运算法则 若 f=A, g=B，则 公式 若 (x) u 0，且 f 在 u 0 连续，则 公式 当 x 0 时： 公式 公式 公式 高阶常用等价式： 公式 公式 公式 等价无穷小的等价判据： 公式 若 u(x…",
         "anchors": [
           {
@@ -98,84 +98,48 @@ export const mathChapters: MathChapter[] = [
           },
           {
             "id": "calculus-01-002-anchor-002",
-            "title": "指数函数的泰勒展开式",
-            "searchText": "指数函数的泰勒展开式 公式",
-            "summary": "公式"
+            "title": "常用泰勒展开式（集中速查）",
+            "searchText": "常用泰勒展开式（集中速查） 指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 x 0 时，只记到做题所需的阶数： 公式 补充几个常用三阶式： 公式 公式 通用公式（x 0=0 时即麦克劳林公式）： 公式 求等价无穷小时用佩亚诺余项 R n(x)=o((x-x 0)^n)；需要估计误差时可用拉格朗日余项 R n(x)= f^ (n+1) ( ) (n+1)! (x-x 0)^ n+1 。不要在和差中只替换最低阶等价式，先看前几项是否抵消。",
+            "summary": "指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 x 0 时，只记到做题所需的阶数： 公式 补充几个常用三阶式： 公式 公式 通用公式（x 0=0 时即麦克劳林公式）： 公式 求等价无穷小时用佩亚诺余项 R n(x)=o(…"
           },
           {
             "id": "calculus-01-002-anchor-003",
-            "title": "几何级数的泰勒展开式",
-            "searchText": "几何级数的泰勒展开式 公式 公式",
-            "summary": "公式 公式"
-          },
-          {
-            "id": "calculus-01-002-anchor-004",
-            "title": "对数函数的泰勒展开式",
-            "searchText": "对数函数的泰勒展开式 公式",
-            "summary": "公式"
-          },
-          {
-            "id": "calculus-01-002-anchor-005",
-            "title": "正弦函数的泰勒展开式",
-            "searchText": "正弦函数的泰勒展开式 公式",
-            "summary": "公式"
-          },
-          {
-            "id": "calculus-01-002-anchor-006",
-            "title": "余弦函数的泰勒展开式",
-            "searchText": "余弦函数的泰勒展开式 公式",
-            "summary": "公式"
-          },
-          {
-            "id": "calculus-01-002-anchor-007",
-            "title": "幂函数的泰勒展开式",
-            "searchText": "幂函数的泰勒展开式 公式",
-            "summary": "公式"
-          },
-          {
-            "id": "calculus-01-002-anchor-008",
-            "title": "其他常用展开式",
-            "searchText": "其他常用展开式 公式 公式 公式",
-            "summary": "公式 公式 公式"
-          },
-          {
-            "id": "calculus-01-002-anchor-009",
             "title": "七类未定式、洛必达法则与幂指函数极限",
             "searchText": "七类未定式、洛必达法则与幂指函数极限 00、 ：先化简、等价替换或洛必达；洛必达前必须确认型别和条件。 0 ：改写成商。 - ：通分、有理化或提取主项。 1^ 、0^0、 ^0：设原式为 y，先求 y，最后取指数。 分子分母相减严重时，展开到第一个不抵消的项；不必把所有因子展开到同一阶。 洛必达法则 当 fg 为 00 型或 型，并满足相应可导条件，且导数之比的极限存在或为无穷时： 公式 洛必达后若仍是相同未定式可以继续使用；每次都要重新检查型别。等价无穷小只能直接替换乘积或商中的因子，和差中的替换必须保证不会丢掉抵消后的首个非零项。 幂指型极限统一公式： 公式 特别地，若 u(x) 0、v(x) 、u(x)v(x) A，则 公式",
             "summary": "00、 ：先化简、等价替换或洛必达；洛必达前必须确认型别和条件。 0 ：改写成商。 - ：通分、有理化或提取主项。 1^ 、0^0、 ^0：设原式为 y，先求 y，最后取指数。 分子分母相减严重时，展开到第一个不抵消的项；不必把所有因子展开到同一阶。 洛必…"
           },
           {
-            "id": "calculus-01-002-anchor-010",
+            "id": "calculus-01-002-anchor-004",
             "title": "两个重要极限、数列极限、黎曼和与递推数列",
             "searchText": "两个重要极限、数列极限、黎曼和与递推数列 两个重要极限： 公式 以及等价形式 公式 公式 若 a 1, ,a m 0，则 公式 若 a 0b 0 0，则 公式 最后一种情形的符号由最高次项决定。 公式 一般区间 [a,b] 的和要整理成“函数值乘小区间宽度”。乘积先取对数化为和。递推数列先证单调有界，再令极限为 L 代回递推式；代数方程有多个根时，用数列范围筛选。 夹逼准则：若在去心邻域内 g(x) f(x) h(x)，且 g,h A，则 f A。单调有界数列一定收敛；递增数列的极限是其上确界，递减数列的极限是其下确界。",
             "summary": "两个重要极限： 公式 以及等价形式 公式 公式 若 a 1, ,a m 0，则 公式 若 a 0b 0 0，则 公式 最后一种情形的符号由最高次项决定。 公式 一般区间 [a,b] 的和要整理成“函数值乘小区间宽度”。乘积先取对数化为和。递推数列先证单调有…"
           },
           {
-            "id": "calculus-01-002-anchor-011",
+            "id": "calculus-01-002-anchor-005",
             "title": "极限存在、左右极限、局部有界性、保号性与保序性",
             "searchText": "极限存在、左右极限、局部有界性、保号性与保序性 公式 有限极限存在时，函数在该点的某个去心邻域内有界；若 A 0，则该邻域内 f(x) 0。若附近恒有 f(x) g(x)，且两边极限都存在，则 公式",
             "summary": "公式 有限极限存在时，函数在该点的某个去心邻域内有界；若 A 0，则该邻域内 f(x) 0。若附近恒有 f(x) g(x)，且两边极限都存在，则 公式"
           },
           {
-            "id": "calculus-01-002-anchor-012",
+            "id": "calculus-01-002-anchor-006",
             "title": "夹逼准则、无穷小乘有界量与递推数列压缩估计",
             "searchText": "夹逼准则、无穷小乘有界量与递推数列压缩估计 公式 公式 若递推数列在一个不变区间内满足 公式 则 公式",
             "summary": "公式 公式 若递推数列在一个不变区间内满足 公式 则 公式"
           },
           {
-            "id": "calculus-01-002-anchor-013",
+            "id": "calculus-01-002-anchor-007",
             "title": "数列乘积、无限乘积与对数化",
             "searchText": "数列乘积、无限乘积与对数化 各因子为正时，乘积先取对数： 公式 常用望远镜乘积： 公式",
             "summary": "各因子为正时，乘积先取对数： 公式 常用望远镜乘积： 公式"
           },
           {
-            "id": "calculus-01-002-anchor-014",
+            "id": "calculus-01-002-anchor-008",
             "title": "无穷小阶数、等价判据与积分等价",
             "searchText": "无穷小阶数、等价判据与积分等价 若 公式 “无界”不等于“趋于无穷大”；趋于无穷大一定无界，反过来不成立。 若 f(x) g(x)、二者在去心邻域内同号且积分存在，则在相应端点附近 公式 若 f(t) c t^m\\ (t 0^+)、 (x) d x^n\\ (x 0^+)，其中 c 0、d 0、m,n 为非负整数，则 公式",
             "summary": "若 公式 “无界”不等于“趋于无穷大”；趋于无穷大一定无界，反过来不成立。 若 f(x) g(x)、二者在去心邻域内同号且积分存在，则在相应端点附近 公式 若 f(t) c t^m\\ (t 0^+)、 (x) d x^n\\ (x 0^+)，其中 c 0、d…"
           },
           {
-            "id": "calculus-01-002-anchor-015",
+            "id": "calculus-01-002-anchor-009",
             "title": "含参数极限、导数定义型极限与三类渐近线",
             "searchText": "含参数极限、导数定义型极限与三类渐近线 公式 公式 公式 含参数极限存在时，先让左右极限相等，再排除分母为零或表达式无意义的参数。极限中出现 公式 时，直接按导数定义识别。",
             "summary": "公式 公式 公式 含参数极限存在时，先让左右极限相等，再排除分母为零或表达式无意义的参数。极限中出现 公式 时，直接按导数定义识别。"
@@ -259,51 +223,15 @@ export const mathChapters: MathChapter[] = [
       {
         "id": "calculus-02-002",
         "title": "导数计算",
-        "body": "##### 求导公式一览\n\n\\[\n(x^a)'=ax^{a-1},\\quad (e^x)'=e^x,\\quad (a^x)'=a^x\\ln a,\n\\]\n\n\\[\n(\\ln x)'=\\frac1x,\\quad (\\sin x)'=\\cos x,\\quad (\\cos x)'=-\\sin x,\n\\]\n\n\\[\n(\\tan x)'=\\sec^2x,\\quad (\\cot x)'=-\\csc^2x,\n\\]\n\n\\[\n(\\arcsin x)'=\\frac1{\\sqrt{1-x^2}},\\quad\n(\\arccos x)'=-\\frac1{\\sqrt{1-x^2}},\\quad\n(\\arctan x)'=\\frac1{1+x^2},\\quad\n(\\operatorname{arccot}x)'=-\\frac1{1+x^2}.\n\\]\n\n\\[\n(\\sec x)'=\\sec x\\tan x,\\qquad\n(\\csc x)'=-\\csc x\\cot x.\n\\]\n\n\\[\n(\\log_a x)'=\\frac1{x\\ln a}\\quad(a>0,a\\ne1).\n\\]\n\n\\[\n(uv)'=u'v+uv',\\qquad\n\\left(\\frac uv\\right)'=\\frac{u'v-uv'}{v^2},\\qquad\n[f(g(x))]'=f'(g(x))g'(x).\n\\]\n\n##### 隐函数的一阶和二阶求导公式\n\n若 \\(F(x,y)=0\\)，则\n\n\\[\ny'=-\\frac{F_x}{F_y}\\quad(F_y\\ne0).\n\\]\n\n二阶导数为\n\n\\[\ny''=-\\frac{F_{xx}+2F_{xy}y'+F_{yy}(y')^2}{F_y}\\quad(F_y\\ne0).\n\\]\n\n##### 参数方程的一阶和二阶求导公式\n\n若 \\(x=x(t),y=y(t)\\)，则\n\n\\[\n\\frac{dy}{dx}=\\frac{y'(t)}{x'(t)}\\quad(x'(t)\\ne0),\n\\]\n\n\\[\n\\frac{d^2y}{dx^2}\n=\\frac{x'(t)y''(t)-y'(t)x''(t)}{[x'(t)]^3}.\n\\]\n\n更高阶导数继续按\n\n\\[\n\\frac{d}{dx}=\\frac1{x'(t)}\\frac{d}{dt}\n\\]\n\n逐阶计算，不能直接把 \\(y(t)\\) 对 \\(t\\) 的高阶导数除以 \\(x(t)\\) 对 \\(t\\) 的高阶导数。\n\n##### 反函数的一阶和二阶求导公式\n\n\\[\n(f^{-1})'(y_0)=\\frac1{f'(x_0)},\\qquad y_0=f(x_0).\n\\]\n\n\\[\n\\frac{d^2x}{dy^2}=-\\frac{f''(x)}{[f'(x)]^3}\\qquad(f'(x)\\ne0).\n\\]\n\n##### 幂指函数求导公式\n\n幂指函数 \\(y=u(x)^{v(x)}\\) 先取对数：\n\n\\[\n\\frac{y'}y=v'\\ln u+v\\frac{u'}u.\n\\]\n\n##### 极坐标曲线的一阶和二阶求导公式\n\n若曲线由 \\(r=r(\\theta)\\) 给出，即\n\n\\[\nx=r(\\theta)\\cos\\theta,\\qquad y=r(\\theta)\\sin\\theta,\n\\]\n\n则\n\n\\[\n\\frac{dy}{dx}\n=\\frac{r'(\\theta)\\sin\\theta+r(\\theta)\\cos\\theta}\n{r'(\\theta)\\cos\\theta-r(\\theta)\\sin\\theta},\n\\]\n\n\\[\n\\frac{d^2y}{dx^2}\n=\\frac{\\displaystyle\\frac{d}{d\\theta}\\!\\left(\\frac{dy}{dx}\\right)}\n{r'(\\theta)\\cos\\theta-r(\\theta)\\sin\\theta}.\n\\]\n\n##### 高阶导数\n\n\\[\n(uv)^{(n)}=\\sum_{k=0}^n\\binom nk u^{(k)}v^{(n-k)}.\n\\]\n\n**常用高阶导数公式一览**\n\n\\[\n(e^{ax+b})^{(n)}=a^ne^{ax+b},\\qquad\n(c^x)^{(n)}=c^x(\\ln c)^n,\n\\]\n\n\\[\n(xe^x)^{(n)}=(x+n)e^x.\n\\]\n\n\\[\n[\\sin(ax+b)]^{(n)}=a^n\\sin\\!\\left(ax+b+\\frac{n\\pi}{2}\\right),\n\\]\n\n\\[\n[\\cos(ax+b)]^{(n)}=a^n\\cos\\!\\left(ax+b+\\frac{n\\pi}{2}\\right),\n\\]\n\n\\[\n\\left(\\frac1{ax+b}\\right)^{(n)}=\n\\frac{(-1)^n n!a^n}{(ax+b)^{n+1}},\n\\]\n\n\\[\n[\\ln(ax+b)]^{(n)}=\n\\frac{(-1)^{n-1}(n-1)!a^n}{(ax+b)^n}\\quad(n\\ge1).\n\\]\n\n对正整数 \\(m\\)：\n\n\\[\n(x^m)^{(n)}=\n\\begin{cases}\n\\dfrac{m!}{(m-n)!}x^{m-n},&0\\le n\\le m,\\\\[2mm]\n0,&n>m.\n\\end{cases}\n\\]\n\n有理函数优先拆成简单分式；周期型导数找四阶循环；在一点求高阶导数，可用麦克劳林展开读取系数：若 \\(f(x)=\\sum a_nx^n\\)，则 \\(f^{(n)}(0)=n!a_n\\)。",
-        "searchText": "导数计算 导数计算 导数计算 求导公式一览 公式 公式 公式 公式 公式 公式 公式 隐函数的一阶和二阶求导公式 若 F(x,y)=0，则 公式 二阶导数为 公式 参数方程的一阶和二阶求导公式 若 x=x(t),y=y(t)，则 公式 公式 更高阶导数继续按 公式 逐阶计算，不能直接把 y(t) 对 t 的高阶导数除以 x(t) 对 t 的高阶导数。 反函数的一阶和二阶求导公式 公式 公式 幂指函数求导公式 幂指函数 y=u(x)^ v(x) 先取对数： 公式 极坐标曲线的一阶和二阶求导公式 若曲线由 r=r( ) 给出，即 公式 则 公式 公式 高阶导数 公式 常用高阶导数公式一览 公式 公式 公式 公式 公式 公式 对正整数 m： 公式 有理函数优先拆成简单分式；周期型导数找四阶循环；在一点求高阶导数，可用麦克劳林展开读取系数：若 f(x)= a nx^n，则 f^ (n) (0)=n!a n。",
-        "summary": "求导公式一览 公式 公式 公式 公式 公式 公式 公式 隐函数的一阶和二阶求导公式 若 F(x,y)=0，则 公式 二阶导数为 公式 参数方程的一阶和二阶求导公式 若 x=x(t),y=y(t)，则 公式 公式 更高阶导数继续按 公式 逐阶计算，不能直接把…",
+        "body": "##### 导数公式（集中速查）\n\n\\[\n(x^a)'=ax^{a-1},\\quad (e^x)'=e^x,\\quad (a^x)'=a^x\\ln a,\n\\]\n\n\\[\n(\\ln x)'=\\frac1x,\\quad (\\sin x)'=\\cos x,\\quad (\\cos x)'=-\\sin x,\n\\]\n\n\\[\n(\\tan x)'=\\sec^2x,\\quad (\\cot x)'=-\\csc^2x,\n\\]\n\n\\[\n(\\arcsin x)'=\\frac1{\\sqrt{1-x^2}},\\quad\n(\\arccos x)'=-\\frac1{\\sqrt{1-x^2}},\\quad\n(\\arctan x)'=\\frac1{1+x^2},\\quad\n(\\operatorname{arccot}x)'=-\\frac1{1+x^2}.\n\\]\n\n\\[\n(\\sec x)'=\\sec x\\tan x,\\qquad\n(\\csc x)'=-\\csc x\\cot x.\n\\]\n\n\\[\n(\\log_a x)'=\\frac1{x\\ln a}\\quad(a>0,a\\ne1).\n\\]\n\n\\[\n(uv)'=u'v+uv',\\qquad\n\\left(\\frac uv\\right)'=\\frac{u'v-uv'}{v^2},\\qquad\n[f(g(x))]'=f'(g(x))g'(x).\n\\]\n\n**隐函数求导**\n\n若 \\(F(x,y)=0\\)，则\n\n\\[\ny'=-\\frac{F_x}{F_y}\\quad(F_y\\ne0).\n\\]\n\n二阶导数为\n\n\\[\ny''=-\\frac{F_{xx}+2F_{xy}y'+F_{yy}(y')^2}{F_y}\\quad(F_y\\ne0).\n\\]\n\n**参数方程求导**\n\n若 \\(x=x(t),y=y(t)\\)，则\n\n\\[\n\\frac{dy}{dx}=\\frac{y'(t)}{x'(t)}\\quad(x'(t)\\ne0),\n\\]\n\n\\[\n\\frac{d^2y}{dx^2}\n=\\frac{x'(t)y''(t)-y'(t)x''(t)}{[x'(t)]^3}.\n\\]\n\n更高阶导数继续按\n\n\\[\n\\frac{d}{dx}=\\frac1{x'(t)}\\frac{d}{dt}\n\\]\n\n逐阶计算，不能直接把 \\(y(t)\\) 对 \\(t\\) 的高阶导数除以 \\(x(t)\\) 对 \\(t\\) 的高阶导数。\n\n**反函数求导**\n\n\\[\n(f^{-1})'(y_0)=\\frac1{f'(x_0)},\\qquad y_0=f(x_0).\n\\]\n\n\\[\n\\frac{d^2x}{dy^2}=-\\frac{f''(x)}{[f'(x)]^3}\\qquad(f'(x)\\ne0).\n\\]\n\n**幂指函数求导**\n\n幂指函数 \\(y=u(x)^{v(x)}\\) 先取对数：\n\n\\[\n\\frac{y'}y=v'\\ln u+v\\frac{u'}u.\n\\]\n\n**极坐标曲线求导**\n\n若曲线由 \\(r=r(\\theta)\\) 给出，即\n\n\\[\nx=r(\\theta)\\cos\\theta,\\qquad y=r(\\theta)\\sin\\theta,\n\\]\n\n则\n\n\\[\n\\frac{dy}{dx}\n=\\frac{r'(\\theta)\\sin\\theta+r(\\theta)\\cos\\theta}\n{r'(\\theta)\\cos\\theta-r(\\theta)\\sin\\theta},\n\\]\n\n\\[\n\\frac{d^2y}{dx^2}\n=\\frac{\\displaystyle\\frac{d}{d\\theta}\\!\\left(\\frac{dy}{dx}\\right)}\n{r'(\\theta)\\cos\\theta-r(\\theta)\\sin\\theta}.\n\\]\n\n**高阶导数**\n\n\\[\n(uv)^{(n)}=\\sum_{k=0}^n\\binom nk u^{(k)}v^{(n-k)}.\n\\]\n\n**常用高阶导数公式一览**\n\n\\[\n(e^{ax+b})^{(n)}=a^ne^{ax+b},\\qquad\n(c^x)^{(n)}=c^x(\\ln c)^n,\n\\]\n\n\\[\n(xe^x)^{(n)}=(x+n)e^x.\n\\]\n\n\\[\n[\\sin(ax+b)]^{(n)}=a^n\\sin\\!\\left(ax+b+\\frac{n\\pi}{2}\\right),\n\\]\n\n\\[\n[\\cos(ax+b)]^{(n)}=a^n\\cos\\!\\left(ax+b+\\frac{n\\pi}{2}\\right),\n\\]\n\n\\[\n\\left(\\frac1{ax+b}\\right)^{(n)}=\n\\frac{(-1)^n n!a^n}{(ax+b)^{n+1}},\n\\]\n\n\\[\n[\\ln(ax+b)]^{(n)}=\n\\frac{(-1)^{n-1}(n-1)!a^n}{(ax+b)^n}\\quad(n\\ge1).\n\\]\n\n对正整数 \\(m\\)：\n\n\\[\n(x^m)^{(n)}=\n\\begin{cases}\n\\dfrac{m!}{(m-n)!}x^{m-n},&0\\le n\\le m,\\\\[2mm]\n0,&n>m.\n\\end{cases}\n\\]\n\n有理函数优先拆成简单分式；周期型导数找四阶循环；在一点求高阶导数，可用麦克劳林展开读取系数：若 \\(f(x)=\\sum a_nx^n\\)，则 \\(f^{(n)}(0)=n!a_n\\)。",
+        "searchText": "导数计算 导数计算 导数计算 导数公式（集中速查） 公式 公式 公式 公式 公式 公式 公式 隐函数求导 若 F(x,y)=0，则 公式 二阶导数为 公式 参数方程求导 若 x=x(t),y=y(t)，则 公式 公式 更高阶导数继续按 公式 逐阶计算，不能直接把 y(t) 对 t 的高阶导数除以 x(t) 对 t 的高阶导数。 反函数求导 公式 公式 幂指函数求导 幂指函数 y=u(x)^ v(x) 先取对数： 公式 极坐标曲线求导 若曲线由 r=r( ) 给出，即 公式 则 公式 公式 高阶导数 公式 常用高阶导数公式一览 公式 公式 公式 公式 公式 公式 对正整数 m： 公式 有理函数优先拆成简单分式；周期型导数找四阶循环；在一点求高阶导数，可用麦克劳林展开读取系数：若 f(x)= a nx^n，则 f^ (n) (0)=n!a n。",
+        "summary": "导数公式（集中速查） 公式 公式 公式 公式 公式 公式 公式 隐函数求导 若 F(x,y)=0，则 公式 二阶导数为 公式 参数方程求导 若 x=x(t),y=y(t)，则 公式 公式 更高阶导数继续按 公式 逐阶计算，不能直接把 y(t) 对 t 的高…",
         "anchors": [
           {
             "id": "calculus-02-002-anchor-001",
-            "title": "求导公式一览",
-            "searchText": "求导公式一览 公式 公式 公式 公式 公式 公式 公式",
-            "summary": "公式 公式 公式 公式 公式 公式 公式"
-          },
-          {
-            "id": "calculus-02-002-anchor-002",
-            "title": "隐函数的一阶和二阶求导公式",
-            "searchText": "隐函数的一阶和二阶求导公式 若 F(x,y)=0，则 公式 二阶导数为 公式",
-            "summary": "若 F(x,y)=0，则 公式 二阶导数为 公式"
-          },
-          {
-            "id": "calculus-02-002-anchor-003",
-            "title": "参数方程的一阶和二阶求导公式",
-            "searchText": "参数方程的一阶和二阶求导公式 若 x=x(t),y=y(t)，则 公式 公式 更高阶导数继续按 公式 逐阶计算，不能直接把 y(t) 对 t 的高阶导数除以 x(t) 对 t 的高阶导数。",
-            "summary": "若 x=x(t),y=y(t)，则 公式 公式 更高阶导数继续按 公式 逐阶计算，不能直接把 y(t) 对 t 的高阶导数除以 x(t) 对 t 的高阶导数。"
-          },
-          {
-            "id": "calculus-02-002-anchor-004",
-            "title": "反函数的一阶和二阶求导公式",
-            "searchText": "反函数的一阶和二阶求导公式 公式 公式",
-            "summary": "公式 公式"
-          },
-          {
-            "id": "calculus-02-002-anchor-005",
-            "title": "幂指函数求导公式",
-            "searchText": "幂指函数求导公式 幂指函数 y=u(x)^ v(x) 先取对数： 公式",
-            "summary": "幂指函数 y=u(x)^ v(x) 先取对数： 公式"
-          },
-          {
-            "id": "calculus-02-002-anchor-006",
-            "title": "极坐标曲线的一阶和二阶求导公式",
-            "searchText": "极坐标曲线的一阶和二阶求导公式 若曲线由 r=r( ) 给出，即 公式 则 公式 公式",
-            "summary": "若曲线由 r=r( ) 给出，即 公式 则 公式 公式"
-          },
-          {
-            "id": "calculus-02-002-anchor-007",
-            "title": "高阶导数",
-            "searchText": "高阶导数 公式 常用高阶导数公式一览 公式 公式 公式 公式 公式 公式 对正整数 m： 公式 有理函数优先拆成简单分式；周期型导数找四阶循环；在一点求高阶导数，可用麦克劳林展开读取系数：若 f(x)= a nx^n，则 f^ (n) (0)=n!a n。",
-            "summary": "公式 常用高阶导数公式一览 公式 公式 公式 公式 公式 公式 对正整数 m： 公式 有理函数优先拆成简单分式；周期型导数找四阶循环；在一点求高阶导数，可用麦克劳林展开读取系数：若 f(x)= a nx^n，则 f^ (n) (0)=n!a n。"
+            "title": "导数公式（集中速查）",
+            "searchText": "导数公式（集中速查） 公式 公式 公式 公式 公式 公式 公式 隐函数求导 若 F(x,y)=0，则 公式 二阶导数为 公式 参数方程求导 若 x=x(t),y=y(t)，则 公式 公式 更高阶导数继续按 公式 逐阶计算，不能直接把 y(t) 对 t 的高阶导数除以 x(t) 对 t 的高阶导数。 反函数求导 公式 公式 幂指函数求导 幂指函数 y=u(x)^ v(x) 先取对数： 公式 极坐标曲线求导 若曲线由 r=r( ) 给出，即 公式 则 公式 公式 高阶导数 公式 常用高阶导数公式一览 公式 公式 公式 公式 公式 公式 对正整数 m： 公式 有理函数优先拆成简单分式；周期型导数找四阶循环；在一点求高阶导数，可用麦克劳林展开读取系数：若 f(x)= a nx^n，则 f^ (n) (0)=n!a n。",
+            "summary": "公式 公式 公式 公式 公式 公式 公式 隐函数求导 若 F(x,y)=0，则 公式 二阶导数为 公式 参数方程求导 若 x=x(t),y=y(t)，则 公式 公式 更高阶导数继续按 公式 逐阶计算，不能直接把 y(t) 对 t 的高阶导数除以 x(t) …"
           }
         ]
       },
@@ -403,27 +331,15 @@ export const mathChapters: MathChapter[] = [
       {
         "id": "calculus-02-004",
         "title": "微分中值定理",
-        "body": "##### 费马、罗尔、拉格朗日与柯西中值定理\n\n费马定理：若 \\(x_0\\) 是定义域内部的极值点，且 \\(f\\) 在 \\(x_0\\) 可导，则 \\(f'(x_0)=0\\)。\n\n罗尔定理：连续于 \\([a,b]\\)、可导于 \\((a,b)\\)、且 \\(f(a)=f(b)\\)，则存在 \\(\\xi\\in(a,b)\\)，使 \\(f'(\\xi)=0\\)。\n\n拉格朗日中值定理：若 \\(f\\) 在 \\([a,b]\\) 上连续、在 \\((a,b)\\) 内可导，则存在 \\(\\xi\\in(a,b)\\)，使\n\n\\[\nf(b)-f(a)=f'(\\xi)(b-a).\n\\]\n\n柯西中值定理：若 \\(f,g\\) 在 \\([a,b]\\) 上连续、在 \\((a,b)\\) 内可导，且 \\(g'(x)\\ne0\\)，则存在 \\(\\xi\\in(a,b)\\)，使\n\n\\[\n\\frac{f(b)-f(a)}{g(b)-g(a)}=\\frac{f'(\\xi)}{g'(\\xi)}.\n\\]\n\n##### 泰勒展开式公式\n\n\\[\n\\begin{aligned}\nf(x)\n&=\\sum_{k=0}^{n}\\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k+R_n(x)\\\\\n&=f(x_0)+f'(x_0)(x-x_0)+\\frac{f''(x_0)}{2!}(x-x_0)^2+\\cdots\n+\\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n+R_n(x).\n\\end{aligned}\n\\]\n\n拉格朗日余项：\n\n\\[\nR_n(x)=\\frac{f^{(n+1)}(\\xi)}{(n+1)!}(x-x_0)^{n+1}.\n\\]\n\n佩亚诺余项：\n\n\\[\nR_n(x)=o\\!\\left((x-x_0)^n\\right).\n\\]\n\n##### 麦克劳林展开式公式\n\n\\[\n\\begin{aligned}\nf(x)\n&=\\sum_{k=0}^{n}\\frac{f^{(k)}(0)}{k!}x^k+R_n(x)\\\\\n&=f(0)+f'(0)x+\\frac{f''(0)}{2!}x^2+\\cdots\n+\\frac{f^{(n)}(0)}{n!}x^n+R_n(x).\n\\end{aligned}\n\\]\n\n佩亚诺余项：\n\n\\[\nR_n(x)=o(x^n).\n\\]\n\n若余项趋于零，则\n\n\\[\nf(x)=\\sum_{n=0}^{\\infty}\\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n\n=f(x_0)+f'(x_0)(x-x_0)+\\frac{f''(x_0)}{2!}(x-x_0)^2+\\cdots,\n\\]\n\n\\[\nf(x)=\\sum_{n=0}^{\\infty}\\frac{f^{(n)}(0)}{n!}x^n\n=f(0)+f'(0)x+\\frac{f''(0)}{2!}x^2+\\cdots.\n\\]\n\n证明题出现两个不同点的函数值时优先考虑中值定理；要求含高阶导数、精确阶数或不等式估计时优先考虑泰勒公式。",
-        "searchText": "微分中值定理 微分中值定理 微分中值定理 费马、罗尔、拉格朗日与柯西中值定理 费马定理：若 x 0 是定义域内部的极值点，且 f 在 x 0 可导，则 f'(x 0)=0。 罗尔定理：连续于 [a,b]、可导于 (a,b)、且 f(a)=f(b)，则存在 (a,b)，使 f'( )=0。 拉格朗日中值定理：若 f 在 [a,b] 上连续、在 (a,b) 内可导，则存在 (a,b)，使 公式 柯西中值定理：若 f,g 在 [a,b] 上连续、在 (a,b) 内可导，且 g'(x) 0，则存在 (a,b)，使 公式 泰勒展开式公式 公式 拉格朗日余项： 公式 佩亚诺余项： 公式 麦克劳林展开式公式 公式 佩亚诺余项： 公式 若余项趋于零，则 公式 公式 证明题出现两个不同点的函数值时优先考虑中值定理；要求含高阶导数、精确阶数或不等式估计时优先考虑泰勒公式。",
+        "body": "##### 费马、罗尔、拉格朗日与柯西中值定理\n\n费马定理：若 \\(x_0\\) 是定义域内部的极值点，且 \\(f\\) 在 \\(x_0\\) 可导，则 \\(f'(x_0)=0\\)。\n\n罗尔定理：连续于 \\([a,b]\\)、可导于 \\((a,b)\\)、且 \\(f(a)=f(b)\\)，则存在 \\(\\xi\\in(a,b)\\)，使 \\(f'(\\xi)=0\\)。\n\n拉格朗日中值定理：若 \\(f\\) 在 \\([a,b]\\) 上连续、在 \\((a,b)\\) 内可导，则存在 \\(\\xi\\in(a,b)\\)，使\n\n\\[\nf(b)-f(a)=f'(\\xi)(b-a).\n\\]\n\n柯西中值定理：若 \\(f,g\\) 在 \\([a,b]\\) 上连续、在 \\((a,b)\\) 内可导，且 \\(g'(x)\\ne0\\)，则存在 \\(\\xi\\in(a,b)\\)，使\n\n\\[\n\\frac{f(b)-f(a)}{g(b)-g(a)}=\\frac{f'(\\xi)}{g'(\\xi)}.\n\\]\n\n泰勒公式和常用展开式统一见第一章“常用泰勒展开式（集中速查）”。证明题出现两个不同点的函数值时优先考虑中值定理；要求含高阶导数、精确阶数或不等式估计时优先考虑泰勒公式。",
+        "searchText": "微分中值定理 微分中值定理 微分中值定理 费马、罗尔、拉格朗日与柯西中值定理 费马定理：若 x 0 是定义域内部的极值点，且 f 在 x 0 可导，则 f'(x 0)=0。 罗尔定理：连续于 [a,b]、可导于 (a,b)、且 f(a)=f(b)，则存在 (a,b)，使 f'( )=0。 拉格朗日中值定理：若 f 在 [a,b] 上连续、在 (a,b) 内可导，则存在 (a,b)，使 公式 柯西中值定理：若 f,g 在 [a,b] 上连续、在 (a,b) 内可导，且 g'(x) 0，则存在 (a,b)，使 公式 泰勒公式和常用展开式统一见第一章“常用泰勒展开式（集中速查）”。证明题出现两个不同点的函数值时优先考虑中值定理；要求含高阶导数、精确阶数或不等式估计时优先考虑泰勒公式。",
         "summary": "费马、罗尔、拉格朗日与柯西中值定理 费马定理：若 x 0 是定义域内部的极值点，且 f 在 x 0 可导，则 f'(x 0)=0。 罗尔定理：连续于 [a,b]、可导于 (a,b)、且 f(a)=f(b)，则存在 (a,b)，使 f'( )=0。 拉格朗日…",
         "anchors": [
           {
             "id": "calculus-02-004-anchor-001",
             "title": "费马、罗尔、拉格朗日与柯西中值定理",
-            "searchText": "费马、罗尔、拉格朗日与柯西中值定理 费马定理：若 x 0 是定义域内部的极值点，且 f 在 x 0 可导，则 f'(x 0)=0。 罗尔定理：连续于 [a,b]、可导于 (a,b)、且 f(a)=f(b)，则存在 (a,b)，使 f'( )=0。 拉格朗日中值定理：若 f 在 [a,b] 上连续、在 (a,b) 内可导，则存在 (a,b)，使 公式 柯西中值定理：若 f,g 在 [a,b] 上连续、在 (a,b) 内可导，且 g'(x) 0，则存在 (a,b)，使 公式",
+            "searchText": "费马、罗尔、拉格朗日与柯西中值定理 费马定理：若 x 0 是定义域内部的极值点，且 f 在 x 0 可导，则 f'(x 0)=0。 罗尔定理：连续于 [a,b]、可导于 (a,b)、且 f(a)=f(b)，则存在 (a,b)，使 f'( )=0。 拉格朗日中值定理：若 f 在 [a,b] 上连续、在 (a,b) 内可导，则存在 (a,b)，使 公式 柯西中值定理：若 f,g 在 [a,b] 上连续、在 (a,b) 内可导，且 g'(x) 0，则存在 (a,b)，使 公式 泰勒公式和常用展开式统一见第一章“常用泰勒展开式（集中速查）”。证明题出现两个不同点的函数值时优先考虑中值定理；要求含高阶导数、精确阶数或不等式估计时优先考虑泰勒公式。",
             "summary": "费马定理：若 x 0 是定义域内部的极值点，且 f 在 x 0 可导，则 f'(x 0)=0。 罗尔定理：连续于 [a,b]、可导于 (a,b)、且 f(a)=f(b)，则存在 (a,b)，使 f'( )=0。 拉格朗日中值定理：若 f 在 [a,b] 上…"
-          },
-          {
-            "id": "calculus-02-004-anchor-002",
-            "title": "泰勒展开式公式",
-            "searchText": "泰勒展开式公式 公式 拉格朗日余项： 公式 佩亚诺余项： 公式",
-            "summary": "公式 拉格朗日余项： 公式 佩亚诺余项： 公式"
-          },
-          {
-            "id": "calculus-02-004-anchor-003",
-            "title": "麦克劳林展开式公式",
-            "searchText": "麦克劳林展开式公式 公式 佩亚诺余项： 公式 若余项趋于零，则 公式 公式 证明题出现两个不同点的函数值时优先考虑中值定理；要求含高阶导数、精确阶数或不等式估计时优先考虑泰勒公式。",
-            "summary": "公式 佩亚诺余项： 公式 若余项趋于零，则 公式 公式 证明题出现两个不同点的函数值时优先考虑中值定理；要求含高阶导数、精确阶数或不等式估计时优先考虑泰勒公式。"
           }
         ]
       }
@@ -438,57 +354,15 @@ export const mathChapters: MathChapter[] = [
       {
         "id": "calculus-03-001",
         "title": "积分计算",
-        "body": "##### 基本积分公式一览\n\n\\[\n\\int x^a\\,dx=\\frac{x^{a+1}}{a+1}+C\\ (a\\ne-1),\\qquad\n\\int\\frac{dx}{x}=\\ln|x|+C,\n\\]\n\n\\[\n\\int e^x\\,dx=e^x+C,\\qquad\n\\int a^x\\,dx=\\frac{a^x}{\\ln a}+C,\n\\]\n\n\\[\n\\int\\sin x\\,dx=-\\cos x+C,\n\\quad\\int\\cos x\\,dx=\\sin x+C,\n\\]\n\n\\[\n\\int\\frac{dx}{1+x^2}=\\arctan x+C,\n\\quad\\int\\frac{dx}{\\sqrt{1-x^2}}=\\arcsin x+C.\n\\]\n\n\\[\n\\int\\sec^2x\\,dx=\\tan x+C,\n\\quad\n\\int\\csc^2x\\,dx=-\\cot x+C,\n\\]\n\n\\[\n\\int\\sec x\\tan x\\,dx=\\sec x+C,\n\\quad\n\\int\\csc x\\cot x\\,dx=-\\csc x+C.\n\\]\n\n\\[\n\\int\\tan^2x\\,dx=\\tan x-x+C,\\qquad\n\\int\\cot^2x\\,dx=-\\cot x-x+C,\n\\]\n\n\\[\n\\int\\sin^2x\\,dx=\\frac x2-\\frac{\\sin2x}{4}+C,\\qquad\n\\int\\cos^2x\\,dx=\\frac x2+\\frac{\\sin2x}{4}+C.\n\\]\n\n\\[\n\\int\\tan x\\,dx=-\\ln|\\cos x|+C,\\qquad\n\\int\\cot x\\,dx=\\ln|\\sin x|+C,\n\\]\n\n\\[\n\\int\\sec x\\,dx=\\ln|\\sec x+\\tan x|+C,\\qquad\n\\int\\csc x\\,dx=\\ln|\\csc x-\\cot x|+C.\n\\]\n\n\\[\n\\int\\frac{dx}{a^2+x^2}=\\frac1a\\arctan\\frac xa+C,\n\\]\n\n\\[\n\\int\\frac{dx}{\\sqrt{a^2-x^2}}=\\arcsin\\frac xa+C.\n\\]\n\n\\[\n\\int\\frac{dx}{x^2-a^2}=\\frac1{2a}\\ln\\left|\\frac{x-a}{x+a}\\right|+C,\n\\]\n\n\\[\n\\int\\frac{dx}{a^2-x^2}=\\frac1{2a}\\ln\\left|\\frac{a+x}{a-x}\\right|+C,\n\\]\n\n\\[\n\\int\\frac{dx}{\\sqrt{x^2+a^2}}=\\ln\\left|x+\\sqrt{x^2+a^2}\\right|+C,\n\\]\n\n\\[\n\\int\\frac{dx}{\\sqrt{x^2-a^2}}=\\ln\\left|x+\\sqrt{x^2-a^2}\\right|+C.\n\\]\n\n\\[\n\\int\\sqrt{a^2-x^2}\\,dx=\n\\frac{x}{2}\\sqrt{a^2-x^2}+\\frac{a^2}{2}\\arcsin\\frac xa+C,\n\\]\n\n\\[\n\\int\\sqrt{x^2+a^2}\\,dx=\n\\frac{x}{2}\\sqrt{x^2+a^2}+\\frac{a^2}{2}\\ln\\left|x+\\sqrt{x^2+a^2}\\right|+C,\n\\]\n\n\\[\n\\int\\sqrt{x^2-a^2}\\,dx=\n\\frac{x}{2}\\sqrt{x^2-a^2}-\\frac{a^2}{2}\\ln\\left|x+\\sqrt{x^2-a^2}\\right|+C.\n\\]\n\n指数函数与三角函数乘积：\n\n\\[\n\\int e^{ax}\\sin bx\\,dx=\n\\frac{e^{ax}}{a^2+b^2}(a\\sin bx-b\\cos bx)+C,\n\\]\n\n\\[\n\\int e^{ax}\\cos bx\\,dx=\n\\frac{e^{ax}}{a^2+b^2}(a\\cos bx+b\\sin bx)+C.\n\\]\n\n##### 第一类换元、第二类换元与分部积分\n\n第一类换元：看见“里面函数的导数”就凑微分。\n\n\\[\n\\int f(g(x))g'(x)\\,dx=\\int f(u)\\,du.\n\\]\n\n定积分换元公式：若 \\(x=\\varphi(t)\\)，\\(\\varphi(\\alpha)=a,\\varphi(\\beta)=b\\)，则\n\n\\[\n\\int_a^b f(x)\\,dx\n=\\int_\\alpha^\\beta f(\\varphi(t))\\varphi'(t)\\,dt.\n\\]\n\n第二类换元常用：\n\n\\[\n\\sqrt{a^2-x^2}:x=a\\sin t,\\quad\n\\sqrt{a^2+x^2}:x=a\\tan t,\\quad\n\\sqrt{x^2-a^2}:x=a\\sec t.\n\\]\n\n分部积分：\n\n\\[\n\\int u\\,dv=uv-\\int v\\,du.\n\\]\n\n定积分分部公式：\n\n\\[\n\\int_a^b u(x)v'(x)\\,dx\n=\\bigl[u(x)v(x)\\bigr]_a^b-\\int_a^b u'(x)v(x)\\,dx.\n\\]\n\n反三角、对数、幂函数与指数或三角相乘时，通常优先把反三角或对数取作 \\(u\\)。\n\n##### 有理函数、根式与三角函数有理式积分\n\n- 有理式先做多项式除法，再把分母因式分解成一次因式和不可约二次因式，作部分分式。\n- 根式优先观察共轭有理化、令整块根式为新变量，或用三角代换。\n- \\(\\sin^m x\\cos^n x\\)：有奇次时留一个因子凑微分；全为偶次时用降幂公式。\n- 分段函数的原函数不仅每段要积分，还要用连续性确定各段常数之间的关系。\n\n##### 三角函数有理式的万能代换\n\n对 \\(R(\\sin x,\\cos x)\\)，简单凑微分和降幂不方便时可令 \\(t=\\tan\\frac x2\\)，则\n\n\\[\n\\sin x=\\frac{2t}{1+t^2},\\qquad\n\\cos x=\\frac{1-t^2}{1+t^2},\\qquad\ndx=\\frac{2\\,dt}{1+t^2}.\n\\]\n\n在 \\(t\\) 有定义的区间内使用；定积分还要同时换积分限。\n\n##### 部分分式分解模板\n\n若 \\(\\deg P\\ge\\deg Q\\)，先作多项式除法。对重一次因子与不可约二次因子分别设\n\n\\[\n\\frac{A_1}{x-a}+\\frac{A_2}{(x-a)^2}+\\cdots+\\frac{A_m}{(x-a)^m},\n\\]\n\n\\[\n\\frac{B_1x+C_1}{x^2+px+q}\n+\\frac{B_2x+C_2}{(x^2+px+q)^2}+\\cdots.\n\\]\n\n重因子的每个幂次都不能漏；不可约二次因子的分子必须比它低一次。\n\n##### 牛顿—莱布尼茨、定积分对称性、周期性与华里士公式\n\n定积分的线性、区间可加性与换向公式：\n\n\\[\n\\int_a^b(\\alpha f+\\beta g)\\,dx\n=\\alpha\\int_a^b f\\,dx+\\beta\\int_a^b g\\,dx,\n\\]\n\n\\[\n\\int_a^b f\\,dx=\\int_a^c f\\,dx+\\int_c^b f\\,dx,\\qquad\n\\int_a^b f\\,dx=-\\int_b^a f\\,dx.\n\\]\n\n\\[\n\\int_{-a}^{a}f(x)\\,dx=\n\\begin{cases}\n2\\int_0^a f(x)\\,dx,&f\\text{ 为偶函数},\\\\\n0,&f\\text{ 为奇函数},\n\\end{cases}\n\\]\n\n\\[\n\\int_a^b f(x)\\,dx=\\int_a^b f(a+b-x)\\,dx.\n\\]\n\n因此\n\n\\[\n\\int_a^b f(x)\\,dx=\\frac12\\int_a^b[f(x)+f(a+b-x)]\\,dx.\n\\]\n\n周期函数在整周期上的积分：若 \\(f(x+T)=f(x)\\)，则\n\n\\[\n\\int_a^{a+T}f(x)\\,dx=\\int_0^T f(x)\\,dx,\\qquad\n\\int_a^{a+nT}f(x)\\,dx=n\\int_0^T f(x)\\,dx.\n\\]\n\n华里士公式。令\n\n\\[\nI_n=\\int_0^{\\frac{\\pi}{2}}\\sin^n x\\,dx\n=\\int_0^{\\frac{\\pi}{2}}\\cos^n x\\,dx,\n\\]\n\n则\n\n\\[\nI_n=\\frac{n-1}{n}I_{n-2},\\qquad I_0=\\frac\\pi2,\\quad I_1=1.\n\\]\n\n即\n\n\\[\nI_{2m}=\\frac{(2m-1)!!}{(2m)!!}\\frac\\pi2,\\qquad\nI_{2m+1}=\\frac{(2m)!!}{(2m+1)!!}.\n\\]\n\n若 \\(f\\) 连续，则\n\n\\[\n\\int_0^\\pi f(\\sin x)\\,dx\n=2\\int_0^{\\frac{\\pi}{2}}f(\\sin x)\\,dx,\n\\]\n\n\\[\n\\int_0^\\pi x f(\\sin x)\\,dx\n=\\frac\\pi2\\int_0^\\pi f(\\sin x)\\,dx.\n\\]\n\n变上限积分：\n\n\\[\n\\frac d{dx}\\int_{u(x)}^{v(x)}f(t)\\,dt=f(v(x))v'(x)-f(u(x))u'(x).\n\\]\n\n若 \\(f\\) 在 \\([a,b]\\) 上可积，\\(m\\le f(x)\\le M\\)，则\n\n\\[\nm(b-a)\\le\\int_a^b f(x)\\,dx\\le M(b-a),\n\\]\n\n\\[\n\\left|\\int_a^b f(x)\\,dx\\right|\\le\\int_a^b|f(x)|\\,dx,\n\\]\n\n\\[\n\\left(\\int_a^b f(x)g(x)\\,dx\\right)^2\n\\le\\left(\\int_a^b f(x)^2\\,dx\\right)\n\\left(\\int_a^b g(x)^2\\,dx\\right).\n\\]\n\n若连续函数 \\(f\\ge0\\) 且不恒为零，则 \\(\\int_a^b f(x)\\,dx>0\\)。\n\n##### 定积分定义型极限与黎曼和\n\n若 \\(f\\) 在 \\([a,b]\\) 上可积，则\n\n\\[\n\\lim_{n\\to\\infty}\\frac{b-a}{n}\n\\sum_{k=1}^n\nf\\!\\left(a+\\frac{k(b-a)}n\\right)\n=\\int_a^b f(x)\\,dx.\n\\]\n\n##### 含绝对值、最大最小值与分段函数的积分\n\n先求使表达式改变的分界点或分界曲线，再分段。常用恒等式：\n\n\\[\n|u|=\\begin{cases}u,&u\\ge0,\\\\-u,&u<0,\\end{cases}\n\\qquad\n\\max\\{u,v\\}=\\frac{u+v+|u-v|}{2},\n\\]\n\n\\[\n\\min\\{u,v\\}=\\frac{u+v-|u-v|}{2}.\n\\]",
-        "searchText": "积分计算 积分计算 积分计算 基本积分公式一览 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 指数函数与三角函数乘积： 公式 公式 第一类换元、第二类换元与分部积分 第一类换元：看见“里面函数的导数”就凑微分。 公式 定积分换元公式：若 x= (t)， ( )=a, ( )=b，则 公式 第二类换元常用： 公式 分部积分： 公式 定积分分部公式： 公式 反三角、对数、幂函数与指数或三角相乘时，通常优先把反三角或对数取作 u。 有理函数、根式与三角函数有理式积分 有理式先做多项式除法，再把分母因式分解成一次因式和不可约二次因式，作部分分式。 根式优先观察共轭有理化、令整块根式为新变量，或用三角代换。 ^m x ^n x：有奇次时留一个因子凑微分；全为偶次时用降幂公式。 分段函数的原函数不仅每段要积分，还要用连续性确定各段常数之间的关系。 三角函数有理式的万能代换 对 R( x, x)，简单凑微分和降幂不方便时可令 t= x2，则 公式 在 t 有定义的区间内使用；定积分还要同时换积分限。 部分分式分解模板 若 P Q，先作多项式除法。对重一次因子与不可约二次因子分别设 公式 公式 重因子的每个幂次都不能漏；不可约二次因子的分子必须比它低一次。 牛顿—莱布尼茨、定积分对称性、周期性与华里士公式 定积分的线性、区间可加性与换向公式： 公式 公式 公式 公式 因此 公式 周期函数在整周期上的积分：若 f(x+T)=f(x)，则 公式 华里士公式。令 公式 则 公式 即 公式 若 f 连续，则 公式 公式 变上限积分： 公式 若 f 在 [a,b] 上可积，m f(x) M，则 公式 公式 公式 若连续函数 f 0 且不恒为零，则 a^b f(x)\\,dx 0。 定积分定义型极限与黎曼和 若 f 在 [a,b] 上可积，则 公式 含绝对值、最大最小值与分段函数的积分 先求使表达式改变的分界点或分界曲线，再分段。常用恒等式： 公式 公式",
-        "summary": "基本积分公式一览 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 指数函数与三角函数乘积： 公式 公式 第一类换元、第二类换元与分部积分 第一类换元：看见“里面函数的导数”就凑微分。 公式 …",
+        "body": "##### 积分公式与计算方法（集中速查）\n\n\\[\n\\int x^a\\,dx=\\frac{x^{a+1}}{a+1}+C\\ (a\\ne-1),\\qquad\n\\int\\frac{dx}{x}=\\ln|x|+C,\n\\]\n\n\\[\n\\int e^x\\,dx=e^x+C,\\qquad\n\\int a^x\\,dx=\\frac{a^x}{\\ln a}+C,\n\\]\n\n\\[\n\\int\\sin x\\,dx=-\\cos x+C,\n\\quad\\int\\cos x\\,dx=\\sin x+C,\n\\]\n\n\\[\n\\int\\frac{dx}{1+x^2}=\\arctan x+C,\n\\quad\\int\\frac{dx}{\\sqrt{1-x^2}}=\\arcsin x+C.\n\\]\n\n\\[\n\\int\\sec^2x\\,dx=\\tan x+C,\n\\quad\n\\int\\csc^2x\\,dx=-\\cot x+C,\n\\]\n\n\\[\n\\int\\sec x\\tan x\\,dx=\\sec x+C,\n\\quad\n\\int\\csc x\\cot x\\,dx=-\\csc x+C.\n\\]\n\n\\[\n\\int\\tan^2x\\,dx=\\tan x-x+C,\\qquad\n\\int\\cot^2x\\,dx=-\\cot x-x+C,\n\\]\n\n\\[\n\\int\\sin^2x\\,dx=\\frac x2-\\frac{\\sin2x}{4}+C,\\qquad\n\\int\\cos^2x\\,dx=\\frac x2+\\frac{\\sin2x}{4}+C.\n\\]\n\n\\[\n\\int\\tan x\\,dx=-\\ln|\\cos x|+C,\\qquad\n\\int\\cot x\\,dx=\\ln|\\sin x|+C,\n\\]\n\n\\[\n\\int\\sec x\\,dx=\\ln|\\sec x+\\tan x|+C,\\qquad\n\\int\\csc x\\,dx=\\ln|\\csc x-\\cot x|+C.\n\\]\n\n\\[\n\\int\\frac{dx}{a^2+x^2}=\\frac1a\\arctan\\frac xa+C,\n\\]\n\n\\[\n\\int\\frac{dx}{\\sqrt{a^2-x^2}}=\\arcsin\\frac xa+C.\n\\]\n\n\\[\n\\int\\frac{dx}{x^2-a^2}=\\frac1{2a}\\ln\\left|\\frac{x-a}{x+a}\\right|+C,\n\\]\n\n\\[\n\\int\\frac{dx}{a^2-x^2}=\\frac1{2a}\\ln\\left|\\frac{a+x}{a-x}\\right|+C,\n\\]\n\n\\[\n\\int\\frac{dx}{\\sqrt{x^2+a^2}}=\\ln\\left|x+\\sqrt{x^2+a^2}\\right|+C,\n\\]\n\n\\[\n\\int\\frac{dx}{\\sqrt{x^2-a^2}}=\\ln\\left|x+\\sqrt{x^2-a^2}\\right|+C.\n\\]\n\n\\[\n\\int\\sqrt{a^2-x^2}\\,dx=\n\\frac{x}{2}\\sqrt{a^2-x^2}+\\frac{a^2}{2}\\arcsin\\frac xa+C,\n\\]\n\n\\[\n\\int\\sqrt{x^2+a^2}\\,dx=\n\\frac{x}{2}\\sqrt{x^2+a^2}+\\frac{a^2}{2}\\ln\\left|x+\\sqrt{x^2+a^2}\\right|+C,\n\\]\n\n\\[\n\\int\\sqrt{x^2-a^2}\\,dx=\n\\frac{x}{2}\\sqrt{x^2-a^2}-\\frac{a^2}{2}\\ln\\left|x+\\sqrt{x^2-a^2}\\right|+C.\n\\]\n\n指数函数与三角函数乘积：\n\n\\[\n\\int e^{ax}\\sin bx\\,dx=\n\\frac{e^{ax}}{a^2+b^2}(a\\sin bx-b\\cos bx)+C,\n\\]\n\n\\[\n\\int e^{ax}\\cos bx\\,dx=\n\\frac{e^{ax}}{a^2+b^2}(a\\cos bx+b\\sin bx)+C.\n\\]\n\n**换元与分部积分**\n\n第一类换元：看见“里面函数的导数”就凑微分。\n\n\\[\n\\int f(g(x))g'(x)\\,dx=\\int f(u)\\,du.\n\\]\n\n定积分换元公式：若 \\(x=\\varphi(t)\\)，\\(\\varphi(\\alpha)=a,\\varphi(\\beta)=b\\)，则\n\n\\[\n\\int_a^b f(x)\\,dx\n=\\int_\\alpha^\\beta f(\\varphi(t))\\varphi'(t)\\,dt.\n\\]\n\n第二类换元常用：\n\n\\[\n\\sqrt{a^2-x^2}:x=a\\sin t,\\quad\n\\sqrt{a^2+x^2}:x=a\\tan t,\\quad\n\\sqrt{x^2-a^2}:x=a\\sec t.\n\\]\n\n分部积分：\n\n\\[\n\\int u\\,dv=uv-\\int v\\,du.\n\\]\n\n定积分分部公式：\n\n\\[\n\\int_a^b u(x)v'(x)\\,dx\n=\\bigl[u(x)v(x)\\bigr]_a^b-\\int_a^b u'(x)v(x)\\,dx.\n\\]\n\n反三角、对数、幂函数与指数或三角相乘时，通常优先把反三角或对数取作 \\(u\\)。\n\n**有理式、根式与三角式**\n\n- 有理式先做多项式除法，再把分母因式分解成一次因式和不可约二次因式，作部分分式。\n- 根式优先观察共轭有理化、令整块根式为新变量，或用三角代换。\n- \\(\\sin^m x\\cos^n x\\)：有奇次时留一个因子凑微分；全为偶次时用降幂公式。\n- 分段函数的原函数不仅每段要积分，还要用连续性确定各段常数之间的关系。\n\n**三角函数有理式的万能代换**\n\n对 \\(R(\\sin x,\\cos x)\\)，简单凑微分和降幂不方便时可令 \\(t=\\tan\\frac x2\\)，则\n\n\\[\n\\sin x=\\frac{2t}{1+t^2},\\qquad\n\\cos x=\\frac{1-t^2}{1+t^2},\\qquad\ndx=\\frac{2\\,dt}{1+t^2}.\n\\]\n\n在 \\(t\\) 有定义的区间内使用；定积分还要同时换积分限。\n\n**部分分式分解**\n\n若 \\(\\deg P\\ge\\deg Q\\)，先作多项式除法。对重一次因子与不可约二次因子分别设\n\n\\[\n\\frac{A_1}{x-a}+\\frac{A_2}{(x-a)^2}+\\cdots+\\frac{A_m}{(x-a)^m},\n\\]\n\n\\[\n\\frac{B_1x+C_1}{x^2+px+q}\n+\\frac{B_2x+C_2}{(x^2+px+q)^2}+\\cdots.\n\\]\n\n重因子的每个幂次都不能漏；不可约二次因子的分子必须比它低一次。\n\n**定积分性质、对称性与华里士公式**\n\n定积分的线性、区间可加性与换向公式：\n\n\\[\n\\int_a^b(\\alpha f+\\beta g)\\,dx\n=\\alpha\\int_a^b f\\,dx+\\beta\\int_a^b g\\,dx,\n\\]\n\n\\[\n\\int_a^b f\\,dx=\\int_a^c f\\,dx+\\int_c^b f\\,dx,\\qquad\n\\int_a^b f\\,dx=-\\int_b^a f\\,dx.\n\\]\n\n\\[\n\\int_{-a}^{a}f(x)\\,dx=\n\\begin{cases}\n2\\int_0^a f(x)\\,dx,&f\\text{ 为偶函数},\\\\\n0,&f\\text{ 为奇函数},\n\\end{cases}\n\\]\n\n\\[\n\\int_a^b f(x)\\,dx=\\int_a^b f(a+b-x)\\,dx.\n\\]\n\n因此\n\n\\[\n\\int_a^b f(x)\\,dx=\\frac12\\int_a^b[f(x)+f(a+b-x)]\\,dx.\n\\]\n\n周期函数在整周期上的积分：若 \\(f(x+T)=f(x)\\)，则\n\n\\[\n\\int_a^{a+T}f(x)\\,dx=\\int_0^T f(x)\\,dx,\\qquad\n\\int_a^{a+nT}f(x)\\,dx=n\\int_0^T f(x)\\,dx.\n\\]\n\n华里士公式。令\n\n\\[\nI_n=\\int_0^{\\frac{\\pi}{2}}\\sin^n x\\,dx\n=\\int_0^{\\frac{\\pi}{2}}\\cos^n x\\,dx,\n\\]\n\n则\n\n\\[\nI_n=\\frac{n-1}{n}I_{n-2},\\qquad I_0=\\frac\\pi2,\\quad I_1=1.\n\\]\n\n即\n\n\\[\nI_{2m}=\\frac{(2m-1)!!}{(2m)!!}\\frac\\pi2,\\qquad\nI_{2m+1}=\\frac{(2m)!!}{(2m+1)!!}.\n\\]\n\n若 \\(f\\) 连续，则\n\n\\[\n\\int_0^\\pi f(\\sin x)\\,dx\n=2\\int_0^{\\frac{\\pi}{2}}f(\\sin x)\\,dx,\n\\]\n\n\\[\n\\int_0^\\pi x f(\\sin x)\\,dx\n=\\frac\\pi2\\int_0^\\pi f(\\sin x)\\,dx.\n\\]\n\n变上限积分：\n\n\\[\n\\frac d{dx}\\int_{u(x)}^{v(x)}f(t)\\,dt=f(v(x))v'(x)-f(u(x))u'(x).\n\\]\n\n若 \\(f\\) 在 \\([a,b]\\) 上可积，\\(m\\le f(x)\\le M\\)，则\n\n\\[\nm(b-a)\\le\\int_a^b f(x)\\,dx\\le M(b-a),\n\\]\n\n\\[\n\\left|\\int_a^b f(x)\\,dx\\right|\\le\\int_a^b|f(x)|\\,dx,\n\\]\n\n\\[\n\\left(\\int_a^b f(x)g(x)\\,dx\\right)^2\n\\le\\left(\\int_a^b f(x)^2\\,dx\\right)\n\\left(\\int_a^b g(x)^2\\,dx\\right).\n\\]\n\n若连续函数 \\(f\\ge0\\) 且不恒为零，则 \\(\\int_a^b f(x)\\,dx>0\\)。\n\n**定义型极限与黎曼和**\n\n若 \\(f\\) 在 \\([a,b]\\) 上可积，则\n\n\\[\n\\lim_{n\\to\\infty}\\frac{b-a}{n}\n\\sum_{k=1}^n\nf\\!\\left(a+\\frac{k(b-a)}n\\right)\n=\\int_a^b f(x)\\,dx.\n\\]\n\n**绝对值、最大最小值与分段积分**\n\n先求使表达式改变的分界点或分界曲线，再分段。常用恒等式：\n\n\\[\n|u|=\\begin{cases}u,&u\\ge0,\\\\-u,&u<0,\\end{cases}\n\\qquad\n\\max\\{u,v\\}=\\frac{u+v+|u-v|}{2},\n\\]\n\n\\[\n\\min\\{u,v\\}=\\frac{u+v-|u-v|}{2}.\n\\]",
+        "searchText": "积分计算 积分计算 积分计算 积分公式与计算方法（集中速查） 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 指数函数与三角函数乘积： 公式 公式 换元与分部积分 第一类换元：看见“里面函数的导数”就凑微分。 公式 定积分换元公式：若 x= (t)， ( )=a, ( )=b，则 公式 第二类换元常用： 公式 分部积分： 公式 定积分分部公式： 公式 反三角、对数、幂函数与指数或三角相乘时，通常优先把反三角或对数取作 u。 有理式、根式与三角式 有理式先做多项式除法，再把分母因式分解成一次因式和不可约二次因式，作部分分式。 根式优先观察共轭有理化、令整块根式为新变量，或用三角代换。 ^m x ^n x：有奇次时留一个因子凑微分；全为偶次时用降幂公式。 分段函数的原函数不仅每段要积分，还要用连续性确定各段常数之间的关系。 三角函数有理式的万能代换 对 R( x, x)，简单凑微分和降幂不方便时可令 t= x2，则 公式 在 t 有定义的区间内使用；定积分还要同时换积分限。 部分分式分解 若 P Q，先作多项式除法。对重一次因子与不可约二次因子分别设 公式 公式 重因子的每个幂次都不能漏；不可约二次因子的分子必须比它低一次。 定积分性质、对称性与华里士公式 定积分的线性、区间可加性与换向公式： 公式 公式 公式 公式 因此 公式 周期函数在整周期上的积分：若 f(x+T)=f(x)，则 公式 华里士公式。令 公式 则 公式 即 公式 若 f 连续，则 公式 公式 变上限积分： 公式 若 f 在 [a,b] 上可积，m f(x) M，则 公式 公式 公式 若连续函数 f 0 且不恒为零，则 a^b f(x)\\,dx 0。 定义型极限与黎曼和 若 f 在 [a,b] 上可积，则 公式 绝对值、最大最小值与分段积分 先求使表达式改变的分界点或分界曲线，再分段。常用恒等式： 公式 公式",
+        "summary": "积分公式与计算方法（集中速查） 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 指数函数与三角函数乘积： 公式 公式 换元与分部积分 第一类换元：看见“里面函数的导数”就凑微分。 公式 定积…",
         "anchors": [
           {
             "id": "calculus-03-001-anchor-001",
-            "title": "基本积分公式一览",
-            "searchText": "基本积分公式一览 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 指数函数与三角函数乘积： 公式 公式",
-            "summary": "公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 指数函数与三角函数乘积： 公式 公式"
-          },
-          {
-            "id": "calculus-03-001-anchor-002",
-            "title": "第一类换元、第二类换元与分部积分",
-            "searchText": "第一类换元、第二类换元与分部积分 第一类换元：看见“里面函数的导数”就凑微分。 公式 定积分换元公式：若 x= (t)， ( )=a, ( )=b，则 公式 第二类换元常用： 公式 分部积分： 公式 定积分分部公式： 公式 反三角、对数、幂函数与指数或三角相乘时，通常优先把反三角或对数取作 u。",
-            "summary": "第一类换元：看见“里面函数的导数”就凑微分。 公式 定积分换元公式：若 x= (t)， ( )=a, ( )=b，则 公式 第二类换元常用： 公式 分部积分： 公式 定积分分部公式： 公式 反三角、对数、幂函数与指数或三角相乘时，通常优先把反三角或对数取作…"
-          },
-          {
-            "id": "calculus-03-001-anchor-003",
-            "title": "有理函数、根式与三角函数有理式积分",
-            "searchText": "有理函数、根式与三角函数有理式积分 有理式先做多项式除法，再把分母因式分解成一次因式和不可约二次因式，作部分分式。 根式优先观察共轭有理化、令整块根式为新变量，或用三角代换。 ^m x ^n x：有奇次时留一个因子凑微分；全为偶次时用降幂公式。 分段函数的原函数不仅每段要积分，还要用连续性确定各段常数之间的关系。",
-            "summary": "有理式先做多项式除法，再把分母因式分解成一次因式和不可约二次因式，作部分分式。 根式优先观察共轭有理化、令整块根式为新变量，或用三角代换。 ^m x ^n x：有奇次时留一个因子凑微分；全为偶次时用降幂公式。 分段函数的原函数不仅每段要积分，还要用连续性确…"
-          },
-          {
-            "id": "calculus-03-001-anchor-004",
-            "title": "三角函数有理式的万能代换",
-            "searchText": "三角函数有理式的万能代换 对 R( x, x)，简单凑微分和降幂不方便时可令 t= x2，则 公式 在 t 有定义的区间内使用；定积分还要同时换积分限。",
-            "summary": "对 R( x, x)，简单凑微分和降幂不方便时可令 t= x2，则 公式 在 t 有定义的区间内使用；定积分还要同时换积分限。"
-          },
-          {
-            "id": "calculus-03-001-anchor-005",
-            "title": "部分分式分解模板",
-            "searchText": "部分分式分解模板 若 P Q，先作多项式除法。对重一次因子与不可约二次因子分别设 公式 公式 重因子的每个幂次都不能漏；不可约二次因子的分子必须比它低一次。",
-            "summary": "若 P Q，先作多项式除法。对重一次因子与不可约二次因子分别设 公式 公式 重因子的每个幂次都不能漏；不可约二次因子的分子必须比它低一次。"
-          },
-          {
-            "id": "calculus-03-001-anchor-006",
-            "title": "牛顿—莱布尼茨、定积分对称性、周期性与华里士公式",
-            "searchText": "牛顿—莱布尼茨、定积分对称性、周期性与华里士公式 定积分的线性、区间可加性与换向公式： 公式 公式 公式 公式 因此 公式 周期函数在整周期上的积分：若 f(x+T)=f(x)，则 公式 华里士公式。令 公式 则 公式 即 公式 若 f 连续，则 公式 公式 变上限积分： 公式 若 f 在 [a,b] 上可积，m f(x) M，则 公式 公式 公式 若连续函数 f 0 且不恒为零，则 a^b f(x)\\,dx 0。",
-            "summary": "定积分的线性、区间可加性与换向公式： 公式 公式 公式 公式 因此 公式 周期函数在整周期上的积分：若 f(x+T)=f(x)，则 公式 华里士公式。令 公式 则 公式 即 公式 若 f 连续，则 公式 公式 变上限积分： 公式 若 f 在 [a,b] 上…"
-          },
-          {
-            "id": "calculus-03-001-anchor-007",
-            "title": "定积分定义型极限与黎曼和",
-            "searchText": "定积分定义型极限与黎曼和 若 f 在 [a,b] 上可积，则 公式",
-            "summary": "若 f 在 [a,b] 上可积，则 公式"
-          },
-          {
-            "id": "calculus-03-001-anchor-008",
-            "title": "含绝对值、最大最小值与分段函数的积分",
-            "searchText": "含绝对值、最大最小值与分段函数的积分 先求使表达式改变的分界点或分界曲线，再分段。常用恒等式： 公式 公式",
-            "summary": "先求使表达式改变的分界点或分界曲线，再分段。常用恒等式： 公式 公式"
+            "title": "积分公式与计算方法（集中速查）",
+            "searchText": "积分公式与计算方法（集中速查） 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 指数函数与三角函数乘积： 公式 公式 换元与分部积分 第一类换元：看见“里面函数的导数”就凑微分。 公式 定积分换元公式：若 x= (t)， ( )=a, ( )=b，则 公式 第二类换元常用： 公式 分部积分： 公式 定积分分部公式： 公式 反三角、对数、幂函数与指数或三角相乘时，通常优先把反三角或对数取作 u。 有理式、根式与三角式 有理式先做多项式除法，再把分母因式分解成一次因式和不可约二次因式，作部分分式。 根式优先观察共轭有理化、令整块根式为新变量，或用三角代换。 ^m x ^n x：有奇次时留一个因子凑微分；全为偶次时用降幂公式。 分段函数的原函数不仅每段要积分，还要用连续性确定各段常数之间的关系。 三角函数有理式的万能代换 对 R( x, x)，简单凑微分和降幂不方便时可令 t= x2，则 公式 在 t 有定义的区间内使用；定积分还要同时换积分限。 部分分式分解 若 P Q，先作多项式除法。对重一次因子与不可约二次因子分别设 公式 公式 重因子的每个幂次都不能漏；不可约二次因子的分子必须比它低一次。 定积分性质、对称性与华里士公式 定积分的线性、区间可加性与换向公式： 公式 公式 公式 公式 因此 公式 周期函数在整周期上的积分：若 f(x+T)=f(x)，则 公式 华里士公式。令 公式 则 公式 即 公式 若 f 连续，则 公式 公式 变上限积分： 公式 若 f 在 [a,b] 上可积，m f(x) M，则 公式 公式 公式 若连续函数 f 0 且不恒为零，则 a^b f(x)\\,dx 0。 定义型极限与黎曼和 若 f 在 [a,b] 上可积，则 公式 绝对值、最大最小值与分段积分 先求使表达式改变的分界点或分界曲线，再分段。常用恒等式： 公式 公式",
+            "summary": "公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 公式 指数函数与三角函数乘积： 公式 公式 换元与分部积分 第一类换元：看见“里面函数的导数”就凑微分。 公式 定积分换元公式：若 x= (t)， …"
           }
         ]
       },
@@ -1844,4 +1718,4 @@ export const mathChapters: MathChapter[] = [
 
 export const mathTopics = mathChapters.flatMap((chapter) => chapter.topics.map((topic) => ({ ...topic, chapterId: chapter.id, chapterTitle: chapter.title, partId: chapter.partId, partTitle: chapter.partTitle })))
 
-export const mathContentStats = { chapters: mathChapters.length, topics: mathTopics.length, anchors: 201 }
+export const mathContentStats = { chapters: mathChapters.length, topics: mathTopics.length, anchors: 180 }
