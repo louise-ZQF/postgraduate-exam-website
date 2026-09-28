@@ -7,7 +7,7 @@ import { isNavigating } from '@/router'
   <RouterView />
   <AppFooter />
 
-  <!-- 路由跳转时的全屏 loading：顶部进度条 + 中央转圈 -->
+  <!-- 路由跳转时保留轻量提示，不遮挡阅读内容。 -->
   <div
     v-if="isNavigating"
     class="route-loading-overlay"
@@ -28,8 +28,7 @@ import { isNavigating } from '@/router'
   inset: 0;
   z-index: 9999;
   pointer-events: none;
-  background: rgba(255, 255, 255, 0.55);
-  backdrop-filter: blur(2px);
+  background: rgba(243, 238, 230, 0.32);
 }
 
 .route-loading-topbar {
@@ -38,9 +37,7 @@ import { isNavigating } from '@/router'
   left: 0;
   height: 3px;
   width: 100%;
-  background: linear-gradient(90deg, #285e43 0%, #9fbda9 50%, #285e43 100%);
-  background-size: 200% 100%;
-  animation: route-loading-slide 1.2s ease-in-out infinite;
+  background: var(--accent);
 }
 
 @keyframes route-loading-slide {
@@ -62,8 +59,8 @@ import { isNavigating } from '@/router'
 .route-spinner {
   width: 40px;
   height: 40px;
-  border: 3px solid #e4eaf2;
-  border-top-color: #285e43;
+  border: 3px solid var(--line);
+  border-top-color: var(--accent);
   border-radius: 50%;
   animation: route-spin 0.8s linear infinite;
 }
@@ -74,7 +71,7 @@ import { isNavigating } from '@/router'
 
 .route-loading-text {
   font-size: 14px;
-  color: #53675b;
+  color: var(--ink-soft);
   font-weight: 500;
 }
 </style>

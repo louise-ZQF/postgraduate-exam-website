@@ -19,7 +19,6 @@ const html = computed(() => {
       return `MATHPLACEHOLDER${index}X`
     },
   )
-
   const rendered = props.inline
     ? marked.parseInline(protectedSource, { async: false, gfm: true }) as string
     : marked.parse(protectedSource, { async: false, breaks: false, gfm: true }) as string
@@ -28,7 +27,6 @@ const html = computed(() => {
     FORBID_TAGS: ['button', 'embed', 'form', 'iframe', 'input', 'object', 'script', 'style'],
     USE_PROFILES: { html: true },
   })
-
   return sanitized.replace(/MATHPLACEHOLDER(\d+)X/g, (_, rawIndex: string) => {
     const token = formulas[Number(rawIndex)] ?? ''
     const displayMode = token.startsWith('$$') || token.startsWith('\\[')
@@ -56,35 +54,31 @@ const html = computed(() => {
 <template><component :is="inline ? 'span' : 'div'" class="math-markdown" :class="{ inline }" v-html="html" /></template>
 
 <style scoped>
-.math-markdown { color: #263b31; font-size: 16.5px; line-height: 1.92; overflow-wrap: anywhere; }
+.math-markdown { color: var(--ink); font-size: 16.5px; line-height: 1.9; overflow-wrap: anywhere; }
 .math-markdown.inline { display: inline; color: inherit; font: inherit; line-height: inherit; }
-.math-markdown :deep(h3) { margin: 32px 0 13px; color: #173725; font-family: ui-serif, "Songti SC", STSong, serif; font-size: 22px; line-height: 1.5; }
-.math-markdown :deep(h5) { position: relative; margin: 38px 0 14px; padding-left: 14px; color: #112a1d; font-size: 20px; line-height: 1.48; font-weight: 760; letter-spacing: -.01em; }
-.math-markdown :deep(h5)::before { position: absolute; top: .27em; bottom: .22em; left: 0; width: 4px; border-radius: 99px; content: ''; background: linear-gradient(#c88b3f, #a96b24); }
-.math-markdown :deep(h5)::before { display: none; }
-.math-markdown :deep(h5) { padding-left: 0; }
+.math-markdown :deep(h3) { margin: 32px 0 12px; font-family: var(--serif); font-size: 22px; line-height: 1.5; }
+.math-markdown :deep(h5) { margin: 36px 0 13px; color: var(--ink); font-family: var(--serif); font-size: 21px; line-height: 1.5; font-weight: 700; }
 .math-markdown :deep(h5:first-child) { margin-top: 2px; }
 .math-markdown :deep(p) { margin: 12px 0; }
-.math-markdown :deep(ul), .math-markdown :deep(ol) { margin: 13px 0; padding-left: 1.65em; }
+.math-markdown :deep(ul), .math-markdown :deep(ol) { margin: 13px 0; padding-left: 1.6em; }
 .math-markdown :deep(li) { margin: 7px 0; padding-left: .1em; }
-.math-markdown :deep(li::marker) { color: #4c7a61; }
-.math-markdown :deep(blockquote) { margin: 20px 0; border: 1px solid #dce7e0; border-left: 4px solid #679178; border-radius: 0 10px 10px 0; padding: 12px 17px; background: #f1f7f3; color: #4d6558; }
-.math-markdown :deep(hr) { margin: 38px 0; border: 0; border-top: 1px solid #dfe7e2; }
+.math-markdown :deep(li::marker) { color: var(--accent); }
+.math-markdown :deep(blockquote) { margin: 20px 0; border-left: 3px solid var(--accent); padding: 8px 16px; background: #faf6f0; color: var(--ink-soft); }
+.math-markdown :deep(hr) { margin: 36px 0; border: 0; border-top: 1px solid var(--line); }
 .math-markdown :deep(table) { width: 100%; margin: 18px 0; border-collapse: collapse; font-size: 15px; }
-.math-markdown :deep(th), .math-markdown :deep(td) { border: 1px solid #d9e4dd; padding: 11px 13px; text-align: left; vertical-align: top; }
-.math-markdown :deep(th) { background: #edf4f0; color: #203a2c; }
-.math-markdown :deep(tr:nth-child(even) td) { background: #fafcfb; }
-.math-markdown :deep(.katex-display) { margin: 21px 0; border: 1px solid #e0e8e3; border-left: 4px solid #b6cbbf; border-radius: 11px; padding: 16px 12px; overflow-x: auto; overflow-y: hidden; background: linear-gradient(120deg, #f8fbf9, #fcfdfc); box-shadow: inset 0 1px 0 white; }
-.math-markdown :deep(.katex-display) { border: 0; border-top: 1px solid #eceeec; border-radius: 0; background: #fff; box-shadow: none; }
-.math-markdown :deep(.formula-unit) { display: block; scroll-margin-top: 108px; border-top: 1px solid #e5e7e5; padding: 12px 0 16px; }
+.math-markdown :deep(th), .math-markdown :deep(td) { border: 1px solid var(--line); padding: 10px 12px; text-align: left; vertical-align: top; }
+.math-markdown :deep(th) { background: #f8f4ee; }
+.math-markdown :deep(tr:nth-child(even) td) { background: #fdfbf8; }
+.math-markdown :deep(.katex-display) { margin: 19px 0; overflow-x: auto; overflow-y: hidden; border: 0; border-radius: 6px; padding: 12px 14px; background: #f8f5f0; }
+.math-markdown :deep(.formula-unit) { display: block; scroll-margin-top: 24px; border-top: 1px solid var(--line); padding: 14px 0 17px; }
 .math-markdown :deep(.inline-formula) { display: inline-flex; align-items: baseline; gap: 5px; border: 0; padding: 0; vertical-align: baseline; }
-.math-markdown :deep(.inline-formula .formula-favorite-button) { min-height: 28px; padding: 2px 6px; white-space: nowrap; }
-.math-markdown :deep(.formula-unit .katex-display) { margin: 4px 0 8px; border: 0; border-radius: 0; padding: 7px 0; background: transparent; box-shadow: none; }
-.math-markdown :deep(.formula-favorite-button) { min-height: 44px; border: 1px solid #d6d9d6; border-radius: 7px; padding: 8px 12px; background: #fff; color: #4e5a52; font-size: 12px; }
-.math-markdown :deep(.formula-favorite-button.active) { border-color: #c9a46a; color: #805a29; }
-.math-markdown :deep(.formula-unit.search-target) { background: #fff6e7; outline: 1px solid #dfc89a; }
-.math-markdown :deep(.katex) { color: #15291d; }
-.math-markdown :deep(strong) { color: #17452f; font-weight: 760; }
-.math-markdown :deep(code) { border: 1px solid #dce6e0; border-radius: 5px; padding: 2px 5px; background: #edf3ef; color: #27583e; }
-@media (max-width: 640px) { .math-markdown { font-size: 16px; line-height: 1.86; }.math-markdown :deep(h5) { font-size: 18px; }.math-markdown :deep(.katex-display) { margin-right: -8px; margin-left: -8px; border-radius: 9px; padding: 14px 8px; }.math-markdown :deep(table) { display: block; overflow-x: auto; white-space: nowrap; } }
+.math-markdown :deep(.inline-formula .formula-favorite-button) { min-height: 44px; padding: 4px 8px; white-space: nowrap; }
+.math-markdown :deep(.formula-unit .katex-display) { margin: 2px 0 9px; padding: 9px 12px; }
+.math-markdown :deep(.formula-favorite-button) { min-height: 44px; border: 1px solid var(--line-strong); border-radius: 6px; padding: 8px 12px; background: var(--paper); color: var(--ink-soft); font-size: 12px; font-weight: 650; }
+.math-markdown :deep(.formula-favorite-button:hover), .math-markdown :deep(.formula-favorite-button.active) { border-color: var(--accent); background: var(--accent-tint); color: var(--accent-dark); }
+.math-markdown :deep(.formula-unit.search-target) { background: #fff2df; outline: 2px solid #e2aa79; outline-offset: 5px; }
+.math-markdown :deep(.katex) { color: var(--ink); }
+.math-markdown :deep(strong) { color: var(--ink); font-weight: 750; }
+.math-markdown :deep(code) { border: 1px solid var(--line); border-radius: 4px; padding: 2px 5px; background: #f8f4ee; color: var(--accent-dark); }
+@media (max-width: 700px) { .math-markdown { font-size: 16px; line-height: 1.85; }.math-markdown :deep(h5) { font-size: 19px; }.math-markdown :deep(.katex-display) { margin-right: -5px; margin-left: -5px; padding: 11px 7px; }.math-markdown :deep(table) { display: block; overflow-x: auto; white-space: nowrap; } }
 </style>

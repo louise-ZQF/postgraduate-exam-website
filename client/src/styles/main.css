@@ -3,84 +3,60 @@
 @import "tailwindcss/preflight.css" layer(base);
 @import "tailwindcss/utilities.css" layer(utilities) source("../");
 
-@theme {
-  --color-green-500: #3c7655;
-  --color-green-600: #285e43;
-  --color-green-700: #1f4d35;
-  --color-green-800: #173c29;
-}
-
 @layer base {
   :root {
-    --ink-950: #10251d;
-    --ink-800: #243b32;
-    --ink-600: #52675d;
-    --ink-400: #84938b;
-    --brand-800: #153f2f;
-    --brand-700: #1f5a42;
-    --brand-600: #2d7454;
-    --brand-100: #e9f2ed;
-    --amber-700: #9b6426;
-    --amber-100: #fff2d7;
-    --paper: #ffffff;
-    --canvas: #f7f7f5;
-    --line: #dbe5df;
-    --shadow-soft: 0 18px 50px rgba(23, 55, 41, .08);
-    --shadow-card: 0 8px 26px rgba(23, 55, 41, .065);
-    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif;
-    color: var(--ink-950);
+    --canvas: #f3eee6;
+    --paper: #fffefd;
+    --ink: #25211d;
+    --ink-soft: #504b45;
+    --muted: #706a62;
+    --line: #e5ddd1;
+    --line-strong: #d5c9b9;
+    --accent: #ad5939;
+    --accent-dark: #91452b;
+    --accent-tint: #f9eee7;
+    --focus-ring: rgba(189, 102, 70, .2);
+    --ink-950: var(--ink);
+    --ink-800: var(--ink);
+    --ink-600: var(--ink-soft);
+    --ink-400: var(--muted);
+    --brand-800: var(--accent-dark);
+    --brand-700: var(--accent-dark);
+    --brand-600: var(--accent);
+    --amber-700: var(--accent-dark);
+    --amber-100: var(--accent-tint);
+    --shadow-card: none;
+    --serif: "Songti SC", "STSong", "Noto Serif CJK SC", "Source Han Serif SC", serif;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
+    color: var(--ink);
     background: var(--canvas);
     font-synthesis: none;
     text-rendering: optimizeLegibility;
   }
 
-  * {
-    box-sizing: border-box;
-  }
-
+  * { box-sizing: border-box; }
+  html { scroll-padding-top: 24px; }
   body {
     min-width: 0;
-    overflow-x: hidden;
     margin: 0;
-    background: var(--canvas);
-    line-height: 1.6;
+    background-color: var(--canvas);
+    background-image:
+      linear-gradient(to right, rgba(115, 94, 69, .035) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(115, 94, 69, .035) 1px, transparent 1px);
+    background-size: 72px 72px;
+    line-height: 1.65;
     -webkit-font-smoothing: antialiased;
   }
-
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  button,
-  input {
-    font: inherit;
-  }
-
-  button {
-    cursor: pointer;
-  }
-
-  ::selection {
-    background: #d9eadf;
-    color: #123c2b;
-  }
-
-  :focus-visible {
-    outline: 3px solid rgba(45, 116, 84, .24);
-    outline-offset: 3px;
-  }
-
-  * {
-    scrollbar-color: #b9c9c0 transparent;
-    scrollbar-width: thin;
-  }
+  a { color: inherit; text-decoration: none; }
+  button, input, select { font: inherit; }
+  button { cursor: pointer; }
+  ::selection { background: #f1d2c4; color: var(--ink); }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+  * { scrollbar-color: #c8baaa transparent; scrollbar-width: thin; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     animation-duration: .01ms !important;
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;

@@ -16,18 +16,13 @@ const searchState = computed(() => searchMathWithCount(query.value, visibleCount
 const results = computed(() => searchState.value.results)
 const favoriteIds = ref(new Set<string>())
 
-function storeQuery(value: unknown) {
-  const q = String(value ?? '').trim().slice(0, 30)
-  if (q) rememberSearch(q)
-}
-
 function refreshFavorites() {
   favoriteIds.value = new Set(readFavorites().map((item) => item.id))
 }
 
 onMounted(() => {
   refreshFavorites()
-  storeQuery(route.query.q)
+  if (route.query.q) rememberSearch(String(route.query.q))
   window.addEventListener(FAVORITES_CHANGED_EVENT, refreshFavorites)
   window.addEventListener('storage', refreshFavorites)
 })
@@ -40,15 +35,16 @@ onBeforeUnmount(() => {
 watch(() => route.query.q, (value) => {
   query.value = String(value ?? '').slice(0, 30)
   visibleCount.value = 8
-  storeQuery(value)
+  if (value) rememberSearch(String(value))
 })
+
+watch(query, () => { visibleCount.value = 8 })
 
 function submit() {
   const q = query.value.trim()
-  if (q) {
-    rememberSearch(q)
-    router.replace({ name: 'search', query: { q } })
-  }
+  if (!q) return
+  rememberSearch(q)
+  router.replace({ name: 'home', query: { q } })
 }
 
 function toggleResultFavorite(result: MathSearchResult) {
@@ -70,75 +66,118 @@ function toggleResultFavorite(result: MathSearchResult) {
 
 <template>
   <div class="search-page">
-    <MathHeader :key="String(route.query.q ?? '')" :initial-query="String(route.query.q ?? '')" hide-search />
-    <main>
-      <div class="search-intro">
-        <h1>搜索公式与结论</h1>
-        <p>可输入名称、描述，或直接输入公式，例如 f''(x)&gt;0。</p>
-      </div>
-      <form class="search-box" @submit.prevent="submit">
-        <input v-model="query" maxlength="30" autofocus placeholder="例如：相似对角化判断" aria-label="搜索关键词" />
-        <button type="submit">搜索</button>
-      </form>
+    <MathHeader hide-search />
+    <main id="main-content">
+      <section class="intro" aria-labelledby="page-title">
+        <h1 id="page-title">数学二公式知识库</h1>
+        <p>输入知识点、题目里的关键词或公式写法，直接看到结论、适用条件和原文位置。</p>
+        <form class="search-box" role="search" @submit.prevent="submit">
+          <label for="main-search">搜索公式与结论</label>
+          <div class="search-control">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16.5 16.5 4 4"/></svg>
+            <input id="main-search" v-model="query" maxlength="30" autofocus autocomplete="off"
+              placeholder="例如：凹凸性、正定判定、f''(x)>0" />
+            <button type="submit">搜索</button>
+          </div>
+        </form>
+      </section>
 
-      <div v-if="query.trim()" class="result-meta">“<b>{{ query }}</b>”共找到 <strong>{{ searchState.total }}</strong> 条，当前显示 {{ results.length }} 条</div>
-      <section v-if="results.length" class="results">
-        <article
-          v-for="result in results"
-          :key="result.resultId"
-          class="result-card"
-        >
-          <RouterLink
-            :to="{ name: 'knowledge', params: { chapterId: result.chapterId }, query: { section: result.targetId } }"
-            class="result-link"
-          >
-            <h2 v-html="highlightMatch(plainMathText(result.title), query)"></h2>
-            <MathMarkdown v-if="result.formula" class="result-formula" :source="`\\[${result.formula.latex}\\]`" />
-            <p v-html="highlightMatch(result.snippet, query)"></p>
-            <div class="result-path">{{ result.partTitle }} <span>/</span> {{ result.chapterTitle }}</div>
-            <span class="open">↗</span>
-          </RouterLink>
-          <button
-            type="button"
-            class="favorite-button"
-            :class="{ active: favoriteIds.has(result.targetId) }"
-            :aria-label="(favoriteIds.has(result.targetId) ? '取消收藏：' : result.kind === 'formula' ? '收藏此公式：' : '收藏本组：') + plainMathText(result.title)"
-            @click="toggleResultFavorite(result)"
-          >{{ favoriteIds.has(result.targetId) ? '★ 已收藏' : result.kind === 'formula' ? '☆ 收藏此公式' : '☆ 收藏本组' }}</button>
-        </article>
+      <section class="result-section" aria-labelledby="results-title">
+        <div class="result-heading">
+          <h2 id="results-title">搜索结果</h2>
+          <span v-if="query.trim()" role="status">{{ searchState.total }} 条相关内容<span v-if="searchState.total > results.length"> · 当前显示 {{ results.length }} 条</span></span>
+          <span v-else>输入关键词后，即可从这里直达公式</span>
+        </div>
+
+        <div v-if="results.length" class="results">
+          <article v-for="result in results" :key="result.resultId" class="result-card">
+            <RouterLink
+              :to="{ name: 'knowledge', params: { chapterId: result.chapterId }, query: { section: result.targetId, q: query.trim() } }"
+              class="result-link"
+            >
+              <div class="result-path">{{ result.partTitle }} <span aria-hidden="true">/</span> {{ result.chapterTitle }}</div>
+              <h3 v-html="highlightMatch(plainMathText(result.title), query)"></h3>
+              <MathMarkdown v-if="result.formula" class="result-formula" :source="`\\[${result.formula.latex}\\]`" />
+              <p v-if="result.snippet" class="result-context" v-html="highlightMatch(result.snippet, query)"></p>
+              <span class="result-open">查看原文 <span aria-hidden="true">↗</span></span>
+            </RouterLink>
+            <button type="button" class="favorite-button" :class="{ active: favoriteIds.has(result.targetId) }"
+              :aria-pressed="favoriteIds.has(result.targetId)"
+              :aria-label="(favoriteIds.has(result.targetId) ? '取消收藏：' : result.kind === 'formula' ? '收藏此公式：' : '收藏本组：') + plainMathText(result.title)"
+              @click="toggleResultFavorite(result)"
+            >{{ favoriteIds.has(result.targetId) ? '★ 已收藏' : result.kind === 'formula' ? '☆ 收藏此公式' : '☆ 收藏本组' }}</button>
+          </article>
+        </div>
+        <button v-if="searchState.total > visibleCount" class="show-more" type="button" @click="visibleCount += 8">查看更多结果</button>
+        <div v-if="!results.length && query.trim()" class="empty">
+          <h3>暂时没有找到匹配内容</h3>
+          <p>试试缩短关键词，或换用公式的另一种写法。</p>
+        </div>
+        <div v-if="!query.trim()" class="empty quiet">
+          <h3>从一个线索开始</h3>
+          <p>比如“相似矩阵”“形心”，或者直接输入 <code>f''(x)&gt;0</code>。</p>
+        </div>
       </section>
-      <button v-if="searchState.total > visibleCount" class="show-more" type="button" @click="visibleCount += 8">查看更多</button>
-      <section v-if="!results.length && query.trim()" class="empty">
-        <div>∅</div><h2>没有找到相关内容</h2><p>试试减少一个关键词，或换用更常见的说法。</p>
-      </section>
-      <section v-if="!query.trim()" class="empty"><div>⌕</div><h2>输入一个知识点</h2><p>例如“凹凸性”“f''(x)&gt;0”或“正定二次型”。</p></section>
     </main>
   </div>
 </template>
 
 <style scoped>
-.search-page { min-height: 100vh; background: transparent; color: #18261e; }
-main { width: min(980px, calc(100% - 36px)); margin: 0 auto; padding: 62px 0 104px; }
-.search-intro > span { color: #9b6426; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px; font-weight: 800; letter-spacing: .18em; }.search-intro h1 { margin: 8px 0 7px; color: #112a1e; font-family: ui-serif, "Songti SC", STSong, serif; font-size: 42px; letter-spacing: -.025em; }.search-intro p { margin: 0; color: #6e8176; }
-.search-box { display: flex; height: 64px; margin: 30px 0 20px; border: 1px solid #c9d8d0; border-radius: 16px; padding: 7px; background: rgba(255,255,255,.97); box-shadow: 0 18px 46px rgba(30,67,48,.1); transition: .2s ease; }.search-box:focus-within { border-color: #3d7c5e; box-shadow: 0 0 0 5px rgba(45,116,84,.1), 0 20px 50px rgba(30,67,48,.12); }.search-box input { min-width: 0; flex: 1; border: 0; outline: 0; padding: 0 18px; background: transparent; color: #183326; font-size: 16px; }.search-box input::placeholder { color: #90a097; }.search-box button { border: 0; border-radius: 11px; padding: 0 30px; background: linear-gradient(135deg, #2e7555, #1c563e); color: white; box-shadow: 0 7px 16px rgba(31,90,64,.2); font-weight: 750; }
-.result-meta { margin: 28px 2px 14px; color: #73867b; font-size: 13px; }.result-meta b, .result-meta strong { color: #20593f; }
-.results { display: grid; gap: 12px; }.result-card { position: relative; overflow: hidden; border: 1px solid #d7e2dc; border-radius: 14px; background: rgba(255,255,255,.95); box-shadow: 0 5px 18px rgba(30,67,48,.035); transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease; }.result-card::before { position: absolute; top: 0; bottom: 0; left: 0; width: 4px; content: ''; background: #a8c1b2; transition: background-color .18s ease; }.result-card:hover { transform: translateY(-2px); border-color: #9eb9a9; box-shadow: 0 14px 32px rgba(30,67,48,.085); }.result-card:hover::before { background: #397b5b; }.result-link { display: block; padding: 21px 136px 21px 25px; }.result-path { color: #7a8d82; font-size: 11px; font-weight: 600; }.result-path span { margin: 0 6px; color: #b6c3bc; }.result-card h2 { margin: 8px 0 7px; color: #173729; font-size: 19px; line-height: 1.45; }.result-card p { margin: 0; color: #5f7368; font-size: 13px; line-height: 1.75; }.result-card :deep(mark) { border-radius: 4px; padding: 1px 3px; background: #ffebb9; color: #654419; box-shadow: inset 0 -1px 0 #e7c16f; }.open { position: absolute; top: 50%; right: 108px; transform: translateY(-50%); color: #668875; font-size: 17px; }
-.favorite-button { position: absolute; top: 50%; right: 17px; transform: translateY(-50%); border: 1px solid #d2dfd7; border-radius: 999px; padding: 7px 10px; background: #f6f9f7; color: #5d7066; cursor: pointer; font-size: 11px; font-weight: 650; white-space: nowrap; transition: .18s ease; }.favorite-button:hover, .favorite-button.active { border-color: #d0a45e; background: #fff4dd; color: #8c571c; }
-.search-intro h1 { font-family: inherit; font-size: 38px; font-weight: 700; }
-.search-box { border-radius: 10px; box-shadow: none; }
-.search-box:focus-within { box-shadow: 0 0 0 3px rgba(45,116,84,.12); }
-.search-box button { border-radius: 7px; background: #284e3a; box-shadow: none; }
-.result-card { border-radius: 10px; box-shadow: none; transition: border-color .15s ease; }
-.result-card::before { display: none; }
-.result-card:hover { transform: none; border-color: #a7b5ab; box-shadow: none; }
-.result-link { padding-right: 160px; }
-.result-formula { max-width: 620px; }
-.result-formula :deep(.katex-display) { margin: 6px 0; padding: 8px 0; border: 0; background: transparent; }
-.result-path { margin-top: 10px; }
-.favorite-button { min-height: 40px; }
-.show-more { display: block; min-height: 40px; margin: 20px auto; border: 1px solid #cfd7d0; border-radius: 8px; padding: 8px 20px; background: #fff; color: #284e3a; }
-.show-more:hover { border-color: #779284; }
-.empty { margin-top: 26px; border: 1px dashed #cfdcd4; border-radius: 18px; padding: 84px 20px; background: rgba(255,255,255,.46); text-align: center; color: #7c8d84; }.empty div { color: #8fa89a; font-family: ui-serif, serif; font-size: 42px; }.empty h2 { margin: 11px 0 8px; color: #455e51; font-size: 19px; }.empty p { margin: 0; font-size: 13px; }
-@media (max-width: 600px) { main { padding-top: 42px; }.search-intro h1 { font-size: 35px; }.search-box { height: 58px; }.search-box button { padding: 0 21px; }.result-link { padding: 19px 17px 62px 22px; }.result-card p { display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }.open { display: none; }.favorite-button { top: auto; right: 14px; bottom: 13px; transform: none; } }
-@media (max-width: 600px) { .result-link { padding-right: 17px; } .favorite-button { min-height: 40px; } }
+.search-page { min-height: 100vh; }
+main { width: min(1120px, calc(100% - 48px)); margin: 0 auto; padding: 64px 0 104px; }
+.intro { max-width: 1000px; }
+h1 { margin: 0; color: var(--ink); font-family: var(--serif); font-size: clamp(42px, 5.8vw, 76px); font-weight: 700; letter-spacing: -.035em; line-height: 1.28; }
+.intro > p { max-width: 780px; margin: 22px 0 0; color: var(--ink-soft); font-size: clamp(16px, 1.6vw, 19px); line-height: 1.8; }
+.search-box { max-width: 920px; margin-top: 42px; }
+.search-box label { display: block; margin-bottom: 11px; color: var(--accent-dark); font-size: 13px; font-weight: 700; letter-spacing: .04em; }
+.search-control { display: flex; align-items: center; min-height: 72px; border: 1px solid var(--line-strong); border-radius: 10px; padding: 7px 7px 7px 21px; background: var(--paper); box-shadow: 0 2px 0 rgba(74, 54, 32, .07); }
+.search-control:focus-within { border-color: var(--accent); outline: 3px solid var(--focus-ring); }
+.search-control svg { width: 23px; flex: 0 0 auto; fill: none; stroke: var(--muted); stroke-width: 1.8; }
+.search-control input { min-width: 0; flex: 1; border: 0; outline: none; padding: 0 18px; background: transparent; color: var(--ink); font-size: 17px; }
+.search-control input::placeholder { color: #8a8379; }
+.search-control button { align-self: stretch; min-width: 104px; border: 0; border-radius: 6px; background: var(--accent); color: white; font-size: 16px; font-weight: 700; }
+.search-control button:hover { background: var(--accent-dark); }
+.result-section { margin-top: 66px; }
+.result-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; border-bottom: 1px solid var(--line-strong); padding-bottom: 15px; }
+.result-heading h2 { margin: 0; font-family: var(--serif); font-size: 28px; line-height: 1.4; }
+.result-heading > span { color: var(--muted); font-size: 13px; }
+.results { margin-top: 20px; border: 1px solid var(--line); border-radius: 10px; background: var(--paper); }
+.result-card { position: relative; padding: 23px 26px 20px; }
+.result-card + .result-card { border-top: 1px solid var(--line); }
+.result-link { display: block; max-width: 920px; }
+.result-path { color: var(--muted); font-size: 12px; }
+.result-path span { margin: 0 5px; color: #aa9e90; }
+.result-card h3 { margin: 8px 0 4px; color: var(--ink); font-family: var(--serif); font-size: 23px; font-weight: 700; line-height: 1.5; }
+.result-link:hover h3, .result-link:hover .result-open { color: var(--accent-dark); }
+.result-formula { max-width: 780px; margin: 12px 0; color: var(--ink); }
+.result-formula :deep(.katex-display) { margin: 0; border: 0; border-radius: 6px; padding: 13px 16px; background: #f8f5f0; text-align: left; }
+.result-context { max-width: 780px; margin: 9px 0 0; color: var(--ink-soft); font-size: 14px; line-height: 1.7; }
+.result-card :deep(mark) { border-radius: 2px; padding: 0 2px; background: #f5decb; color: var(--ink); }
+.result-open { display: inline-flex; align-items: center; min-height: 36px; margin-top: 10px; color: var(--accent-dark); font-size: 13px; font-weight: 700; }
+.result-open span { margin-left: 6px; }
+.favorite-button { min-height: 44px; border: 1px solid var(--line-strong); border-radius: 6px; padding: 0 13px; background: var(--paper); color: var(--ink-soft); font-size: 13px; font-weight: 650; }
+.favorite-button:hover, .favorite-button.active { border-color: var(--accent); background: var(--accent-tint); color: var(--accent-dark); }
+.show-more { display: block; min-height: 44px; margin: 20px auto 0; border: 1px solid var(--line-strong); border-radius: 6px; padding: 0 22px; background: var(--paper); color: var(--accent-dark); font-weight: 700; }
+.show-more:hover { border-color: var(--accent); }
+.empty { margin-top: 20px; border: 1px solid var(--line); border-radius: 10px; padding: 32px; background: var(--paper); }
+.empty h3 { margin: 0 0 6px; font-family: var(--serif); font-size: 20px; }
+.empty p { margin: 0; color: var(--muted); font-size: 14px; }
+.empty code { color: var(--accent-dark); }
+@media (max-width: 700px) {
+  main { width: calc(100% - 32px); padding: 42px 0 72px; }
+  h1 { font-size: clamp(35px, 9vw, 52px); }
+  .intro > p { margin-top: 16px; font-size: 16px; }
+  .search-box { margin-top: 28px; }
+  .search-control { min-height: 62px; padding-left: 13px; }
+  .search-control svg { width: 19px; }
+  .search-control input { padding: 0 9px; font-size: 16px; }
+  .search-control button { min-width: 69px; font-size: 14px; }
+  .result-section { margin-top: 44px; }
+  .result-heading { align-items: flex-start; flex-direction: column; gap: 2px; }
+  .result-heading h2 { font-size: 24px; }
+  .result-card { padding: 18px 16px; }
+  .result-card h3 { font-size: 20px; }
+  .result-formula :deep(.katex-display) { padding: 12px 8px; }
+  .empty { padding: 24px 18px; }
+}
 </style>
