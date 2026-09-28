@@ -138,11 +138,12 @@ if (!route.params.chapterId) {
 </template>
 
 <style scoped>
-.knowledge-page { min-height: 100vh; }
-main { width: min(840px, calc(100% - 48px)); margin: 0 auto; padding: 28px 0 88px; }
-.back-link { position: sticky; top: 0; z-index: 10; display: inline-flex; align-items: center; min-height: 48px; margin-bottom: 13px; border: 1px solid var(--line); border-radius: 6px; padding: 0 15px; background: var(--paper); color: var(--accent-dark); font-size: 14px; font-weight: 700; }
+.knowledge-page { min-height: 100vh; background: var(--paper); }
+.knowledge-page :deep(.header-inner) { width: calc(100% - 96px); max-width: none; }
+main { width: 100%; margin: 0; padding: 24px 48px 88px; }
+.back-link { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; width: 100%; min-height: 48px; margin-bottom: 13px; border-bottom: 1px solid var(--line); background: var(--paper); color: var(--accent-dark); font-size: 14px; font-weight: 700; }
 .back-link:hover { text-decoration: underline; text-underline-offset: 4px; }
-article { min-width: 0; border: 1px solid var(--line); border-radius: 10px; padding: 48px clamp(26px, 6vw, 64px) 64px; background: var(--paper); }
+article { width: 100%; min-width: 0; padding: 28px 0 64px; background: var(--paper); }
 .chapter-header { border-bottom: 1px solid var(--line); padding-bottom: 32px; }
 .chapter-header span { color: var(--accent-dark); font-size: 13px; font-weight: 700; }
 h1 { margin: 10px 0 12px; font-family: var(--serif); font-size: clamp(34px, 4vw, 46px); line-height: 1.3; }
@@ -154,10 +155,11 @@ h1 { margin: 10px 0 12px; font-family: var(--serif); font-size: clamp(34px, 4vw,
 .chapter-section :deep(h5.search-target), .chapter-section :deep(.formula-unit.search-target) { background: #fff2df; outline: 2px solid #e2aa79; outline-offset: 5px; }
 .chapter-section :deep(.anchor-favorite-button) { float: right; min-height: 44px; margin: -4px 0 4px 14px; border: 1px solid var(--line-strong); border-radius: 6px; padding: 0 10px; background: var(--paper); color: var(--ink-soft); font-family: system-ui, sans-serif; font-size: 12px; font-weight: 600; }
 .chapter-section :deep(.anchor-favorite-button:hover), .chapter-section :deep(.anchor-favorite-button.active) { border-color: var(--accent); background: var(--accent-tint); color: var(--accent-dark); }
-.bottom-back { position: static; margin: 18px 0 0; }
+.bottom-back { position: static; width: fit-content; margin: 18px 0 0; border: 0; }
 @media (max-width: 700px) {
-  main { width: calc(100% - 28px); padding-top: 14px; }
-  article { padding: 28px 19px 40px; }
+  .knowledge-page :deep(.header-inner) { width: calc(100% - 28px); }
+  main { padding: 14px 14px 64px; }
+  article { padding: 28px 0 40px; }
   .chapter-section { padding-top: 28px; }
   .chapter-section > h2 { font-size: 23px; }
   .chapter-section :deep(.anchor-favorite-button) { float: none; display: block; margin: 10px 0 0; }
