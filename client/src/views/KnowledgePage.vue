@@ -3,7 +3,7 @@ import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import MathHeader from '@/components/MathHeader.vue'
 import MathMarkdown from '@/components/MathMarkdown.vue'
-import { mathChapters } from '@/generated/math2-content'
+import { legacyAnchorIds, mathChapters } from '@/generated/math2-content'
 import { FAVORITES_CHANGED_EVENT, readFavorites, toggleFavorite } from '@/math/favorites'
 import { plainMathText } from '@/math/search'
 
@@ -22,6 +22,7 @@ function routeFor(item: typeof mathChapters[number]) {
 
 function decorateFavoriteButtons() {
   const favoriteIds = new Set(readFavorites().map((item) => item.id))
+  const formulasById = new Map(chapter.value.topics.flatMap((topic) => topic.formulas).map((item) => [item.id, item]))
   for (const topic of chapter.value.topics) {
     const section = document.getElementById(topic.id)
     const headings = section?.querySelectorAll<HTMLElement>('.math-markdown h5') ?? []
@@ -40,12 +41,33 @@ function decorateFavoriteButtons() {
       const active = favoriteIds.has(anchor.id)
       button.classList.toggle('active', active)
       button.textContent = active ? '★ 已收藏' : '☆ 收藏'
-      button.setAttribute('aria-label', (active ? '取消收藏：' : '收藏：') + plainMathText(anchor.title))
+      button.setAttribute('aria-label', (active ? '取消收藏本组：' : '收藏本组：') + plainMathText(anchor.title))
     })
   }
+  document.querySelectorAll<HTMLButtonElement>('.formula-favorite-button').forEach((button) => {
+    const formulaId = button.dataset.formulaId
+    const active = Boolean(formulaId && favoriteIds.has(formulaId))
+    button.classList.toggle('active', active)
+    button.textContent = active ? '★ 已收藏此公式' : '☆ 收藏此公式'
+    const formula = formulasById.get(formulaId ?? '')
+    if (formula) button.setAttribute('aria-label', `${active ? '取消收藏此公式' : '收藏此公式'}：${formula.title}`)
+  })
 }
 
 function handleArticleClick(event: MouseEvent) {
+  const formulaButton = (event.target as HTMLElement).closest<HTMLButtonElement>('.formula-favorite-button')
+  const formulaId = formulaButton?.dataset.formulaId
+  if (formulaId) {
+    const formula = chapter.value.topics.flatMap((topic) => topic.formulas).find((item) => item.id === formulaId)
+    if (!formula) return
+    toggleFavorite({
+      id: formula.id, targetId: formula.id, kind: 'formula', title: formula.title,
+      summary: formula.context, context: formula.context, latex: formula.latex,
+      chapterId: chapter.value.id, chapterTitle: chapter.value.title, partTitle: chapter.value.partTitle,
+    })
+    decorateFavoriteButtons()
+    return
+  }
   const button = (event.target as HTMLElement).closest<HTMLButtonElement>('.anchor-favorite-button')
   const favoriteId = button?.dataset.favoriteId
   if (!favoriteId) return
@@ -54,6 +76,8 @@ function handleArticleClick(event: MouseEvent) {
     if (!anchor) continue
     toggleFavorite({
       id: anchor.id,
+      targetId: anchor.id,
+      kind: 'topic',
       title: plainMathText(anchor.title),
       summary: anchor.summary,
       chapterId: chapter.value.id,
@@ -67,9 +91,12 @@ function handleArticleClick(event: MouseEvent) {
 
 async function scrollToRequestedSection() {
   await nextTick()
+  await document.fonts.ready
+  await new Promise<void>((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => resolve())))
   decorateFavoriteButtons()
   document.querySelectorAll('.search-target').forEach((item) => item.classList.remove('search-target'))
-  const requested = String(route.query.section ?? route.params.topicId ?? '')
+  const rawRequested = String(route.query.section ?? route.params.topicId ?? '')
+  const requested = legacyAnchorIds[rawRequested] ?? rawRequested
   if (!requested) {
     window.scrollTo({ top: 0, behavior: 'auto' })
     return
@@ -77,7 +104,8 @@ async function scrollToRequestedSection() {
   const target = document.getElementById(requested)
   if (target) {
     target.classList.add('search-target')
-    target.scrollIntoView({ behavior: 'auto', block: 'start' })
+    const headerHeight = document.querySelector('.site-header')?.getBoundingClientRect().height ?? 0
+    window.scrollTo({ top: window.scrollY + target.getBoundingClientRect().top - headerHeight - 16, behavior: 'auto' })
   }
 }
 
@@ -109,7 +137,7 @@ if (!route.params.chapterId) {
     <button class="mobile-menu" type="button" @click="menuOpen = !menuOpen">☰ 章节目录</button>
     <div class="reader">
       <aside :class="{ open: menuOpen }">
-        <div class="aside-title"><span>CONTENTS</span><b>知识目录</b></div>
+        <div class="aside-title"><b>知识目录</b></div>
         <template v-for="partId in ['calculus', 'linear-algebra']" :key="partId">
           <div class="part-label">{{ partId === 'calculus' ? '高等数学' : '线性代数' }}</div>
           <details v-for="item in mathChapters.filter((c) => c.partId === partId)" :key="item.id" :open="item.id === chapter.id">
@@ -133,7 +161,6 @@ if (!route.params.chapterId) {
         <div class="breadcrumb"><RouterLink to="/">首页</RouterLink><span>/</span>{{ chapter.partTitle }}<span>/</span>{{ chapter.title }}</div>
         <article @click="handleArticleClick">
           <header>
-            <div class="topic-number">CHAPTER {{ String(chapterIndex + 1).padStart(2, '0') }} / {{ mathChapters.length }}</div>
             <h1>{{ chapter.title }}</h1>
             <p>本章集中收录公式、定义、定理、判定条件与必要方法；搜索结果会定位到下面的具体条目。</p>
           </header>
@@ -146,7 +173,7 @@ if (!route.params.chapterId) {
           </nav>
           <section v-for="item in chapter.topics" :id="item.id" :key="item.id" class="chapter-section">
             <h2><MathMarkdown :source="item.title" inline /></h2>
-            <MathMarkdown :source="item.body" />
+            <MathMarkdown :source="item.body" :formulas="item.formulas" />
           </section>
         </article>
 
@@ -173,6 +200,14 @@ article { min-width: 0; border: 1px solid #d7e2dc; border-radius: 18px; padding:
 .chapter-section :deep(h5[id]) { scroll-margin-top: 102px; border-radius: 9px; transition: background-color .2s ease, box-shadow .2s ease; }
 .chapter-section :deep(h5.search-target) { margin-left: -12px; padding: 10px 12px; background: #fff3d9; box-shadow: 0 0 0 1px #e7c982, 0 8px 22px rgba(137,90,30,.08); }
 .chapter-section :deep(.anchor-favorite-button) { float: right; margin: -2px 0 0 14px; border: 1px solid #d2dfd7; border-radius: 999px; padding: 6px 10px; background: #f6f9f7; color: #5e7167; cursor: pointer; font-family: system-ui, sans-serif; font-size: 11px; font-weight: 650; transition: .18s ease; }.chapter-section :deep(.anchor-favorite-button:hover), .chapter-section :deep(.anchor-favorite-button.active) { border-color: #d3aa67; background: #fff5df; color: #8e591d; }
+aside { background: #fafaf9; backdrop-filter: none; }
+main { width: min(800px, calc(100% - 64px)); }
+article { border-radius: 10px; box-shadow: none; }
+article > header::after { display: none; }
+.chapter-toc a { background: #fff; border-radius: 7px; }
+.chapter-toc a:hover { transform: none; background: #f7f8f6; }
+.chapter-section :deep(.anchor-favorite-button) { border-radius: 7px; background: #fff; min-height: 36px; }
+.pager a, .pager a:hover { box-shadow: none; transform: none; }
 .pager { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 18px; }.pager a { display: grid; gap: 7px; min-height: 82px; border: 1px solid #d7e2dc; border-radius: 13px; padding: 16px 19px; background: rgba(255,255,255,.9); box-shadow: 0 7px 20px rgba(28,65,46,.04); transition: .18s ease; }.pager a:hover { border-color: #9db8a8; transform: translateY(-2px); box-shadow: 0 12px 27px rgba(28,65,46,.075); }.pager small { color: #7d8e85; }.pager b { color: #315844; font-size: 13px; }.pager .next { text-align: right; }
 .mobile-menu, .menu-mask { display: none; }
 @media (max-width: 980px) { .reader { grid-template-columns: minmax(0, 1fr); }.mobile-menu { position: fixed; right: 14px; bottom: 18px; z-index: 75; display: block; border: 1px solid rgba(255,255,255,.28); border-radius: 999px; padding: 12px 18px; background: linear-gradient(135deg, #2e7454, #1b543c); color: white; box-shadow: 0 10px 28px rgba(31,72,49,.28); font-weight: 700; }aside { position: fixed; top: 0; left: 0; z-index: 80; width: min(330px, 88vw); height: 100vh; transform: translateX(-102%); transition: transform .25s ease; box-shadow: 20px 0 50px rgba(20,38,27,.16); }aside.open { transform: translateX(0); }.menu-mask { position: fixed; inset: 0; z-index: 70; display: block; border: 0; background: rgba(16,28,21,.36); backdrop-filter: blur(3px); }main { width: min(820px, calc(100% - 32px)); padding-top: 30px; } }

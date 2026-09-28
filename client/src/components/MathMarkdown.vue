@@ -3,14 +3,16 @@ import { computed } from 'vue'
 import DOMPurify from 'dompurify'
 import katex from 'katex'
 import { marked } from 'marked'
+import type { MathFormula } from '@/math/types'
 
-const props = withDefaults(defineProps<{ source: string; inline?: boolean }>(), {
+const props = withDefaults(defineProps<{ source: string; inline?: boolean; formulas?: MathFormula[] }>(), {
   inline: false,
+  formulas: () => [],
 })
 
 const html = computed(() => {
   const formulas: string[] = []
-  const protectedSource = props.source.replace(
+  const protectedSource = props.source.replace(/<!--\s*formula\s+[^\n]*?-->/g, '').replace(
     /\$\$[\s\S]*?\$\$|\\\[[\s\S]*?\\\]|\$[^$\n]+?\$|\\\([^\n]*?\\\)/g,
     (match) => {
       const index = formulas.push(match) - 1
@@ -36,7 +38,14 @@ const html = computed(() => {
         ? token.slice(2, -2)
         : token.slice(1, -1)
     try {
-      return katex.renderToString(formula.trim(), { displayMode, throwOnError: false, trust: false, strict: 'ignore' })
+      const renderedFormula = katex.renderToString(formula.trim(), { displayMode, throwOnError: false, trust: false, strict: 'ignore' })
+      const items = props.formulas.filter((candidate) => candidate.sourceBlockIndex === Number(rawIndex))
+      if (!items.length) return renderedFormula
+      return items.map((item) => {
+        const safeTitle = item.title.replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char] ?? char)
+        const itemMath = items.length === 1 ? renderedFormula : katex.renderToString(item.latex, { displayMode, throwOnError: false, trust: false, strict: 'ignore' })
+        return `<span id="${item.id}" class="formula-unit${displayMode ? '' : ' inline-formula'}"><span class="formula-unit-math">${itemMath}</span><button class="formula-favorite-button" type="button" data-formula-id="${item.id}" aria-label="收藏此公式：${safeTitle}">☆ 收藏此公式</button></span>`
+      }).join('')
     } catch {
       return `<code>${formula}</code>`
     }
@@ -52,6 +61,8 @@ const html = computed(() => {
 .math-markdown :deep(h3) { margin: 32px 0 13px; color: #173725; font-family: ui-serif, "Songti SC", STSong, serif; font-size: 22px; line-height: 1.5; }
 .math-markdown :deep(h5) { position: relative; margin: 38px 0 14px; padding-left: 14px; color: #112a1d; font-size: 20px; line-height: 1.48; font-weight: 760; letter-spacing: -.01em; }
 .math-markdown :deep(h5)::before { position: absolute; top: .27em; bottom: .22em; left: 0; width: 4px; border-radius: 99px; content: ''; background: linear-gradient(#c88b3f, #a96b24); }
+.math-markdown :deep(h5)::before { display: none; }
+.math-markdown :deep(h5) { padding-left: 0; }
 .math-markdown :deep(h5:first-child) { margin-top: 2px; }
 .math-markdown :deep(p) { margin: 12px 0; }
 .math-markdown :deep(ul), .math-markdown :deep(ol) { margin: 13px 0; padding-left: 1.65em; }
@@ -64,6 +75,14 @@ const html = computed(() => {
 .math-markdown :deep(th) { background: #edf4f0; color: #203a2c; }
 .math-markdown :deep(tr:nth-child(even) td) { background: #fafcfb; }
 .math-markdown :deep(.katex-display) { margin: 21px 0; border: 1px solid #e0e8e3; border-left: 4px solid #b6cbbf; border-radius: 11px; padding: 16px 12px; overflow-x: auto; overflow-y: hidden; background: linear-gradient(120deg, #f8fbf9, #fcfdfc); box-shadow: inset 0 1px 0 white; }
+.math-markdown :deep(.katex-display) { border: 0; border-top: 1px solid #eceeec; border-radius: 0; background: #fff; box-shadow: none; }
+.math-markdown :deep(.formula-unit) { display: block; scroll-margin-top: 108px; border-top: 1px solid #e5e7e5; padding: 12px 0 16px; }
+.math-markdown :deep(.inline-formula) { display: inline-flex; align-items: baseline; gap: 5px; border: 0; padding: 0; vertical-align: baseline; }
+.math-markdown :deep(.inline-formula .formula-favorite-button) { min-height: 28px; padding: 2px 6px; white-space: nowrap; }
+.math-markdown :deep(.formula-unit .katex-display) { margin: 4px 0 8px; border: 0; border-radius: 0; padding: 7px 0; background: transparent; box-shadow: none; }
+.math-markdown :deep(.formula-favorite-button) { min-height: 44px; border: 1px solid #d6d9d6; border-radius: 7px; padding: 8px 12px; background: #fff; color: #4e5a52; font-size: 12px; }
+.math-markdown :deep(.formula-favorite-button.active) { border-color: #c9a46a; color: #805a29; }
+.math-markdown :deep(.formula-unit.search-target) { background: #fff6e7; outline: 1px solid #dfc89a; }
 .math-markdown :deep(.katex) { color: #15291d; }
 .math-markdown :deep(strong) { color: #17452f; font-weight: 760; }
 .math-markdown :deep(code) { border: 1px solid #dce6e0; border-radius: 5px; padding: 2px 5px; background: #edf3ef; color: #27583e; }

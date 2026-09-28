@@ -5,7 +5,7 @@ import { FAVORITES_CHANGED_EVENT, readFavorites } from '@/math/favorites'
 import { clearRecentSearches, readRecentSearches, rememberSearch } from '@/math/recentSearches'
 import BrandLogo from './BrandLogo.vue'
 
-const props = defineProps<{ initialQuery?: string }>()
+const props = defineProps<{ initialQuery?: string; hideSearch?: boolean }>()
 const router = useRouter()
 const query = ref(props.initialQuery ?? '')
 const historyOpen = ref(false)
@@ -66,9 +66,9 @@ onBeforeUnmount(() => {
 
 <template>
   <header class="site-header">
-    <div class="header-inner">
+    <div class="header-inner" :class="{ 'without-search': props.hideSearch }">
       <BrandLogo />
-      <div class="header-search-wrap">
+      <div v-if="!props.hideSearch" class="header-search-wrap">
         <form class="header-search" role="search" @submit.prevent="submit">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16.5 16.5 4 4"/></svg>
           <input
@@ -106,6 +106,9 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .site-header { position: sticky; top: 0; z-index: 60; border-bottom: 1px solid rgba(202,216,208,.9); background: rgba(248,251,249,.88); box-shadow: 0 1px 0 rgba(255,255,255,.8), 0 10px 32px rgba(25,58,43,.045); backdrop-filter: blur(20px) saturate(150%); }
+.site-header { background: #fff; border-bottom-color: #e5e7e5; box-shadow: none; backdrop-filter: none; }
+.header-inner.without-search { grid-template-columns: 226px 1fr; }
+.header-search { box-shadow: none; border-radius: 9px; }
 .header-inner { width: min(1480px, calc(100% - 40px)); min-height: 74px; margin: auto; display: grid; grid-template-columns: 226px minmax(300px, 600px) 1fr; align-items: center; gap: 24px; }
 .header-search-wrap { position: relative; min-width: 0; }
 .header-search { height: 44px; display: flex; align-items: center; gap: 10px; border: 1px solid #d1ddd5; border-radius: 13px; padding: 0 15px; background: rgba(255,255,255,.92); box-shadow: inset 0 1px 0 white, 0 4px 15px rgba(25,58,43,.04); transition: border-color .2s ease, box-shadow .2s ease, background-color .2s ease; }
@@ -124,5 +127,6 @@ nav a.router-link-active { background: #e4efe9; color: #174b36; }
 .history-item:hover { background: #edf4f0; color: #174b36; }.history-item span { color: #88a092; }
 .favorite-count { display: inline-grid; min-width: 18px; height: 18px; margin-left: 5px; place-items: center; border-radius: 999px; background: #cfdfd6; color: #174b36; font-size: 10px; font-weight: 800; }
 @media (max-width: 980px) { .header-inner { grid-template-columns: auto minmax(240px, 1fr); width: min(100% - 28px, 880px); gap: 16px; padding: 10px 0 9px; } nav { grid-column: 1 / -1; justify-self: stretch; justify-content: center; border-top: 1px solid #e2e9e5; padding-top: 7px; } }
+@media (max-width: 980px) { .header-inner.without-search { grid-template-columns: 1fr; } }
 @media (max-width: 600px) { .site-header { position: sticky; }.header-inner { grid-template-columns: 1fr; width: calc(100% - 24px); gap: 10px; padding: 10px 0 8px; }.header-search-wrap, .header-search { width: 100%; } nav { justify-content: flex-start; gap: 1px; overflow-x: auto; padding: 7px 0 0; scrollbar-width: none; }nav::-webkit-scrollbar { display: none; }nav a { flex: 0 0 auto; padding: 7px 9px; font-size: 12px; } }
 </style>

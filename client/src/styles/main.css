@@ -23,7 +23,7 @@
     --amber-700: #9b6426;
     --amber-100: #fff2d7;
     --paper: #ffffff;
-    --canvas: #f2f6f4;
+    --canvas: #f7f7f5;
     --line: #dbe5df;
     --shadow-soft: 0 18px 50px rgba(23, 55, 41, .08);
     --shadow-card: 0 8px 26px rgba(23, 55, 41, .065);
@@ -42,9 +42,7 @@
     min-width: 0;
     overflow-x: hidden;
     margin: 0;
-    background:
-      radial-gradient(circle at 18% 0%, rgba(54, 126, 91, .055), transparent 30rem),
-      var(--canvas);
+    background: var(--canvas);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }

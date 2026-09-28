@@ -11,12 +11,14 @@ const sourcePaths = [
 ]
 const outputPath = resolve(projectRoot, 'client/src/generated/math2-content.ts')
 const daguanyuanPath = resolve(projectRoot, 'content/daguanyuan-math2-types.json')
+const legacyAnchorPath = resolve(projectRoot, 'content/legacy-anchor-ids.json')
 
 const source = sourcePaths
   .map((sourcePath) => readFileSync(sourcePath, 'utf8').replace(/\r\n/g, '\n'))
   .join('\n\n')
 const lines = source.split('\n')
 const daguanyuanTypes = JSON.parse(readFileSync(daguanyuanPath, 'utf8'))
+const legacyAnchorIds = JSON.parse(readFileSync(legacyAnchorPath, 'utf8'))
 
 const partIds = {
   '第一部分　高等数学': 'calculus',
@@ -25,12 +27,18 @@ const partIds = {
 
 function compactText(markdown) {
   return markdown
-    .replace(/\$\$[\s\S]*?\$\$/g, ' 公式 ')
-    .replace(/\\\[[\s\S]*?\\\]/g, ' 公式 ')
+    .replace(/<!--[\s\S]*?-->/g, ' ')
+    .replace(/\$\$([\s\S]*?)\$\$/g, '$1')
+    .replace(/\\\[([\s\S]*?)\\\]/g, '$1')
+    .replace(/\\(?:Longrightarrow|Rightarrow|implies)/g, ' ⇒ ')
+    .replace(/\\(?:geq|ge)/g, '≥')
+    .replace(/\\(?:leq|le)/g, '≤')
+    .replace(/\\(?:neq|ne)/g, '≠')
+    .replace(/\\(?:text|mathrm)\{([^{}]*)\}/g, '$1')
     .replace(/\$([^$\n]+)\$/g, '$1')
     .replace(/\\\((.*?)\\\)/g, '$1')
     .replace(/```[\s\S]*?```/g, ' ')
-    .replace(/<[^>]+>/g, ' ')
+    .replace(/<\/?(?:br|span|div|p|sup|sub|em|strong)\b[^>]*>/gi, ' ')
     .replace(/^#{1,6}\s+/gm, '')
     .replace(/^[-*+]\s+/gm, '')
     .replace(/^\d+\.\s+/gm, '')
@@ -46,6 +54,12 @@ function makeSummary(markdown) {
   return clean.length > 128 ? `${clean.slice(0, 128)}…` : clean
 }
 
+function stableHash(value) {
+  let hash = 2166136261
+  for (const char of value) hash = Math.imul(hash ^ char.codePointAt(0), 16777619)
+  return (hash >>> 0).toString(36)
+}
+
 function conciseBody(markdown) {
   return markdown
     .replace(/##### (?:简要方法|数学翻译|选法依据)\n[\s\S]*?(?=\n##### )/g, '')
@@ -53,7 +67,7 @@ function conciseBody(markdown) {
     .trim()
 }
 
-function searchableAnchors(topicId, markdown) {
+function searchableAnchors(topicId, topicTitle, markdown) {
   const matches = [...markdown.matchAll(/^#####\s+(.+)$/gm)]
   return matches.map((match, index) => {
     const title = match[1].trim()
@@ -61,12 +75,49 @@ function searchableAnchors(topicId, markdown) {
     const bodyEnd = matches[index + 1]?.index ?? markdown.length
     const body = markdown.slice(bodyStart, bodyEnd).trim()
     return {
-      id: `${topicId}-anchor-${String(index + 1).padStart(3, '0')}`,
+      id: `anchor-${stableHash(`${topicTitle}|${title}`)}`,
+      legacyId: `${topicId}-anchor-${String(index + 1).padStart(3, '0')}`,
       title,
       searchText: compactText(`${title}\n${body}`),
       summary: makeSummary(body),
     }
   })
+}
+
+function extractFormulas(chapterId, topicId, markdown, anchors) {
+  const result = []
+  const pattern = /<!--\s*formula\s+([^\n]*?)\s*-->\s*(?:\\\[([\s\S]*?)\\\]|\\\(([^\n]*?)\\\))/g
+  const mathTokenPattern = /\$\$[\s\S]*?\$\$|\\\[[\s\S]*?\\\]|\$[^$\n]+?\$|\\\([^\n]*?\\\)/g
+  for (const match of markdown.matchAll(pattern)) {
+    const metadata = JSON.parse(match[1])
+    const heading = [...markdown.slice(0, match.index).matchAll(/^#####\s+(.+)$/gm)].at(-1)?.[1]?.trim()
+    const parent = anchors.find((anchor) => anchor.title === heading) ?? { id: topicId, legacyId: topicId }
+    const sourceLatex = (match[2] ?? match[3]).trim()
+    const sourceBlockIndex = [...markdown.slice(0, match.index).replace(/<!--[\s\S]*?-->/g, '').matchAll(mathTokenPattern)].length
+    const items = Array.isArray(metadata.items) ? metadata.items : [metadata]
+    for (const item of items) {
+      if (!parent || !/^[a-z0-9-]+$/.test(item.id) || typeof item.title !== 'string'
+        || typeof item.context !== 'string' || !Array.isArray(item.aliases)
+        || item.aliases.some((alias) => typeof alias !== 'string') || !sourceLatex
+        || (item.latex !== undefined && (typeof item.latex !== 'string' || !item.latex.trim()))) {
+        throw new Error(`公式元数据不完整或无所属条目：${item.id ?? match[1]}`)
+      }
+      result.push({
+        id: item.id,
+        parentAnchorId: parent.id,
+        legacyParentAnchorId: parent.legacyId,
+        title: item.title,
+        latex: (item.latex ?? sourceLatex).trim(),
+        sourceBlockIndex,
+        searchAliases: item.aliases,
+        context: item.context,
+        chapterId,
+        topicId,
+        order: result.length,
+      })
+    }
+  }
+  return result
 }
 
 const chapters = []
@@ -245,13 +296,15 @@ for (const chapter of chapters) {
     const bodies = [...new Set(topics.map((topic) => conciseBody(topic.body)).filter(Boolean))]
     const body = bodies.join('\n\n---\n\n')
     const id = `${chapter.id}-${String(index + 1).padStart(3, '0')}`
+    const anchors = searchableAnchors(id, title, body)
     return {
       id,
       title,
       body,
       searchText: compactText(`${title}\n${topics.map((topic) => `${topic.title}\n${topic.searchText}`).join('\n')}`),
       summary: makeSummary(body),
-      anchors: searchableAnchors(id, body),
+      anchors,
+      formulas: extractFormulas(chapter.id, id, body, anchors),
     }
     })
 }
@@ -265,12 +318,16 @@ const anchorCount = chapters.reduce(
   (total, chapter) => total + chapter.topics.reduce((chapterTotal, topic) => chapterTotal + topic.anchors.length, 0),
   0,
 )
+const formulas = chapters.flatMap((chapter) => chapter.topics.flatMap((topic) => topic.formulas))
+if (new Set(formulas.map((formula) => formula.id)).size !== formulas.length) throw new Error('公式 ID 重复')
+const anchors = chapters.flatMap((chapter) => chapter.topics.flatMap((topic) => topic.anchors))
+if (new Set(anchors.map((anchor) => anchor.id)).size !== anchors.length) throw new Error('知识条目 ID 重复')
 if (topicCount < 45) {
   throw new Error(`知识点数量异常：${topicCount}`)
 }
 
 const banner = `/* 此文件由 scripts/build-math-content.mjs 根据大观园分类、原始知识点 PDF 与用户指定资料自动生成，请勿手工修改。 */\n`
-const output = `${banner}import type { MathChapter } from '@/math/types'\n\nexport const mathChapters: MathChapter[] = ${JSON.stringify(chapters, null, 2)}\n\nexport const mathTopics = mathChapters.flatMap((chapter) => chapter.topics.map((topic) => ({ ...topic, chapterId: chapter.id, chapterTitle: chapter.title, partId: chapter.partId, partTitle: chapter.partTitle })))\n\nexport const mathContentStats = { chapters: mathChapters.length, topics: mathTopics.length, anchors: ${anchorCount} }\n`
+const output = `${banner}import type { MathChapter } from '@/math/types'\n\nexport const mathChapters: MathChapter[] = ${JSON.stringify(chapters, null, 2)}\n\nexport const mathTopics = mathChapters.flatMap((chapter) => chapter.topics.map((topic) => ({ ...topic, chapterId: chapter.id, chapterTitle: chapter.title, partId: chapter.partId, partTitle: chapter.partTitle })))\n\nexport const mathFormulas = mathTopics.flatMap((topic) => topic.formulas.map((formula) => ({ ...formula, chapterTitle: topic.chapterTitle, partTitle: topic.partTitle, topicTitle: topic.title })))\n\nexport const legacyAnchorIds: Record<string, string> = { ...Object.fromEntries(mathTopics.flatMap((topic) => topic.anchors.map((anchor) => [anchor.legacyId, anchor.id]))), ...${JSON.stringify(legacyAnchorIds)} }\n\nexport const mathContentStats = { chapters: mathChapters.length, topics: mathTopics.length, anchors: ${anchorCount}, formulas: mathFormulas.length }\n`
 
 mkdirSync(dirname(outputPath), { recursive: true })
 writeFileSync(outputPath, output)

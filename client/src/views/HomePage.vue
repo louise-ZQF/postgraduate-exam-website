@@ -19,7 +19,7 @@ function search(value = query.value) {
     <MathHeader />
     <main>
       <section class="hero">
-        <div class="eyebrow"><span></span>考研数学二 · 公式与结论知识库</div>
+        <div class="eyebrow">考研数学二 · 公式与结论知识库</div>
         <h1>搜公式、查结论，<em>直接定位。</em></h1>
         <p class="lead">数学二的定义、定理、公式和判定条件集中在这里。输入几个关键词，直接找到相关条目。</p>
 
@@ -38,7 +38,7 @@ function search(value = query.value) {
       </section>
 
       <section class="catalog">
-        <div class="section-heading"><div><span>KNOWLEDGE MAP</span><h2>按章节浏览</h2></div><RouterLink to="/knowledge">打开完整目录 ↗</RouterLink></div>
+        <div class="section-heading"><div><h2>按章节浏览</h2></div><RouterLink to="/knowledge">打开完整目录 ↗</RouterLink></div>
         <div class="part" v-for="part in ['calculus', 'linear-algebra']" :key="part">
           <h3>{{ part === 'calculus' ? '高等数学' : '线性代数' }}</h3>
           <div class="chapter-grid">
@@ -94,6 +94,15 @@ h1 em { color: #246247; font-style: normal; }
 .chapter-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
 .chapter-card { display: grid; grid-template-columns: 42px 1fr auto; align-items: center; min-height: 96px; border: 1px solid #d7e2dc; border-radius: 14px; padding: 17px 18px; background: rgba(255,255,255,.82); box-shadow: inset 0 1px 0 white; transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease; }
 .chapter-card:hover { transform: translateY(-3px); border-color: #9db8a8; background: white; box-shadow: 0 15px 34px rgba(35,72,51,.09); }
+.hero::before, .hero::after { display: none; }
+.hero-search { border-radius: 10px; box-shadow: none; }
+.hero-search:focus-within { box-shadow: 0 0 0 3px rgba(45,116,84,.12); }
+.hero-search button { border-radius: 7px; background: #284e3a; box-shadow: none; }
+.hero-search button:hover { transform: none; box-shadow: none; background: #1d3b2a; }
+.stats { border-radius: 9px; background: #fff; }
+.catalog { background: #fafaf9; }
+.chapter-card { border-radius: 9px; box-shadow: none; }
+.chapter-card:hover { transform: none; box-shadow: none; }
 .chapter-no { color: #a56b29; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; font-weight: 800; }.chapter-card div { display: grid; gap: 6px; }.chapter-card b { color: #173426; font-size: 16px; }.chapter-card small { color: #7c8d83; }.arrow { color: #62826e; font-size: 16px; }
 @media (max-width: 820px) { .hero { padding: 62px 24px; }.hero::before { right: -240px; }.hero::after { display: none; }.chapter-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 560px) { .hero { padding: 34px 18px 48px; }.hero::before, .hero::after { display: none; }h1 { margin-top: 18px; font-size: 34px; line-height: 1.25; }.lead { margin-bottom: 22px; font-size: 15px; line-height: 1.75; }.hero-search { min-height: 58px; padding-left: 14px; }.hero-search button { padding: 0 16px; }.stats { justify-content: space-between; }.stats div, .stats div:first-child { min-width: 0; padding: 0 13px; }.stats strong { font-size: 22px; }.stats span { font-size: 10px; }.catalog { padding: 50px 18px 68px; }.chapter-grid { grid-template-columns: 1fr; }.section-heading > a { display: none; } }
