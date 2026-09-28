@@ -9599,16 +9599,16 @@ export const mathChapters: MathChapter[] = [
       {
         "id": "linear-algebra-05-004",
         "title": "实对称矩阵",
-        "body": "##### 实对称矩阵特征值、特征向量与正交对角化结论\n\n实对称矩阵：\n\n1. 特征值全为实数；\n2. 不同特征值对应的特征向量正交；\n3. 一定存在正交矩阵 \\(Q\\)，使\n   \\[\n   Q^TAQ=\\Lambda;\n   \\]\n4. 同一重特征值下的向量不一定已经正交，需要施密特正交化。\n\n##### 实对称矩阵正交对角化与正交矩阵 \\(Q\\) 的求法\n\n求特征值与特征向量；同一特征值下先正交化；所有向量单位化；按目标对角元顺序组成 \\(Q\\)。四阶题步骤不变，只是各特征值对应向量的数量更多。\n\n若已知两组标准正交特征向量组成 \\(Q\\)，则\n\n<!-- formula {\"id\":\"linear-jqeurs\",\"title\":\"实对称矩阵正交对角化与正交矩阵 \\\\(Q\\\\) 的求法：A\",\"aliases\":[],\"context\":\"若已知两组标准正交特征向量组成 Q，则\"} -->\n\\[\nA=Q\\Lambda Q^T\n=\\sum_{i=1}^n\\lambda_iq_iq_i^T.\n\\]\n\n因此对任意非零向量 \\(x\\)：\n\n<!-- formula {\"id\":\"linear-dsmmbf\",\"title\":\"实对称矩阵正交对角化与正交矩阵 \\\\(Q\\\\) 的求法：λ_min\",\"aliases\":[],\"context\":\"因此对任意非零向量 x：\"} -->\n\\[\n\\lambda_{\\min}\\le\\frac{x^TAx}{x^Tx}\\le\\lambda_{\\max},\n\\]\n\n也就是\n\n<!-- formula {\"id\":\"linear-7hb4jr\",\"title\":\"实对称矩阵正交对角化与正交矩阵 \\\\(Q\\\\) 的求法：λ_minx^Tx\",\"aliases\":[],\"context\":\"所属知识点：实对称矩阵正交对角化与正交矩阵 \\\\(Q\\\\) 的求法。\"} -->\n\\[\n\\lambda_{\\min}x^Tx\\le x^TAx\\le\\lambda_{\\max}x^Tx.\n\\]\n\n两个实对称矩阵要同时被同一个正交矩阵对角化，常用条件是它们可交换：<!-- formula {\"id\":\"linear-commuting-symmetric-simultaneous-diagonalization\",\"title\":\"实对称矩阵同时正交对角化的交换条件\",\"aliases\":[\"同时正交对角化\",\"对称矩阵可交换\"],\"context\":\"A、B 都为实对称矩阵时，可同时正交对角化当且仅当 AB=BA。\"} -->\\(AB=BA\\)。",
-        "searchText": "实对称矩阵 实对称矩阵 实对称矩阵 实对称矩阵特征值、特征向量与正交对角化结论 实对称矩阵： 特征值全为实数； 不同特征值对应的特征向量正交； 一定存在正交矩阵 Q，使 Q^TAQ= ; 同一重特征值下的向量不一定已经正交，需要施密特正交化。 实对称矩阵正交对角化与正交矩阵 Q 的求法 求特征值与特征向量；同一特征值下先正交化；所有向量单位化；按目标对角元顺序组成 Q。四阶题步骤不变，只是各特征值对应向量的数量更多。 若已知两组标准正交特征向量组成 Q，则 A=Q Q^T = i=1 ^n iq iq i^T. 因此对任意非零向量 x： ≤ x^TAx x^Tx ≤ , 也就是 x^Tx≤ x^TAx≤ x^Tx. 两个实对称矩阵要同时被同一个正交矩阵对角化，常用条件是它们可交换： AB=BA。",
-        "summary": "实对称矩阵特征值、特征向量与正交对角化结论 实对称矩阵： 特征值全为实数； 不同特征值对应的特征向量正交； 一定存在正交矩阵 Q，使 Q^TAQ= ; 同一重特征值下的向量不一定已经正交，需要施密特正交化。 实对称矩阵正交对角化与正交矩阵 Q 的求法 求特…",
+        "body": "##### 实对称矩阵六条常用结论\n\n设 \\(A\\) 为 \\(n\\) 阶实对称矩阵，以下结论可以一起背：\n\n1. **不同特征值对应的特征向量正交。** 特征值都为实数；同一重特征值下选出的向量若不正交，可再作施密特正交化。\n2. **一定能正交对角化。** 存在正交矩阵 \\(Q\\)，使 \\(Q^TAQ=\\Lambda\\)，其中 \\(\\Lambda\\) 的对角元是 \\(A\\) 的特征值。\n3. **零特征值的重数等于 \\(n-r(A)\\)。** 因为实对称矩阵可对角化，零特征值的代数重数和几何重数相同。\n4. **两个实对称矩阵相似，当且仅当特征值按重数计完全相同。** 等价地，它们的特征多项式相同；这个逆向判定不能直接套用到一般矩阵。\n5. **两个实对称矩阵相似，则一定合同；反过来不一定。** 合同只要求正、负、零特征值的个数分别相同，不要求具体特征值相同。例如 \\(\\operatorname{diag}(1,2)\\) 与 \\(\\operatorname{diag}(1,3)\\) 合同但不相似。\n6. **合同规范形由正、负惯性指数决定。** 存在可逆矩阵 \\(P\\)，使\n\n<!-- formula {\"id\":\"linear-symmetric-inertia-normal-form\",\"title\":\"实对称矩阵的合同规范形\",\"aliases\":[\"惯性定理\",\"正负惯性指数\",\"实对称矩阵规范形\"],\"context\":\"p、q 分别是正、负特征值的个数，零块阶数为 n-p-q；P 是可逆矩阵。\"} -->\n\\[\nP^TAP=\\operatorname{diag}(I_p,-I_q,O_{n-p-q}),\\qquad p+q=r(A).\n\\]\n\n其中 \\(p\\) 是正特征值个数，\\(q\\) 是负特征值个数，零特征值个数为 \\(n-p-q\\)。\n\n##### 实对称矩阵正交对角化与正交矩阵 \\(Q\\) 的求法\n\n求特征值与特征向量；同一特征值下先正交化；所有向量单位化；按目标对角元顺序组成 \\(Q\\)。四阶题步骤不变，只是各特征值对应向量的数量更多。\n\n若已知两组标准正交特征向量组成 \\(Q\\)，则\n\n<!-- formula {\"id\":\"linear-jqeurs\",\"title\":\"实对称矩阵正交对角化与正交矩阵 \\\\(Q\\\\) 的求法：A\",\"aliases\":[],\"context\":\"若已知两组标准正交特征向量组成 Q，则\"} -->\n\\[\nA=Q\\Lambda Q^T\n=\\sum_{i=1}^n\\lambda_iq_iq_i^T.\n\\]\n\n因此对任意非零向量 \\(x\\)：\n\n<!-- formula {\"id\":\"linear-dsmmbf\",\"title\":\"实对称矩阵正交对角化与正交矩阵 \\\\(Q\\\\) 的求法：λ_min\",\"aliases\":[],\"context\":\"因此对任意非零向量 x：\"} -->\n\\[\n\\lambda_{\\min}\\le\\frac{x^TAx}{x^Tx}\\le\\lambda_{\\max},\n\\]\n\n也就是\n\n<!-- formula {\"id\":\"linear-7hb4jr\",\"title\":\"实对称矩阵正交对角化与正交矩阵 \\\\(Q\\\\) 的求法：λ_minx^Tx\",\"aliases\":[],\"context\":\"所属知识点：实对称矩阵正交对角化与正交矩阵 \\\\(Q\\\\) 的求法。\"} -->\n\\[\n\\lambda_{\\min}x^Tx\\le x^TAx\\le\\lambda_{\\max}x^Tx.\n\\]\n\n两个实对称矩阵要同时被同一个正交矩阵对角化，常用条件是它们可交换：<!-- formula {\"id\":\"linear-commuting-symmetric-simultaneous-diagonalization\",\"title\":\"实对称矩阵同时正交对角化的交换条件\",\"aliases\":[\"同时正交对角化\",\"对称矩阵可交换\"],\"context\":\"A、B 都为实对称矩阵时，可同时正交对角化当且仅当 AB=BA。\"} -->\\(AB=BA\\)。",
+        "searchText": "实对称矩阵 实对称矩阵 实对称矩阵 实对称矩阵六条常用结论 设 A 为 n 阶实对称矩阵，以下结论可以一起背： 不同特征值对应的特征向量正交。 特征值都为实数；同一重特征值下选出的向量若不正交，可再作施密特正交化。 一定能正交对角化。 存在正交矩阵 Q，使 Q^TAQ= ，其中 的对角元是 A 的特征值。 零特征值的重数等于 n-r(A)。 因为实对称矩阵可对角化，零特征值的代数重数和几何重数相同。 两个实对称矩阵相似，当且仅当特征值按重数计完全相同。 等价地，它们的特征多项式相同；这个逆向判定不能直接套用到一般矩阵。 两个实对称矩阵相似，则一定合同；反过来不一定。 合同只要求正、负、零特征值的个数分别相同，不要求具体特征值相同。例如 diag (1,2) 与 diag (1,3) 合同但不相似。 合同规范形由正、负惯性指数决定。 存在可逆矩阵 P，使 P^TAP= diag (I p,-I q,O n-p-q ), p+q=r(A). 其中 p 是正特征值个数，q 是负特征值个数，零特征值个数为 n-p-q。 实对称矩阵正交对角化与正交矩阵 Q 的求法 求特征值与特征向量；同一特征值下先正交化；所有向量单位化；按目标对角元顺序组成 Q。四阶题步骤不变，只是各特征值对应向量的数量更多。 若已知两组标准正交特征向量组成 Q，则 A=Q Q^T = i=1 ^n iq iq i^T. 因此对任意非零向量 x： ≤ x^TAx x^Tx ≤ , 也就是 x^Tx≤ x^TAx≤ x^Tx. 两个实对称矩阵要同时被同一个正交矩阵对角化，常用条件是它们可交换： AB=BA。",
+        "summary": "实对称矩阵六条常用结论 设 A 为 n 阶实对称矩阵，以下结论可以一起背： 不同特征值对应的特征向量正交。 特征值都为实数；同一重特征值下选出的向量若不正交，可再作施密特正交化。 一定能正交对角化。 存在正交矩阵 Q，使 Q^TAQ= ，其中 的对角元是 …",
         "anchors": [
           {
-            "id": "anchor-6ed71h",
+            "id": "anchor-1q9af1w",
             "legacyId": "linear-algebra-05-004-anchor-001",
-            "title": "实对称矩阵特征值、特征向量与正交对角化结论",
-            "searchText": "实对称矩阵特征值、特征向量与正交对角化结论 实对称矩阵： 特征值全为实数； 不同特征值对应的特征向量正交； 一定存在正交矩阵 Q，使 Q^TAQ= ; 同一重特征值下的向量不一定已经正交，需要施密特正交化。",
-            "summary": "实对称矩阵： 特征值全为实数； 不同特征值对应的特征向量正交； 一定存在正交矩阵 Q，使 Q^TAQ= ; 同一重特征值下的向量不一定已经正交，需要施密特正交化。"
+            "title": "实对称矩阵六条常用结论",
+            "searchText": "实对称矩阵六条常用结论 设 A 为 n 阶实对称矩阵，以下结论可以一起背： 不同特征值对应的特征向量正交。 特征值都为实数；同一重特征值下选出的向量若不正交，可再作施密特正交化。 一定能正交对角化。 存在正交矩阵 Q，使 Q^TAQ= ，其中 的对角元是 A 的特征值。 零特征值的重数等于 n-r(A)。 因为实对称矩阵可对角化，零特征值的代数重数和几何重数相同。 两个实对称矩阵相似，当且仅当特征值按重数计完全相同。 等价地，它们的特征多项式相同；这个逆向判定不能直接套用到一般矩阵。 两个实对称矩阵相似，则一定合同；反过来不一定。 合同只要求正、负、零特征值的个数分别相同，不要求具体特征值相同。例如 diag (1,2) 与 diag (1,3) 合同但不相似。 合同规范形由正、负惯性指数决定。 存在可逆矩阵 P，使 P^TAP= diag (I p,-I q,O n-p-q ), p+q=r(A). 其中 p 是正特征值个数，q 是负特征值个数，零特征值个数为 n-p-q。",
+            "summary": "设 A 为 n 阶实对称矩阵，以下结论可以一起背： 不同特征值对应的特征向量正交。 特征值都为实数；同一重特征值下选出的向量若不正交，可再作施密特正交化。 一定能正交对角化。 存在正交矩阵 Q，使 Q^TAQ= ，其中 的对角元是 A 的特征值。 零特征值…"
           },
           {
             "id": "anchor-1f0w0mb",
@@ -9620,17 +9620,34 @@ export const mathChapters: MathChapter[] = [
         ],
         "formulas": [
           {
+            "id": "linear-symmetric-inertia-normal-form",
+            "parentAnchorId": "anchor-1q9af1w",
+            "legacyParentAnchorId": "linear-algebra-05-004-anchor-001",
+            "title": "实对称矩阵的合同规范形",
+            "latex": "P^TAP=\\operatorname{diag}(I_p,-I_q,O_{n-p-q}),\\qquad p+q=r(A).",
+            "sourceBlockIndex": 10,
+            "searchAliases": [
+              "惯性定理",
+              "正负惯性指数",
+              "实对称矩阵规范形"
+            ],
+            "context": "p、q 分别是正、负特征值的个数，零块阶数为 n-p-q；P 是可逆矩阵。",
+            "chapterId": "linear-algebra-05",
+            "topicId": "linear-algebra-05-004",
+            "order": 0
+          },
+          {
             "id": "linear-jqeurs",
             "parentAnchorId": "anchor-1f0w0mb",
             "legacyParentAnchorId": "linear-algebra-05-004-anchor-002",
             "title": "实对称矩阵正交对角化与正交矩阵 \\(Q\\) 的求法：A",
             "latex": "A=Q\\Lambda Q^T\n=\\sum_{i=1}^n\\lambda_iq_iq_i^T.",
-            "sourceBlockIndex": 5,
+            "sourceBlockIndex": 17,
             "searchAliases": [],
             "context": "若已知两组标准正交特征向量组成 Q，则",
             "chapterId": "linear-algebra-05",
             "topicId": "linear-algebra-05-004",
-            "order": 0
+            "order": 1
           },
           {
             "id": "linear-dsmmbf",
@@ -9638,12 +9655,12 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "linear-algebra-05-004-anchor-002",
             "title": "实对称矩阵正交对角化与正交矩阵 \\(Q\\) 的求法：λ_min",
             "latex": "\\lambda_{\\min}\\le\\frac{x^TAx}{x^Tx}\\le\\lambda_{\\max},",
-            "sourceBlockIndex": 7,
+            "sourceBlockIndex": 19,
             "searchAliases": [],
             "context": "因此对任意非零向量 x：",
             "chapterId": "linear-algebra-05",
             "topicId": "linear-algebra-05-004",
-            "order": 1
+            "order": 2
           },
           {
             "id": "linear-7hb4jr",
@@ -9651,12 +9668,12 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "linear-algebra-05-004-anchor-002",
             "title": "实对称矩阵正交对角化与正交矩阵 \\(Q\\) 的求法：λ_minx^Tx",
             "latex": "\\lambda_{\\min}x^Tx\\le x^TAx\\le\\lambda_{\\max}x^Tx.",
-            "sourceBlockIndex": 8,
+            "sourceBlockIndex": 20,
             "searchAliases": [],
             "context": "所属知识点：实对称矩阵正交对角化与正交矩阵 \\(Q\\) 的求法。",
             "chapterId": "linear-algebra-05",
             "topicId": "linear-algebra-05-004",
-            "order": 2
+            "order": 3
           },
           {
             "id": "linear-commuting-symmetric-simultaneous-diagonalization",
@@ -9664,7 +9681,7 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "linear-algebra-05-004-anchor-002",
             "title": "实对称矩阵同时正交对角化的交换条件",
             "latex": "AB=BA",
-            "sourceBlockIndex": 9,
+            "sourceBlockIndex": 21,
             "searchAliases": [
               "同时正交对角化",
               "对称矩阵可交换"
@@ -9672,7 +9689,7 @@ export const mathChapters: MathChapter[] = [
             "context": "A、B 都为实对称矩阵时，可同时正交对角化当且仅当 AB=BA。",
             "chapterId": "linear-algebra-05",
             "topicId": "linear-algebra-05-004",
-            "order": 3
+            "order": 4
           }
         ]
       }
