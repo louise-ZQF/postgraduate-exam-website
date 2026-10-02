@@ -52,10 +52,10 @@ function toggleResultFavorite(result: MathSearchResult) {
     id: result.targetId,
     targetId: result.targetId,
     kind: result.kind,
-    title: plainMathText(result.title),
-    summary: result.kind === 'formula' ? result.formula?.context ?? '' : result.snippet || result.summary,
+    title: result.title,
+    summary: result.kind === 'formula' ? result.formula?.displayContext ?? '' : result.snippet || result.summary,
     latex: result.formula?.latex,
-    context: result.formula?.context,
+    context: result.formula?.displayContext,
     chapterId: result.chapterId,
     chapterTitle: result.chapterTitle,
     partTitle: result.partTitle,
@@ -98,7 +98,7 @@ function toggleResultFavorite(result: MathSearchResult) {
               <div class="result-path">{{ result.partTitle }} <span aria-hidden="true">/</span> {{ result.chapterTitle }}</div>
               <h3 v-html="highlightMatch(plainMathText(result.title), query)"></h3>
               <MathMarkdown v-if="result.formula" class="result-formula" :source="`\\[${result.formula.latex}\\]`" />
-              <p v-if="result.snippet" class="result-context" v-html="highlightMatch(result.snippet, query)"></p>
+              <MathMarkdown v-if="result.snippet" class="result-context" :source="result.snippet" />
               <span class="result-open">查看原文 <span aria-hidden="true">↗</span></span>
             </RouterLink>
             <button type="button" class="favorite-button" :class="{ active: favoriteIds.has(result.targetId) }"
@@ -152,6 +152,7 @@ h1 { margin: 0; color: var(--ink); font-family: var(--serif); font-size: clamp(4
 .result-formula { max-width: 780px; margin: 12px 0; color: var(--ink); }
 .result-formula :deep(.katex-display) { margin: 0; border: 0; border-radius: 6px; padding: 13px 16px; background: #f8f5f0; text-align: left; }
 .result-context { max-width: 780px; margin: 9px 0 0; color: var(--ink-soft); font-size: 14px; line-height: 1.7; }
+.result-context :deep(p) { margin: 0; }
 .result-card :deep(mark) { border-radius: 2px; padding: 0 2px; background: #f5decb; color: var(--ink); }
 .result-open { display: inline-flex; align-items: center; min-height: 36px; margin-top: 10px; color: var(--accent-dark); font-size: 13px; font-weight: 700; }
 .result-open span { margin-left: 6px; }

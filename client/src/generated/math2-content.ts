@@ -20,77 +20,88 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "calculus-01-001-anchor-001",
             "title": "函数定义域、复合函数、奇偶性、周期性、单调性与有界性",
             "searchText": "函数定义域、复合函数、奇偶性、周期性、单调性与有界性 定义域同时检查：分母不为零、偶次根号内非负、对数真数为正、反三角函数自变量范围。 复合函数 f(g(x)) 还要满足 x D g 且 g(x) D f。 判断奇偶性前先看定义域是否关于原点对称；再比较 f(-x) 与 f(x)。 两个周期函数只有在周期之比为有理数时才一定能找到公共周期。 单调性用 f'(x) 的正负判断；连续函数在闭区间上一定有界并能取到最大值、最小值。",
-            "summary": "定义域同时检查：分母不为零、偶次根号内非负、对数真数为正、反三角函数自变量范围。 复合函数 f(g(x)) 还要满足 x D g 且 g(x) D f。 判断奇偶性前先看定义域是否关于原点对称；再比较 f(-x) 与 f(x)。 两个周期函数只有在周期之比…"
+            "summary": "定义域同时检查：分母不为零、偶次根号内非负、对数真数为正、反三角函数自变量范围。 复合函数 f(g(x)) 还要满足 x D g 且 g(x) D f。 判断奇偶性前先看定义域是否关于原点对称；再比较 f(-x) 与 f(x)。 两个周期函数只有在周期之比…",
+            "displaySummary": "- 定义域同时检查：分母不为零、偶次根号内非负、对数真数为正、反三角函数自变量范围。\n- 复合函数 \\(f(g(x))\\) 还要满足 \\(x\\in D_g\\) 且 \\(g(x)\\in D_f\\)。\n- 判断奇偶性前先看定义域是否关于原点对称；再比较 \\(f(-x)\\) 与 \\(f(x)\\)。\n- 两个周期函数只有在周期之比为有理数时才一定能找到公共周期。\n- 单调性用 \\(f'(x)\\) 的正负判断；连续函数在闭区间上一定有界并能取到最大值、最小值。"
           },
           {
             "id": "anchor-j518hz",
             "legacyId": "calculus-01-001-anchor-002",
             "title": "三角函数公式一览",
             "searchText": "三角函数公式一览 ^2x+ ^2x=1, 1+ ^2x= ^2x, 1+ ^2x= ^2x. ( )= , ( )= , ( )= 1 . 2x=2 x x, 2x=2 ^2x-1=1-2 ^2x= ^2x- ^2x. ^2x= 1- 2x 2 , ^2x= 1+ 2x 2 , x2= x 1+ x = 1- x x . 诱导公式： ≤ft( 2 x )= x,qquad ≤ft( 2 x )= x, (n +x)=(-1)^n x,qquad (n +x)=(-1)^n x (n Z). = ( + )+ ( - ) 2, = ( + )- ( - ) 2, = ( + )+ ( - ) 2, = ( - )- ( + ) 2. 辅助角公式： a x+b x= a^2+b^2 (x+ ), = a a^2+b^2 , = b a^2+b^2 .",
-            "summary": "^2x+ ^2x=1, 1+ ^2x= ^2x, 1+ ^2x= ^2x. ( )= , ( )= , ( )= 1 . 2x=2 x x, 2x=2 ^2x-1=1-2 ^2x= ^2x- ^2x. ^2x= 1- 2x 2 , ^2x= 1+ 2x 2…"
+            "summary": "^2x+ ^2x=1, 1+ ^2x= ^2x, 1+ ^2x= ^2x. ( )= , ( )= , ( )= 1 . 2x=2 x x, 2x=2 ^2x-1=1-2 ^2x= ^2x- ^2x. ^2x= 1- 2x 2 , ^2x= 1+ 2x 2…",
+            "displaySummary": "诱导公式："
           },
           {
             "id": "anchor-t7xlog",
             "legacyId": "calculus-01-001-anchor-003",
             "title": "反三角函数公式一览",
             "searchText": "反三角函数公式一览 x+ x= 2, x+ arccot x= 2, x+ 1x= cases 2,&x 0,\\\\[2mm] - 2,&x<0. cases (-x)=- x, (-x)= - x, (-x)=- x, arccot (-x)= - arccot x. x 的定义域为 [-1,1]、值域为 ≤ft[- 2 , 2 ]； x 的定义域为 [-1,1]、值域为 [0, ]。",
-            "summary": "x+ x= 2, x+ arccot x= 2, x+ 1x= cases 2,&x 0,\\\\[2mm] - 2,&x<0. cases (-x)=- x, (-x)= - x, (-x)=- x, arccot (-x)= - arccot x. x 的…"
+            "summary": "x+ x= 2, x+ arccot x= 2, x+ 1x= cases 2,&x 0,\\\\[2mm] - 2,&x<0. cases (-x)=- x, (-x)= - x, (-x)=- x, arccot (-x)= - arccot x. x 的…",
+            "displaySummary": "\\(\\arcsin x\\) 的定义域为 \\([-1,1]\\)、值域为 \\(\\left[-\\frac{\\pi}{2},\\frac{\\pi}{2}\\right]\\)；\\(\\arccos x\\) 的定义域为 \\([-1,1]\\)、值域为 \\([0,\\pi]\\)。"
           },
           {
             "id": "anchor-4ye243",
             "legacyId": "calculus-01-001-anchor-004",
             "title": "常用代数公式与不等式",
             "searchText": "常用代数公式与不等式 a^n-b^n=(a-b) k=0 ^ n-1 a^ n-1-k b^k, (a+b)^n= k=0 ^n nk a^kb^ n-k . 1+2+ +n= n(n+1) 2, 1^2+2^2+ +n^2= n(n+1)(2n+1) 6. 对非负数： a 1+ +a n n ≥ [n] a 1a 2 a n , 2ab≤ a^2+b^2. 对一切实数 x， e^x≥1+x；对 x 0， x≤ x-1。 a - b ≤ a b ≤ a + b . 0<x< 2: 2x < x<x< x. x -1: x 1+x ≤ (1+x)≤ x, 等号仅在 x=0 时成立。",
-            "summary": "a^n-b^n=(a-b) k=0 ^ n-1 a^ n-1-k b^k, (a+b)^n= k=0 ^n nk a^kb^ n-k . 1+2+ +n= n(n+1) 2, 1^2+2^2+ +n^2= n(n+1)(2n+1) 6. 对非负数： a 1…"
+            "summary": "a^n-b^n=(a-b) k=0 ^ n-1 a^ n-1-k b^k, (a+b)^n= k=0 ^n nk a^kb^ n-k . 1+2+ +n= n(n+1) 2, 1^2+2^2+ +n^2= n(n+1)(2n+1) 6. 对非负数： a 1…",
+            "displaySummary": "对非负数："
           },
           {
             "id": "anchor-1d76xhd",
             "legacyId": "calculus-01-001-anchor-005",
             "title": "一元二次方程与韦达公式",
             "searchText": "一元二次方程与韦达公式 ax^2+bx+c=0 (a≠0), x 1,2 = -b b^2-4ac 2a , x 1+x 2=- ba, x 1x 2= ca.",
-            "summary": "ax^2+bx+c=0 (a≠0), x 1,2 = -b b^2-4ac 2a , x 1+x 2=- ba, x 1x 2= ca."
+            "summary": "ax^2+bx+c=0 (a≠0), x 1,2 = -b b^2-4ac 2a , x 1+x 2=- ba, x 1x 2= ca.",
+            "displaySummary": ""
           },
           {
             "id": "anchor-1bazviw",
             "legacyId": "calculus-01-001-anchor-006",
             "title": "平面距离公式",
             "searchText": "平面距离公式 d ((x 1,y 1),(x 2,y 2) ) = (x 1-x 2)^2+(y 1-y 2)^2 , d ((x 0,y 0),Ax+By+C=0 ) = Ax 0+By 0+C A^2+B^2 .",
-            "summary": "d ((x 1,y 1),(x 2,y 2) ) = (x 1-x 2)^2+(y 1-y 2)^2 , d ((x 0,y 0),Ax+By+C=0 ) = Ax 0+By 0+C A^2+B^2 ."
+            "summary": "d ((x 1,y 1),(x 2,y 2) ) = (x 1-x 2)^2+(y 1-y 2)^2 , d ((x 0,y 0),Ax+By+C=0 ) = Ax 0+By 0+C A^2+B^2 .",
+            "displaySummary": ""
           },
           {
             "id": "anchor-2z340d",
             "legacyId": "calculus-01-001-anchor-007",
             "title": "等比数列公式",
             "searchText": "等比数列公式 a n=a 1q^ n-1 , S n= cases na 1,&q=1,\\\\[1mm] a 1(1-q^n) 1-q ,&q≠1. cases",
-            "summary": "a n=a 1q^ n-1 , S n= cases na 1,&q=1,\\\\[1mm] a 1(1-q^n) 1-q ,&q≠1. cases"
+            "summary": "a n=a 1q^ n-1 , S n= cases na 1,&q=1,\\\\[1mm] a 1(1-q^n) 1-q ,&q≠1. cases",
+            "displaySummary": ""
           },
           {
             "id": "anchor-8ea5i0",
             "legacyId": "calculus-01-001-anchor-008",
             "title": "函数对称性结论",
             "searchText": "函数对称性结论 若 f(a+x)=f(b-x)，则图形关于直线 x= a+b 2 对称；若 f(a+x)+f(b-x)=c，则图形关于点 ≤ft( a+b 2 , c2 ) 中心对称。",
-            "summary": "若 f(a+x)=f(b-x)，则图形关于直线 x= a+b 2 对称；若 f(a+x)+f(b-x)=c，则图形关于点 ≤ft( a+b 2 , c2 ) 中心对称。"
+            "summary": "若 f(a+x)=f(b-x)，则图形关于直线 x= a+b 2 对称；若 f(a+x)+f(b-x)=c，则图形关于点 ≤ft( a+b 2 , c2 ) 中心对称。",
+            "displaySummary": "若 \\(f(a+x)=f(b-x)\\)，则图形关于直线 \\(x=\\frac{a+b}{2}\\) 对称；若 \\(f(a+x)+f(b-x)=c\\)，则图形关于点 \\(\\left(\\frac{a+b}{2},\\frac c2\\right)\\) 中心对称。"
           },
           {
             "id": "anchor-aj5441",
             "legacyId": "calculus-01-001-anchor-009",
             "title": "取整函数与符号函数",
             "searchText": "取整函数与符号函数 x-1< x ≤ x< x +1,qquad x+n = x +n (n Z), sgn x= cases 1,&x 0,\\\\ 0,&x=0,\\\\ -1,&x<0. cases",
-            "summary": "x-1< x ≤ x< x +1,qquad x+n = x +n (n Z), sgn x= cases 1,&x 0,\\\\ 0,&x=0,\\\\ -1,&x<0. cases"
+            "summary": "x-1< x ≤ x< x +1,qquad x+n = x +n (n Z), sgn x= cases 1,&x 0,\\\\ 0,&x=0,\\\\ -1,&x<0. cases",
+            "displaySummary": ""
           },
           {
             "id": "anchor-j2hham",
             "legacyId": "calculus-01-001-anchor-010",
             "title": "函数方程换元与复合函数单调性判断",
             "searchText": "函数方程换元与复合函数单调性判断 给出 f(x) 与 f\\!≤ft( 1x )、f(-x) 等关系时，对自变量作同样替换，联立所得等式求函数。复合函数判断单调性时，先确定内层函数的值域，再看外层函数在该范围内的单调性。",
-            "summary": "给出 f(x) 与 f\\!≤ft( 1x )、f(-x) 等关系时，对自变量作同样替换，联立所得等式求函数。复合函数判断单调性时，先确定内层函数的值域，再看外层函数在该范围内的单调性。"
+            "summary": "给出 f(x) 与 f\\!≤ft( 1x )、f(-x) 等关系时，对自变量作同样替换，联立所得等式求函数。复合函数判断单调性时，先确定内层函数的值域，再看外层函数在该范围内的单调性。",
+            "displaySummary": "给出 \\(f(x)\\) 与 \\(f\\!\\left(\\frac1x\\right)\\)、\\(f(-x)\\) 等关系时，对自变量作同样替换，联立所得等式求函数。复合函数判断单调性时，先确定内层函数的值域，再看外层函数在该范围内的单调性。"
           },
           {
             "id": "anchor-3hexw1",
             "legacyId": "calculus-01-001-anchor-011",
             "title": "反函数的定义域、值域与单调性",
             "searchText": "反函数的定义域、值域与单调性 函数在所讨论区间上一一对应时才有反函数；原函数的定义域和值域在反函数中互换。若原函数严格递增或严格递减，反函数在对应区间上也分别严格递增或严格递减。f^ -1 (x) 不是 1 f(x) 。",
-            "summary": "函数在所讨论区间上一一对应时才有反函数；原函数的定义域和值域在反函数中互换。若原函数严格递增或严格递减，反函数在对应区间上也分别严格递增或严格递减。f^ -1 (x) 不是 1 f(x) 。"
+            "summary": "函数在所讨论区间上一一对应时才有反函数；原函数的定义域和值域在反函数中互换。若原函数严格递增或严格递减，反函数在对应区间上也分别严格递增或严格递减。f^ -1 (x) 不是 1 f(x) 。",
+            "displaySummary": "函数在所讨论区间上一一对应时才有反函数；原函数的定义域和值域在反函数中互换。若原函数严格递增或严格递减，反函数在对应区间上也分别严格递增或严格递减。\\(f^{-1}(x)\\) 不是 \\(\\frac1{f(x)}\\)。"
           }
         ],
         "formulas": [
@@ -98,11 +109,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-14whcx3-1",
             "parentAnchorId": "anchor-j518hz",
             "legacyParentAnchorId": "calculus-01-001-anchor-002",
-            "title": "三角函数公式一览：sin^2x+cos^2x",
+            "title": "三角函数平方和恒等式",
             "latex": "\\sin^2x+\\cos^2x=1",
             "sourceBlockIndex": 6,
-            "searchAliases": [],
+            "searchAliases": [
+              "平方关系",
+              "sin平方加cos平方"
+            ],
             "context": "所属知识点：三角函数公式一览。",
+            "displayContext": "所属知识点：三角函数公式一览。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-001",
             "order": 0
@@ -111,11 +126,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-14whcx3-2",
             "parentAnchorId": "anchor-j518hz",
             "legacyParentAnchorId": "calculus-01-001-anchor-002",
-            "title": "三角函数公式一览：1+tan^2x",
+            "title": "正切与正割的平方关系",
             "latex": "1+\\tan^2x=\\sec^2x",
             "sourceBlockIndex": 6,
-            "searchAliases": [],
+            "searchAliases": [
+              "1加tan平方",
+              "正切平方公式"
+            ],
             "context": "所属知识点：三角函数公式一览。",
+            "displayContext": "所属知识点：三角函数公式一览。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-001",
             "order": 1
@@ -124,11 +143,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-14whcx3-3",
             "parentAnchorId": "anchor-j518hz",
             "legacyParentAnchorId": "calculus-01-001-anchor-002",
-            "title": "三角函数公式一览：1+cot^2x",
+            "title": "余切与余割的平方关系",
             "latex": "1+\\cot^2x=\\csc^2x",
             "sourceBlockIndex": 6,
-            "searchAliases": [],
+            "searchAliases": [
+              "1加cot平方",
+              "余切平方公式"
+            ],
             "context": "所属知识点：三角函数公式一览。",
+            "displayContext": "所属知识点：三角函数公式一览。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-001",
             "order": 2
@@ -137,11 +160,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-10gpfye",
             "parentAnchorId": "anchor-j518hz",
             "legacyParentAnchorId": "calculus-01-001-anchor-002",
-            "title": "三角函数公式一览：sin(α±β)",
+            "title": "正弦和差角公式",
             "latex": "\\sin(\\alpha\\pm\\beta)=\\sin\\alpha\\cos\\beta\\pm\\cos\\alpha\\sin\\beta,",
             "sourceBlockIndex": 7,
-            "searchAliases": [],
+            "searchAliases": [
+              "sin和角公式",
+              "sin差角公式"
+            ],
             "context": "所属知识点：三角函数公式一览。",
+            "displayContext": "所属知识点：三角函数公式一览。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-001",
             "order": 3
@@ -150,11 +177,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-18l8nlr",
             "parentAnchorId": "anchor-j518hz",
             "legacyParentAnchorId": "calculus-01-001-anchor-002",
-            "title": "三角函数公式一览：cos(α±β)",
+            "title": "余弦和差角公式",
             "latex": "\\cos(\\alpha\\pm\\beta)=\\cos\\alpha\\cos\\beta\\mp\\sin\\alpha\\sin\\beta,",
             "sourceBlockIndex": 8,
-            "searchAliases": [],
+            "searchAliases": [
+              "cos和角公式",
+              "cos差角公式"
+            ],
             "context": "所属知识点：三角函数公式一览。",
+            "displayContext": "所属知识点：三角函数公式一览。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-001",
             "order": 4
@@ -163,11 +194,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-rfdwi7",
             "parentAnchorId": "anchor-j518hz",
             "legacyParentAnchorId": "calculus-01-001-anchor-002",
-            "title": "三角函数公式一览：tan(α±β)",
+            "title": "正切和差角公式",
             "latex": "\\tan(\\alpha\\pm\\beta)=\\frac{\\tan\\alpha\\pm\\tan\\beta}{1\\mp\\tan\\alpha\\tan\\beta}.",
             "sourceBlockIndex": 9,
-            "searchAliases": [],
+            "searchAliases": [
+              "tan和角公式",
+              "tan差角公式"
+            ],
             "context": "所属知识点：三角函数公式一览。",
+            "displayContext": "所属知识点：三角函数公式一览。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-001",
             "order": 5
@@ -176,11 +211,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1d200g4-1",
             "parentAnchorId": "anchor-j518hz",
             "legacyParentAnchorId": "calculus-01-001-anchor-002",
-            "title": "三角函数公式一览：sin2x",
+            "title": "正弦二倍角公式",
             "latex": "\\sin2x=2\\sin x\\cos x",
             "sourceBlockIndex": 10,
-            "searchAliases": [],
+            "searchAliases": [
+              "sin2x公式",
+              "正弦倍角公式"
+            ],
             "context": "所属知识点：三角函数公式一览。",
+            "displayContext": "所属知识点：三角函数公式一览。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-001",
             "order": 6
@@ -189,11 +228,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1d200g4-2",
             "parentAnchorId": "anchor-j518hz",
             "legacyParentAnchorId": "calculus-01-001-anchor-002",
-            "title": "三角函数公式一览：cos2x",
+            "title": "余弦二倍角公式",
             "latex": "\\cos2x=2\\cos^2x-1=1-2\\sin^2x=\\cos^2x-\\sin^2x",
             "sourceBlockIndex": 10,
-            "searchAliases": [],
+            "searchAliases": [
+              "cos2x公式",
+              "余弦倍角公式"
+            ],
             "context": "所属知识点：三角函数公式一览。",
+            "displayContext": "所属知识点：三角函数公式一览。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-001",
             "order": 7
@@ -202,11 +245,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-7tp7xw-1",
             "parentAnchorId": "anchor-j518hz",
             "legacyParentAnchorId": "calculus-01-001-anchor-002",
-            "title": "三角函数公式一览：sin^2x",
+            "title": "正弦平方的降幂公式",
             "latex": "\\sin^2x=\\frac{1-\\cos2x}{2}",
             "sourceBlockIndex": 11,
-            "searchAliases": [],
+            "searchAliases": [
+              "sin平方降幂",
+              "半角公式"
+            ],
             "context": "所属知识点：三角函数公式一览。",
+            "displayContext": "所属知识点：三角函数公式一览。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-001",
             "order": 8
@@ -215,11 +262,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-7tp7xw-2",
             "parentAnchorId": "anchor-j518hz",
             "legacyParentAnchorId": "calculus-01-001-anchor-002",
-            "title": "三角函数公式一览：cos^2x",
+            "title": "余弦平方的降幂公式",
             "latex": "\\cos^2x=\\frac{1+\\cos2x}{2}",
             "sourceBlockIndex": 11,
-            "searchAliases": [],
+            "searchAliases": [
+              "cos平方降幂",
+              "半角公式"
+            ],
             "context": "所属知识点：三角函数公式一览。",
+            "displayContext": "所属知识点：三角函数公式一览。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-001",
             "order": 9
@@ -233,6 +284,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 11,
             "searchAliases": [],
             "context": "所属知识点：三角函数公式一览。",
+            "displayContext": "所属知识点：三角函数公式一览。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-001",
             "order": 10
@@ -246,6 +298,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 12,
             "searchAliases": [],
             "context": "诱导公式：",
+            "displayContext": "诱导公式：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-001",
             "order": 11
@@ -259,6 +312,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 13,
             "searchAliases": [],
             "context": "所属知识点：三角函数公式一览。",
+            "displayContext": "诱导公式：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-001",
             "order": 12
@@ -267,11 +321,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1yyd0hr",
             "parentAnchorId": "anchor-j518hz",
             "legacyParentAnchorId": "calculus-01-001-anchor-002",
-            "title": "三角函数公式一览：sinαcosβ",
+            "title": "正弦乘余弦的积化和差",
             "latex": "\\sin\\alpha\\cos\\beta=\\frac{\\sin(\\alpha+\\beta)+\\sin(\\alpha-\\beta)}2,",
             "sourceBlockIndex": 14,
-            "searchAliases": [],
+            "searchAliases": [
+              "积化和差",
+              "sin乘cos"
+            ],
             "context": "所属知识点：三角函数公式一览。",
+            "displayContext": "诱导公式：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-001",
             "order": 13
@@ -280,11 +338,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1osyo2x",
             "parentAnchorId": "anchor-j518hz",
             "legacyParentAnchorId": "calculus-01-001-anchor-002",
-            "title": "三角函数公式一览：cosαsinβ",
+            "title": "余弦乘正弦的积化和差",
             "latex": "\\cos\\alpha\\sin\\beta=\\frac{\\sin(\\alpha+\\beta)-\\sin(\\alpha-\\beta)}2,",
             "sourceBlockIndex": 15,
-            "searchAliases": [],
+            "searchAliases": [
+              "积化和差",
+              "cos乘sin"
+            ],
             "context": "所属知识点：三角函数公式一览。",
+            "displayContext": "诱导公式：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-001",
             "order": 14
@@ -293,11 +355,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-bebeec",
             "parentAnchorId": "anchor-j518hz",
             "legacyParentAnchorId": "calculus-01-001-anchor-002",
-            "title": "三角函数公式一览：cosαcosβ",
+            "title": "余弦乘余弦的积化和差",
             "latex": "\\cos\\alpha\\cos\\beta=\\frac{\\cos(\\alpha+\\beta)+\\cos(\\alpha-\\beta)}2,",
             "sourceBlockIndex": 16,
-            "searchAliases": [],
+            "searchAliases": [
+              "积化和差",
+              "cos乘cos"
+            ],
             "context": "所属知识点：三角函数公式一览。",
+            "displayContext": "诱导公式：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-001",
             "order": 15
@@ -306,11 +372,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-14wf41w",
             "parentAnchorId": "anchor-j518hz",
             "legacyParentAnchorId": "calculus-01-001-anchor-002",
-            "title": "三角函数公式一览：sinαsinβ",
+            "title": "正弦乘正弦的积化和差",
             "latex": "\\sin\\alpha\\sin\\beta=\\frac{\\cos(\\alpha-\\beta)-\\cos(\\alpha+\\beta)}2.",
             "sourceBlockIndex": 17,
-            "searchAliases": [],
+            "searchAliases": [
+              "积化和差",
+              "sin乘sin"
+            ],
             "context": "所属知识点：三角函数公式一览。",
+            "displayContext": "诱导公式：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-001",
             "order": 16
@@ -324,6 +394,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 18,
             "searchAliases": [],
             "context": "辅助角公式：",
+            "displayContext": "辅助角公式：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-001",
             "order": 17
@@ -337,6 +408,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 19,
             "searchAliases": [],
             "context": "所属知识点：反三角函数公式一览。",
+            "displayContext": "所属知识点：反三角函数公式一览。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-001",
             "order": 18
@@ -350,6 +422,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 19,
             "searchAliases": [],
             "context": "所属知识点：反三角函数公式一览。",
+            "displayContext": "所属知识点：反三角函数公式一览。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-001",
             "order": 19
@@ -363,6 +436,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 20,
             "searchAliases": [],
             "context": "所属知识点：反三角函数公式一览。",
+            "displayContext": "所属知识点：反三角函数公式一览。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-001",
             "order": 20
@@ -376,6 +450,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 21,
             "searchAliases": [],
             "context": "所属知识点：反三角函数公式一览。",
+            "displayContext": "所属知识点：反三角函数公式一览。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-001",
             "order": 21
@@ -389,6 +464,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 21,
             "searchAliases": [],
             "context": "所属知识点：反三角函数公式一览。",
+            "displayContext": "所属知识点：反三角函数公式一览。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-001",
             "order": 22
@@ -402,6 +478,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 22,
             "searchAliases": [],
             "context": "所属知识点：反三角函数公式一览。",
+            "displayContext": "所属知识点：反三角函数公式一览。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-001",
             "order": 23
@@ -415,6 +492,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 22,
             "searchAliases": [],
             "context": "所属知识点：反三角函数公式一览。",
+            "displayContext": "所属知识点：反三角函数公式一览。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-001",
             "order": 24
@@ -428,6 +506,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 29,
             "searchAliases": [],
             "context": "所属知识点：常用代数公式与不等式。",
+            "displayContext": "所属知识点：常用代数公式与不等式。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-001",
             "order": 25
@@ -441,6 +520,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 29,
             "searchAliases": [],
             "context": "所属知识点：常用代数公式与不等式。",
+            "displayContext": "所属知识点：常用代数公式与不等式。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-001",
             "order": 26
@@ -454,6 +534,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 30,
             "searchAliases": [],
             "context": "所属知识点：常用代数公式与不等式。",
+            "displayContext": "所属知识点：常用代数公式与不等式。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-001",
             "order": 27
@@ -467,6 +548,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 30,
             "searchAliases": [],
             "context": "所属知识点：常用代数公式与不等式。",
+            "displayContext": "所属知识点：常用代数公式与不等式。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-001",
             "order": 28
@@ -480,6 +562,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 31,
             "searchAliases": [],
             "context": "对非负数：",
+            "displayContext": "对非负数：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-001",
             "order": 29
@@ -493,6 +576,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 31,
             "searchAliases": [],
             "context": "对非负数：",
+            "displayContext": "对非负数：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-001",
             "order": 30
@@ -509,6 +593,7 @@ export const mathChapters: MathChapter[] = [
               "指数不等式"
             ],
             "context": "对一切实数成立；等号在 x=0 时成立。",
+            "displayContext": "对一切实数 \\(x\\)，",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-001",
             "order": 31
@@ -525,6 +610,7 @@ export const mathChapters: MathChapter[] = [
               "对数不等式"
             ],
             "context": "x>0 时成立；等号在 x=1 时成立。",
+            "displayContext": "对非负数：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-001",
             "order": 32
@@ -538,6 +624,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 36,
             "searchAliases": [],
             "context": "对一切实数 x，e^x\\ge1+x；对 x>0，\\ln x\\le x-1。",
+            "displayContext": "对非负数：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-001",
             "order": 33
@@ -551,6 +638,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 37,
             "searchAliases": [],
             "context": "所属知识点：常用代数公式与不等式。",
+            "displayContext": "对非负数：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-001",
             "order": 34
@@ -564,6 +652,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 38,
             "searchAliases": [],
             "context": "所属知识点：常用代数公式与不等式。",
+            "displayContext": "对非负数：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-001",
             "order": 35
@@ -577,6 +666,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 40,
             "searchAliases": [],
             "context": "所属知识点：一元二次方程与韦达公式。",
+            "displayContext": "所属知识点：一元二次方程与韦达公式。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-001",
             "order": 36
@@ -590,6 +680,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 41,
             "searchAliases": [],
             "context": "所属知识点：一元二次方程与韦达公式。",
+            "displayContext": "所属知识点：一元二次方程与韦达公式。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-001",
             "order": 37
@@ -603,6 +694,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 41,
             "searchAliases": [],
             "context": "所属知识点：一元二次方程与韦达公式。",
+            "displayContext": "所属知识点：一元二次方程与韦达公式。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-001",
             "order": 38
@@ -616,6 +708,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 42,
             "searchAliases": [],
             "context": "所属知识点：平面距离公式。",
+            "displayContext": "所属知识点：平面距离公式。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-001",
             "order": 39
@@ -629,6 +722,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 43,
             "searchAliases": [],
             "context": "所属知识点：平面距离公式。",
+            "displayContext": "所属知识点：平面距离公式。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-001",
             "order": 40
@@ -642,6 +736,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 44,
             "searchAliases": [],
             "context": "所属知识点：等比数列公式。",
+            "displayContext": "所属知识点：等比数列公式。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-001",
             "order": 41
@@ -655,6 +750,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 44,
             "searchAliases": [],
             "context": "所属知识点：等比数列公式。",
+            "displayContext": "所属知识点：等比数列公式。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-001",
             "order": 42
@@ -668,6 +764,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 49,
             "searchAliases": [],
             "context": "所属知识点：取整函数与符号函数。",
+            "displayContext": "所属知识点：取整函数与符号函数。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-001",
             "order": 43
@@ -681,6 +778,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 50,
             "searchAliases": [],
             "context": "所属知识点：取整函数与符号函数。",
+            "displayContext": "所属知识点：取整函数与符号函数。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-001",
             "order": 44
@@ -699,63 +797,72 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "calculus-01-002-anchor-001",
             "title": "极限运算法则、等价无穷小与高阶无穷小公式",
             "searchText": "极限运算法则、等价无穷小与高阶无穷小公式 极限运算法则 若 f=A, g=B，则 (af+bg)=aA+bB, (fg)=AB, fg= AB (B≠0). 若 (x) u 0，且 f 在 u 0 连续，则 f( (x))=f(u 0). 当 x 0 时： x x, x x, x x, x x, e^x-1 x, (1+x) x, (1+x)^a-1 ax, 1- x x^2 2 , a^x-1 x a. 高阶常用等价式： x- x x^3 6 , x-x x^3 3 , x-x x^3 6 , x- x x^3 3 . x- (1+x) x^2 2 , \\!≤ft(x+ 1+x^2 )-x - x^3 6 . 等价无穷小的等价判据： - =o( ) - =o( ). 若 u(x) 0，则可把上式中的 x 换成 u(x)。更一般地，若 u 0、uv 0，则 (1+u)^v-1 uv.",
-            "summary": "极限运算法则 若 f=A, g=B，则 (af+bg)=aA+bB, (fg)=AB, fg= AB (B≠0). 若 (x) u 0，且 f 在 u 0 连续，则 f( (x))=f(u 0). 当 x 0 时： x x, x x, x x, x x, …"
+            "summary": "极限运算法则 若 f=A, g=B，则 (af+bg)=aA+bB, (fg)=AB, fg= AB (B≠0). 若 (x) u 0，且 f 在 u 0 连续，则 f( (x))=f(u 0). 当 x 0 时： x x, x x, x x, x x, …",
+            "displaySummary": "**极限运算法则**　若 \\(\\lim f=A,\\lim g=B\\)，则"
           },
           {
             "id": "anchor-t8lpq4",
             "legacyId": "calculus-01-002-anchor-002",
             "title": "常用泰勒展开式（集中速查）",
             "searchText": "常用泰勒展开式（集中速查） 指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 x 0 时，只记到做题所需的阶数： aligned e^x&=1+x+ x^2 2 + x^3 6 +o(x^3),\\\\ 1 1-x &=1+x+x^2+x^3+o(x^3),\\\\ 1 1+x &=1-x+x^2-x^3+o(x^3),\\\\ (1+x)&=x- x^2 2 + x^3 3 +o(x^3),\\\\ x&=x- x^3 6 + x^5 120 +o(x^5),\\\\ x&=1- x^2 2 + x^4 24 +o(x^4),\\\\ (1+x)^a&=1+ax+ a(a-1) 2 x^2+ a(a-1)(a-2) 6 x^3+o(x^3). aligned 补充几个常用三阶式： x=x+ x^3 3 +o(x^3), x=x+ x^3 6 +o(x^3), x=x- x^3 3 +o(x^3), 1+x =1+ x 2 - x^2 8 +o(x^2), \\!≤ft(x+ 1+x^2 )=x- x^3 6 +o(x^3). 通用公式（x 0=0 时即麦克劳林公式）： f(x)= k=0 ^ n f^ (k) (x 0) k! (x-x 0)^k+R n(x). 求等价无穷小时用佩亚诺余项 R n(x)=o((x-x 0)^n)；需要估计误差时可用拉格朗日余项 R n(x)= f^ (n+1) ( ) (n+1)! (x-x 0)^ n+1 。不要在和差中只替换最低阶等价式，先看前几项是否抵消。",
-            "summary": "指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 x 0 时，只记到做题所需的阶数： aligned e^x&=1+x+ x^2 2 + x^3 6 +o(x^3),\\\\ 1 1-x &=1+x+x^2+x^3+o(x^3…"
+            "summary": "指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 x 0 时，只记到做题所需的阶数： aligned e^x&=1+x+ x^2 2 + x^3 6 +o(x^3),\\\\ 1 1-x &=1+x+x^2+x^3+o(x^3…",
+            "displaySummary": "指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 \\(x\\to0\\) 时，只记到做题所需的阶数："
           },
           {
             "id": "anchor-5x1cm7",
             "legacyId": "calculus-01-002-anchor-003",
             "title": "七类未定式、洛必达法则与幂指函数极限",
             "searchText": "七类未定式、洛必达法则与幂指函数极限 00、 ：先化简、等价替换或洛必达；洛必达前必须确认型别和条件。 0 ：改写成商。 - ：通分、有理化或提取主项。 1^ 、0^0、 ^0：设原式为 y，先求 y，最后取指数。 分子分母相减严重时，展开到第一个不抵消的项；不必把所有因子展开到同一阶。 洛必达法则 当 fg 为 00 型或 型，并满足相应可导条件，且导数之比的极限存在或为无穷时： f(x) g(x) = f'(x) g'(x) . 洛必达后若仍是相同未定式可以继续使用；每次都要重新检查型别。等价无穷小只能直接替换乘积或商中的因子，和差中的替换必须保证不会丢掉抵消后的首个非零项。 幂指型极限统一公式： f(x)^ g(x) = \\!≤ft( g(x) f(x) ) (f(x) 0). 特别地，若 u(x) 0、v(x) 、u(x)v(x) A，则 [1+u(x)]^ v(x) e^A.",
-            "summary": "00、 ：先化简、等价替换或洛必达；洛必达前必须确认型别和条件。 0 ：改写成商。 - ：通分、有理化或提取主项。 1^ 、0^0、 ^0：设原式为 y，先求 y，最后取指数。 分子分母相减严重时，展开到第一个不抵消的项；不必把所有因子展开到同一阶。 洛必…"
+            "summary": "00、 ：先化简、等价替换或洛必达；洛必达前必须确认型别和条件。 0 ：改写成商。 - ：通分、有理化或提取主项。 1^ 、0^0、 ^0：设原式为 y，先求 y，最后取指数。 分子分母相减严重时，展开到第一个不抵消的项；不必把所有因子展开到同一阶。 洛必…",
+            "displaySummary": "- \\(\\frac00\\)、\\(\\frac{\\infty}{\\infty}\\)：先化简、等价替换或洛必达；洛必达前必须确认型别和条件。\n- \\(0\\cdot\\infty\\)：改写成商。\n- \\(\\infty-\\infty\\)：通分、有理化或提取主项。\n- \\(1^\\infty\\)、\\(0^0\\)、\\(\\infty^0\\)：设原式为 \\(y\\)，先求 \\(\\ln y\\)，最后取指数。\n- 分子分母相减严重时，展开到第一个不抵消的项；不必把所有因子展开到同一阶。"
           },
           {
             "id": "anchor-wcsi6k",
             "legacyId": "calculus-01-002-anchor-004",
             "title": "两个重要极限、数列极限、黎曼和与递推数列",
             "searchText": "两个重要极限、数列极限、黎曼和与递推数列 两个重要极限： x 0 x x =1, x 0 (1+x)^ 1x =e, 以及等价形式 n ≤ft(1+ 1n )^n=e, x ≤ft(1+ ax )^x=e^a. n a^ 1n =1 (a 0), n n^ 1n =1. 若 a 1, ,a m 0，则 n [n] a 1^n+a 2^n+ +a m^n = \\ a 1,a 2, ,a m\\ . 若 a 0b 0≠0，则 x a 0x^n+a 1x^ n-1 + +a n b 0x^m+b 1x^ m-1 + +b m = cases 0,&n<m,\\\\ a 0 b 0 ,&n=m,\\\\ 或 - ,&n m, cases 最后一种情形的符号由最高次项决定。 n 1n k=1 ^n f\\!≤ft( k n )= 0^1 f(x)\\,dx. 一般区间 [a,b] 的和要整理成“函数值乘小区间宽度”。乘积先取对数化为和。递推数列先证单调有界，再令极限为 L 代回递推式；代数方程有多个根时，用数列范围筛选。 夹逼准则：若在去心邻域内 g(x)≤ f(x)≤ h(x)，且 g,h A，则 f A。单调有界数列一定收敛；递增数列的极限是其上确界，递减数列的极限是其下确界。",
-            "summary": "两个重要极限： x 0 x x =1, x 0 (1+x)^ 1x =e, 以及等价形式 n ≤ft(1+ 1n )^n=e, x ≤ft(1+ ax )^x=e^a. n a^ 1n =1 (a 0), n n^ 1n =1. 若 a 1, ,a m 0…"
+            "summary": "两个重要极限： x 0 x x =1, x 0 (1+x)^ 1x =e, 以及等价形式 n ≤ft(1+ 1n )^n=e, x ≤ft(1+ ax )^x=e^a. n a^ 1n =1 (a 0), n n^ 1n =1. 若 a 1, ,a m 0…",
+            "displaySummary": "两个重要极限："
           },
           {
             "id": "anchor-1lndnrm",
             "legacyId": "calculus-01-002-anchor-005",
             "title": "极限存在、左右极限、局部有界性、保号性与保序性",
             "searchText": "极限存在、左右极限、局部有界性、保号性与保序性 x x 0 f(x)=A x x 0^- f(x)= x x 0^+ f(x)=A. 有限极限存在时，函数在该点的某个去心邻域内有界；若 A 0，则该邻域内 f(x) 0。若附近恒有 f(x)≤ g(x)，且两边极限都存在，则 f(x)≤ g(x).",
-            "summary": "x x 0 f(x)=A x x 0^- f(x)= x x 0^+ f(x)=A. 有限极限存在时，函数在该点的某个去心邻域内有界；若 A 0，则该邻域内 f(x) 0。若附近恒有 f(x)≤ g(x)，且两边极限都存在，则 f(x)≤ g(x)."
+            "summary": "x x 0 f(x)=A x x 0^- f(x)= x x 0^+ f(x)=A. 有限极限存在时，函数在该点的某个去心邻域内有界；若 A 0，则该邻域内 f(x) 0。若附近恒有 f(x)≤ g(x)，且两边极限都存在，则 f(x)≤ g(x).",
+            "displaySummary": "有限极限存在时，函数在该点的某个去心邻域内有界；若 \\(A>0\\)，则该邻域内 \\(f(x)>0\\)。若附近恒有 \\(f(x)\\le g(x)\\)，且两边极限都存在，则"
           },
           {
             "id": "anchor-128640p",
             "legacyId": "calculus-01-002-anchor-006",
             "title": "夹逼准则、无穷小乘有界量与递推数列压缩估计",
             "searchText": "夹逼准则、无穷小乘有界量与递推数列压缩估计 g(x)≤ f(x)≤ h(x), g(x),h(x) A ⇒ f(x) A. (x) 0, (x) 有界 ⇒ (x) (x) 0. 若递推数列在一个不变区间内满足 a n+1 -A ≤ q a n-A , 0<q<1, 则 a n-A ≤ q^ n-1 a 1-A 0.",
-            "summary": "g(x)≤ f(x)≤ h(x), g(x),h(x) A ⇒ f(x) A. (x) 0, (x) 有界 ⇒ (x) (x) 0. 若递推数列在一个不变区间内满足 a n+1 -A ≤ q a n-A , 0<q<1, 则 a n-A ≤ q^ n-1 …"
+            "summary": "g(x)≤ f(x)≤ h(x), g(x),h(x) A ⇒ f(x) A. (x) 0, (x) 有界 ⇒ (x) (x) 0. 若递推数列在一个不变区间内满足 a n+1 -A ≤ q a n-A , 0<q<1, 则 a n-A ≤ q^ n-1 …",
+            "displaySummary": "若递推数列在一个不变区间内满足"
           },
           {
             "id": "anchor-15sbt8p",
             "legacyId": "calculus-01-002-anchor-007",
             "title": "数列乘积、无限乘积与对数化",
             "searchText": "数列乘积、无限乘积与对数化 各因子为正时，乘积先取对数： u n= k=1 ^n a k ⇒ u n= k=1 ^n a k. 常用望远镜乘积： (1-x)(1+x)(1+x^2) (1+x^ 2^n )=1-x^ 2^ n+1 .",
-            "summary": "各因子为正时，乘积先取对数： u n= k=1 ^n a k ⇒ u n= k=1 ^n a k. 常用望远镜乘积： (1-x)(1+x)(1+x^2) (1+x^ 2^n )=1-x^ 2^ n+1 ."
+            "summary": "各因子为正时，乘积先取对数： u n= k=1 ^n a k ⇒ u n= k=1 ^n a k. 常用望远镜乘积： (1-x)(1+x)(1+x^2) (1+x^ 2^n )=1-x^ 2^ n+1 .",
+            "displaySummary": "各因子为正时，乘积先取对数："
           },
           {
             "id": "anchor-bvlpa4",
             "legacyId": "calculus-01-002-anchor-008",
             "title": "无穷小阶数、等价判据与积分等价",
             "searchText": "无穷小阶数、等价判据与积分等价 若 (x) (x) = cases 0,& 比 高阶,\\\\ c≠0,& 与 同阶,\\\\ 1,& ,\\\\ ,& 比 低阶. cases “无界”不等于“趋于无穷大”；趋于无穷大一定无界，反过来不成立。 若 f(x) g(x)、二者在去心邻域内同号且积分存在，则在相应端点附近 x 0 ^ x f(t)\\,dt x 0 ^ x g(t)\\,dt. 若 f(t) c t^m\\ (t 0^+)、 (x) d x^n\\ (x 0^+)，其中 c≠0、d 0、m,n 为非负整数，则 0^ (x) f(t)\\,dt c m+1 [ (x)]^ m+1 cd^ m+1 m+1 x^ n(m+1) .",
-            "summary": "若 (x) (x) = cases 0,& 比 高阶,\\\\ c≠0,& 与 同阶,\\\\ 1,& ,\\\\ ,& 比 低阶. cases “无界”不等于“趋于无穷大”；趋于无穷大一定无界，反过来不成立。 若 f(x) g(x)、二者在去心邻域内同号且积分存在，…"
+            "summary": "若 (x) (x) = cases 0,& 比 高阶,\\\\ c≠0,& 与 同阶,\\\\ 1,& ,\\\\ ,& 比 低阶. cases “无界”不等于“趋于无穷大”；趋于无穷大一定无界，反过来不成立。 若 f(x) g(x)、二者在去心邻域内同号且积分存在，…",
+            "displaySummary": "若"
           },
           {
             "id": "anchor-1ohmc4u",
             "legacyId": "calculus-01-002-anchor-009",
             "title": "含参数极限、导数定义型极限与三类渐近线",
             "searchText": "含参数极限、导数定义型极限与三类渐近线 x=x 0:\\ x x 0 f(x)= , y=b:\\ x f(x)=b, y=kx+b:\\ k= x f(x) x, b= x [f(x)-kx]. 含参数极限存在时，先让左右极限相等，再排除分母为零或表达式无意义的参数。极限中出现 f(x)-f(x 0) x-x 0 时，直接按导数定义识别。",
-            "summary": "x=x 0:\\ x x 0 f(x)= , y=b:\\ x f(x)=b, y=kx+b:\\ k= x f(x) x, b= x [f(x)-kx]. 含参数极限存在时，先让左右极限相等，再排除分母为零或表达式无意义的参数。极限中出现 f(x)-f(x 0…"
+            "summary": "x=x 0:\\ x x 0 f(x)= , y=b:\\ x f(x)=b, y=kx+b:\\ k= x f(x) x, b= x [f(x)-kx]. 含参数极限存在时，先让左右极限相等，再排除分母为零或表达式无意义的参数。极限中出现 f(x)-f(x 0…",
+            "displaySummary": "含参数极限存在时，先让左右极限相等，再排除分母为零或表达式无意义的参数。极限中出现"
           }
         ],
         "formulas": [
@@ -768,6 +875,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 1,
             "searchAliases": [],
             "context": "极限运算法则　若 \\lim f=A,\\lim g=B，则",
+            "displayContext": "**极限运算法则**　若 \\(\\lim f=A,\\lim g=B\\)，则",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 0
@@ -781,6 +889,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 1,
             "searchAliases": [],
             "context": "极限运算法则　若 \\lim f=A,\\lim g=B，则",
+            "displayContext": "**极限运算法则**　若 \\(\\lim f=A,\\lim g=B\\)，则",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 1
@@ -794,6 +903,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 1,
             "searchAliases": [],
             "context": "极限运算法则　若 \\lim f=A,\\lim g=B，则",
+            "displayContext": "**极限运算法则**　若 \\(\\lim f=A,\\lim g=B\\)，则",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 2
@@ -807,6 +917,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 5,
             "searchAliases": [],
             "context": "若 \\(\\varphi(x)\\to u_0\\)，且 f 在 u_0 连续，则",
+            "displayContext": "若 \\(\\varphi(x)\\to u_0\\)，且 \\(f\\) 在 \\(u_0\\) 连续，则",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 3
@@ -815,11 +926,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1yof5kw-1",
             "parentAnchorId": "anchor-w8b1zu",
             "legacyParentAnchorId": "calculus-01-002-anchor-001",
-            "title": "极限运算法则、等价无穷小与高阶无穷小公式：sin x",
+            "title": "sin x 的等价无穷小",
             "latex": "\\sin x\\sim x",
             "sourceBlockIndex": 7,
             "searchAliases": [],
             "context": "当 x\\to0 时：",
+            "displayContext": "当 \\(x\\to0\\) 时：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 4
@@ -828,11 +940,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1yof5kw-2",
             "parentAnchorId": "anchor-w8b1zu",
             "legacyParentAnchorId": "calculus-01-002-anchor-001",
-            "title": "极限运算法则、等价无穷小与高阶无穷小公式：tan x",
+            "title": "tan x 的等价无穷小",
             "latex": "\\tan x\\sim x",
             "sourceBlockIndex": 7,
             "searchAliases": [],
             "context": "当 x\\to0 时：",
+            "displayContext": "当 \\(x\\to0\\) 时：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 5
@@ -841,11 +954,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1yof5kw-3",
             "parentAnchorId": "anchor-w8b1zu",
             "legacyParentAnchorId": "calculus-01-002-anchor-001",
-            "title": "极限运算法则、等价无穷小与高阶无穷小公式：arcsin x",
+            "title": "arcsin x 的等价无穷小",
             "latex": "\\arcsin x\\sim x",
             "sourceBlockIndex": 7,
             "searchAliases": [],
             "context": "当 x\\to0 时：",
+            "displayContext": "当 \\(x\\to0\\) 时：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 6
@@ -854,11 +968,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1yof5kw-4",
             "parentAnchorId": "anchor-w8b1zu",
             "legacyParentAnchorId": "calculus-01-002-anchor-001",
-            "title": "极限运算法则、等价无穷小与高阶无穷小公式：arctan x",
+            "title": "arctan x 的等价无穷小",
             "latex": "\\arctan x\\sim x",
             "sourceBlockIndex": 7,
             "searchAliases": [],
             "context": "当 x\\to0 时：",
+            "displayContext": "当 \\(x\\to0\\) 时：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 7
@@ -867,11 +982,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-en5lzh-1",
             "parentAnchorId": "anchor-w8b1zu",
             "legacyParentAnchorId": "calculus-01-002-anchor-001",
-            "title": "极限运算法则、等价无穷小与高阶无穷小公式：e^x-1",
+            "title": "e^x-1 的等价无穷小",
             "latex": "e^x-1\\sim x",
             "sourceBlockIndex": 8,
             "searchAliases": [],
             "context": "所属知识点：极限运算法则、等价无穷小与高阶无穷小公式。",
+            "displayContext": "当 \\(x\\to0\\) 时：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 8
@@ -880,11 +996,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-en5lzh-2",
             "parentAnchorId": "anchor-w8b1zu",
             "legacyParentAnchorId": "calculus-01-002-anchor-001",
-            "title": "极限运算法则、等价无穷小与高阶无穷小公式：ln(1+x)",
+            "title": "ln(1+x) 的等价无穷小",
             "latex": "\\ln(1+x)\\sim x",
             "sourceBlockIndex": 8,
             "searchAliases": [],
             "context": "所属知识点：极限运算法则、等价无穷小与高阶无穷小公式。",
+            "displayContext": "当 \\(x\\to0\\) 时：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 9
@@ -893,11 +1010,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-en5lzh-3",
             "parentAnchorId": "anchor-w8b1zu",
             "legacyParentAnchorId": "calculus-01-002-anchor-001",
-            "title": "极限运算法则、等价无穷小与高阶无穷小公式：(1+x)^a-1",
+            "title": "(1+x)^a-1 的等价无穷小",
             "latex": "(1+x)^a-1\\sim ax",
             "sourceBlockIndex": 8,
             "searchAliases": [],
             "context": "所属知识点：极限运算法则、等价无穷小与高阶无穷小公式。",
+            "displayContext": "当 \\(x\\to0\\) 时：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 10
@@ -906,11 +1024,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-15hshia-1",
             "parentAnchorId": "anchor-w8b1zu",
             "legacyParentAnchorId": "calculus-01-002-anchor-001",
-            "title": "极限运算法则、等价无穷小与高阶无穷小公式：1-cos x",
+            "title": "1-cos x 的等价无穷小",
             "latex": "1-\\cos x\\sim \\frac{x^2}{2}",
             "sourceBlockIndex": 9,
             "searchAliases": [],
             "context": "所属知识点：极限运算法则、等价无穷小与高阶无穷小公式。",
+            "displayContext": "当 \\(x\\to0\\) 时：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 11
@@ -919,11 +1038,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-15hshia-2",
             "parentAnchorId": "anchor-w8b1zu",
             "legacyParentAnchorId": "calculus-01-002-anchor-001",
-            "title": "极限运算法则、等价无穷小与高阶无穷小公式：a^x-1",
+            "title": "a^x-1 的等价无穷小",
             "latex": "a^x-1\\sim x\\ln a",
             "sourceBlockIndex": 9,
             "searchAliases": [],
             "context": "所属知识点：极限运算法则、等价无穷小与高阶无穷小公式。",
+            "displayContext": "当 \\(x\\to0\\) 时：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 12
@@ -932,11 +1052,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-fem39z-1",
             "parentAnchorId": "anchor-w8b1zu",
             "legacyParentAnchorId": "calculus-01-002-anchor-001",
-            "title": "极限运算法则、等价无穷小与高阶无穷小公式：x-sin x",
+            "title": "x-sin x 的等价无穷小",
             "latex": "x-\\sin x\\sim\\frac{x^3}{6}",
             "sourceBlockIndex": 10,
             "searchAliases": [],
             "context": "高阶常用等价式：",
+            "displayContext": "高阶常用等价式：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 13
@@ -945,11 +1066,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-fem39z-2",
             "parentAnchorId": "anchor-w8b1zu",
             "legacyParentAnchorId": "calculus-01-002-anchor-001",
-            "title": "极限运算法则、等价无穷小与高阶无穷小公式：tan x-x",
+            "title": "tan x-x 的等价无穷小",
             "latex": "\\tan x-x\\sim\\frac{x^3}{3}",
             "sourceBlockIndex": 10,
             "searchAliases": [],
             "context": "高阶常用等价式：",
+            "displayContext": "高阶常用等价式：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 14
@@ -958,11 +1080,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-4t1nrh-1",
             "parentAnchorId": "anchor-w8b1zu",
             "legacyParentAnchorId": "calculus-01-002-anchor-001",
-            "title": "极限运算法则、等价无穷小与高阶无穷小公式：arcsin x-x",
+            "title": "arcsin x-x 的等价无穷小",
             "latex": "\\arcsin x-x\\sim\\frac{x^3}{6}",
             "sourceBlockIndex": 11,
             "searchAliases": [],
             "context": "所属知识点：极限运算法则、等价无穷小与高阶无穷小公式。",
+            "displayContext": "高阶常用等价式：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 15
@@ -971,11 +1094,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-4t1nrh-2",
             "parentAnchorId": "anchor-w8b1zu",
             "legacyParentAnchorId": "calculus-01-002-anchor-001",
-            "title": "极限运算法则、等价无穷小与高阶无穷小公式：x-arctan x",
+            "title": "x-arctan x 的等价无穷小",
             "latex": "x-\\arctan x\\sim\\frac{x^3}{3}",
             "sourceBlockIndex": 11,
             "searchAliases": [],
             "context": "所属知识点：极限运算法则、等价无穷小与高阶无穷小公式。",
+            "displayContext": "高阶常用等价式：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 16
@@ -984,11 +1108,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1058a1k-1",
             "parentAnchorId": "anchor-w8b1zu",
             "legacyParentAnchorId": "calculus-01-002-anchor-001",
-            "title": "极限运算法则、等价无穷小与高阶无穷小公式：x-ln(1+x)",
+            "title": "x-ln(1+x) 的等价无穷小",
             "latex": "x-\\ln(1+x)\\sim\\frac{x^2}{2}",
             "sourceBlockIndex": 12,
             "searchAliases": [],
             "context": "所属知识点：极限运算法则、等价无穷小与高阶无穷小公式。",
+            "displayContext": "高阶常用等价式：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 17
@@ -997,11 +1122,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1058a1k-2",
             "parentAnchorId": "anchor-w8b1zu",
             "legacyParentAnchorId": "calculus-01-002-anchor-001",
-            "title": "极限运算法则、等价无穷小与高阶无穷小公式：ln",
+            "title": "ln 的等价无穷小",
             "latex": "\\ln\\!\\left(x+\\sqrt{1+x^2}\\right)-x\\sim-\\frac{x^3}{6}",
             "sourceBlockIndex": 12,
             "searchAliases": [],
             "context": "所属知识点：极限运算法则、等价无穷小与高阶无穷小公式。",
+            "displayContext": "高阶常用等价式：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 18
@@ -1010,11 +1136,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-18r0zly",
             "parentAnchorId": "anchor-w8b1zu",
             "legacyParentAnchorId": "calculus-01-002-anchor-001",
-            "title": "极限运算法则、等价无穷小与高阶无穷小公式：α",
+            "title": "α 的等价无穷小",
             "latex": "\\alpha\\sim\\beta\n\\Longleftrightarrow \\alpha-\\beta=o(\\alpha)\n\\Longleftrightarrow \\alpha-\\beta=o(\\beta).",
             "sourceBlockIndex": 13,
             "searchAliases": [],
             "context": "等价无穷小的等价判据：",
+            "displayContext": "等价无穷小的等价判据：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 19
@@ -1023,11 +1150,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-ndli7f",
             "parentAnchorId": "anchor-w8b1zu",
             "legacyParentAnchorId": "calculus-01-002-anchor-001",
-            "title": "极限运算法则、等价无穷小与高阶无穷小公式：(1+u)^v-1",
+            "title": "(1+u)^v-1 的等价无穷小",
             "latex": "(1+u)^v-1\\sim uv.",
             "sourceBlockIndex": 19,
             "searchAliases": [],
             "context": "若 \\(u(x)\\to0\\)，则可把上式中的 x 换成 \\(u(x)\\)。更一般地，若 u\\to0、uv\\to0，则",
+            "displayContext": "若 \\(u(x)\\to0\\)，则可把上式中的 \\(x\\) 换成 \\(u(x)\\)。更一般地，若 \\(u\\to0\\)、\\(uv\\to0\\)，则",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 20
@@ -1036,11 +1164,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1hq160m-1",
             "parentAnchorId": "anchor-t8lpq4",
             "legacyParentAnchorId": "calculus-01-002-anchor-002",
-            "title": "常用泰勒展开式（集中速查）：e^x",
+            "title": "指数函数的泰勒展开",
             "latex": "e^x=1+x+\\frac{x^2}{2}+\\frac{x^3}{6}+o(x^3)",
             "sourceBlockIndex": 21,
-            "searchAliases": [],
+            "searchAliases": [
+              "e^x展开",
+              "指数函数麦克劳林展开"
+            ],
             "context": "指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 x\\to0 时，只记到做题所需的阶数：",
+            "displayContext": "指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 \\(x\\to0\\) 时，只记到做题所需的阶数：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 21
@@ -1049,11 +1181,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1hq160m-2",
             "parentAnchorId": "anchor-t8lpq4",
             "legacyParentAnchorId": "calculus-01-002-anchor-002",
-            "title": "常用泰勒展开式（集中速查）：frac11-x",
+            "title": "一减x的倒数的泰勒展开",
             "latex": "\\frac1{1-x}=1+x+x^2+x^3+o(x^3)",
             "sourceBlockIndex": 21,
-            "searchAliases": [],
+            "searchAliases": [
+              "几何级数展开",
+              "1减x倒数展开"
+            ],
             "context": "指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 x\\to0 时，只记到做题所需的阶数：",
+            "displayContext": "指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 \\(x\\to0\\) 时，只记到做题所需的阶数：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 22
@@ -1062,11 +1198,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1hq160m-3",
             "parentAnchorId": "anchor-t8lpq4",
             "legacyParentAnchorId": "calculus-01-002-anchor-002",
-            "title": "常用泰勒展开式（集中速查）：frac11+x",
+            "title": "一加x的倒数的泰勒展开",
             "latex": "\\frac1{1+x}=1-x+x^2-x^3+o(x^3)",
             "sourceBlockIndex": 21,
-            "searchAliases": [],
+            "searchAliases": [
+              "几何级数交错展开",
+              "1加x倒数展开"
+            ],
             "context": "指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 x\\to0 时，只记到做题所需的阶数：",
+            "displayContext": "指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 \\(x\\to0\\) 时，只记到做题所需的阶数：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 23
@@ -1075,11 +1215,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1hq160m-4",
             "parentAnchorId": "anchor-t8lpq4",
             "legacyParentAnchorId": "calculus-01-002-anchor-002",
-            "title": "常用泰勒展开式（集中速查）：ln(1+x)",
+            "title": "自然对数的泰勒展开",
             "latex": "\\ln(1+x)=x-\\frac{x^2}{2}+\\frac{x^3}{3}+o(x^3)",
             "sourceBlockIndex": 21,
-            "searchAliases": [],
+            "searchAliases": [
+              "ln(1+x)展开",
+              "对数函数麦克劳林展开"
+            ],
             "context": "指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 x\\to0 时，只记到做题所需的阶数：",
+            "displayContext": "指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 \\(x\\to0\\) 时，只记到做题所需的阶数：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 24
@@ -1088,11 +1232,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1hq160m-5",
             "parentAnchorId": "anchor-t8lpq4",
             "legacyParentAnchorId": "calculus-01-002-anchor-002",
-            "title": "常用泰勒展开式（集中速查）：sin x",
+            "title": "正弦函数的泰勒展开",
             "latex": "\\sin x=x-\\frac{x^3}{6}+\\frac{x^5}{120}+o(x^5)",
             "sourceBlockIndex": 21,
-            "searchAliases": [],
+            "searchAliases": [
+              "sin x展开",
+              "正弦麦克劳林展开"
+            ],
             "context": "指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 x\\to0 时，只记到做题所需的阶数：",
+            "displayContext": "指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 \\(x\\to0\\) 时，只记到做题所需的阶数：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 25
@@ -1101,11 +1249,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1hq160m-6",
             "parentAnchorId": "anchor-t8lpq4",
             "legacyParentAnchorId": "calculus-01-002-anchor-002",
-            "title": "常用泰勒展开式（集中速查）：cos x",
+            "title": "余弦函数的泰勒展开",
             "latex": "\\cos x=1-\\frac{x^2}{2}+\\frac{x^4}{24}+o(x^4)",
             "sourceBlockIndex": 21,
-            "searchAliases": [],
+            "searchAliases": [
+              "cos x展开",
+              "余弦麦克劳林展开"
+            ],
             "context": "指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 x\\to0 时，只记到做题所需的阶数：",
+            "displayContext": "指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 \\(x\\to0\\) 时，只记到做题所需的阶数：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 26
@@ -1114,11 +1266,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1hq160m-7",
             "parentAnchorId": "anchor-t8lpq4",
             "legacyParentAnchorId": "calculus-01-002-anchor-002",
-            "title": "常用泰勒展开式（集中速查）：(1+x)^a",
+            "title": "一加x的幂的泰勒展开",
             "latex": "(1+x)^a=1+ax+\\frac{a(a-1)}{2}x^2+\\frac{a(a-1)(a-2)}{6}x^3+o(x^3)",
             "sourceBlockIndex": 21,
-            "searchAliases": [],
+            "searchAliases": [
+              "二项式展开",
+              "广义二项式展开"
+            ],
             "context": "指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 x\\to0 时，只记到做题所需的阶数：",
+            "displayContext": "指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 \\(x\\to0\\) 时，只记到做题所需的阶数：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 27
@@ -1127,11 +1283,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1knzfju-1",
             "parentAnchorId": "anchor-t8lpq4",
             "legacyParentAnchorId": "calculus-01-002-anchor-002",
-            "title": "常用泰勒展开式（集中速查）：tan x",
+            "title": "tan x 的泰勒展开",
             "latex": "\\tan x=x+\\frac{x^3}{3}+o(x^3)",
             "sourceBlockIndex": 22,
             "searchAliases": [],
             "context": "补充几个常用三阶式：",
+            "displayContext": "补充几个常用三阶式：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 28
@@ -1140,11 +1297,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1knzfju-2",
             "parentAnchorId": "anchor-t8lpq4",
             "legacyParentAnchorId": "calculus-01-002-anchor-002",
-            "title": "常用泰勒展开式（集中速查）：arcsin x",
+            "title": "arcsin x 的泰勒展开",
             "latex": "\\arcsin x=x+\\frac{x^3}{6}+o(x^3)",
             "sourceBlockIndex": 22,
             "searchAliases": [],
             "context": "补充几个常用三阶式：",
+            "displayContext": "补充几个常用三阶式：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 29
@@ -1153,11 +1311,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1knzfju-3",
             "parentAnchorId": "anchor-t8lpq4",
             "legacyParentAnchorId": "calculus-01-002-anchor-002",
-            "title": "常用泰勒展开式（集中速查）：arctan x",
+            "title": "arctan x 的泰勒展开",
             "latex": "\\arctan x=x-\\frac{x^3}{3}+o(x^3)",
             "sourceBlockIndex": 22,
             "searchAliases": [],
             "context": "补充几个常用三阶式：",
+            "displayContext": "补充几个常用三阶式：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 30
@@ -1166,11 +1325,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1nfa9d9-1",
             "parentAnchorId": "anchor-t8lpq4",
             "legacyParentAnchorId": "calculus-01-002-anchor-002",
-            "title": "常用泰勒展开式（集中速查）：sqrt1+x",
+            "title": "sqrt1+x 的泰勒展开",
             "latex": "\\sqrt{1+x}=1+\\frac{x}{2}-\\frac{x^2}{8}+o(x^2)",
             "sourceBlockIndex": 23,
             "searchAliases": [],
             "context": "所属知识点：常用泰勒展开式（集中速查）。",
+            "displayContext": "补充几个常用三阶式：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 31
@@ -1179,11 +1339,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1nfa9d9-2",
             "parentAnchorId": "anchor-t8lpq4",
             "legacyParentAnchorId": "calculus-01-002-anchor-002",
-            "title": "常用泰勒展开式（集中速查）：ln",
+            "title": "ln 的泰勒展开",
             "latex": "\\ln\\!\\left(x+\\sqrt{1+x^2}\\right)=x-\\frac{x^3}{6}+o(x^3)",
             "sourceBlockIndex": 23,
             "searchAliases": [],
             "context": "所属知识点：常用泰勒展开式（集中速查）。",
+            "displayContext": "补充几个常用三阶式：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 32
@@ -1192,11 +1353,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1cqcqda",
             "parentAnchorId": "anchor-t8lpq4",
             "legacyParentAnchorId": "calculus-01-002-anchor-002",
-            "title": "常用泰勒展开式（集中速查）：f(x)",
+            "title": "泰勒公式的通式",
             "latex": "f(x)=\\sum_{k=0}^{n}\\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k+R_n(x).",
             "sourceBlockIndex": 25,
-            "searchAliases": [],
+            "searchAliases": [
+              "泰勒展开通式",
+              "麦克劳林公式"
+            ],
             "context": "通用公式（x_0=0 时即麦克劳林公式）：",
+            "displayContext": "通用公式（\\(x_0=0\\) 时即麦克劳林公式）：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 33
@@ -1213,6 +1378,7 @@ export const mathChapters: MathChapter[] = [
               "小o余项"
             ],
             "context": "用于局部等价与阶数比较；x 趋于 x₀。",
+            "displayContext": "求等价无穷小时用佩亚诺余项",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 34
@@ -1229,6 +1395,7 @@ export const mathChapters: MathChapter[] = [
               "泰勒误差估计"
             ],
             "context": "f 在相关区间上具有 n+1 阶导数，ξ 位于 x 与 x₀ 之间。",
+            "displayContext": "通用公式（\\(x_0=0\\) 时即麦克劳林公式）：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 35
@@ -1242,6 +1409,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 40,
             "searchAliases": [],
             "context": "分子分母相减严重时，展开到第一个不抵消的项；不必把所有因子展开到同一阶。",
+            "displayContext": "**洛必达法则**　当 \\(\\frac fg\\) 为 \\(\\frac00\\) 型或 \\(\\frac{\\infty}{\\infty}\\) 型，并满足相应可导条件，且导数之比的极限存在或为无穷时：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 36
@@ -1255,6 +1423,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 41,
             "searchAliases": [],
             "context": "幂指型极限统一公式：",
+            "displayContext": "幂指型极限统一公式：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 37
@@ -1268,6 +1437,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 45,
             "searchAliases": [],
             "context": "特别地，若 \\(u(x)\\to0\\)、\\(v(x)\\to\\infty\\)、\\(u(x)v(x)\\to A\\)，则",
+            "displayContext": "特别地，若 \\(u(x)\\to0\\)、\\(v(x)\\to\\infty\\)、\\(u(x)v(x)\\to A\\)，则",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 38
@@ -1281,6 +1451,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 46,
             "searchAliases": [],
             "context": "两个重要极限：",
+            "displayContext": "两个重要极限：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 39
@@ -1294,6 +1465,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 46,
             "searchAliases": [],
             "context": "两个重要极限：",
+            "displayContext": "两个重要极限：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 40
@@ -1307,6 +1479,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 47,
             "searchAliases": [],
             "context": "以及等价形式",
+            "displayContext": "以及等价形式",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 41
@@ -1320,6 +1493,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 47,
             "searchAliases": [],
             "context": "以及等价形式",
+            "displayContext": "以及等价形式",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 42
@@ -1333,6 +1507,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 48,
             "searchAliases": [],
             "context": "所属知识点：两个重要极限、数列极限、黎曼和与递推数列。",
+            "displayContext": "以及等价形式",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 43
@@ -1346,6 +1521,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 50,
             "searchAliases": [],
             "context": "若 a_1,\\ldots,a_m>0，则",
+            "displayContext": "若 \\(a_1,\\ldots,a_m>0\\)，则",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 44
@@ -1359,6 +1535,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 52,
             "searchAliases": [],
             "context": "若 a_0b_0\\ne0，则",
+            "displayContext": "若 \\(a_0b_0\\ne0\\)，则",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 45
@@ -1372,6 +1549,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 53,
             "searchAliases": [],
             "context": "最后一种情形的符号由最高次项决定。",
+            "displayContext": "最后一种情形的符号由最高次项决定。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 46
@@ -1385,6 +1563,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 59,
             "searchAliases": [],
             "context": "所属知识点：极限存在、左右极限、局部有界性、保号性与保序性。",
+            "displayContext": "所属知识点：极限存在、左右极限、局部有界性、保号性与保序性。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 47
@@ -1398,6 +1577,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 63,
             "searchAliases": [],
             "context": "有限极限存在时，函数在该点的某个去心邻域内有界；若 A>0，则该邻域内 \\(f(x)>0\\)。若附近恒有 \\(f(x)\\le g(x)\\)，且两边极限都存在，则",
+            "displayContext": "有限极限存在时，函数在该点的某个去心邻域内有界；若 \\(A>0\\)，则该邻域内 \\(f(x)>0\\)。若附近恒有 \\(f(x)\\le g(x)\\)，且两边极限都存在，则",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 48
@@ -1411,6 +1591,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 64,
             "searchAliases": [],
             "context": "所属知识点：夹逼准则、无穷小乘有界量与递推数列压缩估计。",
+            "displayContext": "所属知识点：夹逼准则、无穷小乘有界量与递推数列压缩估计。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 49
@@ -1424,6 +1605,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 65,
             "searchAliases": [],
             "context": "所属知识点：夹逼准则、无穷小乘有界量与递推数列压缩估计。",
+            "displayContext": "所属知识点：夹逼准则、无穷小乘有界量与递推数列压缩估计。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 50
@@ -1437,6 +1619,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 66,
             "searchAliases": [],
             "context": "若递推数列在一个不变区间内满足",
+            "displayContext": "若递推数列在一个不变区间内满足",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 51
@@ -1450,6 +1633,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 67,
             "searchAliases": [],
             "context": "所属知识点：夹逼准则、无穷小乘有界量与递推数列压缩估计。",
+            "displayContext": "则",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 52
@@ -1463,6 +1647,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 68,
             "searchAliases": [],
             "context": "各因子为正时，乘积先取对数：",
+            "displayContext": "各因子为正时，乘积先取对数：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 53
@@ -1476,6 +1661,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 69,
             "searchAliases": [],
             "context": "常用望远镜乘积：",
+            "displayContext": "常用望远镜乘积：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 54
@@ -1489,6 +1675,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 70,
             "searchAliases": [],
             "context": "所属知识点：无穷小阶数、等价判据与积分等价。",
+            "displayContext": "若",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 55
@@ -1502,6 +1689,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 72,
             "searchAliases": [],
             "context": "若 \\(f(x)\\sim g(x)\\)、二者在去心邻域内同号且积分存在，则在相应端点附近",
+            "displayContext": "若 \\(f(x)\\sim g(x)\\)、二者在去心邻域内同号且积分存在，则在相应端点附近",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 56
@@ -1515,6 +1703,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 78,
             "searchAliases": [],
             "context": "若 \\(f(t)\\sim c t^m\\ (t\\to0^+)\\)、\\(\\varphi(x)\\sim d x^n\\ (x\\to0^+)\\)，其中",
+            "displayContext": "若 \\(f(t)\\sim c t^m\\ (t\\to0^+)\\)、\\(\\varphi(x)\\sim d x^n\\ (x\\to0^+)\\)，其中\n\\(c\\ne0\\)、\\(d>0\\)、\\(m,n\\) 为非负整数，则",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 57
@@ -1528,6 +1717,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 79,
             "searchAliases": [],
             "context": "所属知识点：含参数极限、导数定义型极限与三类渐近线。",
+            "displayContext": "所属知识点：含参数极限、导数定义型极限与三类渐近线。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 58
@@ -1541,6 +1731,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 80,
             "searchAliases": [],
             "context": "所属知识点：含参数极限、导数定义型极限与三类渐近线。",
+            "displayContext": "所属知识点：含参数极限、导数定义型极限与三类渐近线。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 59
@@ -1554,6 +1745,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 81,
             "searchAliases": [],
             "context": "所属知识点：含参数极限、导数定义型极限与三类渐近线。",
+            "displayContext": "所属知识点：含参数极限、导数定义型极限与三类渐近线。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 60
@@ -1567,6 +1759,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 81,
             "searchAliases": [],
             "context": "所属知识点：含参数极限、导数定义型极限与三类渐近线。",
+            "displayContext": "所属知识点：含参数极限、导数定义型极限与三类渐近线。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 61
@@ -1580,6 +1773,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 82,
             "searchAliases": [],
             "context": "含参数极限存在时，先让左右极限相等，再排除分母为零或表达式无意义的参数。极限中出现",
+            "displayContext": "含参数极限存在时，先让左右极限相等，再排除分母为零或表达式无意义的参数。极限中出现",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 62
@@ -1598,14 +1792,16 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "calculus-01-003-anchor-001",
             "title": "函数连续判定、闭区间连续函数性质与零点定理",
             "searchText": "函数连续判定、闭区间连续函数性质与零点定理 f 在 x 0 连续 x x 0^- f(x)= x x 0^+ f(x)=f(x 0). 连续函数的四则运算和复合仍连续；初等函数在其定义区间内连续。因此在连续点可直接把极限号换成函数值。 闭区间上的连续函数同时满足：有界性、最大最小值定理、介值定理。特别地，若 f C[a,b], f(a)f(b)<0, 则至少存在一个 (a,b)，使 f( )=0。",
-            "summary": "f 在 x 0 连续 x x 0^- f(x)= x x 0^+ f(x)=f(x 0). 连续函数的四则运算和复合仍连续；初等函数在其定义区间内连续。因此在连续点可直接把极限号换成函数值。 闭区间上的连续函数同时满足：有界性、最大最小值定理、介值定理。特…"
+            "summary": "f 在 x 0 连续 x x 0^- f(x)= x x 0^+ f(x)=f(x 0). 连续函数的四则运算和复合仍连续；初等函数在其定义区间内连续。因此在连续点可直接把极限号换成函数值。 闭区间上的连续函数同时满足：有界性、最大最小值定理、介值定理。特…",
+            "displaySummary": "连续函数的四则运算和复合仍连续；初等函数在其定义区间内连续。因此在连续点可直接把极限号换成函数值。"
           },
           {
             "id": "anchor-1hhdk3",
             "legacyId": "calculus-01-003-anchor-002",
             "title": "第一类与第二类间断点分类",
             "searchText": "第一类与第二类间断点分类 左右极限存在且相等，但不等于函数值：可去间断点。 左右极限存在但不相等：跳跃间断点。 至少一个单侧极限为无穷：无穷间断点。 至少一个单侧极限不存在且不是无穷：振荡间断点。 分段函数定参数，固定顺序是“左极限＝右极限＝函数值”。",
-            "summary": "左右极限存在且相等，但不等于函数值：可去间断点。 左右极限存在但不相等：跳跃间断点。 至少一个单侧极限为无穷：无穷间断点。 至少一个单侧极限不存在且不是无穷：振荡间断点。 分段函数定参数，固定顺序是“左极限＝右极限＝函数值”。"
+            "summary": "左右极限存在且相等，但不等于函数值：可去间断点。 左右极限存在但不相等：跳跃间断点。 至少一个单侧极限为无穷：无穷间断点。 至少一个单侧极限不存在且不是无穷：振荡间断点。 分段函数定参数，固定顺序是“左极限＝右极限＝函数值”。",
+            "displaySummary": "- 左右极限存在且相等，但不等于函数值：可去间断点。\n- 左右极限存在但不相等：跳跃间断点。\n- 至少一个单侧极限为无穷：无穷间断点。\n- 至少一个单侧极限不存在且不是无穷：振荡间断点。"
           }
         ],
         "formulas": [
@@ -1618,6 +1814,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 0,
             "searchAliases": [],
             "context": "所属知识点：函数连续判定、闭区间连续函数性质与零点定理。",
+            "displayContext": "所属知识点：函数连续判定、闭区间连续函数性质与零点定理。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-003",
             "order": 0
@@ -1631,6 +1828,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 1,
             "searchAliases": [],
             "context": "闭区间上的连续函数同时满足：有界性、最大最小值定理、介值定理。特别地，若",
+            "displayContext": "闭区间上的连续函数同时满足：有界性、最大最小值定理、介值定理。特别地，若",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-003",
             "order": 1
@@ -1657,42 +1855,48 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "calculus-02-001-anchor-001",
             "title": "可导、连续、可微与左右导数的关系",
             "searchText": "可导、连续、可微与左右导数的关系 f 在 x 0 可导 ⇒ f 在 x 0 连续, 反过来一般不成立。可微与可导在一元函数中等价，且 dy=f'(x)\\,dx. 微分运算法则与导数运算法则一致： d(u v)=du dv, d(uv)=u\\,dv+v\\,du, d\\!≤ft( uv )= v\\,du-u\\,dv v^2 . 函数在一点可导的必要条件是左右导数都存在且相等： f' -(x 0)=f' +(x 0)=f'(x 0).",
-            "summary": "f 在 x 0 可导 ⇒ f 在 x 0 连续, 反过来一般不成立。可微与可导在一元函数中等价，且 dy=f'(x)\\,dx. 微分运算法则与导数运算法则一致： d(u v)=du dv, d(uv)=u\\,dv+v\\,du, d\\!≤ft( uv )= …"
+            "summary": "f 在 x 0 可导 ⇒ f 在 x 0 连续, 反过来一般不成立。可微与可导在一元函数中等价，且 dy=f'(x)\\,dx. 微分运算法则与导数运算法则一致： d(u v)=du dv, d(uv)=u\\,dv+v\\,du, d\\!≤ft( uv )= …",
+            "displaySummary": "反过来一般不成立。可微与可导在一元函数中等价，且"
           },
           {
             "id": "anchor-11rqxyq",
             "legacyId": "calculus-02-001-anchor-002",
             "title": "导数定义型极限、单侧导数与绝对值函数可导判定",
             "searchText": "导数定义型极限、单侧导数与绝对值函数可导判定 f'(x 0)= h 0 f(x 0+h)-f(x 0) h. 分段点或绝对值点必须分别算左导数、右导数；二者存在且相等才可导。若 f(x 0)=0，则 f(x) 在 x 0 可导的常用判定是 f'(x 0)=0。",
-            "summary": "f'(x 0)= h 0 f(x 0+h)-f(x 0) h. 分段点或绝对值点必须分别算左导数、右导数；二者存在且相等才可导。若 f(x 0)=0，则 f(x) 在 x 0 可导的常用判定是 f'(x 0)=0。"
+            "summary": "f'(x 0)= h 0 f(x 0+h)-f(x 0) h. 分段点或绝对值点必须分别算左导数、右导数；二者存在且相等才可导。若 f(x 0)=0，则 f(x) 在 x 0 可导的常用判定是 f'(x 0)=0。",
+            "displaySummary": "分段点或绝对值点必须分别算左导数、右导数；二者存在且相等才可导。若 \\(f(x_0)=0\\)，则 \\(|f(x)|\\) 在 \\(x_0\\) 可导的常用判定是 <!-- formula {\"id\":\"calculus-absolute-value-differentiability-zero\",\"title\":\"绝对值复合函数在零点的可导判定\",\"aliases\":[\"绝对值可导\",\"零点可导\"],\"context\":\"f 在 x₀ 可导且 f(x₀)=0 时，|f(x)| 在 x₀ 可导当且仅当 f′(x₀)=0。\"} -->\\(f'(x_0)=0\\)。"
           },
           {
             "id": "anchor-8c1dh1",
             "legacyId": "calculus-02-001-anchor-003",
             "title": "含绝对值函数的最高可导阶数",
             "searchText": "含绝对值函数的最高可导阶数 判断含 x-x 0 ^a 的最高可导阶数时，先分别写出两侧表达式，再逐阶比较左右导数。不能只看形式上的幂次。",
-            "summary": "判断含 x-x 0 ^a 的最高可导阶数时，先分别写出两侧表达式，再逐阶比较左右导数。不能只看形式上的幂次。"
+            "summary": "判断含 x-x 0 ^a 的最高可导阶数时，先分别写出两侧表达式，再逐阶比较左右导数。不能只看形式上的幂次。",
+            "displaySummary": "判断含 \\(|x-x_0|^a\\) 的最高可导阶数时，先分别写出两侧表达式，再逐阶比较左右导数。不能只看形式上的幂次。"
           },
           {
             "id": "anchor-115q6i",
             "legacyId": "calculus-02-001-anchor-004",
             "title": "振荡型分段函数连续、可导与导函数连续",
             "searchText": "振荡型分段函数连续、可导与导函数连续 设 , 为正整数， f(x)= cases x^ 1 x^ ,&x≠0,\\\\ 0,&x=0. cases 则在 x=0 处： 0 时连续； 1 时可导； +1 时导函数连续。 若 在 x=a 连续，则 (x) x-a 在 x=a 可导 (a)=0.",
-            "summary": "设 , 为正整数， f(x)= cases x^ 1 x^ ,&x≠0,\\\\ 0,&x=0. cases 则在 x=0 处： 0 时连续； 1 时可导； +1 时导函数连续。 若 在 x=a 连续，则 (x) x-a 在 x=a 可导 (a)=0."
+            "summary": "设 , 为正整数， f(x)= cases x^ 1 x^ ,&x≠0,\\\\ 0,&x=0. cases 则在 x=0 处： 0 时连续； 1 时可导； +1 时导函数连续。 若 在 x=a 连续，则 (x) x-a 在 x=a 可导 (a)=0.",
+            "displaySummary": "设 \\(\\alpha,\\beta\\) 为正整数，"
           },
           {
             "id": "anchor-15hqnun",
             "legacyId": "calculus-02-001-anchor-005",
             "title": "相关变化率与链式法则",
             "searchText": "相关变化率与链式法则 若变量都随时间 t 变化，先写约束 F(x,y)=0，再对 t 求导： F x dx dt +F y dy dt =0. 若 y=f(x)、x=x(t)，则 dy dt =f'(x) dx dt .",
-            "summary": "若变量都随时间 t 变化，先写约束 F(x,y)=0，再对 t 求导： F x dx dt +F y dy dt =0. 若 y=f(x)、x=x(t)，则 dy dt =f'(x) dx dt ."
+            "summary": "若变量都随时间 t 变化，先写约束 F(x,y)=0，再对 t 求导： F x dx dt +F y dy dt =0. 若 y=f(x)、x=x(t)，则 dy dt =f'(x) dx dt .",
+            "displaySummary": "若变量都随时间 \\(t\\) 变化，先写约束 \\(F(x,y)=0\\)，再对 \\(t\\) 求导："
           },
           {
             "id": "anchor-17lpmco",
             "legacyId": "calculus-02-001-anchor-006",
             "title": "导函数介值性与达布定理",
             "searchText": "导函数介值性与达布定理 导函数不一定连续，但具有介值性：若 f 在 [a,b] 上可导，f'(a)< <f'(b) 或 f'(b)< <f'(a)，则存在 (a,b)，使 f'( )= . 因此导函数不能发生跳跃间断。",
-            "summary": "导函数不一定连续，但具有介值性：若 f 在 [a,b] 上可导，f'(a)< <f'(b) 或 f'(b)< <f'(a)，则存在 (a,b)，使 f'( )= . 因此导函数不能发生跳跃间断。"
+            "summary": "导函数不一定连续，但具有介值性：若 f 在 [a,b] 上可导，f'(a)< <f'(b) 或 f'(b)< <f'(a)，则存在 (a,b)，使 f'( )= . 因此导函数不能发生跳跃间断。",
+            "displaySummary": "导函数不一定连续，但具有介值性：若 \\(f\\) 在 \\([a,b]\\) 上可导，\\(f'(a)<\\mu<f'(b)\\) 或 \\(f'(b)<\\mu<f'(a)\\)，则存在 \\(\\xi\\in(a,b)\\)，使"
           }
         ],
         "formulas": [
@@ -1705,6 +1909,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 0,
             "searchAliases": [],
             "context": "所属知识点：可导、连续、可微与左右导数的关系。",
+            "displayContext": "所属知识点：可导、连续、可微与左右导数的关系。",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-001",
             "order": 0
@@ -1718,6 +1923,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 1,
             "searchAliases": [],
             "context": "反过来一般不成立。可微与可导在一元函数中等价，且",
+            "displayContext": "反过来一般不成立。可微与可导在一元函数中等价，且",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-001",
             "order": 1
@@ -1731,6 +1937,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 2,
             "searchAliases": [],
             "context": "微分运算法则与导数运算法则一致：",
+            "displayContext": "微分运算法则与导数运算法则一致：",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-001",
             "order": 2
@@ -1744,6 +1951,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 2,
             "searchAliases": [],
             "context": "微分运算法则与导数运算法则一致：",
+            "displayContext": "微分运算法则与导数运算法则一致：",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-001",
             "order": 3
@@ -1757,6 +1965,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 2,
             "searchAliases": [],
             "context": "微分运算法则与导数运算法则一致：",
+            "displayContext": "微分运算法则与导数运算法则一致：",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-001",
             "order": 4
@@ -1770,6 +1979,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 3,
             "searchAliases": [],
             "context": "函数在一点可导的必要条件是左右导数都存在且相等：",
+            "displayContext": "函数在一点可导的必要条件是左右导数都存在且相等：",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-001",
             "order": 5
@@ -1783,6 +1993,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 4,
             "searchAliases": [],
             "context": "所属知识点：导数定义型极限、单侧导数与绝对值函数可导判定。",
+            "displayContext": "所属知识点：导数定义型极限、单侧导数与绝对值函数可导判定。",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-001",
             "order": 6
@@ -1799,6 +2010,7 @@ export const mathChapters: MathChapter[] = [
               "零点可导"
             ],
             "context": "f 在 x₀ 可导且 f(x₀)=0 时，|f(x)| 在 x₀ 可导当且仅当 f′(x₀)=0。",
+            "displayContext": "分段点或绝对值点必须分别算左导数、右导数；二者存在且相等才可导。若 \\(f(x_0)=0\\)，则 \\(|f(x)|\\) 在 \\(x_0\\) 可导的常用判定是",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-001",
             "order": 7
@@ -1812,6 +2024,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 11,
             "searchAliases": [],
             "context": "设 \\alpha,\\beta 为正整数，",
+            "displayContext": "设 \\(\\alpha,\\beta\\) 为正整数，",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-001",
             "order": 8
@@ -1825,6 +2038,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 18,
             "searchAliases": [],
             "context": "若 \\varphi 在 x=a 连续，则",
+            "displayContext": "若 \\(\\varphi\\) 在 \\(x=a\\) 连续，则",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-001",
             "order": 9
@@ -1838,6 +2052,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 22,
             "searchAliases": [],
             "context": "若变量都随时间 t 变化，先写约束 \\(F(x,y)=0\\)，再对 t 求导：",
+            "displayContext": "若变量都随时间 \\(t\\) 变化，先写约束 \\(F(x,y)=0\\)，再对 \\(t\\) 求导：",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-001",
             "order": 10
@@ -1851,6 +2066,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 25,
             "searchAliases": [],
             "context": "若 \\(y=f(x)\\)、\\(x=x(t)\\)，则",
+            "displayContext": "若 \\(y=f(x)\\)、\\(x=x(t)\\)，则",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-001",
             "order": 11
@@ -1864,6 +2080,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 31,
             "searchAliases": [],
             "context": "导函数不一定连续，但具有介值性：若 f 在 [a,b] 上可导，\\(f'(a)<\\mu<f'(b)\\) 或 \\(f'(b)<\\mu<f'(a)\\)，则存在 \\(\\xi\\in(a,b)\\)，使",
+            "displayContext": "导函数不一定连续，但具有介值性：若 \\(f\\) 在 \\([a,b]\\) 上可导，\\(f'(a)<\\mu<f'(b)\\) 或 \\(f'(b)<\\mu<f'(a)\\)，则存在 \\(\\xi\\in(a,b)\\)，使",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-001",
             "order": 12
@@ -1882,7 +2099,8 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "calculus-02-002-anchor-001",
             "title": "导数公式（集中速查）",
             "searchText": "导数公式（集中速查） (x^a)'=ax^ a-1 , (e^x)'=e^x, (a^x)'=a^x a, ( x)'= 1x, ( x)'= x, ( x)'=- x, ( x)'= ^2x, ( x)'=- ^2x, ( x)'= 1 1-x^2 , ( x)'=- 1 1-x^2 , ( x)'= 1 1+x^2 , ( arccot x)'=- 1 1+x^2 . ( x)'= x x, ( x)'=- x x. ( a x)'= 1 x a (a 0,a≠1). (uv)'=u'v+uv', ≤ft( uv )'= u'v-uv' v^2 , [f(g(x))]'=f'(g(x))g'(x). 隐函数求导 若 F(x,y)=0，则 y'=- F x F y (F y≠0). 二阶导数为 y''=- F xx +2F xy y'+F yy (y')^2 F y (F y≠0). 参数方程求导 若 x=x(t),y=y(t)，则 dy dx = y'(t) x'(t) (x'(t)≠0), d^2y dx^2 = x'(t)y''(t)-y'(t)x''(t) [x'(t)]^3 . 更高阶导数继续按 d dx = 1 x'(t) d dt 逐阶计算，不能直接把 y(t) 对 t 的高阶导数除以 x(t) 对 t 的高阶导数。 反函数求导 (f^ -1 )'(y 0)= 1 f'(x 0) , y 0=f(x 0). d^2x dy^2 =- f''(x) [f'(x)]^3 (f'(x)≠0). 幂指函数求导 幂指函数 y=u(x)^ v(x) 先取对数： y' y=v' u+v u' u. 极坐标曲线求导 若曲线由 r=r( ) 给出，即 x=r( ) , y=r( ) , 则 dy dx = r'( ) +r( ) r'( ) -r( ) , d^2y dx^2 = d d \\!≤ft( dy dx ) r'( ) -r( ) . 高阶导数 (uv)^ (n) = k=0 ^n nk u^ (k) v^ (n-k) . 常用高阶导数公式一览 (e^ ax+b )^ (n) =a^ne^ ax+b , (c^x)^ (n) =c^x( c)^n, (xe^x)^ (n) =(x+n)e^x. [ (ax+b)]^ (n) =a^n \\!≤ft(ax+b+ n 2 ), [ (ax+b)]^ (n) =a^n \\!≤ft(ax+b+ n 2 ), ≤ft( 1 ax+b )^ (n) = (-1)^n n!a^n (ax+b)^ n+1 , [ (ax+b)]^ (n) = (-1)^ n-1 (n-1)!a^n (ax+b)^n (n≥1). 对正整数 m： (x^m)^ (n) = cases m! (m-n)! x^ m-n ,&0≤ n≤ m,\\\\[2mm] 0,&n m. cases 有理函数优先拆成简单分式；周期型导数找四阶循环；在一点求高阶导数，可用麦克劳林展开读取系数：若 f(x)= a nx^n，则 f^ (n) (0)=n!a n。",
-            "summary": "(x^a)'=ax^ a-1 , (e^x)'=e^x, (a^x)'=a^x a, ( x)'= 1x, ( x)'= x, ( x)'=- x, ( x)'= ^2x, ( x)'=- ^2x, ( x)'= 1 1-x^2 , ( x)'=- 1 1…"
+            "summary": "(x^a)'=ax^ a-1 , (e^x)'=e^x, (a^x)'=a^x a, ( x)'= 1x, ( x)'= x, ( x)'=- x, ( x)'= ^2x, ( x)'=- ^2x, ( x)'= 1 1-x^2 , ( x)'=- 1 1…",
+            "displaySummary": "**隐函数求导**"
           }
         ],
         "formulas": [
@@ -1890,11 +2108,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-12isv29-1",
             "parentAnchorId": "anchor-fz2y9u",
             "legacyParentAnchorId": "calculus-02-002-anchor-001",
-            "title": "导数公式（集中速查）：(x^a)'",
+            "title": "幂函数的导数",
             "latex": "(x^a)'=ax^{a-1}",
             "sourceBlockIndex": 0,
-            "searchAliases": [],
+            "searchAliases": [
+              "幂函数求导",
+              "x的a次方求导"
+            ],
             "context": "所属知识点：导数公式（集中速查）。",
+            "displayContext": "所属知识点：导数公式（集中速查）。",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-002",
             "order": 0
@@ -1903,11 +2125,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-12isv29-2",
             "parentAnchorId": "anchor-fz2y9u",
             "legacyParentAnchorId": "calculus-02-002-anchor-001",
-            "title": "导数公式（集中速查）：(e^x)'",
+            "title": "自然指数函数的导数",
             "latex": "(e^x)'=e^x",
             "sourceBlockIndex": 0,
-            "searchAliases": [],
+            "searchAliases": [
+              "e^x求导",
+              "指数函数求导"
+            ],
             "context": "所属知识点：导数公式（集中速查）。",
+            "displayContext": "所属知识点：导数公式（集中速查）。",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-002",
             "order": 1
@@ -1916,11 +2142,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-12isv29-3",
             "parentAnchorId": "anchor-fz2y9u",
             "legacyParentAnchorId": "calculus-02-002-anchor-001",
-            "title": "导数公式（集中速查）：(a^x)'",
+            "title": "a^x 的导数",
             "latex": "(a^x)'=a^x\\ln a",
             "sourceBlockIndex": 0,
             "searchAliases": [],
             "context": "所属知识点：导数公式（集中速查）。",
+            "displayContext": "所属知识点：导数公式（集中速查）。",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-002",
             "order": 2
@@ -1929,11 +2156,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1e3ytdn-1",
             "parentAnchorId": "anchor-fz2y9u",
             "legacyParentAnchorId": "calculus-02-002-anchor-001",
-            "title": "导数公式（集中速查）：(ln x)'",
+            "title": "自然对数函数的导数",
             "latex": "(\\ln x)'=\\frac1x",
             "sourceBlockIndex": 1,
-            "searchAliases": [],
+            "searchAliases": [
+              "ln x求导",
+              "对数函数求导"
+            ],
             "context": "所属知识点：导数公式（集中速查）。",
+            "displayContext": "所属知识点：导数公式（集中速查）。",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-002",
             "order": 3
@@ -1942,11 +2173,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1e3ytdn-2",
             "parentAnchorId": "anchor-fz2y9u",
             "legacyParentAnchorId": "calculus-02-002-anchor-001",
-            "title": "导数公式（集中速查）：(sin x)'",
+            "title": "正弦函数的导数",
             "latex": "(\\sin x)'=\\cos x",
             "sourceBlockIndex": 1,
-            "searchAliases": [],
+            "searchAliases": [
+              "sin x求导",
+              "正弦求导"
+            ],
             "context": "所属知识点：导数公式（集中速查）。",
+            "displayContext": "所属知识点：导数公式（集中速查）。",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-002",
             "order": 4
@@ -1955,11 +2190,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1e3ytdn-3",
             "parentAnchorId": "anchor-fz2y9u",
             "legacyParentAnchorId": "calculus-02-002-anchor-001",
-            "title": "导数公式（集中速查）：(cos x)'",
+            "title": "余弦函数的导数",
             "latex": "(\\cos x)'=-\\sin x",
             "sourceBlockIndex": 1,
-            "searchAliases": [],
+            "searchAliases": [
+              "cos x求导",
+              "余弦求导"
+            ],
             "context": "所属知识点：导数公式（集中速查）。",
+            "displayContext": "所属知识点：导数公式（集中速查）。",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-002",
             "order": 5
@@ -1968,11 +2207,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-x5ar19-1",
             "parentAnchorId": "anchor-fz2y9u",
             "legacyParentAnchorId": "calculus-02-002-anchor-001",
-            "title": "导数公式（集中速查）：(tan x)'",
+            "title": "tan x 的导数",
             "latex": "(\\tan x)'=\\sec^2x",
             "sourceBlockIndex": 2,
             "searchAliases": [],
             "context": "所属知识点：导数公式（集中速查）。",
+            "displayContext": "所属知识点：导数公式（集中速查）。",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-002",
             "order": 6
@@ -1981,11 +2221,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-x5ar19-2",
             "parentAnchorId": "anchor-fz2y9u",
             "legacyParentAnchorId": "calculus-02-002-anchor-001",
-            "title": "导数公式（集中速查）：(cot x)'",
+            "title": "cot x 的导数",
             "latex": "(\\cot x)'=-\\csc^2x",
             "sourceBlockIndex": 2,
             "searchAliases": [],
             "context": "所属知识点：导数公式（集中速查）。",
+            "displayContext": "所属知识点：导数公式（集中速查）。",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-002",
             "order": 7
@@ -1994,11 +2235,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-iaaigw-1",
             "parentAnchorId": "anchor-fz2y9u",
             "legacyParentAnchorId": "calculus-02-002-anchor-001",
-            "title": "导数公式（集中速查）：(arcsin x)'",
+            "title": "arcsin x 的导数",
             "latex": "(\\arcsin x)'=\\frac1{\\sqrt{1-x^2}}",
             "sourceBlockIndex": 3,
             "searchAliases": [],
             "context": "所属知识点：导数公式（集中速查）。",
+            "displayContext": "所属知识点：导数公式（集中速查）。",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-002",
             "order": 8
@@ -2007,11 +2249,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-iaaigw-2",
             "parentAnchorId": "anchor-fz2y9u",
             "legacyParentAnchorId": "calculus-02-002-anchor-001",
-            "title": "导数公式（集中速查）：(arccos x)'",
+            "title": "arccos x 的导数",
             "latex": "(\\arccos x)'=-\\frac1{\\sqrt{1-x^2}}",
             "sourceBlockIndex": 3,
             "searchAliases": [],
             "context": "所属知识点：导数公式（集中速查）。",
+            "displayContext": "所属知识点：导数公式（集中速查）。",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-002",
             "order": 9
@@ -2020,11 +2263,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-iaaigw-3",
             "parentAnchorId": "anchor-fz2y9u",
             "legacyParentAnchorId": "calculus-02-002-anchor-001",
-            "title": "导数公式（集中速查）：(arctan x)'",
+            "title": "arctan x 的导数",
             "latex": "(\\arctan x)'=\\frac1{1+x^2}",
             "sourceBlockIndex": 3,
             "searchAliases": [],
             "context": "所属知识点：导数公式（集中速查）。",
+            "displayContext": "所属知识点：导数公式（集中速查）。",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-002",
             "order": 10
@@ -2033,11 +2277,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-iaaigw-4",
             "parentAnchorId": "anchor-fz2y9u",
             "legacyParentAnchorId": "calculus-02-002-anchor-001",
-            "title": "导数公式（集中速查）：(arccotx)'",
+            "title": "arccotx 的导数",
             "latex": "(\\operatorname{arccot}x)'=-\\frac1{1+x^2}",
             "sourceBlockIndex": 3,
             "searchAliases": [],
             "context": "所属知识点：导数公式（集中速查）。",
+            "displayContext": "所属知识点：导数公式（集中速查）。",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-002",
             "order": 11
@@ -2046,11 +2291,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1tj2rh6-1",
             "parentAnchorId": "anchor-fz2y9u",
             "legacyParentAnchorId": "calculus-02-002-anchor-001",
-            "title": "导数公式（集中速查）：(sec x)'",
+            "title": "sec x 的导数",
             "latex": "(\\sec x)'=\\sec x\\tan x",
             "sourceBlockIndex": 4,
             "searchAliases": [],
             "context": "所属知识点：导数公式（集中速查）。",
+            "displayContext": "所属知识点：导数公式（集中速查）。",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-002",
             "order": 12
@@ -2059,11 +2305,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1tj2rh6-2",
             "parentAnchorId": "anchor-fz2y9u",
             "legacyParentAnchorId": "calculus-02-002-anchor-001",
-            "title": "导数公式（集中速查）：(csc x)'",
+            "title": "csc x 的导数",
             "latex": "(\\csc x)'=-\\csc x\\cot x",
             "sourceBlockIndex": 4,
             "searchAliases": [],
             "context": "所属知识点：导数公式（集中速查）。",
+            "displayContext": "所属知识点：导数公式（集中速查）。",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-002",
             "order": 13
@@ -2072,11 +2319,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1kib2tx",
             "parentAnchorId": "anchor-fz2y9u",
             "legacyParentAnchorId": "calculus-02-002-anchor-001",
-            "title": "导数公式（集中速查）：(log_a x)'",
+            "title": "log_a x 的导数",
             "latex": "(\\log_a x)'=\\frac1{x\\ln a}\\quad(a>0,a\\ne1).",
             "sourceBlockIndex": 5,
             "searchAliases": [],
             "context": "所属知识点：导数公式（集中速查）。",
+            "displayContext": "所属知识点：导数公式（集中速查）。",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-002",
             "order": 14
@@ -2085,11 +2333,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1qzsugn-1",
             "parentAnchorId": "anchor-fz2y9u",
             "legacyParentAnchorId": "calculus-02-002-anchor-001",
-            "title": "导数公式（集中速查）：(uv)'",
+            "title": "uv 的导数",
             "latex": "(uv)'=u'v+uv'",
             "sourceBlockIndex": 6,
             "searchAliases": [],
             "context": "所属知识点：导数公式（集中速查）。",
+            "displayContext": "所属知识点：导数公式（集中速查）。",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-002",
             "order": 15
@@ -2103,6 +2352,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 6,
             "searchAliases": [],
             "context": "所属知识点：导数公式（集中速查）。",
+            "displayContext": "所属知识点：导数公式（集中速查）。",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-002",
             "order": 16
@@ -2111,11 +2361,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1qzsugn-3",
             "parentAnchorId": "anchor-fz2y9u",
             "legacyParentAnchorId": "calculus-02-002-anchor-001",
-            "title": "导数公式（集中速查）：[f(g(x))]'",
+            "title": "复合函数的链式求导法则",
             "latex": "[f(g(x))]'=f'(g(x))g'(x)",
             "sourceBlockIndex": 6,
-            "searchAliases": [],
+            "searchAliases": [
+              "链式法则",
+              "复合函数求导"
+            ],
             "context": "所属知识点：导数公式（集中速查）。",
+            "displayContext": "所属知识点：导数公式（集中速查）。",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-002",
             "order": 17
@@ -2124,11 +2378,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-apc5ru-1",
             "parentAnchorId": "anchor-fz2y9u",
             "legacyParentAnchorId": "calculus-02-002-anchor-001",
-            "title": "导数公式（集中速查）：y'",
+            "title": "隐函数求一阶导数",
             "latex": "y'=-\\frac{F_x}{F_y}\\quad(F_y\\ne0).",
             "sourceBlockIndex": 8,
-            "searchAliases": [],
+            "searchAliases": [
+              "隐函数求导",
+              "隐函数一阶导"
+            ],
             "context": "若 \\(F(x,y)=0\\)，则",
+            "displayContext": "若 \\(F(x,y)=0\\)，则",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-002",
             "order": 18
@@ -2137,11 +2395,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-3qqfuh-1",
             "parentAnchorId": "anchor-fz2y9u",
             "legacyParentAnchorId": "calculus-02-002-anchor-001",
-            "title": "导数公式（集中速查）：y''",
+            "title": "隐函数求二阶导数",
             "latex": "y''=-\\frac{F_{xx}+2F_{xy}y'+F_{yy}(y')^2}{F_y}\\quad(F_y\\ne0).",
             "sourceBlockIndex": 9,
-            "searchAliases": [],
+            "searchAliases": [
+              "隐函数二阶导数",
+              "隐函数二阶求导"
+            ],
             "context": "二阶导数为",
+            "displayContext": "二阶导数为",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-002",
             "order": 19
@@ -2150,11 +2412,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-llc65g-1",
             "parentAnchorId": "anchor-fz2y9u",
             "legacyParentAnchorId": "calculus-02-002-anchor-001",
-            "title": "导数公式（集中速查）：(dy)/(dx)",
+            "title": "参数方程求一阶导数",
             "latex": "\\frac{dy}{dx}=\\frac{y'(t)}{x'(t)}\\quad(x'(t)\\ne0),",
             "sourceBlockIndex": 11,
-            "searchAliases": [],
+            "searchAliases": [
+              "参数方程求导",
+              "参数方程一阶导"
+            ],
             "context": "若 \\(x=x(t),y=y(t)\\)，则",
+            "displayContext": "若 \\(x=x(t),y=y(t)\\)，则",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-002",
             "order": 20
@@ -2163,11 +2429,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-12ekmo2",
             "parentAnchorId": "anchor-fz2y9u",
             "legacyParentAnchorId": "calculus-02-002-anchor-001",
-            "title": "导数公式（集中速查）：(d^2y)/(dx^2)",
+            "title": "参数方程求二阶导数",
             "latex": "\\frac{d^2y}{dx^2}\n=\\frac{x'(t)y''(t)-y'(t)x''(t)}{[x'(t)]^3}.",
             "sourceBlockIndex": 12,
-            "searchAliases": [],
+            "searchAliases": [
+              "参数方程二阶导数",
+              "参数方程二阶求导"
+            ],
             "context": "所属知识点：导数公式（集中速查）。",
+            "displayContext": "若 \\(x=x(t),y=y(t)\\)，则",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-002",
             "order": 21
@@ -2176,11 +2446,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-dpxpd2",
             "parentAnchorId": "anchor-fz2y9u",
             "legacyParentAnchorId": "calculus-02-002-anchor-001",
-            "title": "导数公式（集中速查）：(d)/(dx)",
+            "title": "d)/(dx 的导数",
             "latex": "\\frac{d}{dx}=\\frac1{x'(t)}\\frac{d}{dt}",
             "sourceBlockIndex": 13,
             "searchAliases": [],
             "context": "更高阶导数继续按",
+            "displayContext": "更高阶导数继续按",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-002",
             "order": 22
@@ -2189,11 +2460,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-11k5gtx-1",
             "parentAnchorId": "anchor-fz2y9u",
             "legacyParentAnchorId": "calculus-02-002-anchor-001",
-            "title": "导数公式（集中速查）：(f^-1)'(y_0)",
+            "title": "反函数的一阶导数",
             "latex": "(f^{-1})'(y_0)=\\frac1{f'(x_0)},\\qquad y_0=f(x_0).",
             "sourceBlockIndex": 18,
-            "searchAliases": [],
+            "searchAliases": [
+              "反函数求导",
+              "反函数导数公式"
+            ],
             "context": "反函数求导",
+            "displayContext": "**反函数求导**",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-002",
             "order": 23
@@ -2202,11 +2477,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-o3i4h9-1",
             "parentAnchorId": "anchor-fz2y9u",
             "legacyParentAnchorId": "calculus-02-002-anchor-001",
-            "title": "导数公式（集中速查）：(d^2x)/(dy^2)",
+            "title": "d^2x)/(dy^2 的导数",
             "latex": "\\frac{d^2x}{dy^2}=-\\frac{f''(x)}{[f'(x)]^3}\\qquad(f'(x)\\ne0).",
             "sourceBlockIndex": 19,
             "searchAliases": [],
             "context": "所属知识点：导数公式（集中速查）。",
+            "displayContext": "**反函数求导**",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-002",
             "order": 24
@@ -2215,11 +2491,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-eakcvu",
             "parentAnchorId": "anchor-fz2y9u",
             "legacyParentAnchorId": "calculus-02-002-anchor-001",
-            "title": "导数公式（集中速查）：fracy'y",
+            "title": "fracy'y 的导数",
             "latex": "\\frac{y'}y=v'\\ln u+v\\frac{u'}u.",
             "sourceBlockIndex": 21,
             "searchAliases": [],
             "context": "幂指函数求导",
+            "displayContext": "幂指函数 \\(y=u(x)^{v(x)}\\) 先取对数：",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-002",
             "order": 25
@@ -2228,11 +2505,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-hypq8-1",
             "parentAnchorId": "anchor-fz2y9u",
             "legacyParentAnchorId": "calculus-02-002-anchor-001",
-            "title": "导数公式（集中速查）：x",
+            "title": "x 的导数",
             "latex": "x=r(\\theta)\\cos\\theta",
             "sourceBlockIndex": 23,
             "searchAliases": [],
             "context": "若曲线由 \\(r=r(\\theta)\\) 给出，即",
+            "displayContext": "若曲线由 \\(r=r(\\theta)\\) 给出，即",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-002",
             "order": 26
@@ -2241,11 +2519,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-hypq8-2",
             "parentAnchorId": "anchor-fz2y9u",
             "legacyParentAnchorId": "calculus-02-002-anchor-001",
-            "title": "导数公式（集中速查）：y",
+            "title": "y 的导数",
             "latex": "y=r(\\theta)\\sin\\theta",
             "sourceBlockIndex": 23,
             "searchAliases": [],
             "context": "若曲线由 \\(r=r(\\theta)\\) 给出，即",
+            "displayContext": "若曲线由 \\(r=r(\\theta)\\) 给出，即",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-002",
             "order": 27
@@ -2254,11 +2533,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-462tma",
             "parentAnchorId": "anchor-fz2y9u",
             "legacyParentAnchorId": "calculus-02-002-anchor-001",
-            "title": "导数公式（集中速查）：(dy)/(dx)",
+            "title": "dy)/(dx 的导数",
             "latex": "\\frac{dy}{dx}\n=\\frac{r'(\\theta)\\sin\\theta+r(\\theta)\\cos\\theta}\n{r'(\\theta)\\cos\\theta-r(\\theta)\\sin\\theta},",
             "sourceBlockIndex": 24,
             "searchAliases": [],
             "context": "所属知识点：导数公式（集中速查）。",
+            "displayContext": "则",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-002",
             "order": 28
@@ -2267,11 +2547,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1jfdgh8",
             "parentAnchorId": "anchor-fz2y9u",
             "legacyParentAnchorId": "calculus-02-002-anchor-001",
-            "title": "导数公式（集中速查）：(d^2y)/(dx^2)",
+            "title": "d^2y)/(dx^2 的导数",
             "latex": "\\frac{d^2y}{dx^2}\n=\\frac{\\displaystyle\\frac{d}{d\\theta}\\!\\left(\\frac{dy}{dx}\\right)}\n{r'(\\theta)\\cos\\theta-r(\\theta)\\sin\\theta}.",
             "sourceBlockIndex": 25,
             "searchAliases": [],
             "context": "所属知识点：导数公式（集中速查）。",
+            "displayContext": "则",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-002",
             "order": 29
@@ -2280,11 +2561,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-9umh0k",
             "parentAnchorId": "anchor-fz2y9u",
             "legacyParentAnchorId": "calculus-02-002-anchor-001",
-            "title": "导数公式（集中速查）：(uv)^(n)",
+            "title": "uv)^(n 的导数",
             "latex": "(uv)^{(n)}=\\sum_{k=0}^n\\binom nk u^{(k)}v^{(n-k)}.",
             "sourceBlockIndex": 26,
             "searchAliases": [],
             "context": "所属知识点：导数公式（集中速查）。",
+            "displayContext": "**高阶导数**",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-002",
             "order": 30
@@ -2293,11 +2575,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1le32nr-1",
             "parentAnchorId": "anchor-fz2y9u",
             "legacyParentAnchorId": "calculus-02-002-anchor-001",
-            "title": "导数公式（集中速查）：(e^ax+b)^(n)",
+            "title": "e^ax+b)^(n 的导数",
             "latex": "(e^{ax+b})^{(n)}=a^ne^{ax+b}",
             "sourceBlockIndex": 27,
             "searchAliases": [],
             "context": "常用高阶导数公式一览",
+            "displayContext": "**常用高阶导数公式一览**",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-002",
             "order": 31
@@ -2306,11 +2589,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1le32nr-2",
             "parentAnchorId": "anchor-fz2y9u",
             "legacyParentAnchorId": "calculus-02-002-anchor-001",
-            "title": "导数公式（集中速查）：(c^x)^(n)",
+            "title": "c^x)^(n 的导数",
             "latex": "(c^x)^{(n)}=c^x(\\ln c)^n",
             "sourceBlockIndex": 27,
             "searchAliases": [],
             "context": "常用高阶导数公式一览",
+            "displayContext": "**常用高阶导数公式一览**",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-002",
             "order": 32
@@ -2319,11 +2603,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-19vks9f",
             "parentAnchorId": "anchor-fz2y9u",
             "legacyParentAnchorId": "calculus-02-002-anchor-001",
-            "title": "导数公式（集中速查）：(xe^x)^(n)",
+            "title": "xe^x)^(n 的导数",
             "latex": "(xe^x)^{(n)}=(x+n)e^x.",
             "sourceBlockIndex": 28,
             "searchAliases": [],
             "context": "所属知识点：导数公式（集中速查）。",
+            "displayContext": "**常用高阶导数公式一览**",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-002",
             "order": 33
@@ -2332,11 +2617,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-je0wpj",
             "parentAnchorId": "anchor-fz2y9u",
             "legacyParentAnchorId": "calculus-02-002-anchor-001",
-            "title": "导数公式（集中速查）：[sin(ax+b)]^(n)",
+            "title": "[sin(ax+b)]^(n) 的导数",
             "latex": "[\\sin(ax+b)]^{(n)}=a^n\\sin\\!\\left(ax+b+\\frac{n\\pi}{2}\\right),",
             "sourceBlockIndex": 29,
             "searchAliases": [],
             "context": "所属知识点：导数公式（集中速查）。",
+            "displayContext": "**常用高阶导数公式一览**",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-002",
             "order": 34
@@ -2345,11 +2631,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-128z7ol",
             "parentAnchorId": "anchor-fz2y9u",
             "legacyParentAnchorId": "calculus-02-002-anchor-001",
-            "title": "导数公式（集中速查）：[cos(ax+b)]^(n)",
+            "title": "[cos(ax+b)]^(n) 的导数",
             "latex": "[\\cos(ax+b)]^{(n)}=a^n\\cos\\!\\left(ax+b+\\frac{n\\pi}{2}\\right),",
             "sourceBlockIndex": 30,
             "searchAliases": [],
             "context": "所属知识点：导数公式（集中速查）。",
+            "displayContext": "**常用高阶导数公式一览**",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-002",
             "order": 35
@@ -2363,6 +2650,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 31,
             "searchAliases": [],
             "context": "所属知识点：导数公式（集中速查）。",
+            "displayContext": "**常用高阶导数公式一览**",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-002",
             "order": 36
@@ -2371,11 +2659,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1sqcsqp-1",
             "parentAnchorId": "anchor-fz2y9u",
             "legacyParentAnchorId": "calculus-02-002-anchor-001",
-            "title": "导数公式（集中速查）：[ln(ax+b)]^(n)",
+            "title": "[ln(ax+b)]^(n) 的导数",
             "latex": "[\\ln(ax+b)]^{(n)}=\n\\frac{(-1)^{n-1}(n-1)!a^n}{(ax+b)^n}\\quad(n\\ge1).",
             "sourceBlockIndex": 32,
             "searchAliases": [],
             "context": "所属知识点：导数公式（集中速查）。",
+            "displayContext": "**常用高阶导数公式一览**",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-002",
             "order": 37
@@ -2384,11 +2673,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1d9qm9g",
             "parentAnchorId": "anchor-fz2y9u",
             "legacyParentAnchorId": "calculus-02-002-anchor-001",
-            "title": "导数公式（集中速查）：(x^m)^(n)",
+            "title": "x^m)^(n 的导数",
             "latex": "(x^m)^{(n)}=\n\\begin{cases}\n\\dfrac{m!}{(m-n)!}x^{m-n},&0\\le n\\le m,\\\\[2mm]\n0,&n>m.\n\\end{cases}",
             "sourceBlockIndex": 34,
             "searchAliases": [],
             "context": "对正整数 m：",
+            "displayContext": "对正整数 \\(m\\)：",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-002",
             "order": 38
@@ -2405,6 +2695,7 @@ export const mathChapters: MathChapter[] = [
               "高阶导数读取系数"
             ],
             "context": "f(x) 在原点具有麦克劳林展开，a_n 是 x^n 的系数。",
+            "displayContext": "有理函数优先拆成简单分式；周期型导数找四阶循环；在一点求高阶导数，可用麦克劳林展开读取系数：若 \\(f(x)=\\sum a_nx^n\\)，则",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-002",
             "order": 39
@@ -2423,98 +2714,112 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "calculus-02-003-anchor-001",
             "title": "切线、法线、竖直切线与渐近线",
             "searchText": "切线、法线、竖直切线与渐近线 曲线 y=f(x) 在 (x 0,y 0) 的切线： y-y 0=f'(x 0)(x-x 0). 当 f'(x 0)≠0 时，法线斜率为 - 1 f'(x 0) 。渐近线公式见极限章；参数方程先把 t t 0 对应成 x 或有限点。 若 x x 0 f'(x) =+ , 且曲线经过 (x 0,f(x 0))，则 x=x 0 是竖直切线。参数曲线在 t=t 0 处若 x'(t 0)=0、y'(t 0)≠0，通常也是竖直切线候选。",
-            "summary": "曲线 y=f(x) 在 (x 0,y 0) 的切线： y-y 0=f'(x 0)(x-x 0). 当 f'(x 0)≠0 时，法线斜率为 - 1 f'(x 0) 。渐近线公式见极限章；参数方程先把 t t 0 对应成 x 或有限点。 若 x x 0 f'(…"
+            "summary": "曲线 y=f(x) 在 (x 0,y 0) 的切线： y-y 0=f'(x 0)(x-x 0). 当 f'(x 0)≠0 时，法线斜率为 - 1 f'(x 0) 。渐近线公式见极限章；参数方程先把 t t 0 对应成 x 或有限点。 若 x x 0 f'(…",
+            "displaySummary": "曲线 \\(y=f(x)\\) 在 \\((x_0,y_0)\\) 的切线："
           },
           {
             "id": "anchor-kv1rg4",
             "legacyId": "calculus-02-003-anchor-002",
             "title": "两曲线相切与水平切线的法线",
             "searchText": "两曲线相切与水平切线的法线 两条可写成 y=f(x)、y=g(x) 且在同一点可导的曲线，在 x=x 0 处相切要同时满足 f(x 0)=g(x 0) 和 f'(x 0)=g'(x 0)；不能只比较斜率。若 f'(x 0)=0，则切线为 y=f(x 0)，法线为 x=x 0。",
-            "summary": "两条可写成 y=f(x)、y=g(x) 且在同一点可导的曲线，在 x=x 0 处相切要同时满足 f(x 0)=g(x 0) 和 f'(x 0)=g'(x 0)；不能只比较斜率。若 f'(x 0)=0，则切线为 y=f(x 0)，法线为 x=x 0。"
+            "summary": "两条可写成 y=f(x)、y=g(x) 且在同一点可导的曲线，在 x=x 0 处相切要同时满足 f(x 0)=g(x 0) 和 f'(x 0)=g'(x 0)；不能只比较斜率。若 f'(x 0)=0，则切线为 y=f(x 0)，法线为 x=x 0。",
+            "displaySummary": "两条可写成 \\(y=f(x)\\)、\\(y=g(x)\\) 且在同一点可导的曲线，在 \\(x=x_0\\) 处相切要同时满足 \\(f(x_0)=g(x_0)\\) 和 \\(f'(x_0)=g'(x_0)\\)；不能只比较斜率。若 \\(f'(x_0)=0\\)，则切线为 \\(y=f(x_0)\\)，法线为 \\(x=x_0\\)。"
           },
           {
             "id": "anchor-6zol1r",
             "legacyId": "calculus-02-003-anchor-003",
             "title": "函数单调性判定公式与结论",
             "searchText": "函数单调性判定公式与结论 设 f 在区间 I 内可导： f'(x) 0 ⇒ f(x) 在 I 内严格递增, f'(x)<0 ⇒ f(x) 在 I 内严格递减. 若 f'(x)≥0，则 f 单调不减；若 f'(x)≤0，则 f 单调不增。进一步地，若 f'(x)≥0，且 f' 在任意小区间内都不恒为零，则 f 严格递增；递减情形同理。 反过来，若 f 在 I 内可导且严格递增，只能推出 f'(x)≥0, 不能推出处处 f'(x) 0。严格递减时只能推出 f'(x)≤0。 用导数划分单调区间时，把 f'(x)=0 的点和 f' 不存在的点共同作为分界点，再判断每个区间内 f' 的符号。",
-            "summary": "设 f 在区间 I 内可导： f'(x) 0 ⇒ f(x) 在 I 内严格递增, f'(x)<0 ⇒ f(x) 在 I 内严格递减. 若 f'(x)≥0，则 f 单调不减；若 f'(x)≤0，则 f 单调不增。进一步地，若 f'(x)≥0，且 f' 在任意…"
+            "summary": "设 f 在区间 I 内可导： f'(x) 0 ⇒ f(x) 在 I 内严格递增, f'(x)<0 ⇒ f(x) 在 I 内严格递减. 若 f'(x)≥0，则 f 单调不减；若 f'(x)≤0，则 f 单调不增。进一步地，若 f'(x)≥0，且 f' 在任意…",
+            "displaySummary": "设 \\(f\\) 在区间 \\(I\\) 内可导："
           },
           {
             "id": "anchor-1neg0u9",
             "legacyId": "calculus-02-003-anchor-004",
             "title": "极值点、驻点与不可导点",
             "searchText": "极值点、驻点与不可导点 若存在 x 0 的一个邻域，使邻域内恒有 f(x)≤ f(x 0), 则 x 0 为极大值点；把不等号反向即为极小值点。 满足 f'(x 0)=0 的点叫驻点。极值可能出现在驻点，也可能出现在不可导点；驻点不一定是极值点。 费马定理 若 x 0 是定义域内部的极值点，且 f 在 x 0 可导，则 f'(x 0)=0. 这是极值的必要条件，不是充分条件。",
-            "summary": "若存在 x 0 的一个邻域，使邻域内恒有 f(x)≤ f(x 0), 则 x 0 为极大值点；把不等号反向即为极小值点。 满足 f'(x 0)=0 的点叫驻点。极值可能出现在驻点，也可能出现在不可导点；驻点不一定是极值点。 费马定理 若 x 0 是定义域内…"
+            "summary": "若存在 x 0 的一个邻域，使邻域内恒有 f(x)≤ f(x 0), 则 x 0 为极大值点；把不等号反向即为极小值点。 满足 f'(x 0)=0 的点叫驻点。极值可能出现在驻点，也可能出现在不可导点；驻点不一定是极值点。 费马定理 若 x 0 是定义域内…",
+            "displaySummary": "若存在 \\(x_0\\) 的一个邻域，使邻域内恒有"
           },
           {
             "id": "anchor-h2faya",
             "legacyId": "calculus-02-003-anchor-005",
             "title": "极值的第一充分条件",
             "searchText": "极值的第一充分条件 设 f 在 x 0 连续，并在 x 0 的左右邻域内可导： f' 由正变负：x 0 为极大值点； f' 由负变正：x 0 为极小值点； f' 左右不变号：x 0 不是极值点。 这个判别既能检查驻点，也能检查导数不存在的点。",
-            "summary": "设 f 在 x 0 连续，并在 x 0 的左右邻域内可导： f' 由正变负：x 0 为极大值点； f' 由负变正：x 0 为极小值点； f' 左右不变号：x 0 不是极值点。 这个判别既能检查驻点，也能检查导数不存在的点。"
+            "summary": "设 f 在 x 0 连续，并在 x 0 的左右邻域内可导： f' 由正变负：x 0 为极大值点； f' 由负变正：x 0 为极小值点； f' 左右不变号：x 0 不是极值点。 这个判别既能检查驻点，也能检查导数不存在的点。",
+            "displaySummary": "设 \\(f\\) 在 \\(x_0\\) 连续，并在 \\(x_0\\) 的左右邻域内可导："
           },
           {
             "id": "anchor-u4g2km",
             "legacyId": "calculus-02-003-anchor-006",
             "title": "极值的第二充分条件",
             "searchText": "极值的第二充分条件 若 f'(x 0)=0，且 f''(x 0)≠0，则 f''(x 0) 0 ⇒ x 0 为极小值点, f''(x 0)<0 ⇒ x 0 为极大值点. 当 f''(x 0)=0 或不存在时，第二充分条件失效，不能据此判定没有极值，应改查 f' 的变号情况或使用高阶导数。",
-            "summary": "若 f'(x 0)=0，且 f''(x 0)≠0，则 f''(x 0) 0 ⇒ x 0 为极小值点, f''(x 0)<0 ⇒ x 0 为极大值点. 当 f''(x 0)=0 或不存在时，第二充分条件失效，不能据此判定没有极值，应改查 f' 的变号情况或使…"
+            "summary": "若 f'(x 0)=0，且 f''(x 0)≠0，则 f''(x 0) 0 ⇒ x 0 为极小值点, f''(x 0)<0 ⇒ x 0 为极大值点. 当 f''(x 0)=0 或不存在时，第二充分条件失效，不能据此判定没有极值，应改查 f' 的变号情况或使…",
+            "displaySummary": "若 \\(f'(x_0)=0\\)，且 \\(f''(x_0)\\ne0\\)，则"
           },
           {
             "id": "anchor-1wkdjbx",
             "legacyId": "calculus-02-003-anchor-007",
             "title": "极值的高阶导数判别",
             "searchText": "极值的高阶导数判别 若 f 在 x 0 附近具有足够阶导数，且 f'(x 0)=f''(x 0)= =f^ (n-1) (x 0)=0, f^ (n) (x 0)≠0, 则： n 为偶数且 f^ (n) (x 0) 0：极小值； n 为偶数且 f^ (n) (x 0)<0：极大值； n 为奇数：不是极值点。",
-            "summary": "若 f 在 x 0 附近具有足够阶导数，且 f'(x 0)=f''(x 0)= =f^ (n-1) (x 0)=0, f^ (n) (x 0)≠0, 则： n 为偶数且 f^ (n) (x 0) 0：极小值； n 为偶数且 f^ (n) (x 0)<0：极…"
+            "summary": "若 f 在 x 0 附近具有足够阶导数，且 f'(x 0)=f''(x 0)= =f^ (n-1) (x 0)=0, f^ (n) (x 0)≠0, 则： n 为偶数且 f^ (n) (x 0) 0：极小值； n 为偶数且 f^ (n) (x 0)<0：极…",
+            "displaySummary": "若 \\(f\\) 在 \\(x_0\\) 附近具有足够阶导数，且"
           },
           {
             "id": "anchor-1yxg28i",
             "legacyId": "calculus-02-003-anchor-008",
             "title": "闭区间最值判定",
             "searchText": "闭区间最值判定 连续函数在闭区间 [a,b] 上一定能取得最大值和最小值。依次计算并比较： 区间内部所有驻点的函数值； 区间内部所有不可导点的函数值； 两个端点 f(a),f(b)。 其中最大者为最大值，最小者为最小值。端点参与最值比较，但费马定理只适用于定义域内部的可导极值点。 若 f'(x) 0 在 (a,b) 内恒成立，则 [a,b] f(x)=f(a), [a,b] f(x)=f(b); 若 f'(x)<0，两端点结论交换。",
-            "summary": "连续函数在闭区间 [a,b] 上一定能取得最大值和最小值。依次计算并比较： 区间内部所有驻点的函数值； 区间内部所有不可导点的函数值； 两个端点 f(a),f(b)。 其中最大者为最大值，最小者为最小值。端点参与最值比较，但费马定理只适用于定义域内部的可导…"
+            "summary": "连续函数在闭区间 [a,b] 上一定能取得最大值和最小值。依次计算并比较： 区间内部所有驻点的函数值； 区间内部所有不可导点的函数值； 两个端点 f(a),f(b)。 其中最大者为最大值，最小者为最小值。端点参与最值比较，但费马定理只适用于定义域内部的可导…",
+            "displaySummary": "连续函数在闭区间 \\([a,b]\\) 上一定能取得最大值和最小值。依次计算并比较："
           },
           {
             "id": "anchor-rvnhse",
             "legacyId": "calculus-02-003-anchor-009",
             "title": "端点最值与单侧导数必要条件",
             "searchText": "端点最值与单侧导数必要条件 若 f 在 [a,b] 上连续且相应单侧导数存在，则 f(a) 为局部最大值 ⇒ f' +(a)≤0, f(a) 为局部最小值 ⇒ f' +(a)≥0, f(b) 为局部最大值 ⇒ f' -(b)≥0, f(b) 为局部最小值 ⇒ f' -(b)≤0.",
-            "summary": "若 f 在 [a,b] 上连续且相应单侧导数存在，则 f(a) 为局部最大值 ⇒ f' +(a)≤0, f(a) 为局部最小值 ⇒ f' +(a)≥0, f(b) 为局部最大值 ⇒ f' -(b)≥0, f(b) 为局部最小值 ⇒ f' -(b)≤0."
+            "summary": "若 f 在 [a,b] 上连续且相应单侧导数存在，则 f(a) 为局部最大值 ⇒ f' +(a)≤0, f(a) 为局部最小值 ⇒ f' +(a)≥0, f(b) 为局部最大值 ⇒ f' -(b)≥0, f(b) 为局部最小值 ⇒ f' -(b)≤0.",
+            "displaySummary": "若 \\(f\\) 在 \\([a,b]\\) 上连续且相应单侧导数存在，则"
           },
           {
             "id": "anchor-1vf3xuc",
             "legacyId": "calculus-02-003-anchor-010",
             "title": "函数凹凸性判定与切线弦线结论",
             "searchText": "函数凹凸性判定与切线弦线结论 设 f 在区间 I 内二阶可导： f''(x) 0 ⇒ f'(x) 递增，图形向上弯, f''(x)<0 ⇒ f'(x) 递减，图形向下弯. 图形向上弯时，图形在任一点切线的上方、任意两点弦线的下方： f(x)≥ f(x 0)+f'(x 0)(x-x 0), f( x 1+(1- )x 2) ≤ f(x 1)+(1- )f(x 2), 0≤ ≤1. 图形向下弯时，上述两个不等号全部反向。若只知道 f''≥0 或 f''≤0，相应结论仍成立，但不一定严格。",
-            "summary": "设 f 在区间 I 内二阶可导： f''(x) 0 ⇒ f'(x) 递增，图形向上弯, f''(x)<0 ⇒ f'(x) 递减，图形向下弯. 图形向上弯时，图形在任一点切线的上方、任意两点弦线的下方： f(x)≥ f(x 0)+f'(x 0)(x-x 0)…"
+            "summary": "设 f 在区间 I 内二阶可导： f''(x) 0 ⇒ f'(x) 递增，图形向上弯, f''(x)<0 ⇒ f'(x) 递减，图形向下弯. 图形向上弯时，图形在任一点切线的上方、任意两点弦线的下方： f(x)≥ f(x 0)+f'(x 0)(x-x 0)…",
+            "displaySummary": "设 \\(f\\) 在区间 \\(I\\) 内二阶可导："
           },
           {
             "id": "anchor-soth9i",
             "legacyId": "calculus-02-003-anchor-011",
             "title": "拐点判定公式与结论",
             "searchText": "拐点判定公式与结论 拐点是曲线上凹凸方向发生改变的点，写作曲线上的点 (x 0,f(x 0))，不能只写横坐标 x 0。候选点包括： f''(x 0)=0 的点； f''(x 0) 不存在但 f(x 0) 有定义且曲线连续的点。 候选点只有在左右两侧 f'' 异号，即凹凸方向确实改变时，才是拐点。仅有 f''(x 0)=0 不能直接判为拐点。 若 f''(x 0)=f'''(x 0)= =f^ (n-1) (x 0)=0, f^ (n) (x 0)≠0 (n≥3), 则 n 为奇数时 (x 0,f(x 0)) 是拐点，n 为偶数时不是拐点。 参数方程、隐函数给出的曲线，先求 d^2y dx^2 ，再按其左右符号判断；不能直接使用 d^2y dt^2 的符号。",
-            "summary": "拐点是曲线上凹凸方向发生改变的点，写作曲线上的点 (x 0,f(x 0))，不能只写横坐标 x 0。候选点包括： f''(x 0)=0 的点； f''(x 0) 不存在但 f(x 0) 有定义且曲线连续的点。 候选点只有在左右两侧 f'' 异号，即凹凸方向…"
+            "summary": "拐点是曲线上凹凸方向发生改变的点，写作曲线上的点 (x 0,f(x 0))，不能只写横坐标 x 0。候选点包括： f''(x 0)=0 的点； f''(x 0) 不存在但 f(x 0) 有定义且曲线连续的点。 候选点只有在左右两侧 f'' 异号，即凹凸方向…",
+            "displaySummary": "拐点是曲线上凹凸方向发生改变的点，写作曲线上的点 \\((x_0,f(x_0))\\)，不能只写横坐标 \\(x_0\\)。候选点包括："
           },
           {
             "id": "anchor-1hr3ies",
             "legacyId": "calculus-02-003-anchor-012",
             "title": "奇偶函数与周期函数的导数结论",
             "searchText": "奇偶函数与周期函数的导数结论 若可导函数为奇函数，则其导函数为偶函数；若可导函数为偶函数，则其导函数为奇函数。若 f 可导且以 T 为周期，则 f'(x+T)=f'(x), 因此 T 也是 f' 的周期，但未必是 f' 的最小正周期。",
-            "summary": "若可导函数为奇函数，则其导函数为偶函数；若可导函数为偶函数，则其导函数为奇函数。若 f 可导且以 T 为周期，则 f'(x+T)=f'(x), 因此 T 也是 f' 的周期，但未必是 f' 的最小正周期。"
+            "summary": "若可导函数为奇函数，则其导函数为偶函数；若可导函数为偶函数，则其导函数为奇函数。若 f 可导且以 T 为周期，则 f'(x+T)=f'(x), 因此 T 也是 f' 的周期，但未必是 f' 的最小正周期。",
+            "displaySummary": "若可导函数为奇函数，则其导函数为偶函数；若可导函数为偶函数，则其导函数为奇函数。若 \\(f\\) 可导且以 \\(T\\) 为周期，则"
           },
           {
             "id": "anchor-1rznfp0",
             "legacyId": "calculus-02-003-anchor-013",
             "title": "曲率",
             "searchText": "曲率 K= y'' [1+(y')^2]^ 32 , = 1K. 参数方程： K= x'y''-y'x'' [(x')^2+(y')^2]^ 32 . 曲线 y=f(x) 在 y''≠0 处的曲率圆圆心为 X=x- y'(1+y'^2) y'' , Y=y+ 1+y'^2 y'' .",
-            "summary": "K= y'' [1+(y')^2]^ 32 , = 1K. 参数方程： K= x'y''-y'x'' [(x')^2+(y')^2]^ 32 . 曲线 y=f(x) 在 y''≠0 处的曲率圆圆心为 X=x- y'(1+y'^2) y'' , Y=y+ 1…"
+            "summary": "K= y'' [1+(y')^2]^ 32 , = 1K. 参数方程： K= x'y''-y'x'' [(x')^2+(y')^2]^ 32 . 曲线 y=f(x) 在 y''≠0 处的曲率圆圆心为 X=x- y'(1+y'^2) y'' , Y=y+ 1…",
+            "displaySummary": "参数方程："
           },
           {
             "id": "anchor-bbkl7e",
             "legacyId": "calculus-02-003-anchor-014",
             "title": "利用导数证明不等式与判断方程根的个数",
             "searchText": "利用导数证明不等式与判断方程根的个数 根的个数先把方程改写成 F(x)=0，再用单调区间、极值和端点符号确定。证明 f(x)≥0 常设差函数，找最小值；证明两边大小也可比较导数并结合一个已知点。",
-            "summary": "根的个数先把方程改写成 F(x)=0，再用单调区间、极值和端点符号确定。证明 f(x)≥0 常设差函数，找最小值；证明两边大小也可比较导数并结合一个已知点。"
+            "summary": "根的个数先把方程改写成 F(x)=0，再用单调区间、极值和端点符号确定。证明 f(x)≥0 常设差函数，找最小值；证明两边大小也可比较导数并结合一个已知点。",
+            "displaySummary": "根的个数先把方程改写成 \\(F(x)=0\\)，再用单调区间、极值和端点符号确定。证明 \\(f(x)\\ge0\\) 常设差函数，找最小值；证明两边大小也可比较导数并结合一个已知点。"
           }
         ],
         "formulas": [
@@ -2527,6 +2832,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 2,
             "searchAliases": [],
             "context": "曲线 \\(y=f(x)\\) 在 \\((x_0,y_0)\\) 的切线：",
+            "displayContext": "曲线 \\(y=f(x)\\) 在 \\((x_0,y_0)\\) 的切线：",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-003",
             "order": 0
@@ -2540,6 +2846,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 7,
             "searchAliases": [],
             "context": "所属知识点：切线、法线、竖直切线与渐近线。",
+            "displayContext": "若",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-003",
             "order": 1
@@ -2553,6 +2860,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 23,
             "searchAliases": [],
             "context": "设 f 在区间 I 内可导：",
+            "displayContext": "设 \\(f\\) 在区间 \\(I\\) 内可导：",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-003",
             "order": 2
@@ -2566,6 +2874,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 24,
             "searchAliases": [],
             "context": "所属知识点：函数单调性判定公式与结论。",
+            "displayContext": "设 \\(f\\) 在区间 \\(I\\) 内可导：",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-003",
             "order": 3
@@ -2579,6 +2888,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 34,
             "searchAliases": [],
             "context": "反过来，若 f 在 I 内可导且严格递增，只能推出",
+            "displayContext": "反过来，若 \\(f\\) 在 \\(I\\) 内可导且严格递增，只能推出",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-003",
             "order": 4
@@ -2592,6 +2902,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 41,
             "searchAliases": [],
             "context": "若存在 x_0 的一个邻域，使邻域内恒有",
+            "displayContext": "若存在 \\(x_0\\) 的一个邻域，使邻域内恒有",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-003",
             "order": 5
@@ -2605,6 +2916,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 47,
             "searchAliases": [],
             "context": "费马定理　若 x_0 是定义域内部的极值点，且 f 在 x_0 可导，则",
+            "displayContext": "**费马定理**　若 \\(x_0\\) 是定义域内部的极值点，且 \\(f\\) 在 \\(x_0\\) 可导，则",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-003",
             "order": 6
@@ -2618,6 +2930,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 59,
             "searchAliases": [],
             "context": "若 \\(f'(x_0)=0\\)，且 \\(f''(x_0)\\ne0\\)，则",
+            "displayContext": "若 \\(f'(x_0)=0\\)，且 \\(f''(x_0)\\ne0\\)，则",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-003",
             "order": 7
@@ -2631,6 +2944,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 60,
             "searchAliases": [],
             "context": "所属知识点：极值的第二充分条件。",
+            "displayContext": "若 \\(f'(x_0)=0\\)，且 \\(f''(x_0)\\ne0\\)，则",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-003",
             "order": 8
@@ -2644,6 +2958,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 65,
             "searchAliases": [],
             "context": "若 f 在 x_0 附近具有足够阶导数，且",
+            "displayContext": "若 \\(f\\) 在 \\(x_0\\) 附近具有足够阶导数，且",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-003",
             "order": 9
@@ -2657,6 +2972,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 75,
             "searchAliases": [],
             "context": "若 \\(f'(x)>0\\) 在 \\((a,b)\\) 内恒成立，则",
+            "displayContext": "若 \\(f'(x)>0\\) 在 \\((a,b)\\) 内恒成立，则",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-003",
             "order": 10
@@ -2670,6 +2986,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 75,
             "searchAliases": [],
             "context": "若 \\(f'(x)>0\\) 在 \\((a,b)\\) 内恒成立，则",
+            "displayContext": "若 \\(f'(x)>0\\) 在 \\((a,b)\\) 内恒成立，则",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-003",
             "order": 11
@@ -2683,6 +3000,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 79,
             "searchAliases": [],
             "context": "若 f 在 [a,b] 上连续且相应单侧导数存在，则",
+            "displayContext": "若 \\(f\\) 在 \\([a,b]\\) 上连续且相应单侧导数存在，则",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-003",
             "order": 12
@@ -2696,6 +3014,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 79,
             "searchAliases": [],
             "context": "若 f 在 [a,b] 上连续且相应单侧导数存在，则",
+            "displayContext": "若 \\(f\\) 在 \\([a,b]\\) 上连续且相应单侧导数存在，则",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-003",
             "order": 13
@@ -2709,6 +3028,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 80,
             "searchAliases": [],
             "context": "所属知识点：端点最值与单侧导数必要条件。",
+            "displayContext": "若 \\(f\\) 在 \\([a,b]\\) 上连续且相应单侧导数存在，则",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-003",
             "order": 14
@@ -2722,6 +3042,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 80,
             "searchAliases": [],
             "context": "所属知识点：端点最值与单侧导数必要条件。",
+            "displayContext": "若 \\(f\\) 在 \\([a,b]\\) 上连续且相应单侧导数存在，则",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-003",
             "order": 15
@@ -2741,6 +3062,7 @@ export const mathChapters: MathChapter[] = [
               "图形向上弯"
             ],
             "context": "在区间内二阶可导且二阶导数大于零时，导函数递增，图形向上弯。",
+            "displayContext": "设 \\(f\\) 在区间 \\(I\\) 内二阶可导：",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-003",
             "order": 16
@@ -2760,6 +3082,7 @@ export const mathChapters: MathChapter[] = [
               "图形向下弯"
             ],
             "context": "在区间内二阶可导且二阶导数小于零时，导函数递减，图形向下弯。",
+            "displayContext": "设 \\(f\\) 在区间 \\(I\\) 内二阶可导：",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-003",
             "order": 17
@@ -2779,6 +3102,7 @@ export const mathChapters: MathChapter[] = [
               "切线不等式"
             ],
             "context": "图形向上弯时，函数图像在任一点切线的上方。",
+            "displayContext": "图形向上弯时，图形在任一点切线的上方、任意两点弦线的下方：",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-003",
             "order": 18
@@ -2797,6 +3121,7 @@ export const mathChapters: MathChapter[] = [
               "弦线不等式"
             ],
             "context": "图形向上弯时，函数图像在任意两点之间弦线的下方。",
+            "displayContext": "图形向上弯时，图形在任一点切线的上方、任意两点弦线的下方：",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-003",
             "order": 19
@@ -2810,6 +3135,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 96,
             "searchAliases": [],
             "context": "候选点只有在左右两侧 f'' 异号，即凹凸方向确实改变时，才是拐点。仅有 \\(f''(x_0)=0\\) 不能直接判为拐点。",
+            "displayContext": "若",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-003",
             "order": 20
@@ -2823,6 +3149,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 104,
             "searchAliases": [],
             "context": "若可导函数为奇函数，则其导函数为偶函数；若可导函数为偶函数，则其导函数为奇函数。若 f 可导且以 T 为周期，则",
+            "displayContext": "若可导函数为奇函数，则其导函数为偶函数；若可导函数为偶函数，则其导函数为奇函数。若 \\(f\\) 可导且以 \\(T\\) 为周期，则",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-003",
             "order": 21
@@ -2836,6 +3163,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 108,
             "searchAliases": [],
             "context": "所属知识点：曲率。",
+            "displayContext": "所属知识点：曲率。",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-003",
             "order": 22
@@ -2849,6 +3177,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 108,
             "searchAliases": [],
             "context": "所属知识点：曲率。",
+            "displayContext": "所属知识点：曲率。",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-003",
             "order": 23
@@ -2862,6 +3191,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 109,
             "searchAliases": [],
             "context": "参数方程：",
+            "displayContext": "参数方程：",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-003",
             "order": 24
@@ -2875,6 +3205,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 112,
             "searchAliases": [],
             "context": "曲线 \\(y=f(x)\\) 在 y''\\ne0 处的曲率圆圆心为",
+            "displayContext": "曲线 \\(y=f(x)\\) 在 \\(y''\\ne0\\) 处的曲率圆圆心为",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-003",
             "order": 25
@@ -2888,6 +3219,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 112,
             "searchAliases": [],
             "context": "曲线 \\(y=f(x)\\) 在 y''\\ne0 处的曲率圆圆心为",
+            "displayContext": "曲线 \\(y=f(x)\\) 在 \\(y''\\ne0\\) 处的曲率圆圆心为",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-003",
             "order": 26
@@ -2906,7 +3238,8 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "calculus-02-004-anchor-001",
             "title": "费马、罗尔、拉格朗日与柯西中值定理",
             "searchText": "费马、罗尔、拉格朗日与柯西中值定理 费马定理：若 x 0 是定义域内部的极值点，且 f 在 x 0 可导，则 f'(x 0)=0。 罗尔定理：连续于 [a,b]、可导于 (a,b)、且 f(a)=f(b)，则存在 (a,b)，使 f'( )=0。 拉格朗日中值定理：若 f 在 [a,b] 上连续、在 (a,b) 内可导，则存在 (a,b)，使 f(b)-f(a)=f'( )(b-a). 柯西中值定理：若 f,g 在 [a,b] 上连续、在 (a,b) 内可导，且 g'(x)≠0，则存在 (a,b)，使 f(b)-f(a) g(b)-g(a) = f'( ) g'( ) . 泰勒公式和常用展开式统一见第一章“常用泰勒展开式（集中速查）”。证明题出现两个不同点的函数值时优先考虑中值定理；要求含高阶导数、精确阶数或不等式估计时优先考虑泰勒公式。",
-            "summary": "费马定理：若 x 0 是定义域内部的极值点，且 f 在 x 0 可导，则 f'(x 0)=0。 罗尔定理：连续于 [a,b]、可导于 (a,b)、且 f(a)=f(b)，则存在 (a,b)，使 f'( )=0。 拉格朗日中值定理：若 f 在 [a,b] 上…"
+            "summary": "费马定理：若 x 0 是定义域内部的极值点，且 f 在 x 0 可导，则 f'(x 0)=0。 罗尔定理：连续于 [a,b]、可导于 (a,b)、且 f(a)=f(b)，则存在 (a,b)，使 f'( )=0。 拉格朗日中值定理：若 f 在 [a,b] 上…",
+            "displaySummary": "费马定理：若 \\(x_0\\) 是定义域内部的极值点，且 \\(f\\) 在 \\(x_0\\) 可导，则 \\(f'(x_0)=0\\)。"
           }
         ],
         "formulas": [
@@ -2919,6 +3252,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 13,
             "searchAliases": [],
             "context": "拉格朗日中值定理：若 f 在 [a,b] 上连续、在 \\((a,b)\\) 内可导，则存在 \\(\\xi\\in(a,b)\\)，使",
+            "displayContext": "拉格朗日中值定理：若 \\(f\\) 在 \\([a,b]\\) 上连续、在 \\((a,b)\\) 内可导，则存在 \\(\\xi\\in(a,b)\\)，使",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-004",
             "order": 0
@@ -2932,6 +3266,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 19,
             "searchAliases": [],
             "context": "柯西中值定理：若 f,g 在 [a,b] 上连续、在 \\((a,b)\\) 内可导，且 \\(g'(x)\\ne0\\)，则存在 \\(\\xi\\in(a,b)\\)，使",
+            "displayContext": "柯西中值定理：若 \\(f,g\\) 在 \\([a,b]\\) 上连续、在 \\((a,b)\\) 内可导，且 \\(g'(x)\\ne0\\)，则存在 \\(\\xi\\in(a,b)\\)，使",
             "chapterId": "calculus-02",
             "topicId": "calculus-02-004",
             "order": 1
@@ -2958,7 +3293,8 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "calculus-03-001-anchor-001",
             "title": "积分公式与计算方法（集中速查）",
             "searchText": "积分公式与计算方法（集中速查） x^a\\,dx= x^ a+1 a+1 +C\\ (a≠-1), dx x = x +C, e^x\\,dx=e^x+C, a^x\\,dx= a^x a +C, x\\,dx=- x+C, x\\,dx= x+C, dx 1+x^2 = x+C, dx 1-x^2 = x+C. ^2x\\,dx= x+C, ^2x\\,dx=- x+C, x x\\,dx= x+C, x x\\,dx=- x+C. ^2x\\,dx= x-x+C, ^2x\\,dx=- x-x+C, ^2x\\,dx= x2- 2x 4 +C, ^2x\\,dx= x2+ 2x 4 +C. x\\,dx=- x +C, x\\,dx= x +C, x\\,dx= x+ x +C, x\\,dx= x- x +C. dx a^2+x^2 = 1a xa+C, dx a^2-x^2 = xa+C. dx x^2-a^2 = 1 2a ≤ft x-a x+a +C, dx a^2-x^2 = 1 2a ≤ft a+x a-x +C, dx x^2+a^2 = ≤ft x+ x^2+a^2 +C, dx x^2-a^2 = ≤ft x+ x^2-a^2 +C. a^2-x^2 \\,dx= x 2 a^2-x^2 + a^2 2 xa+C, x^2+a^2 \\,dx= x 2 x^2+a^2 + a^2 2 ≤ft x+ x^2+a^2 +C, x^2-a^2 \\,dx= x 2 x^2-a^2 - a^2 2 ≤ft x+ x^2-a^2 +C. 指数函数与三角函数乘积： e^ ax bx\\,dx= e^ ax a^2+b^2 (a bx-b bx)+C, e^ ax bx\\,dx= e^ ax a^2+b^2 (a bx+b bx)+C. 换元与分部积分 第一类换元：看见“里面函数的导数”就凑微分。 f(g(x))g'(x)\\,dx= f(u)\\,du. 定积分换元公式：若 x= (t)， ( )=a, ( )=b，则 a^b f(x)\\,dx = ^ f( (t)) '(t)\\,dt. 第二类换元常用： a^2-x^2 :x=a t, a^2+x^2 :x=a t, x^2-a^2 :x=a t. 分部积分： u\\,dv=uv- v\\,du. 定积分分部公式： a^b u(x)v'(x)\\,dx = [u(x)v(x) ] a^b- a^b u'(x)v(x)\\,dx. 反三角、对数、幂函数与指数或三角相乘时，通常优先把反三角或对数取作 u。 有理式、根式与三角式 有理式先做多项式除法，再把分母因式分解成一次因式和不可约二次因式，作部分分式。 根式优先观察共轭有理化、令整块根式为新变量，或用三角代换。 ^m x ^n x：有奇次时留一个因子凑微分；全为偶次时用降幂公式。 分段函数的原函数不仅每段要积分，还要用连续性确定各段常数之间的关系。 三角函数有理式的万能代换 对 R( x, x)，简单凑微分和降幂不方便时可令 t= x2，则 x= 2t 1+t^2 , x= 1-t^2 1+t^2 , dx= 2\\,dt 1+t^2 . 在 t 有定义的区间内使用；定积分还要同时换积分限。 部分分式分解 若 P≥ Q，先作多项式除法。对重一次因子与不可约二次因子分别设 A 1 x-a + A 2 (x-a)^2 + + A m (x-a)^m , B 1x+C 1 x^2+px+q + B 2x+C 2 (x^2+px+q)^2 + . 重因子的每个幂次都不能漏；不可约二次因子的分子必须比它低一次。 定积分性质、对称性与华里士公式 定积分的线性、区间可加性与换向公式： a^b( f+ g)\\,dx = a^b f\\,dx+ a^b g\\,dx, a^b f\\,dx= a^c f\\,dx+ c^b f\\,dx, a^b f\\,dx=- b^a f\\,dx. -a ^ a f(x)\\,dx= cases 2 0^a f(x)\\,dx,&f 为偶函数,\\\\ 0,&f 为奇函数, cases a^b f(x)\\,dx= a^b f(a+b-x)\\,dx. 因此 a^b f(x)\\,dx= 12 a^b[f(x)+f(a+b-x)]\\,dx. 周期函数在整周期上的积分：若 f(x+T)=f(x)，则 a^ a+T f(x)\\,dx= 0^T f(x)\\,dx, a^ a+nT f(x)\\,dx=n 0^T f(x)\\,dx. 华里士公式。令 I n= 0^ 2 ^n x\\,dx = 0^ 2 ^n x\\,dx, 则 I n= n-1 n I n-2 , I 0= 2, I 1=1. 即 I 2m = (2m-1)!! (2m)!! 2, I 2m+1 = (2m)!! (2m+1)!! . 若 f 连续，则 0^ f( x)\\,dx =2 0^ 2 f( x)\\,dx, 0^ x f( x)\\,dx = 2 0^ f( x)\\,dx. 变上限积分： d dx u(x) ^ v(x) f(t)\\,dt=f(v(x))v'(x)-f(u(x))u'(x). 若 f 在 [a,b] 上可积，m≤ f(x)≤ M，则 m(b-a)≤ a^b f(x)\\,dx≤ M(b-a), ≤ft a^b f(x)\\,dx ≤ a^b f(x) \\,dx, ≤ft( a^b f(x)g(x)\\,dx )^2 ≤≤ft( a^b f(x)^2\\,dx ) ≤ft( a^b g(x)^2\\,dx ). 若连续函数 f≥0 且不恒为零，则 a^b f(x)\\,dx 0。 定义型极限与黎曼和 若 f 在 [a,b] 上可积，则 n b-a n k=1 ^n f\\!≤ft(a+ k(b-a) n ) = a^b f(x)\\,dx. 绝对值、最大最小值与分段积分 先求使表达式改变的分界点或分界曲线，再分段。常用恒等式： u = cases u,&u≥0,\\\\-u,&u<0, cases \\ u,v\\ = u+v+ u-v 2 , \\ u,v\\ = u+v- u-v 2 .",
-            "summary": "x^a\\,dx= x^ a+1 a+1 +C\\ (a≠-1), dx x = x +C, e^x\\,dx=e^x+C, a^x\\,dx= a^x a +C, x\\,dx=- x+C, x\\,dx= x+C, dx 1+x^2 = x+C, dx 1-x^2…"
+            "summary": "x^a\\,dx= x^ a+1 a+1 +C\\ (a≠-1), dx x = x +C, e^x\\,dx=e^x+C, a^x\\,dx= a^x a +C, x\\,dx=- x+C, x\\,dx= x+C, dx 1+x^2 = x+C, dx 1-x^2…",
+            "displaySummary": "指数函数与三角函数乘积："
           }
         ],
         "formulas": [
@@ -2966,11 +3302,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-h7svnj-1",
             "parentAnchorId": "anchor-cisdw4",
             "legacyParentAnchorId": "calculus-03-001-anchor-001",
-            "title": "积分公式与计算方法（集中速查）：∫ x^a dx",
+            "title": "幂函数的不定积分",
             "latex": "\\int x^a\\,dx=\\frac{x^{a+1}}{a+1}+C\\ (a\\ne-1)",
             "sourceBlockIndex": 0,
-            "searchAliases": [],
+            "searchAliases": [
+              "x的a次方积分",
+              "幂函数积分公式"
+            ],
             "context": "所属知识点：积分公式与计算方法（集中速查）。",
+            "displayContext": "所属知识点：积分公式与计算方法（集中速查）。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 0
@@ -2979,11 +3319,16 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-h7svnj-2",
             "parentAnchorId": "anchor-cisdw4",
             "legacyParentAnchorId": "calculus-03-001-anchor-001",
-            "title": "积分公式与计算方法（集中速查）：∫(dx)/(x)",
+            "title": "倒数函数的不定积分",
             "latex": "\\int\\frac{dx}{x}=\\ln|x|+C",
             "sourceBlockIndex": 0,
-            "searchAliases": [],
+            "searchAliases": [
+              "1除以x积分",
+              "一除以x积分",
+              "对数型积分"
+            ],
             "context": "所属知识点：积分公式与计算方法（集中速查）。",
+            "displayContext": "所属知识点：积分公式与计算方法（集中速查）。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 1
@@ -2992,11 +3337,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-11ojzh0-1",
             "parentAnchorId": "anchor-cisdw4",
             "legacyParentAnchorId": "calculus-03-001-anchor-001",
-            "title": "积分公式与计算方法（集中速查）：∫ e^x dx",
+            "title": "指数函数的不定积分",
             "latex": "\\int e^x\\,dx=e^x+C",
             "sourceBlockIndex": 1,
-            "searchAliases": [],
+            "searchAliases": [
+              "e^x积分",
+              "指数积分公式"
+            ],
             "context": "所属知识点：积分公式与计算方法（集中速查）。",
+            "displayContext": "所属知识点：积分公式与计算方法（集中速查）。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 2
@@ -3005,11 +3354,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-11ojzh0-2",
             "parentAnchorId": "anchor-cisdw4",
             "legacyParentAnchorId": "calculus-03-001-anchor-001",
-            "title": "积分公式与计算方法（集中速查）：∫ a^x dx",
+            "title": "a^x 的不定积分",
             "latex": "\\int a^x\\,dx=\\frac{a^x}{\\ln a}+C",
             "sourceBlockIndex": 1,
             "searchAliases": [],
             "context": "所属知识点：积分公式与计算方法（集中速查）。",
+            "displayContext": "所属知识点：积分公式与计算方法（集中速查）。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 3
@@ -3018,11 +3368,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-nadlj1-1",
             "parentAnchorId": "anchor-cisdw4",
             "legacyParentAnchorId": "calculus-03-001-anchor-001",
-            "title": "积分公式与计算方法（集中速查）：∫sin x dx",
+            "title": "正弦函数的不定积分",
             "latex": "\\int\\sin x\\,dx=-\\cos x+C",
             "sourceBlockIndex": 2,
-            "searchAliases": [],
+            "searchAliases": [
+              "sin x积分",
+              "正弦积分公式"
+            ],
             "context": "所属知识点：积分公式与计算方法（集中速查）。",
+            "displayContext": "所属知识点：积分公式与计算方法（集中速查）。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 4
@@ -3031,11 +3385,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-nadlj1-2",
             "parentAnchorId": "anchor-cisdw4",
             "legacyParentAnchorId": "calculus-03-001-anchor-001",
-            "title": "积分公式与计算方法（集中速查）：∫cos x dx",
+            "title": "余弦函数的不定积分",
             "latex": "\\int\\cos x\\,dx=\\sin x+C",
             "sourceBlockIndex": 2,
-            "searchAliases": [],
+            "searchAliases": [
+              "cos x积分",
+              "余弦积分公式"
+            ],
             "context": "所属知识点：积分公式与计算方法（集中速查）。",
+            "displayContext": "所属知识点：积分公式与计算方法（集中速查）。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 5
@@ -3044,11 +3402,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-14wr4xh-1",
             "parentAnchorId": "anchor-cisdw4",
             "legacyParentAnchorId": "calculus-03-001-anchor-001",
-            "title": "积分公式与计算方法（集中速查）：∫(dx)/(1+x^2)",
+            "title": "反正切型不定积分",
             "latex": "\\int\\frac{dx}{1+x^2}=\\arctan x+C",
             "sourceBlockIndex": 3,
-            "searchAliases": [],
+            "searchAliases": [
+              "一加x平方分母积分",
+              "arctan积分原型"
+            ],
             "context": "所属知识点：积分公式与计算方法（集中速查）。",
+            "displayContext": "所属知识点：积分公式与计算方法（集中速查）。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 6
@@ -3057,11 +3419,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-14wr4xh-2",
             "parentAnchorId": "anchor-cisdw4",
             "legacyParentAnchorId": "calculus-03-001-anchor-001",
-            "title": "积分公式与计算方法（集中速查）：∫fracdxsqrt1-x^2",
+            "title": "反正弦型不定积分",
             "latex": "\\int\\frac{dx}{\\sqrt{1-x^2}}=\\arcsin x+C",
             "sourceBlockIndex": 3,
-            "searchAliases": [],
+            "searchAliases": [
+              "根号一减x平方积分",
+              "arcsin积分原型"
+            ],
             "context": "所属知识点：积分公式与计算方法（集中速查）。",
+            "displayContext": "所属知识点：积分公式与计算方法（集中速查）。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 7
@@ -3070,11 +3436,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1mvjjxa-1",
             "parentAnchorId": "anchor-cisdw4",
             "legacyParentAnchorId": "calculus-03-001-anchor-001",
-            "title": "积分公式与计算方法（集中速查）：∫sec^2x dx",
+            "title": "sec^2x 的不定积分",
             "latex": "\\int\\sec^2x\\,dx=\\tan x+C",
             "sourceBlockIndex": 4,
             "searchAliases": [],
             "context": "所属知识点：积分公式与计算方法（集中速查）。",
+            "displayContext": "所属知识点：积分公式与计算方法（集中速查）。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 8
@@ -3083,11 +3450,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1mvjjxa-2",
             "parentAnchorId": "anchor-cisdw4",
             "legacyParentAnchorId": "calculus-03-001-anchor-001",
-            "title": "积分公式与计算方法（集中速查）：∫csc^2x dx",
+            "title": "csc^2x 的不定积分",
             "latex": "\\int\\csc^2x\\,dx=-\\cot x+C",
             "sourceBlockIndex": 4,
             "searchAliases": [],
             "context": "所属知识点：积分公式与计算方法（集中速查）。",
+            "displayContext": "所属知识点：积分公式与计算方法（集中速查）。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 9
@@ -3096,11 +3464,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-frre8m-1",
             "parentAnchorId": "anchor-cisdw4",
             "legacyParentAnchorId": "calculus-03-001-anchor-001",
-            "title": "积分公式与计算方法（集中速查）：∫sec xtan x dx",
+            "title": "sec xtan x 的不定积分",
             "latex": "\\int\\sec x\\tan x\\,dx=\\sec x+C",
             "sourceBlockIndex": 5,
             "searchAliases": [],
             "context": "所属知识点：积分公式与计算方法（集中速查）。",
+            "displayContext": "所属知识点：积分公式与计算方法（集中速查）。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 10
@@ -3109,11 +3478,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-frre8m-2",
             "parentAnchorId": "anchor-cisdw4",
             "legacyParentAnchorId": "calculus-03-001-anchor-001",
-            "title": "积分公式与计算方法（集中速查）：∫csc xcot x dx",
+            "title": "csc xcot x 的不定积分",
             "latex": "\\int\\csc x\\cot x\\,dx=-\\csc x+C",
             "sourceBlockIndex": 5,
             "searchAliases": [],
             "context": "所属知识点：积分公式与计算方法（集中速查）。",
+            "displayContext": "所属知识点：积分公式与计算方法（集中速查）。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 11
@@ -3122,11 +3492,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-14nlaio-1",
             "parentAnchorId": "anchor-cisdw4",
             "legacyParentAnchorId": "calculus-03-001-anchor-001",
-            "title": "积分公式与计算方法（集中速查）：∫tan^2x dx",
+            "title": "tan^2x 的不定积分",
             "latex": "\\int\\tan^2x\\,dx=\\tan x-x+C",
             "sourceBlockIndex": 6,
             "searchAliases": [],
             "context": "所属知识点：积分公式与计算方法（集中速查）。",
+            "displayContext": "所属知识点：积分公式与计算方法（集中速查）。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 12
@@ -3135,11 +3506,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-14nlaio-2",
             "parentAnchorId": "anchor-cisdw4",
             "legacyParentAnchorId": "calculus-03-001-anchor-001",
-            "title": "积分公式与计算方法（集中速查）：∫cot^2x dx",
+            "title": "cot^2x 的不定积分",
             "latex": "\\int\\cot^2x\\,dx=-\\cot x-x+C",
             "sourceBlockIndex": 6,
             "searchAliases": [],
             "context": "所属知识点：积分公式与计算方法（集中速查）。",
+            "displayContext": "所属知识点：积分公式与计算方法（集中速查）。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 13
@@ -3148,11 +3520,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-n6sy06-1",
             "parentAnchorId": "anchor-cisdw4",
             "legacyParentAnchorId": "calculus-03-001-anchor-001",
-            "title": "积分公式与计算方法（集中速查）：∫sin^2x dx",
+            "title": "sin^2x 的不定积分",
             "latex": "\\int\\sin^2x\\,dx=\\frac x2-\\frac{\\sin2x}{4}+C",
             "sourceBlockIndex": 7,
             "searchAliases": [],
             "context": "所属知识点：积分公式与计算方法（集中速查）。",
+            "displayContext": "所属知识点：积分公式与计算方法（集中速查）。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 14
@@ -3161,11 +3534,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-n6sy06-2",
             "parentAnchorId": "anchor-cisdw4",
             "legacyParentAnchorId": "calculus-03-001-anchor-001",
-            "title": "积分公式与计算方法（集中速查）：∫cos^2x dx",
+            "title": "cos^2x 的不定积分",
             "latex": "\\int\\cos^2x\\,dx=\\frac x2+\\frac{\\sin2x}{4}+C",
             "sourceBlockIndex": 7,
             "searchAliases": [],
             "context": "所属知识点：积分公式与计算方法（集中速查）。",
+            "displayContext": "所属知识点：积分公式与计算方法（集中速查）。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 15
@@ -3174,11 +3548,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-8897zo-1",
             "parentAnchorId": "anchor-cisdw4",
             "legacyParentAnchorId": "calculus-03-001-anchor-001",
-            "title": "积分公式与计算方法（集中速查）：∫tan x dx",
+            "title": "tan x 的不定积分",
             "latex": "\\int\\tan x\\,dx=-\\ln|\\cos x|+C",
             "sourceBlockIndex": 8,
             "searchAliases": [],
             "context": "所属知识点：积分公式与计算方法（集中速查）。",
+            "displayContext": "所属知识点：积分公式与计算方法（集中速查）。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 16
@@ -3187,11 +3562,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-8897zo-2",
             "parentAnchorId": "anchor-cisdw4",
             "legacyParentAnchorId": "calculus-03-001-anchor-001",
-            "title": "积分公式与计算方法（集中速查）：∫cot x dx",
+            "title": "cot x 的不定积分",
             "latex": "\\int\\cot x\\,dx=\\ln|\\sin x|+C",
             "sourceBlockIndex": 8,
             "searchAliases": [],
             "context": "所属知识点：积分公式与计算方法（集中速查）。",
+            "displayContext": "所属知识点：积分公式与计算方法（集中速查）。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 17
@@ -3200,11 +3576,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-k7kqo8-1",
             "parentAnchorId": "anchor-cisdw4",
             "legacyParentAnchorId": "calculus-03-001-anchor-001",
-            "title": "积分公式与计算方法（集中速查）：∫sec x dx",
+            "title": "sec x 的不定积分",
             "latex": "\\int\\sec x\\,dx=\\ln|\\sec x+\\tan x|+C",
             "sourceBlockIndex": 9,
             "searchAliases": [],
             "context": "所属知识点：积分公式与计算方法（集中速查）。",
+            "displayContext": "所属知识点：积分公式与计算方法（集中速查）。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 18
@@ -3213,11 +3590,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-k7kqo8-2",
             "parentAnchorId": "anchor-cisdw4",
             "legacyParentAnchorId": "calculus-03-001-anchor-001",
-            "title": "积分公式与计算方法（集中速查）：∫csc x dx",
+            "title": "csc x 的不定积分",
             "latex": "\\int\\csc x\\,dx=\\ln|\\csc x-\\cot x|+C",
             "sourceBlockIndex": 9,
             "searchAliases": [],
             "context": "所属知识点：积分公式与计算方法（集中速查）。",
+            "displayContext": "所属知识点：积分公式与计算方法（集中速查）。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 19
@@ -3231,6 +3609,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 10,
             "searchAliases": [],
             "context": "所属知识点：积分公式与计算方法（集中速查）。",
+            "displayContext": "所属知识点：积分公式与计算方法（集中速查）。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 20
@@ -3244,6 +3623,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 11,
             "searchAliases": [],
             "context": "所属知识点：积分公式与计算方法（集中速查）。",
+            "displayContext": "所属知识点：积分公式与计算方法（集中速查）。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 21
@@ -3257,6 +3637,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 12,
             "searchAliases": [],
             "context": "所属知识点：积分公式与计算方法（集中速查）。",
+            "displayContext": "所属知识点：积分公式与计算方法（集中速查）。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 22
@@ -3270,6 +3651,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 13,
             "searchAliases": [],
             "context": "所属知识点：积分公式与计算方法（集中速查）。",
+            "displayContext": "所属知识点：积分公式与计算方法（集中速查）。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 23
@@ -3283,6 +3665,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 14,
             "searchAliases": [],
             "context": "所属知识点：积分公式与计算方法（集中速查）。",
+            "displayContext": "所属知识点：积分公式与计算方法（集中速查）。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 24
@@ -3296,6 +3679,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 15,
             "searchAliases": [],
             "context": "所属知识点：积分公式与计算方法（集中速查）。",
+            "displayContext": "所属知识点：积分公式与计算方法（集中速查）。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 25
@@ -3304,11 +3688,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-yt9rnc",
             "parentAnchorId": "anchor-cisdw4",
             "legacyParentAnchorId": "calculus-03-001-anchor-001",
-            "title": "积分公式与计算方法（集中速查）：∫sqrta^2-x^2 dx",
+            "title": "sqrta^2-x^2 的不定积分",
             "latex": "\\int\\sqrt{a^2-x^2}\\,dx=\n\\frac{x}{2}\\sqrt{a^2-x^2}+\\frac{a^2}{2}\\arcsin\\frac xa+C,",
             "sourceBlockIndex": 16,
             "searchAliases": [],
             "context": "所属知识点：积分公式与计算方法（集中速查）。",
+            "displayContext": "所属知识点：积分公式与计算方法（集中速查）。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 26
@@ -3317,11 +3702,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-mevh6n",
             "parentAnchorId": "anchor-cisdw4",
             "legacyParentAnchorId": "calculus-03-001-anchor-001",
-            "title": "积分公式与计算方法（集中速查）：∫sqrtx^2+a^2 dx",
+            "title": "sqrtx^2+a^2 的不定积分",
             "latex": "\\int\\sqrt{x^2+a^2}\\,dx=\n\\frac{x}{2}\\sqrt{x^2+a^2}+\\frac{a^2}{2}\\ln\\left|x+\\sqrt{x^2+a^2}\\right|+C,",
             "sourceBlockIndex": 17,
             "searchAliases": [],
             "context": "所属知识点：积分公式与计算方法（集中速查）。",
+            "displayContext": "所属知识点：积分公式与计算方法（集中速查）。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 27
@@ -3330,11 +3716,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1dw7zk5",
             "parentAnchorId": "anchor-cisdw4",
             "legacyParentAnchorId": "calculus-03-001-anchor-001",
-            "title": "积分公式与计算方法（集中速查）：∫sqrtx^2-a^2 dx",
+            "title": "sqrtx^2-a^2 的不定积分",
             "latex": "\\int\\sqrt{x^2-a^2}\\,dx=\n\\frac{x}{2}\\sqrt{x^2-a^2}-\\frac{a^2}{2}\\ln\\left|x+\\sqrt{x^2-a^2}\\right|+C.",
             "sourceBlockIndex": 18,
             "searchAliases": [],
             "context": "所属知识点：积分公式与计算方法（集中速查）。",
+            "displayContext": "所属知识点：积分公式与计算方法（集中速查）。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 28
@@ -3343,11 +3730,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-532281",
             "parentAnchorId": "anchor-cisdw4",
             "legacyParentAnchorId": "calculus-03-001-anchor-001",
-            "title": "积分公式与计算方法（集中速查）：∫ e^axsin bx dx",
+            "title": "e^axsin bx 的不定积分",
             "latex": "\\int e^{ax}\\sin bx\\,dx=\n\\frac{e^{ax}}{a^2+b^2}(a\\sin bx-b\\cos bx)+C,",
             "sourceBlockIndex": 19,
             "searchAliases": [],
             "context": "指数函数与三角函数乘积：",
+            "displayContext": "指数函数与三角函数乘积：",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 29
@@ -3356,11 +3744,12 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1whawh0",
             "parentAnchorId": "anchor-cisdw4",
             "legacyParentAnchorId": "calculus-03-001-anchor-001",
-            "title": "积分公式与计算方法（集中速查）：∫ e^axcos bx dx",
+            "title": "e^axcos bx 的不定积分",
             "latex": "\\int e^{ax}\\cos bx\\,dx=\n\\frac{e^{ax}}{a^2+b^2}(a\\cos bx+b\\sin bx)+C.",
             "sourceBlockIndex": 20,
             "searchAliases": [],
             "context": "所属知识点：积分公式与计算方法（集中速查）。",
+            "displayContext": "指数函数与三角函数乘积：",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 30
@@ -3369,11 +3758,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1edfzwr",
             "parentAnchorId": "anchor-cisdw4",
             "legacyParentAnchorId": "calculus-03-001-anchor-001",
-            "title": "积分公式与计算方法（集中速查）：∫ f(g(x))g'(x) dx",
+            "title": "不定积分的换元法",
             "latex": "\\int f(g(x))g'(x)\\,dx=\\int f(u)\\,du.",
             "sourceBlockIndex": 21,
-            "searchAliases": [],
+            "searchAliases": [
+              "第一类换元法",
+              "凑微分"
+            ],
             "context": "第一类换元：看见“里面函数的导数”就凑微分。",
+            "displayContext": "第一类换元：看见“里面函数的导数”就凑微分。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 31
@@ -3382,11 +3775,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-11y7i1w",
             "parentAnchorId": "anchor-cisdw4",
             "legacyParentAnchorId": "calculus-03-001-anchor-001",
-            "title": "积分公式与计算方法（集中速查）：∫_a^b f(x) dx",
+            "title": "定积分的换元公式",
             "latex": "\\int_a^b f(x)\\,dx\n=\\int_\\alpha^\\beta f(\\varphi(t))\\varphi'(t)\\,dt.",
             "sourceBlockIndex": 24,
-            "searchAliases": [],
+            "searchAliases": [
+              "定积分换元法",
+              "换元后上下限"
+            ],
             "context": "定积分换元公式：若 \\(x=\\varphi(t)\\)，\\(\\varphi(\\alpha)=a,\\varphi(\\beta)=b\\)，则",
+            "displayContext": "定积分换元公式：若 \\(x=\\varphi(t)\\)，\\(\\varphi(\\alpha)=a,\\varphi(\\beta)=b\\)，则",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 32
@@ -3400,6 +3797,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 25,
             "searchAliases": [],
             "context": "第二类换元常用：",
+            "displayContext": "第二类换元常用：",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 33
@@ -3413,6 +3811,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 25,
             "searchAliases": [],
             "context": "第二类换元常用：",
+            "displayContext": "第二类换元常用：",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 34
@@ -3426,6 +3825,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 25,
             "searchAliases": [],
             "context": "第二类换元常用：",
+            "displayContext": "第二类换元常用：",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 35
@@ -3434,11 +3834,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-wqqyn8",
             "parentAnchorId": "anchor-cisdw4",
             "legacyParentAnchorId": "calculus-03-001-anchor-001",
-            "title": "积分公式与计算方法（集中速查）：∫ u dv",
+            "title": "不定积分分部积分公式",
             "latex": "\\int u\\,dv=uv-\\int v\\,du.",
             "sourceBlockIndex": 26,
-            "searchAliases": [],
+            "searchAliases": [
+              "分部积分法",
+              "u dv分部积分"
+            ],
             "context": "分部积分：",
+            "displayContext": "分部积分：",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 36
@@ -3447,11 +3851,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-vjq57g",
             "parentAnchorId": "anchor-cisdw4",
             "legacyParentAnchorId": "calculus-03-001-anchor-001",
-            "title": "积分公式与计算方法（集中速查）：∫_a^b u(x)v'(x) dx",
+            "title": "定积分分部积分公式",
             "latex": "\\int_a^b u(x)v'(x)\\,dx\n=\\bigl[u(x)v(x)\\bigr]_a^b-\\int_a^b u'(x)v(x)\\,dx.",
             "sourceBlockIndex": 27,
-            "searchAliases": [],
+            "searchAliases": [
+              "定积分分部积分法",
+              "带上下限分部积分"
+            ],
             "context": "定积分分部公式：",
+            "displayContext": "定积分分部公式：",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 37
@@ -3465,6 +3873,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 32,
             "searchAliases": [],
             "context": "对 \\(R(\\sin x,\\cos x)\\)，简单凑微分和降幂不方便时可令 t=\\tan\\frac x2，则",
+            "displayContext": "对 \\(R(\\sin x,\\cos x)\\)，简单凑微分和降幂不方便时可令 \\(t=\\tan\\frac x2\\)，则",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 38
@@ -3478,6 +3887,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 32,
             "searchAliases": [],
             "context": "对 \\(R(\\sin x,\\cos x)\\)，简单凑微分和降幂不方便时可令 t=\\tan\\frac x2，则",
+            "displayContext": "对 \\(R(\\sin x,\\cos x)\\)，简单凑微分和降幂不方便时可令 \\(t=\\tan\\frac x2\\)，则",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 39
@@ -3491,6 +3901,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 32,
             "searchAliases": [],
             "context": "对 \\(R(\\sin x,\\cos x)\\)，简单凑微分和降幂不方便时可令 t=\\tan\\frac x2，则",
+            "displayContext": "对 \\(R(\\sin x,\\cos x)\\)，简单凑微分和降幂不方便时可令 \\(t=\\tan\\frac x2\\)，则",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 40
@@ -3504,6 +3915,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 35,
             "searchAliases": [],
             "context": "若 \\deg P\\ge\\deg Q，先作多项式除法。对重一次因子与不可约二次因子分别设",
+            "displayContext": "若 \\(\\deg P\\ge\\deg Q\\)，先作多项式除法。对重一次因子与不可约二次因子分别设",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 41
@@ -3517,6 +3929,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 36,
             "searchAliases": [],
             "context": "所属知识点：积分公式与计算方法（集中速查）。",
+            "displayContext": "若 \\(\\deg P\\ge\\deg Q\\)，先作多项式除法。对重一次因子与不可约二次因子分别设",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 42
@@ -3530,6 +3943,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 37,
             "searchAliases": [],
             "context": "定积分的线性、区间可加性与换向公式：",
+            "displayContext": "定积分的线性、区间可加性与换向公式：",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 43
@@ -3543,6 +3957,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 38,
             "searchAliases": [],
             "context": "所属知识点：积分公式与计算方法（集中速查）。",
+            "displayContext": "定积分的线性、区间可加性与换向公式：",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 44
@@ -3556,6 +3971,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 38,
             "searchAliases": [],
             "context": "所属知识点：积分公式与计算方法（集中速查）。",
+            "displayContext": "定积分的线性、区间可加性与换向公式：",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 45
@@ -3564,11 +3980,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1o30v8f",
             "parentAnchorId": "anchor-cisdw4",
             "legacyParentAnchorId": "calculus-03-001-anchor-001",
-            "title": "积分公式与计算方法（集中速查）：∫_-a^af(x) dx",
+            "title": "对称区间奇偶函数的定积分",
             "latex": "\\int_{-a}^{a}f(x)\\,dx=\n\\begin{cases}\n2\\int_0^a f(x)\\,dx,&f\\text{ 为偶函数},\\\\\n0,&f\\text{ 为奇函数},\n\\end{cases}",
             "sourceBlockIndex": 39,
-            "searchAliases": [],
+            "searchAliases": [
+              "奇函数积分为零",
+              "偶函数积分乘二"
+            ],
             "context": "所属知识点：积分公式与计算方法（集中速查）。",
+            "displayContext": "定积分的线性、区间可加性与换向公式：",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 46
@@ -3582,6 +4002,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 40,
             "searchAliases": [],
             "context": "所属知识点：积分公式与计算方法（集中速查）。",
+            "displayContext": "定积分的线性、区间可加性与换向公式：",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 47
@@ -3595,6 +4016,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 41,
             "searchAliases": [],
             "context": "所属知识点：积分公式与计算方法（集中速查）。",
+            "displayContext": "因此",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 48
@@ -3608,6 +4030,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 43,
             "searchAliases": [],
             "context": "周期函数在整周期上的积分：若 \\(f(x+T)=f(x)\\)，则",
+            "displayContext": "周期函数在整周期上的积分：若 \\(f(x+T)=f(x)\\)，则",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 49
@@ -3621,6 +4044,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 43,
             "searchAliases": [],
             "context": "周期函数在整周期上的积分：若 \\(f(x+T)=f(x)\\)，则",
+            "displayContext": "周期函数在整周期上的积分：若 \\(f(x+T)=f(x)\\)，则",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 50
@@ -3634,6 +4058,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 44,
             "searchAliases": [],
             "context": "华里士公式。令",
+            "displayContext": "华里士公式。令",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 51
@@ -3647,6 +4072,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 45,
             "searchAliases": [],
             "context": "所属知识点：积分公式与计算方法（集中速查）。",
+            "displayContext": "则",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 52
@@ -3660,6 +4086,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 45,
             "searchAliases": [],
             "context": "所属知识点：积分公式与计算方法（集中速查）。",
+            "displayContext": "则",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 53
@@ -3673,6 +4100,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 45,
             "searchAliases": [],
             "context": "所属知识点：积分公式与计算方法（集中速查）。",
+            "displayContext": "则",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 54
@@ -3686,6 +4114,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 46,
             "searchAliases": [],
             "context": "所属知识点：积分公式与计算方法（集中速查）。",
+            "displayContext": "即",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 55
@@ -3699,6 +4128,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 46,
             "searchAliases": [],
             "context": "所属知识点：积分公式与计算方法（集中速查）。",
+            "displayContext": "即",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 56
@@ -3712,6 +4142,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 48,
             "searchAliases": [],
             "context": "若 f 连续，则",
+            "displayContext": "若 \\(f\\) 连续，则",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 57
@@ -3725,6 +4156,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 49,
             "searchAliases": [],
             "context": "所属知识点：积分公式与计算方法（集中速查）。",
+            "displayContext": "若 \\(f\\) 连续，则",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 58
@@ -3733,11 +4165,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1l6t86r",
             "parentAnchorId": "anchor-cisdw4",
             "legacyParentAnchorId": "calculus-03-001-anchor-001",
-            "title": "积分公式与计算方法（集中速查）：frac ddx∫_u(x)^v(x)f(t) dt",
+            "title": "上下限都随x变化的积分求导",
             "latex": "\\frac d{dx}\\int_{u(x)}^{v(x)}f(t)\\,dt=f(v(x))v'(x)-f(u(x))u'(x).",
             "sourceBlockIndex": 50,
-            "searchAliases": [],
+            "searchAliases": [
+              "变上限积分求导",
+              "积分上下限都是函数求导"
+            ],
             "context": "变上限积分：",
+            "displayContext": "变上限积分：",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 59
@@ -3751,6 +4187,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 54,
             "searchAliases": [],
             "context": "若 f 在 [a,b] 上可积，\\(m\\le f(x)\\le M\\)，则",
+            "displayContext": "若 \\(f\\) 在 \\([a,b]\\) 上可积，\\(m\\le f(x)\\le M\\)，则",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 60
@@ -3764,6 +4201,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 55,
             "searchAliases": [],
             "context": "所属知识点：积分公式与计算方法（集中速查）。",
+            "displayContext": "若 \\(f\\) 在 \\([a,b]\\) 上可积，\\(m\\le f(x)\\le M\\)，则",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 61
@@ -3777,6 +4215,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 56,
             "searchAliases": [],
             "context": "所属知识点：积分公式与计算方法（集中速查）。",
+            "displayContext": "若 \\(f\\) 在 \\([a,b]\\) 上可积，\\(m\\le f(x)\\le M\\)，则",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 62
@@ -3790,6 +4229,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 61,
             "searchAliases": [],
             "context": "若 f 在 [a,b] 上可积，则",
+            "displayContext": "若 \\(f\\) 在 \\([a,b]\\) 上可积，则",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 63
@@ -3803,6 +4243,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 62,
             "searchAliases": [],
             "context": "先求使表达式改变的分界点或分界曲线，再分段。常用恒等式：",
+            "displayContext": "先求使表达式改变的分界点或分界曲线，再分段。常用恒等式：",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 64
@@ -3816,6 +4257,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 62,
             "searchAliases": [],
             "context": "先求使表达式改变的分界点或分界曲线，再分段。常用恒等式：",
+            "displayContext": "先求使表达式改变的分界点或分界曲线，再分段。常用恒等式：",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 65
@@ -3829,6 +4271,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 63,
             "searchAliases": [],
             "context": "所属知识点：积分公式与计算方法（集中速查）。",
+            "displayContext": "先求使表达式改变的分界点或分界曲线，再分段。常用恒等式：",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-001",
             "order": 66
@@ -3847,77 +4290,88 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "calculus-03-002-anchor-001",
             "title": "定积分的几何应用（数学二）：函数平均值、平面图形面积与立体体积",
             "searchText": "定积分的几何应用（数学二）：函数平均值、平面图形面积与立体体积 f 平均 = 1 b-a a^b f(x)\\,dx. 直角坐标面积： S= a^b f(x)-g(x) \\,dx. 参数方程 x=x(t),y=y(t) 下： S=≤ft ^ y(t)x'(t)\\,dt . 极坐标面积： S= 12 ^ r( )^2\\,d .",
-            "summary": "f 平均 = 1 b-a a^b f(x)\\,dx. 直角坐标面积： S= a^b f(x)-g(x) \\,dx. 参数方程 x=x(t),y=y(t) 下： S=≤ft ^ y(t)x'(t)\\,dt . 极坐标面积： S= 12 ^ r( )^2\\,d…"
+            "summary": "f 平均 = 1 b-a a^b f(x)\\,dx. 直角坐标面积： S= a^b f(x)-g(x) \\,dx. 参数方程 x=x(t),y=y(t) 下： S=≤ft ^ y(t)x'(t)\\,dt . 极坐标面积： S= 12 ^ r( )^2\\,d…",
+            "displaySummary": "直角坐标面积："
           },
           {
             "id": "anchor-1x4bzwi",
             "legacyId": "calculus-03-002-anchor-002",
             "title": "定积分的几何应用（数学二）：旋转体体积",
             "searchText": "定积分的几何应用（数学二）：旋转体体积 普通方程 y=f(x)，a≤ x≤ b： 绕 x 轴： V x= a^b[f(x)]^2\\,dx. 绕 y 轴： V y=2 a^b x f(x)\\,dx. 参数方程 x=x(t),\\ y=y(t)， ≤ t≤ ： 绕 x 轴： V x= ^ y(t)^2\\, x'(t) \\,dt. 绕 y 轴： V y=2 ^ x(t)y(t)x'(t) \\,dt. 以上按图形在第一象限书写；不在第一象限时，旋转半径和图形高度均取正值。 已知截面积 A(x)： V= a^b A(x)\\,dx.",
-            "summary": "普通方程 y=f(x)，a≤ x≤ b： 绕 x 轴： V x= a^b[f(x)]^2\\,dx. 绕 y 轴： V y=2 a^b x f(x)\\,dx. 参数方程 x=x(t),\\ y=y(t)， ≤ t≤ ： 绕 x 轴： V x= ^ y(t)^2…"
+            "summary": "普通方程 y=f(x)，a≤ x≤ b： 绕 x 轴： V x= a^b[f(x)]^2\\,dx. 绕 y 轴： V y=2 a^b x f(x)\\,dx. 参数方程 x=x(t),\\ y=y(t)， ≤ t≤ ： 绕 x 轴： V x= ^ y(t)^2…",
+            "displaySummary": "普通方程 \\(y=f(x)\\)，\\(a\\le x\\le b\\)："
           },
           {
             "id": "anchor-77fovp",
             "legacyId": "calculus-03-002-anchor-003",
             "title": "常见平面图形面积公式（含椭圆面积）",
             "searchText": "常见平面图形面积公式（含椭圆面积） 图形 面积 S 字母含义 --- --- --- 正方形 S=a^2 a 为边长 长方形 S=ab a,b 为长、宽 三角形 S= 12 bh b 为底，h 为对应高 平行四边形 S=bh b 为底，h 为对应高 梯形 S= a+b 2 h a,b 为两条平行边，h 为高 菱形 S= 12 d 1d 2 d 1,d 2 为两条对角线 圆 S= r^2 r 为半径 圆环 S= (R^2-r^2) R,r 为外、内半径 扇形 S= 12 r^2 r 为半径， 用弧度 椭圆 S= ab a,b 为长、短半轴，均不是整条轴长",
-            "summary": "图形 面积 S 字母含义 --- --- --- 正方形 S=a^2 a 为边长 长方形 S=ab a,b 为长、宽 三角形 S= 12 bh b 为底，h 为对应高 平行四边形 S=bh b 为底，h 为对应高 梯形 S= a+b 2 h a,b 为两条…"
+            "summary": "图形 面积 S 字母含义 --- --- --- 正方形 S=a^2 a 为边长 长方形 S=ab a,b 为长、宽 三角形 S= 12 bh b 为底，h 为对应高 平行四边形 S=bh b 为底，h 为对应高 梯形 S= a+b 2 h a,b 为两条…",
+            "displaySummary": ""
           },
           {
             "id": "anchor-jby4bt",
             "legacyId": "calculus-03-002-anchor-004",
             "title": "常见立体体积公式",
             "searchText": "常见立体体积公式 立体 体积 V 字母含义 --- --- --- 正方体 V=a^3 a 为棱长 长方体 V=abc a,b,c 为长、宽、高 直棱柱 V=Sh S 为底面积，h 为高 圆柱 V= r^2h r 为底面半径，h 为高 棱锥 V= 13 Sh S 为底面积，h 为高 圆锥 V= 13 r^2h r 为底面半径，h 为高 圆台 V= 13 h(R^2+Rr+r^2) R,r 为下、上底半径，h 为高 球 V= 43 r^3 r 为半径 半球 V= 23 r^3 r 为半径",
-            "summary": "立体 体积 V 字母含义 --- --- --- 正方体 V=a^3 a 为棱长 长方体 V=abc a,b,c 为长、宽、高 直棱柱 V=Sh S 为底面积，h 为高 圆柱 V= r^2h r 为底面半径，h 为高 棱锥 V= 13 Sh S 为底面积，…"
+            "summary": "立体 体积 V 字母含义 --- --- --- 正方体 V=a^3 a 为棱长 长方体 V=abc a,b,c 为长、宽、高 直棱柱 V=Sh S 为底面积，h 为高 圆柱 V= r^2h r 为底面半径，h 为高 棱锥 V= 13 Sh S 为底面积，…",
+            "displaySummary": ""
           },
           {
             "id": "anchor-1ygnrh0",
             "legacyId": "calculus-03-002-anchor-005",
             "title": "常见立体表面积公式",
             "searchText": "常见立体表面积公式 下面的表面积都计入底面；如果题目只求侧面积，就不计底面。 立体 表面积 A 字母含义 --- --- --- 正方体 A=6a^2 a 为棱长 长方体 A=2(ab+bc+ca) a,b,c 为长、宽、高 直棱柱 A=2S+ph S 为底面积，p 为底面周长，h 为高 圆柱 A=2 r^2+2 rh r 为底面半径，h 为高 圆锥 A= r^2+ r = r^2+h^2 为母线长（斜高） 圆台 A= (R^2+r^2)+ (R+r) = h^2+(R-r)^2 为母线长 球 A=4 r^2 球面即全部外表面 半球 A=3 r^2 包含圆形底面；只算曲面为 2 r^2",
-            "summary": "下面的表面积都计入底面；如果题目只求侧面积，就不计底面。 立体 表面积 A 字母含义 --- --- --- 正方体 A=6a^2 a 为棱长 长方体 A=2(ab+bc+ca) a,b,c 为长、宽、高 直棱柱 A=2S+ph S 为底面积，p 为底面周…"
+            "summary": "下面的表面积都计入底面；如果题目只求侧面积，就不计底面。 立体 表面积 A 字母含义 --- --- --- 正方体 A=6a^2 a 为棱长 长方体 A=2(ab+bc+ca) a,b,c 为长、宽、高 直棱柱 A=2S+ph S 为底面积，p 为底面周…",
+            "displaySummary": "下面的表面积都计入底面；如果题目只求侧面积，就不计底面。"
           },
           {
             "id": "anchor-t2ts4i",
             "legacyId": "calculus-03-002-anchor-006",
             "title": "定积分的几何应用（数学二）：平面曲线弧长与旋转曲面面积",
             "searchText": "定积分的几何应用（数学二）：平面曲线弧长与旋转曲面面积 L= a^b 1+[y'(x)]^2 \\,dx. 参数方程： L= ^ [x'(t)]^2+[y'(t)]^2 \\,dt. 极坐标： L= ^ r^2+(r')^2 \\,d . 绕 x 轴的曲面面积： S=2 a^b y 1+(y')^2 \\,dx. 绕 y 轴的曲面面积： S=2 a^b x 1+(y')^2 \\,dx. 参数方程 x=x(t),y=y(t) 绕 x 轴旋转： S=2 ^ y(t) [x'(t)]^2+[y'(t)]^2 \\,dt. 极坐标曲线绕极轴旋转： S=2 ^ r( ) r( )^2+[r'( )]^2 \\,d .",
-            "summary": "L= a^b 1+[y'(x)]^2 \\,dx. 参数方程： L= ^ [x'(t)]^2+[y'(t)]^2 \\,dt. 极坐标： L= ^ r^2+(r')^2 \\,d . 绕 x 轴的曲面面积： S=2 a^b y 1+(y')^2 \\,dx. 绕 …"
+            "summary": "L= a^b 1+[y'(x)]^2 \\,dx. 参数方程： L= ^ [x'(t)]^2+[y'(t)]^2 \\,dt. 极坐标： L= ^ r^2+(r')^2 \\,d . 绕 x 轴的曲面面积： S=2 a^b y 1+(y')^2 \\,dx. 绕 …",
+            "displaySummary": "参数方程："
           },
           {
             "id": "anchor-6k9zg2",
             "legacyId": "calculus-03-002-anchor-007",
             "title": "定积分的物理应用（数学二）：基础物理公式、运动与质量",
             "searchText": "定积分的物理应用（数学二）：基础物理公式、运动与质量 先分清物理量本身的公式，再确定积分微元。下表中 是质量密度，g 是重力加速度，h 是液面以下的深度。 物理量 基础公式 适用条件 --- --- --- 质量 m= V；密度不均匀时 m= V \\,dV 前式要求密度均匀 重力 G=mg G 表示重力大小 速度、加速度 v=s'(t)， a=v'(t) s(t) 是带方向的位移坐标 力与加速度 F=ma 质量 m 不变时 功 W=Fs；变力时 W= F (x)\\,dx 前式要求恒力且同向；F 是沿位移方向的分力 液体压强 p= gh 静止液体，p 是相对液面的压强 压力 F=pS；压强不均匀时 F= S p\\,dS 受压面为平面、各处压力同向；前式还要求压强均匀 弹簧弹力 F 大小 =kx x 是相对原长的伸长量；弹簧恢复力方向相反，为 -kx 具体到变密度直杆，线密度为 (x) 时，质量是 m= a^b (x)\\,dx。 若速度为 v(t)，[t 1,t 2] 内的 位移 与 路程 分别为 s= t 1 ^ t 2 v(t)\\,dt, L= t 1 ^ t 2 v(t) \\,dt. 速度变号时，两式不能混用；加速度始终为 a(t)=v'(t)。",
-            "summary": "先分清物理量本身的公式，再确定积分微元。下表中 是质量密度，g 是重力加速度，h 是液面以下的深度。 物理量 基础公式 适用条件 --- --- --- 质量 m= V；密度不均匀时 m= V \\,dV 前式要求密度均匀 重力 G=mg G 表示重力大小 …"
+            "summary": "先分清物理量本身的公式，再确定积分微元。下表中 是质量密度，g 是重力加速度，h 是液面以下的深度。 物理量 基础公式 适用条件 --- --- --- 质量 m= V；密度不均匀时 m= V \\,dV 前式要求密度均匀 重力 G=mg G 表示重力大小 …",
+            "displaySummary": "先分清物理量本身的公式，再确定积分微元。下表中 \\(\\rho\\) 是质量密度，\\(g\\) 是重力加速度，\\(h\\) 是液面以下的深度。"
           },
           {
             "id": "anchor-1qa371k",
             "legacyId": "calculus-03-002-anchor-008",
             "title": "定积分的物理应用（数学二）：变力、弹簧与抽水做功",
             "searchText": "定积分的物理应用（数学二）：变力、弹簧与抽水做功 沿直线从 a 移到 b，若 F(x) 是力沿位移方向的 带符号分量 ，变力做功为 W= a^b F(x)\\,dx. 从伸长量 a 拉到 b（0≤ a<b）时，克服弹簧恢复力所做的功为 W 外力 = a^b kx\\,dx= k 2 (b^2-a^2). 抽水时沿竖直方向取厚度为 dy 的水层。若该层横截面积为 A(y)，需提升的距离为 L(y)，则 dW= g A(y)L(y)\\,dy, W= g a^b A(y)L(y)\\,dy. 即“每层水的重力 × 该层的提升距离”，其中 为水的质量密度。",
-            "summary": "沿直线从 a 移到 b，若 F(x) 是力沿位移方向的 带符号分量 ，变力做功为 W= a^b F(x)\\,dx. 从伸长量 a 拉到 b（0≤ a<b）时，克服弹簧恢复力所做的功为 W 外力 = a^b kx\\,dx= k 2 (b^2-a^2). 抽水…"
+            "summary": "沿直线从 a 移到 b，若 F(x) 是力沿位移方向的 带符号分量 ，变力做功为 W= a^b F(x)\\,dx. 从伸长量 a 拉到 b（0≤ a<b）时，克服弹簧恢复力所做的功为 W 外力 = a^b kx\\,dx= k 2 (b^2-a^2). 抽水…",
+            "displaySummary": "沿直线从 \\(a\\) 移到 \\(b\\)，若 \\(F(x)\\) 是力沿位移方向的**带符号分量**，变力做功为"
           },
           {
             "id": "anchor-1n801g8",
             "legacyId": "calculus-03-002-anchor-009",
             "title": "定积分的物理应用（数学二）：液体静压力",
             "searchText": "定积分的物理应用（数学二）：液体静压力 在深度为 h(y) 的位置，液体压强为 p(y)= g h(y)。沿竖直方向取宽为 w(y)、厚为 dy 的水平横条，则它受到的压力大小为 dF=p(y)w(y)\\,dy= g h(y)w(y)\\,dy, F= a^b g h(y)w(y)\\,dy. 若 y 本身从液面向下计深度，便有 h(y)=y；积分区间 [a,b] 必须覆盖实际受压部分。",
-            "summary": "在深度为 h(y) 的位置，液体压强为 p(y)= g h(y)。沿竖直方向取宽为 w(y)、厚为 dy 的水平横条，则它受到的压力大小为 dF=p(y)w(y)\\,dy= g h(y)w(y)\\,dy, F= a^b g h(y)w(y)\\,dy. 若 …"
+            "summary": "在深度为 h(y) 的位置，液体压强为 p(y)= g h(y)。沿竖直方向取宽为 w(y)、厚为 dy 的水平横条，则它受到的压力大小为 dF=p(y)w(y)\\,dy= g h(y)w(y)\\,dy, F= a^b g h(y)w(y)\\,dy. 若 …",
+            "displaySummary": "在深度为 \\(h(y)\\) 的位置，液体压强为 \\(p(y)=\\rho g h(y)\\)。沿竖直方向取宽为 \\(w(y)\\)、厚为 \\(dy\\) 的水平横条，则它受到的压力大小为"
           },
           {
             "id": "anchor-c6zvhx",
             "legacyId": "calculus-03-002-anchor-010",
             "title": "定积分的物理应用（数学二）：万有引力与引力做功",
             "searchText": "定积分的物理应用（数学二）：万有引力与引力做功 相距 r 的两个质点，质量分别为 M,m，万有引力大小为 F(r)= G N Mm r^2 ，其中 G N 是万有引力常量，与上文表示重力的 G 不同。将质量 m 从距离 a 处缓慢移到更远的 b 处（0<a<b），克服引力所做的功为 W 外力 = a^b G N Mm r^2 \\,dr =G N Mm≤ft( 1a- 1b ). 引力方向与这段向外的位移相反，因此 引力本身做的功 是 -W 外力 。若对象是一根线密度为 (x) 的细杆，可先对杆的质量微元求引力；在各微元引力同向的情况下，大小为 F=G N M a^b (x) r(x)^2 \\,dx.",
-            "summary": "相距 r 的两个质点，质量分别为 M,m，万有引力大小为 F(r)= G N Mm r^2 ，其中 G N 是万有引力常量，与上文表示重力的 G 不同。将质量 m 从距离 a 处缓慢移到更远的 b 处（0<a<b），克服引力所做的功为 W 外力 = a^b…"
+            "summary": "相距 r 的两个质点，质量分别为 M,m，万有引力大小为 F(r)= G N Mm r^2 ，其中 G N 是万有引力常量，与上文表示重力的 G 不同。将质量 m 从距离 a 处缓慢移到更远的 b 处（0<a<b），克服引力所做的功为 W 外力 = a^b…",
+            "displaySummary": "引力方向与这段向外的位移相反，因此**引力本身做的功**是 \\(-W_{\\text{外力}}\\)。若对象是一根线密度为 \\(\\lambda(x)\\) 的细杆，可先对杆的质量微元求引力；在各微元引力同向的情况下，大小为"
           },
           {
             "id": "anchor-1vm6c8a",
             "legacyId": "calculus-03-002-anchor-011",
             "title": "定积分的几何应用（数学二）：形心与质心",
             "searchText": "定积分的几何应用（数学二）：形心与质心 设均匀薄片由 a≤ x≤ b、0≤ y≤ f(x) 围成，其中 f(x)≥0，面积 S 0。此时形心就是质心，只需记住 S= a^b f(x)\\,dx, x= a^b x f(x)\\,dx a^b f(x)\\,dx , y= a^b [f(x)]^2\\,dx 2 a^b f(x)\\,dx .",
-            "summary": "设均匀薄片由 a≤ x≤ b、0≤ y≤ f(x) 围成，其中 f(x)≥0，面积 S 0。此时形心就是质心，只需记住 S= a^b f(x)\\,dx, x= a^b x f(x)\\,dx a^b f(x)\\,dx , y= a^b [f(x)]^2\\,d…"
+            "summary": "设均匀薄片由 a≤ x≤ b、0≤ y≤ f(x) 围成，其中 f(x)≥0，面积 S 0。此时形心就是质心，只需记住 S= a^b f(x)\\,dx, x= a^b x f(x)\\,dx a^b f(x)\\,dx , y= a^b [f(x)]^2\\,d…",
+            "displaySummary": "设均匀薄片由 \\(a\\le x\\le b\\)、\\(0\\le y\\le f(x)\\) 围成，其中 \\(f(x)\\ge0\\)，面积 \\(S>0\\)。此时形心就是质心，只需记住"
           }
         ],
         "formulas": [
@@ -3925,11 +4379,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-sw6s3k",
             "parentAnchorId": "anchor-175zj2c",
             "legacyParentAnchorId": "calculus-03-002-anchor-001",
-            "title": "定积分的几何应用（数学二）：函数平均值、平面图形面积与立体体积：f_平均",
+            "title": "函数在区间上的平均值",
             "latex": "f_{\\text{平均}}=\\frac1{b-a}\\int_a^b f(x)\\,dx.",
             "sourceBlockIndex": 0,
-            "searchAliases": [],
+            "searchAliases": [
+              "定积分平均值",
+              "函数平均值公式"
+            ],
             "context": "所属知识点：定积分的几何应用（数学二）：函数平均值、平面图形面积与立体体积。",
+            "displayContext": "所属知识点：定积分的几何应用（数学二）：函数平均值、平面图形面积与立体体积。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 0
@@ -3938,11 +4396,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-ahovol",
             "parentAnchorId": "anchor-175zj2c",
             "legacyParentAnchorId": "calculus-03-002-anchor-001",
-            "title": "定积分的几何应用（数学二）：函数平均值、平面图形面积与立体体积：S",
+            "title": "两条曲线围成的面积",
             "latex": "S=\\int_a^b|f(x)-g(x)|\\,dx.",
             "sourceBlockIndex": 1,
-            "searchAliases": [],
+            "searchAliases": [
+              "定积分求平面面积",
+              "上下曲线面积"
+            ],
             "context": "直角坐标面积：",
+            "displayContext": "直角坐标面积：",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 1
@@ -3951,11 +4413,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-y5sqhn",
             "parentAnchorId": "anchor-175zj2c",
             "legacyParentAnchorId": "calculus-03-002-anchor-001",
-            "title": "定积分的几何应用（数学二）：函数平均值、平面图形面积与立体体积：S",
+            "title": "参数方程围成的面积",
             "latex": "S=\\left|\\int_\\alpha^\\beta y(t)x'(t)\\,dt\\right|.",
             "sourceBlockIndex": 3,
-            "searchAliases": [],
+            "searchAliases": [
+              "参数方程面积",
+              "参数曲线面积"
+            ],
             "context": "参数方程 \\(x=x(t),y=y(t)\\) 下：",
+            "displayContext": "参数方程 \\(x=x(t),y=y(t)\\) 下：",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 2
@@ -3964,11 +4430,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-bexb9q",
             "parentAnchorId": "anchor-175zj2c",
             "legacyParentAnchorId": "calculus-03-002-anchor-001",
-            "title": "定积分的几何应用（数学二）：函数平均值、平面图形面积与立体体积：S",
+            "title": "极坐标曲线围成的面积",
             "latex": "S=\\frac12\\int_\\alpha^\\beta r(\\theta)^2\\,d\\theta.",
             "sourceBlockIndex": 4,
-            "searchAliases": [],
+            "searchAliases": [
+              "极坐标面积公式",
+              "极坐标求面积"
+            ],
             "context": "极坐标面积：",
+            "displayContext": "极坐标面积：",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 3
@@ -3977,11 +4447,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-z39dkc",
             "parentAnchorId": "anchor-1x4bzwi",
             "legacyParentAnchorId": "calculus-03-002-anchor-002",
-            "title": "定积分的几何应用（数学二）：旋转体体积：绕 x 轴：",
+            "title": "绕x轴旋转体的体积",
             "latex": "\\text{绕 }x\\text{ 轴：}\\qquad\nV_x=\\pi\\int_a^b[f(x)]^2\\,dx.",
             "sourceBlockIndex": 7,
-            "searchAliases": [],
+            "searchAliases": [
+              "旋转体体积",
+              "绕x轴求体积"
+            ],
             "context": "普通方程 \\(y=f(x)\\)，a\\le x\\le b：",
+            "displayContext": "普通方程 \\(y=f(x)\\)，\\(a\\le x\\le b\\)：",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 4
@@ -3990,11 +4464,16 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-cm6pdc",
             "parentAnchorId": "anchor-1x4bzwi",
             "legacyParentAnchorId": "calculus-03-002-anchor-002",
-            "title": "定积分的几何应用（数学二）：旋转体体积：绕 y 轴：",
+            "title": "绕y轴旋转体的体积",
             "latex": "\\text{绕 }y\\text{ 轴：}\\qquad\nV_y=2\\pi\\int_a^b x f(x)\\,dx.",
             "sourceBlockIndex": 8,
-            "searchAliases": [],
+            "searchAliases": [
+              "旋转体体积",
+              "绕y轴求体积",
+              "柱壳法"
+            ],
             "context": "所属知识点：定积分的几何应用（数学二）：旋转体体积。",
+            "displayContext": "普通方程 \\(y=f(x)\\)，\\(a\\le x\\le b\\)：",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 5
@@ -4008,6 +4487,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 11,
             "searchAliases": [],
             "context": "参数方程 \\(x=x(t),\\ y=y(t)\\)，\\alpha\\le t\\le\\beta：",
+            "displayContext": "参数方程 \\(x=x(t),\\ y=y(t)\\)，\\(\\alpha\\le t\\le\\beta\\)：",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 6
@@ -4021,6 +4501,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 12,
             "searchAliases": [],
             "context": "所属知识点：定积分的几何应用（数学二）：旋转体体积。",
+            "displayContext": "参数方程 \\(x=x(t),\\ y=y(t)\\)，\\(\\alpha\\le t\\le\\beta\\)：",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 7
@@ -4029,11 +4510,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-q5h278",
             "parentAnchorId": "anchor-1x4bzwi",
             "legacyParentAnchorId": "calculus-03-002-anchor-002",
-            "title": "定积分的几何应用（数学二）：旋转体体积：V",
+            "title": "截面积求立体体积",
             "latex": "V=\\int_a^b A(x)\\,dx.",
             "sourceBlockIndex": 14,
-            "searchAliases": [],
+            "searchAliases": [
+              "已知截面积求体积",
+              "切片法体积"
+            ],
             "context": "已知截面积 \\(A(x)\\)：",
+            "displayContext": "已知截面积 \\(A(x)\\)：",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 8
@@ -4050,6 +4535,7 @@ export const mathChapters: MathChapter[] = [
               "正方形"
             ],
             "context": "a 为边长",
+            "displayContext": "a 为边长",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 9
@@ -4066,6 +4552,7 @@ export const mathChapters: MathChapter[] = [
               "长方形"
             ],
             "context": "a,b 为长、宽",
+            "displayContext": "a,b 为长、宽",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 10
@@ -4082,6 +4569,7 @@ export const mathChapters: MathChapter[] = [
               "三角形"
             ],
             "context": "b 为底，h 为对应高",
+            "displayContext": "b 为底，h 为对应高",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 11
@@ -4098,6 +4586,7 @@ export const mathChapters: MathChapter[] = [
               "平行四边形"
             ],
             "context": "b 为底，h 为对应高",
+            "displayContext": "b 为底，h 为对应高",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 12
@@ -4114,6 +4603,7 @@ export const mathChapters: MathChapter[] = [
               "梯形"
             ],
             "context": "a,b 为两条平行边，h 为高",
+            "displayContext": "a,b 为两条平行边，h 为高",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 13
@@ -4130,6 +4620,7 @@ export const mathChapters: MathChapter[] = [
               "菱形"
             ],
             "context": "d_1,d_2 为两条对角线",
+            "displayContext": "",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 14
@@ -4146,6 +4637,7 @@ export const mathChapters: MathChapter[] = [
               "圆"
             ],
             "context": "r 为半径",
+            "displayContext": "r 为半径",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 15
@@ -4162,6 +4654,7 @@ export const mathChapters: MathChapter[] = [
               "圆环"
             ],
             "context": "R,r 为外、内半径",
+            "displayContext": "R,r 为外、内半径",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 16
@@ -4178,6 +4671,7 @@ export const mathChapters: MathChapter[] = [
               "扇形"
             ],
             "context": "r 为半径，\\theta 用弧度",
+            "displayContext": "",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 17
@@ -4194,6 +4688,7 @@ export const mathChapters: MathChapter[] = [
               "椭圆"
             ],
             "context": "a,b 为长、短半轴，均不是整条轴长",
+            "displayContext": "a,b 为长、短半轴，均不是整条轴长",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 18
@@ -4210,6 +4705,7 @@ export const mathChapters: MathChapter[] = [
               "正方体"
             ],
             "context": "a 为棱长",
+            "displayContext": "a 为棱长",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 19
@@ -4226,6 +4722,7 @@ export const mathChapters: MathChapter[] = [
               "长方体"
             ],
             "context": "a,b,c 为长、宽、高",
+            "displayContext": "a,b,c 为长、宽、高",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 20
@@ -4242,6 +4739,7 @@ export const mathChapters: MathChapter[] = [
               "直棱柱"
             ],
             "context": "S 为底面积，h 为高",
+            "displayContext": "S 为底面积，h 为高",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 21
@@ -4258,6 +4756,7 @@ export const mathChapters: MathChapter[] = [
               "圆柱"
             ],
             "context": "r 为底面半径，h 为高",
+            "displayContext": "r 为底面半径，h 为高",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 22
@@ -4274,6 +4773,7 @@ export const mathChapters: MathChapter[] = [
               "棱锥"
             ],
             "context": "S 为底面积，h 为高",
+            "displayContext": "S 为底面积，h 为高",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 23
@@ -4290,6 +4790,7 @@ export const mathChapters: MathChapter[] = [
               "圆锥"
             ],
             "context": "r 为底面半径，h 为高",
+            "displayContext": "r 为底面半径，h 为高",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 24
@@ -4306,6 +4807,7 @@ export const mathChapters: MathChapter[] = [
               "圆台"
             ],
             "context": "R,r 为下、上底半径，h 为高",
+            "displayContext": "R,r 为下、上底半径，h 为高",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 25
@@ -4322,6 +4824,7 @@ export const mathChapters: MathChapter[] = [
               "球"
             ],
             "context": "r 为半径",
+            "displayContext": "r 为半径",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 26
@@ -4338,6 +4841,7 @@ export const mathChapters: MathChapter[] = [
               "半球"
             ],
             "context": "r 为半径",
+            "displayContext": "r 为半径",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 27
@@ -4354,6 +4858,7 @@ export const mathChapters: MathChapter[] = [
               "正方体"
             ],
             "context": "a 为棱长",
+            "displayContext": "下面的表面积都计入底面；如果题目只求侧面积，就不计底面。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 28
@@ -4370,6 +4875,7 @@ export const mathChapters: MathChapter[] = [
               "长方体"
             ],
             "context": "a,b,c 为长、宽、高",
+            "displayContext": "下面的表面积都计入底面；如果题目只求侧面积，就不计底面。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 29
@@ -4386,6 +4892,7 @@ export const mathChapters: MathChapter[] = [
               "直棱柱"
             ],
             "context": "S 为底面积，p 为底面周长，h 为高",
+            "displayContext": "下面的表面积都计入底面；如果题目只求侧面积，就不计底面。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 30
@@ -4402,6 +4909,7 @@ export const mathChapters: MathChapter[] = [
               "圆柱"
             ],
             "context": "r 为底面半径，h 为高",
+            "displayContext": "下面的表面积都计入底面；如果题目只求侧面积，就不计底面。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 31
@@ -4418,6 +4926,7 @@ export const mathChapters: MathChapter[] = [
               "圆锥"
             ],
             "context": "底面积加侧面积；母线长是半径与高组成的直角三角形斜边。",
+            "displayContext": "下面的表面积都计入底面；如果题目只求侧面积，就不计底面。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 32
@@ -4434,6 +4943,7 @@ export const mathChapters: MathChapter[] = [
               "圆台"
             ],
             "context": "上下底面积加侧面积；母线长由高和两底半径之差求得。",
+            "displayContext": "下面的表面积都计入底面；如果题目只求侧面积，就不计底面。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 33
@@ -4450,6 +4960,7 @@ export const mathChapters: MathChapter[] = [
               "球"
             ],
             "context": "球面即全部外表面",
+            "displayContext": "下面的表面积都计入底面；如果题目只求侧面积，就不计底面。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 34
@@ -4466,6 +4977,7 @@ export const mathChapters: MathChapter[] = [
               "半球"
             ],
             "context": "这里包含圆形底面；只算曲面时为球表面积的一半。",
+            "displayContext": "下面的表面积都计入底面；如果题目只求侧面积，就不计底面。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 35
@@ -4474,11 +4986,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1kl2j3v",
             "parentAnchorId": "anchor-t2ts4i",
             "legacyParentAnchorId": "calculus-03-002-anchor-006",
-            "title": "定积分的几何应用（数学二）：平面曲线弧长与旋转曲面面积：L",
+            "title": "直角坐标下的曲线弧长",
             "latex": "L=\\int_a^b\\sqrt{1+[y'(x)]^2}\\,dx.",
             "sourceBlockIndex": 83,
-            "searchAliases": [],
+            "searchAliases": [
+              "弧长公式",
+              "y等于fx弧长"
+            ],
             "context": "所属知识点：定积分的几何应用（数学二）：平面曲线弧长与旋转曲面面积。",
+            "displayContext": "所属知识点：定积分的几何应用（数学二）：平面曲线弧长与旋转曲面面积。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 36
@@ -4492,6 +5008,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 84,
             "searchAliases": [],
             "context": "参数方程：",
+            "displayContext": "参数方程：",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 37
@@ -4505,6 +5022,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 85,
             "searchAliases": [],
             "context": "所属知识点：定积分的几何应用（数学二）：平面曲线弧长与旋转曲面面积。",
+            "displayContext": "极坐标：",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 38
@@ -4518,6 +5036,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 87,
             "searchAliases": [],
             "context": "绕 x 轴的曲面面积：",
+            "displayContext": "绕 \\(x\\) 轴的曲面面积：",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 39
@@ -4531,6 +5050,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 89,
             "searchAliases": [],
             "context": "绕 y 轴的曲面面积：",
+            "displayContext": "绕 \\(y\\) 轴的曲面面积：",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 40
@@ -4544,6 +5064,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 92,
             "searchAliases": [],
             "context": "参数方程 \\(x=x(t),y=y(t)\\) 绕 x 轴旋转：",
+            "displayContext": "参数方程 \\(x=x(t),y=y(t)\\) 绕 \\(x\\) 轴旋转：",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 41
@@ -4557,6 +5078,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 93,
             "searchAliases": [],
             "context": "极坐标曲线绕极轴旋转：",
+            "displayContext": "极坐标曲线绕极轴旋转：",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 42
@@ -4573,6 +5095,7 @@ export const mathChapters: MathChapter[] = [
               "质量"
             ],
             "context": "前式要求密度均匀",
+            "displayContext": "先分清物理量本身的公式，再确定积分微元。下表中 \\(\\rho\\) 是质量密度，\\(g\\) 是重力加速度，\\(h\\) 是液面以下的深度。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 43
@@ -4589,6 +5112,7 @@ export const mathChapters: MathChapter[] = [
               "质量"
             ],
             "context": "前式要求密度均匀",
+            "displayContext": "先分清物理量本身的公式，再确定积分微元。下表中 \\(\\rho\\) 是质量密度，\\(g\\) 是重力加速度，\\(h\\) 是液面以下的深度。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 44
@@ -4605,6 +5129,7 @@ export const mathChapters: MathChapter[] = [
               "重力"
             ],
             "context": "G 表示重力大小",
+            "displayContext": "先分清物理量本身的公式，再确定积分微元。下表中 \\(\\rho\\) 是质量密度，\\(g\\) 是重力加速度，\\(h\\) 是液面以下的深度。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 45
@@ -4621,6 +5146,7 @@ export const mathChapters: MathChapter[] = [
               "速度、加速度"
             ],
             "context": "s(t) 是带方向的位移坐标",
+            "displayContext": "先分清物理量本身的公式，再确定积分微元。下表中 \\(\\rho\\) 是质量密度，\\(g\\) 是重力加速度，\\(h\\) 是液面以下的深度。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 46
@@ -4637,6 +5163,7 @@ export const mathChapters: MathChapter[] = [
               "速度、加速度"
             ],
             "context": "s(t) 是带方向的位移坐标",
+            "displayContext": "先分清物理量本身的公式，再确定积分微元。下表中 \\(\\rho\\) 是质量密度，\\(g\\) 是重力加速度，\\(h\\) 是液面以下的深度。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 47
@@ -4653,6 +5180,7 @@ export const mathChapters: MathChapter[] = [
               "力与加速度"
             ],
             "context": "质量 m 不变时",
+            "displayContext": "先分清物理量本身的公式，再确定积分微元。下表中 \\(\\rho\\) 是质量密度，\\(g\\) 是重力加速度，\\(h\\) 是液面以下的深度。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 48
@@ -4669,6 +5197,7 @@ export const mathChapters: MathChapter[] = [
               "功"
             ],
             "context": "前式要求恒力且同向；F_{\\parallel} 是沿位移方向的分力",
+            "displayContext": "先分清物理量本身的公式，再确定积分微元。下表中 \\(\\rho\\) 是质量密度，\\(g\\) 是重力加速度，\\(h\\) 是液面以下的深度。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 49
@@ -4685,6 +5214,7 @@ export const mathChapters: MathChapter[] = [
               "功"
             ],
             "context": "前式要求恒力且同向；F_{\\parallel} 是沿位移方向的分力",
+            "displayContext": "先分清物理量本身的公式，再确定积分微元。下表中 \\(\\rho\\) 是质量密度，\\(g\\) 是重力加速度，\\(h\\) 是液面以下的深度。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 50
@@ -4701,6 +5231,7 @@ export const mathChapters: MathChapter[] = [
               "液体压强"
             ],
             "context": "静止液体，p 是相对液面的压强",
+            "displayContext": "先分清物理量本身的公式，再确定积分微元。下表中 \\(\\rho\\) 是质量密度，\\(g\\) 是重力加速度，\\(h\\) 是液面以下的深度。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 51
@@ -4717,6 +5248,7 @@ export const mathChapters: MathChapter[] = [
               "压力"
             ],
             "context": "受压面为平面、各处压力同向；前式还要求压强均匀",
+            "displayContext": "先分清物理量本身的公式，再确定积分微元。下表中 \\(\\rho\\) 是质量密度，\\(g\\) 是重力加速度，\\(h\\) 是液面以下的深度。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 52
@@ -4733,6 +5265,7 @@ export const mathChapters: MathChapter[] = [
               "压力"
             ],
             "context": "受压面为平面、各处压力同向；前式还要求压强均匀",
+            "displayContext": "先分清物理量本身的公式，再确定积分微元。下表中 \\(\\rho\\) 是质量密度，\\(g\\) 是重力加速度，\\(h\\) 是液面以下的深度。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 53
@@ -4749,6 +5282,7 @@ export const mathChapters: MathChapter[] = [
               "弹簧弹力"
             ],
             "context": "x 是相对原长的伸长量；弹簧恢复力方向相反，为 -kx",
+            "displayContext": "先分清物理量本身的公式，再确定积分微元。下表中 \\(\\rho\\) 是质量密度，\\(g\\) 是重力加速度，\\(h\\) 是液面以下的深度。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 54
@@ -4765,6 +5299,7 @@ export const mathChapters: MathChapter[] = [
               "积分求质量"
             ],
             "context": "细杆位于 x∈[a,b]，λ(x) 是线密度。",
+            "displayContext": "具体到变密度直杆，线密度为 \\(\\lambda(x)\\) 时，质量是",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 55
@@ -4773,11 +5308,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-wtpptr-1",
             "parentAnchorId": "anchor-6k9zg2",
             "legacyParentAnchorId": "calculus-03-002-anchor-007",
-            "title": "定积分的物理应用（数学二）：基础物理公式、运动与质量：Delta s",
+            "title": "速度积分求位移",
             "latex": "\\Delta s=\\int_{t_1}^{t_2}v(t)\\,dt",
             "sourceBlockIndex": 120,
-            "searchAliases": [],
+            "searchAliases": [
+              "运动位移",
+              "速度求位移"
+            ],
             "context": "若速度为 \\(v(t)\\)，[t_1,t_2] 内的位移与路程分别为",
+            "displayContext": "若速度为 \\(v(t)\\)，\\([t_1,t_2]\\) 内的**位移**与**路程**分别为",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 56
@@ -4786,11 +5325,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-wtpptr-2",
             "parentAnchorId": "anchor-6k9zg2",
             "legacyParentAnchorId": "calculus-03-002-anchor-007",
-            "title": "定积分的物理应用（数学二）：基础物理公式、运动与质量：L",
+            "title": "速度绝对值积分求路程",
             "latex": "L=\\int_{t_1}^{t_2}|v(t)|\\,dt",
             "sourceBlockIndex": 120,
-            "searchAliases": [],
+            "searchAliases": [
+              "运动路程",
+              "速度求路程"
+            ],
             "context": "若速度为 \\(v(t)\\)，[t_1,t_2] 内的位移与路程分别为",
+            "displayContext": "若速度为 \\(v(t)\\)，\\([t_1,t_2]\\) 内的**位移**与**路程**分别为",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 57
@@ -4799,11 +5342,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1depk2",
             "parentAnchorId": "anchor-1qa371k",
             "legacyParentAnchorId": "calculus-03-002-anchor-008",
-            "title": "定积分的物理应用（数学二）：变力、弹簧与抽水做功：W",
+            "title": "变力做功公式",
             "latex": "W=\\int_a^b F(x)\\,dx.",
             "sourceBlockIndex": 125,
-            "searchAliases": [],
+            "searchAliases": [
+              "变力做功",
+              "力随位置变化求功"
+            ],
             "context": "沿直线从 a 移到 b，若 \\(F(x)\\) 是力沿位移方向的带符号分量，变力做功为",
+            "displayContext": "沿直线从 \\(a\\) 移到 \\(b\\)，若 \\(F(x)\\) 是力沿位移方向的**带符号分量**，变力做功为",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 58
@@ -4812,11 +5359,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-39sc7s",
             "parentAnchorId": "anchor-1qa371k",
             "legacyParentAnchorId": "calculus-03-002-anchor-008",
-            "title": "定积分的物理应用（数学二）：变力、弹簧与抽水做功：W_外力",
+            "title": "弹簧伸长的外力做功",
             "latex": "W_{\\text{外力}}=\\int_a^b kx\\,dx=\\frac{k}{2}(b^2-a^2).",
             "sourceBlockIndex": 129,
-            "searchAliases": [],
+            "searchAliases": [
+              "弹簧做功",
+              "胡克定律做功"
+            ],
             "context": "从伸长量 a 拉到 b（0\\le a<b）时，克服弹簧恢复力所做的功为",
+            "displayContext": "从伸长量 \\(a\\) 拉到 \\(b\\)（\\(0\\le a<b\\)）时，克服弹簧恢复力所做的功为",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 59
@@ -4825,11 +5376,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-4qs95x-1",
             "parentAnchorId": "anchor-1qa371k",
             "legacyParentAnchorId": "calculus-03-002-anchor-008",
-            "title": "定积分的物理应用（数学二）：变力、弹簧与抽水做功：dW",
+            "title": "抽水做功的薄层微元",
             "latex": "dW=\\rho g A(y)L(y)\\,dy",
             "sourceBlockIndex": 133,
-            "searchAliases": [],
+            "searchAliases": [
+              "抽水做功",
+              "每层水的功"
+            ],
             "context": "抽水时沿竖直方向取厚度为 dy 的水层。若该层横截面积为 \\(A(y)\\)，需提升的距离为 \\(L(y)\\)，则",
+            "displayContext": "抽水时沿竖直方向取厚度为 \\(dy\\) 的水层。若该层横截面积为 \\(A(y)\\)，需提升的距离为 \\(L(y)\\)，则",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 60
@@ -4838,11 +5393,16 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-4qs95x-2",
             "parentAnchorId": "anchor-1qa371k",
             "legacyParentAnchorId": "calculus-03-002-anchor-008",
-            "title": "定积分的物理应用（数学二）：变力、弹簧与抽水做功：W",
+            "title": "抽水做功的定积分公式",
             "latex": "W=\\rho g\\int_a^b A(y)L(y)\\,dy",
             "sourceBlockIndex": 133,
-            "searchAliases": [],
+            "searchAliases": [
+              "抽水做功",
+              "提水做功",
+              "抽水功"
+            ],
             "context": "抽水时沿竖直方向取厚度为 dy 的水层。若该层横截面积为 \\(A(y)\\)，需提升的距离为 \\(L(y)\\)，则",
+            "displayContext": "抽水时沿竖直方向取厚度为 \\(dy\\) 的水层。若该层横截面积为 \\(A(y)\\)，需提升的距离为 \\(L(y)\\)，则",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 61
@@ -4851,11 +5411,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1djpxhg-1",
             "parentAnchorId": "anchor-1n801g8",
             "legacyParentAnchorId": "calculus-03-002-anchor-009",
-            "title": "定积分的物理应用（数学二）：液体静压力：dF",
+            "title": "液体静压力的横条微元",
             "latex": "dF=p(y)w(y)\\,dy=\\rho g h(y)w(y)\\,dy",
             "sourceBlockIndex": 139,
-            "searchAliases": [],
+            "searchAliases": [
+              "液体静压力",
+              "液体压强微元"
+            ],
             "context": "在深度为 \\(h(y)\\) 的位置，液体压强为 \\(p(y)=\\rho g h(y)\\)。沿竖直方向取宽为 \\(w(y)\\)、厚为 dy 的水平横条，则它受到的压力大小为",
+            "displayContext": "在深度为 \\(h(y)\\) 的位置，液体压强为 \\(p(y)=\\rho g h(y)\\)。沿竖直方向取宽为 \\(w(y)\\)、厚为 \\(dy\\) 的水平横条，则它受到的压力大小为",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 62
@@ -4864,11 +5428,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1djpxhg-2",
             "parentAnchorId": "anchor-1n801g8",
             "legacyParentAnchorId": "calculus-03-002-anchor-009",
-            "title": "定积分的物理应用（数学二）：液体静压力：F",
+            "title": "液体静压力的定积分公式",
             "latex": "F=\\int_a^b\\rho g h(y)w(y)\\,dy",
             "sourceBlockIndex": 139,
-            "searchAliases": [],
+            "searchAliases": [
+              "液体静压力",
+              "水压求压力"
+            ],
             "context": "在深度为 \\(h(y)\\) 的位置，液体压强为 \\(p(y)=\\rho g h(y)\\)。沿竖直方向取宽为 \\(w(y)\\)、厚为 dy 的水平横条，则它受到的压力大小为",
+            "displayContext": "在深度为 \\(h(y)\\) 的位置，液体压强为 \\(p(y)=\\rho g h(y)\\)。沿竖直方向取宽为 \\(w(y)\\)、厚为 \\(dy\\) 的水平横条，则它受到的压力大小为",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 63
@@ -4885,6 +5453,7 @@ export const mathChapters: MathChapter[] = [
               "万有引力定律"
             ],
             "context": "两质点质量为 M、m，距离为 r；G_N 是万有引力常量。",
+            "displayContext": "相距 \\(r\\) 的两个质点，质量分别为 \\(M,m\\)，万有引力大小为",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 64
@@ -4893,11 +5462,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-c0dsak",
             "parentAnchorId": "anchor-c6zvhx",
             "legacyParentAnchorId": "calculus-03-002-anchor-010",
-            "title": "定积分的物理应用（数学二）：万有引力与引力做功：W_外力",
+            "title": "万有引力的外力做功",
             "latex": "W_{\\text{外力}}=\\int_a^b\\frac{G_{\\mathrm N}Mm}{r^2}\\,dr\n=G_{\\mathrm N}Mm\\left(\\frac1a-\\frac1b\\right).",
             "sourceBlockIndex": 152,
-            "searchAliases": [],
+            "searchAliases": [
+              "引力做功",
+              "万有引力做功"
+            ],
             "context": "所属知识点：定积分的物理应用（数学二）：万有引力与引力做功。",
+            "displayContext": "所属知识点：定积分的物理应用（数学二）：万有引力与引力做功。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 65
@@ -4906,11 +5479,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1g1jyz6",
             "parentAnchorId": "anchor-c6zvhx",
             "legacyParentAnchorId": "calculus-03-002-anchor-010",
-            "title": "定积分的物理应用（数学二）：万有引力与引力做功：F",
+            "title": "变密度细杆的万有引力",
             "latex": "F=G_{\\mathrm N}M\\int_a^b\\frac{\\lambda(x)}{r(x)^2}\\,dx.",
             "sourceBlockIndex": 155,
-            "searchAliases": [],
+            "searchAliases": [
+              "引力积分",
+              "细杆万有引力"
+            ],
             "context": "所属知识点：定积分的物理应用（数学二）：万有引力与引力做功。",
+            "displayContext": "引力方向与这段向外的位移相反，因此**引力本身做的功**是 \\(-W_{\\text{外力}}\\)。若对象是一根线密度为 \\(\\lambda(x)\\) 的细杆，可先对杆的质量微元求引力；在各微元引力同向的情况下，大小为",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 66
@@ -4919,11 +5496,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-2z1adl-1",
             "parentAnchorId": "anchor-1vm6c8a",
             "legacyParentAnchorId": "calculus-03-002-anchor-011",
-            "title": "定积分的几何应用（数学二）：形心与质心：S",
+            "title": "形心薄片的面积",
             "latex": "S=\\int_a^b f(x)\\,dx",
             "sourceBlockIndex": 160,
-            "searchAliases": [],
+            "searchAliases": [
+              "形心与质心",
+              "形心面积"
+            ],
             "context": "设均匀薄片由 a\\le x\\le b、\\(0\\le y\\le f(x)\\) 围成，其中 \\(f(x)\\ge0\\)，面积 S>0。此时形心就是质心，只需记住",
+            "displayContext": "设均匀薄片由 \\(a\\le x\\le b\\)、\\(0\\le y\\le f(x)\\) 围成，其中 \\(f(x)\\ge0\\)，面积 \\(S>0\\)。此时形心就是质心，只需记住",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 67
@@ -4932,11 +5513,16 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-2z1adl-2",
             "parentAnchorId": "anchor-1vm6c8a",
             "legacyParentAnchorId": "calculus-03-002-anchor-011",
-            "title": "定积分的几何应用（数学二）：形心与质心：bar x",
+            "title": "形心与质心的横坐标",
             "latex": "\\bar x=\\frac{\\int_a^b x f(x)\\,dx}{\\int_a^b f(x)\\,dx}",
             "sourceBlockIndex": 160,
-            "searchAliases": [],
+            "searchAliases": [
+              "形心x坐标",
+              "质心x坐标",
+              "形心横坐标"
+            ],
             "context": "设均匀薄片由 a\\le x\\le b、\\(0\\le y\\le f(x)\\) 围成，其中 \\(f(x)\\ge0\\)，面积 S>0。此时形心就是质心，只需记住",
+            "displayContext": "设均匀薄片由 \\(a\\le x\\le b\\)、\\(0\\le y\\le f(x)\\) 围成，其中 \\(f(x)\\ge0\\)，面积 \\(S>0\\)。此时形心就是质心，只需记住",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 68
@@ -4945,11 +5531,16 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-2z1adl-3",
             "parentAnchorId": "anchor-1vm6c8a",
             "legacyParentAnchorId": "calculus-03-002-anchor-011",
-            "title": "定积分的几何应用（数学二）：形心与质心：bar y",
+            "title": "形心与质心的纵坐标",
             "latex": "\\bar y=\\frac{\\int_a^b [f(x)]^2\\,dx}{2\\int_a^b f(x)\\,dx}",
             "sourceBlockIndex": 160,
-            "searchAliases": [],
+            "searchAliases": [
+              "形心y坐标",
+              "质心y坐标",
+              "形心纵坐标"
+            ],
             "context": "设均匀薄片由 a\\le x\\le b、\\(0\\le y\\le f(x)\\) 围成，其中 \\(f(x)\\ge0\\)，面积 S>0。此时形心就是质心，只需记住",
+            "displayContext": "设均匀薄片由 \\(a\\le x\\le b\\)、\\(0\\le y\\le f(x)\\) 围成，其中 \\(f(x)\\ge0\\)，面积 \\(S>0\\)。此时形心就是质心，只需记住",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-002",
             "order": 69
@@ -4968,14 +5559,16 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "calculus-03-003-anchor-001",
             "title": "无穷积分、瑕积分、比较判别与参数范围",
             "searchText": "无穷积分、瑕积分、比较判别与参数范围 无穷区间或被积函数在端点无界时，必须写成极限。基本比较对象： 1^ dx x^p cases 收敛,&p 1,\\\\ 发散,&p≤1, cases 0^1 dx x^p cases 收敛,&p<1,\\\\ 发散,&p≥1. cases 若 f,g≥0 且 fg c (0, )，二者同敛散。含对数时常用 ^ dx x( x)^q 在 q 1 时收敛。存在多个问题点时必须分别判断，全部收敛才收敛。 更完整的对数判别式： e^ dx x^p( x)^q cases 收敛,&p 1, 或 p=1,q 1,\\\\ 发散,&p<1, 或 p=1,q≤1, cases 0^ 1e dx x^p x ^q cases 收敛,&p<1, 或 p=1,q 1,\\\\ 发散,&p 1, 或 p=1,q≤1. cases",
-            "summary": "无穷区间或被积函数在端点无界时，必须写成极限。基本比较对象： 1^ dx x^p cases 收敛,&p 1,\\\\ 发散,&p≤1, cases 0^1 dx x^p cases 收敛,&p<1,\\\\ 发散,&p≥1. cases 若 f,g≥0 且 fg…"
+            "summary": "无穷区间或被积函数在端点无界时，必须写成极限。基本比较对象： 1^ dx x^p cases 收敛,&p 1,\\\\ 发散,&p≤1, cases 0^1 dx x^p cases 收敛,&p<1,\\\\ 发散,&p≥1. cases 若 f,g≥0 且 fg…",
+            "displaySummary": "无穷区间或被积函数在端点无界时，必须写成极限。基本比较对象："
           },
           {
             "id": "anchor-11l6bhp",
             "legacyId": "calculus-03-003-anchor-002",
             "title": "反常积分绝对收敛与极限比较判别",
             "searchText": "反常积分绝对收敛与极限比较判别 若 f(x) \\,dx 收敛，则 f(x)\\,dx 收敛。对非负函数，若 x a f(x) g(x) =c, 0<c<+ , 则 f,g 在 a 附近的反常积分同敛散。若极限为 0 且 g 收敛，则 f 收敛；若极限为 + 且 g 发散，则 f 发散。",
-            "summary": "若 f(x) \\,dx 收敛，则 f(x)\\,dx 收敛。对非负函数，若 x a f(x) g(x) =c, 0<c<+ , 则 f,g 在 a 附近的反常积分同敛散。若极限为 0 且 g 收敛，则 f 收敛；若极限为 + 且 g 发散，则 f 发散。"
+            "summary": "若 f(x) \\,dx 收敛，则 f(x)\\,dx 收敛。对非负函数，若 x a f(x) g(x) =c, 0<c<+ , 则 f,g 在 a 附近的反常积分同敛散。若极限为 0 且 g 收敛，则 f 收敛；若极限为 + 且 g 发散，则 f 发散。",
+            "displaySummary": "若 \\(\\int |f(x)|\\,dx\\) 收敛，则 \\(\\int f(x)\\,dx\\) 收敛。对非负函数，若"
           }
         ],
         "formulas": [
@@ -4988,6 +5581,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 0,
             "searchAliases": [],
             "context": "无穷区间或被积函数在端点无界时，必须写成极限。基本比较对象：",
+            "displayContext": "无穷区间或被积函数在端点无界时，必须写成极限。基本比较对象：",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-003",
             "order": 0
@@ -5001,6 +5595,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 1,
             "searchAliases": [],
             "context": "所属知识点：无穷积分、瑕积分、比较判别与参数范围。",
+            "displayContext": "无穷区间或被积函数在端点无界时，必须写成极限。基本比较对象：",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-003",
             "order": 1
@@ -5014,6 +5609,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 4,
             "searchAliases": [],
             "context": "若 f,g\\ge0 且 \\(\\frac fg\\to c\\in(0,\\infty)\\)，二者同敛散。含对数时常用",
+            "displayContext": "若 \\(f,g\\ge0\\) 且 \\(\\frac fg\\to c\\in(0,\\infty)\\)，二者同敛散。含对数时常用",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-003",
             "order": 2
@@ -5027,6 +5623,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 6,
             "searchAliases": [],
             "context": "更完整的对数判别式：",
+            "displayContext": "更完整的对数判别式：",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-003",
             "order": 3
@@ -5040,6 +5637,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 7,
             "searchAliases": [],
             "context": "所属知识点：无穷积分、瑕积分、比较判别与参数范围。",
+            "displayContext": "更完整的对数判别式：",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-003",
             "order": 4
@@ -5053,6 +5651,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 10,
             "searchAliases": [],
             "context": "若 \\(\\int |f(x)|\\,dx\\) 收敛，则 \\(\\int f(x)\\,dx\\) 收敛。对非负函数，若",
+            "displayContext": "若 \\(\\int |f(x)|\\,dx\\) 收敛，则 \\(\\int f(x)\\,dx\\) 收敛。对非负函数，若",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-003",
             "order": 5
@@ -5071,14 +5670,16 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "calculus-03-004-anchor-001",
             "title": "积分中值定理、变上限积分与牛顿—莱布尼茨公式",
             "searchText": "积分中值定理、变上限积分与牛顿—莱布尼茨公式 积分中值定理：连续函数在 [a,b] 上满足 a^b f(x)\\,dx=f( )(b-a). 加权积分中值定理：若 f 连续，g 可积且不变号，则存在 [a,b]，使 a^b f(x)g(x)\\,dx=f( ) a^b g(x)\\,dx. 变上限积分求导： ≤ft( a^x f(t)\\,dt )'=f(x). 牛顿—莱布尼茨公式： a^b f(x)\\,dx=F(b)-F(a), F'=f. 若 f 在 [a,b] 上可积，则 (x)= a^x f(t)\\,dt 连续；若 f 在 x 0 连续，则 '(x 0)=f(x 0)。连续函数一定有原函数；有跳跃间断点或无穷间断点的函数不可能在包含该点的区间上有原函数。 若 x 0 是 f 的可去间断点，则 '(x 0)= x x 0 f(x), 该值不一定等于 f(x 0)。若 x 0 是跳跃间断点，则 连续但不可导，且 ' -(x 0)=f(x 0-0), ' +(x 0)=f(x 0+0). 若 f 有 k 阶连续导数，则 有 k+1 阶连续导数。 奇偶性与原函数：连续奇函数的任意原函数都是偶函数加常数；连续偶函数恰有一个取值满足 F(0)=0 的奇原函数。若 f 以 T 为周期，则 F(x)= 0^x f(t)\\,dt 也以 T 为周期，当且仅当 0^T f(x)\\,dx=0。 判断积分正负不能只看被积函数某一点；应比较整个区间，必要时利用对称、换元或把正负区间拆开。",
-            "summary": "积分中值定理：连续函数在 [a,b] 上满足 a^b f(x)\\,dx=f( )(b-a). 加权积分中值定理：若 f 连续，g 可积且不变号，则存在 [a,b]，使 a^b f(x)g(x)\\,dx=f( ) a^b g(x)\\,dx. 变上限积分求导：…"
+            "summary": "积分中值定理：连续函数在 [a,b] 上满足 a^b f(x)\\,dx=f( )(b-a). 加权积分中值定理：若 f 连续，g 可积且不变号，则存在 [a,b]，使 a^b f(x)g(x)\\,dx=f( ) a^b g(x)\\,dx. 变上限积分求导：…",
+            "displaySummary": "积分中值定理：连续函数在 \\([a,b]\\) 上满足"
           },
           {
             "id": "anchor-1w6iuac",
             "legacyId": "calculus-03-004-anchor-002",
             "title": "积分方程与由变上限积分定义的函数",
             "searchText": "积分方程与由变上限积分定义的函数 出现未知函数与变上限积分同时存在时，先把积分移到一边，再求导降为微分方程。例如 y(x)=g(x)+ a^x K(t)y(t)\\,dt 可得 y'(x)=g'(x)+K(x)y(x),qquad y(a)=g(a). 求导后必须保留由原积分方程给出的初始条件。",
-            "summary": "出现未知函数与变上限积分同时存在时，先把积分移到一边，再求导降为微分方程。例如 y(x)=g(x)+ a^x K(t)y(t)\\,dt 可得 y'(x)=g'(x)+K(x)y(x),qquad y(a)=g(a). 求导后必须保留由原积分方程给出的初始条…"
+            "summary": "出现未知函数与变上限积分同时存在时，先把积分移到一边，再求导降为微分方程。例如 y(x)=g(x)+ a^x K(t)y(t)\\,dt 可得 y'(x)=g'(x)+K(x)y(x),qquad y(a)=g(a). 求导后必须保留由原积分方程给出的初始条…",
+            "displaySummary": "出现未知函数与变上限积分同时存在时，先把积分移到一边，再求导降为微分方程。例如"
           }
         ],
         "formulas": [
@@ -5086,11 +5687,16 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-sx9q78",
             "parentAnchorId": "anchor-rayly0",
             "legacyParentAnchorId": "calculus-03-004-anchor-001",
-            "title": "积分中值定理、变上限积分与牛顿—莱布尼茨公式：∫_a^b f(x) dx",
+            "title": "积分中值定理",
             "latex": "\\int_a^b f(x)\\,dx=f(\\xi)(b-a).",
             "sourceBlockIndex": 1,
-            "searchAliases": [],
+            "searchAliases": [
+              "第一积分中值定理",
+              "普通积分中值定理",
+              "定积分中值定理"
+            ],
             "context": "积分中值定理：连续函数在 [a,b] 上满足",
+            "displayContext": "积分中值定理：连续函数在 \\([a,b]\\) 上满足",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-004",
             "order": 0
@@ -5099,11 +5705,18 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-zbrhd0",
             "parentAnchorId": "anchor-rayly0",
             "legacyParentAnchorId": "calculus-03-004-anchor-001",
-            "title": "积分中值定理、变上限积分与牛顿—莱布尼茨公式：∫_a^b f(x)g(x) dx",
+            "title": "加权积分中值定理",
             "latex": "\\int_a^b f(x)g(x)\\,dx=f(\\xi)\\int_a^b g(x)\\,dx.",
             "sourceBlockIndex": 5,
-            "searchAliases": [],
+            "searchAliases": [
+              "推广的中值定理",
+              "推广的积分中值定理",
+              "广义积分中值定理",
+              "积分中值定理的推广",
+              "带权积分中值定理"
+            ],
             "context": "加权积分中值定理：若 f 连续，g 可积且不变号，则存在 \\xi\\in[a,b]，使",
+            "displayContext": "加权积分中值定理：若 \\(f\\) 连续，\\(g\\) 可积且不变号，则存在 \\(\\xi\\in[a,b]\\)，使",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-004",
             "order": 1
@@ -5117,6 +5730,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 6,
             "searchAliases": [],
             "context": "变上限积分求导：",
+            "displayContext": "变上限积分求导：",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-004",
             "order": 2
@@ -5125,11 +5739,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1dh4te7-1",
             "parentAnchorId": "anchor-rayly0",
             "legacyParentAnchorId": "calculus-03-004-anchor-001",
-            "title": "积分中值定理、变上限积分与牛顿—莱布尼茨公式：∫_a^b f(x) dx",
+            "title": "牛顿—莱布尼茨公式",
             "latex": "\\int_a^b f(x)\\,dx=F(b)-F(a),\\qquad F'=f.",
             "sourceBlockIndex": 7,
-            "searchAliases": [],
+            "searchAliases": [
+              "微积分基本定理",
+              "定积分上下限代入"
+            ],
             "context": "牛顿—莱布尼茨公式：",
+            "displayContext": "牛顿—莱布尼茨公式：",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-004",
             "order": 3
@@ -5143,6 +5761,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 10,
             "searchAliases": [],
             "context": "若 f 在 [a,b] 上可积，则",
+            "displayContext": "若 \\(f\\) 在 \\([a,b]\\) 上可积，则",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-004",
             "order": 4
@@ -5156,6 +5775,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 16,
             "searchAliases": [],
             "context": "若 x_0 是 f 的可去间断点，则",
+            "displayContext": "若 \\(x_0\\) 是 \\(f\\) 的可去间断点，则",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-004",
             "order": 5
@@ -5169,6 +5789,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 20,
             "searchAliases": [],
             "context": "该值不一定等于 \\(f(x_0)\\)。若 x_0 是跳跃间断点，则 \\Phi 连续但不可导，且",
+            "displayContext": "该值不一定等于 \\(f(x_0)\\)。若 \\(x_0\\) 是跳跃间断点，则 \\(\\Phi\\) 连续但不可导，且",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-004",
             "order": 6
@@ -5182,6 +5803,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 20,
             "searchAliases": [],
             "context": "该值不一定等于 \\(f(x_0)\\)。若 x_0 是跳跃间断点，则 \\Phi 连续但不可导，且",
+            "displayContext": "该值不一定等于 \\(f(x_0)\\)。若 \\(x_0\\) 是跳跃间断点，则 \\(\\Phi\\) 连续但不可导，且",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-004",
             "order": 7
@@ -5195,6 +5817,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 28,
             "searchAliases": [],
             "context": "奇偶性与原函数：连续奇函数的任意原函数都是偶函数加常数；连续偶函数恰有一个取值满足 \\(F(0)=0\\) 的奇原函数。若 f 以 T 为周期，则",
+            "displayContext": "奇偶性与原函数：连续奇函数的任意原函数都是偶函数加常数；连续偶函数恰有一个取值满足 \\(F(0)=0\\) 的奇原函数。若 \\(f\\) 以 \\(T\\) 为周期，则",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-004",
             "order": 8
@@ -5211,6 +5834,7 @@ export const mathChapters: MathChapter[] = [
               "整周期积分为零"
             ],
             "context": "连续函数 f 以 T 为周期；其从 0 到 x 的积分也以 T 为周期，当且仅当一个周期内的积分为零。",
+            "displayContext": "也以 \\(T\\) 为周期，当且仅当",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-004",
             "order": 9
@@ -5224,6 +5848,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 31,
             "searchAliases": [],
             "context": "出现未知函数与变上限积分同时存在时，先把积分移到一边，再求导降为微分方程。例如",
+            "displayContext": "出现未知函数与变上限积分同时存在时，先把积分移到一边，再求导降为微分方程。例如",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-004",
             "order": 10
@@ -5237,6 +5862,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 32,
             "searchAliases": [],
             "context": "所属知识点：积分方程与由变上限积分定义的函数。",
+            "displayContext": "可得",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-004",
             "order": 11
@@ -5263,21 +5889,24 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "calculus-04-001-anchor-001",
             "title": "微分方程阶数、通解、特解、初始条件与边值条件",
             "searchText": "微分方程阶数、通解、特解、初始条件与边值条件 方程中出现的最高阶导数的阶数叫微分方程的阶。n 阶方程的通解通常含 n 个相互独立的任意常数；由初始条件确定常数后得到特解。初始条件在同一点给出，边值条件在不同点给出。",
-            "summary": "方程中出现的最高阶导数的阶数叫微分方程的阶。n 阶方程的通解通常含 n 个相互独立的任意常数；由初始条件确定常数后得到特解。初始条件在同一点给出，边值条件在不同点给出。"
+            "summary": "方程中出现的最高阶导数的阶数叫微分方程的阶。n 阶方程的通解通常含 n 个相互独立的任意常数；由初始条件确定常数后得到特解。初始条件在同一点给出，边值条件在不同点给出。",
+            "displaySummary": "方程中出现的最高阶导数的阶数叫微分方程的阶。\\(n\\) 阶方程的通解通常含 \\(n\\) 个相互独立的任意常数；由初始条件确定常数后得到特解。初始条件在同一点给出，边值条件在不同点给出。"
           },
           {
             "id": "anchor-1ozvu54",
             "legacyId": "calculus-04-001-anchor-002",
             "title": "一阶线性微分方程解的线性组合性质",
             "searchText": "一阶线性微分方程解的线性组合性质 y'+P(x)y=Q(x). 两个解之差满足对应齐次方程。若 y 1,y 2 是非齐次方程的解，则 C 1y 1+C 2y 2 仍是该非齐次方程的解，当且仅当 C 1+C 2=1。",
-            "summary": "y'+P(x)y=Q(x). 两个解之差满足对应齐次方程。若 y 1,y 2 是非齐次方程的解，则 C 1y 1+C 2y 2 仍是该非齐次方程的解，当且仅当 C 1+C 2=1。"
+            "summary": "y'+P(x)y=Q(x). 两个解之差满足对应齐次方程。若 y 1,y 2 是非齐次方程的解，则 C 1y 1+C 2y 2 仍是该非齐次方程的解，当且仅当 C 1+C 2=1。",
+            "displaySummary": "两个解之差满足对应齐次方程。若 \\(y_1,y_2\\) 是非齐次方程的解，则 \\(C_1y_1+C_2y_2\\) 仍是该非齐次方程的解，当且仅当 <!-- formula {\"id\":\"calculus-nonhomogeneous-solution-affine-combination\",\"title\":\"非齐次线性方程解的仿射组合条件\",\"aliases\":[\"非齐次解线性组合\",\"系数和为一\"],\"context\":\"y₁、y₂ 均为同一非齐次线性微分方程的解时，组合系数之和须为 1。\"} -->\\(C_1+C_2=1\\)。"
           },
           {
             "id": "anchor-itds84",
             "legacyId": "calculus-04-001-anchor-003",
             "title": "高阶线性微分方程通解、特解与朗斯基行列式",
             "searchText": "高阶线性微分方程通解、特解与朗斯基行列式 齐次方程的解可线性组合；非齐次方程的“通解＝对应齐次方程通解＋一个非齐次特解”。判断若干解能否组成齐次通解，要看它们是否线性无关。 若 y 1,y 2 是二阶齐次线性方程的两个解，则它们线性无关的常用判据是某点处的朗斯基行列式不为零： W(y 1,y 2)(x 0)= vmatrix y 1(x 0)&y 2(x 0)\\\\ y 1'(x 0)&y 2'(x 0) vmatrix ≠0. 若 y 1^ ,y 2^ 分别是右端项为 f 1(x),f 2(x) 的特解，则 a y 1^ +b y 2^ 是右端项为 af 1+bf 2 的特解。",
-            "summary": "齐次方程的解可线性组合；非齐次方程的“通解＝对应齐次方程通解＋一个非齐次特解”。判断若干解能否组成齐次通解，要看它们是否线性无关。 若 y 1,y 2 是二阶齐次线性方程的两个解，则它们线性无关的常用判据是某点处的朗斯基行列式不为零： W(y 1,y 2)…"
+            "summary": "齐次方程的解可线性组合；非齐次方程的“通解＝对应齐次方程通解＋一个非齐次特解”。判断若干解能否组成齐次通解，要看它们是否线性无关。 若 y 1,y 2 是二阶齐次线性方程的两个解，则它们线性无关的常用判据是某点处的朗斯基行列式不为零： W(y 1,y 2)…",
+            "displaySummary": "齐次方程的解可线性组合；非齐次方程的“通解＝对应齐次方程通解＋一个非齐次特解”。判断若干解能否组成齐次通解，要看它们是否线性无关。"
           }
         ],
         "formulas": [
@@ -5290,6 +5919,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 2,
             "searchAliases": [],
             "context": "所属知识点：一阶线性微分方程解的线性组合性质。",
+            "displayContext": "所属知识点：一阶线性微分方程解的线性组合性质。",
             "chapterId": "calculus-04",
             "topicId": "calculus-04-001",
             "order": 0
@@ -5306,6 +5936,7 @@ export const mathChapters: MathChapter[] = [
               "系数和为一"
             ],
             "context": "y₁、y₂ 均为同一非齐次线性微分方程的解时，组合系数之和须为 1。",
+            "displayContext": "两个解之差满足对应齐次方程。若 \\(y_1,y_2\\) 是非齐次方程的解，则 \\(C_1y_1+C_2y_2\\) 仍是该非齐次方程的解，当且仅当",
             "chapterId": "calculus-04",
             "topicId": "calculus-04-001",
             "order": 1
@@ -5319,6 +5950,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 7,
             "searchAliases": [],
             "context": "若 y_1,y_2 是二阶齐次线性方程的两个解，则它们线性无关的常用判据是某点处的朗斯基行列式不为零：",
+            "displayContext": "若 \\(y_1,y_2\\) 是二阶齐次线性方程的两个解，则它们线性无关的常用判据是某点处的朗斯基行列式不为零：",
             "chapterId": "calculus-04",
             "topicId": "calculus-04-001",
             "order": 2
@@ -5337,21 +5969,24 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "calculus-04-002-anchor-001",
             "title": "可分离变量、齐次型与一阶线性微分方程",
             "searchText": "可分离变量、齐次型与一阶线性微分方程 可分离变量： y'=f(x)g(y) ⇒ dy g(y) =f(x)\\,dx. 分离时要单独检查使 g(y)=0 的常数解。 齐次型： y'=F\\!≤ft( yx ), y=ux, y'=u+xu'. 一阶线性方程： y'+P(x)y=Q(x), y=e^ - Pdx ≤ft( Qe^ Pdx dx+C ).",
-            "summary": "可分离变量： y'=f(x)g(y) ⇒ dy g(y) =f(x)\\,dx. 分离时要单独检查使 g(y)=0 的常数解。 齐次型： y'=F\\!≤ft( yx ), y=ux, y'=u+xu'. 一阶线性方程： y'+P(x)y=Q(x), y=e^…"
+            "summary": "可分离变量： y'=f(x)g(y) ⇒ dy g(y) =f(x)\\,dx. 分离时要单独检查使 g(y)=0 的常数解。 齐次型： y'=F\\!≤ft( yx ), y=ux, y'=u+xu'. 一阶线性方程： y'+P(x)y=Q(x), y=e^…",
+            "displaySummary": "可分离变量："
           },
           {
             "id": "anchor-dfmuvv",
             "legacyId": "calculus-04-002-anchor-002",
             "title": "不显含因变量、不显含自变量与直接积分型降阶方程",
             "searchText": "不显含因变量、不显含自变量与直接积分型降阶方程 不显含 y：令 p=y'，则 y''=p'。 不显含 x：令 p(y)=y'，则 y''=p\\, dp dy 。 形如 y^ (n) =f(x)：连续积分 n 次，每次都保留新的积分常数。",
-            "summary": "不显含 y：令 p=y'，则 y''=p'。 不显含 x：令 p(y)=y'，则 y''=p\\, dp dy 。 形如 y^ (n) =f(x)：连续积分 n 次，每次都保留新的积分常数。"
+            "summary": "不显含 y：令 p=y'，则 y''=p'。 不显含 x：令 p(y)=y'，则 y''=p\\, dp dy 。 形如 y^ (n) =f(x)：连续积分 n 次，每次都保留新的积分常数。",
+            "displaySummary": "- 不显含 \\(y\\)：令 \\(p=y'\\)，则 \\(y''=p'\\)。\n- 不显含 \\(x\\)：令 \\(p(y)=y'\\)，则 \\(y''=p\\,\\frac{dp}{dy}\\)。\n- 形如 \\(y^{(n)}=f(x)\\)：连续积分 \\(n\\) 次，每次都保留新的积分常数。"
           },
           {
             "id": "anchor-198u1h9",
             "legacyId": "calculus-04-002-anchor-003",
             "title": "高阶常系数齐次与非齐次线性微分方程",
             "searchText": "高阶常系数齐次与非齐次线性微分方程 二阶齐次方程 y''+py'+qy=0 对应特征方程 r^2+pr+q=0： 两个不同实根 r 1,r 2： y=C 1e^ r 1x +C 2e^ r 2x ； 二重根 r： y=(C 1+C 2x)e^ rx ； 共轭复根 a bi： y=e^ ax (C 1 bx+C 2 bx)。 非齐次项为 e^ ax P m(x) 时，特解设为 x^k e^ ax Q m(x)，其中 k 是 a 作为特征根的重数；三角项先按正弦、余弦成对设式。 更一般地，n 阶常系数齐次线性方程 a ny^ (n) +a n-1 y^ (n-1) + +a 1y'+a 0y=0 对应特征方程 a nr^n+a n-1 r^ n-1 + +a 1r+a 0=0. 实根 r 的重数为 s 时，贡献 e^ rx ,\\ xe^ rx ,\\ ,\\ x^ s-1 e^ rx ; 共轭复根 i 的重数为 s 时，贡献 x^j e^ x x, x^j e^ x x (j=0,1, ,s-1). 二阶常系数非齐次方程特解设法 若右端为 e^ ax P m(x)，设 y^ =x^k e^ ax Q m(x), 其中 Q m 是待定的 m 次多项式，k 是 a 作为特征根的重数。若右端为 e^ ax [P m(x) bx+Q n(x) bx ], 则设 y^ =x^k e^ ax [R l(x) bx+S l(x) bx ], l= \\ m,n\\ , 其中 k 是 a+bi 作为特征根的重数，R l,S l 为待定多项式。",
-            "summary": "二阶齐次方程 y''+py'+qy=0 对应特征方程 r^2+pr+q=0： 两个不同实根 r 1,r 2： y=C 1e^ r 1x +C 2e^ r 2x ； 二重根 r： y=(C 1+C 2x)e^ rx ； 共轭复根 a bi： y=e^ ax …"
+            "summary": "二阶齐次方程 y''+py'+qy=0 对应特征方程 r^2+pr+q=0： 两个不同实根 r 1,r 2： y=C 1e^ r 1x +C 2e^ r 2x ； 二重根 r： y=(C 1+C 2x)e^ rx ； 共轭复根 a bi： y=e^ ax …",
+            "displaySummary": "二阶齐次方程"
           }
         ],
         "formulas": [
@@ -5364,6 +5999,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 0,
             "searchAliases": [],
             "context": "可分离变量：",
+            "displayContext": "可分离变量：",
             "chapterId": "calculus-04",
             "topicId": "calculus-04-002",
             "order": 0
@@ -5377,6 +6013,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 2,
             "searchAliases": [],
             "context": "分离时要单独检查使 \\(g(y)=0\\) 的常数解。",
+            "displayContext": "齐次型：",
             "chapterId": "calculus-04",
             "topicId": "calculus-04-002",
             "order": 1
@@ -5390,6 +6027,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 3,
             "searchAliases": [],
             "context": "一阶线性方程：",
+            "displayContext": "一阶线性方程：",
             "chapterId": "calculus-04",
             "topicId": "calculus-04-002",
             "order": 2
@@ -5403,6 +6041,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 4,
             "searchAliases": [],
             "context": "所属知识点：可分离变量、齐次型与一阶线性微分方程。",
+            "displayContext": "一阶线性方程：",
             "chapterId": "calculus-04",
             "topicId": "calculus-04-002",
             "order": 3
@@ -5416,6 +6055,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 13,
             "searchAliases": [],
             "context": "二阶齐次方程",
+            "displayContext": "二阶齐次方程",
             "chapterId": "calculus-04",
             "topicId": "calculus-04-002",
             "order": 4
@@ -5432,6 +6072,7 @@ export const mathChapters: MathChapter[] = [
               "二阶齐次方程通解"
             ],
             "context": "特征方程有两个不同实根 r₁、r₂。",
+            "displayContext": "- 两个不同实根 \\(r_1,r_2\\)：",
             "chapterId": "calculus-04",
             "topicId": "calculus-04-002",
             "order": 5
@@ -5448,6 +6089,7 @@ export const mathChapters: MathChapter[] = [
               "二阶齐次方程通解"
             ],
             "context": "特征方程有二重实根 r。",
+            "displayContext": "对应特征方程 \\(r^2+pr+q=0\\)：",
             "chapterId": "calculus-04",
             "topicId": "calculus-04-002",
             "order": 6
@@ -5464,6 +6106,7 @@ export const mathChapters: MathChapter[] = [
               "二阶齐次方程通解"
             ],
             "context": "特征方程有共轭复根 a±bi。",
+            "displayContext": "对应特征方程 \\(r^2+pr+q=0\\)：",
             "chapterId": "calculus-04",
             "topicId": "calculus-04-002",
             "order": 7
@@ -5477,6 +6120,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 26,
             "searchAliases": [],
             "context": "更一般地，n 阶常系数齐次线性方程",
+            "displayContext": "更一般地，\\(n\\) 阶常系数齐次线性方程",
             "chapterId": "calculus-04",
             "topicId": "calculus-04-002",
             "order": 8
@@ -5490,6 +6134,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 27,
             "searchAliases": [],
             "context": "对应特征方程",
+            "displayContext": "对应特征方程",
             "chapterId": "calculus-04",
             "topicId": "calculus-04-002",
             "order": 9
@@ -5503,6 +6148,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 30,
             "searchAliases": [],
             "context": "实根 r 的重数为 s 时，贡献",
+            "displayContext": "实根 \\(r\\) 的重数为 \\(s\\) 时，贡献",
             "chapterId": "calculus-04",
             "topicId": "calculus-04-002",
             "order": 10
@@ -5516,6 +6162,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 33,
             "searchAliases": [],
             "context": "共轭复根 \\alpha\\pm i\\beta 的重数为 s 时，贡献",
+            "displayContext": "共轭复根 \\(\\alpha\\pm i\\beta\\) 的重数为 \\(s\\) 时，贡献",
             "chapterId": "calculus-04",
             "topicId": "calculus-04-002",
             "order": 11
@@ -5529,6 +6176,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 35,
             "searchAliases": [],
             "context": "二阶常系数非齐次方程特解设法",
+            "displayContext": "若右端为 \\(e^{ax}P_m(x)\\)，设",
             "chapterId": "calculus-04",
             "topicId": "calculus-04-002",
             "order": 12
@@ -5542,6 +6190,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 40,
             "searchAliases": [],
             "context": "其中 Q_m 是待定的 m 次多项式，k 是 a 作为特征根的重数。若右端为",
+            "displayContext": "其中 \\(Q_m\\) 是待定的 \\(m\\) 次多项式，\\(k\\) 是 \\(a\\) 作为特征根的重数。若右端为",
             "chapterId": "calculus-04",
             "topicId": "calculus-04-002",
             "order": 13
@@ -5555,6 +6204,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 41,
             "searchAliases": [],
             "context": "所属知识点：高阶常系数齐次与非齐次线性微分方程。",
+            "displayContext": "则设",
             "chapterId": "calculus-04",
             "topicId": "calculus-04-002",
             "order": 14
@@ -5591,7 +6241,8 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "calculus-04-005-anchor-001",
             "title": "微分方程建模、初值条件与边值条件",
             "searchText": "微分方程建模、初值条件与边值条件 选未知函数并写清自变量。 把题目中的变化率、切线、面积、体积或物理量写成导数、积分。 消去中间量，得到只含未知函数及其导数的方程。 把初始位置、初始速度等写成初始条件。 面积函数常满足 S'(x)=截面或高度；变上限积分先求导；切线条件用 y'；二重积分给出的函数按变上限求导或先化为累次积分。",
-            "summary": "选未知函数并写清自变量。 把题目中的变化率、切线、面积、体积或物理量写成导数、积分。 消去中间量，得到只含未知函数及其导数的方程。 把初始位置、初始速度等写成初始条件。 面积函数常满足 S'(x)=截面或高度；变上限积分先求导；切线条件用 y'；二重积分给…"
+            "summary": "选未知函数并写清自变量。 把题目中的变化率、切线、面积、体积或物理量写成导数、积分。 消去中间量，得到只含未知函数及其导数的方程。 把初始位置、初始速度等写成初始条件。 面积函数常满足 S'(x)=截面或高度；变上限积分先求导；切线条件用 y'；二重积分给…",
+            "displaySummary": "1. 选未知函数并写清自变量。\n2. 把题目中的变化率、切线、面积、体积或物理量写成导数、积分。\n3. 消去中间量，得到只含未知函数及其导数的方程。\n4. 把初始位置、初始速度等写成初始条件。"
           }
         ],
         "formulas": []
@@ -5616,7 +6267,8 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "calculus-05-001-anchor-001",
             "title": "多元函数定义域、连续、偏导存在与可微的关系",
             "searchText": "多元函数定义域、连续、偏导存在与可微的关系 在一点可微一定连续，也一定有各个偏导数；仅有偏导数或偏导数存在不能保证连续、可微。若偏导数在该点附近存在并连续，则函数在该点可微。 判断极限不存在，只要找两条趋近路径得到不同结果；证明极限存在则要给出与路径无关的整体估计。 二元函数极限与连续的定义式： (x,y) (x 0,y 0) f(x,y)=A 0,\\ 0, 0< (x-x 0)^2+(y-y 0)^2 < ⇒ f(x,y)-A < . f 在 (x 0,y 0) 连续 (x,y) (x 0,y 0) f(x,y)=f(x 0,y 0). 可微的定义式：令 x=x-x 0, y=y-y 0， = ( x)^2+( y)^2 ，则 z=A x+B y+o( ). 若可微，则 A=f x(x 0,y 0),B=f y(x 0,y 0)。 闭有界区域上的连续函数一定有界，并能取得最大值和最小值；在连通区域内还具有介值性。",
-            "summary": "在一点可微一定连续，也一定有各个偏导数；仅有偏导数或偏导数存在不能保证连续、可微。若偏导数在该点附近存在并连续，则函数在该点可微。 判断极限不存在，只要找两条趋近路径得到不同结果；证明极限存在则要给出与路径无关的整体估计。 二元函数极限与连续的定义式： (…"
+            "summary": "在一点可微一定连续，也一定有各个偏导数；仅有偏导数或偏导数存在不能保证连续、可微。若偏导数在该点附近存在并连续，则函数在该点可微。 判断极限不存在，只要找两条趋近路径得到不同结果；证明极限存在则要给出与路径无关的整体估计。 二元函数极限与连续的定义式： (…",
+            "displaySummary": "在一点可微一定连续，也一定有各个偏导数；仅有偏导数或偏导数存在不能保证连续、可微。若偏导数在该点附近存在并连续，则函数在该点可微。"
           }
         ],
         "formulas": [
@@ -5629,6 +6281,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 0,
             "searchAliases": [],
             "context": "二元函数极限与连续的定义式：",
+            "displayContext": "二元函数极限与连续的定义式：",
             "chapterId": "calculus-05",
             "topicId": "calculus-05-001",
             "order": 0
@@ -5642,6 +6295,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 1,
             "searchAliases": [],
             "context": "所属知识点：多元函数定义域、连续、偏导存在与可微的关系。",
+            "displayContext": "二元函数极限与连续的定义式：",
             "chapterId": "calculus-05",
             "topicId": "calculus-05-001",
             "order": 1
@@ -5655,6 +6309,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 2,
             "searchAliases": [],
             "context": "所属知识点：多元函数定义域、连续、偏导存在与可微的关系。",
+            "displayContext": "二元函数极限与连续的定义式：",
             "chapterId": "calculus-05",
             "topicId": "calculus-05-001",
             "order": 2
@@ -5668,6 +6323,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 5,
             "searchAliases": [],
             "context": "所属知识点：多元函数定义域、连续、偏导存在与可微的关系。",
+            "displayContext": "可微的定义式：令 \\(\\Delta x=x-x_0,\\Delta y=y-y_0\\)，\\(\\rho=\\sqrt{(\\Delta x)^2+(\\Delta y)^2}\\)，则",
             "chapterId": "calculus-05",
             "topicId": "calculus-05-001",
             "order": 3
@@ -5686,7 +6342,8 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "calculus-05-002-anchor-001",
             "title": "二重极限存在性、路径判别与极坐标估计",
             "searchText": "二重极限存在性、路径判别与极坐标估计 先代入判断是否为未定式；多项式比值常改用极坐标 x=r ,y=r 。若化成 f(x,y)-A ≤ C r^a (a 0), 则极限为 A。极坐标后仍含无法消掉的 ，通常提示极限与路径有关，但仍应选具体路径验证。",
-            "summary": "先代入判断是否为未定式；多项式比值常改用极坐标 x=r ,y=r 。若化成 f(x,y)-A ≤ C r^a (a 0), 则极限为 A。极坐标后仍含无法消掉的 ，通常提示极限与路径有关，但仍应选具体路径验证。"
+            "summary": "先代入判断是否为未定式；多项式比值常改用极坐标 x=r ,y=r 。若化成 f(x,y)-A ≤ C r^a (a 0), 则极限为 A。极坐标后仍含无法消掉的 ，通常提示极限与路径有关，但仍应选具体路径验证。",
+            "displaySummary": "先代入判断是否为未定式；多项式比值常改用极坐标 \\(x=r\\cos\\theta,y=r\\sin\\theta\\)。若化成"
           }
         ],
         "formulas": [
@@ -5699,6 +6356,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 1,
             "searchAliases": [],
             "context": "先代入判断是否为未定式；多项式比值常改用极坐标 x=r\\cos\\theta,y=r\\sin\\theta。若化成",
+            "displayContext": "先代入判断是否为未定式；多项式比值常改用极坐标 \\(x=r\\cos\\theta,y=r\\sin\\theta\\)。若化成",
             "chapterId": "calculus-05",
             "topicId": "calculus-05-002",
             "order": 0
@@ -5717,28 +6375,32 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "calculus-05-003-anchor-001",
             "title": "一阶偏导、二阶偏导、全微分与线性近似",
             "searchText": "一阶偏导、二阶偏导、全微分与线性近似 偏导数定义： f x(x 0,y 0)= h 0 f(x 0+h,y 0)-f(x 0,y 0) h, f y(x 0,y 0)= h 0 f(x 0,y 0+h)-f(x 0,y 0) h. dz=f x\\,dx+f y\\,dy. 可微时的线性近似为 f(x 0+ x,y 0+ y) f(x 0,y 0)+f x x+f y y. 二阶偏导连续时： f xy =f yx . 当 x,y 是独立变量时，二阶全微分为 d^2z=f xx \\,dx^2+2f xy \\,dx\\,dy+f yy \\,dy^2. 全微分形式不变性：无论 x,y 是独立变量还是其他变量的可微函数，始终有 dz=f x\\,dx+f y\\,dy. 分段点求偏导必须回到定义，不能直接套分段外的求导式。",
-            "summary": "偏导数定义： f x(x 0,y 0)= h 0 f(x 0+h,y 0)-f(x 0,y 0) h, f y(x 0,y 0)= h 0 f(x 0,y 0+h)-f(x 0,y 0) h. dz=f x\\,dx+f y\\,dy. 可微时的线性近似为 f…"
+            "summary": "偏导数定义： f x(x 0,y 0)= h 0 f(x 0+h,y 0)-f(x 0,y 0) h, f y(x 0,y 0)= h 0 f(x 0,y 0+h)-f(x 0,y 0) h. dz=f x\\,dx+f y\\,dy. 可微时的线性近似为 f…",
+            "displaySummary": "偏导数定义："
           },
           {
             "id": "anchor-1euphqa",
             "legacyId": "calculus-05-003-anchor-002",
             "title": "多元复合函数链式法则与全导数",
             "searchText": "多元复合函数链式法则与全导数 若 z=f(u,v)，u=u(x,y),v=v(x,y)，则 z x=f u u x+f v v x, z y=f u u y+f v v y. 若 u=u(t),v=v(t)，则 dz dt =f u du dt +f v dv dt . 若 z=f(x,y) 且 y=y(x)，则 dz dx =f x+f y dy dx . 求二阶偏导时，对一阶结果整体再求导，注意 f u,f v 也随 x,y 变化。",
-            "summary": "若 z=f(u,v)，u=u(x,y),v=v(x,y)，则 z x=f u u x+f v v x, z y=f u u y+f v v y. 若 u=u(t),v=v(t)，则 dz dt =f u du dt +f v dv dt . 若 z=f(x…"
+            "summary": "若 z=f(u,v)，u=u(x,y),v=v(x,y)，则 z x=f u u x+f v v x, z y=f u u y+f v v y. 若 u=u(t),v=v(t)，则 dz dt =f u du dt +f v dv dt . 若 z=f(x…",
+            "displaySummary": "若 \\(z=f(u,v)\\)，\\(u=u(x,y),v=v(x,y)\\)，则"
           },
           {
             "id": "anchor-hwjhzo",
             "legacyId": "calculus-05-003-anchor-003",
             "title": "一元隐函数与多元隐函数偏导公式",
             "searchText": "一元隐函数与多元隐函数偏导公式 若 F(x,y,z)=0 确定 z=z(x,y)，则 z x=- F x F z , z y=- F y F z (F z≠0). 若 F(x,y)=0 确定 y=y(x)，则 y'=- F x F y , y''=- F xx +2F xy y'+F yy (y')^2 F y (F y≠0). 多个方程确定多个函数时，把未知偏导数列成线性方程组求解；不必强行先解出隐函数。",
-            "summary": "若 F(x,y,z)=0 确定 z=z(x,y)，则 z x=- F x F z , z y=- F y F z (F z≠0). 若 F(x,y)=0 确定 y=y(x)，则 y'=- F x F y , y''=- F xx +2F xy y'+F y…"
+            "summary": "若 F(x,y,z)=0 确定 z=z(x,y)，则 z x=- F x F z , z y=- F y F z (F z≠0). 若 F(x,y)=0 确定 y=y(x)，则 y'=- F x F y , y''=- F xx +2F xy y'+F y…",
+            "displaySummary": "若 \\(F(x,y,z)=0\\) 确定 \\(z=z(x,y)\\)，则"
           },
           {
             "id": "anchor-mpy8o7",
             "legacyId": "calculus-05-003-anchor-004",
             "title": "已知偏导数反求二元函数",
             "searchText": "已知偏导数反求二元函数 由 f x=P(x,y) 对 x 积分时，积分“常数”应写成只含 y 的函数： f(x,y)= P(x,y)\\,dx+ (y). 再用 f y 或其他条件求 。",
-            "summary": "由 f x=P(x,y) 对 x 积分时，积分“常数”应写成只含 y 的函数： f(x,y)= P(x,y)\\,dx+ (y). 再用 f y 或其他条件求 。"
+            "summary": "由 f x=P(x,y) 对 x 积分时，积分“常数”应写成只含 y 的函数： f(x,y)= P(x,y)\\,dx+ (y). 再用 f y 或其他条件求 。",
+            "displaySummary": "由 \\(f_x=P(x,y)\\) 对 \\(x\\) 积分时，积分“常数”应写成只含 \\(y\\) 的函数："
           }
         ],
         "formulas": [
@@ -5751,6 +6413,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 0,
             "searchAliases": [],
             "context": "偏导数定义：",
+            "displayContext": "偏导数定义：",
             "chapterId": "calculus-05",
             "topicId": "calculus-05-003",
             "order": 0
@@ -5764,6 +6427,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 1,
             "searchAliases": [],
             "context": "所属知识点：一阶偏导、二阶偏导、全微分与线性近似。",
+            "displayContext": "偏导数定义：",
             "chapterId": "calculus-05",
             "topicId": "calculus-05-003",
             "order": 1
@@ -5777,6 +6441,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 2,
             "searchAliases": [],
             "context": "所属知识点：一阶偏导、二阶偏导、全微分与线性近似。",
+            "displayContext": "偏导数定义：",
             "chapterId": "calculus-05",
             "topicId": "calculus-05-003",
             "order": 2
@@ -5790,6 +6455,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 3,
             "searchAliases": [],
             "context": "可微时的线性近似为",
+            "displayContext": "可微时的线性近似为",
             "chapterId": "calculus-05",
             "topicId": "calculus-05-003",
             "order": 3
@@ -5803,6 +6469,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 4,
             "searchAliases": [],
             "context": "二阶偏导连续时：",
+            "displayContext": "二阶偏导连续时：",
             "chapterId": "calculus-05",
             "topicId": "calculus-05-003",
             "order": 4
@@ -5816,6 +6483,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 6,
             "searchAliases": [],
             "context": "当 x,y 是独立变量时，二阶全微分为",
+            "displayContext": "当 \\(x,y\\) 是独立变量时，二阶全微分为",
             "chapterId": "calculus-05",
             "topicId": "calculus-05-003",
             "order": 5
@@ -5829,6 +6497,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 8,
             "searchAliases": [],
             "context": "全微分形式不变性：无论 x,y 是独立变量还是其他变量的可微函数，始终有",
+            "displayContext": "全微分形式不变性：无论 \\(x,y\\) 是独立变量还是其他变量的可微函数，始终有",
             "chapterId": "calculus-05",
             "topicId": "calculus-05-003",
             "order": 6
@@ -5842,6 +6511,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 11,
             "searchAliases": [],
             "context": "若 \\(z=f(u,v)\\)，\\(u=u(x,y),v=v(x,y)\\)，则",
+            "displayContext": "若 \\(z=f(u,v)\\)，\\(u=u(x,y),v=v(x,y)\\)，则",
             "chapterId": "calculus-05",
             "topicId": "calculus-05-003",
             "order": 7
@@ -5855,6 +6525,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 11,
             "searchAliases": [],
             "context": "若 \\(z=f(u,v)\\)，\\(u=u(x,y),v=v(x,y)\\)，则",
+            "displayContext": "若 \\(z=f(u,v)\\)，\\(u=u(x,y),v=v(x,y)\\)，则",
             "chapterId": "calculus-05",
             "topicId": "calculus-05-003",
             "order": 8
@@ -5868,6 +6539,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 13,
             "searchAliases": [],
             "context": "若 \\(u=u(t),v=v(t)\\)，则",
+            "displayContext": "若 \\(u=u(t),v=v(t)\\)，则",
             "chapterId": "calculus-05",
             "topicId": "calculus-05-003",
             "order": 9
@@ -5881,6 +6553,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 16,
             "searchAliases": [],
             "context": "若 \\(z=f(x,y)\\) 且 \\(y=y(x)\\)，则",
+            "displayContext": "若 \\(z=f(x,y)\\) 且 \\(y=y(x)\\)，则",
             "chapterId": "calculus-05",
             "topicId": "calculus-05-003",
             "order": 10
@@ -5894,6 +6567,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 21,
             "searchAliases": [],
             "context": "若 \\(F(x,y,z)=0\\) 确定 \\(z=z(x,y)\\)，则",
+            "displayContext": "若 \\(F(x,y,z)=0\\) 确定 \\(z=z(x,y)\\)，则",
             "chapterId": "calculus-05",
             "topicId": "calculus-05-003",
             "order": 11
@@ -5907,6 +6581,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 21,
             "searchAliases": [],
             "context": "若 \\(F(x,y,z)=0\\) 确定 \\(z=z(x,y)\\)，则",
+            "displayContext": "若 \\(F(x,y,z)=0\\) 确定 \\(z=z(x,y)\\)，则",
             "chapterId": "calculus-05",
             "topicId": "calculus-05-003",
             "order": 12
@@ -5920,6 +6595,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 24,
             "searchAliases": [],
             "context": "若 \\(F(x,y)=0\\) 确定 \\(y=y(x)\\)，则",
+            "displayContext": "若 \\(F(x,y)=0\\) 确定 \\(y=y(x)\\)，则",
             "chapterId": "calculus-05",
             "topicId": "calculus-05-003",
             "order": 13
@@ -5933,6 +6609,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 25,
             "searchAliases": [],
             "context": "所属知识点：一元隐函数与多元隐函数偏导公式。",
+            "displayContext": "若 \\(F(x,y)=0\\) 确定 \\(y=y(x)\\)，则",
             "chapterId": "calculus-05",
             "topicId": "calculus-05-003",
             "order": 14
@@ -5946,6 +6623,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 29,
             "searchAliases": [],
             "context": "由 \\(f_x=P(x,y)\\) 对 x 积分时，积分“常数”应写成只含 y 的函数：",
+            "displayContext": "由 \\(f_x=P(x,y)\\) 对 \\(x\\) 积分时，积分“常数”应写成只含 \\(y\\) 的函数：",
             "chapterId": "calculus-05",
             "topicId": "calculus-05-003",
             "order": 15
@@ -5964,21 +6642,24 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "calculus-05-004-anchor-001",
             "title": "二元函数无条件极值与二阶判别式",
             "searchText": "二元函数无条件极值与二阶判别式 先解 f x=0, f y=0. 在满足 f x=f y=0 的点计算 A=f xx , B=f xy , C=f yy , =AC-B^2. 0,A 0：极小值； 0,A<0：极大值； <0：不是极值； =0：该判别法失效，另作判断。 当 =0 时，可令 x=x 0+h,y=y 0+k，比较展开式的最低次非零项：该项恒正或恒负时分别为极小或极大；沿不同路径异号时不是极值。",
-            "summary": "先解 f x=0, f y=0. 在满足 f x=f y=0 的点计算 A=f xx , B=f xy , C=f yy , =AC-B^2. 0,A 0：极小值； 0,A<0：极大值； <0：不是极值； =0：该判别法失效，另作判断。 当 =0 时，可令…"
+            "summary": "先解 f x=0, f y=0. 在满足 f x=f y=0 的点计算 A=f xx , B=f xy , C=f yy , =AC-B^2. 0,A 0：极小值； 0,A<0：极大值； <0：不是极值； =0：该判别法失效，另作判断。 当 =0 时，可令…",
+            "displaySummary": "先解"
           },
           {
             "id": "anchor-i8i1m",
             "legacyId": "calculus-05-004-anchor-002",
             "title": "拉格朗日乘数法与条件极值",
             "searchText": "拉格朗日乘数法与条件极值 约束 g(x,y)=0 时设 L=f+ g, 联立 L x=L y=L =0。两个约束就引入两个乘数。",
-            "summary": "约束 g(x,y)=0 时设 L=f+ g, 联立 L x=L y=L =0。两个约束就引入两个乘数。"
+            "summary": "约束 g(x,y)=0 时设 L=f+ g, 联立 L x=L y=L =0。两个约束就引入两个乘数。",
+            "displaySummary": "约束 \\(g(x,y)=0\\) 时设"
           },
           {
             "id": "anchor-1c0bni3",
             "legacyId": "calculus-05-004-anchor-003",
             "title": "闭区域最大值、最小值与边界比较",
             "searchText": "闭区域最大值、最小值与边界比较 分别计算区域内部满足 f x=f y=0 的点和边界上的候选点，再比较函数值。边界可以代入化为一元函数，也可用拉格朗日乘数法。",
-            "summary": "分别计算区域内部满足 f x=f y=0 的点和边界上的候选点，再比较函数值。边界可以代入化为一元函数，也可用拉格朗日乘数法。"
+            "summary": "分别计算区域内部满足 f x=f y=0 的点和边界上的候选点，再比较函数值。边界可以代入化为一元函数，也可用拉格朗日乘数法。",
+            "displaySummary": "分别计算区域内部满足 \\(f_x=f_y=0\\) 的点和边界上的候选点，再比较函数值。边界可以代入化为一元函数，也可用拉格朗日乘数法。"
           }
         ],
         "formulas": [
@@ -5991,6 +6672,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 0,
             "searchAliases": [],
             "context": "所属知识点：二元函数无条件极值与二阶判别式。",
+            "displayContext": "先解",
             "chapterId": "calculus-05",
             "topicId": "calculus-05-004",
             "order": 0
@@ -6004,6 +6686,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 2,
             "searchAliases": [],
             "context": "在满足 f_x=f_y=0 的点计算",
+            "displayContext": "在满足 \\(f_x=f_y=0\\) 的点计算",
             "chapterId": "calculus-05",
             "topicId": "calculus-05-004",
             "order": 1
@@ -6017,6 +6700,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 10,
             "searchAliases": [],
             "context": "约束 \\(g(x,y)=0\\) 时设",
+            "displayContext": "约束 \\(g(x,y)=0\\) 时设",
             "chapterId": "calculus-05",
             "topicId": "calculus-05-004",
             "order": 2
@@ -6043,35 +6727,40 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "calculus-06-001-anchor-001",
             "title": "二重积分的计算步骤：对称性、坐标系、积分次序与分块",
             "searchText": "二重积分的计算步骤：对称性、坐标系、积分次序与分块 先看对称性。 积分区域关于 x 轴对称时，检查被积函数对 y 的奇偶性；关于 y 轴对称时，检查它对 x 的奇偶性。对应变量为奇函数，积分为零；为偶函数，可只算一半区域再乘 2。区域关于直线 y=x 对称时，可交换 x,y 来化简。只有区域也具有相应对称性时才能这样做。 再选坐标系。 边界容易写成上下或左右关系时用直角坐标；圆域、扇形或式子含 x^2+y^2 时优先考虑极坐标，并记住 dA=r\\,dr\\,d 。需要换元时，积分区域和面积微元都要一起变换。 定积分次序，必要时分块。 X 型区域先对 y 积分、后对 x 积分；Y 型区域先对 x 积分、后对 y 积分。边界发生变化，或被积函数含绝对值、取整、 、 时，先找分界线再分块。 最后写积分限并计算。 画出区域，沿内层积分变量的方向扫描，确定每段的起点和终点；外层积分限是该区域或分块的投影范围。先核对区域与积分限是否一致，再计算。",
-            "summary": "先看对称性。 积分区域关于 x 轴对称时，检查被积函数对 y 的奇偶性；关于 y 轴对称时，检查它对 x 的奇偶性。对应变量为奇函数，积分为零；为偶函数，可只算一半区域再乘 2。区域关于直线 y=x 对称时，可交换 x,y 来化简。只有区域也具有相应对称性…"
+            "summary": "先看对称性。 积分区域关于 x 轴对称时，检查被积函数对 y 的奇偶性；关于 y 轴对称时，检查它对 x 的奇偶性。对应变量为奇函数，积分为零；为偶函数，可只算一半区域再乘 2。区域关于直线 y=x 对称时，可交换 x,y 来化简。只有区域也具有相应对称性…",
+            "displaySummary": ""
           },
           {
             "id": "anchor-a903lx",
             "legacyId": "calculus-06-001-anchor-002",
             "title": "X型区域、Y型区域与直角坐标累次积分",
             "searchText": "X型区域、Y型区域与直角坐标累次积分 X 型区域： D=\\ (x,y):a≤ x≤ b,\\ 1(x)≤ y≤ 2(x)\\ , D f\\,dA= a^b dx 1(x) ^ 2(x) f(x,y)\\,dy. Y 型区域同理先写 y 的范围，再写 x 的左右边界。若一条扫描线穿过区域时上下边界发生变化，就分段积分。",
-            "summary": "X 型区域： D=\\ (x,y):a≤ x≤ b,\\ 1(x)≤ y≤ 2(x)\\ , D f\\,dA= a^b dx 1(x) ^ 2(x) f(x,y)\\,dy. Y 型区域同理先写 y 的范围，再写 x 的左右边界。若一条扫描线穿过区域时上下边界发生…"
+            "summary": "X 型区域： D=\\ (x,y):a≤ x≤ b,\\ 1(x)≤ y≤ 2(x)\\ , D f\\,dA= a^b dx 1(x) ^ 2(x) f(x,y)\\,dy. Y 型区域同理先写 y 的范围，再写 x 的左右边界。若一条扫描线穿过区域时上下边界发生…",
+            "displaySummary": "\\(X\\) 型区域："
           },
           {
             "id": "anchor-1no3ayr",
             "legacyId": "calculus-06-001-anchor-003",
             "title": "极坐标、一般换元与雅可比行列式",
             "searchText": "极坐标、一般换元与雅可比行列式 x=r , y=r , dA=r\\,dr\\,d . D f(x,y)\\,dA = ^ d r 1( ) ^ r 2( ) f(r ,r )r\\,dr. 圆域、扇形、被积函数含 x^2+y^2 时优先极坐标；椭圆域可令 x=au,y=bv，面积因子变为 ab。 一般换元公式：若 x=x(u,v), y=y(u,v), 则 D f(x,y)\\,dx\\,dy = D' f(x(u,v),y(u,v)) ≤ft (x,y) (u,v) du\\,dv, 其中 (x,y) (u,v) =x u y v-x v y u.",
-            "summary": "x=r , y=r , dA=r\\,dr\\,d . D f(x,y)\\,dA = ^ d r 1( ) ^ r 2( ) f(r ,r )r\\,dr. 圆域、扇形、被积函数含 x^2+y^2 时优先极坐标；椭圆域可令 x=au,y=bv，面积因子变为 ab…"
+            "summary": "x=r , y=r , dA=r\\,dr\\,d . D f(x,y)\\,dA = ^ d r 1( ) ^ r 2( ) f(r ,r )r\\,dr. 圆域、扇形、被积函数含 x^2+y^2 时优先极坐标；椭圆域可令 x=au,y=bv，面积因子变为 ab…",
+            "displaySummary": "圆域、扇形、被积函数含 \\(x^2+y^2\\) 时优先极坐标；椭圆域可令 \\(x=au,y=bv\\)，面积因子变为 \\(ab\\)。"
           },
           {
             "id": "anchor-1p3v1i4",
             "legacyId": "calculus-06-001-anchor-004",
             "title": "平移极坐标与偏心圆区域",
             "searchText": "平移极坐标与偏心圆区域 圆心为 (a,b) 的圆域优先令 x=a+r ,qquad y=b+r ,qquad dA=r\\,dr\\,d . 常见圆的极坐标方程： x^2+y^2=2ax r=2a , x^2+y^2=2by r=2b .",
-            "summary": "圆心为 (a,b) 的圆域优先令 x=a+r ,qquad y=b+r ,qquad dA=r\\,dr\\,d . 常见圆的极坐标方程： x^2+y^2=2ax r=2a , x^2+y^2=2by r=2b ."
+            "summary": "圆心为 (a,b) 的圆域优先令 x=a+r ,qquad y=b+r ,qquad dA=r\\,dr\\,d . 常见圆的极坐标方程： x^2+y^2=2ax r=2a , x^2+y^2=2by r=2b .",
+            "displaySummary": "圆心为 \\((a,b)\\) 的圆域优先令"
           },
           {
             "id": "anchor-1w9znj5",
             "legacyId": "calculus-06-001-anchor-005",
             "title": "轴对称、中心对称、交换对称与分区积分",
             "searchText": "轴对称、中心对称、交换对称与分区积分 区域关于 y 轴对称时，含 x 的奇函数积分为零；关于 x 轴对称时，含 y 的奇函数积分为零。含绝对值、最大值、最小值或取整函数时，先按分界曲线把区域拆开。 若区域关于直线 x=a 对称，则把 x-a 看作新的对称变量；被积函数关于 x-a 为奇函数时积分为零，关于 x-a 为偶函数时可取一半区域后乘 2。关于 y=b 对称时同理。 若区域关于原点对称，且 f(-x,-y)=-f(x,y)，则 D f(x,y)\\,dA=0。 若区域关于直线 y=x 对称，则 D f(x,y)\\,dA= D f(y,x)\\,dA = 12 D[f(x,y)+f(y,x)]\\,dA. 特别地，若 f(y,x)=-f(x,y)，则积分为零。",
-            "summary": "区域关于 y 轴对称时，含 x 的奇函数积分为零；关于 x 轴对称时，含 y 的奇函数积分为零。含绝对值、最大值、最小值或取整函数时，先按分界曲线把区域拆开。 若区域关于直线 x=a 对称，则把 x-a 看作新的对称变量；被积函数关于 x-a 为奇函数时积…"
+            "summary": "区域关于 y 轴对称时，含 x 的奇函数积分为零；关于 x 轴对称时，含 y 的奇函数积分为零。含绝对值、最大值、最小值或取整函数时，先按分界曲线把区域拆开。 若区域关于直线 x=a 对称，则把 x-a 看作新的对称变量；被积函数关于 x-a 为奇函数时积…",
+            "displaySummary": "区域关于 \\(y\\) 轴对称时，含 \\(x\\) 的奇函数积分为零；关于 \\(x\\) 轴对称时，含 \\(y\\) 的奇函数积分为零。含绝对值、最大值、最小值或取整函数时，先按分界曲线把区域拆开。"
           }
         ],
         "formulas": [
@@ -6084,6 +6773,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 18,
             "searchAliases": [],
             "context": "所属知识点：X型区域、Y型区域与直角坐标累次积分。",
+            "displayContext": "\\(X\\) 型区域：",
             "chapterId": "calculus-06",
             "topicId": "calculus-06-001",
             "order": 0
@@ -6097,6 +6787,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 19,
             "searchAliases": [],
             "context": "所属知识点：X型区域、Y型区域与直角坐标累次积分。",
+            "displayContext": "\\(X\\) 型区域：",
             "chapterId": "calculus-06",
             "topicId": "calculus-06-001",
             "order": 1
@@ -6105,11 +6796,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-ncsz3t-1",
             "parentAnchorId": "anchor-1no3ayr",
             "legacyParentAnchorId": "calculus-06-001-anchor-003",
-            "title": "极坐标、一般换元与雅可比行列式：x",
+            "title": "二重积分的极坐标换元",
             "latex": "x=r\\cos\\theta,\\qquad y=r\\sin\\theta,\\qquad dA=r\\,dr\\,d\\theta.",
             "sourceBlockIndex": 23,
-            "searchAliases": [],
+            "searchAliases": [
+              "二重积分极坐标",
+              "极坐标面积微元"
+            ],
             "context": "所属知识点：极坐标、一般换元与雅可比行列式。",
+            "displayContext": "所属知识点：极坐标、一般换元与雅可比行列式。",
             "chapterId": "calculus-06",
             "topicId": "calculus-06-001",
             "order": 2
@@ -6118,11 +6813,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-1wm6sut",
             "parentAnchorId": "anchor-1no3ayr",
             "legacyParentAnchorId": "calculus-06-001-anchor-003",
-            "title": "极坐标、一般换元与雅可比行列式：iint_D f(x,y) dA",
+            "title": "二重积分的极坐标计算公式",
             "latex": "\\iint_D f(x,y)\\,dA\n=\\int_\\alpha^\\beta d\\theta\\int_{r_1(\\theta)}^{r_2(\\theta)}\nf(r\\cos\\theta,r\\sin\\theta)r\\,dr.",
             "sourceBlockIndex": 24,
-            "searchAliases": [],
+            "searchAliases": [
+              "极坐标二重积分",
+              "极坐标积分限"
+            ],
             "context": "所属知识点：极坐标、一般换元与雅可比行列式。",
+            "displayContext": "所属知识点：极坐标、一般换元与雅可比行列式。",
             "chapterId": "calculus-06",
             "topicId": "calculus-06-001",
             "order": 3
@@ -6136,6 +6835,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 28,
             "searchAliases": [],
             "context": "一般换元公式：若",
+            "displayContext": "一般换元公式：若",
             "chapterId": "calculus-06",
             "topicId": "calculus-06-001",
             "order": 4
@@ -6144,11 +6844,16 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-wkbq2e",
             "parentAnchorId": "anchor-1no3ayr",
             "legacyParentAnchorId": "calculus-06-001-anchor-003",
-            "title": "极坐标、一般换元与雅可比行列式：iint_D f(x,y) dx dy",
+            "title": "二重积分的一般换元公式",
             "latex": "\\iint_D f(x,y)\\,dx\\,dy\n=\\iint_{D'} f(x(u,v),y(u,v))\n\\left|\\frac{\\partial(x,y)}{\\partial(u,v)}\\right|du\\,dv,",
             "sourceBlockIndex": 29,
-            "searchAliases": [],
+            "searchAliases": [
+              "二重积分换元",
+              "雅可比行列式换元",
+              "二重积分变量替换"
+            ],
             "context": "所属知识点：极坐标、一般换元与雅可比行列式。",
+            "displayContext": "则",
             "chapterId": "calculus-06",
             "topicId": "calculus-06-001",
             "order": 5
@@ -6157,11 +6862,15 @@ export const mathChapters: MathChapter[] = [
             "id": "calculus-15twt1l",
             "parentAnchorId": "anchor-1no3ayr",
             "legacyParentAnchorId": "calculus-06-001-anchor-003",
-            "title": "极坐标、一般换元与雅可比行列式：(partial(x,y))/(partial(u,v))",
+            "title": "二重积分换元的雅可比行列式",
             "latex": "\\frac{\\partial(x,y)}{\\partial(u,v)}\n=x_u y_v-x_v y_u.",
             "sourceBlockIndex": 30,
-            "searchAliases": [],
+            "searchAliases": [
+              "雅可比行列式",
+              "二重积分雅可比"
+            ],
             "context": "所属知识点：极坐标、一般换元与雅可比行列式。",
+            "displayContext": "其中",
             "chapterId": "calculus-06",
             "topicId": "calculus-06-001",
             "order": 6
@@ -6175,6 +6884,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 32,
             "searchAliases": [],
             "context": "圆心为 \\((a,b)\\) 的圆域优先令",
+            "displayContext": "圆心为 \\((a,b)\\) 的圆域优先令",
             "chapterId": "calculus-06",
             "topicId": "calculus-06-001",
             "order": 7
@@ -6188,6 +6898,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 33,
             "searchAliases": [],
             "context": "常见圆的极坐标方程：",
+            "displayContext": "常见圆的极坐标方程：",
             "chapterId": "calculus-06",
             "topicId": "calculus-06-001",
             "order": 8
@@ -6201,6 +6912,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 34,
             "searchAliases": [],
             "context": "所属知识点：平移极坐标与偏心圆区域。",
+            "displayContext": "常见圆的极坐标方程：",
             "chapterId": "calculus-06",
             "topicId": "calculus-06-001",
             "order": 9
@@ -6217,6 +6929,7 @@ export const mathChapters: MathChapter[] = [
               "原点对称积分为零"
             ],
             "context": "区域关于原点对称，被积函数同时把 x、y 变号后变为相反数。",
+            "displayContext": "若区域关于原点对称，且 \\(f(-x,-y)=-f(x,y)\\)，则",
             "chapterId": "calculus-06",
             "topicId": "calculus-06-001",
             "order": 10
@@ -6230,6 +6943,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 48,
             "searchAliases": [],
             "context": "若区域关于直线 y=x 对称，则",
+            "displayContext": "若区域关于直线 \\(y=x\\) 对称，则",
             "chapterId": "calculus-06",
             "topicId": "calculus-06-001",
             "order": 11
@@ -6248,28 +6962,32 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "calculus-06-002-anchor-001",
             "title": "二重积分概念、线性、区域可加性与定义型和式极限",
             "searchText": "二重积分概念、线性、区域可加性与定义型和式极限 D(af+bg)\\,dA =a Df\\,dA+b Dg\\,dA. 若 D=D 1 D 2 且内部不重叠，则 Df\\,dA= D 1 f\\,dA+ D 2 f\\,dA. 若把 D 分成小区域 D i，取点 ( i, i) D i，则 0 i=1 ^n f( i, i)\\, i = D f(x,y)\\,dA, 其中 是各小区域直径的最大值。",
-            "summary": "D(af+bg)\\,dA =a Df\\,dA+b Dg\\,dA. 若 D=D 1 D 2 且内部不重叠，则 Df\\,dA= D 1 f\\,dA+ D 2 f\\,dA. 若把 D 分成小区域 D i，取点 ( i, i) D i，则 0 i=1 ^n f( …"
+            "summary": "D(af+bg)\\,dA =a Df\\,dA+b Dg\\,dA. 若 D=D 1 D 2 且内部不重叠，则 Df\\,dA= D 1 f\\,dA+ D 2 f\\,dA. 若把 D 分成小区域 D i，取点 ( i, i) D i，则 0 i=1 ^n f( …",
+            "displaySummary": "若 \\(D=D_1\\cup D_2\\) 且内部不重叠，则"
           },
           {
             "id": "anchor-128uc8u",
             "legacyId": "calculus-06-002-anchor-002",
             "title": "交换积分次序与重新描述积分区域",
             "searchText": "交换积分次序与重新描述积分区域 先把原积分画成区域，再按新的扫描方向写边界；不要直接机械交换上下限。直角坐标与极坐标互换时同样先确定区域。",
-            "summary": "先把原积分画成区域，再按新的扫描方向写边界；不要直接机械交换上下限。直角坐标与极坐标互换时同样先确定区域。"
+            "summary": "先把原积分画成区域，再按新的扫描方向写边界；不要直接机械交换上下限。直角坐标与极坐标互换时同样先确定区域。",
+            "displaySummary": "先把原积分画成区域，再按新的扫描方向写边界；不要直接机械交换上下限。直角坐标与极坐标互换时同样先确定区域。"
           },
           {
             "id": "anchor-1saj91z",
             "legacyId": "calculus-06-002-anchor-003",
             "title": "二重积分比较、估值、中值定理与平均值",
             "searchText": "二重积分比较、估值、中值定理与平均值 在同一区域上比较 f 与 g：若 f≥ g，则 D f\\,dA≥ D g\\,dA. 若区域或被积函数有对称性，先化简再判断。 二重积分同样满足线性、区域可加性和保序性。若 f 在有界闭区域 D 上连续，则存在 ( , ) D，使 D f(x,y)\\,dA=f( , )\\,S D. 若 m≤ f(x,y)≤ M，则 mS D≤ D f(x,y)\\,dA≤ MS D, 并且 ≤ft D f\\,dA ≤ D f \\,dA. 函数在区域上的平均值为 f= 1 S D D f(x,y)\\,dA.",
-            "summary": "在同一区域上比较 f 与 g：若 f≥ g，则 D f\\,dA≥ D g\\,dA. 若区域或被积函数有对称性，先化简再判断。 二重积分同样满足线性、区域可加性和保序性。若 f 在有界闭区域 D 上连续，则存在 ( , ) D，使 D f(x,y)\\,dA=…"
+            "summary": "在同一区域上比较 f 与 g：若 f≥ g，则 D f\\,dA≥ D g\\,dA. 若区域或被积函数有对称性，先化简再判断。 二重积分同样满足线性、区域可加性和保序性。若 f 在有界闭区域 D 上连续，则存在 ( , ) D，使 D f(x,y)\\,dA=…",
+            "displaySummary": "在同一区域上比较 \\(f\\) 与 \\(g\\)：若 \\(f\\ge g\\)，则"
           },
           {
             "id": "anchor-lfgr2w",
             "legacyId": "calculus-06-002-anchor-004",
             "title": "面积与体积",
             "searchText": "面积与体积 S= D1\\,dA, V= D f(x,y)\\,dA (f≥0).",
-            "summary": "S= D1\\,dA, V= D f(x,y)\\,dA (f≥0)."
+            "summary": "S= D1\\,dA, V= D f(x,y)\\,dA (f≥0).",
+            "displaySummary": ""
           }
         ],
         "formulas": [
@@ -6282,6 +7000,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 0,
             "searchAliases": [],
             "context": "所属知识点：二重积分概念、线性、区域可加性与定义型和式极限。",
+            "displayContext": "所属知识点：二重积分概念、线性、区域可加性与定义型和式极限。",
             "chapterId": "calculus-06",
             "topicId": "calculus-06-002",
             "order": 0
@@ -6295,6 +7014,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 2,
             "searchAliases": [],
             "context": "若 D=D_1\\cup D_2 且内部不重叠，则",
+            "displayContext": "若 \\(D=D_1\\cup D_2\\) 且内部不重叠，则",
             "chapterId": "calculus-06",
             "topicId": "calculus-06-002",
             "order": 1
@@ -6308,6 +7028,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 6,
             "searchAliases": [],
             "context": "若把 D 分成小区域 \\Delta D_i，取点 \\((\\xi_i,\\eta_i)\\in\\Delta D_i\\)，则",
+            "displayContext": "若把 \\(D\\) 分成小区域 \\(\\Delta D_i\\)，取点 \\((\\xi_i,\\eta_i)\\in\\Delta D_i\\)，则",
             "chapterId": "calculus-06",
             "topicId": "calculus-06-002",
             "order": 2
@@ -6321,6 +7042,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 11,
             "searchAliases": [],
             "context": "在同一区域上比较 f 与 g：若 f\\ge g，则",
+            "displayContext": "在同一区域上比较 \\(f\\) 与 \\(g\\)：若 \\(f\\ge g\\)，则",
             "chapterId": "calculus-06",
             "topicId": "calculus-06-002",
             "order": 3
@@ -6334,6 +7056,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 15,
             "searchAliases": [],
             "context": "二重积分同样满足线性、区域可加性和保序性。若 f 在有界闭区域 D 上连续，则存在 \\((\\xi,\\eta)\\in D\\)，使",
+            "displayContext": "二重积分同样满足线性、区域可加性和保序性。若 \\(f\\) 在有界闭区域 \\(D\\) 上连续，则存在 \\((\\xi,\\eta)\\in D\\)，使",
             "chapterId": "calculus-06",
             "topicId": "calculus-06-002",
             "order": 4
@@ -6347,6 +7070,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 17,
             "searchAliases": [],
             "context": "若 \\(m\\le f(x,y)\\le M\\)，则",
+            "displayContext": "若 \\(m\\le f(x,y)\\le M\\)，则",
             "chapterId": "calculus-06",
             "topicId": "calculus-06-002",
             "order": 5
@@ -6360,6 +7084,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 18,
             "searchAliases": [],
             "context": "所属知识点：二重积分比较、估值、中值定理与平均值。",
+            "displayContext": "并且",
             "chapterId": "calculus-06",
             "topicId": "calculus-06-002",
             "order": 6
@@ -6373,6 +7098,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 19,
             "searchAliases": [],
             "context": "函数在区域上的平均值为",
+            "displayContext": "函数在区域上的平均值为",
             "chapterId": "calculus-06",
             "topicId": "calculus-06-002",
             "order": 7
@@ -6386,6 +7112,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 20,
             "searchAliases": [],
             "context": "所属知识点：面积与体积。",
+            "displayContext": "所属知识点：面积与体积。",
             "chapterId": "calculus-06",
             "topicId": "calculus-06-002",
             "order": 8
@@ -6399,6 +7126,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 20,
             "searchAliases": [],
             "context": "所属知识点：面积与体积。",
+            "displayContext": "所属知识点：面积与体积。",
             "chapterId": "calculus-06",
             "topicId": "calculus-06-002",
             "order": 9
@@ -6416,8 +7144,8 @@ export const mathChapters: MathChapter[] = [
       {
         "id": "linear-algebra-01-001",
         "title": "具体行列式计算",
-        "body": "##### 线代结论与考研口诀速查\n\n##### 解集小，秩反而大\n\n对未知数个数相同的两个齐次方程组，若 \\(Ax=0\\) 的每个解都是 \\(Bx=0\\) 的解，则\n\n<!-- formula {\"id\":\"linear-1glbyvf\",\"title\":\"解集小，秩反而大：r(A)\",\"aliases\":[],\"context\":\"对未知数个数相同的两个齐次方程组，若 Ax=0 的每个解都是 Bx=0 的解，则\"} -->\n\\[\nr(A)\\ge r(B).\n\\]\n\n限制越多，秩越大，解越少。反过来，\\(r(A)\\ge r(B)\\) 不能单独推出解的包含关系。\n\n##### 无关被表，个数不多\n\n若线性无关的向量组\n\\(\\beta_1,\\ldots,\\beta_s\\) 可由 \\(\\alpha_1,\\ldots,\\alpha_r\\) 线性表示，则\n\n<!-- formula {\"id\":\"linear-1bmy9k0\",\"title\":\"无关被表，个数不多：s\",\"aliases\":[],\"context\":\"若线性无关的向量组\"} -->\n\\[\ns\\le r.\n\\]\n\n即“被表示的一组若无关，它的向量个数不超过表示它的那一组”。\n\n##### 以少表多，多必相关\n\n若 \\(s\\) 个向量都能由 \\(r\\) 个向量线性表示，且 \\(s>r\\)，则这 \\(s\\) 个向量线性相关。这是“无关被表，个数不多”的逆否说法。\n\n##### 被表秩小，表者秩大\n\n若向量组 \\(B\\) 可由向量组 \\(A\\) 线性表示，即 \\(B=AC\\)，则\n\n<!-- formula {\"id\":\"linear-sk4b4h\",\"title\":\"被表秩小，表者秩大：r(B)\",\"aliases\":[],\"context\":\"若向量组 B 可由向量组 A 线性表示，即 B=AC，则\"} -->\n\\[\nr(B)\\le r(A).\n\\]\n\n口诀中的“大小”指秩，不是向量的长短。\n\n##### 两组互表，秩必相等\n\n两个向量组能互相线性表示，称为等价向量组，必有\n\n<!-- formula {\"id\":\"linear-swwd52\",\"title\":\"两组互表，秩必相等：r(A)\",\"aliases\":[],\"context\":\"两个向量组能互相线性表示，称为等价向量组，必有\"} -->\n\\[\nr(A)=r(B).\n\\]\n\n只有秩相等不能直接推出两组等价。\n\n##### 整体无关，部分无关；部分相关，整体相关\n\n线性无关向量组的任意部分组仍线性无关；一个向量组只要含有相关的部分组，整个向量组就相关。\n\n##### 多于维数，必定相关\n\n\\(s\\) 个 \\(n\\) 维向量中，若 \\(s>n\\)，则向量组必线性相关；若 \\(s\\le n\\)，不能只凭个数判断。\n\n##### 无关添一变相关，新增向量唯一可表\n\n若 \\(\\alpha_1,\\ldots,\\alpha_r\\) 线性无关，而 \\(\\alpha_1,\\ldots,\\alpha_r,\\beta\\) 线性相关，则 \\(\\beta\\) 可由原向量组唯一线性表示。\n\n##### 相关必有一个可由其余表示\n\n向量组线性相关，当且仅当其中至少一个向量可由其余向量线性表示；含零向量的向量组一定相关。\n\n##### 极大无关组：自己无关，其余都能表示\n\n从原向量组中取出的部分组，若它本身线性无关，且原组中其余向量都能由它表示，它就是极大无关组；所含向量个数等于原向量组的秩。\n\n##### 齐次方程组：满秩只有零解，秩亏必有非零解\n\n设 \\(A\\) 有 \\(n\\) 列，则\n\n<!-- formula {\"id\":\"linear-i74sfx\",\"title\":\"齐次方程组：满秩只有零解，秩亏必有非零解：r(A)\",\"aliases\":[],\"context\":\"设 A 有 n 列，则\"} -->\n\\[\nr(A)=n\\Longleftrightarrow Ax=0\\text{ 只有零解},\n\\]\n\n<!-- formula {\"id\":\"linear-4jzdze\",\"title\":\"齐次方程组：满秩只有零解，秩亏必有非零解：r(A)\",\"aliases\":[],\"context\":\"所属知识点：齐次方程组：满秩只有零解，秩亏必有非零解。\"} -->\n\\[\nr(A)<n\\Longleftrightarrow Ax=0\\text{ 有非零解}.\n\\]\n\n基础解系含 \\(n-r(A)\\) 个线性无关解。\n\n##### 非齐次方程组：先比两秩，再和未知数个数比\n\n设 \\(A\\) 有 \\(n\\) 列，则\n\n<!-- formula {\"id\":\"linear-uyqmcp\",\"title\":\"非齐次线性方程组的解的三种情况\",\"aliases\":[],\"context\":\"设 A 有 n 列，则\"} -->\n\\[\n\\begin{array}{c|c}\nr(A)\\ne r(A,b)&\\text{无解}\\\\\nr(A)=r(A,b)=n&\\text{唯一解}\\\\\nr(A)=r(A,b)<n&\\text{无穷多解}\n\\end{array}\n\\]\n\n##### 非齐减非齐得齐次，非齐通解等于特解加齐次通解\n\n若 \\(Ax_1=b,\\ Ax_2=b\\)，则\n\n<!-- formula {\"id\":\"linear-136hg8t\",\"title\":\"非齐减非齐得齐次，非齐通解等于特解加齐次通解：A(x_1-x_2)\",\"aliases\":[],\"context\":\"若 Ax_1=b,\\\\ Ax_2=b，则\"} -->\n\\[\nA(x_1-x_2)=0.\n\\]\n\n若 \\(\\eta^*\\) 是 \\(Ax=b\\) 的一个特解，则全部解为\n\n<!-- formula {\"id\":\"linear-1mxzg24-1\",\"title\":\"非齐减非齐得齐次，非齐通解等于特解加齐次通解：x\",\"aliases\":[],\"context\":\"若 \\\\eta^ 是 Ax=b 的一个特解，则全部解为\"} -->\n\\[\nx=\\eta^*+\\xi,\\qquad A\\xi=0.\n\\]\n\n##### 矩阵越乘，秩不会增加\n\n若 \\(AB\\) 有意义，则\n\n<!-- formula {\"id\":\"linear-1i76qzt\",\"title\":\"矩阵越乘，秩不会增加：r(AB)\",\"aliases\":[],\"context\":\"若 AB 有意义，则\"} -->\n\\[\nr(AB)\\le \\min\\{r(A),r(B)\\}.\n\\]\n\n若 \\(AB=O\\)，且 \\(A\\) 有 \\(n\\) 列，则\n\n<!-- formula {\"id\":\"linear-wcjw9k\",\"title\":\"矩阵越乘，秩不会增加：r(A)+r(B)\",\"aliases\":[],\"context\":\"若 AB=O，且 A 有 n 列，则\"} -->\n\\[\nr(A)+r(B)\\le n.\n\\]\n\n##### 矩阵横拼竖拼，秩不会变小\n\n<!-- formula {\"id\":\"linear-hnpor7\",\"title\":\"矩阵横拼竖拼，秩不会变小：maxr(A),r(B)\",\"aliases\":[],\"context\":\"所属知识点：矩阵横拼竖拼，秩不会变小。\"} -->\n\\[\n\\max\\{r(A),r(B)\\}\\le r(A,B)\\le r(A)+r(B),\n\\]\n\n上下拼接时同理。\n\n##### 可逆矩阵夹乘，不改变秩\n\n若 \\(P,Q\\) 可逆，则\n\n<!-- formula {\"id\":\"linear-agslz1\",\"title\":\"可逆矩阵夹乘，不改变秩：r(PA)\",\"aliases\":[],\"context\":\"若 P,Q 可逆，则\"} -->\n\\[\nr(PA)=r(AQ)=r(PAQ)=r(A).\n\\]\n\n初等变换不改变矩阵的秩。\n\n##### 方阵单边得单位阵，另一边也成立\n\n同阶方阵满足 \\(AB=E\\) 或 \\(BA=E\\) 时，\\(A,B\\) 都可逆，并且\n\n<!-- formula {\"id\":\"linear-1xoset7-1\",\"title\":\"方阵单边得单位阵，另一边也成立：B\",\"aliases\":[],\"context\":\"同阶方阵满足 AB=E 或 BA=E 时，A,B 都可逆，并且\"} -->\n\\[\nB=A^{-1},\\qquad AB=BA=E.\n\\]\n\n##### 伴随矩阵的秩，只看原矩阵差几秩\n\n对 \\(n\\ge2\\) 阶方阵 \\(A\\)：\n\n<!-- formula {\"id\":\"linear-1quh0ps\",\"title\":\"伴随矩阵的秩，只看原矩阵差几秩：r(A^*)\",\"aliases\":[],\"context\":\"对 n\\\\ge2 阶方阵 A：\"} -->\n\\[\nr(A^*)=\n\\begin{cases}\nn,&r(A)=n,\\\\\n1,&r(A)=n-1,\\\\\n0,&r(A)\\le n-2.\n\\end{cases}\n\\]\n\n##### 特征值之和看迹，特征值之积看行列式\n\n计入重数后，\\(n\\) 阶方阵的特征值满足\n\n<!-- formula {\"items\":[{\"id\":\"linear-n93hf3-1\",\"title\":\"特征值之和看迹，特征值之积看行列式：Σ_i\",\"aliases\":[],\"context\":\"计入重数后，n 阶方阵的特征值满足\",\"latex\":\"\\\\sum_{i=1}^{n}\\\\lambda_i=\\\\operatorname{tr}(A)\"},{\"id\":\"linear-n93hf3-2\",\"title\":\"特征值之和看迹，特征值之积看行列式：prod_i\",\"aliases\":[],\"context\":\"计入重数后，n 阶方阵的特征值满足\",\"latex\":\"\\\\prod_{i=1}^{n}\\\\lambda_i=|A|\"}]} -->\n\\[\n\\sum_{i=1}^{n}\\lambda_i=\\operatorname{tr}(A),\\qquad\n\\prod_{i=1}^{n}\\lambda_i=|A|.\n\\]\n\n##### 不同特征值，对应特征向量必无关\n\n属于互不相同特征值的特征向量线性无关。同一特征值对应的特征向量不一定无关，要另行判断。\n\n##### 秩一矩阵：平方等于迹乘自身\n\n若 \\(r(A)=1\\)，则\n\n<!-- formula {\"items\":[{\"id\":\"linear-x6j5u1-1\",\"title\":\"秩一矩阵：平方等于迹乘自身：A^2\",\"aliases\":[],\"context\":\"若 \\\\(r(A)=1\\\\)，则\",\"latex\":\"A^2=\\\\operatorname{tr}(A)A\"},{\"id\":\"linear-x6j5u1-2\",\"title\":\"秩一矩阵：平方等于迹乘自身：|λ E-A|\",\"aliases\":[],\"context\":\"若 \\\\(r(A)=1\\\\)，则\",\"latex\":\"|\\\\lambda E-A|=\\\\lambda^{n-1}\\\\bigl(\\\\lambda-\\\\operatorname{tr}(A)\\\\bigr)\"}]} -->\n\\[\nA^2=\\operatorname{tr}(A)A,\\qquad\n|\\lambda E-A|=\\lambda^{n-1}\\bigl(\\lambda-\\operatorname{tr}(A)\\bigr).\n\\]\n\n所以特征值为 \\(0\\) 与 \\(\\operatorname{tr}(A)\\)；当迹为零时，全部特征值都为零。\n\n##### 实对称矩阵三件套\n\n实对称矩阵的特征值全为实数；不同特征值对应的特征向量正交；一定可以用正交矩阵对角化：\n\n<!-- formula {\"id\":\"linear-93re0p-1\",\"title\":\"实对称矩阵三件套：Q^TAQ\",\"aliases\":[],\"context\":\"实对称矩阵的特征值全为实数；不同特征值对应的特征向量正交；一定可以用正交矩阵对角化：\"} -->\n\\[\nQ^TAQ=\\Lambda,\\qquad Q^TQ=E.\n\\]\n\n##### 相似保特征，合同保惯性\n\n相似矩阵具有相同的特征多项式、特征值、行列式、迹和秩；这些相同一般不能反推相似。\n\n实对称矩阵合同后，正、负、零平方项的个数不变，即正、负惯性指数和秩不变。\n\n##### 正定三连判\n\n实对称矩阵 \\(A\\) 正定，等价于以下任一条件：\n\n<!-- formula {\"id\":\"linear-1ewwq8h-1\",\"title\":\"正定三连判：x^TAx\",\"aliases\":[],\"context\":\"实对称矩阵 A 正定，等价于以下任一条件：\"} -->\n\\[\nx^TAx>0\\quad(x\\ne0),\n\\]\n\n- 全部特征值大于零；\n- 各阶顺序主子式全部大于零；\n- 正惯性指数为 \\(n\\)。\n\n##### 逆序数与行列式展开定义\n\n排列 \\(j_1j_2\\cdots j_n\\) 中，前面数字大于后面数字的一对叫逆序，逆序总数记为 \\(\\tau(j_1j_2\\cdots j_n)\\)。\n\n<!-- formula {\"id\":\"linear-866w82\",\"title\":\"逆序数与行列式展开定义：|A|\",\"aliases\":[],\"context\":\"排列 j_1j_2\\\\cdots j_n 中，前面数字大于后面数字的一对叫逆序，逆序总数记为 \\\\(\\\\tau(j_1j_2\\\\cdots j_n)\\\\)。\"} -->\n\\[\n|A|=\\sum_{j_1j_2\\cdots j_n}\n(-1)^{\\tau(j_1j_2\\cdots j_n)}\na_{1j_1}a_{2j_2}\\cdots a_{nj_n}.\n\\]\n\n##### 行列式基本性质、转置与三角行列式\n\n<!-- formula {\"id\":\"linear-1dmj5hr\",\"title\":\"行列式基本性质、转置与三角行列式：|A^T|\",\"aliases\":[],\"context\":\"所属知识点：行列式基本性质、转置与三角行列式。\"} -->\n\\[\n|A^T|=|A|.\n\\]\n\n- 交换两行或两列，行列式变号。\n- 某行或某列乘 \\(k\\)，行列式乘 \\(k\\)。\n- 某行或某列的 \\(k\\) 倍加到另一行或另一列，行列式不变。\n- 两行或两列相同、成比例，或某行、某列全为零，行列式为零。\n- 三角形行列式等于主对角元之积。\n\n上三角、下三角和对角行列式均为主对角元之积；反对角三角形行列式为\n\n<!-- formula {\"id\":\"linear-z466lh\",\"title\":\"副对角线行列式公式\",\"aliases\":[],\"context\":\"上三角、下三角和对角行列式均为主对角元之积；反对角三角形行列式为\"} -->\n\\[\n(-1)^{\\frac{n(n-1)}2}a_{1n}a_{2,n-1}\\cdots a_{n1}.\n\\]\n\n##### 范德蒙德、三对角、爪形与箭头形行列式\n\n- “行和或列和相等”：把各列加到一列，提取公共因子，再降阶。\n- “爪形、箭头形”：沿非零元素最少的行或列展开，或先消成三角形。\n- “么字形、\\(X\\) 型”：按稀疏行列展开，注意每次展开的正负号。\n- 三对角线行列式：按第一行展开建立递推式，再由初值求通项。\n- 范德蒙德行列式：\n\n<!-- formula {\"id\":\"linear-1s2vyjs\",\"title\":\"范德蒙德行列式\",\"aliases\":[],\"context\":\"范德蒙德行列式：\"} -->\n\\[\n\\begin{vmatrix}\n1&1&\\cdots&1\\\\\nx_1&x_2&\\cdots&x_n\\\\\n\\vdots&\\vdots&&\\vdots\\\\\nx_1^{n-1}&x_2^{n-1}&\\cdots&x_n^{n-1}\n\\end{vmatrix}\n=\\prod_{1\\le i<j\\le n}(x_j-x_i).\n\\]",
-        "searchText": "具体行列式计算 具体行列式计算 具体行列式计算 线代结论与考研口诀速查 解集小，秩反而大 对未知数个数相同的两个齐次方程组，若 Ax=0 的每个解都是 Bx=0 的解，则 r(A)≥ r(B). 限制越多，秩越大，解越少。反过来，r(A)≥ r(B) 不能单独推出解的包含关系。 无关被表，个数不多 若线性无关的向量组 1, , s 可由 1, , r 线性表示，则 s≤ r. 即“被表示的一组若无关，它的向量个数不超过表示它的那一组”。 以少表多，多必相关 若 s 个向量都能由 r 个向量线性表示，且 s r，则这 s 个向量线性相关。这是“无关被表，个数不多”的逆否说法。 被表秩小，表者秩大 若向量组 B 可由向量组 A 线性表示，即 B=AC，则 r(B)≤ r(A). 口诀中的“大小”指秩，不是向量的长短。 两组互表，秩必相等 两个向量组能互相线性表示，称为等价向量组，必有 r(A)=r(B). 只有秩相等不能直接推出两组等价。 整体无关，部分无关；部分相关，整体相关 线性无关向量组的任意部分组仍线性无关；一个向量组只要含有相关的部分组，整个向量组就相关。 多于维数，必定相关 s 个 n 维向量中，若 s n，则向量组必线性相关；若 s≤ n，不能只凭个数判断。 无关添一变相关，新增向量唯一可表 若 1, , r 线性无关，而 1, , r, 线性相关，则 可由原向量组唯一线性表示。 相关必有一个可由其余表示 向量组线性相关，当且仅当其中至少一个向量可由其余向量线性表示；含零向量的向量组一定相关。 极大无关组：自己无关，其余都能表示 从原向量组中取出的部分组，若它本身线性无关，且原组中其余向量都能由它表示，它就是极大无关组；所含向量个数等于原向量组的秩。 齐次方程组：满秩只有零解，秩亏必有非零解 设 A 有 n 列，则 r(A)=n Ax=0 只有零解, r(A)<n Ax=0 有非零解. 基础解系含 n-r(A) 个线性无关解。 非齐次方程组：先比两秩，再和未知数个数比 设 A 有 n 列，则 array c c r(A)≠ r(A,b)&无解\\\\ r(A)=r(A,b)=n&唯一解\\\\ r(A)=r(A,b)<n&无穷多解 array 非齐减非齐得齐次，非齐通解等于特解加齐次通解 若 Ax 1=b,\\ Ax 2=b，则 A(x 1-x 2)=0. 若 ^ 是 Ax=b 的一个特解，则全部解为 x= ^ + , A =0. 矩阵越乘，秩不会增加 若 AB 有意义，则 r(AB)≤ \\ r(A),r(B)\\ . 若 AB=O，且 A 有 n 列，则 r(A)+r(B)≤ n. 矩阵横拼竖拼，秩不会变小 \\ r(A),r(B)\\ ≤ r(A,B)≤ r(A)+r(B), 上下拼接时同理。 可逆矩阵夹乘，不改变秩 若 P,Q 可逆，则 r(PA)=r(AQ)=r(PAQ)=r(A). 初等变换不改变矩阵的秩。 方阵单边得单位阵，另一边也成立 同阶方阵满足 AB=E 或 BA=E 时，A,B 都可逆，并且 B=A^ -1 , AB=BA=E. 伴随矩阵的秩，只看原矩阵差几秩 对 n≥2 阶方阵 A： r(A^ )= cases n,&r(A)=n,\\\\ 1,&r(A)=n-1,\\\\ 0,&r(A)≤ n-2. cases 特征值之和看迹，特征值之积看行列式 计入重数后，n 阶方阵的特征值满足 i=1 ^ n i= tr (A), i=1 ^ n i= A . 不同特征值，对应特征向量必无关 属于互不相同特征值的特征向量线性无关。同一特征值对应的特征向量不一定无关，要另行判断。 秩一矩阵：平方等于迹乘自身 若 r(A)=1，则 A^2= tr (A)A, E-A = ^ n-1 ( - tr (A) ). 所以特征值为 0 与 tr (A)；当迹为零时，全部特征值都为零。 实对称矩阵三件套 实对称矩阵的特征值全为实数；不同特征值对应的特征向量正交；一定可以用正交矩阵对角化： Q^TAQ= , Q^TQ=E. 相似保特征，合同保惯性 相似矩阵具有相同的特征多项式、特征值、行列式、迹和秩；这些相同一般不能反推相似。 实对称矩阵合同后，正、负、零平方项的个数不变，即正、负惯性指数和秩不变。 正定三连判 实对称矩阵 A 正定，等价于以下任一条件： x^TAx 0 (x≠0), 全部特征值大于零； 各阶顺序主子式全部大于零； 正惯性指数为 n。 逆序数与行列式展开定义 排列 j 1j 2 j n 中，前面数字大于后面数字的一对叫逆序，逆序总数记为 (j 1j 2 j n)。 A = j 1j 2 j n (-1)^ (j 1j 2 j n) a 1j 1 a 2j 2 a nj n . 行列式基本性质、转置与三角行列式 A^T = A . 交换两行或两列，行列式变号。 某行或某列乘 k，行列式乘 k。 某行或某列的 k 倍加到另一行或另一列，行列式不变。 两行或两列相同、成比例，或某行、某列全为零，行列式为零。 三角形行列式等于主对角元之积。 上三角、下三角和对角行列式均为主对角元之积；反对角三角形行列式为 (-1)^ n(n-1) 2 a 1n a 2,n-1 a n1 . 范德蒙德、三对角、爪形与箭头形行列式 “行和或列和相等”：把各列加到一列，提取公共因子，再降阶。 “爪形、箭头形”：沿非零元素最少的行或列展开，或先消成三角形。 “么字形、X 型”：按稀疏行列展开，注意每次展开的正负号。 三对角线行列式：按第一行展开建立递推式，再由初值求通项。 范德蒙德行列式： vmatrix 1&1& &1\\\\ x 1&x 2& &x n\\\\ & && \\\\ x 1^ n-1 &x 2^ n-1 & &x n^ n-1 vmatrix = 1≤ i<j≤ n (x j-x i).",
+        "body": "##### 线代结论与考研口诀速查\n\n##### 解集小，秩反而大\n\n对未知数个数相同的两个齐次方程组，若 \\(Ax=0\\) 的每个解都是 \\(Bx=0\\) 的解，则\n\n<!-- formula {\"id\":\"linear-1glbyvf\",\"title\":\"解集小，秩反而大：r(A)\",\"aliases\":[],\"context\":\"对未知数个数相同的两个齐次方程组，若 Ax=0 的每个解都是 Bx=0 的解，则\"} -->\n\\[\nr(A)\\ge r(B).\n\\]\n\n限制越多，秩越大，解越少。反过来，\\(r(A)\\ge r(B)\\) 不能单独推出解的包含关系。\n\n##### 无关被表，个数不多\n\n若线性无关的向量组\n\\(\\beta_1,\\ldots,\\beta_s\\) 可由 \\(\\alpha_1,\\ldots,\\alpha_r\\) 线性表示，则\n\n<!-- formula {\"id\":\"linear-1bmy9k0\",\"title\":\"无关被表，个数不多：s\",\"aliases\":[],\"context\":\"若线性无关的向量组\"} -->\n\\[\ns\\le r.\n\\]\n\n即“被表示的一组若无关，它的向量个数不超过表示它的那一组”。\n\n##### 以少表多，多必相关\n\n若 \\(s\\) 个向量都能由 \\(r\\) 个向量线性表示，且 \\(s>r\\)，则这 \\(s\\) 个向量线性相关。这是“无关被表，个数不多”的逆否说法。\n\n##### 被表秩小，表者秩大\n\n若向量组 \\(B\\) 中的每个向量都能由向量组 \\(A\\) 线性表示，则被表示的 \\(B\\) 的秩不超过表示它的 \\(A\\) 的秩。\n\n<!-- formula {\"id\":\"linear-sk4b4h\",\"title\":\"线性表示与向量组的秩（表出秩不增）\",\"aliases\":[\"表出秩不增\",\"被表秩不大\",\"谁被表示谁的秩就不大\",\"被表秩小表者秩大\",\"向量组线性表示的秩关系\",\"线性表示秩不等式\"],\"context\":\"若向量组 \\\\(B\\\\) 中的每个向量都能由向量组 \\\\(A\\\\) 线性表示，则被表示的 \\\\(B\\\\) 的秩不超过表示它的 \\\\(A\\\\) 的秩。\"} -->\n\\[\nr(B)\\le r(A).\n\\]\n\n记忆口诀：**“表出秩不增”或“被表秩不大”——谁被表示，谁的秩就不大。** 这里的“不大”是小于或等于，可以相等；“大小”指秩，不是向量的长短。\n\n##### 两组互表，秩必相等\n\n两个向量组能互相线性表示，称为等价向量组，必有\n\n<!-- formula {\"id\":\"linear-swwd52\",\"title\":\"两组互表，秩必相等：r(A)\",\"aliases\":[],\"context\":\"两个向量组能互相线性表示，称为等价向量组，必有\"} -->\n\\[\nr(A)=r(B).\n\\]\n\n只有秩相等不能直接推出两组等价。\n\n##### 整体无关，部分无关；部分相关，整体相关\n\n线性无关向量组的任意部分组仍线性无关；一个向量组只要含有相关的部分组，整个向量组就相关。\n\n##### 多于维数，必定相关\n\n\\(s\\) 个 \\(n\\) 维向量中，若 \\(s>n\\)，则向量组必线性相关；若 \\(s\\le n\\)，不能只凭个数判断。\n\n##### 无关添一变相关，新增向量唯一可表\n\n若 \\(\\alpha_1,\\ldots,\\alpha_r\\) 线性无关，而 \\(\\alpha_1,\\ldots,\\alpha_r,\\beta\\) 线性相关，则 \\(\\beta\\) 可由原向量组唯一线性表示。\n\n##### 相关必有一个可由其余表示\n\n向量组线性相关，当且仅当其中至少一个向量可由其余向量线性表示；含零向量的向量组一定相关。\n\n##### 极大无关组：自己无关，其余都能表示\n\n从原向量组中取出的部分组，若它本身线性无关，且原组中其余向量都能由它表示，它就是极大无关组；所含向量个数等于原向量组的秩。\n\n##### 齐次方程组：满秩只有零解，秩亏必有非零解\n\n设 \\(A\\) 有 \\(n\\) 列，则\n\n<!-- formula {\"id\":\"linear-i74sfx\",\"title\":\"齐次方程组：满秩只有零解，秩亏必有非零解：r(A)\",\"aliases\":[],\"context\":\"设 A 有 n 列，则\"} -->\n\\[\nr(A)=n\\Longleftrightarrow Ax=0\\text{ 只有零解},\n\\]\n\n<!-- formula {\"id\":\"linear-4jzdze\",\"title\":\"齐次方程组：满秩只有零解，秩亏必有非零解：r(A)\",\"aliases\":[],\"context\":\"所属知识点：齐次方程组：满秩只有零解，秩亏必有非零解。\"} -->\n\\[\nr(A)<n\\Longleftrightarrow Ax=0\\text{ 有非零解}.\n\\]\n\n基础解系含 \\(n-r(A)\\) 个线性无关解。\n\n##### 非齐次方程组：先比两秩，再和未知数个数比\n\n设 \\(A\\) 有 \\(n\\) 列，则\n\n<!-- formula {\"id\":\"linear-uyqmcp\",\"title\":\"非齐次线性方程组的解的三种情况\",\"aliases\":[],\"context\":\"设 A 有 n 列，则\"} -->\n\\[\n\\begin{array}{c|c}\nr(A)\\ne r(A,b)&\\text{无解}\\\\\nr(A)=r(A,b)=n&\\text{唯一解}\\\\\nr(A)=r(A,b)<n&\\text{无穷多解}\n\\end{array}\n\\]\n\n##### 非齐减非齐得齐次，非齐通解等于特解加齐次通解\n\n若 \\(Ax_1=b,\\ Ax_2=b\\)，则\n\n<!-- formula {\"id\":\"linear-136hg8t\",\"title\":\"非齐减非齐得齐次，非齐通解等于特解加齐次通解：A(x_1-x_2)\",\"aliases\":[],\"context\":\"若 Ax_1=b,\\\\ Ax_2=b，则\"} -->\n\\[\nA(x_1-x_2)=0.\n\\]\n\n若 \\(\\eta^*\\) 是 \\(Ax=b\\) 的一个特解，则全部解为\n\n<!-- formula {\"id\":\"linear-1mxzg24-1\",\"title\":\"非齐减非齐得齐次，非齐通解等于特解加齐次通解：x\",\"aliases\":[],\"context\":\"若 \\\\eta^ 是 Ax=b 的一个特解，则全部解为\"} -->\n\\[\nx=\\eta^*+\\xi,\\qquad A\\xi=0.\n\\]\n\n##### 矩阵越乘，秩不会增加\n\n若 \\(AB\\) 有意义，则\n\n<!-- formula {\"id\":\"linear-1i76qzt\",\"title\":\"矩阵越乘，秩不会增加：r(AB)\",\"aliases\":[],\"context\":\"若 AB 有意义，则\"} -->\n\\[\nr(AB)\\le \\min\\{r(A),r(B)\\}.\n\\]\n\n若 \\(AB=O\\)，且 \\(A\\) 有 \\(n\\) 列，则\n\n<!-- formula {\"id\":\"linear-wcjw9k\",\"title\":\"矩阵越乘，秩不会增加：r(A)+r(B)\",\"aliases\":[],\"context\":\"若 AB=O，且 A 有 n 列，则\"} -->\n\\[\nr(A)+r(B)\\le n.\n\\]\n\n##### 矩阵横拼竖拼，秩不会变小\n\n<!-- formula {\"id\":\"linear-hnpor7\",\"title\":\"矩阵横拼竖拼，秩不会变小：maxr(A),r(B)\",\"aliases\":[],\"context\":\"所属知识点：矩阵横拼竖拼，秩不会变小。\"} -->\n\\[\n\\max\\{r(A),r(B)\\}\\le r(A,B)\\le r(A)+r(B),\n\\]\n\n上下拼接时同理。\n\n##### 可逆矩阵夹乘，不改变秩\n\n若 \\(P,Q\\) 可逆，则\n\n<!-- formula {\"id\":\"linear-agslz1\",\"title\":\"可逆矩阵夹乘，不改变秩：r(PA)\",\"aliases\":[],\"context\":\"若 P,Q 可逆，则\"} -->\n\\[\nr(PA)=r(AQ)=r(PAQ)=r(A).\n\\]\n\n初等变换不改变矩阵的秩。\n\n##### 方阵单边得单位阵，另一边也成立\n\n同阶方阵满足 \\(AB=E\\) 或 \\(BA=E\\) 时，\\(A,B\\) 都可逆，并且\n\n<!-- formula {\"id\":\"linear-1xoset7-1\",\"title\":\"方阵单边得单位阵，另一边也成立：B\",\"aliases\":[],\"context\":\"同阶方阵满足 AB=E 或 BA=E 时，A,B 都可逆，并且\"} -->\n\\[\nB=A^{-1},\\qquad AB=BA=E.\n\\]\n\n##### 伴随矩阵的秩，只看原矩阵差几秩\n\n对 \\(n\\ge2\\) 阶方阵 \\(A\\)：\n\n<!-- formula {\"id\":\"linear-1quh0ps\",\"title\":\"伴随矩阵的秩，只看原矩阵差几秩：r(A^*)\",\"aliases\":[],\"context\":\"对 n\\\\ge2 阶方阵 A：\"} -->\n\\[\nr(A^*)=\n\\begin{cases}\nn,&r(A)=n,\\\\\n1,&r(A)=n-1,\\\\\n0,&r(A)\\le n-2.\n\\end{cases}\n\\]\n\n##### 特征值之和看迹，特征值之积看行列式\n\n计入重数后，\\(n\\) 阶方阵的特征值满足\n\n<!-- formula {\"items\":[{\"id\":\"linear-n93hf3-1\",\"title\":\"特征值之和看迹，特征值之积看行列式：Σ_i\",\"aliases\":[],\"context\":\"计入重数后，n 阶方阵的特征值满足\",\"latex\":\"\\\\sum_{i=1}^{n}\\\\lambda_i=\\\\operatorname{tr}(A)\"},{\"id\":\"linear-n93hf3-2\",\"title\":\"特征值之和看迹，特征值之积看行列式：prod_i\",\"aliases\":[],\"context\":\"计入重数后，n 阶方阵的特征值满足\",\"latex\":\"\\\\prod_{i=1}^{n}\\\\lambda_i=|A|\"}]} -->\n\\[\n\\sum_{i=1}^{n}\\lambda_i=\\operatorname{tr}(A),\\qquad\n\\prod_{i=1}^{n}\\lambda_i=|A|.\n\\]\n\n##### 不同特征值，对应特征向量必无关\n\n属于互不相同特征值的特征向量线性无关。同一特征值对应的特征向量不一定无关，要另行判断。\n\n##### 秩一矩阵：平方等于迹乘自身\n\n若 \\(r(A)=1\\)，则\n\n<!-- formula {\"items\":[{\"id\":\"linear-x6j5u1-1\",\"title\":\"秩一矩阵：平方等于迹乘自身：A^2\",\"aliases\":[],\"context\":\"若 \\\\(r(A)=1\\\\)，则\",\"latex\":\"A^2=\\\\operatorname{tr}(A)A\"},{\"id\":\"linear-x6j5u1-2\",\"title\":\"秩一矩阵：平方等于迹乘自身：|λ E-A|\",\"aliases\":[],\"context\":\"若 \\\\(r(A)=1\\\\)，则\",\"latex\":\"|\\\\lambda E-A|=\\\\lambda^{n-1}\\\\bigl(\\\\lambda-\\\\operatorname{tr}(A)\\\\bigr)\"}]} -->\n\\[\nA^2=\\operatorname{tr}(A)A,\\qquad\n|\\lambda E-A|=\\lambda^{n-1}\\bigl(\\lambda-\\operatorname{tr}(A)\\bigr).\n\\]\n\n所以特征值为 \\(0\\) 与 \\(\\operatorname{tr}(A)\\)；当迹为零时，全部特征值都为零。\n\n##### 实对称矩阵三件套\n\n实对称矩阵的特征值全为实数；不同特征值对应的特征向量正交；一定可以用正交矩阵对角化：\n\n<!-- formula {\"id\":\"linear-93re0p-1\",\"title\":\"实对称矩阵三件套：Q^TAQ\",\"aliases\":[],\"context\":\"实对称矩阵的特征值全为实数；不同特征值对应的特征向量正交；一定可以用正交矩阵对角化：\"} -->\n\\[\nQ^TAQ=\\Lambda,\\qquad Q^TQ=E.\n\\]\n\n##### 相似保特征，合同保惯性\n\n相似矩阵具有相同的特征多项式、特征值、行列式、迹和秩；这些相同一般不能反推相似。\n\n实对称矩阵合同后，正、负、零平方项的个数不变，即正、负惯性指数和秩不变。\n\n##### 正定三连判\n\n实对称矩阵 \\(A\\) 正定，等价于以下任一条件：\n\n<!-- formula {\"id\":\"linear-1ewwq8h-1\",\"title\":\"正定三连判：x^TAx\",\"aliases\":[],\"context\":\"实对称矩阵 A 正定，等价于以下任一条件：\"} -->\n\\[\nx^TAx>0\\quad(x\\ne0),\n\\]\n\n- 全部特征值大于零；\n- 各阶顺序主子式全部大于零；\n- 正惯性指数为 \\(n\\)。\n\n##### 逆序数与行列式展开定义\n\n排列 \\(j_1j_2\\cdots j_n\\) 中，前面数字大于后面数字的一对叫逆序，逆序总数记为 \\(\\tau(j_1j_2\\cdots j_n)\\)。\n\n<!-- formula {\"id\":\"linear-866w82\",\"title\":\"逆序数与行列式展开定义：|A|\",\"aliases\":[],\"context\":\"排列 j_1j_2\\\\cdots j_n 中，前面数字大于后面数字的一对叫逆序，逆序总数记为 \\\\(\\\\tau(j_1j_2\\\\cdots j_n)\\\\)。\"} -->\n\\[\n|A|=\\sum_{j_1j_2\\cdots j_n}\n(-1)^{\\tau(j_1j_2\\cdots j_n)}\na_{1j_1}a_{2j_2}\\cdots a_{nj_n}.\n\\]\n\n##### 行列式基本性质、转置与三角行列式\n\n<!-- formula {\"id\":\"linear-1dmj5hr\",\"title\":\"行列式基本性质、转置与三角行列式：|A^T|\",\"aliases\":[],\"context\":\"所属知识点：行列式基本性质、转置与三角行列式。\"} -->\n\\[\n|A^T|=|A|.\n\\]\n\n- 交换两行或两列，行列式变号。\n- 某行或某列乘 \\(k\\)，行列式乘 \\(k\\)。\n- 某行或某列的 \\(k\\) 倍加到另一行或另一列，行列式不变。\n- 两行或两列相同、成比例，或某行、某列全为零，行列式为零。\n- 三角形行列式等于主对角元之积。\n\n上三角、下三角和对角行列式均为主对角元之积；反对角三角形行列式为\n\n<!-- formula {\"id\":\"linear-z466lh\",\"title\":\"副对角线行列式公式\",\"aliases\":[],\"context\":\"上三角、下三角和对角行列式均为主对角元之积；反对角三角形行列式为\"} -->\n\\[\n(-1)^{\\frac{n(n-1)}2}a_{1n}a_{2,n-1}\\cdots a_{n1}.\n\\]\n\n##### 范德蒙德、三对角、爪形与箭头形行列式\n\n- “行和或列和相等”：把各列加到一列，提取公共因子，再降阶。\n- “爪形、箭头形”：沿非零元素最少的行或列展开，或先消成三角形。\n- “么字形、\\(X\\) 型”：按稀疏行列展开，注意每次展开的正负号。\n- 三对角线行列式：按第一行展开建立递推式，再由初值求通项。\n- 范德蒙德行列式：\n\n<!-- formula {\"id\":\"linear-1s2vyjs\",\"title\":\"范德蒙德行列式\",\"aliases\":[],\"context\":\"范德蒙德行列式：\"} -->\n\\[\n\\begin{vmatrix}\n1&1&\\cdots&1\\\\\nx_1&x_2&\\cdots&x_n\\\\\n\\vdots&\\vdots&&\\vdots\\\\\nx_1^{n-1}&x_2^{n-1}&\\cdots&x_n^{n-1}\n\\end{vmatrix}\n=\\prod_{1\\le i<j\\le n}(x_j-x_i).\n\\]",
+        "searchText": "具体行列式计算 具体行列式计算 具体行列式计算 线代结论与考研口诀速查 解集小，秩反而大 对未知数个数相同的两个齐次方程组，若 Ax=0 的每个解都是 Bx=0 的解，则 r(A)≥ r(B). 限制越多，秩越大，解越少。反过来，r(A)≥ r(B) 不能单独推出解的包含关系。 无关被表，个数不多 若线性无关的向量组 1, , s 可由 1, , r 线性表示，则 s≤ r. 即“被表示的一组若无关，它的向量个数不超过表示它的那一组”。 以少表多，多必相关 若 s 个向量都能由 r 个向量线性表示，且 s r，则这 s 个向量线性相关。这是“无关被表，个数不多”的逆否说法。 被表秩小，表者秩大 若向量组 B 中的每个向量都能由向量组 A 线性表示，则被表示的 B 的秩不超过表示它的 A 的秩。 r(B)≤ r(A). 记忆口诀： “表出秩不增”或“被表秩不大”——谁被表示，谁的秩就不大。 这里的“不大”是小于或等于，可以相等；“大小”指秩，不是向量的长短。 两组互表，秩必相等 两个向量组能互相线性表示，称为等价向量组，必有 r(A)=r(B). 只有秩相等不能直接推出两组等价。 整体无关，部分无关；部分相关，整体相关 线性无关向量组的任意部分组仍线性无关；一个向量组只要含有相关的部分组，整个向量组就相关。 多于维数，必定相关 s 个 n 维向量中，若 s n，则向量组必线性相关；若 s≤ n，不能只凭个数判断。 无关添一变相关，新增向量唯一可表 若 1, , r 线性无关，而 1, , r, 线性相关，则 可由原向量组唯一线性表示。 相关必有一个可由其余表示 向量组线性相关，当且仅当其中至少一个向量可由其余向量线性表示；含零向量的向量组一定相关。 极大无关组：自己无关，其余都能表示 从原向量组中取出的部分组，若它本身线性无关，且原组中其余向量都能由它表示，它就是极大无关组；所含向量个数等于原向量组的秩。 齐次方程组：满秩只有零解，秩亏必有非零解 设 A 有 n 列，则 r(A)=n Ax=0 只有零解, r(A)<n Ax=0 有非零解. 基础解系含 n-r(A) 个线性无关解。 非齐次方程组：先比两秩，再和未知数个数比 设 A 有 n 列，则 array c c r(A)≠ r(A,b)&无解\\\\ r(A)=r(A,b)=n&唯一解\\\\ r(A)=r(A,b)<n&无穷多解 array 非齐减非齐得齐次，非齐通解等于特解加齐次通解 若 Ax 1=b,\\ Ax 2=b，则 A(x 1-x 2)=0. 若 ^ 是 Ax=b 的一个特解，则全部解为 x= ^ + , A =0. 矩阵越乘，秩不会增加 若 AB 有意义，则 r(AB)≤ \\ r(A),r(B)\\ . 若 AB=O，且 A 有 n 列，则 r(A)+r(B)≤ n. 矩阵横拼竖拼，秩不会变小 \\ r(A),r(B)\\ ≤ r(A,B)≤ r(A)+r(B), 上下拼接时同理。 可逆矩阵夹乘，不改变秩 若 P,Q 可逆，则 r(PA)=r(AQ)=r(PAQ)=r(A). 初等变换不改变矩阵的秩。 方阵单边得单位阵，另一边也成立 同阶方阵满足 AB=E 或 BA=E 时，A,B 都可逆，并且 B=A^ -1 , AB=BA=E. 伴随矩阵的秩，只看原矩阵差几秩 对 n≥2 阶方阵 A： r(A^ )= cases n,&r(A)=n,\\\\ 1,&r(A)=n-1,\\\\ 0,&r(A)≤ n-2. cases 特征值之和看迹，特征值之积看行列式 计入重数后，n 阶方阵的特征值满足 i=1 ^ n i= tr (A), i=1 ^ n i= A . 不同特征值，对应特征向量必无关 属于互不相同特征值的特征向量线性无关。同一特征值对应的特征向量不一定无关，要另行判断。 秩一矩阵：平方等于迹乘自身 若 r(A)=1，则 A^2= tr (A)A, E-A = ^ n-1 ( - tr (A) ). 所以特征值为 0 与 tr (A)；当迹为零时，全部特征值都为零。 实对称矩阵三件套 实对称矩阵的特征值全为实数；不同特征值对应的特征向量正交；一定可以用正交矩阵对角化： Q^TAQ= , Q^TQ=E. 相似保特征，合同保惯性 相似矩阵具有相同的特征多项式、特征值、行列式、迹和秩；这些相同一般不能反推相似。 实对称矩阵合同后，正、负、零平方项的个数不变，即正、负惯性指数和秩不变。 正定三连判 实对称矩阵 A 正定，等价于以下任一条件： x^TAx 0 (x≠0), 全部特征值大于零； 各阶顺序主子式全部大于零； 正惯性指数为 n。 逆序数与行列式展开定义 排列 j 1j 2 j n 中，前面数字大于后面数字的一对叫逆序，逆序总数记为 (j 1j 2 j n)。 A = j 1j 2 j n (-1)^ (j 1j 2 j n) a 1j 1 a 2j 2 a nj n . 行列式基本性质、转置与三角行列式 A^T = A . 交换两行或两列，行列式变号。 某行或某列乘 k，行列式乘 k。 某行或某列的 k 倍加到另一行或另一列，行列式不变。 两行或两列相同、成比例，或某行、某列全为零，行列式为零。 三角形行列式等于主对角元之积。 上三角、下三角和对角行列式均为主对角元之积；反对角三角形行列式为 (-1)^ n(n-1) 2 a 1n a 2,n-1 a n1 . 范德蒙德、三对角、爪形与箭头形行列式 “行和或列和相等”：把各列加到一列，提取公共因子，再降阶。 “爪形、箭头形”：沿非零元素最少的行或列展开，或先消成三角形。 “么字形、X 型”：按稀疏行列展开，注意每次展开的正负号。 三对角线行列式：按第一行展开建立递推式，再由初值求通项。 范德蒙德行列式： vmatrix 1&1& &1\\\\ x 1&x 2& &x n\\\\ & && \\\\ x 1^ n-1 &x 2^ n-1 & &x n^ n-1 vmatrix = 1≤ i<j≤ n (x j-x i).",
         "summary": "线代结论与考研口诀速查 解集小，秩反而大 对未知数个数相同的两个齐次方程组，若 Ax=0 的每个解都是 Bx=0 的解，则 r(A)≥ r(B). 限制越多，秩越大，解越少。反过来，r(A)≥ r(B) 不能单独推出解的包含关系。 无关被表，个数不多 若线…",
         "anchors": [
           {
@@ -6425,196 +7153,224 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "linear-algebra-01-001-anchor-001",
             "title": "线代结论与考研口诀速查",
             "searchText": "线代结论与考研口诀速查",
-            "summary": ""
+            "summary": "",
+            "displaySummary": ""
           },
           {
             "id": "anchor-111xxjc",
             "legacyId": "linear-algebra-01-001-anchor-002",
             "title": "解集小，秩反而大",
             "searchText": "解集小，秩反而大 对未知数个数相同的两个齐次方程组，若 Ax=0 的每个解都是 Bx=0 的解，则 r(A)≥ r(B). 限制越多，秩越大，解越少。反过来，r(A)≥ r(B) 不能单独推出解的包含关系。",
-            "summary": "对未知数个数相同的两个齐次方程组，若 Ax=0 的每个解都是 Bx=0 的解，则 r(A)≥ r(B). 限制越多，秩越大，解越少。反过来，r(A)≥ r(B) 不能单独推出解的包含关系。"
+            "summary": "对未知数个数相同的两个齐次方程组，若 Ax=0 的每个解都是 Bx=0 的解，则 r(A)≥ r(B). 限制越多，秩越大，解越少。反过来，r(A)≥ r(B) 不能单独推出解的包含关系。",
+            "displaySummary": "对未知数个数相同的两个齐次方程组，若 \\(Ax=0\\) 的每个解都是 \\(Bx=0\\) 的解，则"
           },
           {
             "id": "anchor-1yn9mi4",
             "legacyId": "linear-algebra-01-001-anchor-003",
             "title": "无关被表，个数不多",
             "searchText": "无关被表，个数不多 若线性无关的向量组 1, , s 可由 1, , r 线性表示，则 s≤ r. 即“被表示的一组若无关，它的向量个数不超过表示它的那一组”。",
-            "summary": "若线性无关的向量组 1, , s 可由 1, , r 线性表示，则 s≤ r. 即“被表示的一组若无关，它的向量个数不超过表示它的那一组”。"
+            "summary": "若线性无关的向量组 1, , s 可由 1, , r 线性表示，则 s≤ r. 即“被表示的一组若无关，它的向量个数不超过表示它的那一组”。",
+            "displaySummary": "若线性无关的向量组\n\\(\\beta_1,\\ldots,\\beta_s\\) 可由 \\(\\alpha_1,\\ldots,\\alpha_r\\) 线性表示，则"
           },
           {
             "id": "anchor-ml8ruf",
             "legacyId": "linear-algebra-01-001-anchor-004",
             "title": "以少表多，多必相关",
             "searchText": "以少表多，多必相关 若 s 个向量都能由 r 个向量线性表示，且 s r，则这 s 个向量线性相关。这是“无关被表，个数不多”的逆否说法。",
-            "summary": "若 s 个向量都能由 r 个向量线性表示，且 s r，则这 s 个向量线性相关。这是“无关被表，个数不多”的逆否说法。"
+            "summary": "若 s 个向量都能由 r 个向量线性表示，且 s r，则这 s 个向量线性相关。这是“无关被表，个数不多”的逆否说法。",
+            "displaySummary": "若 \\(s\\) 个向量都能由 \\(r\\) 个向量线性表示，且 \\(s>r\\)，则这 \\(s\\) 个向量线性相关。这是“无关被表，个数不多”的逆否说法。"
           },
           {
             "id": "anchor-zf8f1p",
             "legacyId": "linear-algebra-01-001-anchor-005",
             "title": "被表秩小，表者秩大",
-            "searchText": "被表秩小，表者秩大 若向量组 B 可由向量组 A 线性表示，即 B=AC，则 r(B)≤ r(A). 口诀中的“大小”指秩，不是向量的长短。",
-            "summary": "若向量组 B 可由向量组 A 线性表示，即 B=AC，则 r(B)≤ r(A). 口诀中的“大小”指秩，不是向量的长短。"
+            "searchText": "被表秩小，表者秩大 若向量组 B 中的每个向量都能由向量组 A 线性表示，则被表示的 B 的秩不超过表示它的 A 的秩。 r(B)≤ r(A). 记忆口诀： “表出秩不增”或“被表秩不大”——谁被表示，谁的秩就不大。 这里的“不大”是小于或等于，可以相等；“大小”指秩，不是向量的长短。",
+            "summary": "若向量组 B 中的每个向量都能由向量组 A 线性表示，则被表示的 B 的秩不超过表示它的 A 的秩。 r(B)≤ r(A). 记忆口诀： “表出秩不增”或“被表秩不大”——谁被表示，谁的秩就不大。 这里的“不大”是小于或等于，可以相等；“大小”指秩，不是向…",
+            "displaySummary": "若向量组 \\(B\\) 中的每个向量都能由向量组 \\(A\\) 线性表示，则被表示的 \\(B\\) 的秩不超过表示它的 \\(A\\) 的秩。"
           },
           {
             "id": "anchor-1ojz8ps",
             "legacyId": "linear-algebra-01-001-anchor-006",
             "title": "两组互表，秩必相等",
             "searchText": "两组互表，秩必相等 两个向量组能互相线性表示，称为等价向量组，必有 r(A)=r(B). 只有秩相等不能直接推出两组等价。",
-            "summary": "两个向量组能互相线性表示，称为等价向量组，必有 r(A)=r(B). 只有秩相等不能直接推出两组等价。"
+            "summary": "两个向量组能互相线性表示，称为等价向量组，必有 r(A)=r(B). 只有秩相等不能直接推出两组等价。",
+            "displaySummary": "两个向量组能互相线性表示，称为等价向量组，必有"
           },
           {
             "id": "anchor-1uvhxuq",
             "legacyId": "linear-algebra-01-001-anchor-007",
             "title": "整体无关，部分无关；部分相关，整体相关",
             "searchText": "整体无关，部分无关；部分相关，整体相关 线性无关向量组的任意部分组仍线性无关；一个向量组只要含有相关的部分组，整个向量组就相关。",
-            "summary": "线性无关向量组的任意部分组仍线性无关；一个向量组只要含有相关的部分组，整个向量组就相关。"
+            "summary": "线性无关向量组的任意部分组仍线性无关；一个向量组只要含有相关的部分组，整个向量组就相关。",
+            "displaySummary": "线性无关向量组的任意部分组仍线性无关；一个向量组只要含有相关的部分组，整个向量组就相关。"
           },
           {
             "id": "anchor-1pg39ph",
             "legacyId": "linear-algebra-01-001-anchor-008",
             "title": "多于维数，必定相关",
             "searchText": "多于维数，必定相关 s 个 n 维向量中，若 s n，则向量组必线性相关；若 s≤ n，不能只凭个数判断。",
-            "summary": "s 个 n 维向量中，若 s n，则向量组必线性相关；若 s≤ n，不能只凭个数判断。"
+            "summary": "s 个 n 维向量中，若 s n，则向量组必线性相关；若 s≤ n，不能只凭个数判断。",
+            "displaySummary": "\\(s\\) 个 \\(n\\) 维向量中，若 \\(s>n\\)，则向量组必线性相关；若 \\(s\\le n\\)，不能只凭个数判断。"
           },
           {
             "id": "anchor-1eqpfuu",
             "legacyId": "linear-algebra-01-001-anchor-009",
             "title": "无关添一变相关，新增向量唯一可表",
             "searchText": "无关添一变相关，新增向量唯一可表 若 1, , r 线性无关，而 1, , r, 线性相关，则 可由原向量组唯一线性表示。",
-            "summary": "若 1, , r 线性无关，而 1, , r, 线性相关，则 可由原向量组唯一线性表示。"
+            "summary": "若 1, , r 线性无关，而 1, , r, 线性相关，则 可由原向量组唯一线性表示。",
+            "displaySummary": "若 \\(\\alpha_1,\\ldots,\\alpha_r\\) 线性无关，而 \\(\\alpha_1,\\ldots,\\alpha_r,\\beta\\) 线性相关，则 \\(\\beta\\) 可由原向量组唯一线性表示。"
           },
           {
             "id": "anchor-1342a6z",
             "legacyId": "linear-algebra-01-001-anchor-010",
             "title": "相关必有一个可由其余表示",
             "searchText": "相关必有一个可由其余表示 向量组线性相关，当且仅当其中至少一个向量可由其余向量线性表示；含零向量的向量组一定相关。",
-            "summary": "向量组线性相关，当且仅当其中至少一个向量可由其余向量线性表示；含零向量的向量组一定相关。"
+            "summary": "向量组线性相关，当且仅当其中至少一个向量可由其余向量线性表示；含零向量的向量组一定相关。",
+            "displaySummary": "向量组线性相关，当且仅当其中至少一个向量可由其余向量线性表示；含零向量的向量组一定相关。"
           },
           {
             "id": "anchor-1ulaybf",
             "legacyId": "linear-algebra-01-001-anchor-011",
             "title": "极大无关组：自己无关，其余都能表示",
             "searchText": "极大无关组：自己无关，其余都能表示 从原向量组中取出的部分组，若它本身线性无关，且原组中其余向量都能由它表示，它就是极大无关组；所含向量个数等于原向量组的秩。",
-            "summary": "从原向量组中取出的部分组，若它本身线性无关，且原组中其余向量都能由它表示，它就是极大无关组；所含向量个数等于原向量组的秩。"
+            "summary": "从原向量组中取出的部分组，若它本身线性无关，且原组中其余向量都能由它表示，它就是极大无关组；所含向量个数等于原向量组的秩。",
+            "displaySummary": "从原向量组中取出的部分组，若它本身线性无关，且原组中其余向量都能由它表示，它就是极大无关组；所含向量个数等于原向量组的秩。"
           },
           {
             "id": "anchor-1r4kep3",
             "legacyId": "linear-algebra-01-001-anchor-012",
             "title": "齐次方程组：满秩只有零解，秩亏必有非零解",
             "searchText": "齐次方程组：满秩只有零解，秩亏必有非零解 设 A 有 n 列，则 r(A)=n Ax=0 只有零解, r(A)<n Ax=0 有非零解. 基础解系含 n-r(A) 个线性无关解。",
-            "summary": "设 A 有 n 列，则 r(A)=n Ax=0 只有零解, r(A)<n Ax=0 有非零解. 基础解系含 n-r(A) 个线性无关解。"
+            "summary": "设 A 有 n 列，则 r(A)=n Ax=0 只有零解, r(A)<n Ax=0 有非零解. 基础解系含 n-r(A) 个线性无关解。",
+            "displaySummary": "设 \\(A\\) 有 \\(n\\) 列，则"
           },
           {
             "id": "anchor-1jdggfb",
             "legacyId": "linear-algebra-01-001-anchor-013",
             "title": "非齐次方程组：先比两秩，再和未知数个数比",
             "searchText": "非齐次方程组：先比两秩，再和未知数个数比 设 A 有 n 列，则 array c c r(A)≠ r(A,b)&无解\\\\ r(A)=r(A,b)=n&唯一解\\\\ r(A)=r(A,b)<n&无穷多解 array",
-            "summary": "设 A 有 n 列，则 array c c r(A)≠ r(A,b)&无解\\\\ r(A)=r(A,b)=n&唯一解\\\\ r(A)=r(A,b)<n&无穷多解 array"
+            "summary": "设 A 有 n 列，则 array c c r(A)≠ r(A,b)&无解\\\\ r(A)=r(A,b)=n&唯一解\\\\ r(A)=r(A,b)<n&无穷多解 array",
+            "displaySummary": "设 \\(A\\) 有 \\(n\\) 列，则"
           },
           {
             "id": "anchor-1jzimhm",
             "legacyId": "linear-algebra-01-001-anchor-014",
             "title": "非齐减非齐得齐次，非齐通解等于特解加齐次通解",
             "searchText": "非齐减非齐得齐次，非齐通解等于特解加齐次通解 若 Ax 1=b,\\ Ax 2=b，则 A(x 1-x 2)=0. 若 ^ 是 Ax=b 的一个特解，则全部解为 x= ^ + , A =0.",
-            "summary": "若 Ax 1=b,\\ Ax 2=b，则 A(x 1-x 2)=0. 若 ^ 是 Ax=b 的一个特解，则全部解为 x= ^ + , A =0."
+            "summary": "若 Ax 1=b,\\ Ax 2=b，则 A(x 1-x 2)=0. 若 ^ 是 Ax=b 的一个特解，则全部解为 x= ^ + , A =0.",
+            "displaySummary": "若 \\(Ax_1=b,\\ Ax_2=b\\)，则"
           },
           {
             "id": "anchor-72u727",
             "legacyId": "linear-algebra-01-001-anchor-015",
             "title": "矩阵越乘，秩不会增加",
             "searchText": "矩阵越乘，秩不会增加 若 AB 有意义，则 r(AB)≤ \\ r(A),r(B)\\ . 若 AB=O，且 A 有 n 列，则 r(A)+r(B)≤ n.",
-            "summary": "若 AB 有意义，则 r(AB)≤ \\ r(A),r(B)\\ . 若 AB=O，且 A 有 n 列，则 r(A)+r(B)≤ n."
+            "summary": "若 AB 有意义，则 r(AB)≤ \\ r(A),r(B)\\ . 若 AB=O，且 A 有 n 列，则 r(A)+r(B)≤ n.",
+            "displaySummary": "若 \\(AB\\) 有意义，则"
           },
           {
             "id": "anchor-4kgzu",
             "legacyId": "linear-algebra-01-001-anchor-016",
             "title": "矩阵横拼竖拼，秩不会变小",
             "searchText": "矩阵横拼竖拼，秩不会变小 \\ r(A),r(B)\\ ≤ r(A,B)≤ r(A)+r(B), 上下拼接时同理。",
-            "summary": "\\ r(A),r(B)\\ ≤ r(A,B)≤ r(A)+r(B), 上下拼接时同理。"
+            "summary": "\\ r(A),r(B)\\ ≤ r(A,B)≤ r(A)+r(B), 上下拼接时同理。",
+            "displaySummary": "上下拼接时同理。"
           },
           {
             "id": "anchor-17571s4",
             "legacyId": "linear-algebra-01-001-anchor-017",
             "title": "可逆矩阵夹乘，不改变秩",
             "searchText": "可逆矩阵夹乘，不改变秩 若 P,Q 可逆，则 r(PA)=r(AQ)=r(PAQ)=r(A). 初等变换不改变矩阵的秩。",
-            "summary": "若 P,Q 可逆，则 r(PA)=r(AQ)=r(PAQ)=r(A). 初等变换不改变矩阵的秩。"
+            "summary": "若 P,Q 可逆，则 r(PA)=r(AQ)=r(PAQ)=r(A). 初等变换不改变矩阵的秩。",
+            "displaySummary": "若 \\(P,Q\\) 可逆，则"
           },
           {
             "id": "anchor-im67ae",
             "legacyId": "linear-algebra-01-001-anchor-018",
             "title": "方阵单边得单位阵，另一边也成立",
             "searchText": "方阵单边得单位阵，另一边也成立 同阶方阵满足 AB=E 或 BA=E 时，A,B 都可逆，并且 B=A^ -1 , AB=BA=E.",
-            "summary": "同阶方阵满足 AB=E 或 BA=E 时，A,B 都可逆，并且 B=A^ -1 , AB=BA=E."
+            "summary": "同阶方阵满足 AB=E 或 BA=E 时，A,B 都可逆，并且 B=A^ -1 , AB=BA=E.",
+            "displaySummary": "同阶方阵满足 \\(AB=E\\) 或 \\(BA=E\\) 时，\\(A,B\\) 都可逆，并且"
           },
           {
             "id": "anchor-1x76og0",
             "legacyId": "linear-algebra-01-001-anchor-019",
             "title": "伴随矩阵的秩，只看原矩阵差几秩",
             "searchText": "伴随矩阵的秩，只看原矩阵差几秩 对 n≥2 阶方阵 A： r(A^ )= cases n,&r(A)=n,\\\\ 1,&r(A)=n-1,\\\\ 0,&r(A)≤ n-2. cases",
-            "summary": "对 n≥2 阶方阵 A： r(A^ )= cases n,&r(A)=n,\\\\ 1,&r(A)=n-1,\\\\ 0,&r(A)≤ n-2. cases"
+            "summary": "对 n≥2 阶方阵 A： r(A^ )= cases n,&r(A)=n,\\\\ 1,&r(A)=n-1,\\\\ 0,&r(A)≤ n-2. cases",
+            "displaySummary": "对 \\(n\\ge2\\) 阶方阵 \\(A\\)："
           },
           {
             "id": "anchor-tkxywz",
             "legacyId": "linear-algebra-01-001-anchor-020",
             "title": "特征值之和看迹，特征值之积看行列式",
             "searchText": "特征值之和看迹，特征值之积看行列式 计入重数后，n 阶方阵的特征值满足 i=1 ^ n i= tr (A), i=1 ^ n i= A .",
-            "summary": "计入重数后，n 阶方阵的特征值满足 i=1 ^ n i= tr (A), i=1 ^ n i= A ."
+            "summary": "计入重数后，n 阶方阵的特征值满足 i=1 ^ n i= tr (A), i=1 ^ n i= A .",
+            "displaySummary": "计入重数后，\\(n\\) 阶方阵的特征值满足"
           },
           {
             "id": "anchor-uadu3h",
             "legacyId": "linear-algebra-01-001-anchor-021",
             "title": "不同特征值，对应特征向量必无关",
             "searchText": "不同特征值，对应特征向量必无关 属于互不相同特征值的特征向量线性无关。同一特征值对应的特征向量不一定无关，要另行判断。",
-            "summary": "属于互不相同特征值的特征向量线性无关。同一特征值对应的特征向量不一定无关，要另行判断。"
+            "summary": "属于互不相同特征值的特征向量线性无关。同一特征值对应的特征向量不一定无关，要另行判断。",
+            "displaySummary": "属于互不相同特征值的特征向量线性无关。同一特征值对应的特征向量不一定无关，要另行判断。"
           },
           {
             "id": "anchor-th36ml",
             "legacyId": "linear-algebra-01-001-anchor-022",
             "title": "秩一矩阵：平方等于迹乘自身",
             "searchText": "秩一矩阵：平方等于迹乘自身 若 r(A)=1，则 A^2= tr (A)A, E-A = ^ n-1 ( - tr (A) ). 所以特征值为 0 与 tr (A)；当迹为零时，全部特征值都为零。",
-            "summary": "若 r(A)=1，则 A^2= tr (A)A, E-A = ^ n-1 ( - tr (A) ). 所以特征值为 0 与 tr (A)；当迹为零时，全部特征值都为零。"
+            "summary": "若 r(A)=1，则 A^2= tr (A)A, E-A = ^ n-1 ( - tr (A) ). 所以特征值为 0 与 tr (A)；当迹为零时，全部特征值都为零。",
+            "displaySummary": "若 \\(r(A)=1\\)，则"
           },
           {
             "id": "anchor-x4fj9u",
             "legacyId": "linear-algebra-01-001-anchor-023",
             "title": "实对称矩阵三件套",
             "searchText": "实对称矩阵三件套 实对称矩阵的特征值全为实数；不同特征值对应的特征向量正交；一定可以用正交矩阵对角化： Q^TAQ= , Q^TQ=E.",
-            "summary": "实对称矩阵的特征值全为实数；不同特征值对应的特征向量正交；一定可以用正交矩阵对角化： Q^TAQ= , Q^TQ=E."
+            "summary": "实对称矩阵的特征值全为实数；不同特征值对应的特征向量正交；一定可以用正交矩阵对角化： Q^TAQ= , Q^TQ=E.",
+            "displaySummary": "实对称矩阵的特征值全为实数；不同特征值对应的特征向量正交；一定可以用正交矩阵对角化："
           },
           {
             "id": "anchor-11n4d9n",
             "legacyId": "linear-algebra-01-001-anchor-024",
             "title": "相似保特征，合同保惯性",
             "searchText": "相似保特征，合同保惯性 相似矩阵具有相同的特征多项式、特征值、行列式、迹和秩；这些相同一般不能反推相似。 实对称矩阵合同后，正、负、零平方项的个数不变，即正、负惯性指数和秩不变。",
-            "summary": "相似矩阵具有相同的特征多项式、特征值、行列式、迹和秩；这些相同一般不能反推相似。 实对称矩阵合同后，正、负、零平方项的个数不变，即正、负惯性指数和秩不变。"
+            "summary": "相似矩阵具有相同的特征多项式、特征值、行列式、迹和秩；这些相同一般不能反推相似。 实对称矩阵合同后，正、负、零平方项的个数不变，即正、负惯性指数和秩不变。",
+            "displaySummary": "相似矩阵具有相同的特征多项式、特征值、行列式、迹和秩；这些相同一般不能反推相似。"
           },
           {
             "id": "anchor-19ugkjx",
             "legacyId": "linear-algebra-01-001-anchor-025",
             "title": "正定三连判",
             "searchText": "正定三连判 实对称矩阵 A 正定，等价于以下任一条件： x^TAx 0 (x≠0), 全部特征值大于零； 各阶顺序主子式全部大于零； 正惯性指数为 n。",
-            "summary": "实对称矩阵 A 正定，等价于以下任一条件： x^TAx 0 (x≠0), 全部特征值大于零； 各阶顺序主子式全部大于零； 正惯性指数为 n。"
+            "summary": "实对称矩阵 A 正定，等价于以下任一条件： x^TAx 0 (x≠0), 全部特征值大于零； 各阶顺序主子式全部大于零； 正惯性指数为 n。",
+            "displaySummary": "实对称矩阵 \\(A\\) 正定，等价于以下任一条件："
           },
           {
             "id": "anchor-15fx8au",
             "legacyId": "linear-algebra-01-001-anchor-026",
             "title": "逆序数与行列式展开定义",
             "searchText": "逆序数与行列式展开定义 排列 j 1j 2 j n 中，前面数字大于后面数字的一对叫逆序，逆序总数记为 (j 1j 2 j n)。 A = j 1j 2 j n (-1)^ (j 1j 2 j n) a 1j 1 a 2j 2 a nj n .",
-            "summary": "排列 j 1j 2 j n 中，前面数字大于后面数字的一对叫逆序，逆序总数记为 (j 1j 2 j n)。 A = j 1j 2 j n (-1)^ (j 1j 2 j n) a 1j 1 a 2j 2 a nj n ."
+            "summary": "排列 j 1j 2 j n 中，前面数字大于后面数字的一对叫逆序，逆序总数记为 (j 1j 2 j n)。 A = j 1j 2 j n (-1)^ (j 1j 2 j n) a 1j 1 a 2j 2 a nj n .",
+            "displaySummary": "排列 \\(j_1j_2\\cdots j_n\\) 中，前面数字大于后面数字的一对叫逆序，逆序总数记为 \\(\\tau(j_1j_2\\cdots j_n)\\)。"
           },
           {
             "id": "anchor-14miwg4",
             "legacyId": "linear-algebra-01-001-anchor-027",
             "title": "行列式基本性质、转置与三角行列式",
             "searchText": "行列式基本性质、转置与三角行列式 A^T = A . 交换两行或两列，行列式变号。 某行或某列乘 k，行列式乘 k。 某行或某列的 k 倍加到另一行或另一列，行列式不变。 两行或两列相同、成比例，或某行、某列全为零，行列式为零。 三角形行列式等于主对角元之积。 上三角、下三角和对角行列式均为主对角元之积；反对角三角形行列式为 (-1)^ n(n-1) 2 a 1n a 2,n-1 a n1 .",
-            "summary": "A^T = A . 交换两行或两列，行列式变号。 某行或某列乘 k，行列式乘 k。 某行或某列的 k 倍加到另一行或另一列，行列式不变。 两行或两列相同、成比例，或某行、某列全为零，行列式为零。 三角形行列式等于主对角元之积。 上三角、下三角和对角行列式均…"
+            "summary": "A^T = A . 交换两行或两列，行列式变号。 某行或某列乘 k，行列式乘 k。 某行或某列的 k 倍加到另一行或另一列，行列式不变。 两行或两列相同、成比例，或某行、某列全为零，行列式为零。 三角形行列式等于主对角元之积。 上三角、下三角和对角行列式均…",
+            "displaySummary": "- 交换两行或两列，行列式变号。\n- 某行或某列乘 \\(k\\)，行列式乘 \\(k\\)。\n- 某行或某列的 \\(k\\) 倍加到另一行或另一列，行列式不变。\n- 两行或两列相同、成比例，或某行、某列全为零，行列式为零。\n- 三角形行列式等于主对角元之积。"
           },
           {
             "id": "anchor-oqrdrk",
             "legacyId": "linear-algebra-01-001-anchor-028",
             "title": "范德蒙德、三对角、爪形与箭头形行列式",
             "searchText": "范德蒙德、三对角、爪形与箭头形行列式 “行和或列和相等”：把各列加到一列，提取公共因子，再降阶。 “爪形、箭头形”：沿非零元素最少的行或列展开，或先消成三角形。 “么字形、X 型”：按稀疏行列展开，注意每次展开的正负号。 三对角线行列式：按第一行展开建立递推式，再由初值求通项。 范德蒙德行列式： vmatrix 1&1& &1\\\\ x 1&x 2& &x n\\\\ & && \\\\ x 1^ n-1 &x 2^ n-1 & &x n^ n-1 vmatrix = 1≤ i<j≤ n (x j-x i).",
-            "summary": "“行和或列和相等”：把各列加到一列，提取公共因子，再降阶。 “爪形、箭头形”：沿非零元素最少的行或列展开，或先消成三角形。 “么字形、X 型”：按稀疏行列展开，注意每次展开的正负号。 三对角线行列式：按第一行展开建立递推式，再由初值求通项。 范德蒙德行列式…"
+            "summary": "“行和或列和相等”：把各列加到一列，提取公共因子，再降阶。 “爪形、箭头形”：沿非零元素最少的行或列展开，或先消成三角形。 “么字形、X 型”：按稀疏行列展开，注意每次展开的正负号。 三对角线行列式：按第一行展开建立递推式，再由初值求通项。 范德蒙德行列式…",
+            "displaySummary": "- “行和或列和相等”：把各列加到一列，提取公共因子，再降阶。\n- “爪形、箭头形”：沿非零元素最少的行或列展开，或先消成三角形。\n- “么字形、\\(X\\) 型”：按稀疏行列展开，注意每次展开的正负号。\n- 三对角线行列式：按第一行展开建立递推式，再由初值求通项。\n- 范德蒙德行列式："
           }
         ],
         "formulas": [
@@ -6627,6 +7383,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 2,
             "searchAliases": [],
             "context": "对未知数个数相同的两个齐次方程组，若 Ax=0 的每个解都是 Bx=0 的解，则",
+            "displayContext": "对未知数个数相同的两个齐次方程组，若 \\(Ax=0\\) 的每个解都是 \\(Bx=0\\) 的解，则",
             "chapterId": "linear-algebra-01",
             "topicId": "linear-algebra-01-001",
             "order": 0
@@ -6640,6 +7397,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 6,
             "searchAliases": [],
             "context": "若线性无关的向量组",
+            "displayContext": "若线性无关的向量组\n\\(\\beta_1,\\ldots,\\beta_s\\) 可由 \\(\\alpha_1,\\ldots,\\alpha_r\\) 线性表示，则",
             "chapterId": "linear-algebra-01",
             "topicId": "linear-algebra-01-001",
             "order": 1
@@ -6648,11 +7406,19 @@ export const mathChapters: MathChapter[] = [
             "id": "linear-sk4b4h",
             "parentAnchorId": "anchor-zf8f1p",
             "legacyParentAnchorId": "linear-algebra-01-001-anchor-005",
-            "title": "被表秩小，表者秩大：r(B)",
+            "title": "线性表示与向量组的秩（表出秩不增）",
             "latex": "r(B)\\le r(A).",
-            "sourceBlockIndex": 14,
-            "searchAliases": [],
-            "context": "若向量组 B 可由向量组 A 线性表示，即 B=AC，则",
+            "sourceBlockIndex": 15,
+            "searchAliases": [
+              "表出秩不增",
+              "被表秩不大",
+              "谁被表示谁的秩就不大",
+              "被表秩小表者秩大",
+              "向量组线性表示的秩关系",
+              "线性表示秩不等式"
+            ],
+            "context": "若向量组 \\(B\\) 中的每个向量都能由向量组 \\(A\\) 线性表示，则被表示的 \\(B\\) 的秩不超过表示它的 \\(A\\) 的秩。",
+            "displayContext": "若向量组 \\(B\\) 中的每个向量都能由向量组 \\(A\\) 线性表示，则被表示的 \\(B\\) 的秩不超过表示它的 \\(A\\) 的秩。",
             "chapterId": "linear-algebra-01",
             "topicId": "linear-algebra-01-001",
             "order": 2
@@ -6663,9 +7429,10 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "linear-algebra-01-001-anchor-006",
             "title": "两组互表，秩必相等：r(A)",
             "latex": "r(A)=r(B).",
-            "sourceBlockIndex": 15,
+            "sourceBlockIndex": 16,
             "searchAliases": [],
             "context": "两个向量组能互相线性表示，称为等价向量组，必有",
+            "displayContext": "两个向量组能互相线性表示，称为等价向量组，必有",
             "chapterId": "linear-algebra-01",
             "topicId": "linear-algebra-01-001",
             "order": 3
@@ -6676,9 +7443,10 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "linear-algebra-01-001-anchor-012",
             "title": "齐次方程组：满秩只有零解，秩亏必有非零解：r(A)",
             "latex": "r(A)=n\\Longleftrightarrow Ax=0\\text{ 只有零解},",
-            "sourceBlockIndex": 25,
+            "sourceBlockIndex": 26,
             "searchAliases": [],
             "context": "设 A 有 n 列，则",
+            "displayContext": "设 \\(A\\) 有 \\(n\\) 列，则",
             "chapterId": "linear-algebra-01",
             "topicId": "linear-algebra-01-001",
             "order": 4
@@ -6689,9 +7457,10 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "linear-algebra-01-001-anchor-012",
             "title": "齐次方程组：满秩只有零解，秩亏必有非零解：r(A)",
             "latex": "r(A)<n\\Longleftrightarrow Ax=0\\text{ 有非零解}.",
-            "sourceBlockIndex": 26,
+            "sourceBlockIndex": 27,
             "searchAliases": [],
             "context": "所属知识点：齐次方程组：满秩只有零解，秩亏必有非零解。",
+            "displayContext": "设 \\(A\\) 有 \\(n\\) 列，则",
             "chapterId": "linear-algebra-01",
             "topicId": "linear-algebra-01-001",
             "order": 5
@@ -6702,9 +7471,10 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "linear-algebra-01-001-anchor-013",
             "title": "非齐次线性方程组的解的三种情况",
             "latex": "\\begin{array}{c|c}\nr(A)\\ne r(A,b)&\\text{无解}\\\\\nr(A)=r(A,b)=n&\\text{唯一解}\\\\\nr(A)=r(A,b)<n&\\text{无穷多解}\n\\end{array}",
-            "sourceBlockIndex": 30,
+            "sourceBlockIndex": 31,
             "searchAliases": [],
             "context": "设 A 有 n 列，则",
+            "displayContext": "设 \\(A\\) 有 \\(n\\) 列，则",
             "chapterId": "linear-algebra-01",
             "topicId": "linear-algebra-01-001",
             "order": 6
@@ -6715,9 +7485,10 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "linear-algebra-01-001-anchor-014",
             "title": "非齐减非齐得齐次，非齐通解等于特解加齐次通解：A(x_1-x_2)",
             "latex": "A(x_1-x_2)=0.",
-            "sourceBlockIndex": 32,
+            "sourceBlockIndex": 33,
             "searchAliases": [],
             "context": "若 Ax_1=b,\\ Ax_2=b，则",
+            "displayContext": "若 \\(Ax_1=b,\\ Ax_2=b\\)，则",
             "chapterId": "linear-algebra-01",
             "topicId": "linear-algebra-01-001",
             "order": 7
@@ -6728,9 +7499,10 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "linear-algebra-01-001-anchor-014",
             "title": "非齐减非齐得齐次，非齐通解等于特解加齐次通解：x",
             "latex": "x=\\eta^*+\\xi,\\qquad A\\xi=0.",
-            "sourceBlockIndex": 35,
+            "sourceBlockIndex": 36,
             "searchAliases": [],
             "context": "若 \\eta^ 是 Ax=b 的一个特解，则全部解为",
+            "displayContext": "若 \\(\\eta^*\\) 是 \\(Ax=b\\) 的一个特解，则全部解为",
             "chapterId": "linear-algebra-01",
             "topicId": "linear-algebra-01-001",
             "order": 8
@@ -6741,9 +7513,10 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "linear-algebra-01-001-anchor-015",
             "title": "矩阵越乘，秩不会增加：r(AB)",
             "latex": "r(AB)\\le \\min\\{r(A),r(B)\\}.",
-            "sourceBlockIndex": 37,
+            "sourceBlockIndex": 38,
             "searchAliases": [],
             "context": "若 AB 有意义，则",
+            "displayContext": "若 \\(AB\\) 有意义，则",
             "chapterId": "linear-algebra-01",
             "topicId": "linear-algebra-01-001",
             "order": 9
@@ -6754,9 +7527,10 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "linear-algebra-01-001-anchor-015",
             "title": "矩阵越乘，秩不会增加：r(A)+r(B)",
             "latex": "r(A)+r(B)\\le n.",
-            "sourceBlockIndex": 41,
+            "sourceBlockIndex": 42,
             "searchAliases": [],
             "context": "若 AB=O，且 A 有 n 列，则",
+            "displayContext": "若 \\(AB=O\\)，且 \\(A\\) 有 \\(n\\) 列，则",
             "chapterId": "linear-algebra-01",
             "topicId": "linear-algebra-01-001",
             "order": 10
@@ -6767,9 +7541,10 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "linear-algebra-01-001-anchor-016",
             "title": "矩阵横拼竖拼，秩不会变小：maxr(A),r(B)",
             "latex": "\\max\\{r(A),r(B)\\}\\le r(A,B)\\le r(A)+r(B),",
-            "sourceBlockIndex": 42,
+            "sourceBlockIndex": 43,
             "searchAliases": [],
             "context": "所属知识点：矩阵横拼竖拼，秩不会变小。",
+            "displayContext": "所属知识点：矩阵横拼竖拼，秩不会变小。",
             "chapterId": "linear-algebra-01",
             "topicId": "linear-algebra-01-001",
             "order": 11
@@ -6780,9 +7555,10 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "linear-algebra-01-001-anchor-017",
             "title": "可逆矩阵夹乘，不改变秩：r(PA)",
             "latex": "r(PA)=r(AQ)=r(PAQ)=r(A).",
-            "sourceBlockIndex": 44,
+            "sourceBlockIndex": 45,
             "searchAliases": [],
             "context": "若 P,Q 可逆，则",
+            "displayContext": "若 \\(P,Q\\) 可逆，则",
             "chapterId": "linear-algebra-01",
             "topicId": "linear-algebra-01-001",
             "order": 12
@@ -6793,9 +7569,10 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "linear-algebra-01-001-anchor-018",
             "title": "方阵单边得单位阵，另一边也成立：B",
             "latex": "B=A^{-1},\\qquad AB=BA=E.",
-            "sourceBlockIndex": 48,
+            "sourceBlockIndex": 49,
             "searchAliases": [],
             "context": "同阶方阵满足 AB=E 或 BA=E 时，A,B 都可逆，并且",
+            "displayContext": "同阶方阵满足 \\(AB=E\\) 或 \\(BA=E\\) 时，\\(A,B\\) 都可逆，并且",
             "chapterId": "linear-algebra-01",
             "topicId": "linear-algebra-01-001",
             "order": 13
@@ -6806,9 +7583,10 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "linear-algebra-01-001-anchor-019",
             "title": "伴随矩阵的秩，只看原矩阵差几秩：r(A^*)",
             "latex": "r(A^*)=\n\\begin{cases}\nn,&r(A)=n,\\\\\n1,&r(A)=n-1,\\\\\n0,&r(A)\\le n-2.\n\\end{cases}",
-            "sourceBlockIndex": 51,
+            "sourceBlockIndex": 52,
             "searchAliases": [],
             "context": "对 n\\ge2 阶方阵 A：",
+            "displayContext": "对 \\(n\\ge2\\) 阶方阵 \\(A\\)：",
             "chapterId": "linear-algebra-01",
             "topicId": "linear-algebra-01-001",
             "order": 14
@@ -6817,11 +7595,15 @@ export const mathChapters: MathChapter[] = [
             "id": "linear-n93hf3-1",
             "parentAnchorId": "anchor-tkxywz",
             "legacyParentAnchorId": "linear-algebra-01-001-anchor-020",
-            "title": "特征值之和看迹，特征值之积看行列式：Σ_i",
+            "title": "特征值之和等于矩阵的迹",
             "latex": "\\sum_{i=1}^{n}\\lambda_i=\\operatorname{tr}(A)",
-            "sourceBlockIndex": 53,
-            "searchAliases": [],
+            "sourceBlockIndex": 54,
+            "searchAliases": [
+              "特征值求和",
+              "迹等于特征值之和"
+            ],
             "context": "计入重数后，n 阶方阵的特征值满足",
+            "displayContext": "计入重数后，\\(n\\) 阶方阵的特征值满足",
             "chapterId": "linear-algebra-01",
             "topicId": "linear-algebra-01-001",
             "order": 15
@@ -6830,11 +7612,15 @@ export const mathChapters: MathChapter[] = [
             "id": "linear-n93hf3-2",
             "parentAnchorId": "anchor-tkxywz",
             "legacyParentAnchorId": "linear-algebra-01-001-anchor-020",
-            "title": "特征值之和看迹，特征值之积看行列式：prod_i",
+            "title": "特征值之积等于行列式",
             "latex": "\\prod_{i=1}^{n}\\lambda_i=|A|",
-            "sourceBlockIndex": 53,
-            "searchAliases": [],
+            "sourceBlockIndex": 54,
+            "searchAliases": [
+              "特征值乘积",
+              "行列式等于特征值之积"
+            ],
             "context": "计入重数后，n 阶方阵的特征值满足",
+            "displayContext": "计入重数后，\\(n\\) 阶方阵的特征值满足",
             "chapterId": "linear-algebra-01",
             "topicId": "linear-algebra-01-001",
             "order": 16
@@ -6845,9 +7631,10 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "linear-algebra-01-001-anchor-022",
             "title": "秩一矩阵：平方等于迹乘自身：A^2",
             "latex": "A^2=\\operatorname{tr}(A)A",
-            "sourceBlockIndex": 55,
+            "sourceBlockIndex": 56,
             "searchAliases": [],
             "context": "若 \\(r(A)=1\\)，则",
+            "displayContext": "若 \\(r(A)=1\\)，则",
             "chapterId": "linear-algebra-01",
             "topicId": "linear-algebra-01-001",
             "order": 17
@@ -6858,9 +7645,10 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "linear-algebra-01-001-anchor-022",
             "title": "秩一矩阵：平方等于迹乘自身：|λ E-A|",
             "latex": "|\\lambda E-A|=\\lambda^{n-1}\\bigl(\\lambda-\\operatorname{tr}(A)\\bigr)",
-            "sourceBlockIndex": 55,
+            "sourceBlockIndex": 56,
             "searchAliases": [],
             "context": "若 \\(r(A)=1\\)，则",
+            "displayContext": "若 \\(r(A)=1\\)，则",
             "chapterId": "linear-algebra-01",
             "topicId": "linear-algebra-01-001",
             "order": 18
@@ -6871,9 +7659,10 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "linear-algebra-01-001-anchor-023",
             "title": "实对称矩阵三件套：Q^TAQ",
             "latex": "Q^TAQ=\\Lambda,\\qquad Q^TQ=E.",
-            "sourceBlockIndex": 58,
+            "sourceBlockIndex": 59,
             "searchAliases": [],
             "context": "实对称矩阵的特征值全为实数；不同特征值对应的特征向量正交；一定可以用正交矩阵对角化：",
+            "displayContext": "实对称矩阵的特征值全为实数；不同特征值对应的特征向量正交；一定可以用正交矩阵对角化：",
             "chapterId": "linear-algebra-01",
             "topicId": "linear-algebra-01-001",
             "order": 19
@@ -6884,9 +7673,10 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "linear-algebra-01-001-anchor-025",
             "title": "正定三连判：x^TAx",
             "latex": "x^TAx>0\\quad(x\\ne0),",
-            "sourceBlockIndex": 60,
+            "sourceBlockIndex": 61,
             "searchAliases": [],
             "context": "实对称矩阵 A 正定，等价于以下任一条件：",
+            "displayContext": "实对称矩阵 \\(A\\) 正定，等价于以下任一条件：",
             "chapterId": "linear-algebra-01",
             "topicId": "linear-algebra-01-001",
             "order": 20
@@ -6897,9 +7687,10 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "linear-algebra-01-001-anchor-026",
             "title": "逆序数与行列式展开定义：|A|",
             "latex": "|A|=\\sum_{j_1j_2\\cdots j_n}\n(-1)^{\\tau(j_1j_2\\cdots j_n)}\na_{1j_1}a_{2j_2}\\cdots a_{nj_n}.",
-            "sourceBlockIndex": 64,
+            "sourceBlockIndex": 65,
             "searchAliases": [],
             "context": "排列 j_1j_2\\cdots j_n 中，前面数字大于后面数字的一对叫逆序，逆序总数记为 \\(\\tau(j_1j_2\\cdots j_n)\\)。",
+            "displayContext": "排列 \\(j_1j_2\\cdots j_n\\) 中，前面数字大于后面数字的一对叫逆序，逆序总数记为 \\(\\tau(j_1j_2\\cdots j_n)\\)。",
             "chapterId": "linear-algebra-01",
             "topicId": "linear-algebra-01-001",
             "order": 21
@@ -6910,9 +7701,10 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "linear-algebra-01-001-anchor-027",
             "title": "行列式基本性质、转置与三角行列式：|A^T|",
             "latex": "|A^T|=|A|.",
-            "sourceBlockIndex": 65,
+            "sourceBlockIndex": 66,
             "searchAliases": [],
             "context": "所属知识点：行列式基本性质、转置与三角行列式。",
+            "displayContext": "所属知识点：行列式基本性质、转置与三角行列式。",
             "chapterId": "linear-algebra-01",
             "topicId": "linear-algebra-01-001",
             "order": 22
@@ -6923,9 +7715,10 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "linear-algebra-01-001-anchor-027",
             "title": "副对角线行列式公式",
             "latex": "(-1)^{\\frac{n(n-1)}2}a_{1n}a_{2,n-1}\\cdots a_{n1}.",
-            "sourceBlockIndex": 69,
+            "sourceBlockIndex": 70,
             "searchAliases": [],
             "context": "上三角、下三角和对角行列式均为主对角元之积；反对角三角形行列式为",
+            "displayContext": "上三角、下三角和对角行列式均为主对角元之积；反对角三角形行列式为",
             "chapterId": "linear-algebra-01",
             "topicId": "linear-algebra-01-001",
             "order": 23
@@ -6936,9 +7729,10 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "linear-algebra-01-001-anchor-028",
             "title": "范德蒙德行列式",
             "latex": "\\begin{vmatrix}\n1&1&\\cdots&1\\\\\nx_1&x_2&\\cdots&x_n\\\\\n\\vdots&\\vdots&&\\vdots\\\\\nx_1^{n-1}&x_2^{n-1}&\\cdots&x_n^{n-1}\n\\end{vmatrix}\n=\\prod_{1\\le i<j\\le n}(x_j-x_i).",
-            "sourceBlockIndex": 71,
+            "sourceBlockIndex": 72,
             "searchAliases": [],
             "context": "范德蒙德行列式：",
+            "displayContext": "- “行和或列和相等”：把各列加到一列，提取公共因子，再降阶。\n- “爪形、箭头形”：沿非零元素最少的行或列展开，或先消成三角形。\n- “么字形、\\(X\\) 型”：按稀疏行列展开，注意每次展开的正负号。\n- 三对角线行列式：按第一行展开建立递推式，再由初值求通项。\n- 范德蒙德行列式：",
             "chapterId": "linear-algebra-01",
             "topicId": "linear-algebra-01-001",
             "order": 24
@@ -6957,7 +7751,8 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "linear-algebra-01-002-anchor-001",
             "title": "矩阵乘积、转置、逆、伴随与特征值的行列式公式",
             "searchText": "矩阵乘积、转置、逆、伴随与特征值的行列式公式 对 n 阶方阵： kA =k^n A , AB = A B , A^m = A ^m, A^T = A . A^ -1 = 1 A , A^ = A ^ n-1 , A = 1 2 n. 分块三角行列式： vmatrix A&C\\ &B vmatrix = A B . 对同阶方阵块： vmatrix O&A\\ &O vmatrix =(-1)^n A B . 若对角块互换，符号要按块的行列数判断；不要把普通数的交换律直接用于矩阵块。 若 A 可逆，则 vmatrix A&B\\ &D vmatrix = A \\, D-CA^ -1 B . 若 D 可逆，则 vmatrix A&B\\ &D vmatrix = D \\, A-BD^ -1 C .",
-            "summary": "对 n 阶方阵： kA =k^n A , AB = A B , A^m = A ^m, A^T = A . A^ -1 = 1 A , A^ = A ^ n-1 , A = 1 2 n. 分块三角行列式： vmatrix A&C\\ &B vmatrix =…"
+            "summary": "对 n 阶方阵： kA =k^n A , AB = A B , A^m = A ^m, A^T = A . A^ -1 = 1 A , A^ = A ^ n-1 , A = 1 2 n. 分块三角行列式： vmatrix A&C\\ &B vmatrix =…",
+            "displaySummary": "对 \\(n\\) 阶方阵："
           }
         ],
         "formulas": [
@@ -6970,6 +7765,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 1,
             "searchAliases": [],
             "context": "对 n 阶方阵：",
+            "displayContext": "对 \\(n\\) 阶方阵：",
             "chapterId": "linear-algebra-01",
             "topicId": "linear-algebra-01-002",
             "order": 0
@@ -6983,6 +7779,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 1,
             "searchAliases": [],
             "context": "对 n 阶方阵：",
+            "displayContext": "对 \\(n\\) 阶方阵：",
             "chapterId": "linear-algebra-01",
             "topicId": "linear-algebra-01-002",
             "order": 1
@@ -6996,6 +7793,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 2,
             "searchAliases": [],
             "context": "所属知识点：矩阵乘积、转置、逆、伴随与特征值的行列式公式。",
+            "displayContext": "对 \\(n\\) 阶方阵：",
             "chapterId": "linear-algebra-01",
             "topicId": "linear-algebra-01-002",
             "order": 2
@@ -7009,6 +7807,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 2,
             "searchAliases": [],
             "context": "所属知识点：矩阵乘积、转置、逆、伴随与特征值的行列式公式。",
+            "displayContext": "对 \\(n\\) 阶方阵：",
             "chapterId": "linear-algebra-01",
             "topicId": "linear-algebra-01-002",
             "order": 3
@@ -7022,6 +7821,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 3,
             "searchAliases": [],
             "context": "所属知识点：矩阵乘积、转置、逆、伴随与特征值的行列式公式。",
+            "displayContext": "对 \\(n\\) 阶方阵：",
             "chapterId": "linear-algebra-01",
             "topicId": "linear-algebra-01-002",
             "order": 4
@@ -7035,6 +7835,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 3,
             "searchAliases": [],
             "context": "所属知识点：矩阵乘积、转置、逆、伴随与特征值的行列式公式。",
+            "displayContext": "对 \\(n\\) 阶方阵：",
             "chapterId": "linear-algebra-01",
             "topicId": "linear-algebra-01-002",
             "order": 5
@@ -7048,6 +7849,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 4,
             "searchAliases": [],
             "context": "所属知识点：矩阵乘积、转置、逆、伴随与特征值的行列式公式。",
+            "displayContext": "对 \\(n\\) 阶方阵：",
             "chapterId": "linear-algebra-01",
             "topicId": "linear-algebra-01-002",
             "order": 6
@@ -7061,6 +7863,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 5,
             "searchAliases": [],
             "context": "分块三角行列式：",
+            "displayContext": "分块三角行列式：",
             "chapterId": "linear-algebra-01",
             "topicId": "linear-algebra-01-002",
             "order": 7
@@ -7074,6 +7877,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 6,
             "searchAliases": [],
             "context": "对同阶方阵块：",
+            "displayContext": "对同阶方阵块：",
             "chapterId": "linear-algebra-01",
             "topicId": "linear-algebra-01-002",
             "order": 8
@@ -7087,6 +7891,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 8,
             "searchAliases": [],
             "context": "若 A 可逆，则",
+            "displayContext": "若 \\(A\\) 可逆，则",
             "chapterId": "linear-algebra-01",
             "topicId": "linear-algebra-01-002",
             "order": 9
@@ -7100,6 +7905,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 10,
             "searchAliases": [],
             "context": "若 D 可逆，则",
+            "displayContext": "若 \\(D\\) 可逆，则",
             "chapterId": "linear-algebra-01",
             "topicId": "linear-algebra-01-002",
             "order": 10
@@ -7118,14 +7924,16 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "linear-algebra-01-003-anchor-001",
             "title": "余子式、代数余子式与拉普拉斯展开公式",
             "searchText": "余子式、代数余子式与拉普拉斯展开公式 A ij =(-1)^ i+j M ij . 按第 i 行展开： A = j=1 ^n a ij A ij . 第 i 行元素乘第 k 行对应代数余子式时： j=1 ^n a ij A kj = cases A ,&i=k,\\\\ 0,&i≠ k. cases 伴随矩阵的迹等于主对角线上代数余子式之和： tr (A^ )=A 11 +A 22 + +A nn .",
-            "summary": "A ij =(-1)^ i+j M ij . 按第 i 行展开： A = j=1 ^n a ij A ij . 第 i 行元素乘第 k 行对应代数余子式时： j=1 ^n a ij A kj = cases A ,&i=k,\\\\ 0,&i≠ k. case…"
+            "summary": "A ij =(-1)^ i+j M ij . 按第 i 行展开： A = j=1 ^n a ij A ij . 第 i 行元素乘第 k 行对应代数余子式时： j=1 ^n a ij A kj = cases A ,&i=k,\\\\ 0,&i≠ k. case…",
+            "displaySummary": "按第 \\(i\\) 行展开："
           },
           {
             "id": "anchor-ypaqr",
             "legacyId": "linear-algebra-01-003-anchor-002",
             "title": "代数余子式线性组合与全部余子式求和",
             "searchText": "代数余子式线性组合与全部余子式求和 代数余子式的系数不是原行元素时，把对应行换成题目给的系数，再按该行展开。求全部代数余子式之和，可把矩阵一行或一列换成全 1，或利用伴随矩阵与全 1 向量相乘。",
-            "summary": "代数余子式的系数不是原行元素时，把对应行换成题目给的系数，再按该行展开。求全部代数余子式之和，可把矩阵一行或一列换成全 1，或利用伴随矩阵与全 1 向量相乘。"
+            "summary": "代数余子式的系数不是原行元素时，把对应行换成题目给的系数，再按该行展开。求全部代数余子式之和，可把矩阵一行或一列换成全 1，或利用伴随矩阵与全 1 向量相乘。",
+            "displaySummary": "代数余子式的系数不是原行元素时，把对应行换成题目给的系数，再按该行展开。求全部代数余子式之和，可把矩阵一行或一列换成全 \\(1\\)，或利用伴随矩阵与全 \\(1\\) 向量相乘。"
           }
         ],
         "formulas": [
@@ -7138,6 +7946,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 0,
             "searchAliases": [],
             "context": "所属知识点：余子式、代数余子式与拉普拉斯展开公式。",
+            "displayContext": "所属知识点：余子式、代数余子式与拉普拉斯展开公式。",
             "chapterId": "linear-algebra-01",
             "topicId": "linear-algebra-01-003",
             "order": 0
@@ -7151,6 +7960,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 2,
             "searchAliases": [],
             "context": "按第 i 行展开：",
+            "displayContext": "按第 \\(i\\) 行展开：",
             "chapterId": "linear-algebra-01",
             "topicId": "linear-algebra-01-003",
             "order": 1
@@ -7164,6 +7974,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 5,
             "searchAliases": [],
             "context": "第 i 行元素乘第 k 行对应代数余子式时：",
+            "displayContext": "第 \\(i\\) 行元素乘第 \\(k\\) 行对应代数余子式时：",
             "chapterId": "linear-algebra-01",
             "topicId": "linear-algebra-01-003",
             "order": 2
@@ -7177,6 +7988,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 6,
             "searchAliases": [],
             "context": "伴随矩阵的迹等于主对角线上代数余子式之和：",
+            "displayContext": "伴随矩阵的迹等于主对角线上代数余子式之和：",
             "chapterId": "linear-algebra-01",
             "topicId": "linear-algebra-01-003",
             "order": 3
@@ -7204,7 +8016,8 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "linear-algebra-01-005-anchor-001",
             "title": "行列式为零、矩阵不可逆与零特征值的等价判定",
             "searchText": "行列式为零、矩阵不可逆与零特征值的等价判定 对 n 阶方阵 A： aligned A =0 & r(A)<n A 不可逆\\\\ & Ax=0 有非零解 0 是 A 的特征值. aligned",
-            "summary": "对 n 阶方阵 A： aligned A =0 & r(A)<n A 不可逆\\\\ & Ax=0 有非零解 0 是 A 的特征值. aligned"
+            "summary": "对 n 阶方阵 A： aligned A =0 & r(A)<n A 不可逆\\\\ & Ax=0 有非零解 0 是 A 的特征值. aligned",
+            "displaySummary": "对 \\(n\\) 阶方阵 \\(A\\)："
           }
         ],
         "formulas": [
@@ -7220,6 +8033,7 @@ export const mathChapters: MathChapter[] = [
               "行列式求方程组解"
             ],
             "context": "系数行列式不为零时，方程组有唯一解；将第 i 列换成常数列得到 D_i。",
+            "displayContext": "对 \\(n\\) 元方程组 \\(Ax=b\\)，若 \\(D=|A|\\ne0\\)，则唯一解为",
             "chapterId": "linear-algebra-01",
             "topicId": "linear-algebra-01-005",
             "order": 0
@@ -7236,6 +8050,7 @@ export const mathChapters: MathChapter[] = [
               "行列式非零"
             ],
             "context": "n 阶系数矩阵行列式不为零，当且仅当齐次方程组只有零解。",
+            "displayContext": "齐次方程组：",
             "chapterId": "linear-algebra-01",
             "topicId": "linear-algebra-01-005",
             "order": 1
@@ -7252,6 +8067,7 @@ export const mathChapters: MathChapter[] = [
               "行列式为零"
             ],
             "context": "n 阶系数矩阵行列式为零，当且仅当齐次方程组有非零解。",
+            "displayContext": "齐次方程组：",
             "chapterId": "linear-algebra-01",
             "topicId": "linear-algebra-01-005",
             "order": 2
@@ -7269,6 +8085,7 @@ export const mathChapters: MathChapter[] = [
               "齐次方程组非零解"
             ],
             "context": "对 n 阶方阵，以下条件等价。",
+            "displayContext": "对 \\(n\\) 阶方阵 \\(A\\)：",
             "chapterId": "linear-algebra-01",
             "topicId": "linear-algebra-01-005",
             "order": 3
@@ -7295,14 +8112,16 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "linear-algebra-02-001-anchor-001",
             "title": "方阵可逆的全部等价条件",
             "searchText": "方阵可逆的全部等价条件 对 n 阶方阵 A： A 可逆 A ≠0 r(A)=n Ax=0 只有零解. 也等价于以下结论中的任意一个： 0 不是 A 的特征值； A 的行向量线性无关； A 的列向量线性无关； A 可写成有限个初等矩阵的乘积； 存在矩阵 B 使 AB=E 或 BA=E； 对每个 b，Ax=b 都有唯一解。",
-            "summary": "对 n 阶方阵 A： A 可逆 A ≠0 r(A)=n Ax=0 只有零解. 也等价于以下结论中的任意一个： 0 不是 A 的特征值； A 的行向量线性无关； A 的列向量线性无关； A 可写成有限个初等矩阵的乘积； 存在矩阵 B 使 AB=E 或 BA=…"
+            "summary": "对 n 阶方阵 A： A 可逆 A ≠0 r(A)=n Ax=0 只有零解. 也等价于以下结论中的任意一个： 0 不是 A 的特征值； A 的行向量线性无关； A 的列向量线性无关； A 可写成有限个初等矩阵的乘积； 存在矩阵 B 使 AB=E 或 BA=…",
+            "displaySummary": "对 \\(n\\) 阶方阵 \\(A\\)："
           },
           {
             "id": "anchor-1mie9hc",
             "legacyId": "linear-algebra-02-001-anchor-002",
             "title": "逆矩阵公式、二阶逆矩阵与乘积转置求逆",
             "searchText": "逆矩阵公式、二阶逆矩阵与乘积转置求逆 A^ -1 = 1 A A^ , (A,E) 行变换 (E,A^ -1 ), 二阶矩阵的逆矩阵公式： A= pmatrix a&b\\ &d pmatrix , ad-bc≠0 ⇒ A^ -1 = 1 ad-bc pmatrix d&-b\\\\-c&a pmatrix . (AB)^ -1 =B^ -1 A^ -1 , (A^T)^ -1 =(A^ -1 )^T, (kA)^ -1 = 1kA^ -1 . 并且 (A^ -1 )^ -1 =A, E^ -1 =E. (A^m)^ -1 =(A^ -1 )^m, A^ -1 = 1 A . 一般没有 (A+B)^ -1 =A^ -1 +B^ -1 ，也不能随意交换乘积中矩阵的顺序。 证明可逆时，还可找出一个矩阵 B 使 AB=E 或 BA=E；方阵只需一侧成立即可推出 B=A^ -1 。",
-            "summary": "A^ -1 = 1 A A^ , (A,E) 行变换 (E,A^ -1 ), 二阶矩阵的逆矩阵公式： A= pmatrix a&b\\ &d pmatrix , ad-bc≠0 ⇒ A^ -1 = 1 ad-bc pmatrix d&-b\\\\-c&a pma…"
+            "summary": "A^ -1 = 1 A A^ , (A,E) 行变换 (E,A^ -1 ), 二阶矩阵的逆矩阵公式： A= pmatrix a&b\\ &d pmatrix , ad-bc≠0 ⇒ A^ -1 = 1 ad-bc pmatrix d&-b\\\\-c&a pma…",
+            "displaySummary": "二阶矩阵的逆矩阵公式："
           }
         ],
         "formulas": [
@@ -7315,6 +8134,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 2,
             "searchAliases": [],
             "context": "对 n 阶方阵 A：",
+            "displayContext": "对 \\(n\\) 阶方阵 \\(A\\)：",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-001",
             "order": 0
@@ -7328,6 +8148,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 13,
             "searchAliases": [],
             "context": "所属知识点：逆矩阵公式、二阶逆矩阵与乘积转置求逆。",
+            "displayContext": "所属知识点：逆矩阵公式、二阶逆矩阵与乘积转置求逆。",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-001",
             "order": 1
@@ -7341,6 +8162,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 14,
             "searchAliases": [],
             "context": "二阶矩阵的逆矩阵公式：",
+            "displayContext": "二阶矩阵的逆矩阵公式：",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-001",
             "order": 2
@@ -7354,6 +8176,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 15,
             "searchAliases": [],
             "context": "所属知识点：逆矩阵公式、二阶逆矩阵与乘积转置求逆。",
+            "displayContext": "二阶矩阵的逆矩阵公式：",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-001",
             "order": 3
@@ -7367,6 +8190,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 15,
             "searchAliases": [],
             "context": "所属知识点：逆矩阵公式、二阶逆矩阵与乘积转置求逆。",
+            "displayContext": "二阶矩阵的逆矩阵公式：",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-001",
             "order": 4
@@ -7380,6 +8204,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 15,
             "searchAliases": [],
             "context": "所属知识点：逆矩阵公式、二阶逆矩阵与乘积转置求逆。",
+            "displayContext": "二阶矩阵的逆矩阵公式：",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-001",
             "order": 5
@@ -7393,6 +8218,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 16,
             "searchAliases": [],
             "context": "所属知识点：逆矩阵公式、二阶逆矩阵与乘积转置求逆。",
+            "displayContext": "并且",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-001",
             "order": 6
@@ -7406,6 +8232,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 16,
             "searchAliases": [],
             "context": "所属知识点：逆矩阵公式、二阶逆矩阵与乘积转置求逆。",
+            "displayContext": "并且",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-001",
             "order": 7
@@ -7419,6 +8246,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 17,
             "searchAliases": [],
             "context": "所属知识点：逆矩阵公式、二阶逆矩阵与乘积转置求逆。",
+            "displayContext": "并且",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-001",
             "order": 8
@@ -7432,6 +8260,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 17,
             "searchAliases": [],
             "context": "所属知识点：逆矩阵公式、二阶逆矩阵与乘积转置求逆。",
+            "displayContext": "并且",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-001",
             "order": 9
@@ -7450,7 +8279,8 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "linear-algebra-02-002-anchor-001",
             "title": "伴随矩阵全部公式与秩分类",
             "searchText": "伴随矩阵全部公式与秩分类 AA^ =A^ A= A E, 二阶矩阵的伴随矩阵公式： pmatrix a&b\\ &d pmatrix ^ = pmatrix d&-b\\\\-c&a pmatrix . A^ = A A^ -1 ( A ≠0), (AB)^ =B^ A^ , (A^T)^ =(A^ )^T. (A^m)^ =(A^ )^m. 若 A 可逆，则 (A^ )^ -1 = A A . 并且 (A^ -1 )^ = A A , A^ = A ^ n-1 . 对 n≥2： (kA)^ =k^ n-1 A^ , (A^ )^ = A ^ n-2 A. 伴随矩阵的秩： r(A^ )= cases n,&r(A)=n,\\\\ 1,&r(A)=n-1,\\\\ 0,&r(A)≤ n-2. cases 若题目给 A^ =A 或 A^ =A^T，先与 AA^ = A E 联立，再取行列式或看特征值。",
-            "summary": "AA^ =A^ A= A E, 二阶矩阵的伴随矩阵公式： pmatrix a&b\\ &d pmatrix ^ = pmatrix d&-b\\\\-c&a pmatrix . A^ = A A^ -1 ( A ≠0), (AB)^ =B^ A^ , (A^T)…"
+            "summary": "AA^ =A^ A= A E, 二阶矩阵的伴随矩阵公式： pmatrix a&b\\ &d pmatrix ^ = pmatrix d&-b\\\\-c&a pmatrix . A^ = A A^ -1 ( A ≠0), (AB)^ =B^ A^ , (A^T)…",
+            "displaySummary": "二阶矩阵的伴随矩阵公式："
           }
         ],
         "formulas": [
@@ -7463,6 +8293,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 0,
             "searchAliases": [],
             "context": "所属知识点：伴随矩阵全部公式与秩分类。",
+            "displayContext": "所属知识点：伴随矩阵全部公式与秩分类。",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-002",
             "order": 0
@@ -7476,6 +8307,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 1,
             "searchAliases": [],
             "context": "二阶矩阵的伴随矩阵公式：",
+            "displayContext": "二阶矩阵的伴随矩阵公式：",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-002",
             "order": 1
@@ -7489,6 +8321,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 2,
             "searchAliases": [],
             "context": "所属知识点：伴随矩阵全部公式与秩分类。",
+            "displayContext": "二阶矩阵的伴随矩阵公式：",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-002",
             "order": 2
@@ -7502,6 +8335,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 3,
             "searchAliases": [],
             "context": "所属知识点：伴随矩阵全部公式与秩分类。",
+            "displayContext": "二阶矩阵的伴随矩阵公式：",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-002",
             "order": 3
@@ -7515,6 +8349,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 3,
             "searchAliases": [],
             "context": "所属知识点：伴随矩阵全部公式与秩分类。",
+            "displayContext": "二阶矩阵的伴随矩阵公式：",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-002",
             "order": 4
@@ -7528,6 +8363,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 4,
             "searchAliases": [],
             "context": "所属知识点：伴随矩阵全部公式与秩分类。",
+            "displayContext": "二阶矩阵的伴随矩阵公式：",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-002",
             "order": 5
@@ -7541,6 +8377,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 6,
             "searchAliases": [],
             "context": "若 A 可逆，则",
+            "displayContext": "若 \\(A\\) 可逆，则",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-002",
             "order": 6
@@ -7554,6 +8391,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 7,
             "searchAliases": [],
             "context": "所属知识点：伴随矩阵全部公式与秩分类。",
+            "displayContext": "并且",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-002",
             "order": 7
@@ -7567,6 +8405,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 7,
             "searchAliases": [],
             "context": "所属知识点：伴随矩阵全部公式与秩分类。",
+            "displayContext": "并且",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-002",
             "order": 8
@@ -7580,6 +8419,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 9,
             "searchAliases": [],
             "context": "对 n\\ge2：",
+            "displayContext": "对 \\(n\\ge2\\)：",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-002",
             "order": 9
@@ -7593,6 +8433,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 9,
             "searchAliases": [],
             "context": "对 n\\ge2：",
+            "displayContext": "对 \\(n\\ge2\\)：",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-002",
             "order": 10
@@ -7606,6 +8447,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 10,
             "searchAliases": [],
             "context": "伴随矩阵的秩：",
+            "displayContext": "伴随矩阵的秩：",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-002",
             "order": 11
@@ -7624,14 +8466,16 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "linear-algebra-02-003-anchor-001",
             "title": "矩阵秩的定义、子式判定与常用不等式",
             "searchText": "矩阵秩的定义、子式判定与常用不等式 r(A)=r(A^T)=r(A^TA)=r(AA^T), r(kA)=r(A) (k≠0), r(A)≤ \\ m,n\\ (A m n ). r(AB)≤ \\ r(A),r(B)\\ , r(A)-r(B) ≤ r(A B)≤ r(A)+r(B). 同样大小且行数相同的矩阵横向拼接时： r(A+B)≤ r(A,B)≤ r(A)+r(B). 纵向拼接同样满足 \\ r(A),r(B)\\ ≤ r\\! pmatrix A\\ pmatrix ≤ r(A)+r(B). 若 P,Q 可逆，则 r(PAQ)=r(A). r(A)+r(B)-n≤ r(AB)≤ \\ r(A),r(B)\\ 适用于 A 有 n 列、B 有 n 行的情形。 满秩乘法结论：若 A m n 满列秩，即 r(A)=n，则对任意可乘的 B， r(AB)=r(B). 若 B n s 满行秩，即 r(B)=n，则对任意可乘的 A， r(AB)=r(A).",
-            "summary": "r(A)=r(A^T)=r(A^TA)=r(AA^T), r(kA)=r(A) (k≠0), r(A)≤ \\ m,n\\ (A m n ). r(AB)≤ \\ r(A),r(B)\\ , r(A)-r(B) ≤ r(A B)≤ r(A)+r(B). 同样大小且…"
+            "summary": "r(A)=r(A^T)=r(A^TA)=r(AA^T), r(kA)=r(A) (k≠0), r(A)≤ \\ m,n\\ (A m n ). r(AB)≤ \\ r(A),r(B)\\ , r(A)-r(B) ≤ r(A B)≤ r(A)+r(B). 同样大小且…",
+            "displaySummary": "同样大小且行数相同的矩阵横向拼接时："
           },
           {
             "id": "anchor-fyvavw",
             "legacyId": "linear-algebra-02-003-anchor-002",
             "title": "初等变换求秩、非零子式与含参数秩分类",
             "searchText": "初等变换求秩、非零子式与含参数秩分类 具体矩阵用初等行变换化成阶梯形，非零行数就是秩。含参数时，记录每个非零行的首个非零位置可能消失的临界参数并分情况；也可先找非零子式证明“至少为几”，再用等式关系证明“至多为几”。",
-            "summary": "具体矩阵用初等行变换化成阶梯形，非零行数就是秩。含参数时，记录每个非零行的首个非零位置可能消失的临界参数并分情况；也可先找非零子式证明“至少为几”，再用等式关系证明“至多为几”。"
+            "summary": "具体矩阵用初等行变换化成阶梯形，非零行数就是秩。含参数时，记录每个非零行的首个非零位置可能消失的临界参数并分情况；也可先找非零子式证明“至少为几”，再用等式关系证明“至多为几”。",
+            "displaySummary": "具体矩阵用初等行变换化成阶梯形，非零行数就是秩。含参数时，记录每个非零行的首个非零位置可能消失的临界参数并分情况；也可先找非零子式证明“至少为几”，再用等式关系证明“至多为几”。"
           }
         ],
         "formulas": [
@@ -7644,6 +8488,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 0,
             "searchAliases": [],
             "context": "所属知识点：矩阵秩的定义、子式判定与常用不等式。",
+            "displayContext": "所属知识点：矩阵秩的定义、子式判定与常用不等式。",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-003",
             "order": 0
@@ -7657,6 +8502,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 1,
             "searchAliases": [],
             "context": "所属知识点：矩阵秩的定义、子式判定与常用不等式。",
+            "displayContext": "所属知识点：矩阵秩的定义、子式判定与常用不等式。",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-003",
             "order": 1
@@ -7665,11 +8511,15 @@ export const mathChapters: MathChapter[] = [
             "id": "linear-usaqdu",
             "parentAnchorId": "anchor-6exx6v",
             "legacyParentAnchorId": "linear-algebra-02-003-anchor-001",
-            "title": "矩阵秩的定义、子式判定与常用不等式：r(AB)",
+            "title": "矩阵乘积的秩不超过各因子的秩",
             "latex": "r(AB)\\le\\min\\{r(A),r(B)\\},",
             "sourceBlockIndex": 2,
-            "searchAliases": [],
+            "searchAliases": [
+              "矩阵乘积的秩",
+              "AB的秩上界"
+            ],
             "context": "所属知识点：矩阵秩的定义、子式判定与常用不等式。",
+            "displayContext": "所属知识点：矩阵秩的定义、子式判定与常用不等式。",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-003",
             "order": 2
@@ -7683,6 +8533,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 3,
             "searchAliases": [],
             "context": "所属知识点：矩阵秩的定义、子式判定与常用不等式。",
+            "displayContext": "所属知识点：矩阵秩的定义、子式判定与常用不等式。",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-003",
             "order": 3
@@ -7696,6 +8547,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 4,
             "searchAliases": [],
             "context": "同样大小且行数相同的矩阵横向拼接时：",
+            "displayContext": "同样大小且行数相同的矩阵横向拼接时：",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-003",
             "order": 4
@@ -7709,6 +8561,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 5,
             "searchAliases": [],
             "context": "纵向拼接同样满足",
+            "displayContext": "纵向拼接同样满足",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-003",
             "order": 5
@@ -7717,11 +8570,15 @@ export const mathChapters: MathChapter[] = [
             "id": "linear-y3xeg0",
             "parentAnchorId": "anchor-6exx6v",
             "legacyParentAnchorId": "linear-algebra-02-003-anchor-001",
-            "title": "矩阵秩的定义、子式判定与常用不等式：r(PAQ)",
+            "title": "可逆矩阵左右乘不改变秩",
             "latex": "r(PAQ)=r(A).",
             "sourceBlockIndex": 7,
-            "searchAliases": [],
+            "searchAliases": [
+              "PAQ的秩",
+              "可逆矩阵夹乘秩不变"
+            ],
             "context": "若 P,Q 可逆，则",
+            "displayContext": "若 \\(P,Q\\) 可逆，则",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-003",
             "order": 6
@@ -7730,11 +8587,15 @@ export const mathChapters: MathChapter[] = [
             "id": "linear-196fcv6",
             "parentAnchorId": "anchor-6exx6v",
             "legacyParentAnchorId": "linear-algebra-02-003-anchor-001",
-            "title": "矩阵秩的定义、子式判定与常用不等式：r(A)+r(B)-n",
+            "title": "矩阵乘积的秩下界",
             "latex": "r(A)+r(B)-n\\le r(AB)\\le\\min\\{r(A),r(B)\\}",
             "sourceBlockIndex": 8,
-            "searchAliases": [],
+            "searchAliases": [
+              "西尔维斯特秩不等式",
+              "AB秩下界"
+            ],
             "context": "所属知识点：矩阵秩的定义、子式判定与常用不等式。",
+            "displayContext": "若 \\(P,Q\\) 可逆，则",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-003",
             "order": 7
@@ -7748,6 +8609,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 16,
             "searchAliases": [],
             "context": "适用于 A 有 n 列、B 有 n 行的情形。",
+            "displayContext": "满秩乘法结论：若 \\(A_{m\\times n}\\) 满列秩，即 \\(r(A)=n\\)，则对任意可乘的 \\(B\\)，",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-003",
             "order": 8
@@ -7761,6 +8623,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 20,
             "searchAliases": [],
             "context": "所属知识点：矩阵秩的定义、子式判定与常用不等式。",
+            "displayContext": "若 \\(B_{n\\times s}\\) 满行秩，即 \\(r(B)=n\\)，则对任意可乘的 \\(A\\)，",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-003",
             "order": 9
@@ -7779,21 +8642,24 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "linear-algebra-02-004-anchor-001",
             "title": "矩阵高次幂、幂零矩阵与凯莱—哈密顿降幂",
             "searchText": "矩阵高次幂、幂零矩阵与凯莱—哈密顿降幂 优先顺序： 若 A^2=cA，则 A^n=c^ n-1 A。 若 A^k=O，按幂零关系截断。 若能相似对角化，A=P P^ -1 ，则 A^n=P ^nP^ -1 。 低阶矩阵可用 E-A 得到的特征方程，把高次幂降成低次幂。",
-            "summary": "优先顺序： 若 A^2=cA，则 A^n=c^ n-1 A。 若 A^k=O，按幂零关系截断。 若能相似对角化，A=P P^ -1 ，则 A^n=P ^nP^ -1 。 低阶矩阵可用 E-A 得到的特征方程，把高次幂降成低次幂。"
+            "summary": "优先顺序： 若 A^2=cA，则 A^n=c^ n-1 A。 若 A^k=O，按幂零关系截断。 若能相似对角化，A=P P^ -1 ，则 A^n=P ^nP^ -1 。 低阶矩阵可用 E-A 得到的特征方程，把高次幂降成低次幂。",
+            "displaySummary": "优先顺序："
           },
           {
             "id": "anchor-1xtyyy4",
             "legacyId": "linear-algebra-02-004-anchor-002",
             "title": "幂等矩阵的高次幂",
             "searchText": "幂等矩阵的高次幂 若 A^2=A，则对任意正整数 n，都有 A^n=A；不能由此推出 A=E。",
-            "summary": "若 A^2=A，则对任意正整数 n，都有 A^n=A；不能由此推出 A=E。"
+            "summary": "若 A^2=A，则对任意正整数 n，都有 A^n=A；不能由此推出 A=E。",
+            "displaySummary": "若 \\(A^2=A\\)，则对任意正整数 \\(n\\)，都有 <!-- formula {\"id\":\"linear-idempotent-power\",\"title\":\"幂等矩阵的高次幂不变\",\"aliases\":[\"幂等矩阵\",\"A平方等于A\"],\"context\":\"A²=A 时，对所有正整数 n 均有 Aⁿ=A；但 A 不一定是单位矩阵。\"} -->\\(A^n=A\\)；不能由此推出 \\(A=E\\)。"
           },
           {
             "id": "anchor-1mtrtso",
             "legacyId": "linear-algebra-02-004-anchor-003",
             "title": "幂零矩阵的逆",
             "searchText": "幂零矩阵的逆 若 A^k=O，则 E-A 可逆，且 (E-A)^ -1 =E+A+A^2+ +A^ k-1 .",
-            "summary": "若 A^k=O，则 E-A 可逆，且 (E-A)^ -1 =E+A+A^2+ +A^ k-1 ."
+            "summary": "若 A^k=O，则 E-A 可逆，且 (E-A)^ -1 =E+A+A^2+ +A^ k-1 .",
+            "displaySummary": "若 \\(A^k=O\\)，则 \\(E-A\\) 可逆，且"
           }
         ],
         "formulas": [
@@ -7809,6 +8675,7 @@ export const mathChapters: MathChapter[] = [
               "A平方等于cA"
             ],
             "context": "A²=cA 且 n 为正整数时，Aⁿ=cⁿ⁻¹A。",
+            "displayContext": "1. 若 \\(A^2=cA\\)，则",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-004",
             "order": 0
@@ -7825,6 +8692,7 @@ export const mathChapters: MathChapter[] = [
               "对角化求幂"
             ],
             "context": "A 可相似对角化时，先对角化，再将对角矩阵的各对角元分别乘方。",
+            "displayContext": "优先顺序：",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-004",
             "order": 1
@@ -7841,6 +8709,7 @@ export const mathChapters: MathChapter[] = [
               "A平方等于A"
             ],
             "context": "A²=A 时，对所有正整数 n 均有 Aⁿ=A；但 A 不一定是单位矩阵。",
+            "displayContext": "若 \\(A^2=A\\)，则对任意正整数 \\(n\\)，都有",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-004",
             "order": 2
@@ -7854,6 +8723,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 12,
             "searchAliases": [],
             "context": "若 A^k=O，则 E-A 可逆，且",
+            "displayContext": "若 \\(A^k=O\\)，则 \\(E-A\\) 可逆，且",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-004",
             "order": 3
@@ -7872,7 +8742,8 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "linear-algebra-02-005-anchor-001",
             "title": "初等行列变换、初等矩阵及其逆矩阵",
             "searchText": "初等行列变换、初等矩阵及其逆矩阵 左乘初等矩阵，相当于对原矩阵作同样的行变换。 右乘初等矩阵，相当于作同样的列变换。 交换型初等矩阵的逆还是自身；倍乘型把倍数换成倒数；倍加型把倍数换成相反数。 可逆矩阵一定能写成若干初等矩阵的乘积。",
-            "summary": "左乘初等矩阵，相当于对原矩阵作同样的行变换。 右乘初等矩阵，相当于作同样的列变换。 交换型初等矩阵的逆还是自身；倍乘型把倍数换成倒数；倍加型把倍数换成相反数。 可逆矩阵一定能写成若干初等矩阵的乘积。"
+            "summary": "左乘初等矩阵，相当于对原矩阵作同样的行变换。 右乘初等矩阵，相当于作同样的列变换。 交换型初等矩阵的逆还是自身；倍乘型把倍数换成倒数；倍加型把倍数换成相反数。 可逆矩阵一定能写成若干初等矩阵的乘积。",
+            "displaySummary": "- 左乘初等矩阵，相当于对原矩阵作同样的行变换。\n- 右乘初等矩阵，相当于作同样的列变换。\n- 交换型初等矩阵的逆还是自身；倍乘型把倍数换成倒数；倍加型把倍数换成相反数。\n- 可逆矩阵一定能写成若干初等矩阵的乘积。"
           }
         ],
         "formulas": []
@@ -7889,14 +8760,16 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "linear-algebra-02-006-anchor-001",
             "title": "分块逆矩阵",
             "searchText": "分块逆矩阵 pmatrix A&O\\ &B pmatrix ^ -1 = pmatrix A^ -1 &O\\ &B^ -1 pmatrix . pmatrix O&A\\ &O pmatrix ^ -1 = pmatrix O&B^ -1 \\ ^ -1 &O pmatrix . pmatrix A&C\\ &B pmatrix ^ -1 = pmatrix A^ -1 &-A^ -1 CB^ -1 \\\\ O&B^ -1 pmatrix , pmatrix A&O\\ &B pmatrix ^ -1 = pmatrix A^ -1 &O\\\\ -B^ -1 CA^ -1 &B^ -1 pmatrix . 若 M= pmatrix A&B\\ &D pmatrix , S=D-CA^ -1 B, 且 A,S 都可逆，则 M^ -1 = pmatrix A^ -1 +A^ -1 BS^ -1 CA^ -1 &-A^ -1 BS^ -1 \\\\ -S^ -1 CA^ -1 &S^ -1 pmatrix .",
-            "summary": "pmatrix A&O\\ &B pmatrix ^ -1 = pmatrix A^ -1 &O\\ &B^ -1 pmatrix . pmatrix O&A\\ &O pmatrix ^ -1 = pmatrix O&B^ -1 \\ ^ -1 &O pmatr…"
+            "summary": "pmatrix A&O\\ &B pmatrix ^ -1 = pmatrix A^ -1 &O\\ &B^ -1 pmatrix . pmatrix O&A\\ &O pmatrix ^ -1 = pmatrix O&B^ -1 \\ ^ -1 &O pmatr…",
+            "displaySummary": "若"
           },
           {
             "id": "anchor-1fgtxmu",
             "legacyId": "linear-algebra-02-006-anchor-002",
             "title": "分块矩阵的秩",
             "searchText": "分块矩阵的秩 r pmatrix A&O\\ &B pmatrix =r(A)+r(B). 分块大小相容时，还有 r pmatrix O&A\\ &O pmatrix =r(A)+r(B). 当 A 可逆时，分块消元给出 r pmatrix A&B\\ &D pmatrix =r(A)+r(D-CA^ -1 B). 对一般分块矩阵，先用可逆的分块行、列变换消去非对角块；变换前后秩不变。分块计算仍需注意乘法顺序。",
-            "summary": "r pmatrix A&O\\ &B pmatrix =r(A)+r(B). 分块大小相容时，还有 r pmatrix O&A\\ &O pmatrix =r(A)+r(B). 当 A 可逆时，分块消元给出 r pmatrix A&B\\ &D pmatrix …"
+            "summary": "r pmatrix A&O\\ &B pmatrix =r(A)+r(B). 分块大小相容时，还有 r pmatrix O&A\\ &O pmatrix =r(A)+r(B). 当 A 可逆时，分块消元给出 r pmatrix A&B\\ &D pmatrix …",
+            "displaySummary": "分块大小相容时，还有"
           }
         ],
         "formulas": [
@@ -7909,6 +8782,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 0,
             "searchAliases": [],
             "context": "所属知识点：分块逆矩阵。",
+            "displayContext": "所属知识点：分块逆矩阵。",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-006",
             "order": 0
@@ -7922,6 +8796,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 1,
             "searchAliases": [],
             "context": "所属知识点：分块逆矩阵。",
+            "displayContext": "所属知识点：分块逆矩阵。",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-006",
             "order": 1
@@ -7935,6 +8810,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 2,
             "searchAliases": [],
             "context": "所属知识点：分块逆矩阵。",
+            "displayContext": "所属知识点：分块逆矩阵。",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-006",
             "order": 2
@@ -7948,6 +8824,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 3,
             "searchAliases": [],
             "context": "所属知识点：分块逆矩阵。",
+            "displayContext": "所属知识点：分块逆矩阵。",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-006",
             "order": 3
@@ -7961,6 +8838,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 4,
             "searchAliases": [],
             "context": "所属知识点：分块逆矩阵。",
+            "displayContext": "若",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-006",
             "order": 4
@@ -7974,6 +8852,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 6,
             "searchAliases": [],
             "context": "且 A,S 都可逆，则",
+            "displayContext": "且 \\(A,S\\) 都可逆，则",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-006",
             "order": 5
@@ -7987,6 +8866,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 7,
             "searchAliases": [],
             "context": "所属知识点：分块矩阵的秩。",
+            "displayContext": "所属知识点：分块矩阵的秩。",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-006",
             "order": 6
@@ -8000,6 +8880,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 8,
             "searchAliases": [],
             "context": "分块大小相容时，还有",
+            "displayContext": "分块大小相容时，还有",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-006",
             "order": 7
@@ -8013,6 +8894,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 10,
             "searchAliases": [],
             "context": "当 A 可逆时，分块消元给出",
+            "displayContext": "当 \\(A\\) 可逆时，分块消元给出",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-006",
             "order": 8
@@ -8031,28 +8913,32 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "linear-algebra-02-007-anchor-001",
             "title": "$AB=E$",
             "searchText": "AB=E 同阶方阵若 AB=E，则 A,B 都可逆，且 B=A^ -1 , BA=E.",
-            "summary": "同阶方阵若 AB=E，则 A,B 都可逆，且 B=A^ -1 , BA=E."
+            "summary": "同阶方阵若 AB=E，则 A,B 都可逆，且 B=A^ -1 , BA=E.",
+            "displaySummary": "同阶方阵若 \\(AB=E\\)，则 \\(A,B\\) 都可逆，且"
           },
           {
             "id": "anchor-175f3w3",
             "legacyId": "linear-algebra-02-007-anchor-002",
             "title": "$AB=O$",
             "searchText": "AB=O r(A)+r(B)≤ n. 若其中一个 n 阶方阵可逆，则另一个只能是零矩阵。按列看，B 的每一列都是 Ax=0 的解；按行看，A 的每一行与 B 的各列相乘为零。",
-            "summary": "r(A)+r(B)≤ n. 若其中一个 n 阶方阵可逆，则另一个只能是零矩阵。按列看，B 的每一列都是 Ax=0 的解；按行看，A 的每一行与 B 的各列相乘为零。"
+            "summary": "r(A)+r(B)≤ n. 若其中一个 n 阶方阵可逆，则另一个只能是零矩阵。按列看，B 的每一列都是 Ax=0 的解；按行看，A 的每一行与 B 的各列相乘为零。",
+            "displaySummary": "若其中一个 \\(n\\) 阶方阵可逆，则另一个只能是零矩阵。按列看，\\(B\\) 的每一列都是 \\(Ax=0\\) 的解；按行看，\\(A\\) 的每一行与 \\(B\\) 的各列相乘为零。"
           },
           {
             "id": "anchor-giw2wf",
             "legacyId": "linear-algebra-02-007-anchor-003",
             "title": "$AB=C$",
             "searchText": "AB=C r(C)≤ r(A), r(C)≤ r(B). 若 A 可逆， B=A^ -1 C；若 B 可逆， A=CB^ -1 。不可逆时，把未知矩阵按列拆开，逐列解线性方程组。",
-            "summary": "r(C)≤ r(A), r(C)≤ r(B). 若 A 可逆， B=A^ -1 C；若 B 可逆， A=CB^ -1 。不可逆时，把未知矩阵按列拆开，逐列解线性方程组。"
+            "summary": "r(C)≤ r(A), r(C)≤ r(B). 若 A 可逆， B=A^ -1 C；若 B 可逆， A=CB^ -1 。不可逆时，把未知矩阵按列拆开，逐列解线性方程组。",
+            "displaySummary": ""
           },
           {
             "id": "anchor-5mrg4g",
             "legacyId": "linear-algebra-02-007-anchor-004",
             "title": "矩阵乘法不能随意约去",
             "searchText": "矩阵乘法不能随意约去 AB=AC 一般不能推出 B=C。只有当左侧的 A 是可逆方阵时，才能在等式两边左乘 A^ -1 ，得到 B=C。",
-            "summary": "AB=AC 一般不能推出 B=C。只有当左侧的 A 是可逆方阵时，才能在等式两边左乘 A^ -1 ，得到 B=C。"
+            "summary": "AB=AC 一般不能推出 B=C。只有当左侧的 A 是可逆方阵时，才能在等式两边左乘 A^ -1 ，得到 B=C。",
+            "displaySummary": "\\(AB=AC\\) 一般不能推出 \\(B=C\\)。只有当左侧的 \\(A\\) 是可逆方阵时，才能在等式两边左乘 \\(A^{-1}\\)，得到 \\(B=C\\)。"
           }
         ],
         "formulas": [
@@ -8065,6 +8951,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 3,
             "searchAliases": [],
             "context": "同阶方阵若 AB=E，则 A,B 都可逆，且",
+            "displayContext": "同阶方阵若 \\(AB=E\\)，则 \\(A,B\\) 都可逆，且",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-007",
             "order": 0
@@ -8078,6 +8965,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 5,
             "searchAliases": [],
             "context": "所属知识点：$AB=O$。",
+            "displayContext": "所属知识点：$AB=O$。",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-007",
             "order": 1
@@ -8091,6 +8979,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 12,
             "searchAliases": [],
             "context": "所属知识点：$AB=C$。",
+            "displayContext": "所属知识点：$AB=C$。",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-007",
             "order": 2
@@ -8104,6 +8993,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 12,
             "searchAliases": [],
             "context": "所属知识点：$AB=C$。",
+            "displayContext": "所属知识点：$AB=C$。",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-007",
             "order": 3
@@ -8120,6 +9010,7 @@ export const mathChapters: MathChapter[] = [
               "左乘逆矩阵"
             ],
             "context": "A 可逆时，等式两边左乘 A⁻¹。",
+            "displayContext": "若 \\(A\\) 可逆，",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-007",
             "order": 4
@@ -8136,6 +9027,7 @@ export const mathChapters: MathChapter[] = [
               "右乘逆矩阵"
             ],
             "context": "B 可逆时，等式两边右乘 B⁻¹。",
+            "displayContext": "B 可逆时，等式两边右乘 B⁻¹。",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-007",
             "order": 5
@@ -8154,14 +9046,16 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "linear-algebra-02-008-anchor-001",
             "title": "相似对角化分解",
             "searchText": "相似对角化分解 A=P P^ -1 , 其中 P 的列是与 对角元顺序一致的特征向量。",
-            "summary": "A=P P^ -1 , 其中 P 的列是与 对角元顺序一致的特征向量。"
+            "summary": "A=P P^ -1 , 其中 P 的列是与 对角元顺序一致的特征向量。",
+            "displaySummary": "其中 \\(P\\) 的列是与 \\(\\Lambda\\) 对角元顺序一致的特征向量。"
           },
           {
             "id": "anchor-20es8i",
             "legacyId": "linear-algebra-02-008-anchor-002",
             "title": "实对称矩阵分解",
             "searchText": "实对称矩阵分解 A=Q Q^T, 其中 Q 正交， 为实特征值组成的对角矩阵。",
-            "summary": "A=Q Q^T, 其中 Q 正交， 为实特征值组成的对角矩阵。"
+            "summary": "A=Q Q^T, 其中 Q 正交， 为实特征值组成的对角矩阵。",
+            "displaySummary": "其中 \\(Q\\) 正交，\\(\\Lambda\\) 为实特征值组成的对角矩阵。"
           }
         ],
         "formulas": [
@@ -8174,6 +9068,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 0,
             "searchAliases": [],
             "context": "所属知识点：相似对角化分解。",
+            "displayContext": "所属知识点：相似对角化分解。",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-008",
             "order": 0
@@ -8187,6 +9082,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 3,
             "searchAliases": [],
             "context": "所属知识点：实对称矩阵分解。",
+            "displayContext": "所属知识点：实对称矩阵分解。",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-008",
             "order": 1
@@ -8205,21 +9101,24 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "linear-algebra-02-009-anchor-001",
             "title": "矩阵等价、标准形与秩的判定",
             "searchText": "矩阵等价、标准形与秩的判定 同型矩阵 A,B 等价，是指存在可逆矩阵 P,Q，使 PAQ=B. A 与 B 等价 r(A)=r(B). 任意秩为 r 的 m n 矩阵都等价于 pmatrix E r&O\\ &O pmatrix .",
-            "summary": "同型矩阵 A,B 等价，是指存在可逆矩阵 P,Q，使 PAQ=B. A 与 B 等价 r(A)=r(B). 任意秩为 r 的 m n 矩阵都等价于 pmatrix E r&O\\ &O pmatrix ."
+            "summary": "同型矩阵 A,B 等价，是指存在可逆矩阵 P,Q，使 PAQ=B. A 与 B 等价 r(A)=r(B). 任意秩为 r 的 m n 矩阵都等价于 pmatrix E r&O\\ &O pmatrix .",
+            "displaySummary": "同型矩阵 \\(A,B\\) 等价，是指存在可逆矩阵 \\(P,Q\\)，使"
           },
           {
             "id": "anchor-1ub8g42",
             "legacyId": "linear-algebra-02-009-anchor-002",
             "title": "矩阵转置、迹、对称矩阵、反对称矩阵与正交矩阵",
             "searchText": "矩阵转置、迹、对称矩阵、反对称矩阵与正交矩阵 (A+B)^T=A^T+B^T, (kA)^T=kA^T, (AB)^T=B^TA^T, (A^T)^T=A. 矩阵乘法满足结合律、分配律，一般不满足交换律。实对称矩阵满足 A^T=A，实反对称矩阵满足 A^T=-A。任意实方阵都可写成 A= A+A^T 2 + A-A^T 2 , 即“一个实对称矩阵＋一个实反对称矩阵”。 迹的运算公式： tr (A+B)= tr (A)+ tr (B), tr (kA)=k tr (A), tr (AB)= tr (BA), tr (P^ -1 AP)= tr (A).",
-            "summary": "(A+B)^T=A^T+B^T, (kA)^T=kA^T, (AB)^T=B^TA^T, (A^T)^T=A. 矩阵乘法满足结合律、分配律，一般不满足交换律。实对称矩阵满足 A^T=A，实反对称矩阵满足 A^T=-A。任意实方阵都可写成 A= A+A^T …"
+            "summary": "(A+B)^T=A^T+B^T, (kA)^T=kA^T, (AB)^T=B^TA^T, (A^T)^T=A. 矩阵乘法满足结合律、分配律，一般不满足交换律。实对称矩阵满足 A^T=A，实反对称矩阵满足 A^T=-A。任意实方阵都可写成 A= A+A^T …",
+            "displaySummary": "矩阵乘法满足结合律、分配律，一般不满足交换律。实对称矩阵满足 \\(A^T=A\\)，实反对称矩阵满足 \\(A^T=-A\\)。任意实方阵都可写成"
           },
           {
             "id": "anchor-doq5h6",
             "legacyId": "linear-algebra-02-009-anchor-003",
             "title": "正交矩阵、幂零矩阵与秩一矩阵常用结论",
             "searchText": "正交矩阵、幂零矩阵与秩一矩阵常用结论 各行元素之和相同为 s 时，s 是特征值，(1, ,1)^T 是对应特征向量。 同型矩阵 A,B 等价，当且仅当 r(A)=r(B)。 AB 与 BA 为同阶方阵时有相同的特征多项式；若 A 可逆，则 AB BA。 把式子“化成 E”常用 AA^ -1 =E 或 A^ -1 A=E，乘法顺序不能换。 正交矩阵满足 Q^TQ=QQ^T=E，因此 Q^ -1 =Q^T，且 Q = 1。 正交矩阵的行向量、列向量分别都是标准正交向量组，并保持长度与内积： \\ Qx\\ =\\ x\\ , (Qx)^T(Qy)=x^Ty. 实反对称矩阵满足 A^T=-A，主对角元全为零；奇数阶实反对称矩阵行列式为零。 秩一矩阵 A=uv^T≠ O 满足 A^2=(v^Tu)A= tr (A)A。 秩一方阵 A=uv^T≠ O 还满足 A^m=[ tr (A)]^ m-1 A (m≥1), 其特征值为 tr (A) 和 n-1 个 0（按代数重数计）。",
-            "summary": "各行元素之和相同为 s 时，s 是特征值，(1, ,1)^T 是对应特征向量。 同型矩阵 A,B 等价，当且仅当 r(A)=r(B)。 AB 与 BA 为同阶方阵时有相同的特征多项式；若 A 可逆，则 AB BA。 把式子“化成 E”常用 AA^ -1 =…"
+            "summary": "各行元素之和相同为 s 时，s 是特征值，(1, ,1)^T 是对应特征向量。 同型矩阵 A,B 等价，当且仅当 r(A)=r(B)。 AB 与 BA 为同阶方阵时有相同的特征多项式；若 A 可逆，则 AB BA。 把式子“化成 E”常用 AA^ -1 =…",
+            "displaySummary": "秩一方阵 \\(A=uv^T\\ne O\\) 还满足"
           }
         ],
         "formulas": [
@@ -8232,6 +9131,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 2,
             "searchAliases": [],
             "context": "同型矩阵 A,B 等价，是指存在可逆矩阵 P,Q，使",
+            "displayContext": "同型矩阵 \\(A,B\\) 等价，是指存在可逆矩阵 \\(P,Q\\)，使",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-009",
             "order": 0
@@ -8245,6 +9145,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 3,
             "searchAliases": [],
             "context": "所属知识点：矩阵等价、标准形与秩的判定。",
+            "displayContext": "同型矩阵 \\(A,B\\) 等价，是指存在可逆矩阵 \\(P,Q\\)，使",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-009",
             "order": 1
@@ -8258,6 +9159,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 6,
             "searchAliases": [],
             "context": "任意秩为 r 的 m\\times n 矩阵都等价于",
+            "displayContext": "任意秩为 \\(r\\) 的 \\(m\\times n\\) 矩阵都等价于",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-009",
             "order": 2
@@ -8271,6 +9173,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 7,
             "searchAliases": [],
             "context": "所属知识点：矩阵转置、迹、对称矩阵、反对称矩阵与正交矩阵。",
+            "displayContext": "所属知识点：矩阵转置、迹、对称矩阵、反对称矩阵与正交矩阵。",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-009",
             "order": 3
@@ -8284,6 +9187,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 7,
             "searchAliases": [],
             "context": "所属知识点：矩阵转置、迹、对称矩阵、反对称矩阵与正交矩阵。",
+            "displayContext": "所属知识点：矩阵转置、迹、对称矩阵、反对称矩阵与正交矩阵。",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-009",
             "order": 4
@@ -8297,6 +9201,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 8,
             "searchAliases": [],
             "context": "所属知识点：矩阵转置、迹、对称矩阵、反对称矩阵与正交矩阵。",
+            "displayContext": "所属知识点：矩阵转置、迹、对称矩阵、反对称矩阵与正交矩阵。",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-009",
             "order": 5
@@ -8310,6 +9215,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 8,
             "searchAliases": [],
             "context": "所属知识点：矩阵转置、迹、对称矩阵、反对称矩阵与正交矩阵。",
+            "displayContext": "所属知识点：矩阵转置、迹、对称矩阵、反对称矩阵与正交矩阵。",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-009",
             "order": 6
@@ -8323,6 +9229,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 11,
             "searchAliases": [],
             "context": "矩阵乘法满足结合律、分配律，一般不满足交换律。实对称矩阵满足 A^T=A，实反对称矩阵满足 A^T=-A。任意实方阵都可写成",
+            "displayContext": "矩阵乘法满足结合律、分配律，一般不满足交换律。实对称矩阵满足 \\(A^T=A\\)，实反对称矩阵满足 \\(A^T=-A\\)。任意实方阵都可写成",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-009",
             "order": 7
@@ -8336,6 +9243,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 12,
             "searchAliases": [],
             "context": "迹的运算公式：",
+            "displayContext": "迹的运算公式：",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-009",
             "order": 8
@@ -8349,6 +9257,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 12,
             "searchAliases": [],
             "context": "迹的运算公式：",
+            "displayContext": "迹的运算公式：",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-009",
             "order": 9
@@ -8362,6 +9271,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 13,
             "searchAliases": [],
             "context": "所属知识点：矩阵转置、迹、对称矩阵、反对称矩阵与正交矩阵。",
+            "displayContext": "迹的运算公式：",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-009",
             "order": 10
@@ -8375,6 +9285,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 13,
             "searchAliases": [],
             "context": "所属知识点：矩阵转置、迹、对称矩阵、反对称矩阵与正交矩阵。",
+            "displayContext": "迹的运算公式：",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-009",
             "order": 11
@@ -8391,6 +9302,7 @@ export const mathChapters: MathChapter[] = [
               "矩阵乘积交换相似"
             ],
             "context": "A、B 为同阶方阵且 A 可逆，BA=A⁻¹(AB)A。",
+            "displayContext": "- 各行元素之和相同为 \\(s\\) 时，\\(s\\) 是特征值，\\((1,\\ldots,1)^T\\) 是对应特征向量。\n- 同型矩阵 \\(A,B\\) 等价，当且仅当 \\(r(A)=r(B)\\)。\n- \\(AB\\) 与 \\(BA\\) 为同阶方阵时有相同的特征多项式；若 \\(A\\) 可逆，则",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-009",
             "order": 12
@@ -8407,6 +9319,7 @@ export const mathChapters: MathChapter[] = [
               "Q逆等于Q转置"
             ],
             "context": "Q 为正交矩阵时成立。",
+            "displayContext": "Q 为正交矩阵时成立。",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-009",
             "order": 13
@@ -8423,6 +9336,7 @@ export const mathChapters: MathChapter[] = [
               "正交矩阵正负一"
             ],
             "context": "Q 为实正交矩阵时，行列式只能取 1 或 -1。",
+            "displayContext": "Q 为实正交矩阵时，行列式只能取 1 或 -1。",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-009",
             "order": 14
@@ -8439,6 +9353,7 @@ export const mathChapters: MathChapter[] = [
               "迹乘矩阵"
             ],
             "context": "非零秩一方阵 A=uvᵀ，且 tr(A)=vᵀu。",
+            "displayContext": "非零秩一方阵 A=uvᵀ，且 tr(A)=vᵀu。",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-009",
             "order": 15
@@ -8452,6 +9367,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 34,
             "searchAliases": [],
             "context": "秩一方阵 A=uv^T\\ne O 还满足",
+            "displayContext": "秩一方阵 \\(A=uv^T\\ne O\\) 还满足",
             "chapterId": "linear-algebra-02",
             "topicId": "linear-algebra-02-009",
             "order": 16
@@ -8478,7 +9394,8 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "linear-algebra-03-001-anchor-001",
             "title": "向量内积、长度、夹角、正交与施密特正交化",
             "searchText": "向量内积、长度、夹角、正交与施密特正交化 内积、长度与夹角： ( , )= ^T , \\ \\ = ^T , = ^T \\ \\ \\ \\ . 正交即 ^T =0。施密特正交化： k= k- j=1 ^ k-1 ( k, j) ( j, j) j, e k= k \\ k\\ . 向量 在非零向量 方向上的投影向量为 proj = ^T ^T \\, .",
-            "summary": "内积、长度与夹角： ( , )= ^T , \\ \\ = ^T , = ^T \\ \\ \\ \\ . 正交即 ^T =0。施密特正交化： k= k- j=1 ^ k-1 ( k, j) ( j, j) j, e k= k \\ k\\ . 向量 在非零向量 方向上的…"
+            "summary": "内积、长度与夹角： ( , )= ^T , \\ \\ = ^T , = ^T \\ \\ \\ \\ . 正交即 ^T =0。施密特正交化： k= k- j=1 ^ k-1 ( k, j) ( j, j) j, e k= k \\ k\\ . 向量 在非零向量 方向上的…",
+            "displaySummary": "内积、长度与夹角："
           }
         ],
         "formulas": [
@@ -8491,6 +9408,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 0,
             "searchAliases": [],
             "context": "内积、长度与夹角：",
+            "displayContext": "内积、长度与夹角：",
             "chapterId": "linear-algebra-03",
             "topicId": "linear-algebra-03-001",
             "order": 0
@@ -8504,6 +9422,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 0,
             "searchAliases": [],
             "context": "内积、长度与夹角：",
+            "displayContext": "内积、长度与夹角：",
             "chapterId": "linear-algebra-03",
             "topicId": "linear-algebra-03-001",
             "order": 1
@@ -8517,6 +9436,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 1,
             "searchAliases": [],
             "context": "所属知识点：向量内积、长度、夹角、正交与施密特正交化。",
+            "displayContext": "内积、长度与夹角：",
             "chapterId": "linear-algebra-03",
             "topicId": "linear-algebra-03-001",
             "order": 2
@@ -8530,6 +9450,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 3,
             "searchAliases": [],
             "context": "正交即 \\alpha^T\\beta=0。施密特正交化：",
+            "displayContext": "正交即 \\(\\alpha^T\\beta=0\\)。施密特正交化：",
             "chapterId": "linear-algebra-03",
             "topicId": "linear-algebra-03-001",
             "order": 3
@@ -8543,6 +9464,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 3,
             "searchAliases": [],
             "context": "正交即 \\alpha^T\\beta=0。施密特正交化：",
+            "displayContext": "正交即 \\(\\alpha^T\\beta=0\\)。施密特正交化：",
             "chapterId": "linear-algebra-03",
             "topicId": "linear-algebra-03-001",
             "order": 4
@@ -8556,6 +9478,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 6,
             "searchAliases": [],
             "context": "向量 \\alpha 在非零向量 \\beta 方向上的投影向量为",
+            "displayContext": "向量 \\(\\alpha\\) 在非零向量 \\(\\beta\\) 方向上的投影向量为",
             "chapterId": "linear-algebra-03",
             "topicId": "linear-algebra-03-001",
             "order": 5
@@ -8574,7 +9497,8 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "linear-algebra-03-002-anchor-001",
             "title": "向量线性表示、表示系数唯一性与秩",
             "searchText": "向量线性表示、表示系数唯一性与秩 能由 1, , m 线性表示，等价于方程 ( 1, , m)x= 有解，也等价于 r(A)=r(A, ). 若 1, , m 线性无关，则表示系数唯一；若相关且方程有解，表示通常不唯一。两个向量都能由同一向量组表示，不代表它们一定能互相表示。",
-            "summary": "能由 1, , m 线性表示，等价于方程 ( 1, , m)x= 有解，也等价于 r(A)=r(A, ). 若 1, , m 线性无关，则表示系数唯一；若相关且方程有解，表示通常不唯一。两个向量都能由同一向量组表示，不代表它们一定能互相表示。"
+            "summary": "能由 1, , m 线性表示，等价于方程 ( 1, , m)x= 有解，也等价于 r(A)=r(A, ). 若 1, , m 线性无关，则表示系数唯一；若相关且方程有解，表示通常不唯一。两个向量都能由同一向量组表示，不代表它们一定能互相表示。",
+            "displaySummary": "\\(\\beta\\) 能由 \\(\\alpha_1,\\ldots,\\alpha_m\\) 线性表示，等价于方程"
           }
         ],
         "formulas": [
@@ -8587,6 +9511,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 2,
             "searchAliases": [],
             "context": "所属知识点：向量线性表示、表示系数唯一性与秩。",
+            "displayContext": "\\(\\beta\\) 能由 \\(\\alpha_1,\\ldots,\\alpha_m\\) 线性表示，等价于方程",
             "chapterId": "linear-algebra-03",
             "topicId": "linear-algebra-03-002",
             "order": 0
@@ -8600,6 +9525,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 3,
             "searchAliases": [],
             "context": "有解，也等价于",
+            "displayContext": "有解，也等价于",
             "chapterId": "linear-algebra-03",
             "topicId": "linear-algebra-03-002",
             "order": 1
@@ -8618,7 +9544,8 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "linear-algebra-03-003-anchor-001",
             "title": "向量组等价、相互表示与拼接矩阵的秩",
             "searchText": "向量组等价、相互表示与拼接矩阵的秩 两个向量组等价，是指它们能互相线性表示。若 B=AC, 则 B 可由 A 表示，且 r(B)≤ r(A)。两组等价当且仅当拼接后不增加秩： r(A)=r(B)=r(A,B).",
-            "summary": "两个向量组等价，是指它们能互相线性表示。若 B=AC, 则 B 可由 A 表示，且 r(B)≤ r(A)。两组等价当且仅当拼接后不增加秩： r(A)=r(B)=r(A,B)."
+            "summary": "两个向量组等价，是指它们能互相线性表示。若 B=AC, 则 B 可由 A 表示，且 r(B)≤ r(A)。两组等价当且仅当拼接后不增加秩： r(A)=r(B)=r(A,B).",
+            "displaySummary": "两个向量组等价，是指它们能互相线性表示。若"
           }
         ],
         "formulas": [
@@ -8631,6 +9558,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 0,
             "searchAliases": [],
             "context": "两个向量组等价，是指它们能互相线性表示。若",
+            "displayContext": "两个向量组等价，是指它们能互相线性表示。若",
             "chapterId": "linear-algebra-03",
             "topicId": "linear-algebra-03-003",
             "order": 0
@@ -8644,6 +9572,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 4,
             "searchAliases": [],
             "context": "则 B 可由 A 表示，且 \\(r(B)\\le r(A)\\)。两组等价当且仅当拼接后不增加秩：",
+            "displayContext": "则 \\(B\\) 可由 \\(A\\) 表示，且 \\(r(B)\\le r(A)\\)。两组等价当且仅当拼接后不增加秩：",
             "chapterId": "linear-algebra-03",
             "topicId": "linear-algebra-03-003",
             "order": 1
@@ -8662,28 +9591,32 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "linear-algebra-03-004-anchor-001",
             "title": "线性相关、线性无关与秩的判定",
             "searchText": "线性相关、线性无关与秩的判定 k 1 1+ +k m m=0 只有全零系数时，向量组线性无关；有非全零系数时线性相关。把向量作列组成 A： 1, , m 无关 r(A)=m.",
-            "summary": "k 1 1+ +k m m=0 只有全零系数时，向量组线性无关；有非全零系数时线性相关。把向量作列组成 A： 1, , m 无关 r(A)=m."
+            "summary": "k 1 1+ +k m m=0 只有全零系数时，向量组线性无关；有非全零系数时线性相关。把向量作列组成 A： 1, , m 无关 r(A)=m.",
+            "displaySummary": "只有全零系数时，向量组线性无关；有非全零系数时线性相关。把向量作列组成 \\(A\\)："
           },
           {
             "id": "anchor-7ywz00",
             "legacyId": "linear-algebra-03-004-anchor-002",
             "title": "线性相关与线性无关的快速结论",
             "searchText": "线性相关与线性无关的快速结论 含零向量一定相关。 两个向量成比例一定相关。 m 个 n 维向量若 m n，一定相关。 无关组的任一部分组仍无关；相关组再增加向量仍相关。 整体无关可以推出任一部分组无关；部分组相关可以推出整体相关。反方向一般不能推。 若一组无关向量被同一个矩阵作用后仍无关，则作用矩阵在这些向量方向上没有把非零组合变成零。 若新向量组由旧向量组按 B=AC 得到，则 r(B)≤ r(A)。当 A 的列向量线性无关时，B 的列向量是否无关可直接转成系数矩阵 C 的列向量是否无关。",
-            "summary": "含零向量一定相关。 两个向量成比例一定相关。 m 个 n 维向量若 m n，一定相关。 无关组的任一部分组仍无关；相关组再增加向量仍相关。 整体无关可以推出任一部分组无关；部分组相关可以推出整体相关。反方向一般不能推。 若一组无关向量被同一个矩阵作用后仍无…"
+            "summary": "含零向量一定相关。 两个向量成比例一定相关。 m 个 n 维向量若 m n，一定相关。 无关组的任一部分组仍无关；相关组再增加向量仍相关。 整体无关可以推出任一部分组无关；部分组相关可以推出整体相关。反方向一般不能推。 若一组无关向量被同一个矩阵作用后仍无…",
+            "displaySummary": "- 含零向量一定相关。\n- 两个向量成比例一定相关。\n- \\(m\\) 个 \\(n\\) 维向量若 \\(m>n\\)，一定相关。\n- 无关组的任一部分组仍无关；相关组再增加向量仍相关。\n- 整体无关可以推出任一部分组无关；部分组相关可以推出整体相关。反方向一般不能推。\n- 若一组无关向量被同一个矩阵作用后仍无关，则作用矩阵在这些向量方向上没有把非零组合变成零。"
           },
           {
             "id": "anchor-mh2klw",
             "legacyId": "linear-algebra-03-004-anchor-003",
             "title": "加分量保无关，减分量保相关",
             "searchText": "加分量保无关，减分量保相关 一组短向量线性无关，给每个向量补上同位置的新坐标分量后，长向量组仍线性无关。等价地，一组长向量线性相关，删去每个向量中相同位置的坐标分量后仍相关。这里增减的是每个向量的分量，不是增加或删除向量。",
-            "summary": "一组短向量线性无关，给每个向量补上同位置的新坐标分量后，长向量组仍线性无关。等价地，一组长向量线性相关，删去每个向量中相同位置的坐标分量后仍相关。这里增减的是每个向量的分量，不是增加或删除向量。"
+            "summary": "一组短向量线性无关，给每个向量补上同位置的新坐标分量后，长向量组仍线性无关。等价地，一组长向量线性相关，删去每个向量中相同位置的坐标分量后仍相关。这里增减的是每个向量的分量，不是增加或删除向量。",
+            "displaySummary": "一组短向量线性无关，给每个向量补上同位置的新坐标分量后，长向量组仍线性无关。等价地，一组长向量线性相关，删去每个向量中相同位置的坐标分量后仍相关。这里增减的是每个向量的分量，不是增加或删除向量。"
           },
           {
             "id": "anchor-2bq40v",
             "legacyId": "linear-algebra-03-004-anchor-004",
             "title": "两两正交的非零向量线性无关",
             "searchText": "两两正交的非零向量线性无关 若一组向量两两正交，且每个向量都不是零向量，则这组向量线性无关；“非零”是必需条件。",
-            "summary": "若一组向量两两正交，且每个向量都不是零向量，则这组向量线性无关；“非零”是必需条件。"
+            "summary": "若一组向量两两正交，且每个向量都不是零向量，则这组向量线性无关；“非零”是必需条件。",
+            "displaySummary": "若一组向量两两正交，且每个向量都不是零向量，则这组向量线性无关；“非零”是必需条件。"
           }
         ],
         "formulas": [
@@ -8696,6 +9629,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 0,
             "searchAliases": [],
             "context": "所属知识点：线性相关、线性无关与秩的判定。",
+            "displayContext": "所属知识点：线性相关、线性无关与秩的判定。",
             "chapterId": "linear-algebra-03",
             "topicId": "linear-algebra-03-004",
             "order": 0
@@ -8709,6 +9643,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 2,
             "searchAliases": [],
             "context": "只有全零系数时，向量组线性无关；有非全零系数时线性相关。把向量作列组成 A：",
+            "displayContext": "只有全零系数时，向量组线性无关；有非全零系数时线性相关。把向量作列组成 \\(A\\)：",
             "chapterId": "linear-algebra-03",
             "topicId": "linear-algebra-03-004",
             "order": 1
@@ -8722,6 +9657,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 6,
             "searchAliases": [],
             "context": "若新向量组由旧向量组按",
+            "displayContext": "若新向量组由旧向量组按",
             "chapterId": "linear-algebra-03",
             "topicId": "linear-algebra-03-004",
             "order": 2
@@ -8740,7 +9676,8 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "linear-algebra-03-005-anchor-001",
             "title": "极大无关组、向量组的秩与基础列",
             "searchText": "极大无关组、向量组的秩与基础列 求极大无关组时，把向量作列组成矩阵，作初等行变换；阶梯形矩阵中每个非零行首个非零数所在的列号，对应原矩阵中同列号的向量。极大无关组所含向量个数等于向量组的秩。",
-            "summary": "求极大无关组时，把向量作列组成矩阵，作初等行变换；阶梯形矩阵中每个非零行首个非零数所在的列号，对应原矩阵中同列号的向量。极大无关组所含向量个数等于向量组的秩。"
+            "summary": "求极大无关组时，把向量作列组成矩阵，作初等行变换；阶梯形矩阵中每个非零行首个非零数所在的列号，对应原矩阵中同列号的向量。极大无关组所含向量个数等于向量组的秩。",
+            "displaySummary": "求极大无关组时，把向量作列组成矩阵，作初等行变换；阶梯形矩阵中每个非零行首个非零数所在的列号，对应原矩阵中同列号的向量。极大无关组所含向量个数等于向量组的秩。"
           }
         ],
         "formulas": []
@@ -8765,14 +9702,16 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "linear-algebra-04-001-anchor-001",
             "title": "齐次线性方程组零解、非零解与自由变量",
             "searchText": "齐次线性方程组零解、非零解与自由变量 对 Ax=0，一定有零解。若未知数个数为 n： r(A)=n 只有零解, r(A)<n 有非零解，且有无穷多解.",
-            "summary": "对 Ax=0，一定有零解。若未知数个数为 n： r(A)=n 只有零解, r(A)<n 有非零解，且有无穷多解."
+            "summary": "对 Ax=0，一定有零解。若未知数个数为 n： r(A)=n 只有零解, r(A)<n 有非零解，且有无穷多解.",
+            "displaySummary": "对 \\(Ax=0\\)，一定有零解。若未知数个数为 \\(n\\)："
           },
           {
             "id": "anchor-75rng7",
             "legacyId": "linear-algebra-04-001-anchor-002",
             "title": "非齐次线性方程组无解、唯一解与无穷多解",
             "searchText": "非齐次线性方程组无解、唯一解与无穷多解 r(A)<r(A,b) 无解, r(A)=r(A,b)=n 唯一解, r(A)=r(A,b)<n 无穷多解. 含参数时，把增广矩阵化成阶梯形，重点检查形如 (0, ,0 c) 的行。",
-            "summary": "r(A)<r(A,b) 无解, r(A)=r(A,b)=n 唯一解, r(A)=r(A,b)<n 无穷多解. 含参数时，把增广矩阵化成阶梯形，重点检查形如 (0, ,0 c) 的行。"
+            "summary": "r(A)<r(A,b) 无解, r(A)=r(A,b)=n 唯一解, r(A)=r(A,b)<n 无穷多解. 含参数时，把增广矩阵化成阶梯形，重点检查形如 (0, ,0 c) 的行。",
+            "displaySummary": "含参数时，把增广矩阵化成阶梯形，重点检查形如 \\((0,\\ldots,0\\mid c)\\) 的行。"
           }
         ],
         "formulas": [
@@ -8785,6 +9724,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 2,
             "searchAliases": [],
             "context": "对 Ax=0，一定有零解。若未知数个数为 n：",
+            "displayContext": "对 \\(Ax=0\\)，一定有零解。若未知数个数为 \\(n\\)：",
             "chapterId": "linear-algebra-04",
             "topicId": "linear-algebra-04-001",
             "order": 0
@@ -8798,6 +9738,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 3,
             "searchAliases": [],
             "context": "所属知识点：齐次线性方程组零解、非零解与自由变量。",
+            "displayContext": "对 \\(Ax=0\\)，一定有零解。若未知数个数为 \\(n\\)：",
             "chapterId": "linear-algebra-04",
             "topicId": "linear-algebra-04-001",
             "order": 1
@@ -8811,6 +9752,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 4,
             "searchAliases": [],
             "context": "所属知识点：非齐次线性方程组无解、唯一解与无穷多解。",
+            "displayContext": "所属知识点：非齐次线性方程组无解、唯一解与无穷多解。",
             "chapterId": "linear-algebra-04",
             "topicId": "linear-algebra-04-001",
             "order": 2
@@ -8824,6 +9766,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 5,
             "searchAliases": [],
             "context": "所属知识点：非齐次线性方程组无解、唯一解与无穷多解。",
+            "displayContext": "所属知识点：非齐次线性方程组无解、唯一解与无穷多解。",
             "chapterId": "linear-algebra-04",
             "topicId": "linear-algebra-04-001",
             "order": 3
@@ -8837,6 +9780,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 6,
             "searchAliases": [],
             "context": "所属知识点：非齐次线性方程组无解、唯一解与无穷多解。",
+            "displayContext": "所属知识点：非齐次线性方程组无解、唯一解与无穷多解。",
             "chapterId": "linear-algebra-04",
             "topicId": "linear-algebra-04-001",
             "order": 4
@@ -8855,35 +9799,40 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "linear-algebra-04-002-anchor-001",
             "title": "齐次方程组基础解系与通解",
             "searchText": "齐次方程组基础解系与通解 把 A 化成行最简形，选 n-r(A) 个自由变量。基础解系恰有 n-r(A) 个线性无关解，通解为这些基础解向量的任意线性组合。",
-            "summary": "把 A 化成行最简形，选 n-r(A) 个自由变量。基础解系恰有 n-r(A) 个线性无关解，通解为这些基础解向量的任意线性组合。"
+            "summary": "把 A 化成行最简形，选 n-r(A) 个自由变量。基础解系恰有 n-r(A) 个线性无关解，通解为这些基础解向量的任意线性组合。",
+            "displaySummary": "把 \\(A\\) 化成行最简形，选 \\(n-r(A)\\) 个自由变量。基础解系恰有"
           },
           {
             "id": "anchor-80c63q",
             "legacyId": "linear-algebra-04-002-anchor-002",
             "title": "齐次解的个数界限",
             "searchText": "齐次解的个数界限 因此，任取超过 n-r(A) 个 Ax=0 的解，这些解必线性相关。",
-            "summary": "因此，任取超过 n-r(A) 个 Ax=0 的解，这些解必线性相关。"
+            "summary": "因此，任取超过 n-r(A) 个 Ax=0 的解，这些解必线性相关。",
+            "displaySummary": "因此，任取超过 \\(n-r(A)\\) 个 \\(Ax=0\\) 的解，这些解必线性相关。"
           },
           {
             "id": "anchor-1gj34rp",
             "legacyId": "linear-algebra-04-002-anchor-003",
             "title": "解方程组时行变换与列变换的区别",
             "searchText": "解方程组时行变换与列变换的区别 对增广矩阵 (A,b) 作初等行变换，不改变原方程组的解。若对系数矩阵作列变换，未知量的表示也会随之改变，不能把变换后求出的未知量直接当作原方程的解；常规求解优先用行变换，也不要把常数列 b 混入系数列变换。",
-            "summary": "对增广矩阵 (A,b) 作初等行变换，不改变原方程组的解。若对系数矩阵作列变换，未知量的表示也会随之改变，不能把变换后求出的未知量直接当作原方程的解；常规求解优先用行变换，也不要把常数列 b 混入系数列变换。"
+            "summary": "对增广矩阵 (A,b) 作初等行变换，不改变原方程组的解。若对系数矩阵作列变换，未知量的表示也会随之改变，不能把变换后求出的未知量直接当作原方程的解；常规求解优先用行变换，也不要把常数列 b 混入系数列变换。",
+            "displaySummary": "对增广矩阵 \\((A,b)\\) 作初等行变换，不改变原方程组的解。若对系数矩阵作列变换，未知量的表示也会随之改变，不能把变换后求出的未知量直接当作原方程的解；常规求解优先用行变换，也不要把常数列 \\(b\\) 混入系数列变换。"
           },
           {
             "id": "anchor-z4dd55",
             "legacyId": "linear-algebra-04-002-anchor-004",
             "title": "非齐次方程组特解、齐次通解与解的线性组合",
             "searchText": "非齐次方程组特解、齐次通解与解的线性组合 若方程有解： x= ^ +k 1 1+ +k n-r(A) n-r(A) , 其中 ^ 是一个非齐次特解， i 是对应齐次方程 Ax=0 的基础解系。 若 1, 2 都是 Ax=b 的解，则 A( 1- 2)=0. 若 1, , s 都是非齐次解，则 i=1 ^s c i i cases 是非齐次解,& c i=1,\\\\ 是齐次解,& c i=0. cases",
-            "summary": "若方程有解： x= ^ +k 1 1+ +k n-r(A) n-r(A) , 其中 ^ 是一个非齐次特解， i 是对应齐次方程 Ax=0 的基础解系。 若 1, 2 都是 Ax=b 的解，则 A( 1- 2)=0. 若 1, , s 都是非齐次解，则 i=…"
+            "summary": "若方程有解： x= ^ +k 1 1+ +k n-r(A) n-r(A) , 其中 ^ 是一个非齐次特解， i 是对应齐次方程 Ax=0 的基础解系。 若 1, 2 都是 Ax=b 的解，则 A( 1- 2)=0. 若 1, , s 都是非齐次解，则 i=…",
+            "displaySummary": "若方程有解："
           },
           {
             "id": "anchor-uco91y",
             "legacyId": "linear-algebra-04-002-anchor-005",
             "title": "由已知非齐次解反推基础解系与全部通解",
             "searchText": "由已知非齐次解反推基础解系与全部通解 取一个非齐次解作特解；其余解减去该特解，得到齐次解。齐次基础解系必须满足： Ax=0, 个数=n-r(A), 线性无关.",
-            "summary": "取一个非齐次解作特解；其余解减去该特解，得到齐次解。齐次基础解系必须满足： Ax=0, 个数=n-r(A), 线性无关."
+            "summary": "取一个非齐次解作特解；其余解减去该特解，得到齐次解。齐次基础解系必须满足： Ax=0, 个数=n-r(A), 线性无关.",
+            "displaySummary": "取一个非齐次解作特解；其余解减去该特解，得到齐次解。齐次基础解系必须满足："
           }
         ],
         "formulas": [
@@ -8896,6 +9845,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 2,
             "searchAliases": [],
             "context": "把 A 化成行最简形，选 \\(n-r(A)\\) 个自由变量。基础解系恰有",
+            "displayContext": "把 \\(A\\) 化成行最简形，选 \\(n-r(A)\\) 个自由变量。基础解系恰有",
             "chapterId": "linear-algebra-04",
             "topicId": "linear-algebra-04-002",
             "order": 0
@@ -8909,6 +9859,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 7,
             "searchAliases": [],
             "context": "若方程有解：",
+            "displayContext": "若方程有解：",
             "chapterId": "linear-algebra-04",
             "topicId": "linear-algebra-04-002",
             "order": 1
@@ -8922,6 +9873,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 13,
             "searchAliases": [],
             "context": "若 \\eta_1,\\eta_2 都是 Ax=b 的解，则",
+            "displayContext": "若 \\(\\eta_1,\\eta_2\\) 都是 \\(Ax=b\\) 的解，则",
             "chapterId": "linear-algebra-04",
             "topicId": "linear-algebra-04-002",
             "order": 2
@@ -8935,6 +9887,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 15,
             "searchAliases": [],
             "context": "若 \\eta_1,\\ldots,\\eta_s 都是非齐次解，则",
+            "displayContext": "若 \\(\\eta_1,\\ldots,\\eta_s\\) 都是非齐次解，则",
             "chapterId": "linear-algebra-04",
             "topicId": "linear-algebra-04-002",
             "order": 3
@@ -8948,6 +9901,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 16,
             "searchAliases": [],
             "context": "取一个非齐次解作特解；其余解减去该特解，得到齐次解。齐次基础解系必须满足：",
+            "displayContext": "取一个非齐次解作特解；其余解减去该特解，得到齐次解。齐次基础解系必须满足：",
             "chapterId": "linear-algebra-04",
             "topicId": "linear-algebra-04-002",
             "order": 4
@@ -8966,7 +9920,8 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "linear-algebra-04-003-anchor-001",
             "title": "已知齐次解或非齐次解判断线性组合仍为解",
             "searchText": "已知齐次解或非齐次解判断线性组合仍为解 把所有条件统一翻译成矩阵乘法：A =b、A =0。对给出的向量线性组合直接左乘 A，利用线性运算判断它是齐次解、非齐次解还是不再是解。",
-            "summary": "把所有条件统一翻译成矩阵乘法：A =b、A =0。对给出的向量线性组合直接左乘 A，利用线性运算判断它是齐次解、非齐次解还是不再是解。"
+            "summary": "把所有条件统一翻译成矩阵乘法：A =b、A =0。对给出的向量线性组合直接左乘 A，利用线性运算判断它是齐次解、非齐次解还是不再是解。",
+            "displaySummary": "把所有条件统一翻译成矩阵乘法：\\(A\\eta=b\\)、\\(A\\xi=0\\)。对给出的向量线性组合直接左乘 \\(A\\)，利用线性运算判断它是齐次解、非齐次解还是不再是解。"
           }
         ],
         "formulas": []
@@ -8983,28 +9938,32 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "linear-algebra-04-004-anchor-001",
             "title": "齐次方程组的公共解",
             "searchText": "齐次方程组的公共解 两个齐次方程组 Ax=0、Bx=0 的公共解由 pmatrix A\\ pmatrix x=0 给出。 若未知数个数为 n，则公共解的基础解向量个数为 n-r\\! pmatrix A\\ pmatrix . 若只给两组通解，分别写成 x=U , x=V , 则解 U =V , 再代回 x=U 或 x=V 。",
-            "summary": "两个齐次方程组 Ax=0、Bx=0 的公共解由 pmatrix A\\ pmatrix x=0 给出。 若未知数个数为 n，则公共解的基础解向量个数为 n-r\\! pmatrix A\\ pmatrix . 若只给两组通解，分别写成 x=U , x=V , 则…"
+            "summary": "两个齐次方程组 Ax=0、Bx=0 的公共解由 pmatrix A\\ pmatrix x=0 给出。 若未知数个数为 n，则公共解的基础解向量个数为 n-r\\! pmatrix A\\ pmatrix . 若只给两组通解，分别写成 x=U , x=V , 则…",
+            "displaySummary": "两个齐次方程组 \\(Ax=0\\)、\\(Bx=0\\) 的公共解由"
           },
           {
             "id": "anchor-18su3xv",
             "legacyId": "linear-algebra-04-004-anchor-002",
             "title": "非齐次方程组的公共解",
             "searchText": "非齐次方程组的公共解 对 Ax=b, Bx=d, 上下联立： pmatrix A\\ pmatrix x = pmatrix b\\ pmatrix .",
-            "summary": "对 Ax=b, Bx=d, 上下联立： pmatrix A\\ pmatrix x = pmatrix b\\ pmatrix ."
+            "summary": "对 Ax=b, Bx=d, 上下联立： pmatrix A\\ pmatrix x = pmatrix b\\ pmatrix .",
+            "displaySummary": "对"
           },
           {
             "id": "anchor-1c5wkkw",
             "legacyId": "linear-algebra-04-004-anchor-003",
             "title": "齐次方程组同解",
             "searchText": "齐次方程组同解 对同列数矩阵： Ax=0 与 Bx=0 同解 r(A)=r(B)=r\\! pmatrix A\\ pmatrix . 同型矩阵还可分别化成行最简形比较。",
-            "summary": "对同列数矩阵： Ax=0 与 Bx=0 同解 r(A)=r(B)=r\\! pmatrix A\\ pmatrix . 同型矩阵还可分别化成行最简形比较。"
+            "summary": "对同列数矩阵： Ax=0 与 Bx=0 同解 r(A)=r(B)=r\\! pmatrix A\\ pmatrix . 同型矩阵还可分别化成行最简形比较。",
+            "displaySummary": "对同列数矩阵："
           },
           {
             "id": "anchor-c38nu6",
             "legacyId": "linear-algebra-04-004-anchor-004",
             "title": "非齐次方程组同解",
             "searchText": "非齐次方程组同解 令 C= pmatrix A\\ pmatrix , c= pmatrix b\\ pmatrix . 则 Ax=b 与 Bx=d 同解，当且仅当 r(A)=r(B)=r(C),qquad r(C)=r(C,c).",
-            "summary": "令 C= pmatrix A\\ pmatrix , c= pmatrix b\\ pmatrix . 则 Ax=b 与 Bx=d 同解，当且仅当 r(A)=r(B)=r(C),qquad r(C)=r(C,c)."
+            "summary": "令 C= pmatrix A\\ pmatrix , c= pmatrix b\\ pmatrix . 则 Ax=b 与 Bx=d 同解，当且仅当 r(A)=r(B)=r(C),qquad r(C)=r(C,c).",
+            "displaySummary": "令"
           }
         ],
         "formulas": [
@@ -9017,6 +9976,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 2,
             "searchAliases": [],
             "context": "两个齐次方程组 Ax=0、Bx=0 的公共解由",
+            "displayContext": "两个齐次方程组 \\(Ax=0\\)、\\(Bx=0\\) 的公共解由",
             "chapterId": "linear-algebra-04",
             "topicId": "linear-algebra-04-004",
             "order": 0
@@ -9030,6 +9990,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 4,
             "searchAliases": [],
             "context": "若未知数个数为 n，则公共解的基础解向量个数为",
+            "displayContext": "若未知数个数为 \\(n\\)，则公共解的基础解向量个数为",
             "chapterId": "linear-algebra-04",
             "topicId": "linear-algebra-04-004",
             "order": 1
@@ -9043,6 +10004,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 5,
             "searchAliases": [],
             "context": "若只给两组通解，分别写成",
+            "displayContext": "若只给两组通解，分别写成",
             "chapterId": "linear-algebra-04",
             "topicId": "linear-algebra-04-004",
             "order": 2
@@ -9056,6 +10018,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 6,
             "searchAliases": [],
             "context": "所属知识点：齐次方程组的公共解。",
+            "displayContext": "则解",
             "chapterId": "linear-algebra-04",
             "topicId": "linear-algebra-04-004",
             "order": 3
@@ -9069,6 +10032,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 9,
             "searchAliases": [],
             "context": "所属知识点：非齐次方程组的公共解。",
+            "displayContext": "对",
             "chapterId": "linear-algebra-04",
             "topicId": "linear-algebra-04-004",
             "order": 4
@@ -9082,6 +10046,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 10,
             "searchAliases": [],
             "context": "上下联立：",
+            "displayContext": "上下联立：",
             "chapterId": "linear-algebra-04",
             "topicId": "linear-algebra-04-004",
             "order": 5
@@ -9095,6 +10060,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 11,
             "searchAliases": [],
             "context": "对同列数矩阵：",
+            "displayContext": "对同列数矩阵：",
             "chapterId": "linear-algebra-04",
             "topicId": "linear-algebra-04-004",
             "order": 6
@@ -9108,6 +10074,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 12,
             "searchAliases": [],
             "context": "所属知识点：非齐次方程组同解。",
+            "displayContext": "令",
             "chapterId": "linear-algebra-04",
             "topicId": "linear-algebra-04-004",
             "order": 7
@@ -9121,6 +10088,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 15,
             "searchAliases": [],
             "context": "则 Ax=b 与 Bx=d 同解，当且仅当",
+            "displayContext": "则 \\(Ax=b\\) 与 \\(Bx=d\\) 同解，当且仅当",
             "chapterId": "linear-algebra-04",
             "topicId": "linear-algebra-04-004",
             "order": 8
@@ -9139,14 +10107,16 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "linear-algebra-04-005-anchor-001",
             "title": "可逆情形",
             "searchText": "可逆情形 AX=B ⇒ X=A^ -1 B, XA=B ⇒ X=BA^ -1 , AXB=C ⇒ X=A^ -1 CB^ -1 . 顺序不能交换。",
-            "summary": "AX=B ⇒ X=A^ -1 B, XA=B ⇒ X=BA^ -1 , AXB=C ⇒ X=A^ -1 CB^ -1 . 顺序不能交换。"
+            "summary": "AX=B ⇒ X=A^ -1 B, XA=B ⇒ X=BA^ -1 , AXB=C ⇒ X=A^ -1 CB^ -1 . 顺序不能交换。",
+            "displaySummary": "顺序不能交换。"
           },
           {
             "id": "anchor-rq628u",
             "legacyId": "linear-algebra-04-005-anchor-002",
             "title": "不可逆情形",
             "searchText": "不可逆情形 把未知矩阵按列写成 X=(x 1, ,x s)，则 AX=B=(b 1, ,b s) 等价于逐列解 Ax i=b i。若要求 X 可逆，解出各列的一般形式后还要检验 X ≠0。含参数时先判断每个列方程何时有解，再写全部解。",
-            "summary": "把未知矩阵按列写成 X=(x 1, ,x s)，则 AX=B=(b 1, ,b s) 等价于逐列解 Ax i=b i。若要求 X 可逆，解出各列的一般形式后还要检验 X ≠0。含参数时先判断每个列方程何时有解，再写全部解。"
+            "summary": "把未知矩阵按列写成 X=(x 1, ,x s)，则 AX=B=(b 1, ,b s) 等价于逐列解 Ax i=b i。若要求 X 可逆，解出各列的一般形式后还要检验 X ≠0。含参数时先判断每个列方程何时有解，再写全部解。",
+            "displaySummary": "把未知矩阵按列写成 \\(X=(x_1,\\ldots,x_s)\\)，则"
           }
         ],
         "formulas": [
@@ -9159,6 +10129,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 0,
             "searchAliases": [],
             "context": "所属知识点：可逆情形。",
+            "displayContext": "所属知识点：可逆情形。",
             "chapterId": "linear-algebra-04",
             "topicId": "linear-algebra-04-005",
             "order": 0
@@ -9172,6 +10143,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 1,
             "searchAliases": [],
             "context": "所属知识点：可逆情形。",
+            "displayContext": "所属知识点：可逆情形。",
             "chapterId": "linear-algebra-04",
             "topicId": "linear-algebra-04-005",
             "order": 1
@@ -9185,6 +10157,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 2,
             "searchAliases": [],
             "context": "所属知识点：可逆情形。",
+            "displayContext": "所属知识点：可逆情形。",
             "chapterId": "linear-algebra-04",
             "topicId": "linear-algebra-04-005",
             "order": 2
@@ -9198,6 +10171,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 4,
             "searchAliases": [],
             "context": "把未知矩阵按列写成 \\(X=(x_1,\\ldots,x_s)\\)，则",
+            "displayContext": "把未知矩阵按列写成 \\(X=(x_1,\\ldots,x_s)\\)，则",
             "chapterId": "linear-algebra-04",
             "topicId": "linear-algebra-04-005",
             "order": 3
@@ -9224,21 +10198,24 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "linear-algebra-05-001-anchor-001",
             "title": "特征值、特征向量、特征方程与特征子空间",
             "searchText": "特征值、特征向量、特征方程与特征子空间 A = , ≠0. 先解 E-A =0 得到全部特征值；再对每个 i 解 ( iE-A)x=0 得到对应特征向量。",
-            "summary": "A = , ≠0. 先解 E-A =0 得到全部特征值；再对每个 i 解 ( iE-A)x=0 得到对应特征向量。"
+            "summary": "A = , ≠0. 先解 E-A =0 得到全部特征值；再对每个 i 解 ( iE-A)x=0 得到对应特征向量。",
+            "displaySummary": "先解"
           },
           {
             "id": "anchor-1t3tr3e",
             "legacyId": "linear-algebra-05-001-anchor-002",
             "title": "特征值之和、乘积、谱映射与凯莱—哈密顿公式",
             "searchText": "特征值之和、乘积、谱映射与凯莱—哈密顿公式 1+ + n= tr (A), 1 n= A . 若 A = ，则 f(A) =f( ) . 所以 A^m,A^ -1 ,A^ ,A+kE 的对应特征值分别是 ^m, ^ -1 , A , +k （涉及逆或除法时先保证 ≠0）。不同特征值对应的特征向量线性无关。 更完整的特征值变换公式： kA:\\ k , A+kE:\\ +k, A^m:\\ ^m, A^ -1 :\\ 1 , A^ :\\ A (A 可逆), f(A):\\ f( ). A^T 与 A 的特征多项式完全相同，因此特征值及其代数重数相同。 凯莱—哈密顿公式：设 p A( )= E-A , 则 p A(A)=O. 特别地，对二阶矩阵： A^2- tr (A)A+ A E=O.",
-            "summary": "1+ + n= tr (A), 1 n= A . 若 A = ，则 f(A) =f( ) . 所以 A^m,A^ -1 ,A^ ,A+kE 的对应特征值分别是 ^m, ^ -1 , A , +k （涉及逆或除法时先保证 ≠0）。不同特征值对应的特征向量线性…"
+            "summary": "1+ + n= tr (A), 1 n= A . 若 A = ，则 f(A) =f( ) . 所以 A^m,A^ -1 ,A^ ,A+kE 的对应特征值分别是 ^m, ^ -1 , A , +k （涉及逆或除法时先保证 ≠0）。不同特征值对应的特征向量线性…",
+            "displaySummary": "若 \\(A\\alpha=\\lambda\\alpha\\)，则"
           },
           {
             "id": "anchor-4j6of9",
             "legacyId": "linear-algebra-05-001-anchor-003",
             "title": "由特征值和特征向量反求矩阵",
             "searchText": "由特征值和特征向量反求矩阵 若 n 个线性无关特征向量组成 P=( 1, , n), 对应特征值组成 = diag ( 1, , n), 则 A=P P^ -1 . 若这些特征向量已经标准正交，记其组成正交矩阵 Q，则 A=Q Q^T.",
-            "summary": "若 n 个线性无关特征向量组成 P=( 1, , n), 对应特征值组成 = diag ( 1, , n), 则 A=P P^ -1 . 若这些特征向量已经标准正交，记其组成正交矩阵 Q，则 A=Q Q^T."
+            "summary": "若 n 个线性无关特征向量组成 P=( 1, , n), 对应特征值组成 = diag ( 1, , n), 则 A=P P^ -1 . 若这些特征向量已经标准正交，记其组成正交矩阵 Q，则 A=Q Q^T.",
+            "displaySummary": "若 \\(n\\) 个线性无关特征向量组成"
           }
         ],
         "formulas": [
@@ -9246,11 +10223,16 @@ export const mathChapters: MathChapter[] = [
             "id": "linear-12k0arn-1",
             "parentAnchorId": "anchor-1uq8hih",
             "legacyParentAnchorId": "linear-algebra-05-001-anchor-001",
-            "title": "特征值、特征向量、特征方程与特征子空间：Aα",
+            "title": "特征值与特征向量的定义",
             "latex": "A\\alpha=\\lambda\\alpha,\\qquad \\alpha\\ne0.",
             "sourceBlockIndex": 0,
-            "searchAliases": [],
+            "searchAliases": [
+              "特征根",
+              "特征值定义",
+              "Aα等于λα"
+            ],
             "context": "所属知识点：特征值、特征向量、特征方程与特征子空间。",
+            "displayContext": "所属知识点：特征值、特征向量、特征方程与特征子空间。",
             "chapterId": "linear-algebra-05",
             "topicId": "linear-algebra-05-001",
             "order": 0
@@ -9259,11 +10241,16 @@ export const mathChapters: MathChapter[] = [
             "id": "linear-ea2gqa",
             "parentAnchorId": "anchor-1uq8hih",
             "legacyParentAnchorId": "linear-algebra-05-001-anchor-001",
-            "title": "特征值、特征向量、特征方程与特征子空间：|λ E-A|",
+            "title": "特征方程求特征值",
             "latex": "|\\lambda E-A|=0",
             "sourceBlockIndex": 1,
-            "searchAliases": [],
+            "searchAliases": [
+              "特征根怎么求",
+              "特征值怎么求",
+              "特征多项式为零"
+            ],
             "context": "所属知识点：特征值、特征向量、特征方程与特征子空间。",
+            "displayContext": "先解",
             "chapterId": "linear-algebra-05",
             "topicId": "linear-algebra-05-001",
             "order": 1
@@ -9272,11 +10259,16 @@ export const mathChapters: MathChapter[] = [
             "id": "linear-143ie5",
             "parentAnchorId": "anchor-1uq8hih",
             "legacyParentAnchorId": "linear-algebra-05-001-anchor-001",
-            "title": "特征值、特征向量、特征方程与特征子空间：(λ_iE-A)x",
+            "title": "特征向量对应的齐次方程组",
             "latex": "(\\lambda_iE-A)x=0",
             "sourceBlockIndex": 3,
-            "searchAliases": [],
+            "searchAliases": [
+              "特征向量怎么求",
+              "求特征向量",
+              "特征子空间"
+            ],
             "context": "得到全部特征值；再对每个 \\lambda_i 解",
+            "displayContext": "得到全部特征值；再对每个 \\(\\lambda_i\\) 解",
             "chapterId": "linear-algebra-05",
             "topicId": "linear-algebra-05-001",
             "order": 2
@@ -9290,6 +10282,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 4,
             "searchAliases": [],
             "context": "所属知识点：特征值之和、乘积、谱映射与凯莱—哈密顿公式。",
+            "displayContext": "所属知识点：特征值之和、乘积、谱映射与凯莱—哈密顿公式。",
             "chapterId": "linear-algebra-05",
             "topicId": "linear-algebra-05-001",
             "order": 3
@@ -9303,6 +10296,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 4,
             "searchAliases": [],
             "context": "所属知识点：特征值之和、乘积、谱映射与凯莱—哈密顿公式。",
+            "displayContext": "所属知识点：特征值之和、乘积、谱映射与凯莱—哈密顿公式。",
             "chapterId": "linear-algebra-05",
             "topicId": "linear-algebra-05-001",
             "order": 4
@@ -9316,6 +10310,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 6,
             "searchAliases": [],
             "context": "若 A\\alpha=\\lambda\\alpha，则",
+            "displayContext": "若 \\(A\\alpha=\\lambda\\alpha\\)，则",
             "chapterId": "linear-algebra-05",
             "topicId": "linear-algebra-05-001",
             "order": 5
@@ -9329,6 +10324,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 8,
             "searchAliases": [],
             "context": "所属知识点：特征值之和、乘积、谱映射与凯莱—哈密顿公式。",
+            "displayContext": "所以 \\(A^m,A^{-1},A^*,A+kE\\) 的对应特征值分别是",
             "chapterId": "linear-algebra-05",
             "topicId": "linear-algebra-05-001",
             "order": 6
@@ -9342,6 +10338,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 10,
             "searchAliases": [],
             "context": "更完整的特征值变换公式：",
+            "displayContext": "更完整的特征值变换公式：",
             "chapterId": "linear-algebra-05",
             "topicId": "linear-algebra-05-001",
             "order": 7
@@ -9355,6 +10352,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 11,
             "searchAliases": [],
             "context": "所属知识点：特征值之和、乘积、谱映射与凯莱—哈密顿公式。",
+            "displayContext": "更完整的特征值变换公式：",
             "chapterId": "linear-algebra-05",
             "topicId": "linear-algebra-05-001",
             "order": 8
@@ -9368,6 +10366,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 14,
             "searchAliases": [],
             "context": "凯莱—哈密顿公式：设",
+            "displayContext": "凯莱—哈密顿公式：设",
             "chapterId": "linear-algebra-05",
             "topicId": "linear-algebra-05-001",
             "order": 9
@@ -9381,6 +10380,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 15,
             "searchAliases": [],
             "context": "所属知识点：特征值之和、乘积、谱映射与凯莱—哈密顿公式。",
+            "displayContext": "则",
             "chapterId": "linear-algebra-05",
             "topicId": "linear-algebra-05-001",
             "order": 10
@@ -9394,6 +10394,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 16,
             "searchAliases": [],
             "context": "特别地，对二阶矩阵：",
+            "displayContext": "特别地，对二阶矩阵：",
             "chapterId": "linear-algebra-05",
             "topicId": "linear-algebra-05-001",
             "order": 11
@@ -9407,6 +10408,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 18,
             "searchAliases": [],
             "context": "若 n 个线性无关特征向量组成",
+            "displayContext": "若 \\(n\\) 个线性无关特征向量组成",
             "chapterId": "linear-algebra-05",
             "topicId": "linear-algebra-05-001",
             "order": 12
@@ -9420,6 +10422,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 19,
             "searchAliases": [],
             "context": "对应特征值组成",
+            "displayContext": "对应特征值组成",
             "chapterId": "linear-algebra-05",
             "topicId": "linear-algebra-05-001",
             "order": 13
@@ -9433,6 +10436,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 20,
             "searchAliases": [],
             "context": "所属知识点：由特征值和特征向量反求矩阵。",
+            "displayContext": "则",
             "chapterId": "linear-algebra-05",
             "topicId": "linear-algebra-05-001",
             "order": 14
@@ -9446,6 +10450,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 22,
             "searchAliases": [],
             "context": "若这些特征向量已经标准正交，记其组成正交矩阵 Q，则",
+            "displayContext": "若这些特征向量已经标准正交，记其组成正交矩阵 \\(Q\\)，则",
             "chapterId": "linear-algebra-05",
             "topicId": "linear-algebra-05-001",
             "order": 15
@@ -9464,14 +10469,16 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "linear-algebra-05-002-anchor-001",
             "title": "相似矩阵定义、相似不变量与矩阵多项式",
             "searchText": "相似矩阵定义、相似不变量与矩阵多项式 B=P^ -1 AP (P 可逆). 相似矩阵有相同的特征方程 E-A =0、特征值、迹、行列式和秩；这些相同一般只是必要条件，不足以单独证明相似。 若 B=P^ -1 AP，则对任意正整数 m 和多项式 f： B^m=P^ -1 A^mP, f(B)=P^ -1 f(A)P.",
-            "summary": "B=P^ -1 AP (P 可逆). 相似矩阵有相同的特征方程 E-A =0、特征值、迹、行列式和秩；这些相同一般只是必要条件，不足以单独证明相似。 若 B=P^ -1 AP，则对任意正整数 m 和多项式 f： B^m=P^ -1 A^mP, f(B)=P…"
+            "summary": "B=P^ -1 AP (P 可逆). 相似矩阵有相同的特征方程 E-A =0、特征值、迹、行列式和秩；这些相同一般只是必要条件，不足以单独证明相似。 若 B=P^ -1 AP，则对任意正整数 m 和多项式 f： B^m=P^ -1 A^mP, f(B)=P…",
+            "displaySummary": "相似矩阵有相同的特征方程 \\(|\\lambda E-A|=0\\)、特征值、迹、行列式和秩；这些相同一般只是必要条件，不足以单独证明相似。"
           },
           {
             "id": "anchor-wp404o",
             "legacyId": "linear-algebra-05-002-anchor-002",
             "title": "两个矩阵是否相似的判断步骤",
             "searchText": "两个矩阵是否相似的判断步骤 设 A,B 为同阶方阵，按下面的顺序判断： 比较 A,B 的秩。秩不相等，则不相似；秩相等，继续下一步。 比较 A,B 的特征值及其代数重数。不同则不相似；相同则继续下一步。 判断 A,B 是否都可相似对角化。若都可相似对角化，则它们相似；若只有一个可相似对角化，则它们不相似。若两个都不可相似对角化，前三步还不能确定是否相似，需进一步寻找可逆矩阵 S 满足 B=S^ -1 AS。 在第 3 步中，若两者都可对角化且特征值及其代数重数相同，就能将对角元按相同顺序排列，使 P^ -1 AP= , Q^ -1 BQ= . 于是 B=QP^ -1 APQ^ -1 =(PQ^ -1 )^ -1 A(PQ^ -1 ), 故 A B。若要直接求相似变换矩阵，也可解 AS=SB，并检查 S 是否可逆。",
-            "summary": "设 A,B 为同阶方阵，按下面的顺序判断： 比较 A,B 的秩。秩不相等，则不相似；秩相等，继续下一步。 比较 A,B 的特征值及其代数重数。不同则不相似；相同则继续下一步。 判断 A,B 是否都可相似对角化。若都可相似对角化，则它们相似；若只有一个可相似…"
+            "summary": "设 A,B 为同阶方阵，按下面的顺序判断： 比较 A,B 的秩。秩不相等，则不相似；秩相等，继续下一步。 比较 A,B 的特征值及其代数重数。不同则不相似；相同则继续下一步。 判断 A,B 是否都可相似对角化。若都可相似对角化，则它们相似；若只有一个可相似…",
+            "displaySummary": "设 \\(A,B\\) 为同阶方阵，按下面的顺序判断："
           }
         ],
         "formulas": [
@@ -9479,11 +10486,17 @@ export const mathChapters: MathChapter[] = [
             "id": "linear-1ordvlf",
             "parentAnchorId": "anchor-3href9",
             "legacyParentAnchorId": "linear-algebra-05-002-anchor-001",
-            "title": "相似矩阵定义、相似不变量与矩阵多项式：B",
+            "title": "矩阵相似的定义公式",
             "latex": "B=P^{-1}AP\\quad(P\\text{ 可逆}).",
             "sourceBlockIndex": 0,
-            "searchAliases": [],
+            "searchAliases": [
+              "P^-1AP",
+              "B=P^-1AP",
+              "相似矩阵怎么判断",
+              "矩阵相似的条件"
+            ],
             "context": "所属知识点：相似矩阵定义、相似不变量与矩阵多项式。",
+            "displayContext": "所属知识点：相似矩阵定义、相似不变量与矩阵多项式。",
             "chapterId": "linear-algebra-05",
             "topicId": "linear-algebra-05-002",
             "order": 0
@@ -9497,6 +10510,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 5,
             "searchAliases": [],
             "context": "相似矩阵有相同的特征方程 |\\lambda E-A|=0、特征值、迹、行列式和秩；这些相同一般只是必要条件，不足以单独证明相似。",
+            "displayContext": "若 \\(B=P^{-1}AP\\)，则对任意正整数 \\(m\\) 和多项式 \\(f\\)：",
             "chapterId": "linear-algebra-05",
             "topicId": "linear-algebra-05-002",
             "order": 1
@@ -9510,6 +10524,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 5,
             "searchAliases": [],
             "context": "相似矩阵有相同的特征方程 |\\lambda E-A|=0、特征值、迹、行列式和秩；这些相同一般只是必要条件，不足以单独证明相似。",
+            "displayContext": "若 \\(B=P^{-1}AP\\)，则对任意正整数 \\(m\\) 和多项式 \\(f\\)：",
             "chapterId": "linear-algebra-05",
             "topicId": "linear-algebra-05-002",
             "order": 2
@@ -9518,11 +10533,16 @@ export const mathChapters: MathChapter[] = [
             "id": "linear-1xtw3dn-1",
             "parentAnchorId": "anchor-wp404o",
             "legacyParentAnchorId": "linear-algebra-05-002-anchor-002",
-            "title": "两个矩阵是否相似的判断步骤：P^-1AP",
+            "title": "两个矩阵相似的共同对角化判据",
             "latex": "P^{-1}AP=\\Lambda,\\qquad Q^{-1}BQ=\\Lambda.",
             "sourceBlockIndex": 12,
-            "searchAliases": [],
+            "searchAliases": [
+              "两个矩阵是否相似",
+              "相似矩阵怎么判断",
+              "共同相似对角化"
+            ],
             "context": "在第 3 步中，若两者都可对角化且特征值及其代数重数相同，就能将对角元按相同顺序排列，使",
+            "displayContext": "在第 3 步中，若两者都可对角化且特征值及其代数重数相同，就能将对角元按相同顺序排列，使",
             "chapterId": "linear-algebra-05",
             "topicId": "linear-algebra-05-002",
             "order": 3
@@ -9531,11 +10551,15 @@ export const mathChapters: MathChapter[] = [
             "id": "linear-zazdaw",
             "parentAnchorId": "anchor-wp404o",
             "legacyParentAnchorId": "linear-algebra-05-002-anchor-002",
-            "title": "两个矩阵是否相似的判断步骤：B",
+            "title": "由共同对角化构造相似变换",
             "latex": "B=QP^{-1}APQ^{-1}=(PQ^{-1})^{-1}A(PQ^{-1}),",
             "sourceBlockIndex": 13,
-            "searchAliases": [],
+            "searchAliases": [
+              "两个矩阵相似的证明",
+              "求相似变换矩阵"
+            ],
             "context": "所属知识点：两个矩阵是否相似的判断步骤。",
+            "displayContext": "于是",
             "chapterId": "linear-algebra-05",
             "topicId": "linear-algebra-05-002",
             "order": 4
@@ -9554,14 +10578,16 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "linear-algebra-05-003-anchor-001",
             "title": "矩阵能否相似对角化的判断步骤",
             "searchText": "矩阵能否相似对角化的判断步骤 设 A 是 n 阶矩阵，按下面的顺序判断： 若 A 是实对称矩阵，则一定可相似对角化；否则继续下一步。 若 A 有 n 个互不相同的特征值，则一定可相似对角化；否则继续下一步。 对每个重复 k 次的特征值 ，检查其几何重数是否等于代数重数，即 (A- E)=n-r(A- E)=k. 若每个重特征值都满足上式，则 A 可相似对角化；只要有一个不满足，就不可相似对角化。这里的代数重数 k 是 作为特征多项式根的重数；几何重数是方程组 (A- E)x=0 的基础解系向量个数，也就是 n-r(A- E)。等价地，A 可相似对角化当且仅当有 n 个线性无关特征向量。",
-            "summary": "设 A 是 n 阶矩阵，按下面的顺序判断： 若 A 是实对称矩阵，则一定可相似对角化；否则继续下一步。 若 A 有 n 个互不相同的特征值，则一定可相似对角化；否则继续下一步。 对每个重复 k 次的特征值 ，检查其几何重数是否等于代数重数，即 (A- E)…"
+            "summary": "设 A 是 n 阶矩阵，按下面的顺序判断： 若 A 是实对称矩阵，则一定可相似对角化；否则继续下一步。 若 A 有 n 个互不相同的特征值，则一定可相似对角化；否则继续下一步。 对每个重复 k 次的特征值 ，检查其几何重数是否等于代数重数，即 (A- E)…",
+            "displaySummary": "设 \\(A\\) 是 \\(n\\) 阶矩阵，按下面的顺序判断："
           },
           {
             "id": "anchor-13tlbne",
             "legacyId": "linear-algebra-05-003-anchor-002",
             "title": "相似对角化中 \\(P\\) 与 \\(\\Lambda\\) 的求法",
             "searchText": "相似对角化中 P 与 的求法 求全部特征值。 求每个特征值对应的特征向量。 按 对角元顺序，把对应特征向量依次作为 P 的列。 写出 P^ -1 AP= 。 若只有一个特征值 ，矩阵可对角化当且仅当 A= E。",
-            "summary": "求全部特征值。 求每个特征值对应的特征向量。 按 对角元顺序，把对应特征向量依次作为 P 的列。 写出 P^ -1 AP= 。 若只有一个特征值 ，矩阵可对角化当且仅当 A= E。"
+            "summary": "求全部特征值。 求每个特征值对应的特征向量。 按 对角元顺序，把对应特征向量依次作为 P 的列。 写出 P^ -1 AP= 。 若只有一个特征值 ，矩阵可对角化当且仅当 A= E。",
+            "displaySummary": "1. 求全部特征值。\n2. 求每个特征值对应的特征向量。\n3. 按 \\(\\Lambda\\) 对角元顺序，把对应特征向量依次作为 \\(P\\) 的列。\n4. 写出 \\(P^{-1}AP=\\Lambda\\)。"
           }
         ],
         "formulas": [
@@ -9569,11 +10595,17 @@ export const mathChapters: MathChapter[] = [
             "id": "linear-m6scbb",
             "parentAnchorId": "anchor-1bg5ylq",
             "legacyParentAnchorId": "linear-algebra-05-003-anchor-001",
-            "title": "矩阵能否相似对角化的判断步骤：dimker(A-λ E)",
+            "title": "重特征值判断能否相似对角化",
             "latex": "\\dim\\ker(A-\\lambda E)=n-r(A-\\lambda E)=k.",
             "sourceBlockIndex": 7,
-            "searchAliases": [],
+            "searchAliases": [
+              "矩阵能否对角化",
+              "可对角化条件",
+              "几何重数等于代数重数",
+              "特征值重复能否对角化"
+            ],
             "context": "3. 对每个重复 k 次的特征值 \\lambda，检查其几何重数是否等于代数重数，即",
+            "displayContext": "1. 若 \\(A\\) 是实对称矩阵，则一定可相似对角化；否则继续下一步。\n2. 若 \\(A\\) 有 \\(n\\) 个互不相同的特征值，则一定可相似对角化；否则继续下一步。\n3. 对每个重复 \\(k\\) 次的特征值 \\(\\lambda\\)，检查其几何重数是否等于代数重数，即",
             "chapterId": "linear-algebra-05",
             "topicId": "linear-algebra-05-003",
             "order": 0
@@ -9590,6 +10622,7 @@ export const mathChapters: MathChapter[] = [
               "A等于lambdaE"
             ],
             "context": "n 阶矩阵只有一个特征值 λ 时，可对角化当且仅当它就是 λE。",
+            "displayContext": "若只有一个特征值 \\(\\lambda\\)，矩阵可对角化当且仅当",
             "chapterId": "linear-algebra-05",
             "topicId": "linear-algebra-05-003",
             "order": 1
@@ -9608,14 +10641,16 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "linear-algebra-05-004-anchor-001",
             "title": "实对称矩阵六条常用结论",
             "searchText": "实对称矩阵六条常用结论 设 A 为 n 阶实对称矩阵，以下结论可以一起背： 不同特征值对应的特征向量正交。 特征值都为实数；同一重特征值下选出的向量若不正交，可再作施密特正交化。 一定能正交对角化。 存在正交矩阵 Q，使 Q^TAQ= ，其中 的对角元是 A 的特征值。 零特征值的重数等于 n-r(A)。 因为实对称矩阵可对角化，零特征值的代数重数和几何重数相同。 两个实对称矩阵相似，当且仅当特征值按重数计完全相同。 等价地，它们的特征多项式相同；这个逆向判定不能直接套用到一般矩阵。 两个实对称矩阵相似，则一定合同；反过来不一定。 合同只要求正、负、零特征值的个数分别相同，不要求具体特征值相同。例如 diag (1,2) 与 diag (1,3) 合同但不相似。 合同规范形由正、负惯性指数决定。 存在可逆矩阵 P，使 aligned P^TAP&= diag (I p,-I q,O n-p-q ),\\\\ p+q&=r(A). aligned 其中 p 是正特征值个数，q 是负特征值个数，零特征值个数为 n-p-q。",
-            "summary": "设 A 为 n 阶实对称矩阵，以下结论可以一起背： 不同特征值对应的特征向量正交。 特征值都为实数；同一重特征值下选出的向量若不正交，可再作施密特正交化。 一定能正交对角化。 存在正交矩阵 Q，使 Q^TAQ= ，其中 的对角元是 A 的特征值。 零特征值…"
+            "summary": "设 A 为 n 阶实对称矩阵，以下结论可以一起背： 不同特征值对应的特征向量正交。 特征值都为实数；同一重特征值下选出的向量若不正交，可再作施密特正交化。 一定能正交对角化。 存在正交矩阵 Q，使 Q^TAQ= ，其中 的对角元是 A 的特征值。 零特征值…",
+            "displaySummary": "设 \\(A\\) 为 \\(n\\) 阶实对称矩阵，以下结论可以一起背："
           },
           {
             "id": "anchor-1f0w0mb",
             "legacyId": "linear-algebra-05-004-anchor-002",
             "title": "实对称矩阵正交对角化与正交矩阵 \\(Q\\) 的求法",
             "searchText": "实对称矩阵正交对角化与正交矩阵 Q 的求法 求特征值与特征向量；同一特征值下先正交化；所有向量单位化；按目标对角元顺序组成 Q。四阶题步骤不变，只是各特征值对应向量的数量更多。 若已知两组标准正交特征向量组成 Q，则 A=Q Q^T = i=1 ^n iq iq i^T. 因此对任意非零向量 x： ≤ x^TAx x^Tx ≤ , 也就是 x^Tx≤ x^TAx≤ x^Tx. 两个实对称矩阵要同时被同一个正交矩阵对角化，常用条件是它们可交换： AB=BA。",
-            "summary": "求特征值与特征向量；同一特征值下先正交化；所有向量单位化；按目标对角元顺序组成 Q。四阶题步骤不变，只是各特征值对应向量的数量更多。 若已知两组标准正交特征向量组成 Q，则 A=Q Q^T = i=1 ^n iq iq i^T. 因此对任意非零向量 x： …"
+            "summary": "求特征值与特征向量；同一特征值下先正交化；所有向量单位化；按目标对角元顺序组成 Q。四阶题步骤不变，只是各特征值对应向量的数量更多。 若已知两组标准正交特征向量组成 Q，则 A=Q Q^T = i=1 ^n iq iq i^T. 因此对任意非零向量 x： …",
+            "displaySummary": "求特征值与特征向量；同一特征值下先正交化；所有向量单位化；按目标对角元顺序组成 \\(Q\\)。四阶题步骤不变，只是各特征值对应向量的数量更多。"
           }
         ],
         "formulas": [
@@ -9632,6 +10667,7 @@ export const mathChapters: MathChapter[] = [
               "实对称矩阵规范形"
             ],
             "context": "p、q 分别是正、负特征值的个数，零块阶数为 n-p-q；P 是可逆矩阵。",
+            "displayContext": "设 \\(A\\) 为 \\(n\\) 阶实对称矩阵，以下结论可以一起背：",
             "chapterId": "linear-algebra-05",
             "topicId": "linear-algebra-05-004",
             "order": 0
@@ -9640,11 +10676,16 @@ export const mathChapters: MathChapter[] = [
             "id": "linear-jqeurs",
             "parentAnchorId": "anchor-1f0w0mb",
             "legacyParentAnchorId": "linear-algebra-05-004-anchor-002",
-            "title": "实对称矩阵正交对角化与正交矩阵 \\(Q\\) 的求法：A",
+            "title": "实对称矩阵的正交对角化分解",
             "latex": "A=Q\\Lambda Q^T\n=\\sum_{i=1}^n\\lambda_iq_iq_i^T.",
             "sourceBlockIndex": 17,
-            "searchAliases": [],
+            "searchAliases": [
+              "实对称矩阵分解",
+              "正交矩阵对角化",
+              "谱分解"
+            ],
             "context": "若已知两组标准正交特征向量组成 Q，则",
+            "displayContext": "若已知两组标准正交特征向量组成 \\(Q\\)，则",
             "chapterId": "linear-algebra-05",
             "topicId": "linear-algebra-05-004",
             "order": 1
@@ -9653,11 +10694,15 @@ export const mathChapters: MathChapter[] = [
             "id": "linear-dsmmbf",
             "parentAnchorId": "anchor-1f0w0mb",
             "legacyParentAnchorId": "linear-algebra-05-004-anchor-002",
-            "title": "实对称矩阵正交对角化与正交矩阵 \\(Q\\) 的求法：λ_min",
+            "title": "瑞利商的特征值上下界",
             "latex": "\\lambda_{\\min}\\le\\frac{x^TAx}{x^Tx}\\le\\lambda_{\\max},",
             "sourceBlockIndex": 19,
-            "searchAliases": [],
+            "searchAliases": [
+              "瑞利商",
+              "二次型商的最值"
+            ],
             "context": "因此对任意非零向量 x：",
+            "displayContext": "因此对任意非零向量 \\(x\\)：",
             "chapterId": "linear-algebra-05",
             "topicId": "linear-algebra-05-004",
             "order": 2
@@ -9666,11 +10711,15 @@ export const mathChapters: MathChapter[] = [
             "id": "linear-7hb4jr",
             "parentAnchorId": "anchor-1f0w0mb",
             "legacyParentAnchorId": "linear-algebra-05-004-anchor-002",
-            "title": "实对称矩阵正交对角化与正交矩阵 \\(Q\\) 的求法：λ_minx^Tx",
+            "title": "二次型的特征值上下界",
             "latex": "\\lambda_{\\min}x^Tx\\le x^TAx\\le\\lambda_{\\max}x^Tx.",
             "sourceBlockIndex": 20,
-            "searchAliases": [],
+            "searchAliases": [
+              "二次型最大最小",
+              "实对称矩阵二次型估值"
+            ],
             "context": "所属知识点：实对称矩阵正交对角化与正交矩阵 \\(Q\\) 的求法。",
+            "displayContext": "也就是",
             "chapterId": "linear-algebra-05",
             "topicId": "linear-algebra-05-004",
             "order": 3
@@ -9687,6 +10736,7 @@ export const mathChapters: MathChapter[] = [
               "对称矩阵可交换"
             ],
             "context": "A、B 都为实对称矩阵时，可同时正交对角化当且仅当 AB=BA。",
+            "displayContext": "两个实对称矩阵要同时被同一个正交矩阵对角化，常用条件是它们可交换：",
             "chapterId": "linear-algebra-05",
             "topicId": "linear-algebra-05-004",
             "order": 4
@@ -9713,7 +10763,8 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "linear-algebra-06-001-anchor-001",
             "title": "二次型矩阵表示、交叉项系数与二次型的秩",
             "searchText": "二次型矩阵表示、交叉项系数与二次型的秩 f(x)=x^TAx, 其中 A 取实对称矩阵。平方项系数放主对角线；交叉项 c ij x ix j 的一半放在 a ij ,a ji ： a ij =a ji = c ij 2. 二次型的秩就是 r(A)。由矩阵写二次型时，两个对称位置合并，所以交叉项系数是 2a ij 。",
-            "summary": "f(x)=x^TAx, 其中 A 取实对称矩阵。平方项系数放主对角线；交叉项 c ij x ix j 的一半放在 a ij ,a ji ： a ij =a ji = c ij 2. 二次型的秩就是 r(A)。由矩阵写二次型时，两个对称位置合并，所以交叉项系…"
+            "summary": "f(x)=x^TAx, 其中 A 取实对称矩阵。平方项系数放主对角线；交叉项 c ij x ix j 的一半放在 a ij ,a ji ： a ij =a ji = c ij 2. 二次型的秩就是 r(A)。由矩阵写二次型时，两个对称位置合并，所以交叉项系…",
+            "displaySummary": "其中 \\(A\\) 取实对称矩阵。平方项系数放主对角线；交叉项 \\(c_{ij}x_ix_j\\) 的一半放在 \\(a_{ij},a_{ji}\\)："
           }
         ],
         "formulas": [
@@ -9726,6 +10777,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 0,
             "searchAliases": [],
             "context": "所属知识点：二次型矩阵表示、交叉项系数与二次型的秩。",
+            "displayContext": "所属知识点：二次型矩阵表示、交叉项系数与二次型的秩。",
             "chapterId": "linear-algebra-06",
             "topicId": "linear-algebra-06-001",
             "order": 0
@@ -9739,6 +10791,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 4,
             "searchAliases": [],
             "context": "所属知识点：二次型矩阵表示、交叉项系数与二次型的秩。",
+            "displayContext": "其中 \\(A\\) 取实对称矩阵。平方项系数放主对角线；交叉项 \\(c_{ij}x_ix_j\\) 的一半放在 \\(a_{ij},a_{ji}\\)：",
             "chapterId": "linear-algebra-06",
             "topicId": "linear-algebra-06-001",
             "order": 1
@@ -9757,14 +10810,16 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "linear-algebra-06-002-anchor-001",
             "title": "配方法与可逆线性变换化二次型为标准形",
             "searchText": "配方法与可逆线性变换化二次型为标准形 用配方法，或对行、列同时作相互对应的初等变换，把 x^TAx 化成只含平方项的形式。配方后必须把旧变量写成新变量的可逆线性变换 x=Py。若暂时没有平方项但有 x ix j，可令 x i=u+v, x j=u-v 制造平方项。",
-            "summary": "用配方法，或对行、列同时作相互对应的初等变换，把 x^TAx 化成只含平方项的形式。配方后必须把旧变量写成新变量的可逆线性变换 x=Py。若暂时没有平方项但有 x ix j，可令 x i=u+v, x j=u-v 制造平方项。"
+            "summary": "用配方法，或对行、列同时作相互对应的初等变换，把 x^TAx 化成只含平方项的形式。配方后必须把旧变量写成新变量的可逆线性变换 x=Py。若暂时没有平方项但有 x ix j，可令 x i=u+v, x j=u-v 制造平方项。",
+            "displaySummary": "用配方法，或对行、列同时作相互对应的初等变换，把"
           },
           {
             "id": "anchor-w491mz",
             "legacyId": "linear-algebra-06-002-anchor-002",
             "title": "正交变换化二次型为标准形",
             "searchText": "正交变换化二次型为标准形 对实对称矩阵求正交矩阵 Q，使 Q^TAQ= . 令 x=Qy，则 x^TAx= 1y 1^2+ + ny n^2. 正交变换得到的标准形系数就是特征值；一般可逆变换得到的系数不一定是特征值。",
-            "summary": "对实对称矩阵求正交矩阵 Q，使 Q^TAQ= . 令 x=Qy，则 x^TAx= 1y 1^2+ + ny n^2. 正交变换得到的标准形系数就是特征值；一般可逆变换得到的系数不一定是特征值。"
+            "summary": "对实对称矩阵求正交矩阵 Q，使 Q^TAQ= . 令 x=Qy，则 x^TAx= 1y 1^2+ + ny n^2. 正交变换得到的标准形系数就是特征值；一般可逆变换得到的系数不一定是特征值。",
+            "displaySummary": "对实对称矩阵求正交矩阵 \\(Q\\)，使"
           }
         ],
         "formulas": [
@@ -9777,6 +10832,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 0,
             "searchAliases": [],
             "context": "用配方法，或对行、列同时作相互对应的初等变换，把",
+            "displayContext": "用配方法，或对行、列同时作相互对应的初等变换，把",
             "chapterId": "linear-algebra-06",
             "topicId": "linear-algebra-06-002",
             "order": 0
@@ -9790,6 +10846,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 3,
             "searchAliases": [],
             "context": "化成只含平方项的形式。配方后必须把旧变量写成新变量的可逆线性变换 x=Py。若暂时没有平方项但有 x_ix_j，可令",
+            "displayContext": "化成只含平方项的形式。配方后必须把旧变量写成新变量的可逆线性变换 \\(x=Py\\)。若暂时没有平方项但有 \\(x_ix_j\\)，可令",
             "chapterId": "linear-algebra-06",
             "topicId": "linear-algebra-06-002",
             "order": 1
@@ -9803,6 +10860,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 5,
             "searchAliases": [],
             "context": "对实对称矩阵求正交矩阵 Q，使",
+            "displayContext": "对实对称矩阵求正交矩阵 \\(Q\\)，使",
             "chapterId": "linear-algebra-06",
             "topicId": "linear-algebra-06-002",
             "order": 2
@@ -9816,6 +10874,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 7,
             "searchAliases": [],
             "context": "令 x=Qy，则",
+            "displayContext": "令 \\(x=Qy\\)，则",
             "chapterId": "linear-algebra-06",
             "topicId": "linear-algebra-06-002",
             "order": 3
@@ -9834,7 +10893,8 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "linear-algebra-06-003-anchor-001",
             "title": "二次型规范形、正负惯性指数与零平方项个数",
             "searchText": "二次型规范形、正负惯性指数与零平方项个数 把标准形中所有正系数缩放成 1、负系数缩放成 -1，零项保留，得到 z 1^2+ +z p^2-z p+1 ^2- -z p+q ^2. 其中 p 是正惯性指数，q 是负惯性指数，并且 p+q=r(A), n-p-q 是零项个数.",
-            "summary": "把标准形中所有正系数缩放成 1、负系数缩放成 -1，零项保留，得到 z 1^2+ +z p^2-z p+1 ^2- -z p+q ^2. 其中 p 是正惯性指数，q 是负惯性指数，并且 p+q=r(A), n-p-q 是零项个数."
+            "summary": "把标准形中所有正系数缩放成 1、负系数缩放成 -1，零项保留，得到 z 1^2+ +z p^2-z p+1 ^2- -z p+q ^2. 其中 p 是正惯性指数，q 是负惯性指数，并且 p+q=r(A), n-p-q 是零项个数.",
+            "displaySummary": "把标准形中所有正系数缩放成 \\(1\\)、负系数缩放成 \\(-1\\)，零项保留，得到"
           }
         ],
         "formulas": [
@@ -9847,6 +10907,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 2,
             "searchAliases": [],
             "context": "把标准形中所有正系数缩放成 1、负系数缩放成 -1，零项保留，得到",
+            "displayContext": "把标准形中所有正系数缩放成 \\(1\\)、负系数缩放成 \\(-1\\)，零项保留，得到",
             "chapterId": "linear-algebra-06",
             "topicId": "linear-algebra-06-003",
             "order": 0
@@ -9860,6 +10921,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 5,
             "searchAliases": [],
             "context": "其中 p 是正惯性指数，q 是负惯性指数，并且",
+            "displayContext": "其中 \\(p\\) 是正惯性指数，\\(q\\) 是负惯性指数，并且",
             "chapterId": "linear-algebra-06",
             "topicId": "linear-algebra-06-003",
             "order": 1
@@ -9878,14 +10940,16 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "linear-algebra-06-004-anchor-001",
             "title": "一般可逆变换",
             "searchText": "一般可逆变换 若 P 1^TAP 1=D, P 2^TBP 2=D, 则可由同一个标准形搭桥。令 x=Cy，满足 C^TAC=B 的一个取法是 C=P 1P 2^ -1 . 存在可逆变换的前提是两个实对称矩阵的正、负惯性指数分别相同。",
-            "summary": "若 P 1^TAP 1=D, P 2^TBP 2=D, 则可由同一个标准形搭桥。令 x=Cy，满足 C^TAC=B 的一个取法是 C=P 1P 2^ -1 . 存在可逆变换的前提是两个实对称矩阵的正、负惯性指数分别相同。"
+            "summary": "若 P 1^TAP 1=D, P 2^TBP 2=D, 则可由同一个标准形搭桥。令 x=Cy，满足 C^TAC=B 的一个取法是 C=P 1P 2^ -1 . 存在可逆变换的前提是两个实对称矩阵的正、负惯性指数分别相同。",
+            "displaySummary": "若"
           },
           {
             "id": "anchor-eb4ki4",
             "legacyId": "linear-algebra-06-004-anchor-002",
             "title": "正交变换",
             "searchText": "正交变换 若 Q 1^TAQ 1= , Q 2^TBQ 2= , 且特征值顺序一致，则 C=Q 1Q 2^T 为所求正交变换。正交变换要求两边特征值及重数相同，比一般可逆变换条件更强。",
-            "summary": "若 Q 1^TAQ 1= , Q 2^TBQ 2= , 且特征值顺序一致，则 C=Q 1Q 2^T 为所求正交变换。正交变换要求两边特征值及重数相同，比一般可逆变换条件更强。"
+            "summary": "若 Q 1^TAQ 1= , Q 2^TBQ 2= , 且特征值顺序一致，则 C=Q 1Q 2^T 为所求正交变换。正交变换要求两边特征值及重数相同，比一般可逆变换条件更强。",
+            "displaySummary": "若"
           }
         ],
         "formulas": [
@@ -9898,6 +10962,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 0,
             "searchAliases": [],
             "context": "所属知识点：一般可逆变换。",
+            "displayContext": "若",
             "chapterId": "linear-algebra-06",
             "topicId": "linear-algebra-06-004",
             "order": 0
@@ -9911,6 +10976,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 3,
             "searchAliases": [],
             "context": "则可由同一个标准形搭桥。令 x=Cy，满足 C^TAC=B 的一个取法是",
+            "displayContext": "则可由同一个标准形搭桥。令 \\(x=Cy\\)，满足 \\(C^TAC=B\\) 的一个取法是",
             "chapterId": "linear-algebra-06",
             "topicId": "linear-algebra-06-004",
             "order": 1
@@ -9924,6 +10990,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 4,
             "searchAliases": [],
             "context": "所属知识点：正交变换。",
+            "displayContext": "若",
             "chapterId": "linear-algebra-06",
             "topicId": "linear-algebra-06-004",
             "order": 2
@@ -9937,6 +11004,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 5,
             "searchAliases": [],
             "context": "且特征值顺序一致，则",
+            "displayContext": "且特征值顺序一致，则",
             "chapterId": "linear-algebra-06",
             "topicId": "linear-algebra-06-004",
             "order": 3
@@ -9955,7 +11023,8 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "linear-algebra-06-005-anchor-001",
             "title": "二次型方程的零解、非零解与标准形回代",
             "searchText": "二次型方程的零解、非零解与标准形回代 要求 x^TAx=0： 先用可逆或正交变换化成标准形 d 1y 1^2+ +d ny n^2=0。 解这个平方项方程。 用 x=Py 换回原变量。 若 A 正定或负定，只有零解；若半正定，解正好来自零特征值对应的齐次方程；若不定，通常有非零解。",
-            "summary": "要求 x^TAx=0： 先用可逆或正交变换化成标准形 d 1y 1^2+ +d ny n^2=0。 解这个平方项方程。 用 x=Py 换回原变量。 若 A 正定或负定，只有零解；若半正定，解正好来自零特征值对应的齐次方程；若不定，通常有非零解。"
+            "summary": "要求 x^TAx=0： 先用可逆或正交变换化成标准形 d 1y 1^2+ +d ny n^2=0。 解这个平方项方程。 用 x=Py 换回原变量。 若 A 正定或负定，只有零解；若半正定，解正好来自零特征值对应的齐次方程；若不定，通常有非零解。",
+            "displaySummary": "要求 \\(x^TAx=0\\)："
           }
         ],
         "formulas": []
@@ -9972,7 +11041,8 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "linear-algebra-06-006-anchor-001",
             "title": "球面约束下二次型最值、最佳常数与等号条件",
             "searchText": "球面约束下二次型最值、最佳常数与等号条件 设 A 为实对称矩阵，特征值按 ≤ ≤ 排列。在约束 x^Tx=1 下： x^TAx= , x^TAx= . 最小值、最大值分别在对应的单位特征向量处取到。若 x^Tx=c 0，最值分别为 c , c . 最佳常数直接转成同一结论： x^TAx≤ kx^Tx\\ ( x) ⇒ k = , x^TAx≥ kx^Tx\\ ( x) ⇒ k = . 这类题不需要另记专业名称，只需“求特征值—取最大或最小—写等号成立的特征向量”。",
-            "summary": "设 A 为实对称矩阵，特征值按 ≤ ≤ 排列。在约束 x^Tx=1 下： x^TAx= , x^TAx= . 最小值、最大值分别在对应的单位特征向量处取到。若 x^Tx=c 0，最值分别为 c , c . 最佳常数直接转成同一结论： x^TAx≤ kx^T…"
+            "summary": "设 A 为实对称矩阵，特征值按 ≤ ≤ 排列。在约束 x^Tx=1 下： x^TAx= , x^TAx= . 最小值、最大值分别在对应的单位特征向量处取到。若 x^Tx=c 0，最值分别为 c , c . 最佳常数直接转成同一结论： x^TAx≤ kx^T…",
+            "displaySummary": "设 \\(A\\) 为实对称矩阵，特征值按"
           }
         ],
         "formulas": [
@@ -9985,6 +11055,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 1,
             "searchAliases": [],
             "context": "设 A 为实对称矩阵，特征值按",
+            "displayContext": "设 \\(A\\) 为实对称矩阵，特征值按",
             "chapterId": "linear-algebra-06",
             "topicId": "linear-algebra-06-006",
             "order": 0
@@ -9998,6 +11069,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 3,
             "searchAliases": [],
             "context": "排列。在约束 x^Tx=1 下：",
+            "displayContext": "排列。在约束 \\(x^Tx=1\\) 下：",
             "chapterId": "linear-algebra-06",
             "topicId": "linear-algebra-06-006",
             "order": 1
@@ -10011,6 +11083,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 3,
             "searchAliases": [],
             "context": "排列。在约束 x^Tx=1 下：",
+            "displayContext": "排列。在约束 \\(x^Tx=1\\) 下：",
             "chapterId": "linear-algebra-06",
             "topicId": "linear-algebra-06-006",
             "order": 2
@@ -10024,6 +11097,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 5,
             "searchAliases": [],
             "context": "最小值、最大值分别在对应的单位特征向量处取到。若 x^Tx=c>0，最值分别为",
+            "displayContext": "最小值、最大值分别在对应的单位特征向量处取到。若 \\(x^Tx=c>0\\)，最值分别为",
             "chapterId": "linear-algebra-06",
             "topicId": "linear-algebra-06-006",
             "order": 3
@@ -10037,6 +11111,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 6,
             "searchAliases": [],
             "context": "最佳常数直接转成同一结论：",
+            "displayContext": "最佳常数直接转成同一结论：",
             "chapterId": "linear-algebra-06",
             "topicId": "linear-algebra-06-006",
             "order": 4
@@ -10050,6 +11125,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 7,
             "searchAliases": [],
             "context": "所属知识点：球面约束下二次型最值、最佳常数与等号条件。",
+            "displayContext": "最佳常数直接转成同一结论：",
             "chapterId": "linear-algebra-06",
             "topicId": "linear-algebra-06-006",
             "order": 5
@@ -10076,6 +11152,7 @@ export const mathChapters: MathChapter[] = [
               "正交对角化"
             ],
             "context": "A 正定时，可用正交矩阵 Q 对角化，全部特征值均为正。",
+            "displayContext": "这个等式存在可逆解的前提是 \\(A\\) 正定。先求正交矩阵 \\(Q\\)，使",
             "chapterId": "linear-algebra-06",
             "topicId": "linear-algebra-06-007",
             "order": 0
@@ -10092,6 +11169,7 @@ export const mathChapters: MathChapter[] = [
               "正定矩阵分解"
             ],
             "context": "在 A=QΛQᵀ 且 Λ 的对角元全为正时，可这样构造 P。",
+            "displayContext": "可取",
             "chapterId": "linear-algebra-06",
             "topicId": "linear-algebra-06-007",
             "order": 1
@@ -10108,6 +11186,7 @@ export const mathChapters: MathChapter[] = [
               "正定矩阵分解"
             ],
             "context": "由 P=Λ 的平方根乘 Qᵀ，得到 A=PᵀP。",
+            "displayContext": "于是",
             "chapterId": "linear-algebra-06",
             "topicId": "linear-algebra-06-007",
             "order": 2
@@ -10126,7 +11205,8 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "linear-algebra-06-008-anchor-001",
             "title": "正惯性指数、负惯性指数与含参数符号分类",
             "searchText": "正惯性指数、负惯性指数与含参数符号分类 正惯性指数就是标准形中正平方项个数，也等于正特征值个数；负惯性指数同理。求法可用特征值、配方法，或对行、列同时作相互对应的初等变换。含参数时，先找行列式或主子式变号的临界参数，再在各区间判断正负号；临界参数要单独代回。",
-            "summary": "正惯性指数就是标准形中正平方项个数，也等于正特征值个数；负惯性指数同理。求法可用特征值、配方法，或对行、列同时作相互对应的初等变换。含参数时，先找行列式或主子式变号的临界参数，再在各区间判断正负号；临界参数要单独代回。"
+            "summary": "正惯性指数就是标准形中正平方项个数，也等于正特征值个数；负惯性指数同理。求法可用特征值、配方法，或对行、列同时作相互对应的初等变换。含参数时，先找行列式或主子式变号的临界参数，再在各区间判断正负号；临界参数要单独代回。",
+            "displaySummary": "正惯性指数就是标准形中正平方项个数，也等于正特征值个数；负惯性指数同理。求法可用特征值、配方法，或对行、列同时作相互对应的初等变换。含参数时，先找行列式或主子式变号的临界参数，再在各区间判断正负号；临界参数要单独代回。"
           }
         ],
         "formulas": []
@@ -10143,7 +11223,8 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "linear-algebra-06-009-anchor-001",
             "title": "矩阵等价、相似与合同的区别及不变量",
             "searchText": "矩阵等价、相似与合同的区别及不变量 实对称矩阵 A,B 合同，是指存在可逆矩阵 P，使 B=P^TAP. 两个实对称矩阵合同，当且仅当它们的正惯性指数相同、负惯性指数也相同。因此合同保持秩和正、负惯性指数，但一般不保持具体特征值。 等价、相似、合同不要混用： B=PAQ 是等价, B=P^ -1 AP 是相似, B=P^TAP 是合同.",
-            "summary": "实对称矩阵 A,B 合同，是指存在可逆矩阵 P，使 B=P^TAP. 两个实对称矩阵合同，当且仅当它们的正惯性指数相同、负惯性指数也相同。因此合同保持秩和正、负惯性指数，但一般不保持具体特征值。 等价、相似、合同不要混用： B=PAQ 是等价, B=P^ …"
+            "summary": "实对称矩阵 A,B 合同，是指存在可逆矩阵 P，使 B=P^TAP. 两个实对称矩阵合同，当且仅当它们的正惯性指数相同、负惯性指数也相同。因此合同保持秩和正、负惯性指数，但一般不保持具体特征值。 等价、相似、合同不要混用： B=PAQ 是等价, B=P^ …",
+            "displaySummary": "实对称矩阵 \\(A,B\\) 合同，是指存在可逆矩阵 \\(P\\)，使"
           }
         ],
         "formulas": [
@@ -10156,6 +11237,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 2,
             "searchAliases": [],
             "context": "实对称矩阵 A,B 合同，是指存在可逆矩阵 P，使",
+            "displayContext": "实对称矩阵 \\(A,B\\) 合同，是指存在可逆矩阵 \\(P\\)，使",
             "chapterId": "linear-algebra-06",
             "topicId": "linear-algebra-06-009",
             "order": 0
@@ -10169,6 +11251,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 3,
             "searchAliases": [],
             "context": "等价、相似、合同不要混用：",
+            "displayContext": "等价、相似、合同不要混用：",
             "chapterId": "linear-algebra-06",
             "topicId": "linear-algebra-06-009",
             "order": 1
@@ -10182,6 +11265,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 4,
             "searchAliases": [],
             "context": "所属知识点：矩阵等价、相似与合同的区别及不变量。",
+            "displayContext": "等价、相似、合同不要混用：",
             "chapterId": "linear-algebra-06",
             "topicId": "linear-algebra-06-009",
             "order": 2
@@ -10195,6 +11279,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 5,
             "searchAliases": [],
             "context": "所属知识点：矩阵等价、相似与合同的区别及不变量。",
+            "displayContext": "等价、相似、合同不要混用：",
             "chapterId": "linear-algebra-06",
             "topicId": "linear-algebra-06-009",
             "order": 3
@@ -10213,14 +11298,16 @@ export const mathChapters: MathChapter[] = [
             "legacyId": "linear-algebra-06-010-anchor-001",
             "title": "正定、负定、半正定、半负定与不定的判定",
             "searchText": "正定、负定、半正定、半负定与不定的判定 实对称矩阵 A 正定，是指 x^TAx 0 ( x≠0). 以下条件等价： A 正定； 全部特征值大于零； 各阶顺序主子式全部大于零； 正惯性指数为 n； A 合同于单位矩阵； 存在可逆矩阵 C，使 A=C^TC。 负定时全部特征值小于零，顺序主子式满足 (-1)^k k 0. 半正定应检查全部特征值非负，或全部主子式非负；不能只凭“顺序主子式非负”下结论。 实对称矩阵 A 半正定的等价条件还包括：存在实矩阵 B，使 A=B^TB. 实对称矩阵 A 正定时还必有 a ii 0 (i=1, ,n), A 0.",
-            "summary": "实对称矩阵 A 正定，是指 x^TAx 0 ( x≠0). 以下条件等价： A 正定； 全部特征值大于零； 各阶顺序主子式全部大于零； 正惯性指数为 n； A 合同于单位矩阵； 存在可逆矩阵 C，使 A=C^TC。 负定时全部特征值小于零，顺序主子式满足 …"
+            "summary": "实对称矩阵 A 正定，是指 x^TAx 0 ( x≠0). 以下条件等价： A 正定； 全部特征值大于零； 各阶顺序主子式全部大于零； 正惯性指数为 n； A 合同于单位矩阵； 存在可逆矩阵 C，使 A=C^TC。 负定时全部特征值小于零，顺序主子式满足 …",
+            "displaySummary": "实对称矩阵 \\(A\\) 正定，是指"
           },
           {
             "id": "anchor-6e3f6t",
             "legacyId": "linear-algebra-06-010-anchor-002",
             "title": "正定矩阵、伴随矩阵、逆矩阵与合同变换结论",
             "searchText": "正定矩阵、伴随矩阵、逆矩阵与合同变换结论 若 A 正定，则 A^ -1 , A^ , A^m\\ (m N) 都正定；任意可逆矩阵 P 满足 P^TAP 正定。若 A,B 都正定，则 A+B 正定。一般不能直接说 AB 正定，因为 AB 未必对称。 任意实矩阵 B 都有 B^TB 半正定, 并且 B^TB 正定 B 的列向量线性无关.",
-            "summary": "若 A 正定，则 A^ -1 , A^ , A^m\\ (m N) 都正定；任意可逆矩阵 P 满足 P^TAP 正定。若 A,B 都正定，则 A+B 正定。一般不能直接说 AB 正定，因为 AB 未必对称。 任意实矩阵 B 都有 B^TB 半正定, 并且 B…"
+            "summary": "若 A 正定，则 A^ -1 , A^ , A^m\\ (m N) 都正定；任意可逆矩阵 P 满足 P^TAP 正定。若 A,B 都正定，则 A+B 正定。一般不能直接说 AB 正定，因为 AB 未必对称。 任意实矩阵 B 都有 B^TB 半正定, 并且 B…",
+            "displaySummary": "若 \\(A\\) 正定，则"
           }
         ],
         "formulas": [
@@ -10228,11 +11315,16 @@ export const mathChapters: MathChapter[] = [
             "id": "linear-cht9e0-1",
             "parentAnchorId": "anchor-fj9h9c",
             "legacyParentAnchorId": "linear-algebra-06-010-anchor-001",
-            "title": "正定、负定、半正定、半负定与不定的判定：x^TAx",
+            "title": "正定矩阵的二次型判定",
             "latex": "x^TAx>0\\qquad(\\forall x\\ne0).",
             "sourceBlockIndex": 1,
-            "searchAliases": [],
+            "searchAliases": [
+              "正定判定",
+              "xTAx大于零",
+              "正定矩阵定义"
+            ],
             "context": "实对称矩阵 A 正定，是指",
+            "displayContext": "实对称矩阵 \\(A\\) 正定，是指",
             "chapterId": "linear-algebra-06",
             "topicId": "linear-algebra-06-010",
             "order": 0
@@ -10249,6 +11341,7 @@ export const mathChapters: MathChapter[] = [
               "正定矩阵充要条件"
             ],
             "context": "实对称矩阵 A 正定，当且仅当可写成可逆矩阵 C 的 CᵀC。",
+            "displayContext": "1. \\(A\\) 正定；\n2. 全部特征值大于零；\n3. 各阶顺序主子式全部大于零；\n4. 正惯性指数为 \\(n\\)；\n5. \\(A\\) 合同于单位矩阵；\n6. 存在可逆矩阵 \\(C\\)，使",
             "chapterId": "linear-algebra-06",
             "topicId": "linear-algebra-06-010",
             "order": 1
@@ -10257,11 +11350,15 @@ export const mathChapters: MathChapter[] = [
             "id": "linear-1buffa9",
             "parentAnchorId": "anchor-fj9h9c",
             "legacyParentAnchorId": "linear-algebra-06-010-anchor-001",
-            "title": "正定、负定、半正定、半负定与不定的判定：(-1)^kDelta_k",
+            "title": "负定矩阵的顺序主子式判定",
             "latex": "(-1)^k\\Delta_k>0.",
             "sourceBlockIndex": 7,
-            "searchAliases": [],
+            "searchAliases": [
+              "负定判定",
+              "顺序主子式负定"
+            ],
             "context": "负定时全部特征值小于零，顺序主子式满足",
+            "displayContext": "负定时全部特征值小于零，顺序主子式满足",
             "chapterId": "linear-algebra-06",
             "topicId": "linear-algebra-06-010",
             "order": 2
@@ -10270,11 +11367,15 @@ export const mathChapters: MathChapter[] = [
             "id": "linear-12s9icp",
             "parentAnchorId": "anchor-fj9h9c",
             "legacyParentAnchorId": "linear-algebra-06-010-anchor-001",
-            "title": "正定、负定、半正定、半负定与不定的判定：A",
+            "title": "半正定矩阵的分解判定",
             "latex": "A=B^TB.",
             "sourceBlockIndex": 10,
-            "searchAliases": [],
+            "searchAliases": [
+              "半正定判定",
+              "A等于BTB"
+            ],
             "context": "实对称矩阵 A 半正定的等价条件还包括：存在实矩阵 B，使",
+            "displayContext": "实对称矩阵 \\(A\\) 半正定的等价条件还包括：存在实矩阵 \\(B\\)，使",
             "chapterId": "linear-algebra-06",
             "topicId": "linear-algebra-06-010",
             "order": 3
@@ -10283,11 +11384,15 @@ export const mathChapters: MathChapter[] = [
             "id": "linear-1slm0cv",
             "parentAnchorId": "anchor-fj9h9c",
             "legacyParentAnchorId": "linear-algebra-06-010-anchor-001",
-            "title": "正定、负定、半正定、半负定与不定的判定：a_ii",
+            "title": "正定矩阵的必要条件",
             "latex": "a_{ii}>0\\quad(i=1,\\ldots,n),\\qquad |A|>0.",
             "sourceBlockIndex": 12,
-            "searchAliases": [],
+            "searchAliases": [
+              "正定矩阵对角元",
+              "正定矩阵行列式"
+            ],
             "context": "实对称矩阵 A 正定时还必有",
+            "displayContext": "实对称矩阵 \\(A\\) 正定时还必有",
             "chapterId": "linear-algebra-06",
             "topicId": "linear-algebra-06-010",
             "order": 4
@@ -10301,6 +11406,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 14,
             "searchAliases": [],
             "context": "若 A 正定，则",
+            "displayContext": "若 \\(A\\) 正定，则",
             "chapterId": "linear-algebra-06",
             "topicId": "linear-algebra-06-010",
             "order": 5
@@ -10314,6 +11420,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 22,
             "searchAliases": [],
             "context": "任意实矩阵 B 都有",
+            "displayContext": "任意实矩阵 \\(B\\) 都有",
             "chapterId": "linear-algebra-06",
             "topicId": "linear-algebra-06-010",
             "order": 6
@@ -10327,6 +11434,7 @@ export const mathChapters: MathChapter[] = [
             "sourceBlockIndex": 23,
             "searchAliases": [],
             "context": "所属知识点：正定矩阵、伴随矩阵、逆矩阵与合同变换结论。",
+            "displayContext": "并且",
             "chapterId": "linear-algebra-06",
             "topicId": "linear-algebra-06-010",
             "order": 7

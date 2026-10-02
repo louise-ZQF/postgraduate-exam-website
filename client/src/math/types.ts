@@ -3,6 +3,7 @@ export type MathAnchor = {
   legacyId: string
   title: string
   summary: string
+  displaySummary?: string
   searchText: string
 }
 
@@ -15,6 +16,7 @@ export type MathFormula = {
   sourceBlockIndex: number
   searchAliases: string[]
   context: string
+  displayContext?: string
   chapterId: string
   topicId: string
   order: number

@@ -16,6 +16,8 @@
     "dev": "npm run build:content && npm run dev -w client",
     "build": "npm run build:content && npm run build -w client",
     "build:content": "node scripts/build-math-content.mjs",
+    "test:search": "npm run build:content && node scripts/test-math-search.mjs",
+    "test:favorites": "npm run build:content && node scripts/test-math-favorites.mjs",
     "audit:content": "npm run build:content && node scripts/audit-math-content.mjs"
   }
 }

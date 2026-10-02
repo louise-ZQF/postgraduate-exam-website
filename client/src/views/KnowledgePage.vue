@@ -56,7 +56,7 @@ function handleArticleClick(event: MouseEvent) {
     if (!formula) return
     toggleFavorite({
       id: formula.id, targetId: formula.id, kind: 'formula', title: formula.title,
-      summary: formula.context, context: formula.context, latex: formula.latex,
+      summary: formula.displayContext ?? '', context: formula.displayContext ?? '', latex: formula.latex,
       chapterId: chapter.value.id, chapterTitle: chapter.value.title, partTitle: chapter.value.partTitle,
     })
     decorateFavoriteButtons()
@@ -70,7 +70,7 @@ function handleArticleClick(event: MouseEvent) {
     if (!anchor) continue
     toggleFavorite({
       id: anchor.id, targetId: anchor.id, kind: 'topic', title: plainMathText(anchor.title),
-      summary: anchor.summary, chapterId: chapter.value.id, chapterTitle: chapter.value.title,
+      summary: anchor.displaySummary ?? '', chapterId: chapter.value.id, chapterTitle: chapter.value.title,
       partTitle: chapter.value.partTitle,
     })
     decorateFavoriteButtons()

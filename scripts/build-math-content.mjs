@@ -12,6 +12,7 @@ const sourcePaths = [
 const outputPath = resolve(projectRoot, 'client/src/generated/math2-content.ts')
 const daguanyuanPath = resolve(projectRoot, 'content/daguanyuan-math2-types.json')
 const legacyAnchorPath = resolve(projectRoot, 'content/legacy-anchor-ids.json')
+const searchLabelsPath = resolve(projectRoot, 'content/formula-search-labels.json')
 
 const source = sourcePaths
   .map((sourcePath) => readFileSync(sourcePath, 'utf8').replace(/\r\n/g, '\n'))
@@ -19,6 +20,7 @@ const source = sourcePaths
 const lines = source.split('\n')
 const daguanyuanTypes = JSON.parse(readFileSync(daguanyuanPath, 'utf8'))
 const legacyAnchorIds = JSON.parse(readFileSync(legacyAnchorPath, 'utf8'))
+const searchLabels = JSON.parse(readFileSync(searchLabelsPath, 'utf8'))
 
 const partIds = {
   '第一部分　高等数学': 'calculus',
@@ -54,6 +56,33 @@ function makeSummary(markdown) {
   return clean.length > 128 ? `${clean.slice(0, 128)}…` : clean
 }
 
+function renderSafeContext(value) {
+  const outsideMath = value
+    .replace(/\\\([\s\S]*?\\\)|\\\[[\s\S]*?\\\]|\$\$[\s\S]*?\$\$|\$[^$\n]+\$/g, '')
+  return /\\[a-zA-Z]+|[a-zA-Z](?:\^|_)[a-zA-Z0-9{]|[a-zA-Z]\s*[<>]=?/.test(outsideMath) ? '' : value
+}
+
+function readableParagraph(markdown) {
+  const blocks = markdown.trimEnd().split(/\n\s*\n/)
+  for (let index = blocks.length - 1; index >= 0; index--) {
+    const block = blocks[index].trim()
+    if (/^#{1,6}\s/.test(block)) break
+    if (!/[\p{Script=Han}]/u.test(block) || block.length > 300
+      || /<!--|\\\[|\\\]|^\||^```/.test(block)) continue
+    return renderSafeContext(block)
+  }
+  return ''
+}
+
+function firstReadableParagraph(markdown) {
+  return markdown.split(/\n\s*\n/)
+    .map((block) => block.trim())
+    .filter((block) => /[\p{Script=Han}]/u.test(block) && block.length <= 300
+      && !/^(?:#{1,6}\s|\||```|<!--|\\\[)/.test(block))
+    .map(renderSafeContext)
+    .find(Boolean) ?? ''
+}
+
 function stableHash(value) {
   let hash = 2166136261
   for (const char of value) hash = Math.imul(hash ^ char.codePointAt(0), 16777619)
@@ -80,8 +109,34 @@ function searchableAnchors(topicId, topicTitle, markdown) {
       title,
       searchText: compactText(`${title}\n${body}`),
       summary: makeSummary(body),
+      displaySummary: firstReadableParagraph(body),
     }
   })
+}
+
+function searchLabel(item) {
+  const override = searchLabels[item.id]
+  if (override && (typeof override.title !== 'string' || !Array.isArray(override.aliases)
+    || override.aliases.some((alias) => typeof alias !== 'string'))) {
+    throw new Error(`搜索名称或别名无效：${item.id}`)
+  }
+  const original = item.title.trim()
+  const pieces = original.split('：')
+  const expression = pieces.at(-1)?.trim() ?? ''
+  let title = original
+  if (!override && pieces.length > 1) {
+    if (original.startsWith('常用泰勒展开式（集中速查）：')) {
+      title = expression === 'f(x)' ? '泰勒公式' : `${expression} 的泰勒展开`
+    } else if (original.startsWith('导数公式（集中速查）：')) {
+      title = `${expression.replace(/['′″]+$/g, '').replace(/^\((.*)\)$/, '$1')} 的导数`
+    } else if (original.startsWith('积分公式与计算方法（集中速查）：') && /^∫(?!_)[^∫]+\s+dx$/.test(expression)) {
+      title = `${expression.replace(/^∫\s*/, '').replace(/\s+dx$/, '')} 的不定积分`
+    } else if (original.startsWith('极限运算法则、等价无穷小与高阶无穷小公式：') && expression && !/^lim/.test(expression)) {
+      title = `${expression} 的等价无穷小`
+    }
+  }
+  const aliases = [...new Set([...(item.aliases ?? []), ...(override?.aliases ?? [])])]
+  return { title: override?.title ?? title, aliases }
 }
 
 function extractFormulas(chapterId, topicId, markdown, anchors) {
@@ -93,6 +148,7 @@ function extractFormulas(chapterId, topicId, markdown, anchors) {
     const heading = [...markdown.slice(0, match.index).matchAll(/^#####\s+(.+)$/gm)].at(-1)?.[1]?.trim()
     const parent = anchors.find((anchor) => anchor.title === heading) ?? { id: topicId, legacyId: topicId }
     const sourceLatex = (match[2] ?? match[3]).trim()
+    const displayContext = readableParagraph(markdown.slice(0, match.index))
     const sourceBlockIndex = [...markdown.slice(0, match.index).replace(/<!--[\s\S]*?-->/g, '').matchAll(mathTokenPattern)].length
     const items = Array.isArray(metadata.items) ? metadata.items : [metadata]
     for (const item of items) {
@@ -102,15 +158,17 @@ function extractFormulas(chapterId, topicId, markdown, anchors) {
         || (item.latex !== undefined && (typeof item.latex !== 'string' || !item.latex.trim()))) {
         throw new Error(`公式元数据不完整或无所属条目：${item.id ?? match[1]}`)
       }
+      const label = searchLabel(item)
       result.push({
         id: item.id,
         parentAnchorId: parent.id,
         legacyParentAnchorId: parent.legacyId,
-        title: item.title,
+        title: label.title,
         latex: (item.latex ?? sourceLatex).trim(),
         sourceBlockIndex,
-        searchAliases: item.aliases,
+        searchAliases: label.aliases,
         context: item.context,
+        displayContext: displayContext || renderSafeContext(item.context),
         chapterId,
         topicId,
         order: result.length,
@@ -320,6 +378,9 @@ const anchorCount = chapters.reduce(
 )
 const formulas = chapters.flatMap((chapter) => chapter.topics.flatMap((topic) => topic.formulas))
 if (new Set(formulas.map((formula) => formula.id)).size !== formulas.length) throw new Error('公式 ID 重复')
+const formulaIds = new Set(formulas.map((formula) => formula.id))
+const unknownSearchLabels = Object.keys(searchLabels).filter((id) => !formulaIds.has(id))
+if (unknownSearchLabels.length) throw new Error(`搜索名称对应的公式不存在：${unknownSearchLabels.join('、')}`)
 const anchors = chapters.flatMap((chapter) => chapter.topics.flatMap((topic) => topic.anchors))
 if (new Set(anchors.map((anchor) => anchor.id)).size !== anchors.length) throw new Error('知识条目 ID 重复')
 if (topicCount < 45) {

@@ -2,8 +2,20 @@ import { mathFormulas, mathTopics } from '@/generated/math2-content'
 import type { MathSearchResult } from './types'
 
 const segmenter = new Intl.Segmenter('zh', { granularity: 'word' })
-const QUESTION_WORDS = /数学二|数二|考研|请问|如何|怎么|怎样/g
-const STOP_WORDS = new Set(['的', '了', '吗', '呢', '是', '有', '与', '和', '及', '或', '在', '中', '个', '两', '求', '找', '查', '看', '是否', '能否', '一个'])
+const QUESTION_WORDS = /数学二|数二|考研|请问|如何|怎么|怎样|请教|帮我|给我/g
+const STOP_WORDS = new Set(['的', '了', '吗', '呢', '是', '有', '与', '和', '及', '或', '在', '中', '个', '两', '求', '找', '查', '看', '是否', '能否', '一个', '公式', '计算'])
+const SEARCH_EQUIVALENTS: Array<[RegExp, string]> = [
+  [/特征矢量/g, '特征向量'],
+  [/特征根/g, '特征值'],
+  [/判断|判别/g, '判定'],
+  [/求导/g, '导数'],
+  [/导数表/g, '导数公式'],
+  [/积分表/g, '积分公式'],
+  [/泰勒表/g, '泰勒展开'],
+  [/麦克劳林/g, '泰勒'],
+  [/提水/g, '抽水'],
+  [/重根/g, '重特征值'],
+]
 
 export function normalizeFormulaQuery(value: string): string {
   return value.normalize('NFKC').toLowerCase()
@@ -11,21 +23,24 @@ export function normalizeFormulaQuery(value: string): string {
     .replace(/\\(?:geq|ge)/g, '≥').replace(/\\(?:leq|le)/g, '≤')
     .replace(/\\(?:gt)/g, '>').replace(/\\(?:lt)/g, '<')
     .replace(/\\(?:prime)/g, "'")
+    .replace(/\\sim/g, '~')
+    .replace(/\\(?:mathrm|text|operatorname)\{([^{}]*)\}/g, '$1')
     .replace(/\\(?:left|right|bigl|bigr|!|,|;|quad|qquad)/g, '')
+    .replace(/\{([^{}]*)\}/g, '$1')
+    .replace(/([a-z]'+)\(x\)/g, '$1')
     .replace(/\s+/g, '')
 }
 
 function looksLikeFormula(value: string): boolean {
-  return /[><=≤≥]|['′″]|\\(?:ge|le|prime)/.test(value)
+  return /[><=≤≥~^]|['′″]|\\(?:ge|le|prime|sim|frac|int|sqrt)/.test(value)
 }
 
 export function normalizeMathQuery(value: string): string {
-  return value
-    .normalize('NFKC')
-    .toLowerCase()
-    .replace(/判断/g, '判定')
-    .replace(/特征矢量/g, '特征向量')
-    .replace(/求导/g, '导数')
+  let normalized = value.normalize('NFKC').toLowerCase().replace(QUESTION_WORDS, '')
+  normalized = normalized.replace(/特征矢量/g, '特征向量')
+  for (const [pattern, replacement] of SEARCH_EQUIVALENTS) normalized = normalized.replace(pattern, replacement)
+  return normalized
+    .replace(/的/g, '')
     .replace(/[^\p{L}\p{N}]/gu, '')
 }
 
@@ -50,24 +65,10 @@ function queryTerms(query: string): string[] {
   return [...terms]
 }
 
-function firstMatchingSnippet(text: string, terms: string[], maxLength = 118): string {
-  const compact = text.replace(/\s+/g, ' ').trim()
-  if (!compact) return ''
-  let hit = -1
-  for (const term of terms) {
-    const index = compact.toLowerCase().indexOf(term)
-    if (index >= 0 && (hit < 0 || index < hit)) hit = index
-  }
-  if (hit < 0) return compact.slice(0, maxLength) + (compact.length > maxLength ? '…' : '')
-  const start = Math.max(0, hit - 34)
-  const end = Math.min(compact.length, start + maxLength)
-  return `${start > 0 ? '…' : ''}${compact.slice(start, end)}${end < compact.length ? '…' : ''}`
-}
-
 const searchableEntries = mathTopics.flatMap((topic) => {
   const candidates = topic.anchors.length
     ? topic.anchors
-    : [{ id: topic.id, title: topic.title, searchText: topic.searchText, summary: topic.summary }]
+    : [{ id: topic.id, title: topic.title, searchText: topic.searchText, summary: topic.summary, displaySummary: '' }]
   return candidates.map((candidate) => ({
     topic,
     candidate,
@@ -76,30 +77,92 @@ const searchableEntries = mathTopics.flatMap((topic) => {
   }))
 })
 
-export function searchMathWithCount(query: string, limit = 8): { results: MathSearchResult[]; total: number } {
+const topicById = new Map(mathTopics.map((topic) => [topic.id, topic]))
+const searchableFormulas = mathFormulas.map((formula) => {
+  const topic = topicById.get(formula.topicId)
+  const parent = topic?.anchors.find((anchor) => anchor.id === formula.parentAnchorId)
+  const inheritedTitle = parent && formula.title.startsWith(`${parent.title}：`)
+  return {
+    formula,
+    topic,
+    // 自动生成的“整组标题：符号”不是单条公式的专名，不能以标题权重参与召回。
+    title: normalizeMathQuery(inheritedTitle ? formula.title.slice(parent.title.length + 1) : formula.title),
+    fullTitle: normalizeMathQuery(formula.title),
+    aliases: formula.searchAliases.map(normalizeMathQuery),
+    context: normalizeMathQuery(formula.context.startsWith('所属知识点：') ? '' : formula.context),
+    path: normalizeMathQuery(`${parent?.title ?? ''} ${topic?.title ?? ''}`),
+    latex: normalizeFormulaQuery(formula.latex),
+    formulaAliases: formula.searchAliases.map(normalizeFormulaQuery),
+  }
+})
+
+function matchTerms(fields: string[], terms: string[]): number {
+  return terms.filter((term) => fields.some((field) => field.includes(term))).length
+}
+
+function chineseBigramCoverage(query: string, fields: string[]): number {
+  const chinese = query.match(/[\p{Script=Han}]{2,}/gu) ?? []
+  const bigrams = new Set(chinese.flatMap((chunk) => [...chunk.slice(0, -1)].map((_, index) => chunk.slice(index, index + 2))))
+  if (!bigrams.size) return 0
+  return [...bigrams].filter((bigram) => fields.some((field) => field.includes(bigram))).length / bigrams.size
+}
+
+function conflictsWithQuery(query: string, title: string): boolean {
+  if ((query.includes('x坐标') || query.includes('横坐标')) && title.includes('纵坐标')) return true
+  if ((query.includes('y坐标') || query.includes('纵坐标')) && title.includes('横坐标')) return true
+  if (query.includes('大于') && title.includes('小于')) return true
+  if (query.includes('小于') && title.includes('大于')) return true
+  if (query.includes('正定') && !query.includes('半正定') && title.includes('半正定')) return true
+  if (query.includes('负定') && !query.includes('半负定') && title.includes('半负定')) return true
+  return false
+}
+
+function textualScore(query: string, terms: string[], title: string, aliases: string[], context: string, path: string, formula: boolean, relaxed: boolean): number {
+  if (!query) return 0
+  if (formula && conflictsWithQuery(query, title)) return 0
+  if (title === query) return formula ? 3200 : 2900
+  if (aliases.includes(query)) return formula ? 3100 : 2750
+  if (title.includes(query)) return formula ? 2700 : 2450
+  if (aliases.some((alias) => alias.includes(query))) return formula ? 2600 : 2350
+  if (formula && context.includes(query)) return 2500
+  const titleHits = matchTerms([title], terms)
+  const aliasHits = matchTerms(aliases, terms)
+  const contextHits = matchTerms([context], terms)
+  const pathHits = matchTerms([path], terms)
+  const matched = matchTerms([title, ...aliases, context], terms)
+  const coverage = terms.length ? matched / terms.length : 0
+  if (!matched || (terms.length > 1 && coverage < (relaxed ? 0.5 : 0.75))) {
+    if (!relaxed) return 0
+    const bigramCoverage = chineseBigramCoverage(query, [title, ...aliases])
+    return bigramCoverage >= 0.6 ? Math.round(420 + bigramCoverage * 420) : 0
+  }
+  // 仅在严格匹配没有结果时放宽覆盖率；标题和别名仍明显高于正文、章节路径。
+  return Math.round(coverage * 780 + titleHits * 190 + aliasHits * 160 + contextHits * 42 + pathHits * 18
+    + (context.includes(query) ? 180 : 0) + (path.includes(query) ? 100 : 0)
+    + (formula ? 35 : 0))
+}
+
+function symbolicQueryPart(query: string): string {
+  if (!looksLikeFormula(query)) return ''
+  if (!/[\p{Script=Han}]/u.test(query)) return normalizeFormulaQuery(query)
+  const relation = query.match(/[a-zA-Z][a-zA-Z0-9_'′″^(){}\\-]*\s*(?:>=|<=|>|<|=|≥|≤|~)\s*[a-zA-Z0-9_+\-(){}\\]+/)
+  return relation ? normalizeFormulaQuery(relation[0]) : ''
+}
+
+export function searchMathWithCount(query: string, limit = 8, relaxed = false): { results: MathSearchResult[]; total: number } {
   const trimmed = query.trim()
   if (!trimmed) return { results: [], total: 0 }
-  const terms = queryTerms(trimmed)
-  if (!terms.length && !looksLikeFormula(trimmed)) return { results: [], total: 0 }
-  const normalizedQuery = normalizeMathQuery(trimmed)
-  const formulaQuery = normalizeFormulaQuery(trimmed)
-  const symbolic = looksLikeFormula(trimmed)
+  const formulaQuery = symbolicQueryPart(trimmed)
+  const textQuery = formulaQuery ? trimmed.replace(/[^\s]*[><=≤≥~^'′″][^\s]*/g, ' ') : trimmed
+  const terms = queryTerms(textQuery)
+  const normalizedQuery = normalizeMathQuery(textQuery)
+  if (!terms.length && !formulaQuery) return { results: [], total: 0 }
 
-  const topics = symbolic ? [] : searchableEntries
+  const topics = formulaQuery ? [] : searchableEntries
     .map(({ topic, candidate, title, body }) => {
-      const titleHits = terms.filter((term) => title.includes(term))
-      const bodyHits = terms.filter((term) => body.includes(term))
-      const matched = terms.filter((term) => titleHits.includes(term) || bodyHits.includes(term)).length
-      // 常见的两三个关键词须全部匹配，避免只碰到“矩阵”和“判定”就冒充“矩阵相似判定”。
-      if (!matched || (terms.length > 1 && matched / terms.length < 0.75)) return null
-
-      const coverage = matched / terms.length
-      const score = coverage * 500
-        + titleHits.length * 85
-        + bodyHits.length * 12
-        + (title === normalizedQuery ? 400 : 0)
-        + (title.includes(normalizedQuery) ? 180 : 0)
-        + (body.includes(normalizedQuery) ? 35 : 0)
+      if (normalizedQuery.includes('二重积分') && !topic.chapterTitle.includes('二重积分')) return null
+      const score = textualScore(normalizedQuery, terms, title, [], body, normalizeMathQuery(topic.title), false, relaxed)
+      if (!score) return null
 
       return {
         ...topic,
@@ -108,36 +171,23 @@ export function searchMathWithCount(query: string, limit = 8): { results: MathSe
         searchText: candidate.searchText,
         summary: candidate.summary,
         score,
-        snippet: firstMatchingSnippet(titleHits.length ? candidate.summary : candidate.searchText, terms),
+        snippet: candidate.displaySummary ?? '',
         resultId: candidate.id,
         targetId: candidate.id,
       }
     })
     .filter((topic): topic is NonNullable<typeof topic> => topic !== null)
 
-  const formulas = mathFormulas.flatMap((formula) => {
-    const topic = mathTopics.find((item) => item.id === formula.topicId)
+  const formulas = searchableFormulas.flatMap(({ formula, topic, title, fullTitle, aliases, context, path, latex, formulaAliases }) => {
     if (!topic) return []
-    const title = normalizeMathQuery(formula.title)
-    const aliases = formula.searchAliases.map(normalizeMathQuery)
-    const context = normalizeMathQuery(formula.context)
-    const formulaText = normalizeFormulaQuery(formula.latex)
+    if (normalizedQuery.includes('二重积分') && !topic.chapterTitle.includes('二重积分')) return []
     let score = 0
-    if (symbolic) {
-      if (!formulaText.includes(formulaQuery)) return []
-      score = formulaText === formulaQuery ? 3000 : 2400
-    } else if (normalizedQuery) {
-      if (title === normalizedQuery) score = 2200
-      else if (aliases.includes(normalizedQuery)) score = 2100
-      else if (title.includes(normalizedQuery)) score = 1800
-      else if (aliases.some((alias) => alias.includes(normalizedQuery))) score = 1700
-      else if (context.includes(normalizedQuery)) score = 1200
-      else {
-        const matches = terms.filter((term) => title.includes(term) || aliases.some((alias) => alias.includes(term)) || context.includes(term))
-        if (!matches.length || matches.length !== terms.length) return []
-        score = 900 + matches.length * 70
-      }
-    }
+    if (formulaQuery) {
+      if (!latex.includes(formulaQuery) && !formulaAliases.some((alias) => alias.includes(formulaQuery))) return []
+      score = latex === formulaQuery || formulaAliases.includes(formulaQuery) ? 3800 : 3300
+      if (normalizedQuery && terms.length) score += textualScore(normalizedQuery, terms, title, aliases, context, path, true, relaxed) / 10
+    } else score = fullTitle === normalizedQuery ? 3200
+      : textualScore(normalizedQuery, terms, title, aliases, context, path, true, relaxed)
     if (!score) return []
     return [{
       ...topic,
@@ -145,7 +195,7 @@ export function searchMathWithCount(query: string, limit = 8): { results: MathSe
       formula,
       title: formula.title,
       summary: formula.context,
-      snippet: formula.context,
+      snippet: formula.displayContext ?? '',
       searchText: [formula.title, formula.context, ...formula.searchAliases].join(' '),
       resultId: formula.id,
       targetId: formula.id,
@@ -156,7 +206,9 @@ export function searchMathWithCount(query: string, limit = 8): { results: MathSe
   sorted.sort((a, b) => b.score - a.score || a.chapterId.localeCompare(b.chapterId)
       || (a.formula && b.formula && a.formula.topicId === b.formula.topicId ? a.formula.order - b.formula.order : 0)
       || a.resultId.localeCompare(b.resultId))
-  return { results: sorted.slice(0, limit), total: sorted.length }
+  if (!sorted.length && !relaxed && !formulaQuery) return searchMathWithCount(query, limit, true)
+  const useful = sorted[0]?.score >= 2500 ? sorted.filter((result) => result.score >= 1200) : sorted
+  return { results: useful.slice(0, limit), total: useful.length }
 }
 
 export function searchMath(query: string, limit = 8): MathSearchResult[] {

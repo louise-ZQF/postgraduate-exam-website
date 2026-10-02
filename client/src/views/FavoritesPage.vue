@@ -52,9 +52,9 @@ onBeforeUnmount(() => {
         <article v-for="item in visibleFavorites" :key="item.id">
           <div class="favorite-path">{{ item.partTitle }} <span aria-hidden="true">/</span> {{ item.chapterTitle }}</div>
           <span class="favorite-kind">{{ item.kind === 'formula' ? '公式收藏' : '旧版知识点收藏' }}</span>
-          <h2>{{ item.title }}</h2>
+          <h2><MathMarkdown :source="item.title" inline /></h2>
           <MathMarkdown v-if="item.kind === 'formula' && item.latex" class="favorite-formula" :source="`\\[${item.latex}\\]`" />
-          <p v-if="item.context || item.summary">{{ item.context || item.summary }}</p>
+          <MathMarkdown v-if="item.context || item.summary" class="favorite-context" :source="item.context || item.summary" />
           <div class="actions">
             <RouterLink :to="{ name: 'knowledge', params: { chapterId: item.chapterId }, query: { section: item.targetId } }">查看原文 ↗</RouterLink>
             <button type="button" @click="remove(item.id)">已背会，移出待背</button>
@@ -94,7 +94,8 @@ article + article { border-top: 1px solid var(--line); }
 h2 { margin: 4px 0 8px; font-family: var(--serif); font-size: 24px; line-height: 1.5; }
 .favorite-formula { max-width: 760px; margin: 12px 0; }
 .favorite-formula :deep(.katex-display) { margin: 0; border: 0; border-radius: 6px; padding: 14px 17px; background: #f8f5f0; text-align: left; }
-article p { max-width: 760px; margin: 0; color: var(--ink-soft); font-size: 14px; line-height: 1.75; }
+.favorite-context { max-width: 760px; color: var(--ink-soft); font-size: 14px; line-height: 1.75; }
+.favorite-context :deep(p) { margin: 0; }
 .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 17px; }
 .actions a, .actions button { display: inline-flex; align-items: center; min-height: 44px; border: 1px solid var(--line-strong); border-radius: 6px; padding: 0 13px; background: var(--paper); color: var(--accent-dark); font-size: 13px; font-weight: 650; }
 .actions a:hover, .actions button:hover { border-color: var(--accent); background: var(--accent-tint); }

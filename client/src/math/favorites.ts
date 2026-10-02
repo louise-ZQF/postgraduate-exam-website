@@ -1,4 +1,4 @@
-import { legacyAnchorIds } from '@/generated/math2-content'
+import { legacyAnchorIds, mathFormulas, mathTopics } from '@/generated/math2-content'
 
 const STORAGE_KEY = 'math2-favorites-v2'
 const LEGACY_KEY = 'math2-favorites-v1'
@@ -18,6 +18,42 @@ export type MathFavorite = {
   addedAt: number
 }
 
+const formulasById = new Map(mathFormulas.map((formula) => [formula.id, formula]))
+const anchorsById = new Map(mathTopics.flatMap((topic) => topic.anchors.map((anchor) => [anchor.id, { anchor, topic }] as const)))
+
+function currentFavorite(item: MathFavorite): MathFavorite {
+  const targetId = legacyAnchorIds[item.targetId] ?? item.targetId
+  if (item.kind === 'formula') {
+    const formula = formulasById.get(targetId)
+    if (!formula) return item
+    return {
+      ...item,
+      id: formula.id,
+      targetId: formula.id,
+      title: formula.title,
+      summary: formula.displayContext ?? '',
+      context: formula.displayContext ?? '',
+      latex: formula.latex,
+      chapterId: formula.chapterId,
+      chapterTitle: formula.chapterTitle,
+      partTitle: formula.partTitle,
+    }
+  }
+  const found = anchorsById.get(targetId)
+  if (!found) return item
+  return {
+    ...item,
+    id: found.anchor.id,
+    targetId: found.anchor.id,
+    title: found.anchor.title,
+    summary: found.anchor.displaySummary ?? '',
+    context: undefined,
+    chapterId: found.topic.chapterId,
+    chapterTitle: found.topic.chapterTitle,
+    partTitle: found.topic.partTitle,
+  }
+}
+
 function validFavorite(value: unknown): value is MathFavorite {
   if (!value || typeof value !== 'object') return false
   const item = value as Partial<MathFavorite>
@@ -29,14 +65,15 @@ function validFavorite(value: unknown): value is MathFavorite {
 }
 
 function writeFavorites(items: MathFavorite[]): MathFavorite[] {
-  if (typeof window === 'undefined') return items
+  const current = items.map(currentFavorite)
+  if (typeof window === 'undefined') return current
   try {
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(items))
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(current))
     window.dispatchEvent(new CustomEvent(FAVORITES_CHANGED_EVENT))
   } catch {
     // 本地存储不可用时仍允许浏览。
   }
-  return items
+  return current
 }
 
 export function readFavorites(): MathFavorite[] {
@@ -57,7 +94,7 @@ export function readFavorites(): MathFavorite[] {
     const parsed = JSON.parse(stored ?? '[]')
     if (!Array.isArray(parsed)) return []
     const seen = new Set<string>()
-    return parsed.filter(validFavorite).filter((item) => {
+    return parsed.filter(validFavorite).map(currentFavorite).filter((item) => {
       if (seen.has(item.id)) return false
       seen.add(item.id)
       return true
