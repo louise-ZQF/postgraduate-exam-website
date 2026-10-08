@@ -1,16 +1,28 @@
 <script setup lang="ts">
-import { computed, nextTick, onBeforeUnmount, onMounted, watch } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import MathHeader from '@/components/MathHeader.vue'
 import MathMarkdown from '@/components/MathMarkdown.vue'
 import { legacyAnchorIds, mathChapters } from '@/generated/math2-content'
 import { FAVORITES_CHANGED_EVENT, readFavorites, toggleFavorite } from '@/math/favorites'
 import { plainMathText } from '@/math/search'
+import { rememberSearch } from '@/math/recentSearches'
 
 const route = useRoute()
 const router = useRouter()
 const chapter = computed(() => mathChapters.find((item) => item.id === route.params.chapterId) ?? mathChapters[0])
 const backToSearch = computed(() => ({ name: 'home', query: route.query.q ? { q: String(route.query.q) } : {} }))
+const query = ref(String(route.query.q ?? '').slice(0, 30))
+const searchToolbar = ref<HTMLElement | null>(null)
+
+watch(() => route.query.q, (value) => { query.value = String(value ?? '').slice(0, 30) })
+
+function submitSearch() {
+  const q = query.value.trim()
+  if (!q) return
+  rememberSearch(q)
+  router.push({ name: 'home', query: { q } })
+}
 
 function decorateFavoriteButtons() {
   const favoriteIds = new Set(readFavorites().map((item) => item.id))
@@ -93,7 +105,8 @@ async function scrollToRequestedSection() {
   const target = document.getElementById(requested)
   if (target) {
     target.classList.add('search-target')
-    window.scrollTo({ top: window.scrollY + target.getBoundingClientRect().top - 70, behavior: 'auto' })
+    const toolbarHeight = searchToolbar.value?.getBoundingClientRect().height ?? 70
+    window.scrollTo({ top: window.scrollY + target.getBoundingClientRect().top - toolbarHeight - 16, behavior: 'auto' })
   }
 }
 
@@ -120,7 +133,15 @@ if (!route.params.chapterId) {
   <div class="knowledge-page">
     <MathHeader hide-search />
     <main v-if="chapter">
-      <RouterLink class="back-link" :to="backToSearch">← 返回搜索</RouterLink>
+      <div ref="searchToolbar" class="reading-search-toolbar">
+        <RouterLink class="back-link" :to="backToSearch">← 返回搜索</RouterLink>
+        <form class="reading-search" role="search" aria-label="继续搜索公式与结论" @submit.prevent="submitSearch">
+          <label for="reading-search-input">继续搜索</label>
+          <input id="reading-search-input" v-model="query" type="search" maxlength="30"
+            autocomplete="off" placeholder="输入下一个知识点、关键词或公式" />
+          <button type="submit">搜索</button>
+        </form>
+      </div>
       <article @click="handleArticleClick">
         <header class="chapter-header">
           <span>{{ chapter.partTitle }}</span>
@@ -141,8 +162,16 @@ if (!route.params.chapterId) {
 .knowledge-page { min-height: 100vh; background: var(--paper); }
 .knowledge-page :deep(.header-inner) { width: calc(100% - 96px); max-width: none; }
 main { width: 100%; margin: 0; padding: 24px 48px 88px; }
-.back-link { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; width: 100%; min-height: 48px; margin-bottom: 13px; border-bottom: 1px solid var(--line); background: var(--paper); color: var(--accent-dark); font-size: 14px; font-weight: 700; }
+.reading-search-toolbar { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; gap: 28px; min-height: 76px; padding: 12px 0; border-bottom: 1px solid var(--line); background: var(--paper); }
+.back-link { display: inline-flex; align-items: center; min-height: 44px; flex-shrink: 0; color: var(--accent-dark); font-size: 14px; font-weight: 700; }
 .back-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+.reading-search { display: flex; align-items: center; gap: 14px; width: min(100%, 820px); min-width: 0; }
+.reading-search label { flex-shrink: 0; color: var(--ink-soft); font-size: 14px; font-weight: 600; }
+.reading-search input { flex: 1; min-width: 0; min-height: 48px; border: 1px solid var(--line-strong); border-radius: 6px; padding: 0 14px; background: var(--paper); color: var(--ink); font-size: 16px; }
+.reading-search input:focus-visible { border-color: var(--accent); outline: 3px solid var(--focus-ring); }
+.reading-search button { min-height: 48px; border: 0; border-radius: 6px; padding: 0 24px; background: var(--accent); color: white; font-size: 15px; font-weight: 700; }
+.reading-search button:hover { background: var(--accent-dark); }
+.reading-search button:focus-visible, .back-link:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
 article { width: 100%; min-width: 0; padding: 28px 0 64px; background: var(--paper); }
 .chapter-header { border-bottom: 1px solid var(--line); padding-bottom: 32px; }
 .chapter-header span { color: var(--accent-dark); font-size: 13px; font-weight: 700; }
@@ -159,6 +188,10 @@ h1 { margin: 10px 0 12px; font-family: var(--serif); font-size: clamp(34px, 4vw,
 @media (max-width: 700px) {
   .knowledge-page :deep(.header-inner) { width: calc(100% - 28px); }
   main { padding: 14px 14px 64px; }
+  .reading-search-toolbar { flex-wrap: wrap; gap: 4px; }
+  .reading-search { gap: 8px; }
+  .reading-search label { display: none; }
+  .reading-search input { font-size: 16px; }
   article { padding: 28px 0 40px; }
   .chapter-section { padding-top: 28px; }
   .chapter-section > h2 { font-size: 23px; }
