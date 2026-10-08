@@ -6,6 +6,7 @@ import type { Mastery, PracticeQuestion, QuestionProgress } from '@/math/practic
 
 const props = defineProps<{ question: PracticeQuestion; index: number; progress?: QuestionProgress; storageFailed: boolean }>()
 const emit = defineEmits<{ mark: [id: string, mastery: Mastery]; note: [id: string, note: string] }>()
+const figureUrl = (src: string) => `${import.meta.env.BASE_URL}${src}`
 const answerOpen = ref(false)
 const noteOpen = ref(false)
 const selectedOption = ref('')
@@ -25,6 +26,7 @@ const statuses: { value: Mastery; label: string }[] = [
     <h3 :id="`title-${question.id}`" class="visually-hidden">{{ question.year }} 年 {{ question.source }} {{ question.number }}题</h3>
     <p class="question-topic">{{ question.topic }}</p>
     <MathMarkdown class="question-stem" :source="question.stem" compact />
+    <div v-if="question.figures?.length" class="question-figures"><figure v-for="figure in question.figures" :key="figure.src"><img :src="figureUrl(figure.src)" :alt="figure.alt" :width="figure.width" :height="figure.height" loading="lazy" decoding="async" /><figcaption v-if="figure.caption">{{ figure.caption }}</figcaption></figure></div>
     <fieldset v-if="question.options?.length" class="options">
       <legend class="visually-hidden">第 {{ index }} 题，选择你的答案</legend>
       <label v-for="option in question.options" :key="option.key" class="option" :class="{ selected: selectedOption === option.key, correct: showResult && question.correctOption === option.key, wrong: showResult && selectedOption === option.key && question.correctOption !== option.key }">
@@ -58,6 +60,7 @@ button { cursor: pointer; transition: background .16s, border-color .16s, color 
 .mastery-badge { margin-left: auto; border-radius: 5px; padding: 3px 7px; white-space: nowrap; }
 .question-topic { margin: 6px 0 0 38px; color: var(--muted); font-size: 12px; line-height: 1.5; }
 .question-stem { margin: 14px 0; font-size: 18px; line-height: 1.7; font-weight: 500; }
+.question-figures { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin: 12px 0 18px; }.question-figures figure { margin: 0; max-width: 100%; text-align: center; }.question-figures img { display: block; width: min(340px, 100%); max-height: 260px; height: auto; object-fit: contain; margin: 0 auto; border-radius: 6px; background: white; }.question-figures figcaption { margin-top: 6px; color: var(--muted); font-size: 12px; line-height: 1.7; }
 .options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; min-width: 0; margin: 0 0 14px; padding: 0; border: 0; }
 .option { position: relative; display: flex; align-items: center; gap: 9px; min-width: 0; min-height: 44px; border: 1px solid var(--line); border-radius: 6px; padding: 8px 11px; color: var(--ink); font-size: 17px; cursor: pointer; }
 .option input { position: absolute; inset: 0; opacity: 0; width: 100%; height: 100%; cursor: pointer; }

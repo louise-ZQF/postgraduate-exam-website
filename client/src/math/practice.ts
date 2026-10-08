@@ -10,6 +10,7 @@ export type PracticeQuestion = {
   topic: string
   type: 'choice' | 'fill' | 'solution'
   stem: string
+  figures?: { src: string; alt: string; caption?: string; width: number; height: number }[]
   options?: { key: string; text: string }[]
   correctOption?: string
   answer: string

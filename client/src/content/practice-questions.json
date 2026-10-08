@@ -107,7 +107,16 @@
     "type": "solution",
     "stem": "一个高为 $l$ 的柱体形贮油罐，底面为长轴 $2a$、短轴 $2b$ 的椭圆。现将贮油罐平放，使椭圆长轴水平、罐轴水平；当罐中油面高度为 $\\dfrac32b$ 时，求油的质量。油的密度为常量 $\\rho$，长度单位为 $\\mathrm m$，质量单位为 $\\mathrm{kg}$。",
     "answer": "$m=\\rho lab\\left(\\dfrac{2\\pi}3+\\dfrac{\\sqrt3}4\\right)$。",
-    "explanation": "以椭圆中心为原点，长轴为 $x$ 轴，则截面方程为 $\\dfrac{x^2}{a^2}+\\dfrac{y^2}{b^2}=1$。底部高度为 $-b$，油面离底部 $\\dfrac32b$，所以油面为 $y=\\dfrac b2$。\n\n高度 $y$ 处的水平宽度为 $2a\\sqrt{1-\\dfrac{y^2}{b^2}}$，因此油面截面积为\n$$S=\\int_{-b}^{\\frac b2}2a\\sqrt{1-\\frac{y^2}{b^2}}\\,dy.$$\n令 $y=b\\sin\\theta$，则 $-\\dfrac\\pi2\\le\\theta\\le\\dfrac\\pi6$，从而\n$$S=2ab\\int_{-\\frac{\\pi}{2}}^{\\frac{\\pi}{6}}\\cos^2\\theta\\,d\\theta=ab\\left(\\frac{2\\pi}3+\\frac{\\sqrt3}4\\right).$$\n油的体积为 $V=lS$，质量为 $m=\\rho V$。易错点是油面坐标为 $\\frac b2$，而不是 $\\frac{3b}{2}$。"
+    "explanation": "以椭圆中心为原点，长轴为 $x$ 轴，则截面方程为 $\\dfrac{x^2}{a^2}+\\dfrac{y^2}{b^2}=1$。底部高度为 $-b$，油面离底部 $\\dfrac32b$，所以油面为 $y=\\dfrac b2$。\n\n高度 $y$ 处的水平宽度为 $2a\\sqrt{1-\\dfrac{y^2}{b^2}}$，因此油面截面积为\n$$S=\\int_{-b}^{\\frac b2}2a\\sqrt{1-\\frac{y^2}{b^2}}\\,dy.$$\n令 $y=b\\sin\\theta$，则 $-\\dfrac\\pi2\\le\\theta\\le\\dfrac\\pi6$，从而\n$$S=2ab\\int_{-\\frac{\\pi}{2}}^{\\frac{\\pi}{6}}\\cos^2\\theta\\,d\\theta=ab\\left(\\frac{2\\pi}3+\\frac{\\sqrt3}4\\right).$$\n油的体积为 $V=lS$，质量为 $m=\\rho V$。易错点是油面坐标为 $\\frac b2$，而不是 $\\frac{3b}{2}$。",
+    "figures": [
+      {
+        "src": "practice-figures/2010-q18-original.png",
+        "alt": "椭圆截面油罐，长轴2a、短轴2b，油面离底部3b/2，顶部余高b/2",
+        "caption": "原题配图",
+        "width": 494,
+        "height": 324
+      }
+    ]
   },
   {
     "id": "math2-2010-q23-original",
@@ -313,7 +322,16 @@
     "type": "solution",
     "stem": "容器的内侧由曲线绕 $y$ 轴旋转一周而成，该曲线由 $x^2+y^2=2y$（$y\\ge\\dfrac12$）与 $x^2+y^2=1$（$y\\le\\dfrac12$）连接而成。\n\n（Ⅰ）求容器的容积；（Ⅱ）若容器盛满水，从容器顶部全部抽出，至少需要做多少功？长度单位为 $\\mathrm m$，重力加速度为 $g$，水的密度为 $10^3\\,\\dfrac{\\mathrm{kg}}{\\mathrm{m}^3}$。",
     "answer": "（Ⅰ）$V=\\dfrac{9\\pi}4\\,\\mathrm{m^3}$；（Ⅱ）$W=\\dfrac{27\\times10^3}8\\pi g\\,\\mathrm J$。",
-    "explanation": "容器高度范围为 $-1\\le y\\le2$，水平截面积为\n$$S(y)=\\begin{cases}\\pi(1-y^2),&-1\\le y\\le\\dfrac12,\\\\[0.4em]\\pi(2y-y^2),&\\dfrac12\\le y\\le2.\\end{cases}$$\n（Ⅰ）以水平薄片为体积微元，得\n$$V=\\pi\\int_{-1}^{\\frac12}(1-y^2)\\,dy+\\pi\\int_{\\frac12}^{2}(2y-y^2)\\,dy=\\frac{9\\pi}4.$$\n（Ⅱ）高度 $y$ 处厚度 $dy$ 的水层需提升到顶部 $y=2$，提升距离为 $2-y$，故\n$$\\begin{aligned}\nW=10^3\\pi g\\bigg[&\\int_{-1}^{\\frac12}(1-y^2)(2-y)\\,dy\\\\[0.4em]&+\\int_{\\frac12}^{2}(2y-y^2)(2-y)\\,dy\\bigg]\n=\\frac{27\\times10^3}8\\pi g.\n\\end{aligned}$$\n两段截面积公式不同，必须在 $y=\\dfrac12$ 处分段；提升距离也不能写成 $y$。"
+    "explanation": "容器高度范围为 $-1\\le y\\le2$，水平截面积为\n$$S(y)=\\begin{cases}\\pi(1-y^2),&-1\\le y\\le\\dfrac12,\\\\[0.4em]\\pi(2y-y^2),&\\dfrac12\\le y\\le2.\\end{cases}$$\n（Ⅰ）以水平薄片为体积微元，得\n$$V=\\pi\\int_{-1}^{\\frac12}(1-y^2)\\,dy+\\pi\\int_{\\frac12}^{2}(2y-y^2)\\,dy=\\frac{9\\pi}4.$$\n（Ⅱ）高度 $y$ 处厚度 $dy$ 的水层需提升到顶部 $y=2$，提升距离为 $2-y$，故\n$$\\begin{aligned}\nW=10^3\\pi g\\bigg[&\\int_{-1}^{\\frac12}(1-y^2)(2-y)\\,dy\\\\[0.4em]&+\\int_{\\frac12}^{2}(2y-y^2)(2-y)\\,dy\\bigg]\n=\\frac{27\\times10^3}8\\pi g.\n\\end{aligned}$$\n两段截面积公式不同，必须在 $y=\\dfrac12$ 处分段；提升距离也不能写成 $y$。",
+    "figures": [
+      {
+        "src": "practice-figures/2011-q20-original.png",
+        "alt": "上下两段圆弧组成的容器截面，连接高度1/2，顶部高度2，底部高度负1",
+        "caption": "原题配图",
+        "width": 552,
+        "height": 487
+      }
+    ]
   },
   {
     "id": "math2-2011-q21-original",
@@ -1324,9 +1342,18 @@
     "source": "基础过关660题高数第137题",
     "topic": "高等数学 / 一元积分 / 体积、变化率与抽水功",
     "type": "fill",
-    "stem": "在水平放置的椭圆柱形容器内储有液体，容器长4 m，横截面椭圆方程为\n\n$$\n\\frac{x^2}{4}+y^2=1\n$$\n\n（长度单位为m），容器顶端及抽出口的高度为 $y=1$。当液面经过 $(0,y)$，$-1\\leq y\\leq1$ 时，容器内液体的体积为$\\underline{\\qquad}$。容器装满后，以0.16 m³/min的速率从顶端抽出液体，当液面降至 $y=0$ 时，液面下降的速度为$\\underline{\\qquad}$。若液体密度为100 kg/m³，抽出全部液体所作的功为$\\underline{\\qquad}$。",
-    "answer": "$$\nV(y)=8\\left[y\\sqrt{1-y^2}+\\arcsin y+\\frac{\\pi}{2}\\right]\\ \\mathrm{m^3},\n$$\n\n液面下降速率为0.01 m/min，抽出全部液体所作功为 $800\\pi g$ J；取 $g=9.8$ m/s²时为 $7840\\pi$ J。",
-    "explanation": "第一步，设积分高度为 $u$。由椭圆方程，截面横向宽度为 $4\\sqrt{1-u^2}$，乘容器长度4，得到水平液层面积 $16\\sqrt{1-u^2}$。因此\n\n$$\nV(y)=16\\int_{-1}^y\\sqrt{1-u^2}\\,du\n=8\\left[y\\sqrt{1-y^2}+\\arcsin y+\\frac{\\pi}{2}\\right].\n$$\n\n第二步，对时间求导：\n\n$$\nV'(t)=16\\sqrt{1-y^2}\\,y'(t)=-0.16.\n$$\n\n在 $y=0$ 处得到 $y'=-0.01$，负号表示下降，故下降速率为0.01 m/min。\n\n第三步，高度 $u$ 处厚度 $du$ 的液层体积为 $16\\sqrt{1-u^2}\\,du$，质量等于该体积乘密度100，需提升的距离为 $1-u$，所以\n\n$$\nW=1600g\\int_{-1}^1(1-u)\\sqrt{1-u^2}\\,du\n=1600g\\cdot\\frac{\\pi}{2}=800\\pi g.\n$$\n\n其中 $u\\sqrt{1-u^2}$ 是奇函数，对称区间积分为0。体积、液面变化率、抽水功分别使用截面积、体积求导、液层重量乘提升高度。"
+    "stem": "在水平放置的椭圆柱形容器内储有液体，容器长4 m，横截面椭圆方程为\n\n$$\n\\frac{x^2}{4}+y^2=1\n$$\n\n（长度单位为m），容器顶端及抽出口的高度为 $y=1$。当液面经过 $(0,y)$，$-1\\leq y\\leq1$ 时，容器内液体的体积为$\\underline{\\qquad}$。容器装满后，以0.16 m³/min的速率从顶端抽出液体，当液面降至 $y=0$ 时，液面下降的速度为$\\underline{\\qquad}$。若液体密度为1000 kg/m³，抽出全部液体所作的功为$\\underline{\\qquad}$。",
+    "answer": "$$\nV(y)=8\\left[y\\sqrt{1-y^2}+\\arcsin y+\\frac{\\pi}{2}\\right]\\ \\mathrm{m^3},\n$$\n\n液面下降速率为0.01 m/min，抽出全部液体所作功为 $8000\\pi g$ J；取 $g=9.8$ m/s²时为 $78400\\pi$ J。",
+    "explanation": "第一步，设积分高度为 $u$。由椭圆方程，截面横向宽度为 $4\\sqrt{1-u^2}$，乘容器长度4，得到水平液层面积 $16\\sqrt{1-u^2}$。因此\n\n$$\nV(y)=16\\int_{-1}^y\\sqrt{1-u^2}\\,du\n=8\\left[y\\sqrt{1-y^2}+\\arcsin y+\\frac{\\pi}{2}\\right].\n$$\n\n第二步，对时间求导：\n\n$$\nV'(t)=16\\sqrt{1-y^2}\\,y'(t)=-0.16.\n$$\n\n在 $y=0$ 处得到 $y'=-0.01$，负号表示下降，故下降速率为0.01 m/min。\n\n第三步，高度 $u$ 处厚度 $du$ 的液层体积为 $16\\sqrt{1-u^2}\\,du$，质量等于该体积乘密度1000，需提升的距离为 $1-u$，所以\n\n$$\nW=16000g\\int_{-1}^1(1-u)\\sqrt{1-u^2}\\,du\n=16000g\\cdot\\frac{\\pi}{2}=8000\\pi g.\n$$\n\n其中 $u\\sqrt{1-u^2}$ 是奇函数，对称区间积分为0。体积、液面变化率、抽水功分别使用截面积、体积求导、液层重量乘提升高度。",
+    "figures": [
+      {
+        "src": "practice-figures/660-q137-original.png",
+        "alt": "水平横放的椭圆柱容器，长度4米，半长轴2米、半短轴1米，顶部抽水口高度为1米",
+        "caption": "原书配图 · 660 高数第137题",
+        "width": 488,
+        "height": 402
+      }
+    ]
   },
   {
     "id": "math2-2010-q23-exercise1",
@@ -1609,7 +1636,16 @@
     "type": "solution",
     "stem": "容器由曲线 $y=x^2$，$0\\leq x\\leq2$，绕 $y$ 轴旋转而成。容器中的水量为容量的四分之一，求水面高度。若水的密度为 $\\rho$，将容器中这部分水全部抽出，需要作多少功？",
     "answer": "水面高度为2，抽水功为 $\\frac{16}{3}\\pi\\rho g$。",
-    "explanation": "第一步，容器顶部高度为4。高度 $y$ 处半径为 $\\sqrt y$，水平截面积为 $\\pi y$，因此总容量为 $\\int_0^4\\pi y\\,dy=8\\pi$。\n\n第二步，四分之一容量为 $2\\pi$。若水深为 $h$，则 $\\int_0^h\\pi y\\,dy=\\frac{\\pi h^2}{2}=2\\pi$，所以 $h=2$。\n\n第三步，高度 $y$ 的薄水层体积为 $\\pi y\\,dy$，重量为 $\\rho g\\pi y\\,dy$，提升到顶部的距离为 $4-y$，所以\n\n$$\nW=\\pi\\rho g\\int_0^2y(4-y)\\,dy\n=\\pi\\rho g\\left[2y^2-\\frac{y^3}{3}\\right]_0^2\n=\\frac{16}{3}\\pi\\rho g.\n$$\n\n水量为容量的四分之一，不代表水面高度是总高度的四分之一，必须通过体积积分求高度。"
+    "explanation": "第一步，容器顶部高度为4。高度 $y$ 处半径为 $\\sqrt y$，水平截面积为 $\\pi y$，因此总容量为 $\\int_0^4\\pi y\\,dy=8\\pi$。\n\n第二步，四分之一容量为 $2\\pi$。若水深为 $h$，则 $\\int_0^h\\pi y\\,dy=\\frac{\\pi h^2}{2}=2\\pi$，所以 $h=2$。\n\n第三步，高度 $y$ 的薄水层体积为 $\\pi y\\,dy$，重量为 $\\rho g\\pi y\\,dy$，提升到顶部的距离为 $4-y$，所以\n\n$$\nW=\\pi\\rho g\\int_0^2y(4-y)\\,dy\n=\\pi\\rho g\\left[2y^2-\\frac{y^3}{3}\\right]_0^2\n=\\frac{16}{3}\\pi\\rho g.\n$$\n\n水量为容量的四分之一，不代表水面高度是总高度的四分之一，必须通过体积积分求高度。",
+    "figures": [
+      {
+        "src": "practice-figures/660-q138-schematic.svg",
+        "alt": "抛物线 y=x² 的旋转容器截面，顶部高度4，水面高度以 h 表示",
+        "caption": "补充示意图 · 水面高度以 h 表示",
+        "width": 420,
+        "height": 300
+      }
+    ]
   },
   {
     "id": "math2-2011-q20-exercise2",
@@ -1622,7 +1658,16 @@
     "type": "solution",
     "stem": "内表面为旋转抛物面的水缸，深为 $a$ m，口直径为 $2a$ m，内部装满水。水的密度为 $\\rho$ kg/m³，以每分钟 $b$ m³的速率把缸中的水全部抽出。第一问，共需多少时间？第二问，需作多少功？",
     "answer": "时间为 $\\frac{\\pi a^3}{2b}$ min，功为 $\\frac{\\pi\\rho g a^4}{6}$ J。",
-    "explanation": "第一步，以缸底为高度0，顶部高度为 $a$，顶部半径为 $a$。旋转抛物面的母线满足 $y=\\frac{x^2}{a}$，所以高度 $y$ 处半径平方为 $ay$，水平截面积为 $\\pi ay$。\n\n第二步，总水量为\n\n$$\nV=\\pi a\\int_0^a y\\,dy=\\frac{\\pi a^3}{2}.\n$$\n\n流量恒为 $b$ m³/min，故抽水时间 $T=\\frac{V}{b}=\\frac{\\pi a^3}{2b}$ min。\n\n第三步，高度 $y$ 处薄水层需提升 $a-y$，所以\n\n$$\nW=\\pi\\rho ga\\int_0^a y(a-y)\\,dy\n=\\pi\\rho ga\\cdot\\frac{a^3}{6}\n=\\frac{\\pi\\rho ga^4}{6}.\n$$\n\n这是抛物面水缸，截面积随高度变化，不能按圆柱体处理。"
+    "explanation": "第一步，以缸底为高度0，顶部高度为 $a$，顶部半径为 $a$。旋转抛物面的母线满足 $y=\\frac{x^2}{a}$，所以高度 $y$ 处半径平方为 $ay$，水平截面积为 $\\pi ay$。\n\n第二步，总水量为\n\n$$\nV=\\pi a\\int_0^a y\\,dy=\\frac{\\pi a^3}{2}.\n$$\n\n流量恒为 $b$ m³/min，故抽水时间 $T=\\frac{V}{b}=\\frac{\\pi a^3}{2b}$ min。\n\n第三步，高度 $y$ 处薄水层需提升 $a-y$，所以\n\n$$\nW=\\pi\\rho ga\\int_0^a y(a-y)\\,dy\n=\\pi\\rho ga\\cdot\\frac{a^3}{6}\n=\\frac{\\pi\\rho ga^4}{6}.\n$$\n\n这是抛物面水缸，截面积随高度变化，不能按圆柱体处理。",
+    "figures": [
+      {
+        "src": "practice-figures/1000-p29-q4-schematic.svg",
+        "alt": "旋转抛物面水缸截面，深度 a、口径2a，装满水",
+        "caption": "补充示意图 · 抛物面水缸的轴截面",
+        "width": 420,
+        "height": 300
+      }
+    ]
   },
   {
     "id": "math2-2011-q20-exercise3",
@@ -1635,7 +1680,16 @@
     "type": "solution",
     "stem": "高1 m的圆柱形容器内储有液体，将容器横放，底面圆的方程为 $x^2+y^2=1$，长度单位为m。装满后以0.2 m³/min的速率从容器顶部抽出液体。第一问，当液面位于 $y=0$ 时，求液面下降速率。第二问，若1 m³液体所受重力为1 N，求抽完全部液体所需作的功。",
     "answer": "下降速率为0.1 m/min，功为 $\\pi$ J。",
-    "explanation": "第一步，横放后圆柱长度为1 m，高度 $y$ 的横向宽度为 $2\\sqrt{1-y^2}$，因此液层面积也为 $2\\sqrt{1-y^2}$，体积对液面高度的导数为该面积。\n\n第二步，由体积变化率 $-0.2$ m³/min，得到\n\n$$\n2\\sqrt{1-y^2}\\,y'=-0.2.\n$$\n\n在 $y=0$ 时有 $y'=-0.1$，所以下降速率为0.1 m/min。\n\n第三步，单位体积液体的重量为1 N，不必再乘密度或 $g$。高度 $u$ 的液层体积为 $2\\sqrt{1-u^2}\\,du$，提升距离为 $1-u$，所以\n\n$$\nW=2\\int_{-1}^1(1-u)\\sqrt{1-u^2}\\,du\n=2\\cdot\\frac{\\pi}{2}=\\pi\\ \\mathrm J.\n$$\n\n题目给的是单位体积重量，已经含有重力因素，重复乘 $g$ 会算错。"
+    "explanation": "第一步，横放后圆柱长度为1 m，高度 $y$ 的横向宽度为 $2\\sqrt{1-y^2}$，因此液层面积也为 $2\\sqrt{1-y^2}$，体积对液面高度的导数为该面积。\n\n第二步，由体积变化率 $-0.2$ m³/min，得到\n\n$$\n2\\sqrt{1-y^2}\\,y'=-0.2.\n$$\n\n在 $y=0$ 时有 $y'=-0.1$，所以下降速率为0.1 m/min。\n\n第三步，单位体积液体的重量为1 N，不必再乘密度或 $g$。高度 $u$ 的液层体积为 $2\\sqrt{1-u^2}\\,du$，提升距离为 $1-u$，所以\n\n$$\nW=2\\int_{-1}^1(1-u)\\sqrt{1-u^2}\\,du\n=2\\cdot\\frac{\\pi}{2}=\\pi\\ \\mathrm J.\n$$\n\n题目给的是单位体积重量，已经含有重力因素，重复乘 $g$ 会算错。",
+    "figures": [
+      {
+        "src": "practice-figures/1000-p29-q5-schematic.svg",
+        "alt": "横放圆柱容器的圆形端面，圆心为原点，液面高度 y=0，顶部高度1",
+        "caption": "补充示意图 · 圆形端面，容器沿轴线长1米",
+        "width": 420,
+        "height": 300
+      }
+    ]
   },
   {
     "id": "math2-2012-q6-exercise1",
