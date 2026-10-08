@@ -5,8 +5,9 @@ import katex from 'katex'
 import { marked } from 'marked'
 import type { MathFormula } from '@/math/types'
 
-const props = withDefaults(defineProps<{ source: string; inline?: boolean; formulas?: MathFormula[] }>(), {
+const props = withDefaults(defineProps<{ source: string; inline?: boolean; compact?: boolean; formulas?: MathFormula[] }>(), {
   inline: false,
+  compact: false,
   formulas: () => [],
 })
 
@@ -51,7 +52,7 @@ const html = computed(() => {
 })
 </script>
 
-<template><component :is="inline ? 'span' : 'div'" class="math-markdown" :class="{ inline }" v-html="html" /></template>
+<template><component :is="inline ? 'span' : 'div'" class="math-markdown" :class="{ inline, compact }" v-html="html" /></template>
 
 <style scoped>
 .math-markdown { color: var(--ink); font-size: 16.5px; line-height: 1.9; overflow-wrap: anywhere; }
@@ -81,4 +82,11 @@ const html = computed(() => {
 .math-markdown :deep(strong) { color: var(--ink); font-weight: 750; }
 .math-markdown :deep(code) { border: 1px solid var(--line); border-radius: 4px; padding: 2px 5px; background: var(--surface-soft); color: var(--accent-dark); }
 @media (max-width: 700px) { .math-markdown { font-size: 16px; line-height: 1.85; }.math-markdown :deep(h5) { font-size: 19px; }.math-markdown :deep(.katex-display) { margin-right: -5px; margin-left: -5px; padding: 11px 7px; }.math-markdown :deep(table) { display: block; overflow-x: auto; white-space: nowrap; } }
+.math-markdown.compact { font: inherit; line-height: inherit; }
+.math-markdown.compact :deep(p) { margin: 6px 0; }
+.math-markdown.compact :deep(p:first-child) { margin-top: 0; }
+.math-markdown.compact :deep(p:last-child) { margin-bottom: 0; }
+.math-markdown.compact :deep(.katex-display) { margin: 9px 0; padding: 2px 0; border-radius: 0; background: transparent; }
+.math-markdown.compact :deep(.katex-display > .katex) { text-align: left; }
+.math-markdown.compact :deep(.katex) { font-size: 1.08em; }
 </style>
