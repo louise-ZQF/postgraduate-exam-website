@@ -9,8 +9,8 @@
     "topic": "高等数学 / 多元微分 / 隐函数求导",
     "type": "solution",
     "stem": "设函数 $z=z(x,y)$ 由方程\n\n$$\nF\\left(x+\\frac{z}{y},\\,y+\\frac{z}{x}\\right)=0\n$$\n\n确定，且 $F(u,v)$ 具有连续偏导数，求\n\n$$\nx\\frac{\\partial z}{\\partial x}+y\\frac{\\partial z}{\\partial y}.\n$$",
-    "answer": "$z-xy$。",
-    "explanation": "第一步，记 $u=x+\\frac zy$、$v=y+\\frac zx$，并把 $F$ 对两个自变量的偏导数记为 $F_1,F_2$。注意 $z$ 本身也依赖 $x,y$，因此求导时要用复合函数求导法则：\n\n$$\nF_1\\left(1+\\frac{z_x}{y}\\right)+F_2\\left(\\frac{z_x}{x}-\\frac{z}{x^2}\\right)=0,\n$$\n\n$$\nF_1\\left(\\frac{z_y}{y}-\\frac{z}{y^2}\\right)+F_2\\left(1+\\frac{z_y}{x}\\right)=0.\n$$\n\n第二步，第一式乘 $x$，第二式乘 $y$，相加。令 $S=xz_x+yz_y$，整理得\n\n$$\nF_1\\left(x+\\frac{S-z}{y}\\right)+F_2\\left(y+\\frac{S-z}{x}\\right)\n=\\left(\\frac{F_1}{y}+\\frac{F_2}{x}\\right)(xy+S-z)=0.\n$$\n\n第三步，在通常隐函数求导的非退化条件下，括号中的系数正是对 $z$ 的偏导数，非零，故 $xy+S-z=0$，所以\n\n$$\nx\\frac{\\partial z}{\\partial x}+y\\frac{\\partial z}{\\partial y}=z-xy.\n$$\n\n这题的关键是先把两条偏导方程按 $x,y$ 加权相加，不必分别算出两个冗长的偏导数。"
+    "answer": "在 $x\\ne0,y\\ne0$ 且 $F_1/y+F_2/x\\ne0$ 的隐函数求导条件下，结果为 $z-xy$。",
+    "explanation": "令 $G(x,y,z)=F(x+z/y,y+z/x)$，$F_1,F_2$ 表示 $F$ 对第一、第二个自变量的偏导数，均在题中的复合自变量处取值。隐函数求导需要 $G_z=F_1/y+F_2/x\\ne0$；题干只说“确定隐函数”，未明确写出这一条件，以下按通常的隐函数求导条件计算。\n\n分别对 $x,y$ 求偏导，注意 $z$ 也随 $x,y$ 变化：\n\n$$\nF_1\\left(1+\\frac{z_x}{y}\\right)+F_2\\left(\\frac{z_x}{x}-\\frac z{x^2}\\right)=0,\n$$\n\n$$\nF_1\\left(\\frac{z_y}{y}-\\frac z{y^2}\\right)+F_2\\left(1+\\frac{z_y}{x}\\right)=0.\n$$\n\n第一式乘 $x$，第二式乘 $y$ 后相加，令 $S=xz_x+yz_y$，得\n\n$$\nF_1\\left(x+\\frac{S-z}{y}\\right)+F_2\\left(y+\\frac{S-z}{x}\\right)\n=\\left(\\frac{F_1}{y}+\\frac{F_2}{x}\\right)(xy+S-z)=0.\n$$\n\n由非零条件可约去第一个因子，故 $S=z-xy$。这类题直接求所需的偏导数组合，比先分别求出 $z_x,z_y$ 更简洁。\n\n仅有“$F$ 具有连续偏导数”不能保证上述非零条件，不能无条件约去这个因子。"
   },
   {
     "id": "math2-2010-q5-exercise2",
@@ -23,7 +23,7 @@
     "type": "choice",
     "stem": "设 $F(u,v)$ 具有一阶连续偏导数，且 $z=z(x,y)$ 由方程\n\n$$\nF\\left(\\frac{x}{z},\\,yz\\right)=0\n$$\n\n所确定。设题中出现的分母不为零，则\n\n$$\nx\\frac{\\partial z}{\\partial x}-y\\frac{\\partial z}{\\partial y}=(\\qquad).\n$$",
     "answer": "B，即 $z$。",
-    "explanation": "第一步，令 $u=x/z$、$v=yz$。分别对 $x,y$ 求偏导，得到\n\n$$\nF_1\\left(\\frac1z-\\frac{xz_x}{z^2}\\right)+F_2\\,yz_x=0,\n$$\n\n$$\n-F_1\\frac{xz_y}{z^2}+F_2(z+yz_y)=0.\n$$\n\n第二步，第一式乘 $x$，第二式乘 $y$，再用前者减去后者。记 $S=xz_x-yz_y$，则\n\n$$\nF_1\\left(\\frac{x}{z}-\\frac{xS}{z^2}\\right)+F_2(yS-yz)\n=(z-S)\\left(\\frac{xF_1}{z^2}-yF_2\\right)=0.\n$$\n\n第三步，由题设分母不为零，可得 $z-S=0$，所以\n\n$$\nx\\frac{\\partial z}{\\partial x}-y\\frac{\\partial z}{\\partial y}=z.\n$$\n\n两道题的做法相同：先看题目要的是偏导数的哪种组合，再把偏导方程按对应系数相加或相减。",
+    "explanation": "第一步，令 $u=x/z$、$v=yz$。分别对 $x,y$ 求偏导，得到\n\n$$\nF_1\\left(\\frac1z-\\frac{xz_x}{z^2}\\right)+F_2\\,yz_x=0,\n$$\n\n$$\n-F_1\\frac{xz_y}{z^2}+F_2(z+yz_y)=0.\n$$\n\n第二步，第一式乘 $x$，第二式乘 $y$，再用前者减去后者。记 $S=xz_x-yz_y$，则\n\n$$\nF_1\\left(\\frac{x}{z}-\\frac{xS}{z^2}\\right)+F_2(yS-yz)\n=(z-S)\\left(\\frac{xF_1}{z^2}-yF_2\\right)=0.\n$$\n\n第三步，隐函数求导的分母为 $G_z=-xF_1/z^2+yF_2$，其中 $G=F(x/z,yz)$。题设“分母不为零”应包括 $z\\ne0$ 和 $G_z\\ne0$，因此上式第二个因子非零，可得 $z-S=0$，所以\n\n$$\nx\\frac{\\partial z}{\\partial x}-y\\frac{\\partial z}{\\partial y}=z.\n$$\n\n两道题的做法相同：先看题目要的是偏导数的哪种组合，再把偏导方程按对应系数相加或相减。",
     "options": [
       {
         "key": "A",
@@ -242,7 +242,7 @@
     "type": "choice",
     "stem": "设\n\n$$\nM=\\int_{-\\pi/2}^{\\pi/2}\\frac{(1+x)^2}{1+x^2}\\,dx,\\quad\nN=\\int_{-\\pi/2}^{\\pi/2}\\frac{1+x}{e^x}\\,dx,\\quad\nK=\\int_{-\\pi/2}^{\\pi/2}(1+\\sqrt{\\cos x})\\,dx,\n$$\n\n则（　）。",
     "answer": "C。",
-    "explanation": "第一步，将 $M$ 的被积函数拆成 $1+2x/(1+x^2)$。第二项是奇函数，对称区间积分为0，所以 $M=\\pi$。\n\n第二步，$\\sqrt{\\cos x}$ 在积分区间非负且不恒为0，所以 $K=\\pi+\\int_{-\\pi/2}^{\\pi/2}\\sqrt{\\cos x}\\,dx>\\pi$。\n\n第三步，将 $N$ 对称配对：\n\n$$\nN=2\\int_0^{\\pi/2}(\\cosh x-x\\sinh x)\\,dx.\n$$\n\n这里 $\\cosh x=(e^x+e^{-x})/2,\\;\\sinh x=(e^x-e^{-x})/2$。令 $h(x)=\\cosh x-x\\sinh x$，有 $h(0)=1,\\;h'(x)=-x\\cosh x<0$，所以 $x>0$ 时 $h(x)<1$，进而 $N<\\pi$。\n\n因此 $K>M>N$。比较定积分时，先用奇偶性，再作对称配对，通常可以避免直接求复杂的积分值。",
+    "explanation": "先用对称区间上的奇偶性计算 $M$：\n\n$$\nM=\\int_{-\\pi/2}^{\\pi/2}\\left(1+\\frac{2x}{1+x^2}\\right)dx=\\pi.\n$$\n\n又因为 $\\sqrt{\\cos x}$ 在区间内非负，且在内部为正，所以\n\n$$\nK=\\pi+\\int_{-\\pi/2}^{\\pi/2}\\sqrt{\\cos x}\\,dx>\\pi=M.\n$$\n\n比较 $N$ 与 $M$，将负半轴上的积分换元 $x=-t$，与正半轴配对：\n\n$$\nN=\\int_0^{\\pi/2}\\bigl[(1+x)e^{-x}+(1-x)e^x\\bigr]dx.\n$$\n\n令 $H(x)=(1+x)e^{-x}+(1-x)e^x$，则\n\n$$\nH(0)=2,\\qquad H'(x)=-x(e^{-x}+e^x)<0\\quad(x>0).\n$$\n\n故 $H(x)<2$，从而 $N<\\int_0^{\\pi/2}2\\,dx=\\pi$。合并得 $K>M>N$，选C。整个比较只用奇偶性、换元和导数，不必求出 $N,K$ 的精确值。",
     "options": [
       {
         "key": "A",
@@ -382,7 +382,7 @@
     "topic": "高等数学 / 一元微分 / 参数方程与极值",
     "type": "solution",
     "stem": "设函数 $y=y(x)$ 由参数方程\n\n$$\nx=t\\ln t,\\qquad y=\\frac{\\ln t}{t}\\quad(t\\geq1)\n$$\n\n确定，求它的单调区间、凹凸区间、极值和拐点。",
-    "answer": "在 $(0,e)$ 上递增，在 $(e,+\\infty)$ 上递减；在 $x=e$ 处取极大值 $1/e$。二阶导数在 $(0,\\sqrt2e^{\\sqrt2})$ 为负，在 $(\\sqrt2e^{\\sqrt2},+\\infty)$ 为正。拐点为\n\n$$\n\\left(\\sqrt2e^{\\sqrt2},\\sqrt2e^{-\\sqrt2}\\right).\n$$",
+    "answer": "定义域为 $[0,+\\infty)$；在 $[0,e]$ 上递增，在 $[e,+\\infty)$ 上递减，在 $x=e$ 处取得极大值（也是最大值）$1/e$，内部无极小值，端点 $x=0$ 处取得最小值0。\n\n在 $(0,\\sqrt2e^{\\sqrt2})$ 上 $y''<0$，曲线为凸；在 $(\\sqrt2e^{\\sqrt2},+\\infty)$ 上 $y''>0$，曲线为凹。这里采用高等数学教材中 $y''>0$ 为凹、$y''<0$ 为凸的约定。拐点为\n\n$$\n\\left(\\sqrt2e^{\\sqrt2},\\sqrt2e^{-\\sqrt2}\\right).\n$$",
     "explanation": "第一步，$dx/dt=1+\\ln t>0$，因此参数 $t\\geq1$ 与定义域 $x\\geq0$ 一一对应。参数求导得\n\n$$\n\\frac{dy}{dx}=\\frac{1-\\ln t}{t^2(1+\\ln t)}.\n$$\n\n分母为正，导数在 $1<t<e$ 时为正，在 $t>e$ 时为负，故对应上述单调区间与极大值。\n\n第二步，再对 $t$ 求导后除以 $dx/dt$，不能把对参数的导数直接当作二阶导数：\n\n$$\n\\frac{d^2y}{dx^2}=\n\\frac{2[(\\ln t)^2-2]}{t^3(1+\\ln t)^3}.\n$$\n\n它在 $1<t<e^{\\sqrt2}$ 时为负，在 $t>e^{\\sqrt2}$ 时为正，因此凹凸性在 $t=e^{\\sqrt2}$ 处改变，代回参数方程得到拐点。\n\n第三步，定义域端点 $t=1$ 对应 $(0,0)$，且所有 $t\\geq1$ 都有 $y\\geq0$，所以端点处最小值为0；内部没有极小值。这一区分避免把定义域端点与内部驻点混在一起。"
   },
   {
@@ -428,7 +428,7 @@
     "type": "solution",
     "stem": "曲线 $y=y(x)$ 有二阶连续导数，$y''(x)>0$，任一点 $(x,y)$ 处的曲率为\n\n$$\nK=\\frac1{2y^2\\cos\\alpha}\\quad(\\cos\\alpha>0),\n$$\n\n其中 $\\alpha$ 为曲线在相应点处的切线倾角。曲线在点 $(1,1)$ 处取得极小值，求曲线方程。",
     "answer": "$y=1+(x-1)^2/4$。",
-    "explanation": "第一步，令 $p=y'$。由 $\\cos\\alpha=1/\\sqrt{1+p^2}$、$y''>0$ 及曲率公式，得到\n\n$$\n\\frac{y''}{(1+p^2)^{3/2}}=\\frac{\\sqrt{1+p^2}}{2y^2},\n\\qquad\n\\frac{y''}{(1+p^2)^2}=\\frac1{2y^2}.\n$$\n\n第二步，将 $p$ 看成 $y$ 的函数，$y''=p\\,dp/dy$。积分得\n\n$$\n-\\frac1{2(1+p^2)}=-\\frac1{2y}+C.\n$$\n\n极小值点给出 $y(1)=1,p(1)=0$，所以 $C=0$，得到 $1+p^2=y$。\n\n第三步，在非驻点处求导可得 $2p\\,y''=p$，所以 $y''=1/2$。二阶导数连续，驻点处也成立。两次积分并用 $y'(1)=0,y(1)=1$，得到 $y=1+(x-1)^2/4$。代回曲率公式可检验它满足题设。"
+    "explanation": "由极小值点得到 $y(1)=1,y'(1)=0$。令 $p=y'$，由 $\\cos\\alpha>0$ 及切线斜率 $p=\\tan\\alpha$，有\n\n$$\n\\cos\\alpha=\\frac1{\\sqrt{1+p^2}}.\n$$\n\n再用曲率公式和 $y''>0$，得\n\n$$\n\\frac{y''}{(1+p^2)^{3/2}}=\\frac{\\sqrt{1+p^2}}{2y^2},\n\\qquad \\frac{2y''}{(1+p^2)^2}=\\frac1{y^2}.\n$$\n\n为避免在驻点处除以 $y'$，两边乘 $y'$ 后直接对 $x$ 积分。注意\n\n$$\n\\frac d{dx}\\frac1{1+(y')^2}=-\\frac{2y'y''}{(1+(y')^2)^2},\n\\qquad \\frac d{dx}\\frac1y=-\\frac{y'}{y^2}.\n$$\n\n故 $1/(1+(y')^2)-1/y=C$。代入初始条件得 $C=0$，即\n\n$$\ny=1+(y')^2.\n$$\n\n将它代回前面的曲率方程，直接得到 $y''=1/2$，这一过程也适用于 $y'=0$ 的点。两次积分并代入 $y'(1)=0,y(1)=1$，得到\n\n$$\ny'=\\frac{x-1}{2},\\qquad y=1+\\frac{(x-1)^2}{4}.\n$$\n\n该函数二阶导数恒为正，在 $(1,1)$ 处取极小值，并满足题设曲率关系。"
   },
   {
     "id": "math2-2011-q18-exercise2",
@@ -506,7 +506,7 @@
     "type": "solution",
     "stem": "设 $D=\\{(x,y)\\mid1\\le x+y\\le2,\\;x\\ge0,\\;y\\ge0\\}$，计算\n\n$$\nI=\\iint_D\\frac{x e^{(x+y)^2}}{x+y}\\,dx\\,dy.\n$$",
     "answer": "$(e^4-e)/4$。",
-    "explanation": "令 $u=x+y,\\;v=x$，则 $x=v,\\;y=u-v$，雅可比绝对值为1。区域化为 $1\\le u\\le2,\\;0\\le v\\le u$。先对 $v$ 积分：\n\n$$\nI=\\int_1^2\\int_0^u\\frac{v e^{u^2}}u\\,dv\\,du\n=\\frac12\\int_1^2 u e^{u^2}\\,du\n=\\frac14(e^4-e).\n$$\n\n不能把区域看成矩形；给定 $u$ 后，$x$ 的范围是 $0\\le x\\le u$。"
+    "explanation": "区域由 $x=0,y=0,x+y=1,x+y=2$ 围成，是第一象限内的梯形。若先对 $y$ 积分，需按 $x=1$ 分段：\n\n$$\nI=\\int_0^1dx\\int_{1-x}^{2-x}\\frac{x e^{(x+y)^2}}{x+y}\\,dy\n+\\int_1^2dx\\int_0^{2-x}\\frac{x e^{(x+y)^2}}{x+y}\\,dy.\n$$\n\n在各内层积分中令 $u=x+y$，此时 $x$ 固定、$dy=du$。两部分的新区域合起来为 $1\\le u\\le2,0\\le x\\le u$。交换积分次序，得到\n\n$$\nI=\\int_1^2du\\int_0^u\\frac{x e^{u^2}}u\\,dx\n=\\frac12\\int_1^2u e^{u^2}\\,du\n=\\frac14[e^{u^2}]_1^2=\\frac{e^4-e}{4}.\n$$\n\n这里用的是内层积分的一元换元与交换积分次序，不需要另外记忆一般二重积分的雅可比换元公式。"
   },
   {
     "id": "math2-2012-q10-exercise1",
@@ -531,8 +531,8 @@
     "topic": "高等数学 / 多元微分 / 复合函数与隐函数求导",
     "type": "solution",
     "stem": "设函数 $F(u,v)$ 可微，且 $F(x+z/y,\\;y+z/x)=0$ 确定隐函数 $z=z(x,y)$，求 $z-x\\frac{\\partial z}{\\partial x}-y\\frac{\\partial z}{\\partial y}$。",
-    "answer": "$xy$。",
-    "explanation": "记 $u=x+z/y,\\;v=y+z/x$。分别对 $x,y$ 求偏导：\n\n$$\nF_u(1+z_x/y)+F_v(z_x/x-z/x^2)=0,\n$$\n\n$$\nF_u(z_y/y-z/y^2)+F_v(1+z_y/x)=0.\n$$\n\n第一式乘 $x$、第二式乘 $y$ 后相加，得到\n\n$$\n(F_u/y+F_v/x)(xy+xz_x+yz_y-z)=0.\n$$\n\n按隐函数求导的通常非退化条件 $F_z=F_u/y+F_v/x\\ne0$，可得 $z-xz_x-yz_y=xy$。"
+    "answer": "按隐函数求导条件 $x,y\\ne0$、$G_z=F_u/y+F_v/x\\ne0$，结果为 $xy$，其中 $G(x,y,z)=F(x+z/y,y+z/x)$。",
+    "explanation": "记 $u=x+z/y,\\;v=y+z/x$。分别对 $x,y$ 求偏导：\n\n$$\nF_u(1+z_x/y)+F_v(z_x/x-z/x^2)=0,\n$$\n\n$$\nF_u(z_y/y-z/y^2)+F_v(1+z_y/x)=0.\n$$\n\n第一式乘 $x$、第二式乘 $y$ 后相加，得到\n\n$$\n(F_u/y+F_v/x)(xy+xz_x+yz_y-z)=0.\n$$\n\n按隐函数求导的通常非退化条件 $F_z=F_u/y+F_v/x\\ne0$，可得 $z-xz_x-yz_y=xy$。\n\n题干没有明确列出 $G_z\\ne0$，这一条件是约去系数的依据，不能只凭“$F$ 可微”就断定该系数非零。"
   },
   {
     "id": "math2-2012-q11-exercise2",
@@ -544,8 +544,8 @@
     "topic": "高等数学 / 多元微分 / 复合函数与隐函数求导",
     "type": "choice",
     "stem": "设隐函数 $z=z(x,y)$ 由方程 $y+z=xf(y^2-z^2)$ 确定，$f$ 可微，则 $x\\frac{\\partial z}{\\partial x}+z\\frac{\\partial z}{\\partial y}$ 等于：",
-    "answer": "C，即 $y$。",
-    "explanation": "记 $s=y^2-z^2$。对原式分别求偏导，整理得\n\n$$\n(1+2xz f'(s))z_x=f(s),\\qquad\n(1+2xz f'(s))z_y=2xy f'(s)-1.\n$$\n\n第一式乘 $x$、第二式乘 $z$ 相加，再用 $xf(s)=y+z$，得到\n\n$$\n(1+2xz f'(s))(xz_x+zz_y)\n=y+2xyz f'(s).\n$$\n\n在隐函数求导的非退化条件下，两边除以 $1+2xz f'(s)$，结果为 $y$。注意题目第二项是 $zz_y$，不是 $yz_y$。",
+    "answer": "在隐函数求导的分母 $1+2xz f'(y^2-z^2)\\ne0$ 的条件下，选C，结果为 $y$。",
+    "explanation": "记 $s=y^2-z^2$。对原式分别求偏导，整理得\n\n$$\n(1+2xz f'(s))z_x=f(s),\\qquad\n(1+2xz f'(s))z_y=2xy f'(s)-1.\n$$\n\n第一式乘 $x$、第二式乘 $z$ 相加，再用 $xf(s)=y+z$，得到\n\n$$\n(1+2xz f'(s))(xz_x+zz_y)\n=y+2xyz f'(s).\n$$\n\n在隐函数求导的非退化条件下，两边除以 $1+2xz f'(s)$，结果为 $y$。注意题目第二项是 $zz_y$，不是 $yz_y$。\n\n题干应补充上述分母非零的条件；若分母为零，这个推导不能直接约分。",
     "options": [
       {
         "key": "A",
@@ -661,7 +661,7 @@
     "type": "solution",
     "stem": "过坐标原点作曲线 $y=e^x$ 的切线，该切线与 $y=e^x$ 及 $x$ 轴围成向 $x$ 轴负方向无限伸展的图形 $D$。\n\n第一问：求 $D$ 的面积。\n\n第二问：求 $D$ 绕直线 $x=1$ 旋转一周所得旋转体的体积。",
     "answer": "面积 $e/2$，体积 $5\\pi e/3$。",
-    "explanation": "设切点横坐标为 $a$，切线为 $y=e^a(x-a+1)$。过原点得 $a=1$，故切线是 $y=ex$。区域在 $x\\le0$ 上介于0与 $e^x$ 之间，在 $0\\le x\\le1$ 上介于 $ex$ 与 $e^x$ 之间。面积为\n\n$$\nS=\\int_{-\\infty}^1e^x\\,dx-\\int_0^1ex\\,dx=e-\\frac e2=\\frac e2.\n$$\n\n绕竖直直线 $x=1$ 旋转，用圆柱壳法，半径为 $1-x$：\n\n$$\nV=2\\pi\\left[\\int_{-\\infty}^1(1-x)e^x\\,dx\n-\\int_0^1(1-x)ex\\,dx\\right]\n=2\\pi\\left(e-\\frac e6\\right)=\\frac{5\\pi e}{3}.\n$$\n\n反常积分收敛；旋转轴在区域右侧，半径始终取非负的 $1-x$。"
+    "explanation": "设切点横坐标为 $a$，切线方程为 $y=e^a(x-a+1)$。切线过原点，故 $a=1$，切线为 $y=ex$。在 $x\\le0$ 上，区域介于0与 $e^x$ 之间；在 $0\\le x\\le1$ 上，介于 $ex$ 与 $e^x$ 之间。面积为\n\n$$\nS=\\int_{-\\infty}^1e^x\\,dx-\\int_0^1ex\\,dx=e-\\frac e2=\\frac e2.\n$$\n\n绕竖直直线 $x=1$ 旋转，可用水平切片的圆环法。对固定的 $0<y\\le e$，区域的左右边界分别为 $x=\\ln y$ 与 $x=y/e$，旋转轴在区域右侧，外、内半径分别为\n\n$$\nR=1-\\ln y,\\qquad r=1-y/e.\n$$\n\n因此\n\n$$\nV=\\pi\\int_0^e\\bigl[(1-\\ln y)^2-(1-y/e)^2\\bigr]dy.\n$$\n\n两个积分分别为\n\n$$\n\\int_0^e(1-\\ln y)^2dy\n=\\left[y\\bigl((\\ln y)^2-4\\ln y+5\\bigr)\\right]_0^e=2e,\n$$\n\n$$\n\\int_0^e(1-y/e)^2dy=\\frac e3.\n$$\n\n第一式下端按极限计算，利用 $y\\ln y\\to0,y(\\ln y)^2\\to0$。故 $V=\\pi(2e-e/3)=5\\pi e/3$。取切片时先画清左右边界，半径是边界到旋转轴的距离。"
   },
   {
     "id": "math2-2012-q18-exercise1",
@@ -803,7 +803,7 @@
     "type": "solution",
     "stem": "设 $f(x)=(\\alpha^Tx)^2+k(\\beta^Tx)^2$ 的二次型矩阵的迹为3，其中\n\n$$\n\\alpha=\\begin{pmatrix}1/\\sqrt2\\\\0\\\\-1/\\sqrt2\\end{pmatrix},\\quad\n\\beta=\\begin{pmatrix}1/\\sqrt3\\\\1/\\sqrt3\\\\1/\\sqrt3\\end{pmatrix},\\quad\nx=\\begin{pmatrix}x_1\\\\x_2\\\\x_3\\end{pmatrix}.\n$$\n\n第一问：求 $k$ 的值，并求正交矩阵 $Q$，将 $f(x)$ 化为标准形。\n\n第二问：求一个实对称矩阵 $P$，使 $f(x)=(Px)^TPx$。",
     "answer": "$k=2$。可取\n\n$$\nQ=\\begin{pmatrix}\n1/\\sqrt2&1/\\sqrt3&1/\\sqrt6\\\\\n0&1/\\sqrt3&-2/\\sqrt6\\\\\n-1/\\sqrt2&1/\\sqrt3&1/\\sqrt6\n\\end{pmatrix},\n$$\n\n作 $x=Qy$ 后，标准形为 $y_1^2+2y_2^2$。第二问可取\n\n$$\nP=\\frac12\\begin{pmatrix}1&0&-1\\\\0&0&0\\\\-1&0&1\\end{pmatrix}\n+\\frac{\\sqrt2}{3}\\begin{pmatrix}1&1&1\\\\1&1&1\\\\1&1&1\\end{pmatrix}.\n$$",
-    "explanation": "二次型矩阵为 $A=\\alpha\\alpha^T+k\\beta\\beta^T$，而 $\\|\\alpha\\|=\\|\\beta\\|=1,\\alpha^T\\beta=0$，所以 $\\operatorname{tr}A=1+k=3$，得 $k=2$。向量 $\\alpha,\\beta$ 分别是特征值1、2的单位特征向量；补上与它们正交的单位向量 $(1,-2,1)^T/\\sqrt6$，其特征值为0，便得到 $Q$。\n\n取 $P=\\alpha\\alpha^T+\\sqrt2\\,\\beta\\beta^T$。它是实对称矩阵，且正交性保证\n\n$$\nP^TP=P^2=\\alpha\\alpha^T+2\\beta\\beta^T=A.\n$$\n\n故 $(Px)^TPx=x^TAx=f(x)$。题设是矩阵的迹为3，不是秩为3；这里的秩实际为2。"
+    "explanation": "第一问，展开二次型得矩阵 $A=\\alpha\\alpha^{\\mathrm T}+k\\beta\\beta^{\\mathrm T}$。因为 $\\alpha,\\beta$ 均为单位向量，且 $\\alpha^{\\mathrm T}\\beta=0$，所以\n\n$$\n\\operatorname{tr}(\\alpha\\alpha^{\\mathrm T})=\\alpha_1^2+\\alpha_2^2+\\alpha_3^2=1,\n\\qquad \\operatorname{tr}(\\beta\\beta^{\\mathrm T})=1.\n$$\n\n由 $\\operatorname{tr}A=1+k=3$，得 $k=2$。再计算\n\n$$\nA\\alpha=\\alpha,\\qquad A\\beta=2\\beta.\n$$\n\n补一个同时垂直于 $\\alpha,\\beta$ 的单位向量 $\\gamma=(1,-2,1)^{\\mathrm T}/\\sqrt6$，则 $A\\gamma=0$。取 $Q=(\\alpha,\\beta,\\gamma)$，有\n\n$$\nQ^{\\mathrm T}Q=E,\\qquad Q^{\\mathrm T}AQ=\\operatorname{diag}(1,2,0).\n$$\n\n故 $x=Qy$ 将二次型化为 $y_1^2+2y_2^2$。\n\n第二问，由 $(Px)^{\\mathrm T}Px=x^{\\mathrm T}P^{\\mathrm T}Px$，目标是构造对称矩阵 $P$ 满足 $P^2=A$。利用刚得到的对角化，取\n\n$$\nP=Q\\operatorname{diag}(1,\\sqrt2,0)Q^{\\mathrm T}\n=\\alpha\\alpha^{\\mathrm T}+\\sqrt2\\,\\beta\\beta^{\\mathrm T}.\n$$\n\n因为 $Q^{\\mathrm T}Q=E$，所以\n\n$$\nP^{\\mathrm T}=P,\\qquad\nP^2=Q\\operatorname{diag}(1,2,0)Q^{\\mathrm T}=A.\n$$\n\n将 $\\alpha,\\beta$ 代入即得答案中的矩阵。这里求一个符合要求的 $P$ 即可，不要求列出所有可能的 $P$。"
   },
   {
     "id": "math2-2013-q23-exercise2",
@@ -816,7 +816,7 @@
     "type": "solution",
     "stem": "设 $\\alpha,\\beta,\\gamma$ 为三维列向量，二次型\n\n$$\nf(x_1,x_2,x_3)=x^T(\\alpha\\alpha^T+\\beta\\beta^T+\\gamma\\gamma^T)x.\n$$\n\n第一问：若 $\\alpha,\\beta,\\gamma$ 线性无关，证明 $f$ 为正定二次型。\n\n第二问：若 $\\alpha=(1,-1,0)^T,\\;\\beta=(1,1,-2)^T,\\;\\gamma=(1,0,a)^T$，求 $f(x_1,x_2,x_3)=0$ 的解，并求该二次型的规范形。",
     "answer": "（1）$\\alpha,\\beta,\\gamma$ 线性无关时，$f$ 为正定二次型。\n\n（2）当 $a\\ne-1$ 时，$f(x)=0$ 只有零解，规范形为 $z_1^2+z_2^2+z_3^2$；当 $a=-1$ 时，全部解为 $x=t(1,1,1)^{\\mathrm T}$，$t\\in\\mathbb R$，规范形为 $z_1^2+z_2^2$。",
-    "explanation": "第一问：展开为\n\n$$\nf(x)=(\\alpha^Tx)^2+(\\beta^Tx)^2+(\\gamma^Tx)^2.\n$$\n\n三个平方之和不小于0。若等于0，则三个内积都为0。因三个向量线性无关，只有 $x=0$ 能同时与它们正交。因此任意非零 $x$ 都满足 $f(x)>0$，二次型正定。\n\n第二问：令 $M$ 的三行为 $\\alpha^T,\\beta^T,\\gamma^T$，则\n\n$$\nM=\\begin{pmatrix}1&-1&0\\\\1&1&-2\\\\1&0&a\\end{pmatrix},\\quad |M|=2(a+1).\n$$\n\n当 $a\\ne-1$，矩阵可逆，所以方程仅有零解；正惯性指数为3，规范形为 $z_1^2+z_2^2+z_3^2$。\n\n当 $a=-1$，$\\gamma=(\\alpha+\\beta)/2$，而 $\\alpha,\\beta$ 仍线性无关，所以矩阵秩为2。令两个独立内积为0，得到 $x_1=x_2=x_3$，全部解为 $x=t(1,1,1)^T$。二次型非负且秩为2，规范形为 $z_1^2+z_2^2$。规范形的非零系数应为1或负1，不是一般特征值。"
+    "explanation": "第一问，展开得\n\n$$\nf(x)=(\\alpha^{\\mathrm T}x)^2+(\\beta^{\\mathrm T}x)^2+(\\gamma^{\\mathrm T}x)^2\\ge0.\n$$\n\n令 $M$ 的三行为 $\\alpha^{\\mathrm T},\\beta^{\\mathrm T},\\gamma^{\\mathrm T}$。若 $f(x)=0$，则每个平方都为0，即 $Mx=0$。三个向量线性无关，所以 $M$ 可逆，只有 $x=0$。因此对任意非零 $x$，有 $f(x)>0$，二次型正定。\n\n第二问，代入给定向量：\n\n$$\nf=(x_1-x_2)^2+(x_1+x_2-2x_3)^2+(x_1+ax_3)^2,\n$$\n\n$$\nM=\\begin{pmatrix}1&-1&0\\\\1&1&-2\\\\1&0&a\\end{pmatrix},\\qquad |M|=2(a+1).\n$$\n\n当 $a\\ne-1$，$M$ 可逆，故 $f=0$ 只有零解。取可逆变换\n\n$$\nz_1=x_1-x_2,\\quad z_2=x_1+x_2-2x_3,\\quad z_3=x_1+ax_3,\n$$\n\n即得规范形 $z_1^2+z_2^2+z_3^2$。\n\n当 $a=-1$，令三个平方同时为0，前两式给出 $x_1=x_2=x_3$，第三式自动满足。因此全部解为 $x=t(1,1,1)^{\\mathrm T}$。再将二次型整理为\n\n$$\nf=(x_1-x_2)^2+(x_1+x_2-2x_3)^2+(x_1-x_3)^2\n=3(x_1-x_3)^2+2(x_2-x_3)^2.\n$$\n\n取\n\n$$\nz_1=\\sqrt3(x_1-x_3),\\quad z_2=\\sqrt2(x_2-x_3),\\quad z_3=x_3,\n$$\n\n这一变换的系数行列式为 $\\sqrt6\\ne0$，故规范形为 $z_1^2+z_2^2$，第三个变量的系数为0。规范形的非零系数为 $1$ 或 $-1$，应与仅消去交叉项的标准形区分。"
   },
   {
     "id": "math2-2014-q3-exercise1",
@@ -932,7 +932,7 @@
     "type": "choice",
     "stem": "二次型\n\n$$\na x_1^2+(2a-1)x_2^2+a x_3^2-2x_1x_2+2a x_1x_3-2x_2x_3\n$$\n\n的正惯性指数 $p=1$，则 $a$ 属于：",
     "answer": "C。",
-    "explanation": "矩阵为\n\n$$\nA=\\begin{pmatrix}a&-1&a\\\\-1&2a-1&-1\\\\a&-1&a\\end{pmatrix}.\n$$\n\n向量 $(1,0,-1)^T$ 对应特征值0。在由 $(1,0,1)^T/\\sqrt2$ 与 $(0,1,0)^T$ 张成的子空间内，矩阵化为\n\n$$\n\\begin{pmatrix}2a&-\\sqrt2\\\\-\\sqrt2&2a-1\\end{pmatrix},\n$$\n\n其两个特征值为 $2a+1,\\;2a-2$。恰有一个正特征值要求 $2a+1>0$ 且 $2a-2\\le0$，即 $-1/2<a\\le1$。当 $a=1$ 时，第二个特征值为0，仍有一个正特征值，所以右端点必须保留。",
+    "explanation": "二次型矩阵为\n\n$$\nA=\\begin{pmatrix}a&-1&a\\\\-1&2a-1&-1\\\\a&-1&a\\end{pmatrix}.\n$$\n\n正惯性指数等于实对称矩阵的正特征值个数，按重数计。计算特征多项式，作“第1行减第3行”后按该行展开，可得\n\n$$\n|\\lambda E-A|\n=\\lambda\\bigl[(\\lambda-2a)(\\lambda-2a+1)-2\\bigr]\n=\\lambda(\\lambda-2a-1)(\\lambda-2a+2).\n$$\n\n故三个特征值为 $0,2a+1,2a-2$。由于 $2a+1>2a-2$，恰有一个正特征值的充要条件是\n\n$$\n2a+1>0,\\qquad 2a-2\\le0,\n$$\n\n即 $-1/2<a\\le1$，选C。当 $a=-1/2$ 时没有正特征值，不能取；当 $a=1$ 时特征值为 $0,3,0$，正惯性指数仍为1，必须取。",
     "options": [
       {
         "key": "A",
@@ -964,7 +964,7 @@
     "type": "fill",
     "stem": "若三阶实对称矩阵 $A$ 与 $B=\\begin{pmatrix}1&0&0\\\\0&0&3\\\\0&3&0\\end{pmatrix}$ 合同，则二次型 $x^TAx$ 的规范形为$\\underline{\\qquad}$。",
     "answer": "$z_1^2+z_2^2-z_3^2$，变量次序可调换。",
-    "explanation": "矩阵 $B$ 的特征值为 $1,3,-3$。因此正惯性指数为2，负惯性指数为1。合同变换保留正、负惯性指数，故 $A$ 的规范形有两个正平方项、一个负平方项。规范形系数为正1或负1；$y_1^2+3y_2^2-3y_3^2$ 是一种标准形，继续缩放变量便得到规范形。"
+    "explanation": "先求 $B$ 的特征值：\n\n$$\n|\\lambda E-B|=(\\lambda-1)(\\lambda^2-9),\n$$\n\n故特征值为 $1,3,-3$，正惯性指数为2，负惯性指数为1。$A$ 与 $B$ 合同，按惯性定理，$A$ 也有两个正平方项、一个负平方项，因此其规范形为 $z_1^2+z_2^2-z_3^2$。\n\n需要区分：对 $B$ 作正交变换可得到标准形 $y_1^2+3y_2^2-3y_3^2$；再令 $z_1=y_1,z_2=\\sqrt3y_2,z_3=\\sqrt3y_3$，才得到规范形。题目只给 $A$ 与 $B$ 合同，因此能确定正负惯性指数，不能据此断言 $A$ 与 $B$ 的特征值相同。"
   },
   {
     "id": "math2-2014-q17-exercise1",
@@ -990,7 +990,7 @@
     "type": "solution",
     "stem": "设 $D$ 是由 $y=|x|$ 及 $y=1$ 围成的有界区域，计算\n\n$$\nI=\\iint_D\\frac{x^2-x\\cos y-y^2}{x^2+y^2}\\,dx\\,dy.\n$$",
     "answer": "$1-\\pi/2$。",
-    "explanation": "区域可写成 $0\\le y\\le1,\\;-y\\le x\\le y$，关于 $y$ 轴对称。项 $-x\\cos y/(x^2+y^2)$ 关于 $x$ 为奇函数，积分为0。剩下\n\n$$\nI=\\int_0^1\\int_{-y}^y\\left(1-\\frac{2y^2}{x^2+y^2}\\right)dx\\,dy.\n$$\n\n当 $y>0$ 时，内层积分为\n\n$$\n2y-2y^2\\cdot\\frac1y[\\arctan(x/y)]_{-y}^y\n=(2-\\pi)y.\n$$\n\n再积分得 $I=(2-\\pi)/2$。原点处的表达式未定义；单个点不影响该积分，且在本区域内被积函数可积。"
+    "explanation": "区域可写成 $0\\le y\\le1,\\;-y\\le x\\le y$，关于 $y$ 轴对称。项 $-x\\cos y/(x^2+y^2)$ 关于 $x$ 为奇函数，积分为0。剩下\n\n$$\nI=\\int_0^1\\int_{-y}^y\\left(1-\\frac{2y^2}{x^2+y^2}\\right)dx\\,dy.\n$$\n\n当 $y>0$ 时，内层积分为\n\n$$\n2y-2y^2\\cdot\\frac1y[\\arctan(x/y)]_{-y}^y\n=(2-\\pi)y.\n$$\n\n再积分得 $I=(2-\\pi)/2$。原点处的表达式未定义，需要同时说明附近的积分收敛。偶数部分 $(x^2-y^2)/(x^2+y^2)$ 的绝对值不超过1；另一部分满足\n\n$$\n\\int_0^1dy\\int_{-y}^y\\frac{|x\\cos y|}{x^2+y^2}\\,dx\n\\le\\int_0^1dy\\int_{-y}^y\\frac{|x|}{x^2+y^2}\\,dx\n=\\int_0^1\\ln2\\,dy=\\ln2.\n$$\n\n故原积分绝对收敛，对称性消去奇函数项是合法的。仅说“一个点不影响积分”，不足以处理附近无界的情况。"
   },
   {
     "id": "math2-2014-q19-exercise1",
@@ -1002,7 +1002,7 @@
     "topic": "高等数学 / 一元积分 / 积分不等式",
     "type": "solution",
     "stem": "设 $f(x),g(x)$ 在区间 $[a,b]$ 上连续，对任意 $x\\in[a,b]$，满足\n\n$$\n\\int_a^xg(t)\\,dt\\le\\int_a^xf(t)\\,dt,\\qquad\n\\int_a^bg(t)\\,dt=\\int_a^bf(t)\\,dt.\n$$\n\n证明 $\\displaystyle\\int_a^bxf(x)\\,dx\\le\\int_a^bxg(x)\\,dx$。",
-    "answer": "$\\displaystyle\\int_a^bxf(x)\\,dx\\le\\int_a^bxg(x)\\,dx$。",
+    "answer": "令 $H(x)=\\int_a^x(f(t)-g(t))dt\\ge0$，由分部积分得\n\n$$\n\\int_a^b x(f(x)-g(x))dx=-\\int_a^b H(x)dx\\le0,\n$$\n\n故所证不等式成立。",
     "explanation": "令 $H(x)=\\int_a^x(f(t)-g(t))\\,dt$。由条件可知 $H(x)\\ge0,\\;H(a)=H(b)=0$，且 $H'(x)=f(x)-g(x)$。\n\n分部积分得到\n\n$$\n\\int_a^bx(f(x)-g(x))\\,dx\n=[xH(x)]_a^b-\\int_a^bH(x)\\,dx\n=-\\int_a^bH(x)\\,dx\\le0.\n$$\n\n移项即得结论。条件比较的是累积积分，不能直接推出每个点都有 $g(x)\\le f(x)$。"
   },
   {
@@ -1016,7 +1016,7 @@
     "type": "solution",
     "stem": "设函数 $z=xyf(y/x)$，其中 $f(u)$ 可导，且满足\n\n$$\nx\\frac{\\partial z}{\\partial x}+y\\frac{\\partial z}{\\partial y}\n=y^2(\\ln y-\\ln x).\n$$\n\n第一问：求 $f(x)$ 的表达式。\n\n第二问：求 $f(x)$ 与 $x$ 轴所围图形的面积，以及该图形绕 $x$ 轴旋转一周所得旋转体的体积。",
     "answer": "$f(x)=\\frac12x\\ln x$，$x>0$；面积为 $1/8$，体积为 $\\pi/54$。",
-    "explanation": "记 $u=y/x$，由链式法则得到\n\n$$\nz_x=yf(u)-\\frac{y^2}{x}f'(u),\\qquad\nz_y=xf(u)+yf'(u).\n$$\n\n相加后 $xz_x+yz_y=2xyf(u)$。与题设比较，得到 $2xyf(u)=y^2\\ln(y/x)$，因此 $f(u)=u\\ln u/2$。\n\n曲线在 $0<x<1$ 位于 $x$ 轴下方，并在 $x\\to0^+$ 时趋于0，在 $x=1$ 时为0，所以\n\n$$\nS=-\\frac12\\int_0^1x\\ln x\\,dx=\\frac18,\n$$\n\n$$\nV=\\frac\\pi4\\int_0^1x^2(\\ln x)^2\\,dx=\\frac{\\pi}{54}.\n$$\n\n最后一步可令 $x=e^{-t}$，把积分变成 $\\int_0^\\infty t^2e^{-3t}\\,dt=2/27$。面积要取非负，体积则使用函数值的平方。"
+    "explanation": "第一问，原式的对数要求 $x>0,y>0$。令 $u=y/x$，用复合函数求导法则得到\n\n$$\nz_x=yf(u)-\\frac{y^2}{x}f'(u),\\qquad\nz_y=xf(u)+yf'(u).\n$$\n\n故 $xz_x+yz_y=2xyf(u)$。与题设比较：\n\n$$\n2xyf(u)=y^2\\ln(y/x),\\qquad f(u)=\\frac12u\\ln u.\n$$\n\n因此 $f(x)=x\\ln x/2$，$x>0$。\n\n第二问，$f(x)<0$ 在 $0<x<1$ 上成立；$x\\to0^+$ 时 $f(x)\\to0$，且 $f(1)=0$。面积为\n\n$$\nS=-\\frac12\\int_0^1x\\ln x\\,dx\n=-\\frac12\\left[\\frac{x^2}{2}\\ln x-\\frac{x^2}{4}\\right]_0^1=\\frac18.\n$$\n\n下端按极限处理，$x^2\\ln x\\to0$。绕 $x$ 轴旋转的体积为 $V=\\frac\\pi4 J$，其中 $J=\\int_0^1x^2(\\ln x)^2dx$。分部积分两次：\n\n$$\nJ=\\left[\\frac{x^3}{3}(\\ln x)^2\\right]_0^1\n-\\frac23\\int_0^1x^2\\ln x\\,dx,\n$$\n\n$$\n\\int_0^1x^2\\ln x\\,dx\n=\\left[\\frac{x^3}{3}\\ln x\\right]_0^1-\\frac13\\int_0^1x^2dx=-\\frac19.\n$$\n\n边界项均为0，故 $J=2/27$，$V=\\pi/54$。面积应取上下边界之差；旋转体积用半径平方，不会带入函数值的负号。"
   },
   {
     "id": "math2-2014-q22-exercise1",
@@ -1029,7 +1029,7 @@
     "type": "solution",
     "stem": "设\n\n$$\nA=\\begin{pmatrix}1&-2&3\\\\0&1&-1\\\\1&2&0\\end{pmatrix},\\quad\n\\beta=\\begin{pmatrix}-4\\\\1\\\\-3\\end{pmatrix},\\quad\nB=\\begin{pmatrix}-2&1&3\\\\1&0&-1\\\\2&1&0\\end{pmatrix},\\quad [A,\\beta]=BC.\n$$\n\n第一问：求 $Ax=\\beta$ 的解，并求 $C$。\n\n第二问：求满足 $[A,\\beta]Y=I$ 的所有矩阵 $Y$。",
     "answer": "$x=(1,-2,-3)^T$，且\n\n$$\nC=\\begin{pmatrix}0&1&0&-2\\\\1&0&0&1\\\\0&0&1&-3\\end{pmatrix}.\n$$\n\n第二问的全部解为\n\n$$\nY=\\begin{pmatrix}2&6&-1\\\\-1&-3&1\\\\-1&-4&1\\\\0&0&0\\end{pmatrix}\n+\\begin{pmatrix}-1\\\\2\\\\3\\\\1\\end{pmatrix}\\begin{pmatrix}c_1&c_2&c_3\\end{pmatrix},\n\\qquad c_1,c_2,c_3\\in\\mathbb R.\n$$",
-    "explanation": "第一问：由第2行得 $x_2=x_3+1$，代入第3行得 $x_1=-5-2x_3$，再代入第1行得到 $x_3=-3$。故 $x_2=-2,x_1=1$。矩阵 $B$ 的第1、2、3列分别等于 $A$ 的第2、1、3列，因此 $A=BS$，其中 $S$ 交换前两列。又有 $\\beta=Ax=BSx$，所以 $C=[S,Sx]$，即上式。\n\n第二问：$|A|=1$，故\n\n$$\nA^{-1}=\\begin{pmatrix}2&6&-1\\\\-1&-3&1\\\\-1&-4&1\\end{pmatrix}.\n$$\n\n取最后一行为0，前三行为 $A^{-1}$，得到一个特解 $Y_0$。齐次方程 $[A,\\beta]v=0$ 等价于 $A(v_{1:3}+xv_4)=0$，其全部解为 $v=t(-1,2,3,1)^T$。给 $Y_0$ 的每一列独立加一个齐次解，就得到全部 $Y$。"
+    "explanation": "第一问：由第2行得 $x_2=x_3+1$，代入第3行得 $x_1=-5-2x_3$，再代入第1行得到 $x_3=-3$。故 $x_2=-2,x_1=1$。矩阵 $B$ 的第1、2、3列分别等于 $A$ 的第2、1、3列，因此 $A=BS$，其中 $S$ 交换前两列。又有 $\\beta=Ax=BSx$，所以 $C=[S,Sx]$，即上式。\n\n第二问：$|A|=1$，故\n\n$$\nA^{-1}=\\begin{pmatrix}2&6&-1\\\\-1&-3&1\\\\-1&-4&1\\end{pmatrix}.\n$$\n\n取最后一行为0，前三行为 $A^{-1}$，得到一个特解 $Y_0$。设 $v=(v_1,v_2,v_3,v_4)^{\\mathrm T}$，记第一问的解为 $x_0=(1,-2,-3)^{\\mathrm T}$，则齐次方程为\n\n$$\n[A,\\beta]v=A\\begin{pmatrix}v_1\\\\v_2\\\\v_3\\end{pmatrix}+\\beta v_4\n=A\\left(\\begin{pmatrix}v_1\\\\v_2\\\\v_3\\end{pmatrix}+x_0v_4\\right)=0.\n$$\n\n由于 $A$ 可逆，括号内等于0，故 $v=t(-1,2,3,1)^{\\mathrm T}$。矩阵等式 $[A,\\beta]Y=I$ 等价于对 $Y$ 的三列分别求解；因此在 $Y_0$ 的三列上分别加 $c_1v,c_2v,c_3v$，就得到答案中的全部 $Y$。三个常数相互独立，不能只用一个常数。"
   },
   {
     "id": "math2-2015-q2-exercise1",
@@ -1106,7 +1106,7 @@
     "type": "choice",
     "stem": "设 $f(x)=x^2e^{3x}$，则 $f^{(n)}(0)$ 等于：",
     "answer": "C。",
-    "explanation": "展开\n\n$$\nx^2e^{3x}=\\sum_{j=0}^\\infty\\frac{3^j}{j!}x^{j+2}.\n$$\n\n当 $n\\ge2$，$x^n$ 的系数为 $3^{n-2}/(n-2)!$，它等于 $f^{(n)}(0)/n!$。故\n\n$$\nf^{(n)}(0)=\\frac{n!}{(n-2)!}3^{n-2}=n(n-1)3^{n-2}.\n$$\n\n当 $n=1$ 时导数为0，选项C同样给出0。也可用莱布尼茨公式，只有对 $x^2$ 求两次导数的项在0处留下非零值。",
+    "explanation": "用莱布尼茨公式求乘积的 $n$ 阶导数。$x^2$ 的三阶及以上导数均为0，所以对 $n\\ge2$，只需保留三项：\n\n$$\nf^{(n)}(x)=x^2\\,3^ne^{3x}\n+n(2x)3^{n-1}e^{3x}\n+\\binom n2\\cdot2\\cdot3^{n-2}e^{3x}.\n$$\n\n代入 $x=0$，前两项为0，得到\n\n$$\nf^{(n)}(0)=n(n-1)3^{n-2}.\n$$\n\n$n=1$ 时直接求导得 $f'(0)=0$，选项C也给出0。因此选C。组合系数 $\\binom n2$ 表示 $n$ 次求导中有两次落在 $x^2$ 上；不必展开无穷级数，也不必逐次求到第 $n$ 阶。",
     "options": [
       {
         "key": "A",
@@ -1170,7 +1170,7 @@
     "type": "solution",
     "stem": "设曲线 $y=\\sin x$，$0\\le x\\le\\pi/2$，与 $y=1$ 及 $x=0$ 所围平面图形为 $D_1$；曲线 $y=\\sin x$，$0\\le x\\le\\pi$，与 $y=0$ 所围平面图形为 $D_2$。\n\n第一问：求 $D_1$ 绕直线 $x=\\pi/2$ 旋转一周所得体积 $V_1$。\n\n第二问：求 $D_2$ 绕 $y$ 轴旋转一周所得体积 $V_2$。",
     "answer": "$V_1=\\pi^3/4-\\pi^2+2\\pi$，$V_2=2\\pi^2$。",
-    "explanation": "两问均绕竖直轴旋转，用圆柱壳法。第一问，壳的半径为 $\\pi/2-x$，高为 $1-\\sin x$：\n\n$$\nV_1=2\\pi\\int_0^{\\pi/2}(\\pi/2-x)(1-\\sin x)\\,dx.\n$$\n\n记 $a=\\pi/2$，其中 $\\int_0^a(a-x)\\,dx=a^2/2$，而分部积分得 $\\int_0^a(a-x)\\sin x\\,dx=a-1$。所以 $V_1=2\\pi(a^2/2-a+1)$。\n\n第二问，壳的半径为 $x$，高为 $\\sin x$：\n\n$$\nV_2=2\\pi\\int_0^\\pi x\\sin x\\,dx\n=2\\pi[-x\\cos x+\\sin x]_0^\\pi=2\\pi^2.\n$$\n\n旋转轴不同，半径也不同，不能把两问都取成 $x$。"
+    "explanation": "两问均绕竖直轴旋转，用竖直薄片的圆柱壳法。厚度 $dx$、高度 $h(x)$、到旋转轴距离 $r(x)$ 的薄片旋转后，体积微元为 $dV=2\\pi r(x)h(x)dx$（圆周长乘高度再乘厚度）。第一问，壳的半径为 $\\pi/2-x$，高为 $1-\\sin x$：\n\n$$\nV_1=2\\pi\\int_0^{\\pi/2}(\\pi/2-x)(1-\\sin x)\\,dx.\n$$\n\n记 $a=\\pi/2$，其中 $\\int_0^a(a-x)\\,dx=a^2/2$，而分部积分得\n\n$$\n\\int_0^a(a-x)\\sin x\\,dx\n=\\left[-(a-x)\\cos x\\right]_0^a-\\int_0^a\\cos x\\,dx=a-1.\n$$\n所以 $V_1=2\\pi(a^2/2-a+1)$。\n\n第二问，壳的半径为 $x$，高为 $\\sin x$：\n\n$$\nV_2=2\\pi\\int_0^\\pi x\\sin x\\,dx\n=2\\pi[-x\\cos x+\\sin x]_0^\\pi=2\\pi^2.\n$$\n\n旋转轴不同，半径也不同，不能把两问都取成 $x$。"
   },
   {
     "id": "math2-2015-q18-exercise1",
@@ -1209,7 +1209,7 @@
     "type": "solution",
     "stem": "确定常数 $k$ 的取值范围，使方程 $x-\\arctan x=kx^3$ 在 $(0,1]$ 内有实根。",
     "answer": "$1-\\pi/4\\le k<1/3$。",
-    "explanation": "令 $h(x)=(x-\\arctan x)/x^3$。利用\n\n$$\nx-\\arctan x=\\int_0^x\\frac{t^2}{1+t^2}\\,dt,\n$$\n\n作 $t=xs$，得到\n\n$$\nh(x)=\\int_0^1\\frac{s^2}{1+x^2s^2}\\,ds.\n$$\n\n对于 $x>0$，被积函数随 $x$ 严格减小，所以 $h$ 严格递减。又有 $\\lim_{x\\to0^+}h(x)=1/3$，$h(1)=1-\\pi/4$。由连续性，其在 $(0,1]$ 上的值域为 $[1-\\pi/4,1/3)$。原题包括 $x=1$，所以左端点包含；不包括 $x=0$，所以右端点不包含。"
+    "explanation": "令 $h(x)=(x-\\arctan x)/x^3$。利用\n\n$$\nx-\\arctan x=\\int_0^x\\frac{t^2}{1+t^2}\\,dt,\n$$\n\n作 $t=xs$，得到\n\n$$\nh(x)=\\int_0^1\\frac{s^2}{1+x^2s^2}\\,ds.\n$$\n\n对于 $x>0$，被积函数随 $x$ 严格减小，所以 $h$ 严格递减。当 $x\\to0^+$ 时，利用 $\\arctan x=x-x^3/3+o(x^3)$，可得 $h(x)\\to1/3$；另外 $h(1)=1-\\pi/4$。由连续性，其在 $(0,1]$ 上的值域为 $[1-\\pi/4,1/3)$。原题包括 $x=1$，所以左端点包含；不包括 $x=0$，所以右端点不包含。"
   },
   {
     "id": "math2-2015-q19-exercise2",
@@ -1488,29 +1488,10 @@
     "exerciseIndex": 2,
     "source": "张宇1000题 第52页第2题",
     "topic": "线性代数 / 二次型 / 惯性指数",
-    "type": "choice",
-    "stem": "二次型\n\n$$\nf=ax_1x_2+x_1x_3-x_2x_3\n$$\n\n的正惯性指数为2，负惯性指数为1，则下列结论可能成立的是（　）。",
-    "answer": "B。",
-    "explanation": "第一步，令 $x_1=u+v,\\;x_2=u-v,\\;x_3=w$，这是可逆线性变换。原二次型变为\n\n$$\nf=a(u^2-v^2)+2vw.\n$$\n\n第二步，检查B的 $a=1$，继续配方：\n\n$$\nf=u^2-v^2+2vw=u^2-(v-w)^2+w^2.\n$$\n\n令新变量分别为 $u,v-w,w$，所得标准形有两个正平方项、一个负平方项，完全符合题设，所以B正确。\n\n第三步，检查其他选项的参数条件。当 $a=-1$ 时，\n\n$$\nf=-u^2+v^2+2vw=-u^2+(v+w)^2-w^2,\n$$\n\n正惯性指数为1、负惯性指数为2，因此A不正确。C给出的范围 $a\\geq0$ 包含 $a=0$，此时 $f=2vw$，秩仅为2，不符合题设，所以这一范围不能保证题设。D的 $a<0$ 也不符合：原矩阵的行列式为 $-a/4>0$，而两个正特征值与一个负特征值的乘积必须为负。\n\n本题依照解析册逐项检查选项给出的参数条件，结论选B，不能把C理解成“从范围中任取一个合适的值即可”。",
-    "options": [
-      {
-        "key": "A",
-        "text": "$a=-1$"
-      },
-      {
-        "key": "B",
-        "text": "$a=1$"
-      },
-      {
-        "key": "C",
-        "text": "$a\\geq0$"
-      },
-      {
-        "key": "D",
-        "text": "$a<0$"
-      }
-    ],
-    "correctOption": "B"
+    "type": "solution",
+    "stem": "二次型\n\n$$\nf=ax_1x_2+x_1x_3-x_2x_3\n$$\n\n的正惯性指数为2，负惯性指数为1，则下列结论可能成立的是（　）。\n\n原题选项：A. $a=-1$；B. $a=1$；C. $a\\ge0$；D. $a<0$。\n\n题面校核：这些选项与“可能成立”的表述不能组成答案唯一的单选题，以下求出完整参数范围。",
+    "answer": "正惯性指数为2、负惯性指数为1的充要条件是 $a>0$。原题按“可能成立”理解，B与C均符合，不能唯一选B；C不是完整的充要条件，因为它还包含不符合题设的 $a=0$。",
+    "explanation": "令 $x_1=u+v,x_2=u-v,x_3=w$，这是可逆变换，二次型化为\n\n$$\nf=a u^2-a v^2+2vw.\n$$\n\n当 $a\\ne0$ 时配方：\n\n$$\nf=a u^2-a\\left(v-\\frac wa\\right)^2+\\frac1a w^2.\n$$\n\n这一变换仍可逆。若 $a>0$，三个平方项系数依次为正、负、正，故正惯性指数为2、负惯性指数为1；若 $a<0$，系数依次为负、正、负，故正惯性指数为1、负惯性指数为2。\n\n若 $a=0$，则 $f=2vw$。令 $v=(s+t)/\\sqrt2,w=(s-t)/\\sqrt2$，得到 $f=s^2-t^2$，另一个变量的系数为0，所以正、负惯性指数都为1，秩为2。\n\n因此完整结论是 $a>0$。据此，A和D不可能成立，B的 $a=1$ 符合题设；C的 $a\\ge0$ 也可以成立，而且是题设必然推出的较弱条件。不能因为C包含 $a=0$，就将“C不能保证题设”误写成“题设不可能推出C”。原解析混淆了必要条件与充分条件。"
   },
   {
     "id": "math2-2016-q11-exercise1",
@@ -1599,8 +1580,8 @@
     "topic": "高等数学 / 一元积分 / 变限积分与最值",
     "type": "solution",
     "stem": "设函数 $f$ 满足\n\n$$\ne^{-x}-\\frac{x^2}{2}=1+\\int_0^x f(t-x)\\,dt,\n$$\n\n求 $f$ 在全体实数上的最值。",
-    "answer": "最大值为 $-1$，在 $x=0$ 处取得；无最小值。",
-    "explanation": "第一步，积分里同时有上限 $x$ 和自变量 $t-x$，先换元。令 $u=t-x$，得到\n\n$$\n\\int_0^x f(t-x)\\,dt=\\int_{-x}^0f(u)\\,du.\n$$\n\n于是题设变为 $e^{-x}-x^2/2=1+\\int_{-x}^0f(u)\\,du$。\n\n第二步，两边对 $x$ 求导，注意下限是 $-x$：\n\n$$\n-e^{-x}-x=f(-x).\n$$\n\n把 $-x$ 换成新的自变量，得到 $f(x)=x-e^x$。\n\n第三步，求导判断全实数上的最值：\n\n$$\nf'(x)=1-e^x.\n$$\n\n当 $x<0$ 时导数为正，当 $x>0$ 时导数为负，所以 $x=0$ 处取得最大值 $f(0)=-1$。又当 $x\\to-\\infty$ 或 $x\\to+\\infty$ 时，$f(x)\\to-\\infty$，因此函数没有最小值。\n\n本题先换元消除积分中的 $t-x$，能避免把它误当成普通变上限积分。"
+    "answer": "在 $f$ 连续的通常条件下，$f(x)=x-e^x$；最大值为 $-1$，在 $x=0$ 处取得，无最小值。原题若完全不对 $f$ 作连续性等约束，则不能唯一确定最值。",
+    "explanation": "第一步，积分里同时有上限 $x$ 和自变量 $t-x$，先换元。令 $u=t-x$，得到\n\n$$\n\\int_0^x f(t-x)\\,dt=\\int_{-x}^0f(u)\\,du.\n$$\n\n于是题设变为 $e^{-x}-x^2/2=1+\\int_{-x}^0f(u)\\,du$。\n\n第二步，两边对 $x$ 求导，注意下限是 $-x$：\n\n$$\n-e^{-x}-x=f(-x).\n$$\n\n把 $-x$ 换成新的自变量，得到 $f(x)=x-e^x$。\n\n第三步，求导判断全实数上的最值：\n\n$$\nf'(x)=1-e^x.\n$$\n\n当 $x<0$ 时导数为正，当 $x>0$ 时导数为负，所以 $x=0$ 处取得最大值 $f(0)=-1$。又当 $x\\to-\\infty$ 或 $x\\to+\\infty$ 时，$f(x)\\to-\\infty$，因此函数没有最小值。\n\n本题先换元消除积分中的 $t-x$，能避免把它误当成普通变上限积分。\n\n条件说明：用变限积分求导得到 $f(-x)$，需要 $f$ 在对应点连续。若题目只要求积分存在，则改变 $f$ 在一个点的值不会改变题设积分，却可能改变其最大值、最小值。因此题干应补充“$f$ 连续”；上述答案是在这一考研题常用条件下得到的。"
   },
   {
     "id": "math2-2016-q16-exercise3",
@@ -1691,7 +1672,7 @@
     "type": "choice",
     "stem": "设线性方程组\n\n$$\n\\begin{cases}\nx_1+ax_2-2x_3=0,\\\\\nx_1+2x_2+x_3=1,\\\\\n2x_1+3x_2+(a+2)x_3=3\n\\end{cases}\n$$\n\n的系数矩阵为 $A$，常数项列向量为 $b$。若 $Ax=b$ 无解，而 $A^{\\mathrm T}Ax=A^{\\mathrm T}b$ 有解，则 $a=$（　）。",
     "answer": "A，即 $a=-1$。",
-    "explanation": "第一步，若 $Ax=b$ 无解，则系数矩阵不可逆。计算\n\n$$\n|A|=\\begin{vmatrix}1&a&-2\\\\1&2&1\\\\2&3&a+2\\end{vmatrix}\n=-(a-3)(a+1).\n$$\n\n所以只需检查 $a=3$ 和 $a=-1$。\n\n第二步，对原方程作“第二式减第一式”“第三式减第一式的2倍”，得到\n\n$$\n(2-a)x_2+3x_3=1,\\qquad\n(3-2a)x_2+(a+6)x_3=3.\n$$\n\n当 $a=3$ 时，两式分别为 $-x_2+3x_3=1$、$-3x_2+9x_3=3$，完全一致，原方程有解。当 $a=-1$ 时，两式分别给出\n\n$$\nx_2+x_3=\\frac13,\\qquad x_2+x_3=\\frac35,\n$$\n\n相互矛盾，原方程无解，因此 $a=-1$。\n\n第三步，说明题目另一条件为何不用继续求解。对任意实矩阵 $A$，\n\n$$\nA^{\\mathrm T}Av=0\\Longrightarrow\nv^{\\mathrm T}A^{\\mathrm T}Av=\\|Av\\|^2=0\n\\Longrightarrow Av=0.\n$$\n\n因此 $A^{\\mathrm T}A$ 与 $A$ 同秩；又 $A^{\\mathrm T}A$ 的列空间包含于 $A^{\\mathrm T}$ 的列空间，二者维数相同，所以列空间相等。$A^{\\mathrm T}b$ 必在该列空间内，故正规方程 $A^{\\mathrm T}Ax=A^{\\mathrm T}b$ 总有解。\n\n本题只需用原方程无解筛选参数，第二个有解条件不会再排除任何参数。",
+    "explanation": "第一步，若 $Ax=b$ 无解，则系数矩阵不可逆。计算\n\n$$\n|A|=\\begin{vmatrix}1&a&-2\\\\1&2&1\\\\2&3&a+2\\end{vmatrix}\n=-(a-3)(a+1).\n$$\n\n所以只需检查 $a=3$ 和 $a=-1$。\n\n第二步，对原方程作“第二式减第一式”“第三式减第一式的2倍”，得到\n\n$$\n(2-a)x_2+3x_3=1,\\qquad\n(3-2a)x_2+(a+6)x_3=3.\n$$\n\n当 $a=3$ 时，两式分别为 $-x_2+3x_3=1$、$-3x_2+9x_3=3$，完全一致，原方程有解。当 $a=-1$ 时，两式分别给出\n\n$$\nx_2+x_3=\\frac13,\\qquad x_2+x_3=\\frac35,\n$$\n\n相互矛盾，原方程无解，因此 $a=-1$。\n\n第三步，说明题目另一条件为何不用继续求解。对任意实矩阵 $A$，\n\n$$\nA^{\\mathrm T}Av=0\\Longrightarrow\nv^{\\mathrm T}A^{\\mathrm T}Av=\\|Av\\|^2=0\n\\Longrightarrow Av=0.\n$$\n\n反过来，$Av=0$ 也推出 $A^{\\mathrm T}Av=0$，所以两者的齐次方程同解，基础解系所含向量个数相同，从而 $r(A^{\\mathrm T}A)=r(A)$。再比较增广矩阵的秩：\n\n$$\n[A^{\\mathrm T}A,A^{\\mathrm T}b]=A^{\\mathrm T}[A,b],\n$$\n\n$$\nr(A^{\\mathrm T}A)\\le r([A^{\\mathrm T}A,A^{\\mathrm T}b])\n\\le r(A^{\\mathrm T})=r(A)=r(A^{\\mathrm T}A).\n$$\n\n故系数矩阵与增广矩阵同秩，正规方程一定有解。这里默认考研线性代数题中的矩阵为实矩阵。\n\n本题只需用原方程无解筛选参数，第二个有解条件不会再排除任何参数。",
     "options": [
       {
         "key": "A",
@@ -1755,7 +1736,7 @@
     "type": "solution",
     "stem": "设 $A$ 是3阶实对称矩阵，$\\operatorname{tr}(A)=1$，齐次线性方程组 $Ax=0$ 的通解为\n\n$$\nx=k_1\\begin{pmatrix}-2\\\\1\\\\0\\end{pmatrix}\n+k_2\\begin{pmatrix}-3\\\\0\\\\1\\end{pmatrix}\n$$\n\n（$k_1,k_2$ 为任意常数），求 $A^n$。",
     "answer": "对正整数 $n$，\n\n$$\nA^n=A=\\frac1{14}\\begin{pmatrix}1&2&3\\\\2&4&6\\\\3&6&9\\end{pmatrix}.\n$$",
-    "explanation": "第一步，由通解中的两个线性无关向量，知道0特征值的特征空间是二维。$A$ 是实对称矩阵，可以正交对角化，所以两个特征值为0。又 $\\operatorname{tr}(A)=1$，故第三个特征值为1。\n\n第二步，实对称矩阵不同特征值对应的特征向量正交。设1对应的特征向量为 $u=(u_1,u_2,u_3)^{\\mathrm T}$，则\n\n$$\n-2u_1+u_2=0,\\qquad -3u_1+u_3=0.\n$$\n\n可取 $u=(1,2,3)^{\\mathrm T}$，单位化为 $q=u/\\sqrt{14}$。\n\n第三步，$A$ 在零特征空间上作用为0，在 $q$ 方向上作用为1，所以\n\n$$\nA=qq^{\\mathrm T}=\\frac{uu^{\\mathrm T}}{u^{\\mathrm T}u}\n=\\frac1{14}\\begin{pmatrix}1&2&3\\\\2&4&6\\\\3&6&9\\end{pmatrix}.\n$$\n\n由于 $q^{\\mathrm T}q=1$，有 $A^2=qq^{\\mathrm T}qq^{\\mathrm T}=A$，于是 $A^n=A$。\n\n本题可直接写成正交投影矩阵，不必求一个完整的三阶正交矩阵再求逆。若 $n=0$，则另有 $A^0=E$。"
+    "explanation": "第一步，由通解中的两个线性无关向量，知道0特征值的特征空间是二维。$A$ 是实对称矩阵，可以正交对角化，所以两个特征值为0。又 $\\operatorname{tr}(A)=1$，故第三个特征值为1。\n\n第二步，实对称矩阵不同特征值对应的特征向量正交。设1对应的特征向量为 $u=(u_1,u_2,u_3)^{\\mathrm T}$，则\n\n$$\n-2u_1+u_2=0,\\qquad -3u_1+u_3=0.\n$$\n\n可取 $u=(1,2,3)^{\\mathrm T}$，单位化为 $q=u/\\sqrt{14}$。\n\n第三步，$A$ 在零特征空间上作用为0，在 $q$ 方向上作用为1，所以\n\n$$\nA=qq^{\\mathrm T}=\\frac{uu^{\\mathrm T}}{u^{\\mathrm T}u}\n=\\frac1{14}\\begin{pmatrix}1&2&3\\\\2&4&6\\\\3&6&9\\end{pmatrix}.\n$$\n\n由于 $q^{\\mathrm T}q=1$，有 $A^2=qq^{\\mathrm T}qq^{\\mathrm T}=A$，于是 $A^n=A$。\n\n上述 $qq^{\\mathrm T}$ 的写法可以由正交对角化解释：若把 $q$ 作为正交矩阵 $Q$ 的第一列，其余两列取零特征值的单位特征向量，则 $A=Q\\operatorname{diag}(1,0,0)Q^{\\mathrm T}=qq^{\\mathrm T}$。因为另两项系数为0，无须把另外两列具体算出来。若 $n=0$，则另有 $A^0=E$。"
   },
   {
     "id": "math2-2016-q23-exercise2",
