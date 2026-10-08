@@ -21,6 +21,14 @@ const selectedYear = computed(() => {
   const linked = questionById.get(String(route.query.question ?? ''))
   return String(linked?.year || questions[0]?.year || '')
 })
+const selectedKind = computed<'original' | 'exercise'>(() => {
+  if (route.query.kind === 'exercise') return 'exercise'
+  if (route.query.kind === 'original') return 'original'
+  const linked = questionById.get(String(route.query.question ?? ''))
+  return linked && linked.kind !== 'original' ? 'exercise' : 'original'
+})
+const kindLabel = computed(() => selectedKind.value === 'original' ? '真题错题' : '对应练习')
+const kindQuestions = computed(() => questions.filter(q => (q.kind ?? 'exercise') === selectedKind.value))
 const keyword = ref('')
 const statusFilter = ref('all')
 const directoryOpen = ref(false)
@@ -33,12 +41,12 @@ const statuses: { value: Mastery; label: string }[] = [
   { value: 'unfamiliar', label: '不熟练' }, { value: 'unknown', label: '不会' }, { value: 'mastered', label: '掌握' },
 ]
 const activeProgress = computed(() => demoMode.value ? demoProgress.value : progress.value)
-const sourceQuestions = computed(() => demoMode.value ? [demoQuestion] : questions)
-const pendingInPaper = computed(() => questions.filter(q => String(q.year) === selectedYear.value && isPending(progress.value[q.id])).length)
+const sourceQuestions = computed(() => demoMode.value ? [demoQuestion] : kindQuestions.value)
+const pendingInPaper = computed(() => kindQuestions.value.filter(q => String(q.year) === selectedYear.value && isPending(progress.value[q.id])).length)
 const pendingCount = computed(() => questions.filter(q => isPending(progress.value[q.id])).length)
 const masteredCount = computed(() => questions.filter(q => progress.value[q.id]?.mastery === 'mastered').length)
 const years = computed(() => [...new Set(questions.map(q => q.year))].map(value => {
-  const group = questions.filter(q => q.year === value)
+  const group = kindQuestions.value.filter(q => q.year === value)
   return { value, count: group.length, pending: group.filter(q => isPending(progress.value[q.id])).length }
 }))
 const filtered = computed(() => sourceQuestions.value.filter(q => {
@@ -49,7 +57,7 @@ const filtered = computed(() => sourceQuestions.value.filter(q => {
     && (!keyword.value.trim() || `${q.year} ${q.number} ${q.source} ${q.topic} ${q.stem}`.toLowerCase().includes(keyword.value.trim().toLowerCase()))
 }))
 const queue = computed(() => queueIds.value.map(id => questionById.get(id)).filter(q => q !== undefined))
-const heading = computed(() => demoMode.value ? '错题示例' : `${selectedYear.value} 年${mode.value === 'review' ? '错题再练' : '错题卷'}`)
+const heading = computed(() => demoMode.value ? '错题示例' : `${selectedYear.value} 年${kindLabel.value}${mode.value === 'review' ? ' · 再练' : ''}`)
 const markedInQueue = computed(() => queue.value.filter(q => activeProgress.value[q.id]?.mastery).length)
 const yearGroups = computed(() => [...new Set(queue.value.map(q => q.year))].map(value => ({
   year: value, questions: queue.value.filter(q => q.year === value),
@@ -61,7 +69,7 @@ function restartQueue() {
   queueIds.value = filtered.value.map(q => q.id)
   round.value += 1
 }
-watch([mode, selectedYear, keyword, statusFilter, demoMode], restartQueue, { immediate: true })
+watch([mode, selectedYear, selectedKind, keyword, statusFilter, demoMode], restartQueue, { immediate: true })
 watch(notice, () => {
   if (noticeTimer) window.clearTimeout(noticeTimer)
   if (notice.value) noticeTimer = window.setTimeout(() => { notice.value = '' }, 3500)
@@ -78,11 +86,11 @@ async function jumpToRoute() {
     questionElement?.focus({ preventScroll: true })
   }
 }
-watch(() => [route.query.year, route.query.question, route.query.view], jumpToRoute)
-async function selectView(view: 'all' | 'review', targetYear = selectedYear.value) {
+watch(() => [route.query.year, route.query.question, route.query.view, route.query.kind], jumpToRoute)
+async function selectView(view: 'all' | 'review', targetYear = selectedYear.value, kind = selectedKind.value) {
   directoryOpen.value = false
   statusFilter.value = 'all'
-  await router.push({ name: 'practice', query: { ...(view === 'review' ? { view } : {}), ...(targetYear ? { year: targetYear } : {}) } })
+  await router.push({ name: 'practice', query: { kind, ...(view === 'review' ? { view } : {}), ...(targetYear ? { year: targetYear } : {}) } })
   await jumpToRoute()
 }
 function persist(id: string, patch: { mastery?: Mastery; note?: string; reviews?: number }) {
@@ -158,8 +166,9 @@ onBeforeUnmount(() => {
       <main id="practice-main">
         <header class="workspace-heading"><div><h1>{{ heading }}</h1><p v-if="mode === 'review'">不熟练和不会的题</p></div><button class="primary-button" @click="mode === 'review' ? restartQueue() : selectView('review')"><PracticeIcon name="repeat" />{{ mode === 'review' ? '重新开始本轮' : '本卷错题再练' }}<span v-if="mode !== 'review'">{{ pendingInPaper }}</span></button></header>
         <section v-if="!questions.length" class="preview-banner"><PracticeIcon name="book" /><div><strong>错题本已就绪，等待录入你的题目</strong><p>下方使用你提供的截图演示操作，年份尚未确认，不计入正式题库和复习统计。</p></div><button @click="demoMode = !demoMode">{{ demoMode ? '收起示例' : '体验示例' }}</button></section>
+        <nav class="paper-kind" aria-label="题目来源"><button v-for="kind in (['original', 'exercise'] as const)" :key="kind" :class="{ active: selectedKind === kind }" :aria-pressed="selectedKind === kind" @click="selectView(mode, selectedYear, kind)">{{ kind === 'original' ? '真题错题' : '对应练习' }}<span>{{ questions.filter(q => String(q.year) === selectedYear && (q.kind ?? 'exercise') === kind).length }}</span></button></nav>
         <p v-if="storageFailed" role="alert" class="storage-error">浏览器暂时无法保存进度，请立即导出备份以保留本次标记和笔记。</p>
-        <div class="toolbar"><div class="scope-label">{{ demoMode ? '交互示例' : `${selectedYear} 年试卷` }}<span>{{ queue.length }} 题 · 已标记 {{ markedInQueue }}</span></div><div class="toolbar-filters"><label class="question-search"><PracticeIcon name="search" /><input v-model="keyword" maxlength="80" aria-label="搜索错题" placeholder="搜索题目、知识点" /></label><select v-model="statusFilter" aria-label="按掌握程度筛选"><option value="all">全部状态</option><option value="unmarked">未标记</option><option v-for="status in statuses" :key="status.value" :value="status.value">{{ status.label }}</option></select></div></div>
+        <div class="toolbar"><div class="scope-label">{{ demoMode ? '交互示例' : `${selectedYear} 年${kindLabel}` }}<span>{{ queue.length }} 题 · 已标记 {{ markedInQueue }}</span></div><div class="toolbar-filters"><label class="question-search"><PracticeIcon name="search" /><input v-model="keyword" maxlength="80" aria-label="搜索错题" placeholder="搜索题目、知识点" /></label><select v-model="statusFilter" aria-label="按掌握程度筛选"><option value="all">全部状态</option><option value="unmarked">未标记</option><option v-for="status in statuses" :key="status.value" :value="status.value">{{ status.label }}</option></select></div></div>
         <div v-if="queue.length" class="question-list">
           <section v-for="group in yearGroups" :id="`practice-year-${group.year}`" :key="group.year" class="year-section" :aria-labelledby="`year-title-${group.year}`">
             <h2 :id="`year-title-${group.year}`" class="visually-hidden">{{ group.year }} 年试卷题目</h2>
@@ -191,6 +200,7 @@ main { min-width: 0; }.workspace-heading { display: flex; justify-content: space
 .primary-button { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 44px; flex-shrink: 0; border: 0; border-radius: 8px; padding: 11px 16px; background: var(--accent); color: white; font-size: 13px; font-weight: 600; }.primary-button:hover { background: var(--accent-dark); }.primary-button > span { border-left: 1px solid #ffffff50; padding-left: 9px; }
 .preview-banner { display: flex; align-items: center; gap: 12px; margin-top: 25px; border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; background: var(--paper); }.preview-banner > svg { color: var(--accent); }.preview-banner strong { font-size: 13px; font-weight: 600; }.preview-banner p { margin: 4px 0 0; color: var(--muted); font-size: 12px; }.preview-banner button { min-height: 44px; flex-shrink: 0; margin-left: auto; border: 0; padding: 0 8px; background: transparent; color: var(--accent-dark); font-size: 12px; font-weight: 600; }
 .toolbar { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-top: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }.scope-label { font-size: 15px; font-weight: 650; }.scope-label > span { margin-left: 12px; color: var(--muted); font-size: 12px; font-weight: 400; }.toolbar-filters { display: flex; gap: 9px; }.question-search { display: flex; align-items: center; gap: 8px; width: 218px; min-height: 42px; border: 1px solid var(--line); border-radius: 8px; padding: 0 11px; background: var(--paper); color: var(--muted); }.question-search svg { width: 16px; }.question-search input { width: 100%; min-width: 0; border: 0; outline: 0; background: transparent; color: var(--ink); font-size: 12px; }.question-search:focus-within { outline: 3px solid var(--focus-ring); border-color: var(--accent); }select { min-height: 44px; max-width: 130px; border: 1px solid var(--line); border-radius: 8px; padding: 0 10px; background: var(--paper); color: var(--ink-soft); font-size: 12px; }
+.paper-kind { display: flex; gap: 8px; margin-top: 18px; }.paper-kind button { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; border: 1px solid var(--line); border-radius: 8px; padding: 9px 16px; background: var(--paper); color: var(--ink-soft); font-size: 14px; }.paper-kind button.active { border-color: var(--accent); background: var(--accent-tint); color: var(--accent-dark); font-weight: 650; }.paper-kind span { font-size: 12px; }.paper-kind button:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 2px; }
 .question-list { margin-top: 12px; }
 .year-section { scroll-margin-top: 20px; margin-top: 0; }.year-section + .year-section { margin-top: 30px; }
 .year-heading { display: flex; align-items: baseline; gap: 12px; margin-bottom: 10px; }.year-heading h2 { margin: 0; color: var(--ink); font-size: 20px; font-weight: 700; }.year-heading > span { color: var(--muted); font-size: 12px; }

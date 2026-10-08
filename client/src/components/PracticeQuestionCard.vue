@@ -17,8 +17,8 @@ const statuses: { value: Mastery; label: string }[] = [
 <template>
   <article :id="question.id" class="question-card" tabindex="-1" :aria-labelledby="`title-${question.id}`">
     <header class="question-meta">
-      <span class="question-index">{{ index }}</span>
-      <div class="question-source"><span>{{ question.source }}</span><span v-if="question.examNumber" class="exam-number">真题 {{ question.examNumber }} · 练习 {{ question.exerciseIndex }}</span></div>
+      <span class="question-index">{{ question.kind === 'original' ? question.number : index }}</span>
+      <div class="question-source"><span>{{ question.source }}</span><span v-if="question.exerciseIndex" class="exam-number">真题 {{ question.examNumber }} · 练习 {{ question.exerciseIndex }}</span></div>
       <span v-if="progress?.mastery" class="mastery-badge" :class="progress.mastery">{{ statuses.find(s => s.value === progress?.mastery)?.label }}</span>
     </header>
     <h3 :id="`title-${question.id}`" class="visually-hidden">{{ question.year }} 年 {{ question.source }} {{ question.number }}题</h3>

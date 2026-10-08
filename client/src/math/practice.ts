@@ -5,6 +5,7 @@ export type PracticeQuestion = {
   number: string
   examNumber?: string
   exerciseIndex?: number
+  kind?: 'original' | 'exercise'
   source: string
   topic: string
   type: 'choice' | 'fill' | 'solution'

@@ -1,5 +1,1160 @@
 [
   {
+    "id": "math2-2010-q5-original",
+    "year": 2010,
+    "number": "5",
+    "examNumber": "5",
+    "kind": "original",
+    "source": "2010 年数学二真题 · 第 5 题",
+    "topic": "高等数学 / 多元微分 / 隐函数求导",
+    "type": "choice",
+    "stem": "设函数 $z=z(x,y)$ 由方程 $F\\!\\left(\\dfrac{y}{x},\\dfrac{z}{x}\\right)=0$ 确定，其中 $F$ 为可微函数，且 $F'_2\\ne0$，则 $x\\dfrac{\\partial z}{\\partial x}+y\\dfrac{\\partial z}{\\partial y}=$（　）。",
+    "answer": "**B**，$z$。",
+    "explanation": "记 $u=\\dfrac{y}{x}$、$v=\\dfrac{z}{x}$。对原方程分别关于 $x,y$ 求偏导：\n$$\n\\begin{aligned}\n-yF'_1+(xz_x-z)F'_2&=0,\\\\[0.5em]\nF'_1+z_yF'_2&=0.\n\\end{aligned}\n$$\n第二式乘以 $y$ 后与第一式相加，得 $(xz_x+yz_y-z)F'_2=0$。由 $F'_2\\ne0$，得 $xz_x+yz_y=z$。求偏导时，$z$ 也随 $x,y$ 变化，必须使用复合函数求导法则。",
+    "options": [
+      {
+        "key": "A",
+        "text": "$x$"
+      },
+      {
+        "key": "B",
+        "text": "$z$"
+      },
+      {
+        "key": "C",
+        "text": "$-x$"
+      },
+      {
+        "key": "D",
+        "text": "$-z$"
+      }
+    ],
+    "correctOption": "B"
+  },
+  {
+    "id": "math2-2010-q9-original",
+    "year": 2010,
+    "number": "9",
+    "examNumber": "9",
+    "kind": "original",
+    "source": "2010 年数学二真题 · 第 9 题",
+    "topic": "高等数学 / 微分方程 / 常系数齐次方程",
+    "type": "fill",
+    "stem": "三阶常系数线性齐次微分方程 $y'''-2y''+y'-2y=0$ 的通解为 $y=\\underline{\\qquad}$。",
+    "answer": "$y=C_1e^{2x}+C_2\\cos x+C_3\\sin x$，其中 $C_1,C_2,C_3$ 为任意常数。",
+    "explanation": "特征方程为 $r^3-2r^2+r-2=(r-2)(r^2+1)=0$，特征根为 $2,\\pm i$。实根 $2$ 对应 $e^{2x}$，共轭根 $\\pm i$ 对应 $\\cos x,\\sin x$，因此通解为\n$$y=C_1e^{2x}+C_2\\cos x+C_3\\sin x.$$"
+  },
+  {
+    "id": "math2-2010-q11-original",
+    "year": 2010,
+    "number": "11",
+    "examNumber": "11",
+    "kind": "original",
+    "source": "2010 年数学二真题 · 第 11 题",
+    "topic": "高等数学 / 一元微分 / 高阶导数",
+    "type": "fill",
+    "stem": "函数 $y=\\ln(1-2x)$ 在 $x=0$ 处的 $n$ 阶导数 $y^{(n)}(0)=\\underline{\\qquad}$（$n\\ge1$）。",
+    "answer": "$-2^n(n-1)!$。",
+    "explanation": "先求 $y'=-2(1-2x)^{-1}$，再求 $y''=-4(1-2x)^{-2}$。逐次求导并用数学归纳法得到\n$$y^{(n)}(x)=-2^n(n-1)!(1-2x)^{-n}.$$\n令 $x=0$ 即得 $y^{(n)}(0)=-2^n(n-1)!$。这里各阶导数前的符号始终为负，并非正负交替。"
+  },
+  {
+    "id": "math2-2010-q12-original",
+    "year": 2010,
+    "number": "12",
+    "examNumber": "12",
+    "kind": "original",
+    "source": "2010 年数学二真题 · 第 12 题",
+    "topic": "高等数学 / 积分应用 / 极坐标弧长",
+    "type": "fill",
+    "stem": "当 $0\\le\\theta\\le\\pi$ 时，对数螺线 $r=e^\\theta$ 的弧长为 $\\underline{\\qquad}$。",
+    "answer": "$\\sqrt2(e^\\pi-1)$。",
+    "explanation": "极坐标曲线的弧长公式为\n$$s=\\int_\\alpha^\\beta\\sqrt{r^2+(r')^2}\\,d\\theta.$$\n本题 $r'=e^\\theta$，故\n$$s=\\int_0^\\pi\\sqrt{e^{2\\theta}+e^{2\\theta}}\\,d\\theta=\\sqrt2\\int_0^\\pi e^\\theta\\,d\\theta=\\sqrt2(e^\\pi-1).$$"
+  },
+  {
+    "id": "math2-2010-q16-original",
+    "year": 2010,
+    "number": "16",
+    "examNumber": "16",
+    "kind": "original",
+    "source": "2010 年数学二真题 · 第 16 题",
+    "topic": "高等数学 / 定积分 / 积分比较与数列极限",
+    "type": "solution",
+    "stem": "（Ⅰ）比较下列两个积分的大小，并说明理由（$n=1,2,\\ldots$）：\n$$\n\\int_0^1|\\ln t|[\\ln(1+t)]^n\\,dt,\\qquad\n\\int_0^1t^n|\\ln t|\\,dt.\n$$\n（Ⅱ）记 $u_n=\\displaystyle\\int_0^1|\\ln t|[\\ln(1+t)]^n\\,dt$，求 $\\displaystyle\\lim_{n\\to\\infty}u_n$。",
+    "answer": "（Ⅰ）第一个积分严格小于第二个积分；（Ⅱ）极限为 $0$。",
+    "explanation": "（Ⅰ）令 $g(t)=t-\\ln(1+t)$，则 $g(0)=0$，且 $g'(t)=\\dfrac{t}{1+t}>0$（$t>0$），所以 $0<\\ln(1+t)<t$。在 $0<t<1$ 上 $|\\ln t|>0$，因此\n$$0<|\\ln t|[\\ln(1+t)]^n<t^n|\\ln t|.$$\n积分后得到所求严格不等式。两积分在 $0$ 处均收敛，因为左侧被积函数由右侧控制。\n\n（Ⅱ）分部积分，并利用 $\\lim_{t\\to0^+}t^{n+1}\\ln t=0$，得\n$$\\int_0^1t^n|\\ln t|\\,dt=-\\int_0^1t^n\\ln t\\,dt=\\frac1{(n+1)^2}.$$\n故 $0<u_n<\\dfrac1{(n+1)^2}$，由夹逼准则得 $\\lim u_n=0$。"
+  },
+  {
+    "id": "math2-2010-q17-original",
+    "year": 2010,
+    "number": "17",
+    "examNumber": "17",
+    "kind": "original",
+    "source": "2010 年数学二真题 · 第 17 题",
+    "topic": "高等数学 / 参数方程 / 二阶导数与微分方程",
+    "type": "solution",
+    "stem": "函数 $y=f(x)$ 由参数方程\n$$\\begin{cases}x=2t+t^2,\\\\ y=\\psi(t),\\end{cases}\\qquad t>-1$$\n确定，其中 $\\psi(t)$ 具有二阶导数，且 $\\psi(1)=\\dfrac52$、$\\psi'(1)=6$。已知 $\\dfrac{d^2y}{dx^2}=\\dfrac3{4(1+t)}$，求 $\\psi(t)$。",
+    "answer": "$\\psi(t)=t^3+\\dfrac32t^2$（$t>-1$）。",
+    "explanation": "由 $x'=2(t+1)$，先求\n$$\\frac{dy}{dx}=\\frac{\\psi'(t)}{2(t+1)}.$$\n再关于 $t$ 求导并除以 $x'$：\n$$\\frac{d^2y}{dx^2}=\\frac{(t+1)\\psi''(t)-\\psi'(t)}{4(t+1)^3}.$$\n代入已知条件，得 $(t+1)\\psi''-\\psi'=3(t+1)^2$。令 $p=\\psi'$，则\n$$p'-\\frac{p}{t+1}=3(t+1),\\qquad \\left(\\frac p{t+1}\\right)'=3.$$\n故 $p=(t+1)(3t+C)$。由 $p(1)=6$ 得 $C=0$，所以 $\\psi'=3t^2+3t$，积分得 $\\psi=t^3+\\dfrac32t^2+C_0$。再由 $\\psi(1)=\\dfrac52$ 得 $C_0=0$。注意二阶导数需要再除一次 $x'(t)$。"
+  },
+  {
+    "id": "math2-2010-q18-original",
+    "year": 2010,
+    "number": "18",
+    "examNumber": "18",
+    "kind": "original",
+    "source": "2010 年数学二真题 · 第 18 题",
+    "topic": "高等数学 / 积分应用 / 椭圆截面与质量",
+    "type": "solution",
+    "stem": "一个高为 $l$ 的柱体形贮油罐，底面为长轴 $2a$、短轴 $2b$ 的椭圆。现将贮油罐平放，使椭圆长轴水平、罐轴水平；当罐中油面高度为 $\\dfrac32b$ 时，求油的质量。油的密度为常量 $\\rho$，长度单位为 $\\mathrm m$，质量单位为 $\\mathrm{kg}$。",
+    "answer": "$m=\\rho lab\\left(\\dfrac{2\\pi}3+\\dfrac{\\sqrt3}4\\right)$。",
+    "explanation": "以椭圆中心为原点，长轴为 $x$ 轴，则截面方程为 $\\dfrac{x^2}{a^2}+\\dfrac{y^2}{b^2}=1$。底部高度为 $-b$，油面离底部 $\\dfrac32b$，所以油面为 $y=\\dfrac b2$。\n\n高度 $y$ 处的水平宽度为 $2a\\sqrt{1-\\dfrac{y^2}{b^2}}$，因此油面截面积为\n$$S=\\int_{-b}^{\\frac b2}2a\\sqrt{1-\\frac{y^2}{b^2}}\\,dy.$$\n令 $y=b\\sin\\theta$，则 $-\\dfrac\\pi2\\le\\theta\\le\\dfrac\\pi6$，从而\n$$S=2ab\\int_{-\\frac{\\pi}{2}}^{\\frac{\\pi}{6}}\\cos^2\\theta\\,d\\theta=ab\\left(\\frac{2\\pi}3+\\frac{\\sqrt3}4\\right).$$\n油的体积为 $V=lS$，质量为 $m=\\rho V$。易错点是油面坐标为 $\\frac b2$，而不是 $\\frac{3b}{2}$。"
+  },
+  {
+    "id": "math2-2010-q23-original",
+    "year": 2010,
+    "number": "23",
+    "examNumber": "23",
+    "kind": "original",
+    "source": "2010 年数学二真题 · 第 23 题",
+    "topic": "线性代数 / 实对称矩阵 / 正交对角化",
+    "type": "solution",
+    "stem": "设\n$$A=\\begin{pmatrix}0&-1&4\\\\-1&3&a\\\\4&a&0\\end{pmatrix}.$$\n正交矩阵 $Q$ 使 $Q^{\\mathsf T}AQ$ 为对角矩阵，且 $Q$ 的第一列为 $\\dfrac1{\\sqrt6}(1,2,1)^{\\mathsf T}$，求 $a,Q$。",
+    "answer": "$a=-1$；一组符合条件的矩阵为\n$$Q=\\begin{pmatrix}\\frac1{\\sqrt6}&-\\frac1{\\sqrt2}&\\frac1{\\sqrt3}\\\\\\frac2{\\sqrt6}&0&-\\frac1{\\sqrt3}\\\\\\frac1{\\sqrt6}&\\frac1{\\sqrt2}&\\frac1{\\sqrt3}\\end{pmatrix},\\qquad Q^{\\mathsf T}AQ=\\operatorname{diag}(2,-4,5).$$",
+    "explanation": "正交对角化时，$Q$ 的列向量是 $A$ 的单位特征向量。令第一列对应特征值 $\\lambda$，则\n$$A\\begin{pmatrix}1\\\\2\\\\1\\end{pmatrix}=\\begin{pmatrix}2\\\\5+a\\\\4+2a\\end{pmatrix}=\\lambda\\begin{pmatrix}1\\\\2\\\\1\\end{pmatrix}.$$\n第一行给出 $\\lambda=2$，第二行给出 $a=-1$，第三行也满足。代入后计算特征多项式为 $(\\lambda-2)(\\lambda+4)(\\lambda-5)$。\n\n解 $(A+4I)v=0$ 得特征向量 $(-1,0,1)^{\\mathsf T}$，解 $(A-5I)v=0$ 得 $(1,-1,1)^{\\mathsf T}$。不同特征值对应的特征向量互相正交，分别单位化即可作为 $Q$ 的第二、三列，得到答案中的 $Q$。第二、三列交换或改变符号也可以，但第一列必须保持题目指定的向量。"
+  },
+  {
+    "id": "math2-2011-q3-original",
+    "year": 2011,
+    "number": "3",
+    "examNumber": "3",
+    "kind": "original",
+    "source": "2011 年数学二真题 · 第 3 题",
+    "topic": "高等数学 / 一元微分 / 驻点",
+    "type": "choice",
+    "stem": "函数 $f(x)=\\ln|(x-1)(x-2)(x-3)|$ 的驻点个数为（　）。",
+    "answer": "**C**，$2$ 个。",
+    "explanation": "定义域中 $x\\ne1,2,3$，且\n$$f'(x)=\\frac1{x-1}+\\frac1{x-2}+\\frac1{x-3}=\\frac{3x^2-12x+11}{(x-1)(x-2)(x-3)}.$$\n分子有两个不同实根 $x=2\\pm\\dfrac{\\sqrt3}3$，都在定义域内，因此有两个驻点。驻点要求函数在该点可导且导数为零，不能把 $1,2,3$ 算入。",
+    "options": [
+      {
+        "key": "A",
+        "text": "$0$"
+      },
+      {
+        "key": "B",
+        "text": "$1$"
+      },
+      {
+        "key": "C",
+        "text": "$2$"
+      },
+      {
+        "key": "D",
+        "text": "$3$"
+      }
+    ],
+    "correctOption": "C"
+  },
+  {
+    "id": "math2-2011-q4-original",
+    "year": 2011,
+    "number": "4",
+    "examNumber": "4",
+    "kind": "original",
+    "source": "2011 年数学二真题 · 第 4 题",
+    "topic": "高等数学 / 微分方程 / 非齐次方程特解",
+    "type": "choice",
+    "stem": "微分方程 $y''-\\lambda^2y=e^{\\lambda x}+e^{-\\lambda x}$（$\\lambda>0$）的特解形式为（　）。",
+    "answer": "**C**，$x(ae^{\\lambda x}+be^{-\\lambda x})$。",
+    "explanation": "齐次方程的特征根是 $\\pm\\lambda$，两者都是单根。对非齐次项 $e^{\\lambda x}$、$e^{-\\lambda x}$，指数的系数恰为特征根，试探特解都需乘一次 $x$。由叠加原理可设\n$$y^*=ax e^{\\lambda x}+bx e^{-\\lambda x}.$$\n代入可得 $a=\\dfrac1{2\\lambda}$、$b=-\\dfrac1{2\\lambda}$。本题问的是形式，只需判断是否与齐次解重合以及重根次数。",
+    "options": [
+      {
+        "key": "A",
+        "text": "$a(e^{\\lambda x}+e^{-\\lambda x})$"
+      },
+      {
+        "key": "B",
+        "text": "$ax(e^{\\lambda x}+e^{-\\lambda x})$"
+      },
+      {
+        "key": "C",
+        "text": "$x(ae^{\\lambda x}+be^{-\\lambda x})$"
+      },
+      {
+        "key": "D",
+        "text": "$x^2(ae^{\\lambda x}+be^{-\\lambda x})$"
+      }
+    ],
+    "correctOption": "C"
+  },
+  {
+    "id": "math2-2011-q6-original",
+    "year": 2011,
+    "number": "6",
+    "examNumber": "6",
+    "kind": "original",
+    "source": "2011 年数学二真题 · 第 6 题",
+    "topic": "高等数学 / 定积分 / 积分比较",
+    "type": "choice",
+    "stem": "设\n$$\\begin{aligned}\nI&=\\int_0^{\\frac{\\pi}{4}}\\ln(\\sin x)\\,dx,\\\\[0.6em]\nJ&=\\int_0^{\\frac{\\pi}{4}}\\ln(\\cot x)\\,dx,\\\\[0.6em]\nK&=\\int_0^{\\frac{\\pi}{4}}\\ln(\\cos x)\\,dx.\n\\end{aligned}$$\n则 $I,J,K$ 的大小关系为（　）。",
+    "answer": "**B**，$I<K<J$。",
+    "explanation": "当 $0<x<\\dfrac\\pi4$ 时，$0<\\sin x<\\cos x<1<\\cot x$。由于 $\\ln u$ 严格递增，得\n$$\\ln(\\sin x)<\\ln(\\cos x)<0<\\ln(\\cot x).$$\n三个积分区间相同，由积分保序性可得 $I<K<J$。端点 $0$ 处 $\\ln(\\sin x)$ 与 $\\ln(\\cot x)$ 的奇性分别类似 $\\ln x$ 与 $-\\ln x$，均可积，不影响比较。",
+    "options": [
+      {
+        "key": "A",
+        "text": "$I<J<K$"
+      },
+      {
+        "key": "B",
+        "text": "$I<K<J$"
+      },
+      {
+        "key": "C",
+        "text": "$J<I<K$"
+      },
+      {
+        "key": "D",
+        "text": "$K<J<I$"
+      }
+    ],
+    "correctOption": "B"
+  },
+  {
+    "id": "math2-2011-q8-original",
+    "year": 2011,
+    "number": "8",
+    "examNumber": "8",
+    "kind": "original",
+    "source": "2011 年数学二真题 · 第 8 题",
+    "topic": "线性代数 / 伴随矩阵 / 基础解系",
+    "type": "choice",
+    "stem": "设 $A=(\\alpha_1,\\alpha_2,\\alpha_3,\\alpha_4)$ 为四阶矩阵，$A^*$ 为其伴随矩阵。若 $(1,0,1,0)^{\\mathsf T}$ 是方程组 $Ax=0$ 的一个基础解系，则 $A^*x=0$ 的基础解系可为（　）。",
+    "answer": "**D**，$\\alpha_2,\\alpha_3,\\alpha_4$。",
+    "explanation": "原方程的基础解系只有一个向量，故 $r(A)=4-1=3$，从而 $r(A^*)=1$，$A^*x=0$ 的解空间维数为 $3$。由 $A^*A=|A|I=0$，$A$ 的每个列向量都是 $A^*x=0$ 的解。\n\n原方程的全部解为 $k(1,0,1,0)^{\\mathsf T}$，所以 $\\alpha_1+\\alpha_3=0$。若 $c_2\\alpha_2+c_3\\alpha_3+c_4\\alpha_4=0$，则 $(0,c_2,c_3,c_4)^{\\mathsf T}$ 是原方程的解。与上述通解比较得 $k=0$、$c_2=c_3=c_4=0$，故这三个向量线性无关，构成所求基础解系。",
+    "options": [
+      {
+        "key": "A",
+        "text": "$\\alpha_1,\\alpha_3$"
+      },
+      {
+        "key": "B",
+        "text": "$\\alpha_1,\\alpha_2$"
+      },
+      {
+        "key": "C",
+        "text": "$\\alpha_1,\\alpha_2,\\alpha_3$"
+      },
+      {
+        "key": "D",
+        "text": "$\\alpha_2,\\alpha_3,\\alpha_4$"
+      }
+    ],
+    "correctOption": "D"
+  },
+  {
+    "id": "math2-2011-q12-original",
+    "year": 2011,
+    "number": "12",
+    "examNumber": "12",
+    "kind": "original",
+    "source": "2011 年数学二真题 · 第 12 题",
+    "topic": "高等数学 / 反常积分 / 分部积分",
+    "type": "fill",
+    "stem": "设 $\\lambda>0$，\n$$f(x)=\\begin{cases}\\lambda e^{-\\lambda x},&x>0,\\\\0,&x\\le0.\\end{cases}$$\n则 $\\displaystyle\\int_{-\\infty}^{+\\infty}xf(x)\\,dx=\\underline{\\qquad}$。",
+    "answer": "$\\dfrac1\\lambda$。",
+    "explanation": "负半轴上 $f(x)=0$，故只需计算正半轴。先在有限区间上分部积分：\n$$\\int_0^R\\lambda xe^{-\\lambda x}\\,dx=-Re^{-\\lambda R}+\\frac{1-e^{-\\lambda R}}\\lambda.$$\n由于 $\\lambda>0$，当 $R\\to+\\infty$ 时，$e^{-\\lambda R}\\to0$、$Re^{-\\lambda R}\\to0$，得到积分值 $\\dfrac1\\lambda$。"
+  },
+  {
+    "id": "math2-2011-q16-original",
+    "year": 2011,
+    "number": "16",
+    "examNumber": "16",
+    "kind": "original",
+    "source": "2011 年数学二真题 · 第 16 题",
+    "topic": "高等数学 / 参数方程 / 极值与凹凸性",
+    "type": "solution",
+    "stem": "设函数 $y=y(x)$ 由参数方程\n$$\\begin{cases}x=\\dfrac13t^3+t+\\dfrac13,\\\\[0.4em]y=\\dfrac13t^3-t+\\dfrac13\\end{cases}$$\n确定，求函数的极值以及曲线的凹凸区间和拐点。",
+    "answer": "极大值 $y(-1)=1$，极小值 $y\\!\\left(\\dfrac53\\right)=-\\dfrac13$；在 $(-\\infty,\\dfrac13)$ 上为凸曲线（$y''<0$），在 $(\\dfrac13,+\\infty)$ 上为凹曲线（$y''>0$）；拐点为 $\\left(\\dfrac13,\\dfrac13\\right)$。",
+    "explanation": "由于 $x'(t)=t^2+1>0$，$x$ 与 $t$ 同向变化且一一对应。\n$$\\frac{dy}{dx}=\\frac{t^2-1}{t^2+1},\\qquad \\frac{d^2y}{dx^2}=\\frac{4t}{(t^2+1)^3}.$$\n一阶导数在 $t<-1$、$t>1$ 时为正，在 $-1<t<1$ 时为负。因此 $t=-1$ 时取得极大值，对应 $(x,y)=(-1,1)$；$t=1$ 时取得极小值，对应 $(x,y)=(\\dfrac53,-\\dfrac13)$。\n\n二阶导数在 $t<0$ 时为负、$t>0$ 时为正。$t=0$ 对应 $x=y=\\dfrac13$，且两侧凹凸性改变，因此它是拐点。将参数区间转换成 $x$ 的区间，即得答案。"
+  },
+  {
+    "id": "math2-2011-q18-original",
+    "year": 2011,
+    "number": "18",
+    "examNumber": "18",
+    "kind": "original",
+    "source": "2011 年数学二真题 · 第 18 题",
+    "topic": "高等数学 / 微分方程 / 切线倾角",
+    "type": "solution",
+    "stem": "设函数 $y(x)$ 具有二阶导数，曲线 $y=y(x)$ 与直线 $y=x$ 相切于原点。记 $\\alpha$ 为曲线在点 $(x,y)$ 处切线的倾角，若 $\\dfrac{d\\alpha}{dx}=\\dfrac{dy}{dx}$，求 $y(x)$。",
+    "answer": "$y(x)=\\arcsin\\!\\left(\\dfrac{e^x}{\\sqrt2}\\right)-\\dfrac\\pi4$，原点附近的解区间为 $x<\\dfrac12\\ln2$。",
+    "explanation": "原点相切给出 $y(0)=0$、$y'(0)=1$，故 $\\alpha(0)=\\dfrac\\pi4$。由 $\\alpha'=y'$，得 $\\alpha-y$ 为常数，因而 $\\alpha=y+\\dfrac\\pi4$。又 $y'=\\tan\\alpha$，于是\n$$\\alpha'=\\tan\\alpha,\\qquad \\cot\\alpha\\,d\\alpha=dx.$$\n在原点附近 $\\sin\\alpha>0$，积分得 $\\ln(\\sin\\alpha)=x+C$。由初值得 $C=-\\dfrac12\\ln2$，所以 $\\sin\\alpha=\\dfrac{e^x}{\\sqrt2}$。选择满足 $\\alpha(0)=\\dfrac\\pi4$ 的分支，得到答案。要求二阶导数存在，故不包括 $x=\\dfrac12\\ln2$ 这个导数无穷大的端点。"
+  },
+  {
+    "id": "math2-2011-q19-original",
+    "year": 2011,
+    "number": "19",
+    "examNumber": "19",
+    "kind": "original",
+    "source": "2011 年数学二真题 · 第 19 题",
+    "topic": "高等数学 / 中值定理 / 单调有界准则",
+    "type": "solution",
+    "stem": "（Ⅰ）证明对任意正整数 $n$，有\n$$\\frac1{n+1}<\\ln\\!\\left(1+\\frac1n\\right)<\\frac1n.$$\n（Ⅱ）设 $a_n=1+\\dfrac12+\\cdots+\\dfrac1n-\\ln n$，证明数列 $\\{a_n\\}$ 收敛。",
+    "answer": "（Ⅰ）不等式成立；（Ⅱ）$\\{a_n\\}$ 严格递减且下界为 $0$，所以收敛。",
+    "explanation": "（Ⅰ）对 $\\ln x$ 在 $[n,n+1]$ 上应用拉格朗日中值定理，存在 $\\xi\\in(n,n+1)$ 使\n$$\\ln\\!\\left(1+\\frac1n\\right)=\\frac1\\xi.$$\n由 $n<\\xi<n+1$ 即得不等式。\n\n（Ⅱ）利用第一问的左侧不等式：\n$$a_{n+1}-a_n=\\frac1{n+1}-\\ln\\!\\left(1+\\frac1n\\right)<0.$$\n再利用第一问的右侧不等式，对 $k=1,\\ldots,n-1$ 求和，得\n$$\\ln n=\\sum_{k=1}^{n-1}\\ln\\!\\left(1+\\frac1k\\right)<\\sum_{k=1}^{n-1}\\frac1k.$$\n所以 $a_n>\\dfrac1n>0$（$n=1$ 时也成立）。由单调有界准则，数列收敛。只需证明收敛，不需要求出极限常数。"
+  },
+  {
+    "id": "math2-2011-q20-original",
+    "year": 2011,
+    "number": "20",
+    "examNumber": "20",
+    "kind": "original",
+    "source": "2011 年数学二真题 · 第 20 题",
+    "topic": "高等数学 / 积分应用 / 旋转体体积与抽水功",
+    "type": "solution",
+    "stem": "容器的内侧由曲线绕 $y$ 轴旋转一周而成，该曲线由 $x^2+y^2=2y$（$y\\ge\\dfrac12$）与 $x^2+y^2=1$（$y\\le\\dfrac12$）连接而成。\n\n（Ⅰ）求容器的容积；（Ⅱ）若容器盛满水，从容器顶部全部抽出，至少需要做多少功？长度单位为 $\\mathrm m$，重力加速度为 $g$，水的密度为 $10^3\\,\\dfrac{\\mathrm{kg}}{\\mathrm{m}^3}$。",
+    "answer": "（Ⅰ）$V=\\dfrac{9\\pi}4\\,\\mathrm{m^3}$；（Ⅱ）$W=\\dfrac{27\\times10^3}8\\pi g\\,\\mathrm J$。",
+    "explanation": "容器高度范围为 $-1\\le y\\le2$，水平截面积为\n$$S(y)=\\begin{cases}\\pi(1-y^2),&-1\\le y\\le\\dfrac12,\\\\[0.4em]\\pi(2y-y^2),&\\dfrac12\\le y\\le2.\\end{cases}$$\n（Ⅰ）以水平薄片为体积微元，得\n$$V=\\pi\\int_{-1}^{\\frac12}(1-y^2)\\,dy+\\pi\\int_{\\frac12}^{2}(2y-y^2)\\,dy=\\frac{9\\pi}4.$$\n（Ⅱ）高度 $y$ 处厚度 $dy$ 的水层需提升到顶部 $y=2$，提升距离为 $2-y$，故\n$$\\begin{aligned}\nW=10^3\\pi g\\bigg[&\\int_{-1}^{\\frac12}(1-y^2)(2-y)\\,dy\\\\[0.4em]&+\\int_{\\frac12}^{2}(2y-y^2)(2-y)\\,dy\\bigg]\n=\\frac{27\\times10^3}8\\pi g.\n\\end{aligned}$$\n两段截面积公式不同，必须在 $y=\\dfrac12$ 处分段；提升距离也不能写成 $y$。"
+  },
+  {
+    "id": "math2-2011-q21-original",
+    "year": 2011,
+    "number": "21",
+    "examNumber": "21",
+    "kind": "original",
+    "source": "2011 年数学二真题 · 第 21 题",
+    "topic": "高等数学 / 二重积分 / 分部积分",
+    "type": "solution",
+    "stem": "已知 $f(x,y)$ 具有二阶连续偏导数，且 $f(1,y)=f(x,1)=0$，$\\displaystyle\\iint_D f(x,y)\\,dx\\,dy=a$，其中 $D=\\{(x,y)\\mid0\\le x\\le1,\\ 0\\le y\\le1\\}$。求\n$$I=\\iint_Dxy\\,f_{xy}(x,y)\\,dx\\,dy.$$",
+    "answer": "$I=a$。",
+    "explanation": "由 $f(x,1)\\equiv0$，可知 $f_x(x,1)=0$。先对 $y$ 分部积分：\n$$\\int_0^1y f_{xy}(x,y)\\,dy=[y f_x(x,y)]_0^1-\\int_0^1f_x(x,y)\\,dy=-\\int_0^1f_x(x,y)\\,dy.$$\n交换积分次序，再对 $x$ 分部积分，并用 $f(1,y)=0$，得\n$$\\begin{aligned}\nI&=-\\int_0^1dy\\int_0^1x f_x(x,y)\\,dx\\\\\n&=-\\int_0^1\\left([xf(x,y)]_0^1-\\int_0^1f(x,y)\\,dx\\right)dy\\\\\n&=\\iint_D f(x,y)\\,dx\\,dy=a.\n\\end{aligned}$$\n连续偏导保证这里交换积分次序与分部积分可行。"
+  },
+  {
+    "id": "math2-2012-q3-original",
+    "year": 2012,
+    "number": "3",
+    "examNumber": "3",
+    "kind": "original",
+    "source": "2012 年数学二真题 · 第 3 题",
+    "topic": "高等数学 / 数列 / 单调有界准则",
+    "type": "choice",
+    "stem": "设 $a_n>0$（$n=1,2,\\ldots$），$S_n=a_1+a_2+\\cdots+a_n$，则数列 $\\{S_n\\}$ 有界是数列 $\\{a_n\\}$ 收敛的（　）。",
+    "answer": "**B**，充分非必要条件。",
+    "explanation": "若 $\\{S_n\\}$ 有界，由 $a_n>0$ 可知 $S_n$ 单调递增，故 $S_n$ 收敛，设极限为 $S$。于是 $a_n=S_n-S_{n-1}\\to S-S=0$，所以充分性成立。\n\n反之，取 $a_n=1$，则 $a_n\\to1$，而 $S_n=n$ 无界，所以必要性不成立。注意题目说的是数列 $a_n$ 收敛，并非级数 $\\sum a_n$ 收敛。",
+    "options": [
+      {
+        "key": "A",
+        "text": "充分必要条件"
+      },
+      {
+        "key": "B",
+        "text": "充分非必要条件"
+      },
+      {
+        "key": "C",
+        "text": "必要非充分条件"
+      },
+      {
+        "key": "D",
+        "text": "既非充分也非必要条件"
+      }
+    ],
+    "correctOption": "B"
+  },
+  {
+    "id": "math2-2012-q6-original",
+    "year": 2012,
+    "number": "6",
+    "examNumber": "6",
+    "kind": "original",
+    "source": "2012 年数学二真题 · 第 6 题",
+    "topic": "高等数学 / 二重积分 / 奇偶性与面积",
+    "type": "choice",
+    "stem": "区域 $D$ 由 $y=\\sin x$、$x=\\pm\\dfrac\\pi2$、$y=1$ 围成，则\n$$\\iint_D(xy^5-1)\\,dx\\,dy=$$（　）。",
+    "answer": "**D**，$-\\pi$。",
+    "explanation": "区域可写为 $-\\dfrac\\pi2\\le x\\le\\dfrac\\pi2$、$\\sin x\\le y\\le1$。直接先对 $y$ 积分：\n$$\\iint_Dxy^5\\,dx\\,dy=\\frac16\\int_{-\\frac{\\pi}{2}}^{\\frac{\\pi}{2}}x(1-\\sin^6x)\\,dx=0,$$\n因为被积函数关于 $x$ 为奇函数。区域面积为\n$$|D|=\\int_{-\\frac{\\pi}{2}}^{\\frac{\\pi}{2}}(1-\\sin x)\\,dx=\\pi.$$\n故原积分为 $0-|D|=-\\pi$。原区域并不关于 $y$ 轴对称，不能未经处理就直接用二维奇偶性；先积分后的奇偶性才是这里简便且可靠的依据。",
+    "options": [
+      {
+        "key": "A",
+        "text": "$\\pi$"
+      },
+      {
+        "key": "B",
+        "text": "$2$"
+      },
+      {
+        "key": "C",
+        "text": "$-2$"
+      },
+      {
+        "key": "D",
+        "text": "$-\\pi$"
+      }
+    ],
+    "correctOption": "D"
+  },
+  {
+    "id": "math2-2012-q10-original",
+    "year": 2012,
+    "number": "10",
+    "examNumber": "10",
+    "kind": "original",
+    "source": "2012 年数学二真题 · 第 10 题",
+    "topic": "高等数学 / 定积分定义 / 和式极限",
+    "type": "fill",
+    "stem": "求\n$$\\lim_{n\\to\\infty}n\\left(\\frac1{1+n^2}+\\frac1{2^2+n^2}+\\cdots+\\frac1{n^2+n^2}\\right).$$",
+    "answer": "$\\dfrac\\pi4$。",
+    "explanation": "将每项分母提出 $n^2$，把原式化成黎曼和：\n$$\\frac1n\\sum_{k=1}^n\\frac1{1+(\\frac kn)^2}.$$\n这里 $\\Delta x=\\dfrac1n$、取点 $x_k=\\dfrac kn$，对应 $[0,1]$ 上的连续函数 $\\dfrac1{1+x^2}$。故极限为\n$$\\int_0^1\\frac1{1+x^2}\\,dx=[\\arctan x]_0^1=\\frac\\pi4.$$"
+  },
+  {
+    "id": "math2-2012-q11-original",
+    "year": 2012,
+    "number": "11",
+    "examNumber": "11",
+    "kind": "original",
+    "source": "2012 年数学二真题 · 第 11 题",
+    "topic": "高等数学 / 多元微分 / 复合函数",
+    "type": "fill",
+    "stem": "设 $z=f\\!\\left(\\ln x+\\dfrac1y\\right)$，其中 $f(u)$ 可微，则 $x\\dfrac{\\partial z}{\\partial x}+y^2\\dfrac{\\partial z}{\\partial y}=\\underline{\\qquad}$。",
+    "answer": "$0$。",
+    "explanation": "记 $u=\\ln x+\\dfrac1y$。由链式法则，$z_x=f'(u)\\dfrac1x$，$z_y=-f'(u)\\dfrac1{y^2}$，故\n$$xz_x+y^2z_y=f'(u)-f'(u)=0.$$\n两项中的 $f'$ 都要在同一个中间变量 $u$ 处取值。"
+  },
+  {
+    "id": "math2-2012-q12-original",
+    "year": 2012,
+    "number": "12",
+    "examNumber": "12",
+    "kind": "original",
+    "source": "2012 年数学二真题 · 第 12 题",
+    "topic": "高等数学 / 微分方程 / 交换自变量与因变量",
+    "type": "fill",
+    "stem": "微分方程 $y\\,dx+(x-3y^2)\\,dy=0$ 满足 $y|_{x=1}=1$ 的解为 $y=\\underline{\\qquad}$。",
+    "answer": "$y=\\sqrt x$。",
+    "explanation": "将 $x$ 视为 $y$ 的函数，得到 $y\\dfrac{dx}{dy}+x=3y^2$，即\n$$\\frac d{dy}(xy)=3y^2.$$\n积分得 $xy=y^3+C$。由 $(x,y)=(1,1)$ 得 $C=0$，在初值附近 $y\\ne0$，故 $x=y^2$。根据 $y(1)=1$ 选择正根，得到 $y=\\sqrt x$（$x>0$）。若把 $y$ 当作因变量直接分离，形式反而更复杂。"
+  },
+  {
+    "id": "math2-2012-q14-original",
+    "year": 2012,
+    "number": "14",
+    "examNumber": "14",
+    "kind": "original",
+    "source": "2012 年数学二真题 · 第 14 题",
+    "topic": "线性代数 / 行列式 / 伴随矩阵与初等变换",
+    "type": "fill",
+    "stem": "设 $A$ 为三阶矩阵，$|A|=3$，$A^*$ 为其伴随矩阵。交换 $A$ 的第一行与第二行得矩阵 $B$，则 $|BA^*|=\\underline{\\qquad}$。",
+    "answer": "$-27$。",
+    "explanation": "交换两行使行列式变号，故 $|B|=-|A|=-3$。三阶矩阵的伴随矩阵满足 $|A^*|=|A|^{3-1}=9$，所以\n$$|BA^*|=|B|\\,|A^*|=(-3)\\times9=-27.$$"
+  },
+  {
+    "id": "math2-2012-q17-original",
+    "year": 2012,
+    "number": "17",
+    "examNumber": "17",
+    "kind": "original",
+    "source": "2012 年数学二真题 · 第 17 题",
+    "topic": "高等数学 / 积分应用 / 切线与旋转体",
+    "type": "solution",
+    "stem": "过点 $(0,1)$ 作曲线 $L:y=\\ln x$ 的切线，切点为 $A$；$L$ 与 $x$ 轴交于 $B$。区域 $D$ 由曲线 $L$ 与直线 $AB$ 围成，求 $D$ 的面积以及绕 $x$ 轴旋转一周所得旋转体的体积。",
+    "answer": "$S=2$，$V=\\dfrac{2\\pi}3(e^2-1)$。",
+    "explanation": "设切点 $A=(x_0,\\ln x_0)$。切线斜率为 $\\dfrac1{x_0}$，又切线过 $(0,1)$，所以 $\\ln x_0-1=1$，得 $A=(e^2,2)$；曲线与 $x$ 轴交点为 $B=(1,0)$。直线 $AB$ 为 $y=\\dfrac{2(x-1)}{e^2-1}$，在 $1\\le x\\le e^2$ 上位于 $\\ln x$ 下方。\n\n面积为\n$$S=\\int_1^{e^2}\\left(\\ln x-\\frac{2(x-1)}{e^2-1}\\right)dx=(e^2+1)-(e^2-1)=2.$$\n旋转体截面为圆环，故\n$$V=\\pi\\int_1^{e^2}\\left[(\\ln x)^2-\\frac{4(x-1)^2}{(e^2-1)^2}\\right]dx.$$\n分部积分可得 $\\int_1^{e^2}(\\ln x)^2dx=2(e^2-1)$，而第二项积分为 $\\dfrac43(e^2-1)$，因此 $V=\\dfrac{2\\pi}3(e^2-1)$。"
+  },
+  {
+    "id": "math2-2012-q18-original",
+    "year": 2012,
+    "number": "18",
+    "examNumber": "18",
+    "kind": "original",
+    "source": "2012 年数学二真题 · 第 18 题",
+    "topic": "高等数学 / 二重积分 / 极坐标",
+    "type": "solution",
+    "stem": "计算 $\\displaystyle\\iint_Dxy\\,d\\sigma$，其中区域 $D$ 由曲线 $r=1+\\cos\\theta$（$0\\le\\theta\\le\\pi$）与极轴围成。",
+    "answer": "$\\dfrac{16}{15}$。",
+    "explanation": "在极坐标下，$x=r\\cos\\theta$、$y=r\\sin\\theta$，面积元 $d\\sigma=r\\,dr\\,d\\theta$，区域为 $0\\le\\theta\\le\\pi$、$0\\le r\\le1+\\cos\\theta$。故\n$$I=\\int_0^\\pi\\cos\\theta\\sin\\theta\\,d\\theta\\int_0^{1+\\cos\\theta}r^3\\,dr=\\frac14\\int_0^\\pi(1+\\cos\\theta)^4\\cos\\theta\\sin\\theta\\,d\\theta.$$\n令 $u=1+\\cos\\theta$，则 $du=-\\sin\\theta\\,d\\theta$，得到\n$$I=\\frac14\\int_0^2u^4(u-1)\\,du=\\frac14\\left(\\frac{2^6}6-\\frac{2^5}5\\right)=\\frac{16}{15}.$$\n极坐标变换时不要漏掉面积元中的额外因子 $r$。"
+  },
+  {
+    "id": "math2-2012-q21-original",
+    "year": 2012,
+    "number": "21",
+    "examNumber": "21",
+    "kind": "original",
+    "source": "2012 年数学二真题 · 第 21 题",
+    "topic": "高等数学 / 数列极限 / 方程根的极限",
+    "type": "solution",
+    "stem": "（Ⅰ）证明方程 $x^n+x^{n-1}+\\cdots+x=1$（$n>1$ 为整数）在区间 $\\left(\\dfrac12,1\\right)$ 内有且只有一个实根。\n\n（Ⅱ）记该根为 $x_n$，证明 $\\lim_{n\\to\\infty}x_n$ 存在，并求出极限。",
+    "answer": "实根唯一，且 $x_n$ 严格递减，$\\displaystyle\\lim_{n\\to\\infty}x_n=\\dfrac12$。",
+    "explanation": "（Ⅰ）令 $F_n(x)=\\sum_{k=1}^nx^k-1$。它连续，且 $F_n(\\dfrac12)=-2^{-n}<0$、$F_n(1)=n-1>0$，所以有根；在正半轴上 $F_n'(x)=\\sum_{k=1}^nkx^{k-1}>0$，故根唯一。\n\n（Ⅱ）$F_{n+1}(x_n)=F_n(x_n)+x_n^{n+1}>0$，而 $F_{n+1}(x_{n+1})=0$。由严格递增性，$x_{n+1}<x_n$。又 $x_n>\\dfrac12$，故数列收敛，设极限为 $a$。\n\n由 $x_n\\le x_2<1$，得 $0<x_n^n\\le x_2^n\\to0$。对等比和等式\n$$\\frac{x_n(1-x_n^n)}{1-x_n}=1$$\n取极限，得 $\\dfrac a{1-a}=1$，所以 $a=\\dfrac12$。必须先证明极限存在，并单独控制 $x_n^n$，不能把它直接当作 $a^n$。"
+  },
+  {
+    "id": "math2-2013-q3-original",
+    "year": 2013,
+    "number": "3",
+    "examNumber": "3",
+    "kind": "original",
+    "source": "2013 年数学二真题 · 第 3 题",
+    "topic": "高等数学 / 变上限积分 / 连续与可导",
+    "type": "choice",
+    "stem": "设\n$$f(x)=\\begin{cases}\\sin x,&0\\le x<\\pi,\\\\2,&\\pi\\le x\\le2\\pi,\\end{cases}\\qquad F(x)=\\int_0^xf(t)\\,dt.$$\n则（　）。",
+    "answer": "**C**，$F$ 在 $x=\\pi$ 处连续但不可导。",
+    "explanation": "直接求积分，得\n$$F(x)=\\begin{cases}1-\\cos x,&0\\le x\\le\\pi,\\\\2+2(x-\\pi),&\\pi\\le x\\le2\\pi.\\end{cases}$$\n两段在 $x=\\pi$ 处都取值 $2$，故连续。左导数为 $\\sin\\pi=0$，右导数为 $2$，左右导数不相等，故不可导。被积函数在单点的取值不影响积分，但跳跃两侧的值会影响左右导数。",
+    "options": [
+      {
+        "key": "A",
+        "text": "$x=\\pi$ 是 $F(x)$ 的跳跃间断点"
+      },
+      {
+        "key": "B",
+        "text": "$x=\\pi$ 是 $F(x)$ 的可去间断点"
+      },
+      {
+        "key": "C",
+        "text": "$F(x)$ 在 $x=\\pi$ 处连续但不可导"
+      },
+      {
+        "key": "D",
+        "text": "$F(x)$ 在 $x=\\pi$ 处可导"
+      }
+    ],
+    "correctOption": "C"
+  },
+  {
+    "id": "math2-2013-q12-original",
+    "year": 2013,
+    "number": "12",
+    "examNumber": "12",
+    "kind": "original",
+    "source": "2013 年数学二真题 · 第 12 题",
+    "topic": "高等数学 / 参数方程 / 法线",
+    "type": "fill",
+    "stem": "曲线\n$$\\begin{cases}x=\\arctan t,\\\\y=\\ln\\sqrt{1+t^2}\\end{cases}$$\n在 $t=1$ 对应点处的法线方程为 $\\underline{\\qquad}$。",
+    "answer": "$x+y=\\dfrac\\pi4+\\dfrac12\\ln2$。",
+    "explanation": "$x'(t)=\\dfrac1{1+t^2}$，$y'(t)=\\dfrac t{1+t^2}$，故切线斜率为 $\\dfrac{dy}{dx}=t$。在 $t=1$ 处切线斜率为 $1$，法线斜率为 $-1$。对应点为 $\\left(\\dfrac\\pi4,\\dfrac12\\ln2\\right)$，所以\n$$y-\\frac12\\ln2=-\\left(x-\\frac\\pi4\\right),$$\n整理即得答案。题目求法线，不能直接用切线斜率。"
+  },
+  {
+    "id": "math2-2013-q20-original",
+    "year": 2013,
+    "number": "20",
+    "examNumber": "20",
+    "kind": "original",
+    "source": "2013 年数学二真题 · 第 20 题",
+    "topic": "高等数学 / 数列极限 / 单调有界准则",
+    "type": "solution",
+    "stem": "设 $f(x)=\\ln x+\\dfrac1x$。\n\n（Ⅰ）求 $f(x)$ 的最小值；（Ⅱ）设数列 $\\{x_n\\}$ 满足 $\\ln x_n+\\dfrac1{x_{n+1}}<1$，证明 $\\lim_{n\\to\\infty}x_n$ 存在，并求此极限。",
+    "answer": "（Ⅰ）最小值为 $1$，在 $x=1$ 处取得；（Ⅱ）极限为 $1$。",
+    "explanation": "（Ⅰ）定义域为 $x>0$，$f'(x)=\\dfrac{x-1}{x^2}$。在 $(0,1)$ 上递减、在 $(1,+\\infty)$ 上递增，所以最小值为 $f(1)=1$。\n\n（Ⅱ）题中对数有意义，故所有 $x_n>0$。由第一问，\n$$\\ln x_n+\\frac1{x_n}\\ge1>\\ln x_n+\\frac1{x_{n+1}},$$\n故 $x_{n+1}>x_n$。又条件推出 $\\ln x_n<1$，所以 $x_n<e$。因此数列单调递增且有上界，极限存在，设为 $a\\ge x_1>0$。\n\n对条件取极限得到 $\\ln a+\\dfrac1a\\le1$；由第一问又有 $\\ln a+\\dfrac1a\\ge1$，等号仅在 $a=1$ 时成立，因此极限为 $1$。"
+  },
+  {
+    "id": "math2-2013-q22-original",
+    "year": 2013,
+    "number": "22",
+    "examNumber": "22",
+    "kind": "original",
+    "source": "2013 年数学二真题 · 第 22 题",
+    "topic": "线性代数 / 矩阵运算 / 矩阵方程",
+    "type": "solution",
+    "stem": "设\n$$A=\\begin{pmatrix}1&a\\\\1&0\\end{pmatrix},\\qquad B=\\begin{pmatrix}0&1\\\\1&b\\end{pmatrix}.$$\n当 $a,b$ 为何值时存在矩阵 $C$ 使 $AC-CA=B$？求所有这样的矩阵 $C$。",
+    "answer": "$a=-1$、$b=0$；全部解为\n$$C=\\begin{pmatrix}s+t+1&-t\\\\t&s\\end{pmatrix},\\qquad s,t\\in\\mathbb R.$$",
+    "explanation": "令 $C=\\begin{pmatrix}u&v\\\\w&z\\end{pmatrix}$，展开 $AC-CA=B$ 得\n$$\\begin{cases}aw-v=0,\\\\v+a(z-u)=1,\\\\u-w-z=1,\\\\v-aw=b.\\end{cases}$$\n第一、四式相加得 $b=0$。由第一式 $v=aw$，第二式变成 $a(w+z-u)=1$，而第三式给出 $w+z-u=-1$，所以 $a=-1$。\n\n代入后只剩 $v=-w$、$u=w+z+1$。取自由参数 $w=t$、$z=s$，得到答案中的全部解。将该形式代回原矩阵方程可直接验证。"
+  },
+  {
+    "id": "math2-2013-q23-original",
+    "year": 2013,
+    "number": "23",
+    "examNumber": "23",
+    "kind": "original",
+    "source": "2013 年数学二真题 · 第 23 题",
+    "topic": "线性代数 / 二次型 / 正交变换",
+    "type": "solution",
+    "stem": "设二次型\n$$f(x_1,x_2,x_3)=2(a_1x_1+a_2x_2+a_3x_3)^2+(b_1x_1+b_2x_2+b_3x_3)^2,$$\n记 $\\alpha=(a_1,a_2,a_3)^{\\mathsf T}$、$\\beta=(b_1,b_2,b_3)^{\\mathsf T}$。\n\n（Ⅰ）证明其矩阵为 $2\\alpha\\alpha^{\\mathsf T}+\\beta\\beta^{\\mathsf T}$；（Ⅱ）若 $\\alpha,\\beta$ 正交且均为单位向量，证明它在正交变换下的标准形为 $2y_1^2+y_2^2$。",
+    "answer": "（Ⅰ）$A=2\\alpha\\alpha^{\\mathsf T}+\\beta\\beta^{\\mathsf T}$；（Ⅱ）取正交矩阵 $P=(\\alpha,\\beta,\\gamma)$，可得 $P^{\\mathsf T}AP=\\operatorname{diag}(2,1,0)$。",
+    "explanation": "（Ⅰ）令 $x=(x_1,x_2,x_3)^{\\mathsf T}$，则\n$$f=2(\\alpha^{\\mathsf T}x)^2+(\\beta^{\\mathsf T}x)^2=x^{\\mathsf T}(2\\alpha\\alpha^{\\mathsf T}+\\beta\\beta^{\\mathsf T})x.$$\n括号中的矩阵是对称矩阵，因此就是二次型的矩阵。\n\n（Ⅱ）在 $\\mathbb R^3$ 中取与 $\\alpha,\\beta$ 都正交的单位向量 $\\gamma$。因 $\\alpha^{\\mathsf T}\\alpha=\\beta^{\\mathsf T}\\beta=1$、$\\alpha^{\\mathsf T}\\beta=0$，有\n$$A\\alpha=2\\alpha,\\qquad A\\beta=\\beta,\\qquad A\\gamma=0.$$\n所以 $P=(\\alpha,\\beta,\\gamma)$ 为正交矩阵且 $P^{\\mathsf T}AP=\\operatorname{diag}(2,1,0)$。在变换 $x=Py$ 下，$f=2y_1^2+y_2^2$。第三项系数为零，不必另写 $0y_3^2$。"
+  },
+  {
+    "id": "math2-2014-q3-original",
+    "year": 2014,
+    "number": "3",
+    "examNumber": "3",
+    "kind": "original",
+    "source": "2014 年数学二真题 · 第 3 题",
+    "topic": "高等数学 / 一元微分 / 凹凸与弦线",
+    "type": "choice",
+    "stem": "设 $f(x)$ 具有二阶导数，$g(x)=f(0)(1-x)+f(1)x$，则在区间 $[0,1]$ 上（　）。",
+    "answer": "**D**，当 $f^{\\prime\\prime}(x)\\ge0$ 时，$f(x)\\le g(x)$。",
+    "explanation": "$g$ 是连接 $(0,f(0))$ 与 $(1,f(1))$ 的弦线。给出代数证明：对 $0<x<1$，分别在 $[0,x]$、$[x,1]$ 上使用拉格朗日中值定理，得到\n$$\\frac{f(x)-f(0)}x=f'(\\xi_1),\\qquad \\frac{f(1)-f(x)}{1-x}=f'(\\xi_2),$$\n其中 $\\xi_1<x<\\xi_2$。若 $f''\\ge0$，则 $f'$ 单调不减，两式左侧满足前者不大于后者。乘以正数 $x(1-x)$ 后整理得 $f(x)\\le(1-x)f(0)+xf(1)=g(x)$。端点处等号成立。$f'$ 的符号只决定单调性，不能决定曲线与弦线的位置。",
+    "options": [
+      {
+        "key": "A",
+        "text": "当 $f'(x)\\ge0$ 时，$f(x)\\ge g(x)$"
+      },
+      {
+        "key": "B",
+        "text": "当 $f'(x)\\ge0$ 时，$f(x)\\le g(x)$"
+      },
+      {
+        "key": "C",
+        "text": "当 $f''(x)\\ge0$ 时，$f(x)\\ge g(x)$"
+      },
+      {
+        "key": "D",
+        "text": "当 $f''(x)\\ge0$ 时，$f(x)\\le g(x)$"
+      }
+    ],
+    "correctOption": "D"
+  },
+  {
+    "id": "math2-2014-q4-original",
+    "year": 2014,
+    "number": "4",
+    "examNumber": "4",
+    "kind": "original",
+    "source": "2014 年数学二真题 · 第 4 题",
+    "topic": "高等数学 / 参数方程 / 曲率半径",
+    "type": "choice",
+    "stem": "曲线\n$$\\begin{cases}x=t^2+7,\\\\y=t^2+4t+1\\end{cases}$$\n在 $t=1$ 对应点处的曲率半径为（　）。",
+    "answer": "**C**，$10\\sqrt{10}$。",
+    "explanation": "$x'=2t$、$y'=2t+4$、$x''=y''=2$。参数曲线的曲率半径为\n$$R=\\frac{[(x')^2+(y')^2]^{\\frac32}}{|x'y''-y'x''|}.$$\n代入 $t=1$ 得\n$$R=\\frac{(2^2+6^2)^{\\frac32}}{|2\\times2-6\\times2|}=\\frac{40^{\\frac32}}8=10\\sqrt{10}.$$\n也可先求 $y'=3$、$y''=-1$，再用 $R=\\dfrac{[1+(y')^2]^{\\frac32}}{|y''|}$；注意半径是曲率的倒数。",
+    "options": [
+      {
+        "key": "A",
+        "text": "$\\dfrac{\\sqrt{10}}{50}$"
+      },
+      {
+        "key": "B",
+        "text": "$\\dfrac{\\sqrt{10}}{100}$"
+      },
+      {
+        "key": "C",
+        "text": "$10\\sqrt{10}$"
+      },
+      {
+        "key": "D",
+        "text": "$5\\sqrt{10}$"
+      }
+    ],
+    "correctOption": "C"
+  },
+  {
+    "id": "math2-2014-q8-original",
+    "year": 2014,
+    "number": "8",
+    "examNumber": "8",
+    "kind": "original",
+    "source": "2014 年数学二真题 · 第 8 题",
+    "topic": "线性代数 / 向量组 / 充分必要条件",
+    "type": "choice",
+    "stem": "设 $\\alpha_1,\\alpha_2,\\alpha_3$ 均为三维向量。对任意常数 $k,l$，向量组 $\\alpha_1+k\\alpha_3,\\alpha_2+l\\alpha_3$ 线性无关，是向量组 $\\alpha_1,\\alpha_2,\\alpha_3$ 线性无关的（　）。",
+    "answer": "**A**，必要非充分条件。",
+    "explanation": "若原来的三个向量线性无关，且 $c_1(\\alpha_1+k\\alpha_3)+c_2(\\alpha_2+l\\alpha_3)=0$，则\n$$c_1\\alpha_1+c_2\\alpha_2+(kc_1+lc_2)\\alpha_3=0,$$\n从而 $c_1=c_2=0$。所以原向量组无关能推出题述条件，题述条件是必要条件。\n\n反之，取 $\\alpha_1=(1,0,0)^{\\mathsf T}$、$\\alpha_2=(0,1,0)^{\\mathsf T}$、$\\alpha_3=0$。对任何 $k,l$，题述两个向量仍无关，但原三个向量含零向量，线性相关。因此不充分。",
+    "options": [
+      {
+        "key": "A",
+        "text": "必要非充分条件"
+      },
+      {
+        "key": "B",
+        "text": "充分非必要条件"
+      },
+      {
+        "key": "C",
+        "text": "充分必要条件"
+      },
+      {
+        "key": "D",
+        "text": "既非充分也非必要条件"
+      }
+    ],
+    "correctOption": "A"
+  },
+  {
+    "id": "math2-2014-q10-original",
+    "year": 2014,
+    "number": "10",
+    "examNumber": "10",
+    "kind": "original",
+    "source": "2014 年数学二真题 · 第 10 题",
+    "topic": "高等数学 / 函数 / 周期性与奇偶性",
+    "type": "fill",
+    "stem": "设 $f(x)$ 为周期为 $4$ 的可导奇函数，且 $f'(x)=2(x-1)$（$x\\in[0,2]$），则 $f(7)=\\underline{\\qquad}$。",
+    "answer": "$1$。",
+    "explanation": "由周期性，$f(7)=f(-1)$；由奇偶性，$f(-1)=-f(1)$，且 $f(0)=0$。在 $[0,2]$ 上积分，得\n$$f(x)=\\int_0^x2(t-1)\\,dt=x^2-2x.$$\n因此 $f(1)=-1$，$f(7)=1$。先利用周期把自变量移到已知区间附近，再利用奇偶性，可以减少计算。"
+  },
+  {
+    "id": "math2-2014-q11-original",
+    "year": 2014,
+    "number": "11",
+    "examNumber": "11",
+    "kind": "original",
+    "source": "2014 年数学二真题 · 第 11 题",
+    "topic": "高等数学 / 多元微分 / 隐函数全微分",
+    "type": "fill",
+    "stem": "设 $z=z(x,y)$ 由方程 $e^{2yz}+x+y^2+z=\\dfrac74$ 确定，则\n$$\\left.dz\\right|_{(x,y)=(\\frac12,\\frac12)}=\\underline{\\qquad}.$$",
+    "answer": "$-\\dfrac12(dx+dy)$。",
+    "explanation": "代入 $x=y=\\dfrac12$，得 $e^z+z=1$。左侧关于 $z$ 严格递增，故唯一解为 $z=0$。对原方程作全微分：\n$$e^{2yz}(2z\\,dy+2y\\,dz)+dx+2y\\,dy+dz=0.$$\n代入 $(x,y,z)=(\\dfrac12,\\dfrac12,0)$，得 $2dz+dx+dy=0$，所以 $dz=-\\dfrac12(dx+dy)$。"
+  },
+  {
+    "id": "math2-2014-q12-original",
+    "year": 2014,
+    "number": "12",
+    "examNumber": "12",
+    "kind": "original",
+    "source": "2014 年数学二真题 · 第 12 题",
+    "topic": "高等数学 / 极坐标 / 切线",
+    "type": "fill",
+    "stem": "曲线 $L$ 的极坐标方程为 $r=\\theta$，求它在 $(r,\\theta)=\\left(\\dfrac\\pi2,\\dfrac\\pi2\\right)$ 处切线的直角坐标方程。",
+    "answer": "$\\dfrac2\\pi x+y-\\dfrac\\pi2=0$。",
+    "explanation": "用 $\\theta$ 作参数：$x=\\theta\\cos\\theta$、$y=\\theta\\sin\\theta$。对应直角坐标点为 $(0,\\dfrac\\pi2)$，且\n$$\\frac{dy}{dx}=\\frac{\\sin\\theta+\\theta\\cos\\theta}{\\cos\\theta-\\theta\\sin\\theta}.$$\n代入 $\\theta=\\dfrac\\pi2$ 得斜率 $-\\dfrac2\\pi$，因此 $y-\\dfrac\\pi2=-\\dfrac2\\pi x$。题目给的是极坐标点，不能直接把它当作 $(x,y)$。"
+  },
+  {
+    "id": "math2-2014-q14-original",
+    "year": 2014,
+    "number": "14",
+    "examNumber": "14",
+    "kind": "original",
+    "source": "2014 年数学二真题 · 第 14 题",
+    "topic": "线性代数 / 二次型 / 惯性指数",
+    "type": "fill",
+    "stem": "二次型 $f(x_1,x_2,x_3)=x_1^2-x_2^2+2ax_1x_3+4x_2x_3$ 的负惯性指数为 $1$，则 $a$ 的取值范围为 $\\underline{\\qquad}$。",
+    "answer": "$[-2,2]$。",
+    "explanation": "配方得\n$$f=(x_1+ax_3)^2-(x_2-2x_3)^2+(4-a^2)x_3^2.$$\n令 $y_1=x_1+ax_3$、$y_2=x_2-2x_3$、$y_3=x_3$，变换矩阵行列式为 $1$，所以这是可逆线性变换，惯性指数保持不变。标准形中已有一个负平方项，故要使负惯性指数恰为 $1$，必须且只须 $4-a^2\\ge0$，即 $-2\\le a\\le2$。当 $a=\\pm2$ 时第三项为零，并未增加负项，所以端点需要保留。"
+  },
+  {
+    "id": "math2-2014-q17-original",
+    "year": 2014,
+    "number": "17",
+    "examNumber": "17",
+    "kind": "original",
+    "source": "2014 年数学二真题 · 第 17 题",
+    "topic": "高等数学 / 二重积分 / 轮换对称性",
+    "type": "solution",
+    "stem": "设 $D=\\{(x,y)\\mid1\\le x^2+y^2\\le4,\\ x\\ge0,\\ y\\ge0\\}$，计算\n$$I=\\iint_D\\frac{x\\sin\\!\\left(\\pi\\sqrt{x^2+y^2}\\right)}{x+y}\\,dx\\,dy.$$",
+    "answer": "$-\\dfrac34$。",
+    "explanation": "区域关于 $y=x$ 对称，交换 $x,y$ 后积分值不变。将两个表示相加，分子中的 $x+y$ 与分母消去：\n$$2I=\\iint_D\\sin\\!\\left(\\pi\\sqrt{x^2+y^2}\\right)\\,dx\\,dy.$$\n再用极坐标，$1\\le r\\le2$、$0\\le\\theta\\le\\dfrac\\pi2$，得到\n$$I=\\frac12\\int_0^{\\frac{\\pi}{2}}d\\theta\\int_1^2r\\sin(\\pi r)\\,dr=\\frac\\pi4\\int_1^2r\\sin(\\pi r)\\,dr.$$\n分部积分得\n$$\\int_1^2r\\sin(\\pi r)\\,dr=\\left[-\\frac{r\\cos(\\pi r)}\\pi+\\frac{\\sin(\\pi r)}{\\pi^2}\\right]_1^2=-\\frac3\\pi,$$\n故 $I=-\\dfrac34$。"
+  },
+  {
+    "id": "math2-2014-q19-original",
+    "year": 2014,
+    "number": "19",
+    "examNumber": "19",
+    "kind": "original",
+    "source": "2014 年数学二真题 · 第 19 题",
+    "topic": "高等数学 / 定积分 / 积分不等式",
+    "type": "solution",
+    "stem": "设 $f,g$ 在 $[a,b]$ 上连续，$f$ 单调增加，且 $0\\le g(x)\\le1$。证明：\n\n（Ⅰ）$0\\le\\displaystyle\\int_a^xg(t)\\,dt\\le x-a$（$x\\in[a,b]$）；\n\n（Ⅱ）\n$$\\int_a^{\\,a+\\int_a^bg(t)\\,dt}f(x)\\,dx\\le\\int_a^bf(x)g(x)\\,dx.$$",
+    "answer": "两项不等式均成立。",
+    "explanation": "（Ⅰ）由 $0\\le g(t)\\le1$，积分保序性直接给出 $0\\le\\int_a^xg(t)dt\\le\\int_a^x1dt=x-a$。\n\n（Ⅱ）构造\n$$H(u)=\\int_a^uf(x)g(x)\\,dx-\\int_a^{\\,a+\\int_a^ug(t)\\,dt}f(x)\\,dx.$$\n$H(a)=0$，由变上限积分求导和链式法则，\n$$H'(u)=g(u)\\left[f(u)-f\\!\\left(a+\\int_a^ug(t)\\,dt\\right)\\right].$$\n第一问保证 $a\\le a+\\int_a^ug(t)dt\\le u$。由于 $f$ 单调增加、$g(u)\\ge0$，得 $H'(u)\\ge0$。因此 $H(b)\\ge H(a)=0$，即所求不等式。证明不需要假设 $f$ 非负。"
+  },
+  {
+    "id": "math2-2014-q21-original",
+    "year": 2014,
+    "number": "21",
+    "examNumber": "21",
+    "kind": "original",
+    "source": "2014 年数学二真题 · 第 21 题",
+    "topic": "高等数学 / 积分应用 / 偏导条件与旋转体",
+    "type": "solution",
+    "stem": "已知 $\\dfrac{\\partial f}{\\partial y}=2(y+1)$，且 $f(y,y)=(y+1)^2-(2-y)\\ln y$。求曲线 $f(x,y)=0$ 所围图形绕直线 $y=-1$ 旋转所得旋转体的体积。",
+    "answer": "$V=\\pi\\left(2\\ln2-\\dfrac54\\right)$。",
+    "explanation": "对 $y$ 积分得 $f(x,y)=(y+1)^2+C(x)$。由对角线上的条件得 $C(x)=-(2-x)\\ln x$，所以曲线为\n$$(y+1)^2=(2-x)\\ln x.$$\n右侧非负且 $x>0$，故封闭图形的横坐标范围为 $1\\le x\\le2$。两条边界分支关于旋转轴 $y=-1$ 对称，图形旋转后的截面是半径 $\\sqrt{(2-x)\\ln x}$ 的圆盘。因此\n$$V=\\pi\\int_1^2(2-x)\\ln x\\,dx.$$\n分部积分，取 $u=\\ln x$、$dv=(2-x)dx$，可得积分为 $2\\ln2-\\dfrac54$。旋转的是两分支之间的整个区域，不能把两个分支的圆盘重复相加。"
+  },
+  {
+    "id": "math2-2014-q22-original",
+    "year": 2014,
+    "number": "22",
+    "examNumber": "22",
+    "kind": "original",
+    "source": "2014 年数学二真题 · 第 22 题",
+    "topic": "线性代数 / 线性方程组 / 基础解系与右逆",
+    "type": "solution",
+    "stem": "设\n$$A=\\begin{pmatrix}1&-2&3&-4\\\\0&1&-1&1\\\\1&2&0&-3\\end{pmatrix},$$\n$E$ 为三阶单位矩阵。（Ⅰ）求 $Ax=0$ 的一个基础解系；（Ⅱ）求满足 $AB=E$ 的全部矩阵 $B$。",
+    "answer": "（Ⅰ）$\\xi=(-1,2,3,1)^{\\mathsf T}$；（Ⅱ）\n$$B=\\begin{pmatrix}2-k_1&6-k_2&-1-k_3\\\\-1+2k_1&-3+2k_2&1+2k_3\\\\-1+3k_1&-4+3k_2&1+3k_3\\\\k_1&k_2&k_3\\end{pmatrix},\\qquad k_1,k_2,k_3\\in\\mathbb R.$$",
+    "explanation": "（Ⅰ）对 $A$ 作行变换得到\n$$\\begin{pmatrix}1&0&0&1\\\\0&1&0&-2\\\\0&0&1&-3\\end{pmatrix}.$$\n所以 $x_1=-x_4$、$x_2=2x_4$、$x_3=3x_4$，取 $x_4=1$ 得基础解系 $\\xi$。\n\n（Ⅱ）令 $B=(b_1,b_2,b_3)$，则 $AB=E$ 等价于 $Ab_j=e_j$。三个非齐次方程分别有特解\n$$p_1=(2,-1,-1,0)^{\\mathsf T},\\quad p_2=(6,-3,-4,0)^{\\mathsf T},\\quad p_3=(-1,1,1,0)^{\\mathsf T}.$$\n每列通解为 $b_j=p_j+k_j\\xi$，组合后得到答案。三个参数彼此独立，不能误用同一个参数控制所有列。"
+  },
+  {
+    "id": "math2-2014-q23-original",
+    "year": 2014,
+    "number": "23",
+    "examNumber": "23",
+    "kind": "original",
+    "source": "2014 年数学二真题 · 第 23 题",
+    "topic": "线性代数 / 矩阵相似 / 特征值与对角化",
+    "type": "solution",
+    "stem": "证明下列两个 $n$ 阶矩阵相似：\n$$A=\\begin{pmatrix}1&1&\\cdots&1\\\\1&1&\\cdots&1\\\\\\vdots&\\vdots&&\\vdots\\\\1&1&\\cdots&1\\end{pmatrix},\\qquad B=\\begin{pmatrix}0&\\cdots&0&1\\\\0&\\cdots&0&2\\\\\\vdots&&\\vdots&\\vdots\\\\0&\\cdots&0&n\\end{pmatrix}.$$",
+    "answer": "两矩阵均相似于 $\\operatorname{diag}(0,\\ldots,0,n)$，因此相似。",
+    "explanation": "当 $n=1$ 时两矩阵相同。以下设 $n>1$。\n\n$A$ 作用在向量 $x$ 上得到 $(x_1+\\cdots+x_n)(1,\\ldots,1)^{\\mathsf T}$。因此 $\\sum x_i=0$ 的 $(n-1)$ 维子空间是零特征值的特征子空间，而 $(1,\\ldots,1)^{\\mathsf T}$ 是特征值 $n$ 的特征向量。这些向量构成一组基，故 $A$ 可对角化。\n\n$Bx=x_n(1,2,\\ldots,n)^{\\mathsf T}$，所以 $e_1,\\ldots,e_{n-1}$ 是零特征值的 $n-1$ 个无关特征向量，$v=(1,2,\\ldots,n)^{\\mathsf T}$ 满足 $Bv=nv$。它们也构成一组基，故 $B$ 可对角化为同一个对角矩阵。\n\n两者相似于同一矩阵，利用相似关系的传递性即可得证。只证明特征值相同通常不足以证明相似，这里还验证了各特征子空间的维数。"
+  },
+  {
+    "id": "math2-2015-q2-original",
+    "year": 2015,
+    "number": "2",
+    "examNumber": "2",
+    "kind": "original",
+    "source": "2015 年数学二真题 · 第 2 题",
+    "topic": "高等数学 / 极限 / 间断点",
+    "type": "choice",
+    "stem": "函数\n$$f(x)=\\lim_{t\\to0}\\left(1+\\frac{\\sin t}{x}\\right)^{\\frac{x^2}{t}}$$\n在 $(-\\infty,+\\infty)$ 内（　）。",
+    "answer": "**B**，有可去间断点。",
+    "explanation": "固定 $x\\ne0$，当 $t$ 充分接近零时底数为正，可以取对数。利用 $\\ln(1+u)\\sim u$ 和 $\\sin t\\sim t$，得\n$$\\lim_{t\\to0}\\frac{x^2}t\\ln\\!\\left(1+\\frac{\\sin t}x\\right)=x.$$\n所以 $f(x)=e^x$（$x\\ne0$）。原式在 $x=0$ 处因分母为零没有定义，而 $\\lim_{x\\to0}f(x)=1$ 存在，因此 $x=0$ 是可去间断点。可通过补定义 $f(0)=1$ 使函数连续，但题目中的原函数未作这个补定义。",
+    "options": [
+      {
+        "key": "A",
+        "text": "连续"
+      },
+      {
+        "key": "B",
+        "text": "有可去间断点"
+      },
+      {
+        "key": "C",
+        "text": "有跳跃间断点"
+      },
+      {
+        "key": "D",
+        "text": "有无穷间断点"
+      }
+    ],
+    "correctOption": "B"
+  },
+  {
+    "id": "math2-2015-q8-original",
+    "year": 2015,
+    "number": "8",
+    "examNumber": "8",
+    "kind": "original",
+    "source": "2015 年数学二真题 · 第 8 题",
+    "topic": "线性代数 / 二次型 / 交换正交变换的列",
+    "type": "choice",
+    "stem": "二次型 $f(x_1,x_2,x_3)$ 在正交变换 $x=Py$ 下的标准形为 $2y_1^2+y_2^2-y_3^2$，其中 $P=(e_1,e_2,e_3)$。若 $Q=(e_1,-e_3,e_2)$，则在 $x=Qy$ 下的标准形为（　）。",
+    "answer": "**A**，$2y_1^2-y_2^2+y_3^2$。",
+    "explanation": "$e_1,e_2,e_3$ 分别对应特征值 $2,1,-1$。将特征向量改变符号，不改变它对应的特征值；交换列，则相应交换对角元的次序。$Q$ 的第二列 $-e_3$ 对应 $-1$，第三列 $e_2$ 对应 $1$，故\n$$Q^{\\mathsf T}AQ=\\operatorname{diag}(2,-1,1).$$\n因此标准形为 $2y_1^2-y_2^2+y_3^2$。",
+    "options": [
+      {
+        "key": "A",
+        "text": "$2y_1^2-y_2^2+y_3^2$"
+      },
+      {
+        "key": "B",
+        "text": "$2y_1^2+y_2^2-y_3^2$"
+      },
+      {
+        "key": "C",
+        "text": "$2y_1^2-y_2^2-y_3^2$"
+      },
+      {
+        "key": "D",
+        "text": "$2y_1^2+y_2^2+y_3^2$"
+      }
+    ],
+    "correctOption": "A"
+  },
+  {
+    "id": "math2-2015-q10-original",
+    "year": 2015,
+    "number": "10",
+    "examNumber": "10",
+    "kind": "original",
+    "source": "2015 年数学二真题 · 第 10 题",
+    "topic": "高等数学 / 高阶导数 / 莱布尼茨公式",
+    "type": "fill",
+    "stem": "函数 $f(x)=x^2 2^x$ 在 $x=0$ 处的 $n$ 阶导数 $f^{(n)}(0)=\\underline{\\qquad}$。",
+    "answer": "$n(n-1)(\\ln2)^{n-2}$（$n\\ge2$）；$n=1$ 时为 $0$。",
+    "explanation": "应用莱布尼茨公式：\n$$f^{(n)}(0)=\\sum_{k=0}^n\\binom nk(x^2)^{(k)}\\big|_{x=0}\\,(2^x)^{(n-k)}\\big|_{x=0}.$$\n$x^2$ 在零点的各阶导数中，只有二阶导数不为零，值为 $2$；而 $(2^x)^{(m)}|_0=(\\ln2)^m$。故 $n\\ge2$ 时只有 $k=2$ 的项留下，结果为 $2\\binom n2(\\ln2)^{n-2}=n(n-1)(\\ln2)^{n-2}$。一阶导数直接代入得 $f'(0)=0$。"
+  },
+  {
+    "id": "math2-2015-q12-original",
+    "year": 2015,
+    "number": "12",
+    "examNumber": "12",
+    "kind": "original",
+    "source": "2015 年数学二真题 · 第 12 题",
+    "topic": "高等数学 / 微分方程 / 极值初始条件",
+    "type": "fill",
+    "stem": "设 $y=y(x)$ 是 $y''+y'-2y=0$ 的解，且在 $x=0$ 处取得极值 $3$，则 $y(x)=\\underline{\\qquad}$。",
+    "answer": "$2e^x+e^{-2x}$。",
+    "explanation": "特征方程 $(r-1)(r+2)=0$，故 $y=C_1e^x+C_2e^{-2x}$。“在 $0$ 处取得极值 $3$”给出两个条件：$y(0)=3$、$y'(0)=0$。于是\n$$C_1+C_2=3,\\qquad C_1-2C_2=0,$$\n解得 $C_1=2$、$C_2=1$。所得函数满足 $y''(0)=6>0$，确实在该点取得极小值。只代入 $y(0)=3$ 不足以确定两个常数。"
+  },
+  {
+    "id": "math2-2015-q16-original",
+    "year": 2015,
+    "number": "16",
+    "examNumber": "16",
+    "kind": "original",
+    "source": "2015 年数学二真题 · 第 16 题",
+    "topic": "高等数学 / 积分应用 / 不同旋转轴",
+    "type": "solution",
+    "stem": "设 $A>0$，$D$ 由曲线 $y=A\\sin x$（$0\\le x\\le\\dfrac\\pi2$）以及 $y=0$、$x=\\dfrac\\pi2$ 围成。$V_1,V_2$ 分别为 $D$ 绕 $x$ 轴、$y$ 轴旋转所得体积。若 $V_1=V_2$，求 $A$。",
+    "answer": "$A=\\dfrac8\\pi$。",
+    "explanation": "绕 $x$ 轴用圆盘法：\n$$V_1=\\pi\\int_0^{\\frac{\\pi}{2}}A^2\\sin^2x\\,dx=\\frac{A^2\\pi^2}4.$$\n绕 $y$ 轴用圆柱壳法：\n$$V_2=2\\pi\\int_0^{\\frac{\\pi}{2}}xA\\sin x\\,dx=2A\\pi[-x\\cos x+\\sin x]_0^{\\frac{\\pi}{2}}=2A\\pi.$$\n由两者相等且 $A>0$，约去 $A\\pi$，得 $\\dfrac{A\\pi}4=2$，即 $A=\\dfrac8\\pi$。"
+  },
+  {
+    "id": "math2-2015-q18-original",
+    "year": 2015,
+    "number": "18",
+    "examNumber": "18",
+    "kind": "original",
+    "source": "2015 年数学二真题 · 第 18 题",
+    "topic": "高等数学 / 二重积分 / 对称性与直角坐标",
+    "type": "solution",
+    "stem": "计算\n$$\\iint_Dx(x+y)\\,dx\\,dy,\\qquad D=\\{(x,y)\\mid x^2+y^2\\le2,\\ y\\ge x^2\\}.$$",
+    "answer": "$\\dfrac\\pi4-\\dfrac25$。",
+    "explanation": "区域关于 $y$ 轴对称，$xy$ 关于 $x$ 为奇函数，故其积分为零。圆与抛物线交于 $(\\pm1,1)$，区域为 $-1\\le x\\le1$、$x^2\\le y\\le\\sqrt{2-x^2}$。因此\n$$I=2\\int_0^1x^2(\\sqrt{2-x^2}-x^2)\\,dx.$$\n对根式积分令 $x=\\sqrt2\\sin t$，则 $0\\le t\\le\\dfrac\\pi4$，有\n$$\\int_0^1x^2\\sqrt{2-x^2}\\,dx=\\int_0^{\\frac{\\pi}{4}}4\\sin^2t\\cos^2t\\,dt=\\frac\\pi8.$$\n另有 $\\int_0^1x^4dx=\\dfrac15$，所以 $I=2(\\dfrac\\pi8-\\dfrac15)=\\dfrac\\pi4-\\dfrac25$。"
+  },
+  {
+    "id": "math2-2015-q19-original",
+    "year": 2015,
+    "number": "19",
+    "examNumber": "19",
+    "kind": "original",
+    "source": "2015 年数学二真题 · 第 19 题",
+    "topic": "高等数学 / 变限积分 / 零点个数",
+    "type": "solution",
+    "stem": "已知\n$$f(x)=\\int_x^1\\sqrt{1+t^2}\\,dt+\\int_1^{x^2}\\sqrt{1+t}\\,dt,$$\n求 $f(x)$ 的零点个数。",
+    "answer": "$2$ 个：一个为 $x=1$，另一个位于 $(-1,0)$。",
+    "explanation": "函数在实数轴上连续可导，由变限积分求导得\n$$f'(x)=-\\sqrt{1+x^2}+2x\\sqrt{1+x^2}=(2x-1)\\sqrt{1+x^2}.$$\n因此在 $(-\\infty,\\dfrac12)$ 上严格递减，在 $(\\dfrac12,+\\infty)$ 上严格递增。$f(1)=0$，故右侧单调区间内恰有一个零点。\n\n左侧有 $f(-1)=\\int_{-1}^1\\sqrt{1+t^2}dt>0$，而\n$$f(0)=\\int_0^1\\bigl(\\sqrt{1+t^2}-\\sqrt{1+t}\\bigr)dt<0,$$\n因为 $0<t<1$ 时 $t^2<t$。由零点定理和严格单调性，左侧恰有一个零点，位于 $(-1,0)$。合计两个，无须求原函数的复杂显式表达式。"
+  },
+  {
+    "id": "math2-2015-q20-original",
+    "year": 2015,
+    "number": "20",
+    "examNumber": "20",
+    "kind": "original",
+    "source": "2015 年数学二真题 · 第 20 题",
+    "topic": "高等数学 / 微分方程 / 牛顿冷却定律",
+    "type": "solution",
+    "stem": "高温物体在低温介质中冷却，温度对时间的变化率与物体和介质的温差成正比。初温 $120\\,{}^\\circ\\mathrm C$ 的物体放在 $20\\,{}^\\circ\\mathrm C$ 的恒温介质中，$30\\,\\mathrm{min}$ 后温度降至 $30\\,{}^\\circ\\mathrm C$。若继续降至 $21\\,{}^\\circ\\mathrm C$，还需要冷却多久？",
+    "answer": "还需 $30\\,\\mathrm{min}$。",
+    "explanation": "令 $T(t)$ 为冷却开始后 $t$ 分钟的温度，则 $T'=-k(T-20)$（$k>0$）。由初温条件，解为\n$$T(t)-20=100e^{-kt}.$$\n代入 $T(30)=30$，得到 $e^{-30k}=\\dfrac1{10}$，故 $k=\\dfrac{\\ln10}{30}$。当 $T=21$ 时，$100e^{-kt}=1$，即 $t=60$ 分钟。题目问已冷却 $30$ 分钟后“还需要”的时间，所以答案为 $60-30=30$ 分钟，不能把总时间 $60$ 分钟当作答案。"
+  },
+  {
+    "id": "math2-2016-q1-original",
+    "year": 2016,
+    "number": "1",
+    "examNumber": "1",
+    "kind": "original",
+    "source": "2016 年数学二真题 · 第 1 题",
+    "topic": "等价无穷小与阶的比较",
+    "type": "choice",
+    "stem": "设 $\\alpha_1=x(\\cos\\sqrt{x}-1)$，$\\alpha_2=\\sqrt{x}\\ln(1+\\sqrt[3]{x})$，$\\alpha_3=\\sqrt[3]{x+1}-1$。当 $x\\to0^+$ 时，这三个无穷小按从低阶到高阶的顺序排列为（）。",
+    "answer": "B：$\\alpha_2,\\alpha_3,\\alpha_1$。",
+    "explanation": "利用基本等价无穷小，\n$$\\alpha_1\\sim-\\frac{x^2}{2},\\qquad \\alpha_2\\sim x^{\\frac56},\\qquad \\alpha_3\\sim\\frac{x}{3}.$$\n当 $x\\to0^+$ 时，幂次越大趋于零越快，阶越高。由 $\\frac56<1<2$，顺序为 $\\alpha_2,\\alpha_3,\\alpha_1$。常数系数与正负号不改变阶。",
+    "options": [
+      {
+        "key": "A",
+        "text": "$\\alpha_1,\\alpha_2,\\alpha_3$"
+      },
+      {
+        "key": "B",
+        "text": "$\\alpha_2,\\alpha_3,\\alpha_1$"
+      },
+      {
+        "key": "C",
+        "text": "$\\alpha_2,\\alpha_1,\\alpha_3$"
+      },
+      {
+        "key": "D",
+        "text": "$\\alpha_3,\\alpha_2,\\alpha_1$"
+      }
+    ],
+    "correctOption": "B"
+  },
+  {
+    "id": "math2-2016-q2-original",
+    "year": 2016,
+    "number": "2",
+    "examNumber": "2",
+    "kind": "original",
+    "source": "2016 年数学二真题 · 第 2 题",
+    "topic": "分段函数的原函数",
+    "type": "choice",
+    "stem": "已知 $f(x)=\\begin{cases}2(x-1),&x<1,\\\\\\ln x,&x\\ge1.\\end{cases}$，则 $f(x)$ 的一个原函数是（）。",
+    "answer": "D。",
+    "explanation": "先检查各开区间上的导数：$[x(\\ln x-1)]'=\\ln x$，而 $[x(\\ln x+1)]'=\\ln x+2$，排除 B、C。\n原函数还必须在连接点 $x=1$ 可导，从而连续。A 的左极限为 $0$，右侧函数值为 $-1$，不连续。D 两侧函数值都为 $0$，并且左右导数都为 $0=f(1)$，所以 D 正确。",
+    "options": [
+      {
+        "key": "A",
+        "text": "$F(x)=\\begin{cases}(x-1)^2,&x<1,\\\\x(\\ln x-1),&x\\ge1.\\end{cases}$"
+      },
+      {
+        "key": "B",
+        "text": "$F(x)=\\begin{cases}(x-1)^2,&x<1,\\\\x(\\ln x+1)-1,&x\\ge1.\\end{cases}$"
+      },
+      {
+        "key": "C",
+        "text": "$F(x)=\\begin{cases}(x-1)^2,&x<1,\\\\x(\\ln x+1)+1,&x\\ge1.\\end{cases}$"
+      },
+      {
+        "key": "D",
+        "text": "$F(x)=\\begin{cases}(x-1)^2,&x<1,\\\\x(\\ln x-1)+1,&x\\ge1.\\end{cases}$"
+      }
+    ],
+    "correctOption": "D"
+  },
+  {
+    "id": "math2-2016-q7-original",
+    "year": 2016,
+    "number": "7",
+    "examNumber": "7",
+    "kind": "original",
+    "source": "2016 年数学二真题 · 第 7 题",
+    "topic": "相似矩阵的性质",
+    "type": "choice",
+    "stem": "设 $A,B$ 为可逆矩阵，且 $A$ 与 $B$ 相似，则下列结论错误的是（）。",
+    "answer": "C。",
+    "explanation": "由 $B=P^{-1}AP$，可得 $B^{-1}=P^{-1}A^{-1}P$，并且 $B+B^{-1}=P^{-1}(A+A^{-1})P$，所以 B、D 正确。转置后 $B^\\mathsf T=P^\\mathsf TA^\\mathsf T(P^\\mathsf T)^{-1}$，A 也正确。\nC 中的两个转置项通常不能使用同一个相似变换。取\n$$A=\\begin{pmatrix}1&0\\\\0&2\\end{pmatrix},\\qquad B=\\begin{pmatrix}1&1\\\\0&2\\end{pmatrix}.$$\n两者都有不同的特征值 $1,2$，所以可逆且相似，但 $\\det(A+A^\\mathsf T)=8$，$\\det(B+B^\\mathsf T)=7$，故这两个和矩阵不相似。",
+    "options": [
+      {
+        "key": "A",
+        "text": "$A^\\mathsf T$ 与 $B^\\mathsf T$ 相似"
+      },
+      {
+        "key": "B",
+        "text": "$A^{-1}$ 与 $B^{-1}$ 相似"
+      },
+      {
+        "key": "C",
+        "text": "$A+A^\\mathsf T$ 与 $B+B^\\mathsf T$ 相似"
+      },
+      {
+        "key": "D",
+        "text": "$A+A^{-1}$ 与 $B+B^{-1}$ 相似"
+      }
+    ],
+    "correctOption": "C"
+  },
+  {
+    "id": "math2-2016-q8-original",
+    "year": 2016,
+    "number": "8",
+    "examNumber": "8",
+    "kind": "original",
+    "source": "2016 年数学二真题 · 第 8 题",
+    "topic": "二次型的正负惯性指数",
+    "type": "choice",
+    "stem": "二次型 $f(x_1,x_2,x_3)=a(x_1^2+x_2^2+x_3^2)+2x_1x_2+2x_2x_3+2x_1x_3$ 的正惯性指数为 $1$、负惯性指数为 $2$，则（）。",
+    "answer": "C：$-2<a<1$。",
+    "explanation": "二次型矩阵为\n$$A=\\begin{pmatrix}a&1&1\\\\1&a&1\\\\1&1&a\\end{pmatrix}=(a-1)I+J,$$\n其中 $J$ 是全 $1$ 矩阵。$J$ 在向量 $(1,1,1)^\\mathsf T$ 的方向上特征值为 $3$，在与它垂直的二维子空间上特征值为 $0$，因此 $A$ 的特征值为 $a+2,a-1,a-1$。\n正惯性指数为 $1$、负惯性指数为 $2$，要求 $a+2>0$ 且 $a-1<0$，即 $-2<a<1$。端点会出现零特征值，不满足要求。",
+    "options": [
+      {
+        "key": "A",
+        "text": "$a>1$"
+      },
+      {
+        "key": "B",
+        "text": "$a<-2$"
+      },
+      {
+        "key": "C",
+        "text": "$-2<a<1$"
+      },
+      {
+        "key": "D",
+        "text": "$a=1$ 或 $a=-2$"
+      }
+    ],
+    "correctOption": "C"
+  },
+  {
+    "id": "math2-2016-q11-original",
+    "year": 2016,
+    "number": "11",
+    "examNumber": "11",
+    "kind": "original",
+    "source": "2016 年数学二真题 · 第 11 题",
+    "topic": "一阶线性微分方程",
+    "type": "fill",
+    "stem": "已知 $y=x^2-e^x$ 与 $y=x^2$ 是某一阶非齐次线性微分方程的两个特解，求该微分方程。",
+    "answer": "$y\\prime-y=2x-x^2$。",
+    "explanation": "设方程为 $y\\prime+p(x)y=q(x)$。两个特解之差 $-e^x$ 必为对应齐次方程的解，所以 $-e^x+p(x)(-e^x)=0$，得 $p(x)=-1$。再代入特解 $y=x^2$，得 $q(x)=2x-x^2$。"
+  },
+  {
+    "id": "math2-2016-q13-original",
+    "year": 2016,
+    "number": "13",
+    "examNumber": "13",
+    "kind": "original",
+    "source": "2016 年数学二真题 · 第 13 题",
+    "topic": "相关变化率",
+    "type": "fill",
+    "stem": "动点 $P$ 沿曲线 $y=x^3$ 运动，它到原点的距离为 $l$。已知横坐标的变化率 $\\dfrac{dx}{dt}=v_0$，求 $P$ 位于 $(1,1)$ 时的 $\\dfrac{dl}{dt}$。",
+    "answer": "$\\dfrac{dl}{dt}=2\\sqrt2\\,v_0$。",
+    "explanation": "由 $l^2=x^2+y^2=x^2+x^6$，对时间 $t$ 求导得\n$$2l\\frac{dl}{dt}=(2x+6x^5)\\frac{dx}{dt}.$$\n在 $(1,1)$ 处，$x=1,l=\\sqrt2$，于是 $\\dfrac{dl}{dt}=\\dfrac{8v_0}{2\\sqrt2}=2\\sqrt2\\,v_0$。"
+  },
+  {
+    "id": "math2-2016-q16-original",
+    "year": 2016,
+    "number": "16",
+    "examNumber": "16",
+    "kind": "original",
+    "source": "2016 年数学二真题 · 第 16 题",
+    "topic": "含绝对值的积分与最值",
+    "type": "solution",
+    "stem": "设 $f(x)=\\displaystyle\\int_0^1|t^2-x^2|\\,dt$，$x>0$。（Ⅰ）求 $f\\prime(x)$；（Ⅱ）求 $f(x)$ 的最小值。",
+    "answer": "$$f\\prime(x)=\\begin{cases}4x^2-2x,&0<x<1,\\\\2x,&x\\ge1.\\end{cases}$$\n最小值为 $\\dfrac14$，在 $x=\\dfrac12$ 处取得。",
+    "explanation": "当 $0<x<1$ 时，绝对值在 $t=x$ 处分段：\n$$\\begin{aligned}f(x)&=\\int_0^x(x^2-t^2)\\,dt+\\int_x^1(t^2-x^2)\\,dt\\\\&=\\frac43x^3-x^2+\\frac13.\\end{aligned}$$\n当 $x\\ge1$ 时，$f(x)=\\int_0^1(x^2-t^2)\\,dt=x^2-\\frac13$。分别求导即得答案；在 $x=1$ 两侧函数值相等、导数都为 $2$，故该处也可导。\n$0<x<\\frac12$ 时 $f\\prime<0$，$x>\\frac12$ 时 $f\\prime>0$，所以 $x=\\frac12$ 为全域唯一最小值点，$f(\\frac12)=\\frac14$。"
+  },
+  {
+    "id": "math2-2016-q17-original",
+    "year": 2016,
+    "number": "17",
+    "examNumber": "17",
+    "kind": "original",
+    "source": "2016 年数学二真题 · 第 17 题",
+    "topic": "隐函数的极值",
+    "type": "solution",
+    "stem": "函数 $z=z(x,y)$ 由 $(x^2+y^2)z+\\ln z+2(x+y+1)=0$ 确定，求 $z(x,y)$ 的极值。",
+    "answer": "在 $(-1,-1)$ 处取得极大值 $z=1$，也是全局最大值；无极小值。",
+    "explanation": "令 $F=(x^2+y^2)z+\\ln z+2(x+y+1)$。因 $z>0$ 且 $F_z=x^2+y^2+\\frac1z>0$，可求偏导：\n$$z_x=-\\frac{2xz+2}{F_z},\\qquad z_y=-\\frac{2yz+2}{F_z}.$$\n驻点满足 $x=y=-\\frac1z$。代入原式得 $\\ln z=\\frac2z-2$。函数 $h(z)=\\ln z-\\frac2z+2$ 严格递增且 $h(1)=0$，所以只有驻点 $(-1,-1)$，对应 $z=1$。\n在该点 $F_z=3$，且 $z_x=z_y=0$，二次求导得 $z_{xx}=z_{yy}=-\\frac23$、$z_{xy}=0$。于是 $z_{xx}z_{yy}-z_{xy}^2=\\frac49>0$，$z_{xx}<0$，为极大值。\n进一步，固定任意 $x,y$，$F$ 关于 $z$ 严格递增，且 $F(x,y,1)=(x+1)^2+(y+1)^2\\ge0$，因此其根满足 $z\\le1$，仅在 $(-1,-1)$ 取等号。全平面上仅此一个驻点，故无极小值。"
+  },
+  {
+    "id": "math2-2016-q20-original",
+    "year": 2016,
+    "number": "20",
+    "examNumber": "20",
+    "kind": "original",
+    "source": "2016 年数学二真题 · 第 20 题",
+    "topic": "旋转体的体积与表面积",
+    "type": "solution",
+    "stem": "平面区域 $D$ 由曲线 $y=\\sqrt{1-x^2}$（$0\\le x\\le1$）与参数曲线\n$$x=\\cos^3t,\\qquad y=\\sin^3t,\\qquad 0\\le t\\le\\frac{\\pi}{2}$$\n围成。将 $D$ 绕 $x$ 轴旋转，求所得旋转体的体积 $V$ 和表面积 $S$。",
+    "answer": "$V=\\dfrac{18\\pi}{35}$，$S=\\dfrac{16\\pi}{5}$。",
+    "explanation": "内侧曲线的显式式为 $y=(1-x^{\\frac23})^{\\frac32}$，外侧为四分之一圆弧。用圆环法，\n$$\\begin{aligned}V&=\\pi\\int_0^1\\left[1-x^2-(1-x^{\\frac23})^3\\right]dx\\\\&=3\\pi\\int_0^1(x^{\\frac23}-x^{\\frac43})\\,dx=\\frac{18\\pi}{35}.\\end{aligned}$$\n表面积包括外侧和内侧两个曲面。圆弧旋转得到半球面，$S_1=2\\pi$。内侧参数曲线满足\n$$ds=\\sqrt{9\\cos^4t\\sin^2t+9\\sin^4t\\cos^2t}\\,dt=3\\sin t\\cos t\\,dt,$$\n所以\n$$S_2=2\\pi\\int_0^{\\frac{\\pi}{2}}y\\,ds=6\\pi\\int_0^{\\frac{\\pi}{2}}\\sin^4t\\cos t\\,dt=\\frac{6\\pi}{5}.$$\n两曲线在端点相接，无须另加底面，故 $S=S_1+S_2=\\frac{16\\pi}{5}$。"
+  },
+  {
+    "id": "math2-2016-q21-original",
+    "year": 2016,
+    "number": "21",
+    "examNumber": "21",
+    "kind": "original",
+    "source": "2016 年数学二真题 · 第 21 题",
+    "topic": "函数平均值与唯一零点的证明",
+    "type": "solution",
+    "stem": "已知 $f(x)$ 在 $[0,\\dfrac{3\\pi}{2}]$ 上连续，在 $(0,\\dfrac{3\\pi}{2})$ 内是函数 $\\dfrac{\\cos x}{2x-3\\pi}$ 的一个原函数，且 $f(0)=0$。（Ⅰ）求 $f(x)$ 在该闭区间上的平均值；（Ⅱ）证明 $f(x)$ 在开区间 $(0,\\dfrac{3\\pi}{2})$ 内存在唯一零点。",
+    "answer": "平均值为 $\\dfrac1{3\\pi}$；唯一零点位于 $(\\dfrac\\pi2,\\dfrac{3\\pi}{2})$。",
+    "explanation": "（Ⅰ）记 $a=\\frac{3\\pi}{2}$。对 $b<a$ 分部积分，再令 $b\\to a^-$。由连续性，$(b-a)f(b)\\to0$，得\n$$\\begin{aligned}\\int_0^a f(x)\\,dx&=\\lim_{b\\to a^-}\\left[(x-a)f(x)\\big|_0^b-\\int_0^b(x-a)f\\prime(x)\\,dx\\right]\\\\&=-\\frac12\\int_0^a\\cos x\\,dx=\\frac12.\\end{aligned}$$\n所以平均值为 $\\frac1a\\int_0^a f(x)\\,dx=\\frac1{3\\pi}$。使用极限能避开端点处原导数表达式的零分母。\n（Ⅱ）在整个开区间内，$2x-3\\pi<0$，故 $f$ 在 $(0,\\frac\\pi2)$ 严格递减，在 $(\\frac\\pi2,a)$ 严格递增。由 $f(0)=0$ 得 $f(\\frac\\pi2)<0$，前半段没有零点。\n若 $f(a)\\le0$，上述单调性使 $f$ 在 $(0,a)$ 恒为负，从而积分为负，与（Ⅰ）的 $\\int_0^a f=\\frac12>0$ 矛盾。因此 $f(a)>0$。由连续性和后半段的严格递增性，后半段存在且仅存在一个零点。"
+  },
+  {
+    "id": "math2-2016-q22-original",
+    "year": 2016,
+    "number": "22",
+    "examNumber": "22",
+    "kind": "original",
+    "source": "2016 年数学二真题 · 第 22 题",
+    "topic": "无解条件与线性方程组",
+    "type": "solution",
+    "stem": "设\n$$A=\\begin{pmatrix}1&1&1-a\\\\1&0&a\\\\a+1&1&a+1\\end{pmatrix},\\qquad \\boldsymbol\\beta=\\begin{pmatrix}0\\\\1\\\\2a-2\\end{pmatrix},$$\n且方程组 $A\\boldsymbol x=\\boldsymbol\\beta$ 无解。（Ⅰ）求 $a$；（Ⅱ）求 $A^\\mathsf TA\\boldsymbol x=A^\\mathsf T\\boldsymbol\\beta$ 的通解。",
+    "answer": "$a=0$；通解为\n$$\\boldsymbol x=\\begin{pmatrix}1\\\\-2\\\\0\\end{pmatrix}+k\\begin{pmatrix}0\\\\-1\\\\1\\end{pmatrix},\\qquad k\\in\\mathbb R.$$",
+    "explanation": "（Ⅰ）对增广矩阵作初等行变换，可化为\n$$\\left(\\begin{array}{ccc|c}1&0&a&1\\\\0&1&1-2a&-1\\\\0&0&-a^2+2a&a-2\\end{array}\\right).$$\n前两行独立。无解须最后一行的系数全为零而常数非零，即 $a(2-a)=0$ 且 $a-2\\ne0$，所以 $a=0$。\n（Ⅱ）代入 $a=0$，得\n$$A^\\mathsf TA=\\begin{pmatrix}3&2&2\\\\2&2&2\\\\2&2&2\\end{pmatrix},\\qquad A^\\mathsf T\\boldsymbol\\beta=\\begin{pmatrix}-1\\\\-2\\\\-2\\end{pmatrix}.$$\n方程组化简为 $x_1=1$、$x_2+x_3=-2$。令 $x_3=k$，即可写出所示通解。注意 $A\\boldsymbol x=\\boldsymbol\\beta$ 无解，并不意味着法方程也无解。"
+  },
+  {
+    "id": "math2-2016-q23-original",
+    "year": 2016,
+    "number": "23",
+    "examNumber": "23",
+    "kind": "original",
+    "source": "2016 年数学二真题 · 第 23 题",
+    "topic": "矩阵高次幂与列向量线性组合",
+    "type": "solution",
+    "stem": "已知\n$$A=\\begin{pmatrix}0&-1&1\\\\2&-3&0\\\\0&0&0\\end{pmatrix}.$$\n（Ⅰ）求 $A^{99}$；（Ⅱ）设三阶矩阵 $B=(\\boldsymbol\\alpha_1,\\boldsymbol\\alpha_2,\\boldsymbol\\alpha_3)$ 满足 $B^2=BA$，记 $B^{100}=(\\boldsymbol\\beta_1,\\boldsymbol\\beta_2,\\boldsymbol\\beta_3)$，将各 $\\boldsymbol\\beta_i$ 表示为各 $\\boldsymbol\\alpha_i$ 的线性组合。",
+    "answer": "$$A^{99}=\\begin{pmatrix}2^{99}-2&1-2^{99}&2-2^{98}\\\\2^{100}-2&1-2^{100}&2-2^{99}\\\\0&0&0\\end{pmatrix}.$$\n$$\\begin{aligned}\\boldsymbol\\beta_1&=(2^{99}-2)\\boldsymbol\\alpha_1+(2^{100}-2)\\boldsymbol\\alpha_2,\\\\\\boldsymbol\\beta_2&=(1-2^{99})\\boldsymbol\\alpha_1+(1-2^{100})\\boldsymbol\\alpha_2,\\\\\\boldsymbol\\beta_3&=(2-2^{98})\\boldsymbol\\alpha_1+(2-2^{99})\\boldsymbol\\alpha_2.\\end{aligned}$$",
+    "explanation": "（Ⅰ）特征多项式为 $\\det(\\lambda I-A)=\\lambda(\\lambda+1)(\\lambda+2)$，三个不同特征值为 $-2,-1,0$。可分别取特征向量 $(1,2,0)^\\mathsf T$、$(1,1,0)^\\mathsf T$、$(3,2,2)^\\mathsf T$，令\n$$P=\\begin{pmatrix}1&1&3\\\\2&1&2\\\\0&0&2\\end{pmatrix},\\quad P^{-1}=\\begin{pmatrix}-1&1&\\frac12\\\\2&-1&-2\\\\0&0&\\frac12\\end{pmatrix}.$$\n则 $P^{-1}AP=\\operatorname{diag}(-2,-1,0)$，故 $A^{99}=P\\operatorname{diag}(-2^{99},-1,0)P^{-1}$，相乘得到答案。\n（Ⅱ）由 $B^2=BA$，归纳可得 $B^n=BA^{n-1}$（$n\\ge2$）：若等式对 $n$ 成立，则 $B^{n+1}=B^2A^{n-1}=BA^n$。所以 $B^{100}=BA^{99}$。矩阵乘法按列展开，$BA^{99}$ 的第 $j$ 列，就是用 $A^{99}$ 第 $j$ 列的系数对 $\\boldsymbol\\alpha_1,\\boldsymbol\\alpha_2,\\boldsymbol\\alpha_3$ 作线性组合，得上述三个式子。"
+  },
+  {
     "id": "math2-2010-q5-exercise1",
     "year": 2010,
     "number": "5-1",
