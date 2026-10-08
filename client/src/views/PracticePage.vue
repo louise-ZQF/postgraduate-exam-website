@@ -57,7 +57,7 @@ const filtered = computed(() => sourceQuestions.value.filter(q => {
     && (!keyword.value.trim() || `${q.year} ${q.number} ${q.source} ${q.topic} ${q.stem}`.toLowerCase().includes(keyword.value.trim().toLowerCase()))
 }))
 const queue = computed(() => queueIds.value.map(id => questionById.get(id)).filter(q => q !== undefined))
-const heading = computed(() => demoMode.value ? '错题示例' : `${selectedYear.value} 年${kindLabel.value}${mode.value === 'review' ? ' · 再练' : ''}`)
+const heading = computed(() => demoMode.value ? '错题示例' : mode.value === 'review' ? '数学二错题再练' : '数学二错题本')
 const markedInQueue = computed(() => queue.value.filter(q => activeProgress.value[q.id]?.mastery).length)
 const yearGroups = computed(() => [...new Set(queue.value.map(q => q.year))].map(value => ({
   year: value, questions: queue.value.filter(q => q.year === value),
@@ -171,10 +171,10 @@ onBeforeUnmount(() => {
         <div class="toolbar"><div class="scope-label">{{ demoMode ? '交互示例' : `${selectedYear} 年${kindLabel}` }}<span>{{ queue.length }} 题 · 已标记 {{ markedInQueue }}</span></div><div class="toolbar-filters"><label class="question-search"><PracticeIcon name="search" /><input v-model="keyword" maxlength="80" aria-label="搜索错题" placeholder="搜索题目、知识点" /></label><select v-model="statusFilter" aria-label="按掌握程度筛选"><option value="all">全部状态</option><option value="unmarked">未标记</option><option v-for="status in statuses" :key="status.value" :value="status.value">{{ status.label }}</option></select></div></div>
         <div v-if="queue.length" class="question-list">
           <section v-for="group in yearGroups" :id="`practice-year-${group.year}`" :key="group.year" class="year-section" :aria-labelledby="`year-title-${group.year}`">
-            <h2 :id="`year-title-${group.year}`" class="visually-hidden">{{ group.year }} 年试卷题目</h2>
+            <header class="paper-heading"><div><span class="paper-label">{{ selectedKind === 'original' ? '历年真题' : '专项练习' }}</span><h2 :id="`year-title-${group.year}`">{{ group.year }} 年数学二 · {{ kindLabel }}</h2></div><span>{{ group.questions.length }} 题</span></header>
             <div class="year-questions"><PracticeQuestionCard v-for="(question, index) in group.questions" :key="`${round}-${question.id}`" :question="question" :index="index + 1" :progress="activeProgress[question.id]" :storage-failed="storageFailed" @mark="mark" @note="saveNote" /></div>
           </section>
-          <footer class="paper-end"><span>本卷结束</span><span>{{ selectedYear }} 年 · {{ queue.length }} 题</span></footer>
+          <footer class="paper-end"><strong>{{ selectedYear }} 年{{ kindLabel }} · 本卷结束</strong></footer>
         </div>
         <section v-else class="empty-state"><PracticeIcon :name="mode === 'review' ? 'check' : 'book'" /><h2>{{ mode === 'review' ? '这里暂时没有需要再练的题' : questions.length ? '没有符合筛选条件的题目' : '准备好收集你的第一道错题' }}</h2><p>{{ mode === 'review' ? '将题目标为“不熟练”或“不会”后，它们会自动出现在这里。' : questions.length ? '试试其他年份、状态，或清空搜索关键词。' : '上传题目时附上年份，我会把题干、答案和解析一起录入。' }}</p><button v-if="mode === 'review'" class="primary-button" @click="selectView('all')">返回本卷错题</button></section>
         <p v-if="notice" class="notice" role="status" aria-live="polite">{{ notice }}</p>
@@ -204,9 +204,14 @@ main { min-width: 0; }.workspace-heading { display: flex; justify-content: space
 .question-list { margin-top: 12px; }
 .year-section { scroll-margin-top: 20px; margin-top: 0; }.year-section + .year-section { margin-top: 30px; }
 .year-heading { display: flex; align-items: baseline; gap: 12px; margin-bottom: 10px; }.year-heading h2 { margin: 0; color: var(--ink); font-size: 20px; font-weight: 700; }.year-heading > span { color: var(--muted); font-size: 12px; }
-.year-questions { display: grid; gap: 14px; }.paper-end { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 26px; border-top: 1px solid var(--line); padding: 20px 0; color: var(--muted); font-size: 13px; }
+.paper-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; border-top: 3px solid var(--accent); border-bottom: 1px solid var(--line-strong); margin-bottom: 18px; padding: 18px 4px 16px; }.paper-label { color: var(--accent-dark); font-size: 12px; font-weight: 650; letter-spacing: .08em; }.paper-heading h2 { margin: 4px 0 0; color: var(--ink); font-size: 22px; line-height: 1.5; }.paper-heading > span { color: var(--muted); font-size: 13px; white-space: nowrap; }
+.year-questions { display: grid; gap: 14px; }.paper-end { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 26px; border-top: 2px solid var(--line-strong); border-bottom: 1px solid var(--line); padding: 24px 0; color: var(--ink-soft); font-size: 14px; }
 .empty-state { display: grid; justify-items: center; text-align: center; gap: 10px; margin-top: 20px; border: 1px solid var(--line); border-radius: 16px; padding: 65px 24px; background: var(--paper); }.empty-state > svg { width: 35px; height: 35px; margin-bottom: 8px; color: var(--accent); }.empty-state h2 { margin: 0; font-size: 20px; }.empty-state p { max-width: 460px; margin: 0 0 10px; color: var(--muted); font-size: 14px; }.notice { position: fixed; z-index: 20; bottom: 22px; right: 24px; max-width: calc(100% - 40px); margin: 0; border: 1px solid var(--line); border-radius: 8px; padding: 12px 18px; background: var(--paper); box-shadow: 0 4px 20px #18223818; color: var(--accent-dark); font-size: 13px; }.storage-error { margin-top: 20px; padding: 12px; border-radius: 8px; background: var(--danger-tint); color: var(--danger); font-size: 13px; }.mobile-directory { display: none; }
 .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 @media (max-width: 1100px) { .practice-layout { grid-template-columns: 205px minmax(0, 1fr); gap: 24px; width: calc(100% - 40px); }.toolbar { flex-wrap: wrap; }.question-search { width: 200px; } }
 @media (max-width: 760px) { .practice-layout { display: block; width: calc(100% - 28px); padding-top: 16px; }.directory { margin-bottom: 18px; }.mobile-directory { display: flex; align-items: center; gap: 9px; width: 100%; min-height: 44px; border: 1px solid var(--line); border-radius: 8px; padding: 0 12px; background: var(--paper); font-size: 13px; }.mobile-directory span { margin-left: auto; color: var(--muted); font-size: 12px; }.directory-content { display: none; position: static; max-height: none; padding: 12px 0; }.directory-content.open { display: block; }.directory-brand { display: none; }.year-nav { grid-template-columns: repeat(2, minmax(0, 1fr)); max-height: none; }.workspace-heading { flex-wrap: wrap; gap: 10px; }h1 { font-size: 25px; }.workspace-heading p { font-size: 13px; }.primary-button { padding: 8px 11px; }.toolbar { gap: 12px; margin-top: 14px; }.toolbar-filters { width: 100%; }.question-search { flex: 1; width: auto; }.scope-label { font-size: 14px; }.year-heading h2 { font-size: 19px; }.year-questions { gap: 12px; }.empty-state { padding: 35px 18px; } }
+</style>
+
+<style scoped>
+@media (max-width: 600px) { .paper-heading h2 { font-size: 19px; }.paper-heading { padding: 14px 2px; } }
 </style>

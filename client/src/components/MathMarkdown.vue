@@ -37,9 +37,10 @@ const html = computed(() => {
         ? token.slice(2, -2)
         : token.slice(1, -1)
     try {
-      const renderedFormula = katex.renderToString(formula.trim(), { displayMode, throwOnError: false, trust: false, strict: 'ignore' })
+      const readingFormula = props.compact && !displayMode ? `\\displaystyle ${formula.trim()}` : formula.trim()
+      const renderedFormula = katex.renderToString(readingFormula, { displayMode, throwOnError: false, trust: false, strict: 'ignore' })
       const items = props.formulas.filter((candidate) => candidate.sourceBlockIndex === Number(rawIndex))
-      if (!items.length) return renderedFormula
+      if (!items.length) return displayMode ? renderedFormula : `<span class="reading-math">${renderedFormula}</span>`
       return items.map((item) => {
         const safeTitle = item.title.replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char] ?? char)
         const itemMath = items.length === 1 ? renderedFormula : katex.renderToString(item.latex, { displayMode, throwOnError: false, trust: false, strict: 'ignore' })
@@ -89,4 +90,10 @@ const html = computed(() => {
 .math-markdown.compact :deep(.katex-display) { margin: 9px 0; padding: 2px 0; border-radius: 0; background: transparent; }
 .math-markdown.compact :deep(.katex-display > .katex) { text-align: left; }
 .math-markdown.compact :deep(.katex) { font-size: 1.08em; }
+</style>
+
+<style scoped>
+.math-markdown.compact :deep(.reading-math) { display: inline-block; max-width: 100%; overflow-x: auto; overflow-y: hidden; padding: 3px 1px; vertical-align: middle; }
+.math-markdown.compact :deep(.katex-display) { padding: 8px 2px; }
+.math-markdown.compact :deep(p) { line-height: 2; }
 </style>
