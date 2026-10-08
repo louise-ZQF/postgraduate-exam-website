@@ -181,7 +181,7 @@ h1 { margin: 10px 0 12px; font-family: var(--serif); font-size: clamp(34px, 4vw,
 .chapter-section + .chapter-section { border-top: 1px solid var(--line); }
 .chapter-section > h2 { margin: 0 0 18px; font-family: var(--serif); font-size: 27px; line-height: 1.45; }
 .chapter-section :deep(h5[id]) { scroll-margin-top: 24px; border-radius: 4px; }
-.chapter-section :deep(h5.search-target), .chapter-section :deep(.formula-unit.search-target) { background: #fff2df; outline: 2px solid #e2aa79; outline-offset: 5px; }
+.chapter-section :deep(h5.search-target), .chapter-section :deep(.formula-unit.search-target) { background: var(--accent-tint); outline: 2px solid var(--accent); outline-offset: 5px; }
 .chapter-section :deep(.anchor-favorite-button) { float: right; min-height: 44px; margin: -4px 0 4px 14px; border: 1px solid var(--line-strong); border-radius: 6px; padding: 0 10px; background: var(--paper); color: var(--ink-soft); font-family: system-ui, sans-serif; font-size: 12px; font-weight: 600; }
 .chapter-section :deep(.anchor-favorite-button:hover), .chapter-section :deep(.anchor-favorite-button.active) { border-color: var(--accent); background: var(--accent-tint); color: var(--accent-dark); }
 .bottom-back { position: static; width: fit-content; margin: 18px 0 0; border: 0; }

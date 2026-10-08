@@ -89,11 +89,11 @@ h1 { margin: 0 0 9px; color: var(--ink); font-family: var(--serif); font-size: c
 article { padding: 25px 28px 23px; }
 article + article { border-top: 1px solid var(--line); }
 .favorite-path { color: var(--muted); font-size: 12px; }
-.favorite-path span { margin: 0 5px; color: #aa9e90; }
+.favorite-path span { margin: 0 5px; color: var(--muted); }
 .favorite-kind { display: block; margin-top: 12px; color: var(--accent-dark); font-size: 12px; font-weight: 700; }
 h2 { margin: 4px 0 8px; font-family: var(--serif); font-size: 24px; line-height: 1.5; }
 .favorite-formula { max-width: 760px; margin: 12px 0; }
-.favorite-formula :deep(.katex-display) { margin: 0; border: 0; border-radius: 6px; padding: 14px 17px; background: #f8f5f0; text-align: left; }
+.favorite-formula :deep(.katex-display) { margin: 0; border: 0; border-radius: 6px; padding: 14px 17px; background: var(--surface-soft); text-align: left; }
 .favorite-context { max-width: 760px; color: var(--ink-soft); font-size: 14px; line-height: 1.75; }
 .favorite-context :deep(p) { margin: 0; }
 .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 17px; }

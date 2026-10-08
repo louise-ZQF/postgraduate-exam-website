@@ -130,11 +130,11 @@ h1 { margin: 0; color: var(--ink); font-family: var(--serif); font-size: clamp(4
 .intro > p { max-width: 780px; margin: 22px 0 0; color: var(--ink-soft); font-size: clamp(16px, 1.6vw, 19px); line-height: 1.8; }
 .search-box { max-width: 920px; margin-top: 42px; }
 .search-box label { display: block; margin-bottom: 11px; color: var(--accent-dark); font-size: 13px; font-weight: 700; letter-spacing: .04em; }
-.search-control { display: flex; align-items: center; min-height: 72px; border: 1px solid var(--line-strong); border-radius: 10px; padding: 7px 7px 7px 21px; background: var(--paper); box-shadow: 0 2px 0 rgba(74, 54, 32, .07); }
+.search-control { display: flex; align-items: center; min-height: 72px; border: 1px solid var(--line-strong); border-radius: 10px; padding: 7px 7px 7px 21px; background: var(--paper); box-shadow: 0 2px 0 rgba(25, 34, 54, .07); }
 .search-control:focus-within { border-color: var(--accent); outline: 3px solid var(--focus-ring); }
 .search-control svg { width: 23px; flex: 0 0 auto; fill: none; stroke: var(--muted); stroke-width: 1.8; }
 .search-control input { min-width: 0; flex: 1; border: 0; outline: none; padding: 0 18px; background: transparent; color: var(--ink); font-size: 17px; }
-.search-control input::placeholder { color: #8a8379; }
+.search-control input::placeholder { color: var(--muted); }
 .search-control button { align-self: stretch; min-width: 104px; border: 0; border-radius: 6px; background: var(--accent); color: white; font-size: 16px; font-weight: 700; }
 .search-control button:hover { background: var(--accent-dark); }
 .result-section { margin-top: 66px; }
@@ -146,14 +146,14 @@ h1 { margin: 0; color: var(--ink); font-family: var(--serif); font-size: clamp(4
 .result-card + .result-card { border-top: 1px solid var(--line); }
 .result-link { display: block; max-width: 920px; }
 .result-path { color: var(--muted); font-size: 12px; }
-.result-path span { margin: 0 5px; color: #aa9e90; }
+.result-path span { margin: 0 5px; color: var(--muted); }
 .result-card h3 { margin: 8px 0 4px; color: var(--ink); font-family: var(--serif); font-size: 23px; font-weight: 700; line-height: 1.5; }
 .result-link:hover h3, .result-link:hover .result-open { color: var(--accent-dark); }
 .result-formula { max-width: 780px; margin: 12px 0; color: var(--ink); }
-.result-formula :deep(.katex-display) { margin: 0; border: 0; border-radius: 6px; padding: 13px 16px; background: #f8f5f0; text-align: left; }
+.result-formula :deep(.katex-display) { margin: 0; border: 0; border-radius: 6px; padding: 13px 16px; background: var(--surface-soft); text-align: left; }
 .result-context { max-width: 780px; margin: 9px 0 0; color: var(--ink-soft); font-size: 14px; line-height: 1.7; }
 .result-context :deep(p) { margin: 0; }
-.result-card :deep(mark) { border-radius: 2px; padding: 0 2px; background: #f5decb; color: var(--ink); }
+.result-card :deep(mark) { border-radius: 2px; padding: 0 2px; background: #dce5ff; color: var(--ink); }
 .result-open { display: inline-flex; align-items: center; min-height: 36px; margin-top: 10px; color: var(--accent-dark); font-size: 13px; font-weight: 700; }
 .result-open span { margin-left: 6px; }
 .favorite-button { min-height: 44px; border: 1px solid var(--line-strong); border-radius: 6px; padding: 0 13px; background: var(--paper); color: var(--ink-soft); font-size: 13px; font-weight: 650; }

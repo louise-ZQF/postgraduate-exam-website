@@ -28,7 +28,7 @@ import { isNavigating } from '@/router'
   inset: 0;
   z-index: 9999;
   pointer-events: none;
-  background: rgba(243, 238, 230, 0.32);
+  background: rgba(245, 246, 250, 0.32);
 }
 
 .route-loading-topbar {

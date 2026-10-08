@@ -5,17 +5,24 @@
 
 @layer base {
   :root {
-    --canvas: #f3eee6;
-    --paper: #fffefd;
-    --ink: #25211d;
-    --ink-soft: #504b45;
-    --muted: #706a62;
-    --line: #e5ddd1;
-    --line-strong: #d5c9b9;
-    --accent: #ad5939;
-    --accent-dark: #91452b;
-    --accent-tint: #f9eee7;
-    --focus-ring: rgba(189, 102, 70, .2);
+    --canvas: #f5f6fa;
+    --paper: #ffffff;
+    --ink: #192236;
+    --ink-soft: #4d5a6f;
+    --muted: #637086;
+    --line: #e3e8f0;
+    --line-strong: #d4dce8;
+    --accent: #4268d5;
+    --accent-dark: #3154b4;
+    --accent-tint: #edf2ff;
+    --focus-ring: rgba(66, 104, 213, .2);
+    --surface-soft: #f7f9fc;
+    --success: #087855;
+    --success-tint: #d4ede2;
+    --warning: #916109;
+    --warning-tint: #fff5db;
+    --danger: #b53e4c;
+    --danger-tint: #fff0f1;
     --ink-950: var(--ink);
     --ink-800: var(--ink);
     --ink-600: var(--ink-soft);
@@ -40,19 +47,15 @@
     min-width: 0;
     margin: 0;
     background-color: var(--canvas);
-    background-image:
-      linear-gradient(to right, rgba(115, 94, 69, .035) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(115, 94, 69, .035) 1px, transparent 1px);
-    background-size: 72px 72px;
     line-height: 1.65;
     -webkit-font-smoothing: antialiased;
   }
   a { color: inherit; text-decoration: none; }
   button, input, select { font: inherit; }
   button { cursor: pointer; }
-  ::selection { background: #f1d2c4; color: var(--ink); }
+  ::selection { background: #dce5ff; color: var(--ink); }
   :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
-  * { scrollbar-color: #c8baaa transparent; scrollbar-width: thin; }
+  * { scrollbar-color: #c4cedd transparent; scrollbar-width: thin; }
 }
 
 @media (prefers-reduced-motion: reduce) {

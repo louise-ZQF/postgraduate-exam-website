@@ -63,22 +63,22 @@ const html = computed(() => {
 .math-markdown :deep(ul), .math-markdown :deep(ol) { margin: 13px 0; padding-left: 1.6em; }
 .math-markdown :deep(li) { margin: 7px 0; padding-left: .1em; }
 .math-markdown :deep(li::marker) { color: var(--accent); }
-.math-markdown :deep(blockquote) { margin: 20px 0; border-left: 3px solid var(--accent); padding: 8px 16px; background: #faf6f0; color: var(--ink-soft); }
+.math-markdown :deep(blockquote) { margin: 20px 0; border-left: 3px solid var(--accent); padding: 8px 16px; background: var(--surface-soft); color: var(--ink-soft); }
 .math-markdown :deep(hr) { margin: 36px 0; border: 0; border-top: 1px solid var(--line); }
 .math-markdown :deep(table) { width: 100%; margin: 18px 0; border-collapse: collapse; font-size: 15px; }
 .math-markdown :deep(th), .math-markdown :deep(td) { border: 1px solid var(--line); padding: 10px 12px; text-align: left; vertical-align: top; }
-.math-markdown :deep(th) { background: #f8f4ee; }
-.math-markdown :deep(tr:nth-child(even) td) { background: #fdfbf8; }
-.math-markdown :deep(.katex-display) { margin: 19px 0; overflow-x: auto; overflow-y: hidden; border: 0; border-radius: 6px; padding: 12px 14px; background: #f8f5f0; }
+.math-markdown :deep(th) { background: var(--surface-soft); }
+.math-markdown :deep(tr:nth-child(even) td) { background: var(--paper); }
+.math-markdown :deep(.katex-display) { margin: 19px 0; overflow-x: auto; overflow-y: hidden; border: 0; border-radius: 6px; padding: 12px 14px; background: var(--surface-soft); }
 .math-markdown :deep(.formula-unit) { display: block; scroll-margin-top: 24px; border-top: 1px solid var(--line); padding: 14px 0 17px; }
 .math-markdown :deep(.inline-formula) { display: inline-flex; align-items: baseline; gap: 5px; border: 0; padding: 0; vertical-align: baseline; }
 .math-markdown :deep(.inline-formula .formula-favorite-button) { min-height: 44px; padding: 4px 8px; white-space: nowrap; }
 .math-markdown :deep(.formula-unit .katex-display) { margin: 2px 0 9px; padding: 9px 12px; }
 .math-markdown :deep(.formula-favorite-button) { min-height: 44px; border: 1px solid var(--line-strong); border-radius: 6px; padding: 8px 12px; background: var(--paper); color: var(--ink-soft); font-size: 12px; font-weight: 650; }
 .math-markdown :deep(.formula-favorite-button:hover), .math-markdown :deep(.formula-favorite-button.active) { border-color: var(--accent); background: var(--accent-tint); color: var(--accent-dark); }
-.math-markdown :deep(.formula-unit.search-target) { background: #fff2df; outline: 2px solid #e2aa79; outline-offset: 5px; }
+.math-markdown :deep(.formula-unit.search-target) { background: var(--accent-tint); outline: 2px solid var(--accent); outline-offset: 5px; }
 .math-markdown :deep(.katex) { color: var(--ink); }
 .math-markdown :deep(strong) { color: var(--ink); font-weight: 750; }
-.math-markdown :deep(code) { border: 1px solid var(--line); border-radius: 4px; padding: 2px 5px; background: #f8f4ee; color: var(--accent-dark); }
+.math-markdown :deep(code) { border: 1px solid var(--line); border-radius: 4px; padding: 2px 5px; background: var(--surface-soft); color: var(--accent-dark); }
 @media (max-width: 700px) { .math-markdown { font-size: 16px; line-height: 1.85; }.math-markdown :deep(h5) { font-size: 19px; }.math-markdown :deep(.katex-display) { margin-right: -5px; margin-left: -5px; padding: 11px 7px; }.math-markdown :deep(table) { display: block; overflow-x: auto; white-space: nowrap; } }
 </style>

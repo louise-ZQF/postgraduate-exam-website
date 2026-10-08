@@ -96,7 +96,7 @@ main { min-width: 0; overflow: hidden; }
 h1 { margin: 18px 0 18px; font-family: ui-serif, "Songti SC", STSong, serif; font-size: clamp(44px, 6vw, 72px); line-height: 1.12; letter-spacing: -.045em; }
 h1 em { color: var(--brand-600); font-style: normal; }
 .hero-copy p { max-width: 700px; margin: 0; color: var(--ink-600); font-size: 16px; line-height: 1.9; }
-.hero-summary { display: grid; border-left: 3px solid #bd7c31; padding: 4px 0 4px 24px; }
+.hero-summary { display: grid; border-left: 3px solid var(--accent); padding: 4px 0 4px 24px; }
 .hero-summary strong { color: var(--brand-700); font-family: Georgia, serif; font-size: 52px; line-height: 1; }
 .hero-summary span { margin-top: 9px; color: var(--ink-800); font-weight: 750; }
 .hero-summary small { margin-top: 7px; color: var(--ink-400); line-height: 1.6; }
@@ -120,12 +120,12 @@ h1 em { color: var(--brand-600); font-style: normal; }
 .graph-card { min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 10px; padding: 22px; background: var(--paper); }
 .graph-card:hover { border-color: var(--line-strong); }
 .graph-card header { display: grid; grid-template-columns: 36px 1fr auto; align-items: center; gap: 10px; margin-bottom: 10px; }
-.graph-index { color: #ad712e; font-family: ui-monospace, monospace; font-size: 11px; font-weight: 800; }
+.graph-index { color: var(--accent-dark); font-family: ui-monospace, monospace; font-size: 11px; font-weight: 800; }
 .graph-card header small { color: var(--ink-400); font-size: 10px; letter-spacing: .1em; }
 .graph-card h3 { margin: 2px 0 0; color: var(--ink-800); font-size: 17px; }
-.graph-card header strong { border-radius: 9px; padding: 7px 10px; background: var(--amber-100); color: #87551e; font-family: Georgia, "Times New Roman", serif; font-size: 17px; white-space: nowrap; }
+.graph-card header strong { border-radius: 9px; padding: 7px 10px; background: var(--amber-100); color: var(--accent-dark); font-family: Georgia, "Times New Roman", serif; font-size: 17px; white-space: nowrap; }
 .graph-card dl { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 8px 0; }
-.graph-card dl div { display: flex; justify-content: space-between; gap: 10px; border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; background: #faf7f2; }
+.graph-card dl div { display: flex; justify-content: space-between; gap: 10px; border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; background: var(--surface-soft); }
 .graph-card dt { color: var(--ink-400); font-size: 11px; }
 .graph-card dd { margin: 0; color: var(--ink-800); font-family: Georgia, "Times New Roman", serif; font-size: 12px; }
 .conclusion { min-height: 48px; margin: 12px 0 0; border-left: 3px solid var(--accent); padding: 5px 0 5px 12px; color: var(--ink-soft); font-size: 13px; line-height: 1.7; }
