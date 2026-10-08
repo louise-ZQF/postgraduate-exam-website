@@ -15,7 +15,12 @@ const progress = ref<PracticeProgress>(readPracticeProgress())
 const demoProgress = ref<PracticeProgress>({})
 const demoMode = ref(questions.length === 0)
 const mode = computed(() => route.query.view === 'review' ? 'review' : 'all')
-const activeYear = ref('')
+const selectedYear = computed(() => {
+  const requested = Number(route.query.year)
+  if (questions.some(q => q.year === requested)) return String(requested)
+  const linked = questionById.get(String(route.query.question ?? ''))
+  return String(linked?.year || questions[0]?.year || '')
+})
 const keyword = ref('')
 const statusFilter = ref('all')
 const directoryOpen = ref(false)
@@ -29,6 +34,7 @@ const statuses: { value: Mastery; label: string }[] = [
 ]
 const activeProgress = computed(() => demoMode.value ? demoProgress.value : progress.value)
 const sourceQuestions = computed(() => demoMode.value ? [demoQuestion] : questions)
+const pendingInPaper = computed(() => questions.filter(q => String(q.year) === selectedYear.value && isPending(progress.value[q.id])).length)
 const pendingCount = computed(() => questions.filter(q => isPending(progress.value[q.id])).length)
 const masteredCount = computed(() => questions.filter(q => progress.value[q.id]?.mastery === 'mastered').length)
 const years = computed(() => [...new Set(questions.map(q => q.year))].map(value => {
@@ -37,62 +43,47 @@ const years = computed(() => [...new Set(questions.map(q => q.year))].map(value 
 }))
 const filtered = computed(() => sourceQuestions.value.filter(q => {
   const item = activeProgress.value[q.id]
-  return (mode.value !== 'review' || isPending(item))
+  return (demoMode.value || String(q.year) === selectedYear.value)
+    && (mode.value !== 'review' || isPending(item))
     && (statusFilter.value === 'all' || (statusFilter.value === 'unmarked' ? !item?.mastery : item?.mastery === statusFilter.value))
     && (!keyword.value.trim() || `${q.year} ${q.number} ${q.source} ${q.topic} ${q.stem}`.toLowerCase().includes(keyword.value.trim().toLowerCase()))
 }))
 const queue = computed(() => queueIds.value.map(id => questionById.get(id)).filter(q => q !== undefined))
-const heading = computed(() => mode.value === 'review' ? '错题再练' : '我的错题本')
+const heading = computed(() => demoMode.value ? '错题示例' : `${selectedYear.value} 年${mode.value === 'review' ? '错题再练' : '错题卷'}`)
 const markedInQueue = computed(() => queue.value.filter(q => activeProgress.value[q.id]?.mastery).length)
 const yearGroups = computed(() => [...new Set(queue.value.map(q => q.year))].map(value => ({
   year: value, questions: queue.value.filter(q => q.year === value),
 })))
-let scrollFrame = 0
 let noticeTimer: number | undefined
 
 function restartQueue() {
   // 本轮列表固定，标记掌握后不会移走当前卡片或打乱滚动位置。
   queueIds.value = filtered.value.map(q => q.id)
   round.value += 1
-  nextTick(updateActiveYear)
 }
-watch([mode, keyword, statusFilter, demoMode], restartQueue, { immediate: true })
+watch([mode, selectedYear, keyword, statusFilter, demoMode], restartQueue, { immediate: true })
 watch(notice, () => {
   if (noticeTimer) window.clearTimeout(noticeTimer)
   if (notice.value) noticeTimer = window.setTimeout(() => { notice.value = '' }, 3500)
 })
 
-function updateActiveYear() {
-  let current = yearGroups.value[0]?.year
-  for (const group of yearGroups.value) {
-    const section = document.getElementById(`practice-year-${group.year}`)
-    if (section && section.getBoundingClientRect().top <= 150) current = group.year
-  }
-  activeYear.value = current === undefined ? '' : String(current)
-}
-function onScroll() {
-  if (scrollFrame) return
-  scrollFrame = window.requestAnimationFrame(() => { scrollFrame = 0; updateActiveYear() })
-}
 async function jumpToRoute() {
   await nextTick()
   const requested = String(route.query.question ?? '')
   const questionElement = queueIds.value.includes(requested) ? document.getElementById(requested) : null
-  const yearElement = document.getElementById(`practice-year-${String(route.query.year ?? '')}`)
+  const yearElement = document.getElementById('practice-main')
   const target = questionElement ?? yearElement
   if (target) {
     target.scrollIntoView({ block: 'start' })
     questionElement?.focus({ preventScroll: true })
   }
-  updateActiveYear()
 }
 watch(() => [route.query.year, route.query.question, route.query.view], jumpToRoute)
-async function selectView(view: 'all' | 'review', selectedYear = '') {
+async function selectView(view: 'all' | 'review', targetYear = selectedYear.value) {
   directoryOpen.value = false
   statusFilter.value = 'all'
-  await router.push({ name: 'practice', query: { ...(view === 'review' ? { view } : {}), ...(selectedYear ? { year: selectedYear } : {}) } })
-  if (selectedYear) await jumpToRoute()
-  else document.getElementById('practice-main')?.scrollIntoView({ block: 'start' })
+  await router.push({ name: 'practice', query: { ...(view === 'review' ? { view } : {}), ...(targetYear ? { year: targetYear } : {}) } })
+  await jumpToRoute()
 }
 function persist(id: string, patch: { mastery?: Mastery; note?: string; reviews?: number }) {
   const target = demoMode.value ? demoProgress : progress
@@ -134,13 +125,10 @@ async function importBackup(event: Event) {
 function syncProgress(event: StorageEvent) { if (event.key === PRACTICE_STORAGE_KEY || event.key === null) progress.value = readPracticeProgress() }
 onMounted(() => {
   window.addEventListener('storage', syncProgress)
-  window.addEventListener('scroll', onScroll, { passive: true })
   jumpToRoute()
 })
 onBeforeUnmount(() => {
   window.removeEventListener('storage', syncProgress)
-  window.removeEventListener('scroll', onScroll)
-  if (scrollFrame) window.cancelAnimationFrame(scrollFrame)
   if (noticeTimer) window.clearTimeout(noticeTimer)
 })
 </script>
@@ -154,12 +142,12 @@ onBeforeUnmount(() => {
         <div id="directory-content" class="directory-content" :class="{ open: directoryOpen }">
           <div class="directory-brand"><PracticeIcon name="book" /><div><strong>错题工作台</strong></div></div>
           <nav class="collection-nav" aria-label="错题集合">
-            <button :class="{ active: mode === 'all' }" @click="selectView('all', '')"><PracticeIcon name="book" />全部错题<span>{{ questions.length }}</span></button>
-            <button :class="{ active: mode === 'review' }" @click="selectView('review', '')"><PracticeIcon name="repeat" />错题再练<span>{{ pendingCount }}</span></button>
+            <button :class="{ active: mode === 'all' }" @click="selectView('all')"><PracticeIcon name="book" />年份试卷<span>{{ questions.length }}</span></button>
+            <button :class="{ active: mode === 'review' }" @click="selectView('review')"><PracticeIcon name="repeat" />错题再练<span>{{ pendingCount }}</span></button>
           </nav>
-          <div class="directory-heading">按年份直达<span>{{ years.length }} 个年份</span></div>
+          <div class="directory-heading">试卷年份<span>{{ years.length }} 个年份</span></div>
           <nav class="year-nav" aria-label="年份分类">
-            <button v-for="item in years" :disabled="!yearGroups.some(group => group.year === item.value)" :key="item.value" :class="{ active: activeYear === String(item.value) }" @click="selectView(mode, String(item.value))"><span>{{ item.value }} 年</span><span>{{ mode === 'review' ? item.pending : item.count }}</span></button>
+            <button v-for="item in years" :key="item.value" :class="{ active: selectedYear === String(item.value) }" @click="selectView(mode, String(item.value))"><span>{{ item.value }} 年</span><span>{{ mode === 'review' ? item.pending : item.count }}</span></button>
           </nav>
           <p v-if="!years.length" class="directory-empty">题目上传后，这里会自动按真实年份生成目录。</p>
           <div class="progress-card"><div><span>已掌握</span><strong>{{ masteredCount }} <small>/ {{ questions.length }}</small></strong></div><progress :value="masteredCount" :max="questions.length || 1" aria-label="正式错题掌握进度" /><p>不熟练和不会的题，会自动收集到错题再练。</p></div>
@@ -168,17 +156,18 @@ onBeforeUnmount(() => {
         </div>
       </aside>
       <main id="practice-main">
-        <header class="workspace-heading"><div><h1>{{ heading }}</h1><p v-if="mode === 'review'">不熟练和不会的题</p></div><button class="primary-button" @click="mode === 'review' ? restartQueue() : selectView('review', '')"><PracticeIcon name="repeat" />{{ mode === 'review' ? '重新开始本轮' : '开始错题再练' }}<span v-if="mode !== 'review'">{{ pendingCount }}</span></button></header>
+        <header class="workspace-heading"><div><h1>{{ heading }}</h1><p v-if="mode === 'review'">不熟练和不会的题</p></div><button class="primary-button" @click="mode === 'review' ? restartQueue() : selectView('review')"><PracticeIcon name="repeat" />{{ mode === 'review' ? '重新开始本轮' : '本卷错题再练' }}<span v-if="mode !== 'review'">{{ pendingInPaper }}</span></button></header>
         <section v-if="!questions.length" class="preview-banner"><PracticeIcon name="book" /><div><strong>错题本已就绪，等待录入你的题目</strong><p>下方使用你提供的截图演示操作，年份尚未确认，不计入正式题库和复习统计。</p></div><button @click="demoMode = !demoMode">{{ demoMode ? '收起示例' : '体验示例' }}</button></section>
         <p v-if="storageFailed" role="alert" class="storage-error">浏览器暂时无法保存进度，请立即导出备份以保留本次标记和笔记。</p>
-        <div class="toolbar"><div class="scope-label">{{ demoMode ? '交互示例' : '全部年份' }}<span>{{ queue.length }} 题 · 已标记 {{ markedInQueue }}</span></div><div class="toolbar-filters"><label class="question-search"><PracticeIcon name="search" /><input v-model="keyword" maxlength="80" aria-label="搜索错题" placeholder="搜索题目、知识点" /></label><select v-model="statusFilter" aria-label="按掌握程度筛选"><option value="all">全部状态</option><option value="unmarked">未标记</option><option v-for="status in statuses" :key="status.value" :value="status.value">{{ status.label }}</option></select></div></div>
+        <div class="toolbar"><div class="scope-label">{{ demoMode ? '交互示例' : `${selectedYear} 年试卷` }}<span>{{ queue.length }} 题 · 已标记 {{ markedInQueue }}</span></div><div class="toolbar-filters"><label class="question-search"><PracticeIcon name="search" /><input v-model="keyword" maxlength="80" aria-label="搜索错题" placeholder="搜索题目、知识点" /></label><select v-model="statusFilter" aria-label="按掌握程度筛选"><option value="all">全部状态</option><option value="unmarked">未标记</option><option v-for="status in statuses" :key="status.value" :value="status.value">{{ status.label }}</option></select></div></div>
         <div v-if="queue.length" class="question-list">
           <section v-for="group in yearGroups" :id="`practice-year-${group.year}`" :key="group.year" class="year-section" :aria-labelledby="`year-title-${group.year}`">
-            <header class="year-heading"><h2 :id="`year-title-${group.year}`">{{ group.year || '交互示例' }}{{ group.year ? ' 年' : '' }}</h2><span>{{ group.questions.length }} 题</span></header>
+            <h2 :id="`year-title-${group.year}`" class="visually-hidden">{{ group.year }} 年试卷题目</h2>
             <div class="year-questions"><PracticeQuestionCard v-for="(question, index) in group.questions" :key="`${round}-${question.id}`" :question="question" :index="index + 1" :progress="activeProgress[question.id]" :storage-failed="storageFailed" @mark="mark" @note="saveNote" /></div>
           </section>
+          <footer class="paper-end"><span>本卷结束</span><span>{{ selectedYear }} 年 · {{ queue.length }} 题</span></footer>
         </div>
-        <section v-else class="empty-state"><PracticeIcon :name="mode === 'review' ? 'check' : 'book'" /><h2>{{ mode === 'review' ? '这里暂时没有需要再练的题' : questions.length ? '没有符合筛选条件的题目' : '准备好收集你的第一道错题' }}</h2><p>{{ mode === 'review' ? '将题目标为“不熟练”或“不会”后，它们会自动出现在这里。' : questions.length ? '试试其他年份、状态，或清空搜索关键词。' : '上传题目时附上年份，我会把题干、答案和解析一起录入。' }}</p><button v-if="mode === 'review'" class="primary-button" @click="selectView('all', '')">返回全部错题</button></section>
+        <section v-else class="empty-state"><PracticeIcon :name="mode === 'review' ? 'check' : 'book'" /><h2>{{ mode === 'review' ? '这里暂时没有需要再练的题' : questions.length ? '没有符合筛选条件的题目' : '准备好收集你的第一道错题' }}</h2><p>{{ mode === 'review' ? '将题目标为“不熟练”或“不会”后，它们会自动出现在这里。' : questions.length ? '试试其他年份、状态，或清空搜索关键词。' : '上传题目时附上年份，我会把题干、答案和解析一起录入。' }}</p><button v-if="mode === 'review'" class="primary-button" @click="selectView('all')">返回本卷错题</button></section>
         <p v-if="notice" class="notice" role="status" aria-live="polite">{{ notice }}</p>
       </main>
     </div>
@@ -203,9 +192,9 @@ main { min-width: 0; }.workspace-heading { display: flex; justify-content: space
 .preview-banner { display: flex; align-items: center; gap: 12px; margin-top: 25px; border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; background: var(--paper); }.preview-banner > svg { color: var(--accent); }.preview-banner strong { font-size: 13px; font-weight: 600; }.preview-banner p { margin: 4px 0 0; color: var(--muted); font-size: 12px; }.preview-banner button { min-height: 44px; flex-shrink: 0; margin-left: auto; border: 0; padding: 0 8px; background: transparent; color: var(--accent-dark); font-size: 12px; font-weight: 600; }
 .toolbar { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-top: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }.scope-label { font-size: 15px; font-weight: 650; }.scope-label > span { margin-left: 12px; color: var(--muted); font-size: 12px; font-weight: 400; }.toolbar-filters { display: flex; gap: 9px; }.question-search { display: flex; align-items: center; gap: 8px; width: 218px; min-height: 42px; border: 1px solid var(--line); border-radius: 8px; padding: 0 11px; background: var(--paper); color: var(--muted); }.question-search svg { width: 16px; }.question-search input { width: 100%; min-width: 0; border: 0; outline: 0; background: transparent; color: var(--ink); font-size: 12px; }.question-search:focus-within { outline: 3px solid var(--focus-ring); border-color: var(--accent); }select { min-height: 44px; max-width: 130px; border: 1px solid var(--line); border-radius: 8px; padding: 0 10px; background: var(--paper); color: var(--ink-soft); font-size: 12px; }
 .question-list { margin-top: 12px; }
-.year-section { scroll-margin-top: 20px; margin-top: 12px; }.year-section + .year-section { margin-top: 30px; }
+.year-section { scroll-margin-top: 20px; margin-top: 0; }.year-section + .year-section { margin-top: 30px; }
 .year-heading { display: flex; align-items: baseline; gap: 12px; margin-bottom: 10px; }.year-heading h2 { margin: 0; color: var(--ink); font-size: 20px; font-weight: 700; }.year-heading > span { color: var(--muted); font-size: 12px; }
-.year-questions { display: grid; gap: 14px; }
+.year-questions { display: grid; gap: 14px; }.paper-end { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 26px; border-top: 1px solid var(--line); padding: 20px 0; color: var(--muted); font-size: 13px; }
 .empty-state { display: grid; justify-items: center; text-align: center; gap: 10px; margin-top: 20px; border: 1px solid var(--line); border-radius: 16px; padding: 65px 24px; background: var(--paper); }.empty-state > svg { width: 35px; height: 35px; margin-bottom: 8px; color: var(--accent); }.empty-state h2 { margin: 0; font-size: 20px; }.empty-state p { max-width: 460px; margin: 0 0 10px; color: var(--muted); font-size: 14px; }.notice { position: fixed; z-index: 20; bottom: 22px; right: 24px; max-width: calc(100% - 40px); margin: 0; border: 1px solid var(--line); border-radius: 8px; padding: 12px 18px; background: var(--paper); box-shadow: 0 4px 20px #18223818; color: var(--accent-dark); font-size: 13px; }.storage-error { margin-top: 20px; padding: 12px; border-radius: 8px; background: var(--danger-tint); color: var(--danger); font-size: 13px; }.mobile-directory { display: none; }
 .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 @media (max-width: 1100px) { .practice-layout { grid-template-columns: 205px minmax(0, 1fr); gap: 24px; width: calc(100% - 40px); }.toolbar { flex-wrap: wrap; }.question-search { width: 200px; } }

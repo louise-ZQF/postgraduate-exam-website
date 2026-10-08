@@ -8,9 +8,9 @@
     "source": "张宇1000题 第31页第17题",
     "topic": "高等数学 / 多元微分 / 隐函数求导",
     "type": "solution",
-    "stem": "设函数 $z=z(x,y)$ 由方程\n\n$$\nF\\left(x+\\frac{z}{y},\\,y+\\frac{z}{x}\\right)=0\n$$\n\n确定，且 $F(u,v)$ 具有连续偏导数，求\n\n$$\nx\\frac{\\partial z}{\\partial x}+y\\frac{\\partial z}{\\partial y}.\n$$",
-    "answer": "在 $x\\ne0,y\\ne0$ 且 $F_1/y+F_2/x\\ne0$ 的隐函数求导条件下，结果为 $z-xy$。",
-    "explanation": "令 $G(x,y,z)=F(x+z/y,y+z/x)$，$F_1,F_2$ 表示 $F$ 对第一、第二个自变量的偏导数，均在题中的复合自变量处取值。隐函数求导需要 $G_z=F_1/y+F_2/x\\ne0$；题干只说“确定隐函数”，未明确写出这一条件，以下按通常的隐函数求导条件计算。\n\n分别对 $x,y$ 求偏导，注意 $z$ 也随 $x,y$ 变化：\n\n$$\nF_1\\left(1+\\frac{z_x}{y}\\right)+F_2\\left(\\frac{z_x}{x}-\\frac z{x^2}\\right)=0,\n$$\n\n$$\nF_1\\left(\\frac{z_y}{y}-\\frac z{y^2}\\right)+F_2\\left(1+\\frac{z_y}{x}\\right)=0.\n$$\n\n第一式乘 $x$，第二式乘 $y$ 后相加，令 $S=xz_x+yz_y$，得\n\n$$\nF_1\\left(x+\\frac{S-z}{y}\\right)+F_2\\left(y+\\frac{S-z}{x}\\right)\n=\\left(\\frac{F_1}{y}+\\frac{F_2}{x}\\right)(xy+S-z)=0.\n$$\n\n由非零条件可约去第一个因子，故 $S=z-xy$。这类题直接求所需的偏导数组合，比先分别求出 $z_x,z_y$ 更简洁。\n\n仅有“$F$ 具有连续偏导数”不能保证上述非零条件，不能无条件约去这个因子。"
+    "stem": "设函数 $z=z(x,y)$ 由方程 $F\\!\\left(x+\\dfrac{z}{y},\\,y+\\dfrac{z}{x}\\right)=0$ 确定，且 $F(u,v)$ 具有连续偏导数，求 $x\\dfrac{\\partial z}{\\partial x}+y\\dfrac{\\partial z}{\\partial y}$。",
+    "answer": "在 $x\\ne0,y\\ne0$ 且 $\\frac{F_1}{y}+\\frac{F_2}{x}\\ne0$ 的隐函数求导条件下，结果为 $z-xy$。",
+    "explanation": "令 $G(x,y,z)=F\\!\\left(x+\\frac{z}{y},\\,y+\\frac{z}{x}\\right)$，$F_1,F_2$ 表示 $F$ 对第一、第二个自变量的偏导数，均在题中的复合自变量处取值。隐函数求导需要 $G_z=\\frac{F_1}{y}+\\frac{F_2}{x}\\ne0$；题干只说“确定隐函数”，未明确写出这一条件，以下按通常的隐函数求导条件计算。\n\n分别对 $x,y$ 求偏导，注意 $z$ 也随 $x,y$ 变化：\n\n$$\nF_1\\left(1+\\frac{z_x}{y}\\right)+F_2\\left(\\frac{z_x}{x}-\\frac z{x^2}\\right)=0,\n$$\n\n$$\nF_1\\left(\\frac{z_y}{y}-\\frac z{y^2}\\right)+F_2\\left(1+\\frac{z_y}{x}\\right)=0.\n$$\n\n第一式乘 $x$，第二式乘 $y$ 后相加，令 $S=xz_x+yz_y$，得\n\n$$\nF_1\\left(x+\\frac{S-z}{y}\\right)+F_2\\left(y+\\frac{S-z}{x}\\right)\n=\\left(\\frac{F_1}{y}+\\frac{F_2}{x}\\right)(xy+S-z)=0.\n$$\n\n由非零条件可约去第一个因子，故 $S=z-xy$。这类题直接求所需的偏导数组合，比先分别求出 $z_x,z_y$ 更简洁。\n\n仅有“$F$ 具有连续偏导数”不能保证上述非零条件，不能无条件约去这个因子。"
   },
   {
     "id": "math2-2010-q5-exercise2",
@@ -21,9 +21,9 @@
     "source": "张宇1000题 第90页第17题",
     "topic": "高等数学 / 多元微分 / 隐函数求导",
     "type": "choice",
-    "stem": "设 $F(u,v)$ 具有一阶连续偏导数，且 $z=z(x,y)$ 由方程\n\n$$\nF\\left(\\frac{x}{z},\\,yz\\right)=0\n$$\n\n所确定。设题中出现的分母不为零，则\n\n$$\nx\\frac{\\partial z}{\\partial x}-y\\frac{\\partial z}{\\partial y}=(\\qquad).\n$$",
+    "stem": "设 $F(u,v)$ 具有一阶连续偏导数，且 $z=z(x,y)$ 由方程 $F\\!\\left(\\dfrac{x}{z},\\,yz\\right)=0$ 确定。设题中出现的分母不为零，则 $x\\dfrac{\\partial z}{\\partial x}-y\\dfrac{\\partial z}{\\partial y}=$（　）。",
     "answer": "B，即 $z$。",
-    "explanation": "第一步，令 $u=x/z$、$v=yz$。分别对 $x,y$ 求偏导，得到\n\n$$\nF_1\\left(\\frac1z-\\frac{xz_x}{z^2}\\right)+F_2\\,yz_x=0,\n$$\n\n$$\n-F_1\\frac{xz_y}{z^2}+F_2(z+yz_y)=0.\n$$\n\n第二步，第一式乘 $x$，第二式乘 $y$，再用前者减去后者。记 $S=xz_x-yz_y$，则\n\n$$\nF_1\\left(\\frac{x}{z}-\\frac{xS}{z^2}\\right)+F_2(yS-yz)\n=(z-S)\\left(\\frac{xF_1}{z^2}-yF_2\\right)=0.\n$$\n\n第三步，隐函数求导的分母为 $G_z=-xF_1/z^2+yF_2$，其中 $G=F(x/z,yz)$。题设“分母不为零”应包括 $z\\ne0$ 和 $G_z\\ne0$，因此上式第二个因子非零，可得 $z-S=0$，所以\n\n$$\nx\\frac{\\partial z}{\\partial x}-y\\frac{\\partial z}{\\partial y}=z.\n$$\n\n两道题的做法相同：先看题目要的是偏导数的哪种组合，再把偏导方程按对应系数相加或相减。",
+    "explanation": "第一步，令 $u=\\frac{x}{z}$、$v=yz$。分别对 $x,y$ 求偏导，得到\n\n$$\nF_1\\left(\\frac1z-\\frac{xz_x}{z^2}\\right)+F_2\\,yz_x=0,\n$$\n\n$$\n-F_1\\frac{xz_y}{z^2}+F_2(z+yz_y)=0.\n$$\n\n第二步，第一式乘 $x$，第二式乘 $y$，再用前者减去后者。记 $S=xz_x-yz_y$，则\n\n$$\nF_1\\left(\\frac{x}{z}-\\frac{xS}{z^2}\\right)+F_2(yS-yz)\n=(z-S)\\left(\\frac{xF_1}{z^2}-yF_2\\right)=0.\n$$\n\n第三步，隐函数求导的分母为 $G_z=-\\frac{xF_1}{z^2}+yF_2$，其中 $G=F(\\frac{x}{z},yz)$。题设“分母不为零”应包括 $z\\ne0$ 和 $G_z\\ne0$，因此上式第二个因子非零，可得 $z-S=0$，所以\n\n$$\nx\\frac{\\partial z}{\\partial x}-y\\frac{\\partial z}{\\partial y}=z.\n$$\n\n两道题的做法相同：先看题目要的是偏导数的哪种组合，再把偏导方程按对应系数相加或相减。",
     "options": [
       {
         "key": "A",
@@ -35,7 +35,7 @@
       },
       {
         "key": "C",
-        "text": "$\\frac{1}{z}$"
+        "text": "$\\dfrac{1}{z}$"
       },
       {
         "key": "D",
@@ -85,7 +85,7 @@
     "source": "基础过关660题 高数 第133页第402题",
     "topic": "高等数学 / 微分方程 / 常系数线性微分方程",
     "type": "choice",
-    "stem": "在下列方程中，以\n\n$$\ny=C_1e^x+C_2\\cos 2x+C_3\\sin 2x\n$$\n\n（$C_1,C_2,C_3$ 为任意常数）为通解的是（　）。",
+    "stem": "在下列方程中，以 $y=C_1e^x+C_2\\cos 2x+C_3\\sin 2x$（$C_1,C_2,C_3$ 为任意常数）为通解的是（　）。",
     "answer": "D。",
     "explanation": "第一步，$e^x$ 对应实根1；$\\cos2x,\\sin2x$ 对应一对共轭复根 $2i,-2i$。\n\n第二步，写出特征多项式：\n\n$$\n(\\lambda-1)(\\lambda^2+4)=\\lambda^3-\\lambda^2+4\\lambda-4.\n$$\n\n第三步，得到对应微分方程\n\n$$\ny'''-y''+4y'-4y=0.\n$$\n\n更一般地，$e^{ax}\\cos bx$、$e^{ax}\\sin bx$ 对应根 $a\\pm bi$。本题没有指数因子，因此实部为0。",
     "options": [
@@ -119,7 +119,7 @@
     "type": "fill",
     "stem": "设 $f(x)=\\ln(1+x+x^2)$，则 $f^{(5)}(0)=\\underline{\\qquad}$。",
     "answer": "24。",
-    "explanation": "第一步，求0点高阶导数，可以先找泰勒展开中 $x^5$ 的系数。利用\n\n$$\n1+x+x^2=\\frac{1-x^3}{1-x},\n$$\n\n在0的邻域有\n\n$$\nf(x)=\\ln(1-x^3)-\\ln(1-x).\n$$\n\n第二步，分别展开并保留到五次项：\n\n$$\n\\ln(1-x^3)=-x^3+O(x^6),\n$$\n\n$$\n-\\ln(1-x)=x+\\frac{x^2}{2}+\\frac{x^3}{3}+\\frac{x^4}{4}+\\frac{x^5}{5}+O(x^6).\n$$\n\n相加得\n\n$$\nf(x)=x+\\frac{x^2}{2}-\\frac{2x^3}{3}+\\frac{x^4}{4}+\\frac{x^5}{5}+O(x^6).\n$$\n\n第三步，泰勒公式中 $x^5$ 的系数是 $f^{(5)}(0)/5!$，因此\n\n$$\nf^{(5)}(0)=5!\\cdot\\frac15=24.\n$$\n\n注意：五次项系数是 $1/5$，五阶导数还要乘 $5!$。"
+    "explanation": "第一步，求0点高阶导数，可以先找泰勒展开中 $x^5$ 的系数。利用\n\n$$\n1+x+x^2=\\frac{1-x^3}{1-x},\n$$\n\n在0的邻域有\n\n$$\nf(x)=\\ln(1-x^3)-\\ln(1-x).\n$$\n\n第二步，分别展开并保留到五次项：\n\n$$\n\\ln(1-x^3)=-x^3+O(x^6),\n$$\n\n$$\n-\\ln(1-x)=x+\\frac{x^2}{2}+\\frac{x^3}{3}+\\frac{x^4}{4}+\\frac{x^5}{5}+O(x^6).\n$$\n\n相加得\n\n$$\nf(x)=x+\\frac{x^2}{2}-\\frac{2x^3}{3}+\\frac{x^4}{4}+\\frac{x^5}{5}+O(x^6).\n$$\n\n第三步，泰勒公式中 $x^5$ 的系数是 $\\frac{f^{(5)}(0)}{5!}$，因此\n\n$$\nf^{(5)}(0)=5!\\cdot\\frac15=24.\n$$\n\n注意：五次项系数是 $\\frac{1}{5}$，五阶导数还要乘 $5!$。"
   },
   {
     "id": "math2-2010-q12-exercise1",
@@ -132,7 +132,7 @@
     "type": "fill",
     "stem": "曲线 $r=e^\\theta$ 从 $\\theta=0$ 到 $\\theta=1$ 的弧长为 $\\underline{\\qquad}$。",
     "answer": "$\\sqrt2(e-1)$。",
-    "explanation": "第一步，极坐标曲线的弧长公式为\n\n$$\ns=\\int_\\alpha^\\beta\\sqrt{r^2+\\left(\\frac{dr}{d\\theta}\\right)^2}\\,d\\theta.\n$$\n\n本题 $r=e^\\theta$，故 $dr/d\\theta=e^\\theta$。\n\n第二步，代入上下限0、1：\n\n$$\ns=\\int_0^1\\sqrt{e^{2\\theta}+e^{2\\theta}}\\,d\\theta\n=\\sqrt2\\int_0^1e^\\theta\\,d\\theta\n=\\sqrt2(e-1).\n$$\n\n极坐标弧长要同时考虑 $r$ 和 $r'$，不能只积分半径。"
+    "explanation": "第一步，极坐标曲线的弧长公式为\n\n$$\ns=\\int_\\alpha^\\beta\\sqrt{r^2+\\left(\\frac{dr}{d\\theta}\\right)^2}\\,d\\theta.\n$$\n\n本题 $r=e^\\theta$，故 $\\frac{dr}{d\\theta}=e^\\theta$。\n\n第二步，代入上下限0、1：\n\n$$\ns=\\int_0^1\\sqrt{e^{2\\theta}+e^{2\\theta}}\\,d\\theta\n=\\sqrt2\\int_0^1e^\\theta\\,d\\theta\n=\\sqrt2(e-1).\n$$\n\n极坐标弧长要同时考虑 $r$ 和 $r'$，不能只积分半径。"
   },
   {
     "id": "math2-2010-q12-exercise2",
@@ -143,9 +143,9 @@
     "source": "李林880题 高数 第三章 基础填空第16题",
     "topic": "高等数学 / 一元积分 / 极坐标弧长",
     "type": "fill",
-    "stem": "曲线\n\n$$\nr=a\\sin^3\\frac{\\theta}{3}\\quad(a>0,\\;0\\leq\\theta\\leq3\\pi)\n$$\n\n的弧长 $s=\\underline{\\qquad}$。",
+    "stem": "曲线 $r=a\\sin^3\\!\\left(\\dfrac{\\theta}{3}\\right)$（$a>0$，$0\\le\\theta\\le3\\pi$）的弧长 $s=\\underline{\\qquad}$。",
     "answer": "$\\frac{3\\pi a}{2}$。",
-    "explanation": "第一步，对 $r=a\\sin^3(\\theta/3)$ 求导。令 $u=\\theta/3$，链式求导中3与 $1/3$ 抵消，得到\n\n$$\nr'=a\\sin^2u\\cos u.\n$$\n\n第二步，将它代入极坐标弧长公式，根号内可以合并：\n\n$$\n\\sqrt{r^2+(r')^2}\n=\\sqrt{a^2\\sin^6u+a^2\\sin^4u\\cos^2u}\n=a\\sin^2u.\n$$\n\n第三步，$\\theta$ 从0变到 $3\\pi$，$u$ 从0变到 $\\pi$，且 $d\\theta=3\\,du$，所以\n\n$$\ns=3a\\int_0^\\pi\\sin^2u\\,du\n=\\frac{3a}{2}\\int_0^\\pi(1-\\cos2u)\\,du\n=\\frac{3\\pi a}{2}.\n$$\n\n容易漏掉的是换元后的 $d\\theta=3\\,du$。"
+    "explanation": "第一步，对 $r=a\\sin^3\\!\\left(\\frac{\\theta}{3}\\right)$ 求导。令 $u=\\frac{\\theta}{3}$，链式求导中3与 $\\frac{1}{3}$ 抵消，得到\n\n$$\nr'=a\\sin^2u\\cos u.\n$$\n\n第二步，将它代入极坐标弧长公式，根号内可以合并：\n\n$$\n\\sqrt{r^2+(r')^2}\n=\\sqrt{a^2\\sin^6u+a^2\\sin^4u\\cos^2u}\n=a\\sin^2u.\n$$\n\n第三步，$\\theta$ 从0变到 $3\\pi$，$u$ 从0变到 $\\pi$，且 $d\\theta=3\\,du$，所以\n\n$$\ns=3a\\int_0^\\pi\\sin^2u\\,du\n=\\frac{3a}{2}\\int_0^\\pi(1-\\cos2u)\\,du\n=\\frac{3\\pi a}{2}.\n$$\n\n容易漏掉的是换元后的 $d\\theta=3\\,du$。"
   },
   {
     "id": "math2-2010-q12-exercise3",
@@ -195,9 +195,9 @@
     "source": "李林880题高数第六章基础填空第3题",
     "topic": "高等数学 / 微分方程 / 一阶与二阶微分方程",
     "type": "fill",
-    "stem": "微分方程 $y'=\\frac yx+\\tan\\frac yx$ 满足 $y(1)=\\frac{\\pi}{6}$ 的特解为$\\underline{\\qquad}$。",
-    "answer": "$y=x\\arcsin(x/2)$，在包含初始点的区间 $0<x<2$ 上成立。",
-    "explanation": "第一步，方程右边只依赖 $y/x$，令 $u=y/x$，则 $y=xu,\\;y'=u+xu'$。代入得 $xu'=\\tan u$。\n\n第二步，分离变量：\n\n$$\n\\cot u\\,du=\\frac{dx}{x},\\qquad \\ln|\\sin u|=\\ln|x|+C.\n$$\n\n第三步，由 $x=1,u=\\pi/6$，得到 $\\sin u=x/2$。取与初始值连续衔接的分支 $u=\\arcsin(x/2)$，因此 $y=x\\arcsin(x/2)$。初始条件决定反三角函数的分支，不能任意加上整数倍的 $\\pi$。"
+    "stem": "微分方程 $y'=\\dfrac yx+\\tan\\dfrac yx$ 满足 $y(1)=\\dfrac{\\pi}{6}$ 的特解为$\\underline{\\qquad}$。",
+    "answer": "$y=x\\arcsin\\!\\left(\\frac{x}{2}\\right)$，在包含初始点的区间 $0<x<2$ 上成立。",
+    "explanation": "第一步，方程右边只依赖 $\\frac{y}{x}$，令 $u=\\frac{y}{x}$，则 $y=xu,\\;y'=u+xu'$。代入得 $xu'=\\tan u$。\n\n第二步，分离变量：\n\n$$\n\\cot u\\,du=\\frac{dx}{x},\\qquad \\ln|\\sin u|=\\ln|x|+C.\n$$\n\n第三步，由 $x=1,u=\\frac{\\pi}{6}$，得到 $\\sin u=\\frac{x}{2}$。取与初始值连续衔接的分支 $u=\\arcsin\\!\\left(\\frac{x}{2}\\right)$，因此 $y=x\\arcsin\\!\\left(\\frac{x}{2}\\right)$。初始条件决定反三角函数的分支，不能任意加上整数倍的 $\\pi$。"
   },
   {
     "id": "math2-2011-q4-exercise2",
@@ -208,25 +208,25 @@
     "source": "张宇1000题第37页第17题",
     "topic": "高等数学 / 微分方程 / 一阶与二阶微分方程",
     "type": "choice",
-    "stem": "微分方程\n\n$$\n4y''-12y'+9y=e^{3x/2}(3x^2+2)\n$$\n\n的特解形式为（　）。",
+    "stem": "微分方程 $4y''-12y'+9y=e^{\\dfrac{3x}{2}}(3x^2+2)$ 的特解形式为（　）。",
     "answer": "D。",
-    "explanation": "第一步，齐次方程的特征多项式为 $4\\lambda^2-12\\lambda+9=(2\\lambda-3)^2$，所以 $3/2$ 是二重特征根。\n\n第二步，右边是二次多项式乘 $e^{3x/2}$。未发生共振时应设二次多项式乘指数；但指数对应二重特征根，所以必须额外乘 $x^2$，得到D。\n\n第三步，也可令 $y=e^{3x/2}v$，左边化为 $4e^{3x/2}v''$，于是 $4v''=3x^2+2$。两次积分所得特解可取 $v=x^4/16+x^2/4$，它确实具有 $x^2$ 乘二次多项式的形式。",
+    "explanation": "第一步，齐次方程的特征多项式为 $4\\lambda^2-12\\lambda+9=(2\\lambda-3)^2$，所以 $\\frac{3}{2}$ 是二重特征根。\n\n第二步，右边是二次多项式乘 $e^{\\frac{3x}{2}}$。未发生共振时应设二次多项式乘指数；但指数对应二重特征根，所以必须额外乘 $x^2$，得到D。\n\n第三步，也可令 $y=e^{\\frac{3x}{2}}v$，左边化为 $4e^{\\frac{3x}{2}}v''$，于是 $4v''=3x^2+2$。两次积分所得特解可取 $v=\\frac{x^4}{16}+\\frac{x^2}{4}$，它确实具有 $x^2$ 乘二次多项式的形式。",
     "options": [
       {
         "key": "A",
-        "text": "$Ax^2+Bx+C+De^{3x/2}$"
+        "text": "$Ax^2+Bx+C+De^{\\dfrac{3x}{2}}$"
       },
       {
         "key": "B",
-        "text": "$(Ax^2+Bx+C)e^{3x/2}$"
+        "text": "$(Ax^2+Bx+C)e^{\\dfrac{3x}{2}}$"
       },
       {
         "key": "C",
-        "text": "$x(Ax^2+Bx+C)e^{3x/2}$"
+        "text": "$x(Ax^2+Bx+C)e^{\\dfrac{3x}{2}}$"
       },
       {
         "key": "D",
-        "text": "$x^2(Ax^2+Bx+C)e^{3x/2}$"
+        "text": "$x^2(Ax^2+Bx+C)e^{\\dfrac{3x}{2}}$"
       }
     ],
     "correctOption": "D"
@@ -240,9 +240,9 @@
     "source": "基础过关660题高数第339题",
     "topic": "高等数学 / 一元积分 / 奇偶性与积分比较",
     "type": "choice",
-    "stem": "设\n\n$$\nM=\\int_{-\\pi/2}^{\\pi/2}\\frac{(1+x)^2}{1+x^2}\\,dx,\\quad\nN=\\int_{-\\pi/2}^{\\pi/2}\\frac{1+x}{e^x}\\,dx,\\quad\nK=\\int_{-\\pi/2}^{\\pi/2}(1+\\sqrt{\\cos x})\\,dx,\n$$\n\n则（　）。",
+    "stem": "设\n\n$$\n\\begin{aligned}\nM&=\\int_{-\\frac{\\pi}{2}}^{\\frac{\\pi}{2}}\\frac{(1+x)^2}{1+x^2}\\,dx,\\\\[4pt]\nN&=\\int_{-\\frac{\\pi}{2}}^{\\frac{\\pi}{2}}(1+x)e^{-x}\\,dx,\\\\[4pt]\nK&=\\int_{-\\frac{\\pi}{2}}^{\\frac{\\pi}{2}}(1+\\sqrt{\\cos x})\\,dx\n\\end{aligned}\n$$\n\n则（　）。",
     "answer": "C。",
-    "explanation": "先用对称区间上的奇偶性计算 $M$：\n\n$$\nM=\\int_{-\\pi/2}^{\\pi/2}\\left(1+\\frac{2x}{1+x^2}\\right)dx=\\pi.\n$$\n\n又因为 $\\sqrt{\\cos x}$ 在区间内非负，且在内部为正，所以\n\n$$\nK=\\pi+\\int_{-\\pi/2}^{\\pi/2}\\sqrt{\\cos x}\\,dx>\\pi=M.\n$$\n\n比较 $N$ 与 $M$，将负半轴上的积分换元 $x=-t$，与正半轴配对：\n\n$$\nN=\\int_0^{\\pi/2}\\bigl[(1+x)e^{-x}+(1-x)e^x\\bigr]dx.\n$$\n\n令 $H(x)=(1+x)e^{-x}+(1-x)e^x$，则\n\n$$\nH(0)=2,\\qquad H'(x)=-x(e^{-x}+e^x)<0\\quad(x>0).\n$$\n\n故 $H(x)<2$，从而 $N<\\int_0^{\\pi/2}2\\,dx=\\pi$。合并得 $K>M>N$，选C。整个比较只用奇偶性、换元和导数，不必求出 $N,K$ 的精确值。",
+    "explanation": "先用对称区间上的奇偶性计算 $M$：\n\n$$\nM=\\int_{-\\frac{\\pi}{2}}^{\\frac{\\pi}{2}}\\left(1+\\frac{2x}{1+x^2}\\right)dx=\\pi.\n$$\n\n又因为 $\\sqrt{\\cos x}$ 在区间内非负，且在内部为正，所以\n\n$$\nK=\\pi+\\int_{-\\frac{\\pi}{2}}^{\\frac{\\pi}{2}}\\sqrt{\\cos x}\\,dx>\\pi=M.\n$$\n\n比较 $N$ 与 $M$，将负半轴上的积分换元 $x=-t$，与正半轴配对：\n\n$$\nN=\\int_0^{\\frac{\\pi}{2}}\\bigl[(1+x)e^{-x}+(1-x)e^x\\bigr]dx.\n$$\n\n令 $H(x)=(1+x)e^{-x}+(1-x)e^x$，则\n\n$$\nH(0)=2,\\qquad H'(x)=-x(e^{-x}+e^x)<0\\quad(x>0).\n$$\n\n故 $H(x)<2$，从而 $N<\\int_0^{\\frac{\\pi}{2}}2\\,dx=\\pi$。合并得 $K>M>N$，选C。整个比较只用奇偶性、换元和导数，不必求出 $N,K$ 的精确值。",
     "options": [
       {
         "key": "A",
@@ -272,9 +272,9 @@
     "source": "张宇1000题第20页第20题",
     "topic": "高等数学 / 一元积分 / 奇偶性与积分比较",
     "type": "choice",
-    "stem": "设\n\n$$\nM=\\int_{-\\pi/2}^{\\pi/2}\\frac{x}{1+x^2}\\cos^5x\\,dx,\\quad\nN=\\int_{-\\pi/2}^{\\pi/2}(x^2\\sin x+\\sin^2x\\cos x)\\,dx,\n$$\n\n$$\nP=\\int_{-\\pi/2}^{\\pi/2}(\\sin^3x-\\cos^4x)\\,dx,\n$$\n\n则有（　）。",
+    "stem": "设\n\n$$\n\\begin{aligned}\nM&=\\int_{-\\frac{\\pi}{2}}^{\\frac{\\pi}{2}}\\frac{x\\cos^5x}{1+x^2}\\,dx,\\\\[4pt]\nN&=\\int_{-\\frac{\\pi}{2}}^{\\frac{\\pi}{2}}(x^2\\sin x+\\sin^2x\\cos x)\\,dx,\\\\[4pt]\nP&=\\int_{-\\frac{\\pi}{2}}^{\\frac{\\pi}{2}}(\\sin^3x-\\cos^4x)\\,dx\n\\end{aligned}\n$$\n\n则有（　）。",
     "answer": "D。",
-    "explanation": "第一步，$x/(1+x^2)$ 是奇函数，$\\cos^5x$ 是偶函数，乘积为奇函数，所以 $M=0$。\n\n第二步，$x^2\\sin x$ 是奇函数，其积分为0；$\\sin^2x\\cos x$ 在区间内非负且不恒为0，因此 $N>0$。令 $u=\\sin x$，还可算得 $N=\\int_{-1}^1u^2\\,du=2/3$。\n\n第三步，$\\sin^3x$ 是奇函数，积分为0，故 $P=-\\int_{-\\pi/2}^{\\pi/2}\\cos^4x\\,dx<0$。因此 $P<M<N$。",
+    "explanation": "第一步，$\\frac{x}{1+x^2}$ 是奇函数，$\\cos^5x$ 是偶函数，乘积为奇函数，所以 $M=0$。\n\n第二步，$x^2\\sin x$ 是奇函数，其积分为0；$\\sin^2x\\cos x$ 在区间内非负且不恒为0，因此 $N>0$。令 $u=\\sin x$，还可算得 $N=\\int_{-1}^1u^2\\,du=\\frac{2}{3}$。\n\n第三步，$\\sin^3x$ 是奇函数，积分为0，故 $P=-\\int_{-\\frac{\\pi}{2}}^{\\frac{\\pi}{2}}\\cos^4x\\,dx<0$。因此 $P<M<N$。",
     "options": [
       {
         "key": "A",
@@ -304,9 +304,9 @@
     "source": "张宇1000题第78页第4题",
     "topic": "高等数学 / 一元积分 / 奇偶性与积分比较",
     "type": "choice",
-    "stem": "设\n\n$$\nI_1=\\int_0^{2\\pi}\\frac{\\sin x}{x}\\,dx,\\quad\nI_2=\\int_0^{2\\pi}\\frac{\\sin x}{2\\pi-x}\\,dx,\\quad\nI_3=\\int_0^{2\\pi}\\frac{\\sin x}{x(2\\pi-x)}\\,dx,\n$$\n\n则（　）。",
+    "stem": "设\n\n$$\n\\begin{aligned}\nI_1&=\\int_0^{2\\pi}\\frac{\\sin x}{x}\\,dx,\\\\[4pt]\nI_2&=\\int_0^{2\\pi}\\frac{\\sin x}{2\\pi-x}\\,dx,\\\\[4pt]\nI_3&=\\int_0^{2\\pi}\\frac{\\sin x}{x(2\\pi-x)}\\,dx\n\\end{aligned}\n$$\n\n则（　）。",
     "answer": "C。",
-    "explanation": "第一步，对 $I_2$ 换元 $u=2\\pi-x$，利用 $\\sin(2\\pi-u)=-\\sin u$，得到 $I_2=-I_1$。\n\n第二步，分解\n\n$$\n\\frac1{x(2\\pi-x)}=\\frac1{2\\pi}\\left(\\frac1x+\\frac1{2\\pi-x}\\right),\n$$\n\n所以 $I_3=(I_1+I_2)/(2\\pi)=0$。\n\n第三步，要确定 $I_1$ 的正负，将后半段换元 $x=\\pi+u$：\n\n$$\nI_1=\\int_0^\\pi\\sin u\\left(\\frac1u-\\frac1{\\pi+u}\\right)\\,du>0.\n$$\n\n因此 $I_2<0=I_3<I_1$，选C。积分两端的表面奇点均可连续延拓，不会影响上述换元。",
+    "explanation": "第一步，对 $I_2$ 换元 $u=2\\pi-x$，利用 $\\sin(2\\pi-u)=-\\sin u$，得到 $I_2=-I_1$。\n\n第二步，分解\n\n$$\n\\frac1{x(2\\pi-x)}=\\frac1{2\\pi}\\left(\\frac1x+\\frac1{2\\pi-x}\\right),\n$$\n\n所以 $I_3=\\frac{I_1+I_2}{2\\pi}=0$。\n\n第三步，要确定 $I_1$ 的正负，将后半段换元 $x=\\pi+u$：\n\n$$\nI_1=\\int_0^\\pi\\sin u\\left(\\frac1u-\\frac1{\\pi+u}\\right)\\,du>0.\n$$\n\n因此 $I_2<0=I_3<I_1$，选C。积分两端的表面奇点均可连续延拓，不会影响上述换元。",
     "options": [
       {
         "key": "A",
@@ -381,9 +381,9 @@
     "source": "李林880题高数第二章基础解答第24题",
     "topic": "高等数学 / 一元微分 / 参数方程与极值",
     "type": "solution",
-    "stem": "设函数 $y=y(x)$ 由参数方程\n\n$$\nx=t\\ln t,\\qquad y=\\frac{\\ln t}{t}\\quad(t\\geq1)\n$$\n\n确定，求它的单调区间、凹凸区间、极值和拐点。",
-    "answer": "定义域为 $[0,+\\infty)$；在 $[0,e]$ 上递增，在 $[e,+\\infty)$ 上递减，在 $x=e$ 处取得极大值（也是最大值）$1/e$，内部无极小值，端点 $x=0$ 处取得最小值0。\n\n在 $(0,\\sqrt2e^{\\sqrt2})$ 上 $y''<0$，曲线为凸；在 $(\\sqrt2e^{\\sqrt2},+\\infty)$ 上 $y''>0$，曲线为凹。这里采用高等数学教材中 $y''>0$ 为凹、$y''<0$ 为凸的约定。拐点为\n\n$$\n\\left(\\sqrt2e^{\\sqrt2},\\sqrt2e^{-\\sqrt2}\\right).\n$$",
-    "explanation": "第一步，$dx/dt=1+\\ln t>0$，因此参数 $t\\geq1$ 与定义域 $x\\geq0$ 一一对应。参数求导得\n\n$$\n\\frac{dy}{dx}=\\frac{1-\\ln t}{t^2(1+\\ln t)}.\n$$\n\n分母为正，导数在 $1<t<e$ 时为正，在 $t>e$ 时为负，故对应上述单调区间与极大值。\n\n第二步，再对 $t$ 求导后除以 $dx/dt$，不能把对参数的导数直接当作二阶导数：\n\n$$\n\\frac{d^2y}{dx^2}=\n\\frac{2[(\\ln t)^2-2]}{t^3(1+\\ln t)^3}.\n$$\n\n它在 $1<t<e^{\\sqrt2}$ 时为负，在 $t>e^{\\sqrt2}$ 时为正，因此凹凸性在 $t=e^{\\sqrt2}$ 处改变，代回参数方程得到拐点。\n\n第三步，定义域端点 $t=1$ 对应 $(0,0)$，且所有 $t\\geq1$ 都有 $y\\geq0$，所以端点处最小值为0；内部没有极小值。这一区分避免把定义域端点与内部驻点混在一起。"
+    "stem": "设函数 $y=y(x)$ 由参数方程 $x=t\\ln t$、$y=\\dfrac{\\ln t}{t}$（$t\\ge1$）确定，求它的单调区间、凹凸区间、极值和拐点。",
+    "answer": "定义域为 $[0,+\\infty)$；在 $[0,e]$ 上递增，在 $[e,+\\infty)$ 上递减，在 $x=e$ 处取得极大值（也是最大值）$\\frac{1}{e}$，内部无极小值，端点 $x=0$ 处取得最小值0。\n\n在 $(0,\\sqrt2e^{\\sqrt2})$ 上 $y''<0$，曲线为凸；在 $(\\sqrt2e^{\\sqrt2},+\\infty)$ 上 $y''>0$，曲线为凹。这里采用高等数学教材中 $y''>0$ 为凹、$y''<0$ 为凸的约定。拐点为\n\n$$\n\\left(\\sqrt2e^{\\sqrt2},\\sqrt2e^{-\\sqrt2}\\right).\n$$",
+    "explanation": "第一步，$\\frac{dx}{dt}=1+\\ln t>0$，因此参数 $t\\geq1$ 与定义域 $x\\geq0$ 一一对应。参数求导得\n\n$$\n\\frac{dy}{dx}=\\frac{1-\\ln t}{t^2(1+\\ln t)}.\n$$\n\n分母为正，导数在 $1<t<e$ 时为正，在 $t>e$ 时为负，故对应上述单调区间与极大值。\n\n第二步，再对 $t$ 求导后除以 $\\frac{dx}{dt}$，不能把对参数的导数直接当作二阶导数：\n\n$$\n\\frac{d^2y}{dx^2}=\n\\frac{2[(\\ln t)^2-2]}{t^3(1+\\ln t)^3}.\n$$\n\n它在 $1<t<e^{\\sqrt2}$ 时为负，在 $t>e^{\\sqrt2}$ 时为正，因此凹凸性在 $t=e^{\\sqrt2}$ 处改变，代回参数方程得到拐点。\n\n第三步，定义域端点 $t=1$ 对应 $(0,0)$，且所有 $t\\geq1$ 都有 $y\\geq0$，所以端点处最小值为0；内部没有极小值。这一区分避免把定义域端点与内部驻点混在一起。"
   },
   {
     "id": "math2-2011-q16-exercise2",
@@ -394,9 +394,9 @@
     "source": "李林880题高数第二章综合选择第12题",
     "topic": "高等数学 / 一元微分 / 参数方程与极值",
     "type": "choice",
-    "stem": "设函数 $y=y(x)$ 由\n\n$$\nx=\\frac{t^3}{t^2+1},\\qquad y=\\frac{t^3-2t^2}{t^2+1}\n$$\n\n确定，则它的极小值为（　）。",
+    "stem": "设函数 $y=y(x)$ 由参数方程\n\n$$\n\\begin{cases}\nx=\\frac{t^3}{t^2+1},\\\\[5pt]\ny=\\frac{t^3-2t^2}{t^2+1}\n\\end{cases}\n$$\n\n确定，则它的极小值为（　）。",
     "answer": "C。",
-    "explanation": "第一步，参数 $x(t)$ 严格递增。除 $t=0$ 外，\n\n$$\nx'=\\frac{t^2(t^2+3)}{(1+t^2)^2}>0,\\qquad\n\\frac{dy}{dx}=\\frac{(t-1)(t^2+t+4)}{t(t^2+3)}.\n$$\n\n第二步，$t^2+t+4>0$，所以导数在 $t<0$ 时为正，在 $0<t<1$ 时为负，在 $t>1$ 时为正。因而 $t=1$ 处导数由负转正，是极小值点。\n\n第三步，代回得 $x=1/2,\\;y=-1/2$，所以极小值为 $-1/2$。$t=0$ 处参数导数分母为0，需单独看左右单调性，它对应极大值0，不影响本题的极小值。",
+    "explanation": "第一步，参数 $x(t)$ 严格递增。除 $t=0$ 外，\n\n$$\nx'=\\frac{t^2(t^2+3)}{(1+t^2)^2}>0,\\qquad\n\\frac{dy}{dx}=\\frac{(t-1)(t^2+t+4)}{t(t^2+3)}.\n$$\n\n第二步，$t^2+t+4>0$，所以导数在 $t<0$ 时为正，在 $0<t<1$ 时为负，在 $t>1$ 时为正。因而 $t=1$ 处导数由负转正，是极小值点。\n\n第三步，代回得 $x=\\frac{1}{2},\\;y=-\\frac{1}{2}$，所以极小值为 $-\\frac{1}{2}$。$t=0$ 处参数导数分母为0，需单独看左右单调性，它对应极大值0，不影响本题的极小值。",
     "options": [
       {
         "key": "A",
@@ -404,11 +404,11 @@
       },
       {
         "key": "B",
-        "text": "$\\frac12$"
+        "text": "$\\dfrac12$"
       },
       {
         "key": "C",
-        "text": "$-\\frac12$"
+        "text": "$-\\dfrac12$"
       },
       {
         "key": "D",
@@ -426,9 +426,9 @@
     "source": "李林880题高数第六章综合解答第24题",
     "topic": "高等数学 / 微分方程 / 曲线与切线",
     "type": "solution",
-    "stem": "曲线 $y=y(x)$ 有二阶连续导数，$y''(x)>0$，任一点 $(x,y)$ 处的曲率为\n\n$$\nK=\\frac1{2y^2\\cos\\alpha}\\quad(\\cos\\alpha>0),\n$$\n\n其中 $\\alpha$ 为曲线在相应点处的切线倾角。曲线在点 $(1,1)$ 处取得极小值，求曲线方程。",
-    "answer": "$y=1+(x-1)^2/4$。",
-    "explanation": "由极小值点得到 $y(1)=1,y'(1)=0$。令 $p=y'$，由 $\\cos\\alpha>0$ 及切线斜率 $p=\\tan\\alpha$，有\n\n$$\n\\cos\\alpha=\\frac1{\\sqrt{1+p^2}}.\n$$\n\n再用曲率公式和 $y''>0$，得\n\n$$\n\\frac{y''}{(1+p^2)^{3/2}}=\\frac{\\sqrt{1+p^2}}{2y^2},\n\\qquad \\frac{2y''}{(1+p^2)^2}=\\frac1{y^2}.\n$$\n\n为避免在驻点处除以 $y'$，两边乘 $y'$ 后直接对 $x$ 积分。注意\n\n$$\n\\frac d{dx}\\frac1{1+(y')^2}=-\\frac{2y'y''}{(1+(y')^2)^2},\n\\qquad \\frac d{dx}\\frac1y=-\\frac{y'}{y^2}.\n$$\n\n故 $1/(1+(y')^2)-1/y=C$。代入初始条件得 $C=0$，即\n\n$$\ny=1+(y')^2.\n$$\n\n将它代回前面的曲率方程，直接得到 $y''=1/2$，这一过程也适用于 $y'=0$ 的点。两次积分并代入 $y'(1)=0,y(1)=1$，得到\n\n$$\ny'=\\frac{x-1}{2},\\qquad y=1+\\frac{(x-1)^2}{4}.\n$$\n\n该函数二阶导数恒为正，在 $(1,1)$ 处取极小值，并满足题设曲率关系。"
+    "stem": "曲线 $y=y(x)$ 有二阶连续导数，$y''(x)>0$，任一点 $(x,y)$ 处的曲率为 $K=\\dfrac{1}{2y^2\\cos\\alpha}$（$\\cos\\alpha>0$），其中 $\\alpha$ 为相应点处的切线倾角。曲线在点 $(1,1)$ 处取得极小值，求曲线方程。",
+    "answer": "$y=1+\\frac{(x-1)^2}{4}$。",
+    "explanation": "由极小值点得到 $y(1)=1,y'(1)=0$。令 $p=y'$，由 $\\cos\\alpha>0$ 及切线斜率 $p=\\tan\\alpha$，有\n\n$$\n\\cos\\alpha=\\frac1{\\sqrt{1+p^2}}.\n$$\n\n再用曲率公式和 $y''>0$，得\n\n$$\n\\frac{y''}{(1+p^2)^{\\frac{3}{2}}}=\\frac{\\sqrt{1+p^2}}{2y^2},\n\\qquad \\frac{2y''}{(1+p^2)^2}=\\frac1{y^2}.\n$$\n\n为避免在驻点处除以 $y'$，两边乘 $y'$ 后直接对 $x$ 积分。注意\n\n$$\n\\frac d{dx}\\frac1{1+(y')^2}=-\\frac{2y'y''}{(1+(y')^2)^2},\n\\qquad \\frac d{dx}\\frac1y=-\\frac{y'}{y^2}.\n$$\n\n故 $\\frac{1}{1+(y\\prime)^2}-\\frac{1}{y}=C$。代入初始条件得 $C=0$，即\n\n$$\ny=1+(y')^2.\n$$\n\n将它代回前面的曲率方程，直接得到 $y''=\\frac{1}{2}$，这一过程也适用于 $y'=0$ 的点。两次积分并代入 $y'(1)=0,y(1)=1$，得到\n\n$$\ny'=\\frac{x-1}{2},\\qquad y=1+\\frac{(x-1)^2}{4}.\n$$\n\n该函数二阶导数恒为正，在 $(1,1)$ 处取极小值，并满足题设曲率关系。"
   },
   {
     "id": "math2-2011-q18-exercise2",
@@ -441,7 +441,7 @@
     "type": "solution",
     "stem": "设函数 $y=y(x)$ 有二阶导数，曲线与直线 $y=x$ 相切于原点，且曲线在点 $(x,y)$ 处切线倾角 $\\theta$ 关于 $x$ 的变化率与该点处的切线斜率相等，求 $y(x)$ 的表达式。",
     "answer": "$$\ny=\\arcsin\\frac{e^x}{\\sqrt2}-\\frac{\\pi}{4},\\qquad x<\\frac{\\ln2}{2}.\n$$",
-    "explanation": "第一步，原点相切给出 $y(0)=0,y'(0)=1$。令 $p=y'$，由 $\\theta=\\arctan p$，题设变为\n\n$$\n\\frac{p'}{1+p^2}=p.\n$$\n\n第二步，分离变量并积分：\n\n$$\n\\int\\frac{dp}{p(1+p^2)}=\\int dx,\\qquad\n\\ln\\frac{|p|}{\\sqrt{1+p^2}}=x+C.\n$$\n\n由 $p(0)=1$，得到 $p/\\sqrt{1+p^2}=e^x/\\sqrt2$，选择包含初始点的正分支，解出\n\n$$\np=\\frac{e^x}{\\sqrt{2-e^{2x}}}.\n$$\n\n第三步，积分并用 $y(0)=0$：\n\n$$\ny=\\arcsin\\frac{e^x}{\\sqrt2}+C_1\n=\\arcsin\\frac{e^x}{\\sqrt2}-\\frac{\\pi}{4}.\n$$\n\n导数存在要求 $e^{2x}<2$，因此给出上述区间。这里“倾角的变化率”是 $\\theta'$，不是直接把 $y''$ 当作倾角的变化率。"
+    "explanation": "第一步，原点相切给出 $y(0)=0,y'(0)=1$。令 $p=y'$，由 $\\theta=\\arctan p$，题设变为\n\n$$\n\\frac{p'}{1+p^2}=p.\n$$\n\n第二步，分离变量并积分：\n\n$$\n\\int\\frac{dp}{p(1+p^2)}=\\int dx,\\qquad\n\\ln\\frac{|p|}{\\sqrt{1+p^2}}=x+C.\n$$\n\n由 $p(0)=1$，得到 $\\frac{p}{\\sqrt{1+p^2}}=\\frac{e^x}{\\sqrt{2}}$，选择包含初始点的正分支，解出\n\n$$\np=\\frac{e^x}{\\sqrt{2-e^{2x}}}.\n$$\n\n第三步，积分并用 $y(0)=0$：\n\n$$\ny=\\arcsin\\frac{e^x}{\\sqrt2}+C_1\n=\\arcsin\\frac{e^x}{\\sqrt2}-\\frac{\\pi}{4}.\n$$\n\n导数存在要求 $e^{2x}<2$，因此给出上述区间。这里“倾角的变化率”是 $\\theta'$，不是直接把 $y''$ 当作倾角的变化率。"
   },
   {
     "id": "math2-2011-q20-exercise1",
@@ -454,7 +454,7 @@
     "type": "solution",
     "stem": "容器由曲线 $y=x^2$，$0\\leq x\\leq2$，绕 $y$ 轴旋转而成。容器中的水量为容量的四分之一，求水面高度。若水的密度为 $\\rho$，将容器中这部分水全部抽出，需要作多少功？",
     "answer": "水面高度为2，抽水功为 $\\frac{16}{3}\\pi\\rho g$。",
-    "explanation": "第一步，容器顶部高度为4。高度 $y$ 处半径为 $\\sqrt y$，水平截面积为 $\\pi y$，因此总容量为 $\\int_0^4\\pi y\\,dy=8\\pi$。\n\n第二步，四分之一容量为 $2\\pi$。若水深为 $h$，则 $\\int_0^h\\pi y\\,dy=\\pi h^2/2=2\\pi$，所以 $h=2$。\n\n第三步，高度 $y$ 的薄水层体积为 $\\pi y\\,dy$，重量为 $\\rho g\\pi y\\,dy$，提升到顶部的距离为 $4-y$，所以\n\n$$\nW=\\pi\\rho g\\int_0^2y(4-y)\\,dy\n=\\pi\\rho g\\left[2y^2-\\frac{y^3}{3}\\right]_0^2\n=\\frac{16}{3}\\pi\\rho g.\n$$\n\n水量为容量的四分之一，不代表水面高度是总高度的四分之一，必须通过体积积分求高度。"
+    "explanation": "第一步，容器顶部高度为4。高度 $y$ 处半径为 $\\sqrt y$，水平截面积为 $\\pi y$，因此总容量为 $\\int_0^4\\pi y\\,dy=8\\pi$。\n\n第二步，四分之一容量为 $2\\pi$。若水深为 $h$，则 $\\int_0^h\\pi y\\,dy=\\frac{\\pi h^2}{2}=2\\pi$，所以 $h=2$。\n\n第三步，高度 $y$ 的薄水层体积为 $\\pi y\\,dy$，重量为 $\\rho g\\pi y\\,dy$，提升到顶部的距离为 $4-y$，所以\n\n$$\nW=\\pi\\rho g\\int_0^2y(4-y)\\,dy\n=\\pi\\rho g\\left[2y^2-\\frac{y^3}{3}\\right]_0^2\n=\\frac{16}{3}\\pi\\rho g.\n$$\n\n水量为容量的四分之一，不代表水面高度是总高度的四分之一，必须通过体积积分求高度。"
   },
   {
     "id": "math2-2011-q20-exercise2",
@@ -466,8 +466,8 @@
     "topic": "高等数学 / 一元积分 / 体积、变化率与抽水功",
     "type": "solution",
     "stem": "内表面为旋转抛物面的水缸，深为 $a$ m，口直径为 $2a$ m，内部装满水。水的密度为 $\\rho$ kg/m³，以每分钟 $b$ m³的速率把缸中的水全部抽出。第一问，共需多少时间？第二问，需作多少功？",
-    "answer": "时间为 $\\pi a^3/(2b)$ min，功为 $\\pi\\rho g a^4/6$ J。",
-    "explanation": "第一步，以缸底为高度0，顶部高度为 $a$，顶部半径为 $a$。旋转抛物面的母线满足 $y=x^2/a$，所以高度 $y$ 处半径平方为 $ay$，水平截面积为 $\\pi ay$。\n\n第二步，总水量为\n\n$$\nV=\\pi a\\int_0^a y\\,dy=\\frac{\\pi a^3}{2}.\n$$\n\n流量恒为 $b$ m³/min，故抽水时间 $T=V/b=\\pi a^3/(2b)$ min。\n\n第三步，高度 $y$ 处薄水层需提升 $a-y$，所以\n\n$$\nW=\\pi\\rho ga\\int_0^a y(a-y)\\,dy\n=\\pi\\rho ga\\cdot\\frac{a^3}{6}\n=\\frac{\\pi\\rho ga^4}{6}.\n$$\n\n这是抛物面水缸，截面积随高度变化，不能按圆柱体处理。"
+    "answer": "时间为 $\\frac{\\pi a^3}{2b}$ min，功为 $\\frac{\\pi\\rho g a^4}{6}$ J。",
+    "explanation": "第一步，以缸底为高度0，顶部高度为 $a$，顶部半径为 $a$。旋转抛物面的母线满足 $y=\\frac{x^2}{a}$，所以高度 $y$ 处半径平方为 $ay$，水平截面积为 $\\pi ay$。\n\n第二步，总水量为\n\n$$\nV=\\pi a\\int_0^a y\\,dy=\\frac{\\pi a^3}{2}.\n$$\n\n流量恒为 $b$ m³/min，故抽水时间 $T=\\frac{V}{b}=\\frac{\\pi a^3}{2b}$ min。\n\n第三步，高度 $y$ 处薄水层需提升 $a-y$，所以\n\n$$\nW=\\pi\\rho ga\\int_0^a y(a-y)\\,dy\n=\\pi\\rho ga\\cdot\\frac{a^3}{6}\n=\\frac{\\pi\\rho ga^4}{6}.\n$$\n\n这是抛物面水缸，截面积随高度变化，不能按圆柱体处理。"
   },
   {
     "id": "math2-2011-q20-exercise3",
@@ -491,8 +491,8 @@
     "source": "660题高数第193题",
     "topic": "高等数学 / 多元积分 / 二重积分",
     "type": "solution",
-    "stem": "计算 $\\displaystyle\\iint_{x^2+y^2\\le1}(x^2+2y)\\,d\\sigma$。",
-    "answer": "$\\pi/4$。",
+    "stem": "计算\n\n$$\n\\iint_{x^2+y^2\\le1}(x^2+2y)\\,d\\sigma.\n$$",
+    "answer": "$\\frac{\\pi}{4}$。",
     "explanation": "积分区域关于 $x$ 轴对称，$2y$ 关于 $y$ 是奇函数，其积分为0。令 $x=r\\cos\\theta,\\;y=r\\sin\\theta$，面积元为 $r\\,dr\\,d\\theta$，因此\n\n$$\nI=\\int_0^{2\\pi}\\int_0^1 r^3\\cos^2\\theta\\,dr\\,d\\theta\n=\\frac14\\cdot\\pi=\\frac\\pi4.\n$$"
   },
   {
@@ -505,7 +505,7 @@
     "topic": "高等数学 / 多元积分 / 二重积分",
     "type": "solution",
     "stem": "设 $D=\\{(x,y)\\mid1\\le x+y\\le2,\\;x\\ge0,\\;y\\ge0\\}$，计算\n\n$$\nI=\\iint_D\\frac{x e^{(x+y)^2}}{x+y}\\,dx\\,dy.\n$$",
-    "answer": "$(e^4-e)/4$。",
+    "answer": "$\\frac{e^4-e}{4}$。",
     "explanation": "区域由 $x=0,y=0,x+y=1,x+y=2$ 围成，是第一象限内的梯形。若先对 $y$ 积分，需按 $x=1$ 分段：\n\n$$\nI=\\int_0^1dx\\int_{1-x}^{2-x}\\frac{x e^{(x+y)^2}}{x+y}\\,dy\n+\\int_1^2dx\\int_0^{2-x}\\frac{x e^{(x+y)^2}}{x+y}\\,dy.\n$$\n\n在各内层积分中令 $u=x+y$，此时 $x$ 固定、$dy=du$。两部分的新区域合起来为 $1\\le u\\le2,0\\le x\\le u$。交换积分次序，得到\n\n$$\nI=\\int_1^2du\\int_0^u\\frac{x e^{u^2}}u\\,dx\n=\\frac12\\int_1^2u e^{u^2}\\,du\n=\\frac14[e^{u^2}]_1^2=\\frac{e^4-e}{4}.\n$$\n\n这里用的是内层积分的一元换元与交换积分次序，不需要另外记忆一般二重积分的雅可比换元公式。"
   },
   {
@@ -517,9 +517,9 @@
     "source": "1000题第19页第9题",
     "topic": "高等数学 / 极限 / 数列极限",
     "type": "solution",
-    "stem": "求 $\\displaystyle\\lim_{n\\to\\infty}\\sum_{i=1}^n\\frac1{\\sqrt{in}}$。",
+    "stem": "求极限\n\n$$\n\\lim_{n\\to\\infty}\\sum_{i=1}^n\\frac{1}{\\sqrt{in}}.\n$$",
     "answer": "2。",
-    "explanation": "写成 $\\frac1{\\sqrt n}\\sum_{i=1}^n i^{-1/2}$。因为 $t^{-1/2}$ 在正半轴单调递减，有\n\n$$\n2(\\sqrt{n+1}-1)=\\int_1^{n+1}t^{-1/2}\\,dt\n\\le\\sum_{i=1}^n i^{-1/2}\n\\le1+\\int_1^n t^{-1/2}\\,dt=2\\sqrt n-1.\n$$\n\n同时除以 $\\sqrt n$，两端均趋于2，由夹逼定理得到答案。也可理解为反常积分 $\\int_0^1t^{-1/2}\\,dt=2$，但因0处无界，不能直接套用连续函数的普通黎曼和结论。"
+    "explanation": "写成 $\\frac1{\\sqrt n}\\sum_{i=1}^n i^{-\\frac{1}{2}}$。因为 $t^{-\\frac{1}{2}}$ 在正半轴单调递减，有\n\n$$\n2(\\sqrt{n+1}-1)=\\int_1^{n+1}t^{-\\frac{1}{2}}\\,dt\n\\le\\sum_{i=1}^n i^{-\\frac{1}{2}}\n\\le1+\\int_1^n t^{-\\frac{1}{2}}\\,dt=2\\sqrt n-1.\n$$\n\n同时除以 $\\sqrt n$，两端均趋于2，由夹逼定理得到答案。也可理解为反常积分 $\\int_0^1t^{-\\frac{1}{2}}\\,dt=2$，但因0处无界，不能直接套用连续函数的普通黎曼和结论。"
   },
   {
     "id": "math2-2012-q11-exercise1",
@@ -530,9 +530,9 @@
     "source": "660题高数第175题",
     "topic": "高等数学 / 多元微分 / 复合函数与隐函数求导",
     "type": "solution",
-    "stem": "设函数 $F(u,v)$ 可微，且 $F(x+z/y,\\;y+z/x)=0$ 确定隐函数 $z=z(x,y)$，求 $z-x\\frac{\\partial z}{\\partial x}-y\\frac{\\partial z}{\\partial y}$。",
-    "answer": "按隐函数求导条件 $x,y\\ne0$、$G_z=F_u/y+F_v/x\\ne0$，结果为 $xy$，其中 $G(x,y,z)=F(x+z/y,y+z/x)$。",
-    "explanation": "记 $u=x+z/y,\\;v=y+z/x$。分别对 $x,y$ 求偏导：\n\n$$\nF_u(1+z_x/y)+F_v(z_x/x-z/x^2)=0,\n$$\n\n$$\nF_u(z_y/y-z/y^2)+F_v(1+z_y/x)=0.\n$$\n\n第一式乘 $x$、第二式乘 $y$ 后相加，得到\n\n$$\n(F_u/y+F_v/x)(xy+xz_x+yz_y-z)=0.\n$$\n\n按隐函数求导的通常非退化条件 $F_z=F_u/y+F_v/x\\ne0$，可得 $z-xz_x-yz_y=xy$。\n\n题干没有明确列出 $G_z\\ne0$，这一条件是约去系数的依据，不能只凭“$F$ 可微”就断定该系数非零。"
+    "stem": "设函数 $F(u,v)$ 可微，且 $F\\!\\left(x+\\dfrac{z}{y},\\,y+\\dfrac{z}{x}\\right)=0$ 确定隐函数 $z=z(x,y)$，求 $z-x\\dfrac{\\partial z}{\\partial x}-y\\dfrac{\\partial z}{\\partial y}$。",
+    "answer": "按隐函数求导条件 $x,y\\ne0$、$G_z=\\frac{F_u}{y}+\\frac{F_v}{x}\\ne0$，结果为 $xy$，其中 $G(x,y,z)=F\\!\\left(x+\\frac{z}{y},\\,y+\\frac{z}{x}\\right)$。",
+    "explanation": "记 $u=x+\\frac{z}{y},\\;v=y+\\frac{z}{x}$。分别对 $x,y$ 求偏导：\n\n$$\nF_u(1+\\frac{z_x}{y})+F_v(\\frac{z_x}{x}-\\frac{z}{x^2})=0,\n$$\n\n$$\nF_u(\\frac{z_y}{y}-\\frac{z}{y^2})+F_v(1+\\frac{z_y}{x})=0.\n$$\n\n第一式乘 $x$、第二式乘 $y$ 后相加，得到\n\n$$\n(\\frac{F_u}{y}+\\frac{F_v}{x})(xy+xz_x+yz_y-z)=0.\n$$\n\n按隐函数求导的通常非退化条件 $F_z=\\frac{F_u}{y}+\\frac{F_v}{x}\\ne0$，可得 $z-xz_x-yz_y=xy$。\n\n题干没有明确列出 $G_z\\ne0$，这一条件是约去系数的依据，不能只凭“$F$ 可微”就断定该系数非零。"
   },
   {
     "id": "math2-2012-q11-exercise2",
@@ -543,7 +543,7 @@
     "source": "660题高数第416题",
     "topic": "高等数学 / 多元微分 / 复合函数与隐函数求导",
     "type": "choice",
-    "stem": "设隐函数 $z=z(x,y)$ 由方程 $y+z=xf(y^2-z^2)$ 确定，$f$ 可微，则 $x\\frac{\\partial z}{\\partial x}+z\\frac{\\partial z}{\\partial y}$ 等于：",
+    "stem": "设隐函数 $z=z(x,y)$ 由方程 $y+z=xf(y^2-z^2)$ 确定，$f$ 可微，则 $x\\dfrac{\\partial z}{\\partial x}+z\\dfrac{\\partial z}{\\partial y}$ 等于：",
     "answer": "在隐函数求导的分母 $1+2xz f'(y^2-z^2)\\ne0$ 的条件下，选C，结果为 $y$。",
     "explanation": "记 $s=y^2-z^2$。对原式分别求偏导，整理得\n\n$$\n(1+2xz f'(s))z_x=f(s),\\qquad\n(1+2xz f'(s))z_y=2xy f'(s)-1.\n$$\n\n第一式乘 $x$、第二式乘 $z$ 相加，再用 $xf(s)=y+z$，得到\n\n$$\n(1+2xz f'(s))(xz_x+zz_y)\n=y+2xyz f'(s).\n$$\n\n在隐函数求导的非退化条件下，两边除以 $1+2xz f'(s)$，结果为 $y$。注意题目第二项是 $zz_y$，不是 $yz_y$。\n\n题干应补充上述分母非零的条件；若分母为零，这个推导不能直接约分。",
     "options": [
@@ -575,8 +575,8 @@
     "source": "1000题第30页第2题",
     "topic": "高等数学 / 多元微分 / 复合函数与隐函数求导",
     "type": "solution",
-    "stem": "设 $f(u)$ 可导，$z=f(\\cos y-\\cos x)+xy$，求\n\n$\\frac1{\\sin x}\\frac{\\partial z}{\\partial x}+\\frac1{\\sin y}\\frac{\\partial z}{\\partial y}$。",
-    "answer": "$y/\\sin x+x/\\sin y$，在题式有定义处成立。",
+    "stem": "设 $f(u)$ 可导，$z=f(\\cos y-\\cos x)+xy$，求\n\n$$\n\\frac{1}{\\sin x}\\frac{\\partial z}{\\partial x}\n+\\frac{1}{\\sin y}\\frac{\\partial z}{\\partial y}.\n$$",
+    "answer": "$\\frac{y}{\\sin x}+\\frac{x}{\\sin y}$，在题式有定义处成立。",
     "explanation": "由复合函数求导，\n\n$$\nz_x=f'(\\cos y-\\cos x)\\sin x+y,\\qquad\nz_y=-f'(\\cos y-\\cos x)\\sin y+x.\n$$\n\n分别除以 $\\sin x,\\sin y$ 后相加，两项 $f'$ 正好抵消，即得结果。求导时 $-\\cos x$ 的导数是 $+\\sin x$。"
   },
   {
@@ -589,8 +589,8 @@
     "topic": "高等数学 / 微分方程 / 一阶线性方程",
     "type": "solution",
     "stem": "求微分方程 $(2x-3xy^2-y^3)y'+y^3=0$ 的通解。",
-    "answer": "在 $y\\ne0$ 的区间上，\n\n$$\nx=\\frac{y^3}{2}+Cy^3e^{1/y^2}.\n$$\n\n另有常值解 $y=0$。",
-    "explanation": "把 $x$ 看成 $y$ 的函数，原方程化为一阶线性方程\n\n$$\n\\frac{dx}{dy}+\\left(\\frac2{y^3}-\\frac3y\\right)x=1.\n$$\n\n在不跨越0的区间可取积分因子 $\\mu(y)=y^{-3}e^{-1/y^2}$。于是\n\n$$\n\\frac d{dy}\\left(xy^{-3}e^{-1/y^2}\\right)\n=y^{-3}e^{-1/y^2},\n$$\n\n$$\nxy^{-3}e^{-1/y^2}=\\frac12e^{-1/y^2}+C.\n$$\n\n整理即得通解。分离和换元时除过 $y$，因此最后要回到原方程补查 $y=0$。"
+    "answer": "在 $y\\ne0$ 的区间上，\n\n$$\nx=\\frac{y^3}{2}+Cy^3e^{\\frac{1}{y^2}}.\n$$\n\n另有常值解 $y=0$。",
+    "explanation": "把 $x$ 看成 $y$ 的函数，原方程化为一阶线性方程\n\n$$\n\\frac{dx}{dy}+\\left(\\frac2{y^3}-\\frac3y\\right)x=1.\n$$\n\n在不跨越0的区间可取积分因子 $\\mu(y)=y^{-3}e^{-\\frac{1}{y^2}}$。于是\n\n$$\n\\frac d{dy}\\left(xy^{-3}e^{-\\frac{1}{y^2}}\\right)\n=y^{-3}e^{-\\frac{1}{y^2}},\n$$\n\n$$\nxy^{-3}e^{-\\frac{1}{y^2}}=\\frac12e^{-\\frac{1}{y^2}}+C.\n$$\n\n整理即得通解。分离和换元时除过 $y$，因此最后要回到原方程补查 $y=0$。"
   },
   {
     "id": "math2-2012-q14-exercise1",
@@ -601,7 +601,7 @@
     "source": "李林880题线代第八章基础选择第5题",
     "topic": "线性代数 / 行列式 / 初等变换",
     "type": "choice",
-    "stem": "设\n\n$$\nA=\\begin{pmatrix}a_1&a_2&a_3\\\\b_1&b_2&b_3\\\\c_1&c_2&c_3\\end{pmatrix},\\quad\nB=\\begin{pmatrix}b_1&b_3&b_2\\\\a_1&a_3&a_2\\\\c_1+a_1&c_3+a_3&c_2+a_2\\end{pmatrix}.\n$$\n\n则：",
+    "stem": "设\n\n$$\n\\begin{aligned}\nA&=\\begin{pmatrix}a_1&a_2&a_3\\\\b_1&b_2&b_3\\\\c_1&c_2&c_3\\end{pmatrix},\\\\[7pt]\nB&=\\begin{pmatrix}b_1&b_3&b_2\\\\a_1&a_3&a_2\\\\c_1+a_1&c_3+a_3&c_2+a_2\\end{pmatrix}\n\\end{aligned}\n$$\n\n则：",
     "answer": "D。",
     "explanation": "从 $A$ 出发，先把第1行加到第3行，行列式不变；交换第1、2行，行列式变号；再交换第2、3列，行列式再次变号。此时得到 $B$，两次变号抵消，所以 $|B|=|A|$。这些操作对奇异矩阵也成立。",
     "options": [
@@ -646,9 +646,9 @@
     "source": "李林880题高数第三章综合解答第43题",
     "topic": "高等数学 / 一元积分 / 面积与旋转体积",
     "type": "solution",
-    "stem": "设\n\n$$\nf(x)=\\begin{cases}\n\\displaystyle\\lim_{t\\to+\\infty}\\frac{x}{1+x^2-e^{tx}},&x\\ne0,\\\\\n0,&x=0.\n\\end{cases}\n$$\n\n曲线 $y=f(x)$ 与 $y=x/2$ 以及 $x=1$ 所围图形为 $D$。\n\n第一问：求 $D$ 的面积。\n\n第二问：求 $D$ 绕 $x$ 轴旋转一周所得旋转体的体积。",
+    "stem": "设\n\n$$\nf(x)=\\begin{cases}\n\\displaystyle\\lim_{t\\to+\\infty}\\frac{x}{1+x^2-e^{tx}},&x\\ne0,\\\\\n0,&x=0.\n\\end{cases}\n$$\n\n曲线 $y=f(x)$ 与 $y=\\dfrac{x}{2}$ 以及 $x=1$ 所围图形为 $D$。\n\n第一问：求 $D$ 的面积。\n\n第二问：求 $D$ 绕 $x$ 轴旋转一周所得旋转体的体积。",
     "answer": "面积 $S=\\frac12\\ln2$，体积 $V=\\frac{\\pi^2}{8}-\\frac\\pi4$。",
-    "explanation": "先求极限：当 $x<0$，$e^{tx}\\to0$，故 $f(x)=x/(1+x^2)$；当 $x>0$，分母趋于负无穷，故 $f(x)=0$。曲线与直线交于 $x=-1,0$。所围有界图形包含 $[-1,0]$ 的曲边区域及 $[0,1]$ 的三角形，不能漏掉负半轴的部分。\n\n在 $[-1,0]$ 上，$x/(1+x^2)\\le x/2\\le0$；在 $[0,1]$ 上，$0\\le x/2$。故\n\n$$\nS=\\int_{-1}^0\\left(\\frac x2-\\frac{x}{1+x^2}\\right)dx\n+\\int_0^1\\frac x2\\,dx\n=\\frac12\\ln2.\n$$\n\n绕 $x$ 轴旋转，负半轴部分用圆环法，外半径为 $-x/(1+x^2)$，内半径为 $-x/2$：\n\n$$\nV=\\pi\\int_{-1}^0\\left(\\frac{x^2}{(1+x^2)^2}-\\frac{x^2}{4}\\right)dx\n+\\pi\\int_0^1\\frac{x^2}{4}\\,dx.\n$$\n\n利用\n\n$$\n\\int\\frac{x^2}{(1+x^2)^2}\\,dx\n=\\frac12\\arctan x-\\frac{x}{2(1+x^2)},\n$$\n\n化简得 $V=\\pi(\\pi/8-1/4)$。"
+    "explanation": "先求极限：当 $x<0$，$e^{tx}\\to0$，故 $f(x)=\\frac{x}{1+x^2}$；当 $x>0$，分母趋于负无穷，故 $f(x)=0$。曲线与直线交于 $x=-1,0$。所围有界图形包含 $[-1,0]$ 的曲边区域及 $[0,1]$ 的三角形，不能漏掉负半轴的部分。\n\n在 $[-1,0]$ 上，$\\frac{x}{1+x^2}\\le \\frac{x}{2}\\le0$；在 $[0,1]$ 上，$0\\le \\frac{x}{2}$。故\n\n$$\nS=\\int_{-1}^0\\left(\\frac x2-\\frac{x}{1+x^2}\\right)dx\n+\\int_0^1\\frac x2\\,dx\n=\\frac12\\ln2.\n$$\n\n绕 $x$ 轴旋转，负半轴部分用圆环法，外半径为 $-\\frac{x}{1+x^2}$，内半径为 $-\\frac{x}{2}$：\n\n$$\nV=\\pi\\int_{-1}^0\\left(\\frac{x^2}{(1+x^2)^2}-\\frac{x^2}{4}\\right)dx\n+\\pi\\int_0^1\\frac{x^2}{4}\\,dx.\n$$\n\n利用\n\n$$\n\\int\\frac{x^2}{(1+x^2)^2}\\,dx\n=\\frac12\\arctan x-\\frac{x}{2(1+x^2)},\n$$\n\n化简得 $V=\\pi(\\frac{\\pi}{8}-\\frac{1}{4})$。"
   },
   {
     "id": "math2-2012-q17-exercise2",
@@ -660,8 +660,8 @@
     "topic": "高等数学 / 一元积分 / 面积与旋转体积",
     "type": "solution",
     "stem": "过坐标原点作曲线 $y=e^x$ 的切线，该切线与 $y=e^x$ 及 $x$ 轴围成向 $x$ 轴负方向无限伸展的图形 $D$。\n\n第一问：求 $D$ 的面积。\n\n第二问：求 $D$ 绕直线 $x=1$ 旋转一周所得旋转体的体积。",
-    "answer": "面积 $e/2$，体积 $5\\pi e/3$。",
-    "explanation": "设切点横坐标为 $a$，切线方程为 $y=e^a(x-a+1)$。切线过原点，故 $a=1$，切线为 $y=ex$。在 $x\\le0$ 上，区域介于0与 $e^x$ 之间；在 $0\\le x\\le1$ 上，介于 $ex$ 与 $e^x$ 之间。面积为\n\n$$\nS=\\int_{-\\infty}^1e^x\\,dx-\\int_0^1ex\\,dx=e-\\frac e2=\\frac e2.\n$$\n\n绕竖直直线 $x=1$ 旋转，可用水平切片的圆环法。对固定的 $0<y\\le e$，区域的左右边界分别为 $x=\\ln y$ 与 $x=y/e$，旋转轴在区域右侧，外、内半径分别为\n\n$$\nR=1-\\ln y,\\qquad r=1-y/e.\n$$\n\n因此\n\n$$\nV=\\pi\\int_0^e\\bigl[(1-\\ln y)^2-(1-y/e)^2\\bigr]dy.\n$$\n\n两个积分分别为\n\n$$\n\\int_0^e(1-\\ln y)^2dy\n=\\left[y\\bigl((\\ln y)^2-4\\ln y+5\\bigr)\\right]_0^e=2e,\n$$\n\n$$\n\\int_0^e(1-y/e)^2dy=\\frac e3.\n$$\n\n第一式下端按极限计算，利用 $y\\ln y\\to0,y(\\ln y)^2\\to0$。故 $V=\\pi(2e-e/3)=5\\pi e/3$。取切片时先画清左右边界，半径是边界到旋转轴的距离。"
+    "answer": "面积 $\\frac{e}{2}$，体积 $\\frac{5\\pi e}{3}$。",
+    "explanation": "设切点横坐标为 $a$，切线方程为 $y=e^a(x-a+1)$。切线过原点，故 $a=1$，切线为 $y=ex$。在 $x\\le0$ 上，区域介于0与 $e^x$ 之间；在 $0\\le x\\le1$ 上，介于 $ex$ 与 $e^x$ 之间。面积为\n\n$$\nS=\\int_{-\\infty}^1e^x\\,dx-\\int_0^1ex\\,dx=e-\\frac e2=\\frac e2.\n$$\n\n绕竖直直线 $x=1$ 旋转，可用水平切片的圆环法。对固定的 $0<y\\le e$，区域的左右边界分别为 $x=\\ln y$ 与 $x=\\frac{y}{e}$，旋转轴在区域右侧，外、内半径分别为\n\n$$\nR=1-\\ln y,\\qquad r=1-\\frac{y}{e}.\n$$\n\n因此\n\n$$\nV=\\pi\\int_0^e\\bigl[(1-\\ln y)^2-(1-\\frac{y}{e})^2\\bigr]dy.\n$$\n\n两个积分分别为\n\n$$\n\\int_0^e(1-\\ln y)^2dy\n=\\left[y\\bigl((\\ln y)^2-4\\ln y+5\\bigr)\\right]_0^e=2e,\n$$\n\n$$\n\\int_0^e(1-\\frac{y}{e})^2dy=\\frac e3.\n$$\n\n第一式下端按极限计算，利用 $y\\ln y\\to0,y(\\ln y)^2\\to0$。故 $V=\\pi(2e-\\frac{e}{3})=\\frac{5\\pi e}{3}$。取切片时先画清左右边界，半径是边界到旋转轴的距离。"
   },
   {
     "id": "math2-2012-q18-exercise1",
@@ -672,9 +672,9 @@
     "source": "1000题第34页第10题",
     "topic": "高等数学 / 多元积分 / 极坐标二重积分",
     "type": "solution",
-    "stem": "极坐标曲线 $r=\\sin3\\theta,\\;0\\le\\theta\\le\\pi/3$ 围成区域 $D$，求\n\n$\\displaystyle\\iint_D\\sqrt{x^2+y^2}\\,dx\\,dy$。",
-    "answer": "$4/27$。",
-    "explanation": "该角度内 $\\sin3\\theta\\ge0$，区域为 $0\\le r\\le\\sin3\\theta$。被积函数为 $r$，面积元还要乘一个 $r$，所以\n\n$$\nI=\\int_0^{\\pi/3}\\int_0^{\\sin3\\theta}r^2\\,dr\\,d\\theta\n=\\frac13\\int_0^{\\pi/3}\\sin^3(3\\theta)\\,d\\theta.\n$$\n\n令 $u=3\\theta$，得到 $I=\\frac19\\int_0^\\pi\\sin^3u\\,du=\\frac19\\cdot\\frac43=\\frac4{27}$。"
+    "stem": "极坐标曲线 $r=\\sin3\\theta,\\;0\\le\\theta\\le\\dfrac{\\pi}{3}$ 围成区域 $D$，求\n\n$\\displaystyle\\iint_D\\sqrt{x^2+y^2}\\,dx\\,dy$。",
+    "answer": "$\\frac{4}{27}$。",
+    "explanation": "该角度内 $\\sin3\\theta\\ge0$，区域为 $0\\le r\\le\\sin3\\theta$。被积函数为 $r$，面积元还要乘一个 $r$，所以\n\n$$\nI=\\int_0^{\\frac{\\pi}{3}}\\int_0^{\\sin3\\theta}r^2\\,dr\\,d\\theta\n=\\frac13\\int_0^{\\frac{\\pi}{3}}\\sin^3(3\\theta)\\,d\\theta.\n$$\n\n令 $u=3\\theta$，得到 $I=\\frac19\\int_0^\\pi\\sin^3u\\,du=\\frac19\\cdot\\frac43=\\frac4{27}$。"
   },
   {
     "id": "math2-2013-q3-exercise1",
@@ -685,9 +685,9 @@
     "source": "李林880题高数第一章综合选择第18题",
     "topic": "高等数学 / 极限 / 连续性与可导性",
     "type": "choice",
-    "stem": "设 $f(x)=\\displaystyle\\lim_{t\\to+\\infty}\\frac{x+2^{tx}}{1+2^{tx}}$，则 $F(x)=\\int_{-1}^x f(t)\\,dt$ 在 $x=0$ 处：",
+    "stem": "设\n\n$$\n\\begin{aligned}\nf(x)&=\\lim_{t\\to+\\infty}\\frac{x+2^{tx}}{1+2^{tx}},\\\\[5pt]\nF(x)&=\\int_{-1}^x f(t)\\,dt.\n\\end{aligned}\n$$\n\n则 $F(x)$ 在 $x=0$ 处：",
     "answer": "C。",
-    "explanation": "分 $x$ 的正负求极限，得到\n\n$$\nf(x)=\\begin{cases}x,&x<0,\\\\1/2,&x=0,\\\\1,&x>0.\\end{cases}\n$$\n\n单个点的函数值不影响定积分，因此\n\n$$\nF(x)=\\begin{cases}(x^2-1)/2,&x\\le0,\\\\x-1/2,&x\\ge0.\\end{cases}\n$$\n\n两边在0处的函数值均为 $-1/2$，故连续；左导数为0，右导数为1，故不可导。不能因为 $f(0)$ 存在就直接断定 $F'(0)=f(0)$。",
+    "explanation": "分 $x$ 的正负求极限，得到\n\n$$\nf(x)=\\begin{cases}x,&x<0,\\\\\\frac{1}{2},&x=0,\\\\1,&x>0.\\end{cases}\n$$\n\n单个点的函数值不影响定积分，因此\n\n$$\nF(x)=\\begin{cases}\\frac{x^2-1}{2},&x\\le0,\\\\x-\\frac{1}{2},&x\\ge0.\\end{cases}\n$$\n\n两边在0处的函数值均为 $-\\frac{1}{2}$，故连续；左导数为0，右导数为1，故不可导。不能因为 $f(0)$ 存在就直接断定 $F'(0)=f(0)$。",
     "options": [
       {
         "key": "A",
@@ -717,9 +717,9 @@
     "source": "660题高数第36题",
     "topic": "高等数学 / 一元微分 / 参数曲线法线",
     "type": "fill",
-    "stem": "曲线 $\\begin{cases}x=\\cos t+\\cos^2t,\\\\y=1+\\sin t\\end{cases}$ 在 $t=\\pi/4$ 对应的点处的法线方程为$\\underline{\\qquad}$。",
+    "stem": "曲线\n\n$$\n\\begin{cases}\nx=\\cos t+\\cos^2t,\\\\\ny=1+\\sin t\n\\end{cases}\n$$\n\n在 $t=\\dfrac{\\pi}{4}$ 对应的点处的法线方程为 $\\underline{\\qquad}$。",
     "answer": "$$\ny-1-\\frac{\\sqrt2}{2}=(1+\\sqrt2)\\left(x-\\frac{1+\\sqrt2}{2}\\right).\n$$",
-    "explanation": "代入参数得点 $((1+\\sqrt2)/2,\\;1+\\sqrt2/2)$。参数求导得到\n\n$$\nx'(t)=-\\sin t-2\\cos t\\sin t,\\qquad y'(t)=\\cos t.\n$$\n\n在 $t=\\pi/4$ 处，切线斜率为 $-1/(1+\\sqrt2)$，所以法线斜率为 $1+\\sqrt2$。用点斜式即得答案，也可写为 $y=(1+\\sqrt2)(x-1/2)$。"
+    "explanation": "代入参数得点 $(\\frac{1+\\sqrt{2}}{2},\\;1+\\frac{\\sqrt{2}}{2})$。参数求导得到\n\n$$\nx'(t)=-\\sin t-2\\cos t\\sin t,\\qquad y'(t)=\\cos t.\n$$\n\n在 $t=\\frac{\\pi}{4}$ 处，切线斜率为 $-\\frac{1}{1+\\sqrt{2}}$，所以法线斜率为 $1+\\sqrt2$。用点斜式即得答案，也可写为 $y=(1+\\sqrt2)(x-\\frac{1}{2})$。"
   },
   {
     "id": "math2-2013-q20-exercise1",
@@ -730,9 +730,9 @@
     "source": "李林880题高数第一章综合选择第15题",
     "topic": "高等数学 / 极限 / 数列收敛",
     "type": "choice",
-    "stem": "设正项数列 $\\{x_n\\}$ 满足 $x_{n+1}<2-1/x_n$，$n=1,2,\\ldots$，则：",
+    "stem": "设正项数列 $\\{x_n\\}$ 满足 $x_{n+1}<2-\\dfrac{1}{x_n}$，$n=1,2,\\ldots$，则：",
     "answer": "B。",
-    "explanation": "先证明单调性：\n\n$$\nx_{n+1}-x_n<2-\\frac1{x_n}-x_n\n=-\\frac{(x_n-1)^2}{x_n}\\le0.\n$$\n\n数列严格递减且下界为0，所以存在极限 $L\\ge0$。又因 $x_{n+1}>0$，原不等式要求 $2-1/x_n>0$，即每项 $x_n>1/2$，从而 $L\\ge1/2>0$。\n\n对不等式取极限，严格小于只能变成小于等于，得到\n\n$$\nL\\le2-\\frac1L,\\qquad (L-1)^2\\le0.\n$$\n\n因此 $L=1$。必须先证明收敛，才能代入极限关系。",
+    "explanation": "先证明单调性：\n\n$$\nx_{n+1}-x_n<2-\\frac1{x_n}-x_n\n=-\\frac{(x_n-1)^2}{x_n}\\le0.\n$$\n\n数列严格递减且下界为0，所以存在极限 $L\\ge0$。又因 $x_{n+1}>0$，原不等式要求 $2-\\frac{1}{x_n}>0$，即每项 $x_n>\\frac{1}{2}$，从而 $L\\ge\\frac{1}{2}>0$。\n\n对不等式取极限，严格小于只能变成小于等于，得到\n\n$$\nL\\le2-\\frac1L,\\qquad (L-1)^2\\le0.\n$$\n\n因此 $L=1$。必须先证明收敛，才能代入极限关系。",
     "options": [
       {
         "key": "A",
@@ -762,7 +762,7 @@
     "source": "660题线代第474题",
     "topic": "线性代数 / 矩阵 / 矩阵方程",
     "type": "solution",
-    "stem": "已知\n\n$$\nA=\\begin{pmatrix}3&0&0\\\\0&1&-1\\\\0&2&3\\end{pmatrix},\\quad\nB=\\begin{pmatrix}1&0&0\\\\0&1&0\\\\1&0&1\\end{pmatrix}.\n$$\n\n若矩阵 $X$ 满足 $AX=B+2X$，求 $X$。",
+    "stem": "已知\n\n$$\n\\begin{aligned}\nA&=\\begin{pmatrix}3&0&0\\\\0&1&-1\\\\0&2&3\\end{pmatrix},\\\\[7pt]\nB&=\\begin{pmatrix}1&0&0\\\\0&1&0\\\\1&0&1\\end{pmatrix}\n\\end{aligned}\n$$\n\n若矩阵 $X$ 满足 $AX=B+2X$，求 $X$。",
     "answer": "$$\nX=\\begin{pmatrix}1&0&0\\\\1&1&1\\\\-1&-2&-1\\end{pmatrix}.\n$$",
     "explanation": "移项得 $(A-2I)X=B$，其中\n\n$$\nA-2I=\\begin{pmatrix}1&0&0\\\\0&-1&-1\\\\0&2&1\\end{pmatrix},\\quad\n(A-2I)^{-1}=\\begin{pmatrix}1&0&0\\\\0&1&1\\\\0&-2&-1\\end{pmatrix}.\n$$\n\n在等式左侧乘逆矩阵，得到 $X=(A-2I)^{-1}B$。按行相乘即得上式。矩阵乘法一般不能交换顺序，不能写成 $B(A-2I)^{-1}$。"
   },
@@ -788,7 +788,7 @@
     "source": "1000题第104页第8题",
     "topic": "线性代数 / 矩阵 / 矩阵方程",
     "type": "solution",
-    "stem": "求与 $A=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ 可交换的全部二阶矩阵。",
+    "stem": "求与矩阵 $A=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$ 可交换的全部二阶矩阵。",
     "answer": "所有 $B=\\begin{pmatrix}a&b\\\\0&a\\end{pmatrix}$，其中 $a,b$ 为任意常数。",
     "explanation": "令 $B=\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}$。计算\n\n$$\nAB=\\begin{pmatrix}a+c&b+d\\\\c&d\\end{pmatrix},\\quad\nBA=\\begin{pmatrix}a&a+b\\\\c&c+d\\end{pmatrix}.\n$$\n\n由 $AB=BA$ 得 $c=0,d=a$，对 $a,b$ 没有额外限制。代回即可验证全部满足条件。"
   },
@@ -801,9 +801,9 @@
     "source": "1000题第118页第13题",
     "topic": "线性代数 / 二次型 / 正定性与标准形",
     "type": "solution",
-    "stem": "设 $f(x)=(\\alpha^Tx)^2+k(\\beta^Tx)^2$ 的二次型矩阵的迹为3，其中\n\n$$\n\\alpha=\\begin{pmatrix}1/\\sqrt2\\\\0\\\\-1/\\sqrt2\\end{pmatrix},\\quad\n\\beta=\\begin{pmatrix}1/\\sqrt3\\\\1/\\sqrt3\\\\1/\\sqrt3\\end{pmatrix},\\quad\nx=\\begin{pmatrix}x_1\\\\x_2\\\\x_3\\end{pmatrix}.\n$$\n\n第一问：求 $k$ 的值，并求正交矩阵 $Q$，将 $f(x)$ 化为标准形。\n\n第二问：求一个实对称矩阵 $P$，使 $f(x)=(Px)^TPx$。",
-    "answer": "$k=2$。可取\n\n$$\nQ=\\begin{pmatrix}\n1/\\sqrt2&1/\\sqrt3&1/\\sqrt6\\\\\n0&1/\\sqrt3&-2/\\sqrt6\\\\\n-1/\\sqrt2&1/\\sqrt3&1/\\sqrt6\n\\end{pmatrix},\n$$\n\n作 $x=Qy$ 后，标准形为 $y_1^2+2y_2^2$。第二问可取\n\n$$\nP=\\frac12\\begin{pmatrix}1&0&-1\\\\0&0&0\\\\-1&0&1\\end{pmatrix}\n+\\frac{\\sqrt2}{3}\\begin{pmatrix}1&1&1\\\\1&1&1\\\\1&1&1\\end{pmatrix}.\n$$",
-    "explanation": "第一问，展开二次型得矩阵 $A=\\alpha\\alpha^{\\mathrm T}+k\\beta\\beta^{\\mathrm T}$。因为 $\\alpha,\\beta$ 均为单位向量，且 $\\alpha^{\\mathrm T}\\beta=0$，所以\n\n$$\n\\operatorname{tr}(\\alpha\\alpha^{\\mathrm T})=\\alpha_1^2+\\alpha_2^2+\\alpha_3^2=1,\n\\qquad \\operatorname{tr}(\\beta\\beta^{\\mathrm T})=1.\n$$\n\n由 $\\operatorname{tr}A=1+k=3$，得 $k=2$。再计算\n\n$$\nA\\alpha=\\alpha,\\qquad A\\beta=2\\beta.\n$$\n\n补一个同时垂直于 $\\alpha,\\beta$ 的单位向量 $\\gamma=(1,-2,1)^{\\mathrm T}/\\sqrt6$，则 $A\\gamma=0$。取 $Q=(\\alpha,\\beta,\\gamma)$，有\n\n$$\nQ^{\\mathrm T}Q=E,\\qquad Q^{\\mathrm T}AQ=\\operatorname{diag}(1,2,0).\n$$\n\n故 $x=Qy$ 将二次型化为 $y_1^2+2y_2^2$。\n\n第二问，由 $(Px)^{\\mathrm T}Px=x^{\\mathrm T}P^{\\mathrm T}Px$，目标是构造对称矩阵 $P$ 满足 $P^2=A$。利用刚得到的对角化，取\n\n$$\nP=Q\\operatorname{diag}(1,\\sqrt2,0)Q^{\\mathrm T}\n=\\alpha\\alpha^{\\mathrm T}+\\sqrt2\\,\\beta\\beta^{\\mathrm T}.\n$$\n\n因为 $Q^{\\mathrm T}Q=E$，所以\n\n$$\nP^{\\mathrm T}=P,\\qquad\nP^2=Q\\operatorname{diag}(1,2,0)Q^{\\mathrm T}=A.\n$$\n\n将 $\\alpha,\\beta$ 代入即得答案中的矩阵。这里求一个符合要求的 $P$ 即可，不要求列出所有可能的 $P$。"
+    "stem": "设 $f(x)=(\\alpha^Tx)^2+k(\\beta^Tx)^2$ 的二次型矩阵的迹为3，其中\n\n$$\n\\begin{aligned}\n\\alpha&=\\frac{1}{\\sqrt{2}}\\begin{pmatrix}1\\\\0\\\\-1\\end{pmatrix},\\qquad\n\\beta=\\frac{1}{\\sqrt{3}}\\begin{pmatrix}1\\\\1\\\\1\\end{pmatrix},\\\\[7pt]\nx&=\\begin{pmatrix}x_1\\\\x_2\\\\x_3\\end{pmatrix}.\n\\end{aligned}\n$$\n\n第一问：求 $k$ 的值，并求正交矩阵 $Q$，将 $f(x)$ 化为标准形。\n\n第二问：求一个实对称矩阵 $P$，使 $f(x)=(Px)^TPx$。",
+    "answer": "$k=2$。可取\n\n$$\nQ=\\begin{pmatrix}\n\\frac{1}{\\sqrt{2}}&\\frac{1}{\\sqrt{3}}&\\frac{1}{\\sqrt{6}}\\\\\n0&\\frac{1}{\\sqrt{3}}&-\\frac{2}{\\sqrt{6}}\\\\\n-\\frac{1}{\\sqrt{2}}&\\frac{1}{\\sqrt{3}}&\\frac{1}{\\sqrt{6}}\n\\end{pmatrix},\n$$\n\n作 $x=Qy$ 后，标准形为 $y_1^2+2y_2^2$。第二问可取\n\n$$\nP=\\frac12\\begin{pmatrix}1&0&-1\\\\0&0&0\\\\-1&0&1\\end{pmatrix}\n+\\frac{\\sqrt2}{3}\\begin{pmatrix}1&1&1\\\\1&1&1\\\\1&1&1\\end{pmatrix}.\n$$",
+    "explanation": "第一问，展开二次型得矩阵 $A=\\alpha\\alpha^{\\mathrm T}+k\\beta\\beta^{\\mathrm T}$。因为 $\\alpha,\\beta$ 均为单位向量，且 $\\alpha^{\\mathrm T}\\beta=0$，所以\n\n$$\n\\operatorname{tr}(\\alpha\\alpha^{\\mathrm T})=\\alpha_1^2+\\alpha_2^2+\\alpha_3^2=1,\n\\qquad \\operatorname{tr}(\\beta\\beta^{\\mathrm T})=1.\n$$\n\n由 $\\operatorname{tr}A=1+k=3$，得 $k=2$。再计算\n\n$$\nA\\alpha=\\alpha,\\qquad A\\beta=2\\beta.\n$$\n\n补一个同时垂直于 $\\alpha,\\beta$ 的单位向量 $\\gamma=\\frac{1}{\\sqrt{6}}(1,-2,1)^{\\mathrm T}$，则 $A\\gamma=0$。取 $Q=(\\alpha,\\beta,\\gamma)$，有\n\n$$\nQ^{\\mathrm T}Q=E,\\qquad Q^{\\mathrm T}AQ=\\operatorname{diag}(1,2,0).\n$$\n\n故 $x=Qy$ 将二次型化为 $y_1^2+2y_2^2$。\n\n第二问，由 $(Px)^{\\mathrm T}Px=x^{\\mathrm T}P^{\\mathrm T}Px$，目标是构造对称矩阵 $P$ 满足 $P^2=A$。利用刚得到的对角化，取\n\n$$\nP=Q\\operatorname{diag}(1,\\sqrt2,0)Q^{\\mathrm T}\n=\\alpha\\alpha^{\\mathrm T}+\\sqrt2\\,\\beta\\beta^{\\mathrm T}.\n$$\n\n因为 $Q^{\\mathrm T}Q=E$，所以\n\n$$\nP^{\\mathrm T}=P,\\qquad\nP^2=Q\\operatorname{diag}(1,2,0)Q^{\\mathrm T}=A.\n$$\n\n将 $\\alpha,\\beta$ 代入即得答案中的矩阵。这里求一个符合要求的 $P$ 即可，不要求列出所有可能的 $P$。"
   },
   {
     "id": "math2-2013-q23-exercise2",
@@ -829,7 +829,7 @@
     "type": "choice",
     "stem": "设函数 $f(x)$ 在 $[0,1]$ 上可导，$f(0)=0$，$f'(x)$ 严格单调递增，则对任意 $x\\in(0,1)$，有：",
     "answer": "D。",
-    "explanation": "由拉格朗日中值定理，存在 $\\xi\\in(0,x)$，使 $f(x)/x=f'(\\xi)>f'(0)$，得到 $f(x)>f'(0)x$。\n\n再分别对 $[0,x]$ 与 $[x,1]$ 使用中值定理。因导数严格递增，两段割线斜率满足\n\n$$\n\\frac{f(x)}x<\\frac{f(1)-f(x)}{1-x}.\n$$\n\n交叉相乘得 $f(x)<xf(1)$。合并即得 $f(1)x>f(x)>f'(0)x$。",
+    "explanation": "由拉格朗日中值定理，存在 $\\xi\\in(0,x)$，使 $\\frac{f(x)}{x}=f'(\\xi)>f'(0)$，得到 $f(x)>f'(0)x$。\n\n再分别对 $[0,x]$ 与 $[x,1]$ 使用中值定理。因导数严格递增，两段割线斜率满足\n\n$$\n\\frac{f(x)}x<\\frac{f(1)-f(x)}{1-x}.\n$$\n\n交叉相乘得 $f(x)<xf(1)$。合并即得 $f(1)x>f(x)>f'(0)x$。",
     "options": [
       {
         "key": "A",
@@ -860,8 +860,8 @@
     "topic": "高等数学 / 一元微分 / 曲率半径",
     "type": "fill",
     "stem": "曲线 $y=2(x-1)^2$ 的最小曲率半径为$\\underline{\\qquad}$。",
-    "answer": "$1/4$。",
-    "explanation": "曲率半径公式为\n\n$$\nR(x)=\\frac{(1+(y')^2)^{3/2}}{|y''|}\n=\\frac{(1+16(x-1)^2)^{3/2}}4.\n$$\n\n因为括号内至少为1，在 $x=1$ 处取最小值，所以 $R_{\\min}=1/4$。题目问半径，不是曲率；相应最大曲率为4。"
+    "answer": "$\\frac{1}{4}$。",
+    "explanation": "曲率半径公式为\n\n$$\nR(x)=\\frac{(1+(y')^2)^{\\frac{3}{2}}}{|y''|}\n=\\frac{(1+16(x-1)^2)^{\\frac{3}{2}}}4.\n$$\n\n因为括号内至少为1，在 $x=1$ 处取最小值，所以 $R_{\\min}=\\frac{1}{4}$。题目问半径，不是曲率；相应最大曲率为4。"
   },
   {
     "id": "math2-2014-q8-exercise1",
@@ -917,9 +917,9 @@
     "source": "李林880题高数第二章基础解答第6题",
     "topic": "高等数学 / 一元微分 / 极坐标曲线切线",
     "type": "solution",
-    "stem": "求心形线 $r=1-\\cos\\theta$ 在对应于 $\\theta=\\pi/2$ 处的切线方程。",
+    "stem": "求心形线 $r=1-\\cos\\theta$ 在对应于 $\\theta=\\dfrac{\\pi}{2}$ 处的切线方程。",
     "answer": "$y=1-x$，即 $x+y=1$。",
-    "explanation": "转为参数方程 $x=(1-\\cos\\theta)\\cos\\theta,\\;y=(1-\\cos\\theta)\\sin\\theta$。在 $\\theta=\\pi/2$ 时，点为 $(0,1)$。又有\n\n$$\n\\frac{dx}{d\\theta}=r'\\cos\\theta-r\\sin\\theta=-1,\\qquad\n\\frac{dy}{d\\theta}=r'\\sin\\theta+r\\cos\\theta=1.\n$$\n\n切线斜率为 $-1$，所以 $y-1=-x$。极坐标中的 $dr/d\\theta$ 不能直接当成直角坐标切线斜率。"
+    "explanation": "转为参数方程 $x=(1-\\cos\\theta)\\cos\\theta,\\;y=(1-\\cos\\theta)\\sin\\theta$。在 $\\theta=\\frac{\\pi}{2}$ 时，点为 $(0,1)$。又有\n\n$$\n\\frac{dx}{d\\theta}=r'\\cos\\theta-r\\sin\\theta=-1,\\qquad\n\\frac{dy}{d\\theta}=r'\\sin\\theta+r\\cos\\theta=1.\n$$\n\n切线斜率为 $-1$，所以 $y-1=-x$。极坐标中的 $\\frac{dr}{d\\theta}$ 不能直接当成直角坐标切线斜率。"
   },
   {
     "id": "math2-2014-q14-exercise1",
@@ -932,7 +932,7 @@
     "type": "choice",
     "stem": "二次型\n\n$$\na x_1^2+(2a-1)x_2^2+a x_3^2-2x_1x_2+2a x_1x_3-2x_2x_3\n$$\n\n的正惯性指数 $p=1$，则 $a$ 属于：",
     "answer": "C。",
-    "explanation": "二次型矩阵为\n\n$$\nA=\\begin{pmatrix}a&-1&a\\\\-1&2a-1&-1\\\\a&-1&a\\end{pmatrix}.\n$$\n\n正惯性指数等于实对称矩阵的正特征值个数，按重数计。计算特征多项式，作“第1行减第3行”后按该行展开，可得\n\n$$\n|\\lambda E-A|\n=\\lambda\\bigl[(\\lambda-2a)(\\lambda-2a+1)-2\\bigr]\n=\\lambda(\\lambda-2a-1)(\\lambda-2a+2).\n$$\n\n故三个特征值为 $0,2a+1,2a-2$。由于 $2a+1>2a-2$，恰有一个正特征值的充要条件是\n\n$$\n2a+1>0,\\qquad 2a-2\\le0,\n$$\n\n即 $-1/2<a\\le1$，选C。当 $a=-1/2$ 时没有正特征值，不能取；当 $a=1$ 时特征值为 $0,3,0$，正惯性指数仍为1，必须取。",
+    "explanation": "二次型矩阵为\n\n$$\nA=\\begin{pmatrix}a&-1&a\\\\-1&2a-1&-1\\\\a&-1&a\\end{pmatrix}.\n$$\n\n正惯性指数等于实对称矩阵的正特征值个数，按重数计。计算特征多项式，作“第1行减第3行”后按该行展开，可得\n\n$$\n|\\lambda E-A|\n=\\lambda\\bigl[(\\lambda-2a)(\\lambda-2a+1)-2\\bigr]\n=\\lambda(\\lambda-2a-1)(\\lambda-2a+2).\n$$\n\n故三个特征值为 $0,2a+1,2a-2$。由于 $2a+1>2a-2$，恰有一个正特征值的充要条件是\n\n$$\n2a+1>0,\\qquad 2a-2\\le0,\n$$\n\n即 $-\\frac{1}{2}<a\\le1$，选C。当 $a=-\\frac{1}{2}$ 时没有正特征值，不能取；当 $a=1$ 时特征值为 $0,3,0$，正惯性指数仍为1，必须取。",
     "options": [
       {
         "key": "A",
@@ -940,15 +940,15 @@
       },
       {
         "key": "B",
-        "text": "$(-1/2,1)$"
+        "text": "$(-\\dfrac{1}{2},1)$"
       },
       {
         "key": "C",
-        "text": "$(-1/2,1]$"
+        "text": "$(-\\dfrac{1}{2},1]$"
       },
       {
         "key": "D",
-        "text": "$(-\\infty,-1/2)$"
+        "text": "$(-\\infty,-\\dfrac{1}{2})$"
       }
     ],
     "correctOption": "C"
@@ -977,7 +977,7 @@
     "type": "solution",
     "stem": "设 $D=\\{(x,y)\\mid1\\le x^2+y^2\\le4,\\;x\\ge0,\\;y\\ge0\\}$，计算\n\n$$\nI=\\iint_D\\frac{x\\cos\\sqrt{x^2+y^2}}{x+y}\\,dx\\,dy.\n$$",
     "answer": "$$\nI=\\frac\\pi4\\left(2\\sin2+\\cos2-\\sin1-\\cos1\\right).\n$$",
-    "explanation": "区域关于 $x,y$ 交换对称，因此 $I$ 也等于把分子中的 $x$ 换成 $y$ 后的积分。两式相加：\n\n$$\n2I=\\iint_D\\cos\\sqrt{x^2+y^2}\\,dx\\,dy.\n$$\n\n改用极坐标，$1\\le r\\le2,\\;0\\le\\theta\\le\\pi/2$，得到\n\n$$\nI=\\frac12\\int_0^{\\pi/2}\\int_1^2r\\cos r\\,dr\\,d\\theta\n=\\frac\\pi4[r\\sin r+\\cos r]_1^2.\n$$\n\n对称相加可避免直接计算含 $\\cos\\theta+\\sin\\theta$ 的角度积分。"
+    "explanation": "区域关于 $x,y$ 交换对称，因此 $I$ 也等于把分子中的 $x$ 换成 $y$ 后的积分。两式相加：\n\n$$\n2I=\\iint_D\\cos\\sqrt{x^2+y^2}\\,dx\\,dy.\n$$\n\n改用极坐标，$1\\le r\\le2,\\;0\\le\\theta\\le\\frac{\\pi}{2}$，得到\n\n$$\nI=\\frac12\\int_0^{\\frac{\\pi}{2}}\\int_1^2r\\cos r\\,dr\\,d\\theta\n=\\frac\\pi4[r\\sin r+\\cos r]_1^2.\n$$\n\n对称相加可避免直接计算含 $\\cos\\theta+\\sin\\theta$ 的角度积分。"
   },
   {
     "id": "math2-2014-q17-exercise2",
@@ -989,8 +989,8 @@
     "topic": "高等数学 / 多元积分 / 对称性与二重积分",
     "type": "solution",
     "stem": "设 $D$ 是由 $y=|x|$ 及 $y=1$ 围成的有界区域，计算\n\n$$\nI=\\iint_D\\frac{x^2-x\\cos y-y^2}{x^2+y^2}\\,dx\\,dy.\n$$",
-    "answer": "$1-\\pi/2$。",
-    "explanation": "区域可写成 $0\\le y\\le1,\\;-y\\le x\\le y$，关于 $y$ 轴对称。项 $-x\\cos y/(x^2+y^2)$ 关于 $x$ 为奇函数，积分为0。剩下\n\n$$\nI=\\int_0^1\\int_{-y}^y\\left(1-\\frac{2y^2}{x^2+y^2}\\right)dx\\,dy.\n$$\n\n当 $y>0$ 时，内层积分为\n\n$$\n2y-2y^2\\cdot\\frac1y[\\arctan(x/y)]_{-y}^y\n=(2-\\pi)y.\n$$\n\n再积分得 $I=(2-\\pi)/2$。原点处的表达式未定义，需要同时说明附近的积分收敛。偶数部分 $(x^2-y^2)/(x^2+y^2)$ 的绝对值不超过1；另一部分满足\n\n$$\n\\int_0^1dy\\int_{-y}^y\\frac{|x\\cos y|}{x^2+y^2}\\,dx\n\\le\\int_0^1dy\\int_{-y}^y\\frac{|x|}{x^2+y^2}\\,dx\n=\\int_0^1\\ln2\\,dy=\\ln2.\n$$\n\n故原积分绝对收敛，对称性消去奇函数项是合法的。仅说“一个点不影响积分”，不足以处理附近无界的情况。"
+    "answer": "$1-\\frac{\\pi}{2}$。",
+    "explanation": "区域可写成 $0\\le y\\le1,\\;-y\\le x\\le y$，关于 $y$ 轴对称。项 $-\\frac{x\\cos y}{x^2+y^2}$ 关于 $x$ 为奇函数，积分为0。剩下\n\n$$\nI=\\int_0^1\\int_{-y}^y\\left(1-\\frac{2y^2}{x^2+y^2}\\right)dx\\,dy.\n$$\n\n当 $y>0$ 时，内层积分为\n\n$$\n2y-2y^2\\cdot\\frac1y[\\arctan\\!\\left(\\frac{x}{y}\\right)]_{-y}^y\n=(2-\\pi)y.\n$$\n\n再积分得 $I=\\frac{2-\\pi}{2}$。原点处的表达式未定义，需要同时说明附近的积分收敛。偶数部分 $\\frac{x^2-y^2}{x^2+y^2}$ 的绝对值不超过1；另一部分满足\n\n$$\n\\int_0^1dy\\int_{-y}^y\\frac{|x\\cos y|}{x^2+y^2}\\,dx\n\\le\\int_0^1dy\\int_{-y}^y\\frac{|x|}{x^2+y^2}\\,dx\n=\\int_0^1\\ln2\\,dy=\\ln2.\n$$\n\n故原积分绝对收敛，对称性消去奇函数项是合法的。仅说“一个点不影响积分”，不足以处理附近无界的情况。"
   },
   {
     "id": "math2-2014-q19-exercise1",
@@ -1014,9 +1014,9 @@
     "source": "1000题第31页第14题",
     "topic": "高等数学 / 多元微分与一元积分 / 求函数、面积与体积",
     "type": "solution",
-    "stem": "设函数 $z=xyf(y/x)$，其中 $f(u)$ 可导，且满足\n\n$$\nx\\frac{\\partial z}{\\partial x}+y\\frac{\\partial z}{\\partial y}\n=y^2(\\ln y-\\ln x).\n$$\n\n第一问：求 $f(x)$ 的表达式。\n\n第二问：求 $f(x)$ 与 $x$ 轴所围图形的面积，以及该图形绕 $x$ 轴旋转一周所得旋转体的体积。",
-    "answer": "$f(x)=\\frac12x\\ln x$，$x>0$；面积为 $1/8$，体积为 $\\pi/54$。",
-    "explanation": "第一问，原式的对数要求 $x>0,y>0$。令 $u=y/x$，用复合函数求导法则得到\n\n$$\nz_x=yf(u)-\\frac{y^2}{x}f'(u),\\qquad\nz_y=xf(u)+yf'(u).\n$$\n\n故 $xz_x+yz_y=2xyf(u)$。与题设比较：\n\n$$\n2xyf(u)=y^2\\ln(y/x),\\qquad f(u)=\\frac12u\\ln u.\n$$\n\n因此 $f(x)=x\\ln x/2$，$x>0$。\n\n第二问，$f(x)<0$ 在 $0<x<1$ 上成立；$x\\to0^+$ 时 $f(x)\\to0$，且 $f(1)=0$。面积为\n\n$$\nS=-\\frac12\\int_0^1x\\ln x\\,dx\n=-\\frac12\\left[\\frac{x^2}{2}\\ln x-\\frac{x^2}{4}\\right]_0^1=\\frac18.\n$$\n\n下端按极限处理，$x^2\\ln x\\to0$。绕 $x$ 轴旋转的体积为 $V=\\frac\\pi4 J$，其中 $J=\\int_0^1x^2(\\ln x)^2dx$。分部积分两次：\n\n$$\nJ=\\left[\\frac{x^3}{3}(\\ln x)^2\\right]_0^1\n-\\frac23\\int_0^1x^2\\ln x\\,dx,\n$$\n\n$$\n\\int_0^1x^2\\ln x\\,dx\n=\\left[\\frac{x^3}{3}\\ln x\\right]_0^1-\\frac13\\int_0^1x^2dx=-\\frac19.\n$$\n\n边界项均为0，故 $J=2/27$，$V=\\pi/54$。面积应取上下边界之差；旋转体积用半径平方，不会带入函数值的负号。"
+    "stem": "设函数 $z=xy\\,f\\!\\left(\\dfrac{y}{x}\\right)$，其中 $f(u)$ 可导，且满足\n\n$$\nx\\frac{\\partial z}{\\partial x}+y\\frac{\\partial z}{\\partial y}\n=y^2(\\ln y-\\ln x).\n$$\n\n第一问：求 $f(x)$ 的表达式。\n\n第二问：求 $f(x)$ 与 $x$ 轴所围图形的面积，以及该图形绕 $x$ 轴旋转一周所得旋转体的体积。",
+    "answer": "$f(x)=\\frac12x\\ln x$，$x>0$；面积为 $\\frac{1}{8}$，体积为 $\\frac{\\pi}{54}$。",
+    "explanation": "第一问，原式的对数要求 $x>0,y>0$。令 $u=\\frac{y}{x}$，用复合函数求导法则得到\n\n$$\nz_x=yf(u)-\\frac{y^2}{x}f'(u),\\qquad\nz_y=xf(u)+yf'(u).\n$$\n\n故 $xz_x+yz_y=2xyf(u)$。与题设比较：\n\n$$\n2xyf(u)=y^2\\ln\\!\\left(\\frac{y}{x}\\right),\\qquad f(u)=\\frac12u\\ln u.\n$$\n\n因此 $f(x)=\\frac{x\\ln x}{2}$，$x>0$。\n\n第二问，$f(x)<0$ 在 $0<x<1$ 上成立；$x\\to0^+$ 时 $f(x)\\to0$，且 $f(1)=0$。面积为\n\n$$\nS=-\\frac12\\int_0^1x\\ln x\\,dx\n=-\\frac12\\left[\\frac{x^2}{2}\\ln x-\\frac{x^2}{4}\\right]_0^1=\\frac18.\n$$\n\n下端按极限处理，$x^2\\ln x\\to0$。绕 $x$ 轴旋转的体积为 $V=\\frac\\pi4 J$，其中 $J=\\int_0^1x^2(\\ln x)^2dx$。分部积分两次：\n\n$$\nJ=\\left[\\frac{x^3}{3}(\\ln x)^2\\right]_0^1\n-\\frac23\\int_0^1x^2\\ln x\\,dx,\n$$\n\n$$\n\\int_0^1x^2\\ln x\\,dx\n=\\left[\\frac{x^3}{3}\\ln x\\right]_0^1-\\frac13\\int_0^1x^2dx=-\\frac19.\n$$\n\n边界项均为0，故 $J=\\frac{2}{27}$，$V=\\frac{\\pi}{54}$。面积应取上下边界之差；旋转体积用半径平方，不会带入函数值的负号。"
   },
   {
     "id": "math2-2014-q22-exercise1",
@@ -1027,7 +1027,7 @@
     "source": "1000题第109页第12题",
     "topic": "线性代数 / 线性方程组 / 矩阵方程",
     "type": "solution",
-    "stem": "设\n\n$$\nA=\\begin{pmatrix}1&-2&3\\\\0&1&-1\\\\1&2&0\\end{pmatrix},\\quad\n\\beta=\\begin{pmatrix}-4\\\\1\\\\-3\\end{pmatrix},\\quad\nB=\\begin{pmatrix}-2&1&3\\\\1&0&-1\\\\2&1&0\\end{pmatrix},\\quad [A,\\beta]=BC.\n$$\n\n第一问：求 $Ax=\\beta$ 的解，并求 $C$。\n\n第二问：求满足 $[A,\\beta]Y=I$ 的所有矩阵 $Y$。",
+    "stem": "设\n\n$$\n\\begin{aligned}\nA&=\\begin{pmatrix}1&-2&3\\\\0&1&-1\\\\1&2&0\\end{pmatrix},\\\\[7pt]\nB&=\\begin{pmatrix}-2&1&3\\\\1&0&-1\\\\2&1&0\\end{pmatrix},\\qquad\n\\beta=\\begin{pmatrix}-4\\\\1\\\\-3\\end{pmatrix}.\n\\end{aligned}\n$$\n\n且 $[A,\\beta]=BC$。\n\n第一问：求 $Ax=\\beta$ 的解，并求 $C$。\n\n第二问：求满足 $[A,\\beta]Y=I$ 的所有矩阵 $Y$。",
     "answer": "$x=(1,-2,-3)^T$，且\n\n$$\nC=\\begin{pmatrix}0&1&0&-2\\\\1&0&0&1\\\\0&0&1&-3\\end{pmatrix}.\n$$\n\n第二问的全部解为\n\n$$\nY=\\begin{pmatrix}2&6&-1\\\\-1&-3&1\\\\-1&-4&1\\\\0&0&0\\end{pmatrix}\n+\\begin{pmatrix}-1\\\\2\\\\3\\\\1\\end{pmatrix}\\begin{pmatrix}c_1&c_2&c_3\\end{pmatrix},\n\\qquad c_1,c_2,c_3\\in\\mathbb R.\n$$",
     "explanation": "第一问：由第2行得 $x_2=x_3+1$，代入第3行得 $x_1=-5-2x_3$，再代入第1行得到 $x_3=-3$。故 $x_2=-2,x_1=1$。矩阵 $B$ 的第1、2、3列分别等于 $A$ 的第2、1、3列，因此 $A=BS$，其中 $S$ 交换前两列。又有 $\\beta=Ax=BSx$，所以 $C=[S,Sx]$，即上式。\n\n第二问：$|A|=1$，故\n\n$$\nA^{-1}=\\begin{pmatrix}2&6&-1\\\\-1&-3&1\\\\-1&-4&1\\end{pmatrix}.\n$$\n\n取最后一行为0，前三行为 $A^{-1}$，得到一个特解 $Y_0$。设 $v=(v_1,v_2,v_3,v_4)^{\\mathrm T}$，记第一问的解为 $x_0=(1,-2,-3)^{\\mathrm T}$，则齐次方程为\n\n$$\n[A,\\beta]v=A\\begin{pmatrix}v_1\\\\v_2\\\\v_3\\end{pmatrix}+\\beta v_4\n=A\\left(\\begin{pmatrix}v_1\\\\v_2\\\\v_3\\end{pmatrix}+x_0v_4\\right)=0.\n$$\n\n由于 $A$ 可逆，括号内等于0，故 $v=t(-1,2,3,1)^{\\mathrm T}$。矩阵等式 $[A,\\beta]Y=I$ 等价于对 $Y$ 的三列分别求解；因此在 $Y_0$ 的三列上分别加 $c_1v,c_2v,c_3v$，就得到答案中的全部 $Y$。三个常数相互独立，不能只用一个常数。"
   },
@@ -1040,9 +1040,9 @@
     "source": "1000题第6页第23题",
     "topic": "高等数学 / 极限 / 间断点",
     "type": "choice",
-    "stem": "设 $f(x)=\\displaystyle\\lim_{t\\to+\\infty}\\frac{x+e^{tx}}{1+e^{tx}}$，则 $x=0$ 是 $f(x)$ 的：",
+    "stem": "设函数\n\n$$\nf(x)=\\lim_{t\\to+\\infty}\\frac{x+e^{tx}}{1+e^{tx}}.\n$$\n\n则 $x=0$ 是 $f(x)$ 的：",
     "answer": "B。",
-    "explanation": "当 $x<0$，$e^{tx}\\to0$，所以 $f(x)=x$；当 $x>0$，把分子分母同除以 $e^{tx}$，极限为1；当 $x=0$，$f(0)=1/2$。于是\n\n$$\n\\lim_{x\\to0^-}f(x)=0,\\qquad \\lim_{x\\to0^+}f(x)=1.\n$$\n\n左右极限都有限但不相等，故0是跳跃间断点。求题目给出的极限时要先固定 $x$，不能先令 $x\\to0$。",
+    "explanation": "当 $x<0$，$e^{tx}\\to0$，所以 $f(x)=x$；当 $x>0$，把分子分母同除以 $e^{tx}$，极限为1；当 $x=0$，$f(0)=\\frac{1}{2}$。于是\n\n$$\n\\lim_{x\\to0^-}f(x)=0,\\qquad \\lim_{x\\to0^+}f(x)=1.\n$$\n\n左右极限都有限但不相等，故0是跳跃间断点。求题目给出的极限时要先固定 $x$，不能先令 $x\\to0$。",
     "options": [
       {
         "key": "A",
@@ -1110,7 +1110,7 @@
     "options": [
       {
         "key": "A",
-        "text": "$3^n/n!$"
+        "text": "$\\dfrac{3^n}{n!}$"
       },
       {
         "key": "B",
@@ -1138,7 +1138,7 @@
     "type": "choice",
     "stem": "设 $y''-y=x^2$ 的解 $y=\\varphi(x)$ 在 $x\\to0$ 时是较 $x^2$ 高阶的无穷小，则 $\\varphi(x)$ 为：",
     "answer": "A。",
-    "explanation": "齐次方程特征根为正1、负1；取多项式特解 $-x^2-2$，故通解为\n\n$$\ny=C_1e^x+C_2e^{-x}-x^2-2.\n$$\n\n在0处展开：\n\n$$\ny=(C_1+C_2-2)+(C_1-C_2)x\n+\\left(\\frac{C_1+C_2}{2}-1\\right)x^2+O(x^3).\n$$\n\n由 $y=o(x^2)$，常数项和一次项必须为0，得到 $C_1=C_2=1$；二次项随之为0。代回后 $y=x^4/12+O(x^6)$，确实是 $x^2$ 的高阶无穷小，并满足原微分方程。",
+    "explanation": "齐次方程特征根为正1、负1；取多项式特解 $-x^2-2$，故通解为\n\n$$\ny=C_1e^x+C_2e^{-x}-x^2-2.\n$$\n\n在0处展开：\n\n$$\ny=(C_1+C_2-2)+(C_1-C_2)x\n+\\left(\\frac{C_1+C_2}{2}-1\\right)x^2+O(x^3).\n$$\n\n由 $y=o(x^2)$，常数项和一次项必须为0，得到 $C_1=C_2=1$；二次项随之为0。代回后 $y=\\frac{x^4}{12}+O(x^6)$，确实是 $x^2$ 的高阶无穷小，并满足原微分方程。",
     "options": [
       {
         "key": "A",
@@ -1168,9 +1168,9 @@
     "source": "李林880题高数第三章基础解答第18题",
     "topic": "高等数学 / 一元积分 / 旋转体积",
     "type": "solution",
-    "stem": "设曲线 $y=\\sin x$，$0\\le x\\le\\pi/2$，与 $y=1$ 及 $x=0$ 所围平面图形为 $D_1$；曲线 $y=\\sin x$，$0\\le x\\le\\pi$，与 $y=0$ 所围平面图形为 $D_2$。\n\n第一问：求 $D_1$ 绕直线 $x=\\pi/2$ 旋转一周所得体积 $V_1$。\n\n第二问：求 $D_2$ 绕 $y$ 轴旋转一周所得体积 $V_2$。",
-    "answer": "$V_1=\\pi^3/4-\\pi^2+2\\pi$，$V_2=2\\pi^2$。",
-    "explanation": "两问均绕竖直轴旋转，用竖直薄片的圆柱壳法。厚度 $dx$、高度 $h(x)$、到旋转轴距离 $r(x)$ 的薄片旋转后，体积微元为 $dV=2\\pi r(x)h(x)dx$（圆周长乘高度再乘厚度）。第一问，壳的半径为 $\\pi/2-x$，高为 $1-\\sin x$：\n\n$$\nV_1=2\\pi\\int_0^{\\pi/2}(\\pi/2-x)(1-\\sin x)\\,dx.\n$$\n\n记 $a=\\pi/2$，其中 $\\int_0^a(a-x)\\,dx=a^2/2$，而分部积分得\n\n$$\n\\int_0^a(a-x)\\sin x\\,dx\n=\\left[-(a-x)\\cos x\\right]_0^a-\\int_0^a\\cos x\\,dx=a-1.\n$$\n所以 $V_1=2\\pi(a^2/2-a+1)$。\n\n第二问，壳的半径为 $x$，高为 $\\sin x$：\n\n$$\nV_2=2\\pi\\int_0^\\pi x\\sin x\\,dx\n=2\\pi[-x\\cos x+\\sin x]_0^\\pi=2\\pi^2.\n$$\n\n旋转轴不同，半径也不同，不能把两问都取成 $x$。"
+    "stem": "设曲线 $y=\\sin x$，$0\\le x\\le\\dfrac{\\pi}{2}$，与 $y=1$ 及 $x=0$ 所围平面图形为 $D_1$；曲线 $y=\\sin x$，$0\\le x\\le\\pi$，与 $y=0$ 所围平面图形为 $D_2$。\n\n第一问：求 $D_1$ 绕直线 $x=\\dfrac{\\pi}{2}$ 旋转一周所得体积 $V_1$。\n\n第二问：求 $D_2$ 绕 $y$ 轴旋转一周所得体积 $V_2$。",
+    "answer": "$V_1=\\frac{\\pi^3}{4}-\\pi^2+2\\pi$，$V_2=2\\pi^2$。",
+    "explanation": "两问均绕竖直轴旋转，用竖直薄片的圆柱壳法。厚度 $dx$、高度 $h(x)$、到旋转轴距离 $r(x)$ 的薄片旋转后，体积微元为 $dV=2\\pi r(x)h(x)dx$（圆周长乘高度再乘厚度）。第一问，壳的半径为 $\\frac{\\pi}{2}-x$，高为 $1-\\sin x$：\n\n$$\nV_1=2\\pi\\int_0^{\\frac{\\pi}{2}}(\\frac{\\pi}{2}-x)(1-\\sin x)\\,dx.\n$$\n\n记 $a=\\frac{\\pi}{2}$，其中 $\\int_0^a(a-x)\\,dx=\\frac{a^2}{2}$，而分部积分得\n\n$$\n\\int_0^a(a-x)\\sin x\\,dx\n=\\left[-(a-x)\\cos x\\right]_0^a-\\int_0^a\\cos x\\,dx=a-1.\n$$\n所以 $V_1=2\\pi(\\frac{a^2}{2}-a+1)$。\n\n第二问，壳的半径为 $x$，高为 $\\sin x$：\n\n$$\nV_2=2\\pi\\int_0^\\pi x\\sin x\\,dx\n=2\\pi[-x\\cos x+\\sin x]_0^\\pi=2\\pi^2.\n$$\n\n旋转轴不同，半径也不同，不能把两问都取成 $x$。"
   },
   {
     "id": "math2-2015-q18-exercise1",
@@ -1182,8 +1182,8 @@
     "topic": "高等数学 / 多元积分 / 二重积分与换序",
     "type": "solution",
     "stem": "计算\n\n$$\nI=\\int_{-1}^1dy\\int_{-1}^y y\\sqrt{1+x^2-y^2}\\,dx.\n$$",
-    "answer": "$1/2$。",
-    "explanation": "原区域是 $-1\\le x\\le y\\le1$。交换积分次序后，变成 $-1\\le x\\le1,\\;x\\le y\\le1$，内层出现 $y\\sqrt{1+x^2-y^2}$，便于直接换元：\n\n$$\nI=\\int_{-1}^1dx\\int_x^1y\\sqrt{1+x^2-y^2}\\,dy\n=\\frac13\\int_{-1}^1(1-|x|^3)\\,dx=\\frac12.\n$$\n\n求原函数为 $-\\frac13(1+x^2-y^2)^{3/2}$。在上限 $y=1$ 处得到 $(x^2)^{3/2}=|x|^3$，不能写成 $x^3$。"
+    "answer": "$\\frac{1}{2}$。",
+    "explanation": "原区域是 $-1\\le x\\le y\\le1$。交换积分次序后，变成 $-1\\le x\\le1,\\;x\\le y\\le1$，内层出现 $y\\sqrt{1+x^2-y^2}$，便于直接换元：\n\n$$\nI=\\int_{-1}^1dx\\int_x^1y\\sqrt{1+x^2-y^2}\\,dy\n=\\frac13\\int_{-1}^1(1-|x|^3)\\,dx=\\frac12.\n$$\n\n求原函数为 $-\\frac13(1+x^2-y^2)^{\\frac{3}{2}}$。在上限 $y=1$ 处得到 $(x^2)^{\\frac{3}{2}}=|x|^3$，不能写成 $x^3$。"
   },
   {
     "id": "math2-2015-q18-exercise2",
@@ -1195,8 +1195,8 @@
     "topic": "高等数学 / 多元积分 / 二重积分与换序",
     "type": "solution",
     "stem": "计算\n\n$$\nI=\\int_{-1}^1dx\\int_{x^2}^{\\sqrt{2-x^2}}(x+1)\\,dy.\n$$",
-    "answer": "$\\pi/2+1/3$。",
-    "explanation": "先对 $y$ 积分：\n\n$$\nI=\\int_{-1}^1(x+1)(\\sqrt{2-x^2}-x^2)\\,dx.\n$$\n\n括号内是偶函数，与 $x$ 相乘所得奇函数在对称区间上的积分为0。因此\n\n$$\nI=\\int_{-1}^1\\sqrt{2-x^2}\\,dx-\\int_{-1}^1x^2\\,dx.\n$$\n\n第一项用圆弧面积或原函数\n\n$$\n\\frac x2\\sqrt{2-x^2}+\\arcsin(x/\\sqrt2)\n$$\n\n计算，值为 $1+\\pi/2$；第二项为 $2/3$，相减即得结果。"
+    "answer": "$\\frac{\\pi}{2}+\\frac{1}{3}$。",
+    "explanation": "先对 $y$ 积分：\n\n$$\nI=\\int_{-1}^1(x+1)(\\sqrt{2-x^2}-x^2)\\,dx.\n$$\n\n括号内是偶函数，与 $x$ 相乘所得奇函数在对称区间上的积分为0。因此\n\n$$\nI=\\int_{-1}^1\\sqrt{2-x^2}\\,dx-\\int_{-1}^1x^2\\,dx.\n$$\n\n第一项用圆弧面积或原函数\n\n$$\n\\frac x2\\sqrt{2-x^2}+\\arcsin\\!\\left(\\frac{x}{\\sqrt{2}}\\right)\n$$\n\n计算，值为 $1+\\frac{\\pi}{2}$；第二项为 $\\frac{2}{3}$，相减即得结果。"
   },
   {
     "id": "math2-2015-q19-exercise1",
@@ -1208,8 +1208,8 @@
     "topic": "高等数学 / 一元微分 / 单调性与方程实根",
     "type": "solution",
     "stem": "确定常数 $k$ 的取值范围，使方程 $x-\\arctan x=kx^3$ 在 $(0,1]$ 内有实根。",
-    "answer": "$1-\\pi/4\\le k<1/3$。",
-    "explanation": "令 $h(x)=(x-\\arctan x)/x^3$。利用\n\n$$\nx-\\arctan x=\\int_0^x\\frac{t^2}{1+t^2}\\,dt,\n$$\n\n作 $t=xs$，得到\n\n$$\nh(x)=\\int_0^1\\frac{s^2}{1+x^2s^2}\\,ds.\n$$\n\n对于 $x>0$，被积函数随 $x$ 严格减小，所以 $h$ 严格递减。当 $x\\to0^+$ 时，利用 $\\arctan x=x-x^3/3+o(x^3)$，可得 $h(x)\\to1/3$；另外 $h(1)=1-\\pi/4$。由连续性，其在 $(0,1]$ 上的值域为 $[1-\\pi/4,1/3)$。原题包括 $x=1$，所以左端点包含；不包括 $x=0$，所以右端点不包含。"
+    "answer": "$1-\\frac{\\pi}{4}\\le k<\\frac{1}{3}$。",
+    "explanation": "令 $h(x)=\\frac{x-\\arctan x}{x^3}$。利用\n\n$$\nx-\\arctan x=\\int_0^x\\frac{t^2}{1+t^2}\\,dt,\n$$\n\n作 $t=xs$，得到\n\n$$\nh(x)=\\int_0^1\\frac{s^2}{1+x^2s^2}\\,ds.\n$$\n\n对于 $x>0$，被积函数随 $x$ 严格减小，所以 $h$ 严格递减。当 $x\\to0^+$ 时，利用 $\\arctan x=x-\\frac{x^3}{3}+o(x^3)$，可得 $h(x)\\to\\frac{1}{3}$；另外 $h(1)=1-\\frac{\\pi}{4}$。由连续性，其在 $(0,1]$ 上的值域为 $[1-\\frac{\\pi}{4},\\frac{1}{3})$。原题包括 $x=1$，所以左端点包含；不包括 $x=0$，所以右端点不包含。"
   },
   {
     "id": "math2-2015-q19-exercise2",
@@ -1220,25 +1220,25 @@
     "source": "1000题第76页第17题",
     "topic": "高等数学 / 一元微分 / 单调性与方程实根",
     "type": "choice",
-    "stem": "设方程 $\\tan x/x=k$ 在 $(0,\\pi/4)$ 内有实根，则常数 $k$ 的取值范围为：",
+    "stem": "设方程 $\\dfrac{\\tan x}{x}=k$ 在 $(0,\\dfrac{\\pi}{4})$ 内有实根，则常数 $k$ 的取值范围为：",
     "answer": "C。",
-    "explanation": "令 $h(x)=\\tan x/x$。其导数为\n\n$$\nh'(x)=\\frac{x\\sec^2x-\\tan x}{x^2}.\n$$\n\n分子记作 $q(x)$，有 $q(0)=0$，且 $q'(x)=2x\\sec^2x\\tan x>0$，故 $h'(x)>0$。两端极限为\n\n$$\n\\lim_{x\\to0^+}h(x)=1,\\qquad\n\\lim_{x\\to(\\pi/4)^-}h(x)=4/\\pi.\n$$\n\n因此值域为 $(1,4/\\pi)$。原区间两端都是开端点，取值范围两端也都不包含。",
+    "explanation": "令 $h(x)=\\frac{\\tan x}{x}$。其导数为\n\n$$\nh'(x)=\\frac{x\\sec^2x-\\tan x}{x^2}.\n$$\n\n分子记作 $q(x)$，有 $q(0)=0$，且 $q'(x)=2x\\sec^2x\\tan x>0$，故 $h'(x)>0$。两端极限为\n\n$$\n\\lim_{x\\to0^+}h(x)=1,\\qquad\n\\lim_{x\\to(\\frac{\\pi}{4})^-}h(x)=\\frac{4}{\\pi}.\n$$\n\n因此值域为 $(1,\\frac{4}{\\pi})$。原区间两端都是开端点，取值范围两端也都不包含。",
     "options": [
       {
         "key": "A",
-        "text": "$0<k<4/\\pi-1$"
+        "text": "$0<k<\\dfrac{4}{\\pi}-1$"
       },
       {
         "key": "B",
-        "text": "$4/\\pi-1<k<4/\\pi$"
+        "text": "$\\dfrac{4}{\\pi}-1<k<\\dfrac{4}{\\pi}$"
       },
       {
         "key": "C",
-        "text": "$1<k<4/\\pi$"
+        "text": "$1<k<\\dfrac{4}{\\pi}$"
       },
       {
         "key": "D",
-        "text": "$4/\\pi-1<k<1$"
+        "text": "$\\dfrac{4}{\\pi}-1<k<1$"
       }
     ],
     "correctOption": "C"
@@ -1254,7 +1254,7 @@
     "type": "solution",
     "stem": "设环境保持恒定温度20摄氏度，有一物体的温度在10秒内从100摄氏度降到60摄氏度。若物体温度下降的速度与该物体温度和环境温度之差成正比，问此物体从100摄氏度降到25摄氏度需要多少时间？",
     "answer": "40秒，从100摄氏度开始计时。",
-    "explanation": "设温度为 $T(t)$，由降温条件建立\n\n$$\nT'(t)=-k(T(t)-20),\\quad k>0,\\quad T(0)=100.\n$$\n\n分离变量得到 $T(t)-20=80e^{-kt}$。又因 $T(10)=60$，有 $40=80e^{-10k}$，所以 $k=\\ln2/10$。\n\n当 $T(t)=25$ 时，$5=80e^{-kt}$，即 $e^{-kt}=1/16=2^{-4}$，因此 $t=40$ 秒。模型中的差值是相对环境的温差，不能把温度本身当成指数衰减量。"
+    "explanation": "设温度为 $T(t)$，由降温条件建立\n\n$$\nT'(t)=-k(T(t)-20),\\quad k>0,\\quad T(0)=100.\n$$\n\n分离变量得到 $T(t)-20=80e^{-kt}$。又因 $T(10)=60$，有 $40=80e^{-10k}$，所以 $k=\\frac{\\ln 2}{10}$。\n\n当 $T(t)=25$ 时，$5=80e^{-kt}$，即 $e^{-kt}=\\frac{1}{16}=2^{-4}$，因此 $t=40$ 秒。模型中的差值是相对环境的温差，不能把温度本身当成指数衰减量。"
   },
   {
     "id": "math2-2016-q1-exercise1",
@@ -1265,7 +1265,7 @@
     "source": "李林880题 高数 第一章 综合选择第3题",
     "topic": "高等数学 / 极限 / 无穷小阶数",
     "type": "choice",
-    "stem": "设当 $x\\to0$ 时，\n\n$$\n\\alpha(x)=\\tan x-\\sin x,\\qquad\n\\beta(x)=\\sqrt{1+x^2}-\\sqrt{1-x^2},\\qquad\n\\gamma(x)=\\int_0^{\\,1-\\cos x}\\sin t\\,dt\n$$\n\n都是无穷小，将它们关于 $x$ 的阶数从低到高排列，正确的顺序是（　）。",
+    "stem": "设当 $x\\to0$ 时，\n\n$$\n\\begin{aligned}\n\\alpha(x)&=\\tan x-\\sin x,\\\\[4pt]\n\\beta(x)&=\\sqrt{1+x^2}-\\sqrt{1-x^2},\\\\[4pt]\n\\gamma(x)&=\\int_0^{1-\\cos x}\\sin t\\,dt\n\\end{aligned}\n$$\n\n都是无穷小，将它们关于 $x$ 的阶数从低到高排列，正确的顺序是（　）。",
     "answer": "D，顺序是 $\\beta,\\alpha,\\gamma$。",
     "explanation": "第一步，比较阶数，只需要找每个无穷小的第一个非零项：\n\n$$\n\\tan x=x+\\frac{x^3}{3}+o(x^3),\\qquad\n\\sin x=x-\\frac{x^3}{6}+o(x^3),\n$$\n\n所以 $\\alpha(x)=\\frac{x^3}{2}+o(x^3)$，是三阶无穷小。\n\n第二步，根式相减可有理化：\n\n$$\n\\beta(x)=\\frac{2x^2}{\\sqrt{1+x^2}+\\sqrt{1-x^2}}\\sim x^2,\n$$\n\n所以 $\\beta$ 是二阶无穷小。\n\n第三步，先算积分，再作等价替换：\n\n$$\n\\gamma(x)=1-\\cos(1-\\cos x)\n\\sim\\frac12(1-\\cos x)^2\n\\sim\\frac12\\left(\\frac{x^2}{2}\\right)^2=\\frac{x^4}{8}.\n$$\n\n因此 $\\gamma$ 是四阶无穷小，按阶数从低到高为二阶、三阶、四阶，即 $\\beta,\\alpha,\\gamma$。",
     "options": [
@@ -1299,7 +1299,7 @@
     "type": "choice",
     "stem": "函数\n\n$$\nf(x)=\\begin{cases}x^2+1,&x\\leq0,\\\\ \\cos x,&x>0\\end{cases}\n$$\n\n的一个原函数是（　）。",
     "answer": "D。",
-    "explanation": "第一步，在两侧分别积分。所有原函数应写成\n\n$$\nF(x)=\\begin{cases}\n\\frac{x^3}{3}+x+C_1,&x\\leq0,\\\\\n\\sin x+C_2,&x>0.\n\\end{cases}\n$$\n\n第二步，原函数必须在0处可导，所以首先必须连续。左右极限分别为 $C_1,C_2$，故必须 $C_1=C_2$。A、B、C的两边常数不同，0处不连续，均不能成为整个区间上的原函数。\n\n第三步，D对应 $C_1=C_2=0$。用导数定义检查拼接点：\n\n$$\n\\lim_{h\\to0^-}\\frac{h^3/3+h}{h}=1,\\qquad\n\\lim_{h\\to0^+}\\frac{\\sin h}{h}=1.\n$$\n\n所以 $F'(0)=1=f(0)$，其他点也有 $F'(x)=f(x)$，D正确。分段原函数不能给左右两段随意配不同的积分常数。",
+    "explanation": "第一步，在两侧分别积分。所有原函数应写成\n\n$$\nF(x)=\\begin{cases}\n\\frac{x^3}{3}+x+C_1,&x\\leq0,\\\\\n\\sin x+C_2,&x>0.\n\\end{cases}\n$$\n\n第二步，原函数必须在0处可导，所以首先必须连续。左右极限分别为 $C_1,C_2$，故必须 $C_1=C_2$。A、B、C的两边常数不同，0处不连续，均不能成为整个区间上的原函数。\n\n第三步，D对应 $C_1=C_2=0$。用导数定义检查拼接点：\n\n$$\n\\lim_{h\\to0^-}\\frac{\\frac{h^3}{3}+h}{h}=1,\\qquad\n\\lim_{h\\to0^+}\\frac{\\sin h}{h}=1.\n$$\n\n所以 $F'(0)=1=f(0)$，其他点也有 $F'(x)=f(x)$，D正确。分段原函数不能给左右两段随意配不同的积分常数。",
     "options": [
       {
         "key": "A",
@@ -1491,7 +1491,7 @@
     "type": "solution",
     "stem": "二次型\n\n$$\nf=ax_1x_2+x_1x_3-x_2x_3\n$$\n\n的正惯性指数为2，负惯性指数为1，则下列结论可能成立的是（　）。\n\n原题选项：A. $a=-1$；B. $a=1$；C. $a\\ge0$；D. $a<0$。\n\n题面校核：这些选项与“可能成立”的表述不能组成答案唯一的单选题，以下求出完整参数范围。",
     "answer": "正惯性指数为2、负惯性指数为1的充要条件是 $a>0$。原题按“可能成立”理解，B与C均符合，不能唯一选B；C不是完整的充要条件，因为它还包含不符合题设的 $a=0$。",
-    "explanation": "令 $x_1=u+v,x_2=u-v,x_3=w$，这是可逆变换，二次型化为\n\n$$\nf=a u^2-a v^2+2vw.\n$$\n\n当 $a\\ne0$ 时配方：\n\n$$\nf=a u^2-a\\left(v-\\frac wa\\right)^2+\\frac1a w^2.\n$$\n\n这一变换仍可逆。若 $a>0$，三个平方项系数依次为正、负、正，故正惯性指数为2、负惯性指数为1；若 $a<0$，系数依次为负、正、负，故正惯性指数为1、负惯性指数为2。\n\n若 $a=0$，则 $f=2vw$。令 $v=(s+t)/\\sqrt2,w=(s-t)/\\sqrt2$，得到 $f=s^2-t^2$，另一个变量的系数为0，所以正、负惯性指数都为1，秩为2。\n\n因此完整结论是 $a>0$。据此，A和D不可能成立，B的 $a=1$ 符合题设；C的 $a\\ge0$ 也可以成立，而且是题设必然推出的较弱条件。不能因为C包含 $a=0$，就将“C不能保证题设”误写成“题设不可能推出C”。原解析混淆了必要条件与充分条件。"
+    "explanation": "令 $x_1=u+v,x_2=u-v,x_3=w$，这是可逆变换，二次型化为\n\n$$\nf=a u^2-a v^2+2vw.\n$$\n\n当 $a\\ne0$ 时配方：\n\n$$\nf=a u^2-a\\left(v-\\frac wa\\right)^2+\\frac1a w^2.\n$$\n\n这一变换仍可逆。若 $a>0$，三个平方项系数依次为正、负、正，故正惯性指数为2、负惯性指数为1；若 $a<0$，系数依次为负、正、负，故正惯性指数为1、负惯性指数为2。\n\n若 $a=0$，则 $f=2vw$。令 $v=\\frac{s+t}{\\sqrt{2}},w=\\frac{s-t}{\\sqrt{2}}$，得到 $f=s^2-t^2$，另一个变量的系数为0，所以正、负惯性指数都为1，秩为2。\n\n因此完整结论是 $a>0$。据此，A和D不可能成立，B的 $a=1$ 符合题设；C的 $a\\ge0$ 也可以成立，而且是题设必然推出的较弱条件。不能因为C包含 $a=0$，就将“C不能保证题设”误写成“题设不可能推出C”。原解析混淆了必要条件与充分条件。"
   },
   {
     "id": "math2-2016-q11-exercise1",
@@ -1502,7 +1502,7 @@
     "source": "基础过关660题 高数 第131页第395题",
     "topic": "高等数学 / 微分方程 / 待定系数法",
     "type": "choice",
-    "stem": "已知\n\n$$\ny^*=e^{-2x}+(x^2+2)e^x\n$$\n\n是微分方程\n\n$$\ny''+ay'+by=(cx+d)e^x\n$$\n\n的一个特解，则 $a,b,c,d$ 分别是（　）。",
+    "stem": "已知 $y^*=e^{-2x}+(x^2+2)e^x$ 是微分方程 $y''+ay'+by=(cx+d)e^x$ 的一个特解，则 $a,b,c,d$ 分别是（　）。",
     "answer": "A，$a=1,\\;b=-2,\\;c=6,\\;d=2$。",
     "explanation": "第一步，$e^{-2x}$ 部分代入左边后给出\n\n$$\n(4-2a+b)e^{-2x}.\n$$\n\n右边只有 $e^x$ 的倍数，所以这一项的系数必须为0：$4-2a+b=0$。\n\n第二步，令 $p(x)=x^2+2$。对 $p(x)e^x$ 求导后代入，有\n\n$$\ny''+ay'+by=e^x\\bigl[p''+(2+a)p'+(1+a+b)p\\bigr].\n$$\n\n右边没有 $x^2e^x$ 项，故 $1+a+b=0$。联立两式，得到 $a=1,\\;b=-2$。\n\n第三步，代入 $p'=2x,\\;p''=2$：\n\n$$\ne^x\\bigl[p''+3p'\\bigr]=(6x+2)e^x.\n$$\n\n比较系数得 $c=6,d=2$。这类题先比较不同指数项，再比较同一指数前多项式的各次幂。",
     "options": [
@@ -1547,7 +1547,7 @@
     "source": "张宇1000题 第23页第16题",
     "topic": "高等数学 / 一元积分 / 变限积分与最值",
     "type": "choice",
-    "stem": "设\n\n$$\nF(x)=\\int_{-\\pi}^{\\pi}|x-t|\\sin t\\,dt,\n$$\n\n则 $F'(0)=$（　）。",
+    "stem": "设 $F(x)=\\int_{-\\pi}^{\\pi}|x-t|\\sin t\\,dt$，则 $F'(0)=$（　）。",
     "answer": "A，即 $-4$。",
     "explanation": "第一步，在 $x=0$ 附近有 $-\\pi<x<\\pi$。绝对值在 $t=x$ 处分段，因此\n\n$$\nF(x)=\\int_{-\\pi}^x(x-t)\\sin t\\,dt+\\int_x^\\pi(t-x)\\sin t\\,dt.\n$$\n\n第二步，用含参变限积分求导。两个端点项都含 $x-x=0$，所以只剩被积函数对 $x$ 的偏导数：\n\n$$\nF'(x)=\\int_{-\\pi}^x\\sin t\\,dt-\\int_x^\\pi\\sin t\\,dt.\n$$\n\n第三步，代入 $x=0$：\n\n$$\nF'(0)=\\int_{-\\pi}^0\\sin t\\,dt-\\int_0^\\pi\\sin t\\,dt=-2-2=-4.\n$$\n\n绝对值积分先找分段点；分段点虽然会随 $x$ 移动，但本题求导时的端点项恰好为0。",
     "options": [
@@ -1581,7 +1581,7 @@
     "type": "solution",
     "stem": "设函数 $f$ 满足\n\n$$\ne^{-x}-\\frac{x^2}{2}=1+\\int_0^x f(t-x)\\,dt,\n$$\n\n求 $f$ 在全体实数上的最值。",
     "answer": "在 $f$ 连续的通常条件下，$f(x)=x-e^x$；最大值为 $-1$，在 $x=0$ 处取得，无最小值。原题若完全不对 $f$ 作连续性等约束，则不能唯一确定最值。",
-    "explanation": "第一步，积分里同时有上限 $x$ 和自变量 $t-x$，先换元。令 $u=t-x$，得到\n\n$$\n\\int_0^x f(t-x)\\,dt=\\int_{-x}^0f(u)\\,du.\n$$\n\n于是题设变为 $e^{-x}-x^2/2=1+\\int_{-x}^0f(u)\\,du$。\n\n第二步，两边对 $x$ 求导，注意下限是 $-x$：\n\n$$\n-e^{-x}-x=f(-x).\n$$\n\n把 $-x$ 换成新的自变量，得到 $f(x)=x-e^x$。\n\n第三步，求导判断全实数上的最值：\n\n$$\nf'(x)=1-e^x.\n$$\n\n当 $x<0$ 时导数为正，当 $x>0$ 时导数为负，所以 $x=0$ 处取得最大值 $f(0)=-1$。又当 $x\\to-\\infty$ 或 $x\\to+\\infty$ 时，$f(x)\\to-\\infty$，因此函数没有最小值。\n\n本题先换元消除积分中的 $t-x$，能避免把它误当成普通变上限积分。\n\n条件说明：用变限积分求导得到 $f(-x)$，需要 $f$ 在对应点连续。若题目只要求积分存在，则改变 $f$ 在一个点的值不会改变题设积分，却可能改变其最大值、最小值。因此题干应补充“$f$ 连续”；上述答案是在这一考研题常用条件下得到的。"
+    "explanation": "第一步，积分里同时有上限 $x$ 和自变量 $t-x$，先换元。令 $u=t-x$，得到\n\n$$\n\\int_0^x f(t-x)\\,dt=\\int_{-x}^0f(u)\\,du.\n$$\n\n于是题设变为 $e^{-x}-\\frac{x^2}{2}=1+\\int_{-x}^0f(u)\\,du$。\n\n第二步，两边对 $x$ 求导，注意下限是 $-x$：\n\n$$\n-e^{-x}-x=f(-x).\n$$\n\n把 $-x$ 换成新的自变量，得到 $f(x)=x-e^x$。\n\n第三步，求导判断全实数上的最值：\n\n$$\nf'(x)=1-e^x.\n$$\n\n当 $x<0$ 时导数为正，当 $x>0$ 时导数为负，所以 $x=0$ 处取得最大值 $f(0)=-1$。又当 $x\\to-\\infty$ 或 $x\\to+\\infty$ 时，$f(x)\\to-\\infty$，因此函数没有最小值。\n\n本题先换元消除积分中的 $t-x$，能避免把它误当成普通变上限积分。\n\n条件说明：用变限积分求导得到 $f(-x)$，需要 $f$ 在对应点连续。若题目只要求积分存在，则改变 $f$ 在一个点的值不会改变题设积分，却可能改变其最大值、最小值。因此题干应补充“$f$ 连续”；上述答案是在这一考研题常用条件下得到的。"
   },
   {
     "id": "math2-2016-q16-exercise3",
@@ -1592,7 +1592,7 @@
     "source": "李林880题 高数 第三章 综合解答第15题",
     "topic": "高等数学 / 一元积分 / 变限积分与最值",
     "type": "solution",
-    "stem": "求函数\n\n$$\nf(x)=\\int_0^{x^2}(2-t)e^{-t}\\,dt\n$$\n\n的最大值与最小值。",
+    "stem": "求函数 $f(x)=\\int_0^{x^2}(2-t)e^{-t}\\,dt$ 的最大值与最小值。",
     "answer": "最小值0，在 $x=0$ 处取得；最大值 $1+e^{-2}$，在 $x=\\pm\\sqrt2$ 处取得。",
     "explanation": "第一步，先求积分的显式表达式。因为\n\n$$\n\\frac{d}{dt}\\bigl[(t-1)e^{-t}\\bigr]=(2-t)e^{-t},\n$$\n\n所以\n\n$$\nf(x)=\\bigl[(t-1)e^{-t}\\bigr]_0^{x^2}=1+(x^2-1)e^{-x^2}.\n$$\n\n第二步，用变上限积分求导，或对显式表达式求导：\n\n$$\nf'(x)=2x(2-x^2)e^{-x^2}.\n$$\n\n指数因子恒正，驻点为 $-\\sqrt2,0,\\sqrt2$。导数在 $(-\\infty,-\\sqrt2)$、$(0,\\sqrt2)$ 上为正，在 $(-\\sqrt2,0)$、$(\\sqrt2,+\\infty)$ 上为负。\n\n第三步，比较驻点函数值与两端极限：\n\n$$\nf(0)=0,\\qquad f(\\pm\\sqrt2)=1+e^{-2},\\qquad \\lim_{x\\to\\pm\\infty}f(x)=1.\n$$\n\n因此上述极值也是全实数上的最大值、最小值。不能只求驻点，还要检查无穷远的极限。"
   },
@@ -1605,9 +1605,9 @@
     "source": "张宇1000题 第91页第26题",
     "topic": "高等数学 / 多元微分 / 隐函数极值",
     "type": "solution",
-    "stem": "求由方程\n\n$$\n2x^2+2y^2+z^2+8xz-z+8=0\n$$\n\n确定的函数 $z=z(x,y)$ 的极值，并指出是极大值还是极小值。",
-    "answer": "在 $(-2,0)$ 处取得极小值1，在 $(16/7,0)$ 处取得极大值 $-8/7$，分别对应方程的两个局部隐函数分支。",
-    "explanation": "第一步，令\n\n$$\nF(x,y,z)=2x^2+2y^2+z^2+8xz-z+8.\n$$\n\n当 $F_z=2z+8x-1\\ne0$ 时，隐函数偏导数为\n\n$$\nz_x=-\\frac{4x+8z}{2z+8x-1},\\qquad\nz_y=-\\frac{4y}{2z+8x-1}.\n$$\n\n驻点必须满足 $z_x=z_y=0$，因此 $x=-2z,\\;y=0$。\n\n第二步，把这两个条件代回原方程：\n\n$$\n-7z^2-z+8=0,\\qquad (7z+8)(z-1)=0.\n$$\n\n得到两个候选点\n\n$$\n(x,y,z)=(-2,0,1),\\qquad\n\\left(\\frac{16}{7},0,-\\frac87\\right).\n$$\n\n这两处 $F_z$ 分别为 $-15,15$，都能确定局部隐函数。\n\n第三步，在驻点处 $z_x=z_y=0$，二阶求导式简化为\n\n$$\nz_{xx}=-\\frac4{F_z},\\qquad z_{xy}=0,\\qquad z_{yy}=-\\frac4{F_z}.\n$$\n\n第一处二阶导数矩阵为 $\\operatorname{diag}(4/15,4/15)$，正定，所以极小值为1。第二处为 $\\operatorname{diag}(-4/15,-4/15)$，负定，所以极大值为 $-8/7$。\n\n这是两个分支各自的局部极值，不能把它们当作同一分支上相互比较的最大值、最小值。"
+    "stem": "求由方程 $2x^2+2y^2+z^2+8xz-z+8=0$ 确定的函数 $z=z(x,y)$ 的极值，并指出是极大值还是极小值。",
+    "answer": "在 $(-2,0)$ 处取得极小值1，在 $(\\frac{16}{7},0)$ 处取得极大值 $-\\frac{8}{7}$，分别对应方程的两个局部隐函数分支。",
+    "explanation": "第一步，令\n\n$$\nF(x,y,z)=2x^2+2y^2+z^2+8xz-z+8.\n$$\n\n当 $F_z=2z+8x-1\\ne0$ 时，隐函数偏导数为\n\n$$\nz_x=-\\frac{4x+8z}{2z+8x-1},\\qquad\nz_y=-\\frac{4y}{2z+8x-1}.\n$$\n\n驻点必须满足 $z_x=z_y=0$，因此 $x=-2z,\\;y=0$。\n\n第二步，把这两个条件代回原方程：\n\n$$\n-7z^2-z+8=0,\\qquad (7z+8)(z-1)=0.\n$$\n\n得到两个候选点\n\n$$\n(x,y,z)=(-2,0,1),\\qquad\n\\left(\\frac{16}{7},0,-\\frac87\\right).\n$$\n\n这两处 $F_z$ 分别为 $-15,15$，都能确定局部隐函数。\n\n第三步，在驻点处 $z_x=z_y=0$，二阶求导式简化为\n\n$$\nz_{xx}=-\\frac4{F_z},\\qquad z_{xy}=0,\\qquad z_{yy}=-\\frac4{F_z}.\n$$\n\n第一处二阶导数矩阵为 $\\operatorname{diag}(\\frac{4}{15},\\frac{4}{15})$，正定，所以极小值为1。第二处为 $\\operatorname{diag}(-\\frac{4}{15},-\\frac{4}{15})$，负定，所以极大值为 $-\\frac{8}{7}$。\n\n这是两个分支各自的局部极值，不能把它们当作同一分支上相互比较的最大值、最小值。"
   },
   {
     "id": "math2-2016-q17-exercise2",
@@ -1618,9 +1618,9 @@
     "source": "李林880题 高数 第四章 综合解答第11题",
     "topic": "高等数学 / 多元微分 / 隐函数极值",
     "type": "solution",
-    "stem": "设函数 $z=z(x,y)$ 由方程\n\n$$\nx^2-6xy+10y^2-2yz-z^2+18=0\n$$\n\n确定，求其极值。",
+    "stem": "设函数 $z=z(x,y)$ 由方程 $x^2-6xy+10y^2-2yz-z^2+18=0$ 确定，求其极值。",
     "answer": "在 $(9,3)$ 处取得极小值3，在 $(-9,-3)$ 处取得极大值 $-3$，分别属于两个隐函数分支。",
-    "explanation": "第一步，令\n\n$$\nF=x^2-6xy+10y^2-2yz-z^2+18,\\qquad F_z=-2y-2z.\n$$\n\n由 $z_x=-F_x/F_z,\\;z_y=-F_y/F_z$，驻点须满足\n\n$$\n2x-6y=0,\\qquad -6x+20y-2z=0.\n$$\n\n因此 $x=3y,\\;y=z$，也就是 $x=3z$。\n\n第二步，代回原方程，得到 $-2z^2+18=0$，所以\n\n$$\n(x,y,z)=(9,3,3),\\qquad (-9,-3,-3).\n$$\n\n两处 $F_z=-4z\\ne0$，可以使用隐函数的二阶导数。\n\n第三步，在驻点处得到\n\n$$\nz_{xx}=\\frac1{2z},\\qquad z_{xy}=-\\frac3{2z},\\qquad z_{yy}=\\frac5z,\n$$\n\n$$\nz_{xx}z_{yy}-z_{xy}^2=\\frac1{4z^2}>0.\n$$\n\n当 $z=3$ 时 $z_{xx}>0$，所以是极小值3；当 $z=-3$ 时 $z_{xx}<0$，所以是极大值 $-3$。\n\n还可用配方检验：\n\n$$\n(x-3y)^2+(y-z)^2=2z^2-18\\geq0,\n$$\n\n故正分支满足 $z\\geq3$，负分支满足 $z\\leq-3$，与极值结论一致。"
+    "explanation": "第一步，令\n\n$$\nF=x^2-6xy+10y^2-2yz-z^2+18,\\qquad F_z=-2y-2z.\n$$\n\n由 $z_x=-\\frac{F_x}{F_z},\\;z_y=-\\frac{F_y}{F_z}$，驻点须满足\n\n$$\n2x-6y=0,\\qquad -6x+20y-2z=0.\n$$\n\n因此 $x=3y,\\;y=z$，也就是 $x=3z$。\n\n第二步，代回原方程，得到 $-2z^2+18=0$，所以\n\n$$\n(x,y,z)=(9,3,3),\\qquad (-9,-3,-3).\n$$\n\n两处 $F_z=-4z\\ne0$，可以使用隐函数的二阶导数。\n\n第三步，在驻点处得到\n\n$$\nz_{xx}=\\frac1{2z},\\qquad z_{xy}=-\\frac3{2z},\\qquad z_{yy}=\\frac5z,\n$$\n\n$$\nz_{xx}z_{yy}-z_{xy}^2=\\frac1{4z^2}>0.\n$$\n\n当 $z=3$ 时 $z_{xx}>0$，所以是极小值3；当 $z=-3$ 时 $z_{xx}<0$，所以是极大值 $-3$。\n\n还可用配方检验：\n\n$$\n(x-3y)^2+(y-z)^2=2z^2-18\\geq0,\n$$\n\n故正分支满足 $z\\geq3$，负分支满足 $z\\leq-3$，与极值结论一致。"
   },
   {
     "id": "math2-2016-q20-exercise1",
@@ -1633,7 +1633,7 @@
     "type": "solution",
     "stem": "摆线的一拱\n\n$$\n\\begin{cases}\nx=a(t-\\sin t),\\\\\ny=a(1-\\cos t)\n\\end{cases}\n\\quad(0\\leq t\\leq2\\pi,\\;a>0)\n$$\n\n与 $x$ 轴围成的图形绕 $x$ 轴旋转一周，求所得旋转体的体积与表面积。",
     "answer": "体积 $V=5\\pi^2a^3$，表面积 $S=\\frac{64\\pi a^2}{3}$。",
-    "explanation": "第一步，参数曲线上\n\n$$\nx'=a(1-\\cos t),\\qquad y'=a\\sin t.\n$$\n\n在一拱内 $x'\\geq0$，用圆盘法，体积为\n\n$$\nV=\\pi\\int y^2\\,dx\n=\\pi a^3\\int_0^{2\\pi}(1-\\cos t)^3\\,dt.\n$$\n\n展开后，$\\cos t$ 和 $\\cos^3t$ 在整周期积分为0，$\\int_0^{2\\pi}\\cos^2t\\,dt=\\pi$，于是积分值为 $2\\pi+3\\pi=5\\pi$，得到 $V=5\\pi^2a^3$。\n\n第二步，绕 $x$ 轴旋转的曲面面积为 $S=2\\pi\\int y\\,ds$，弧长微元为\n\n$$\nds=\\sqrt{(x')^2+(y')^2}\\,dt\n=2a\\sin\\frac t2\\,dt,\n$$\n\n这里 $0\\leq t\\leq2\\pi$，所以 $\\sin(t/2)\\geq0$。\n\n第三步，利用 $y=2a\\sin^2(t/2)$，换元 $u=t/2$：\n\n$$\nS=8\\pi a^2\\int_0^{2\\pi}\\sin^3\\frac t2\\,dt\n=16\\pi a^2\\int_0^\\pi\\sin^3u\\,du\n=\\frac{64\\pi a^2}{3}.\n$$\n\n体积使用 $y^2\\,dx$，表面积使用 $y\\,ds$，两种微元不同。端点的旋转半径为0，没有额外的端面面积。"
+    "explanation": "第一步，参数曲线上\n\n$$\nx'=a(1-\\cos t),\\qquad y'=a\\sin t.\n$$\n\n在一拱内 $x'\\geq0$，用圆盘法，体积为\n\n$$\nV=\\pi\\int y^2\\,dx\n=\\pi a^3\\int_0^{2\\pi}(1-\\cos t)^3\\,dt.\n$$\n\n展开后，$\\cos t$ 和 $\\cos^3t$ 在整周期积分为0，$\\int_0^{2\\pi}\\cos^2t\\,dt=\\pi$，于是积分值为 $2\\pi+3\\pi=5\\pi$，得到 $V=5\\pi^2a^3$。\n\n第二步，绕 $x$ 轴旋转的曲面面积为 $S=2\\pi\\int y\\,ds$，弧长微元为\n\n$$\nds=\\sqrt{(x')^2+(y')^2}\\,dt\n=2a\\sin\\frac t2\\,dt,\n$$\n\n这里 $0\\leq t\\leq2\\pi$，所以 $\\sin\\!\\left(\\frac{t}{2}\\right)\\geq0$。\n\n第三步，利用 $y=2a\\sin^2\\!\\left(\\frac{t}{2}\\right)$，换元 $u=\\frac{t}{2}$：\n\n$$\nS=8\\pi a^2\\int_0^{2\\pi}\\sin^3\\frac t2\\,dt\n=16\\pi a^2\\int_0^\\pi\\sin^3u\\,du\n=\\frac{64\\pi a^2}{3}.\n$$\n\n体积使用 $y^2\\,dx$，表面积使用 $y\\,ds$，两种微元不同。端点的旋转半径为0，没有额外的端面面积。"
   },
   {
     "id": "math2-2016-q20-exercise2",
@@ -1646,7 +1646,7 @@
     "type": "solution",
     "stem": "设星形线的参数方程为\n\n$$\n\\begin{cases}\nx=a\\cos^3t,\\\\\ny=a\\sin^3t\n\\end{cases}\n\\quad(0\\leq t\\leq2\\pi,\\;a>0).\n$$\n\n（Ⅰ）求它围成的面积 $A$。\n\n（Ⅱ）求它的弧长 $L$。\n\n（Ⅲ）求它围成的图形绕 $x$ 轴旋转一周所得旋转体的体积 $V$ 与表面积 $S$。",
     "answer": "$$\nA=\\frac{3\\pi a^2}{8},\\qquad L=6a,\\qquad\nV=\\frac{32\\pi a^3}{105},\\qquad S=\\frac{12\\pi a^2}{5}.\n$$",
-    "explanation": "第一步，利用四个象限的对称性计算面积。在第一象限 $0\\leq t\\leq\\pi/2$，$x$ 递减，故\n\n$$\nA=4\\int_0^{\\pi/2}y(-x')\\,dt\n=12a^2\\int_0^{\\pi/2}\\sin^4t\\cos^2t\\,dt\n=12a^2\\cdot\\frac{\\pi}{32}\n=\\frac{3\\pi a^2}{8}.\n$$\n\n其中三角积分也可写成 $\\int\\sin^4t\\,dt-\\int\\sin^6t\\,dt=3\\pi/16-5\\pi/32=\\pi/32$，积分范围均为 $[0,\\pi/2]$。\n\n第二步，第一象限弧长微元为\n\n$$\nds=\\sqrt{(-3a\\cos^2t\\sin t)^2+(3a\\sin^2t\\cos t)^2}\\,dt\n=3a\\sin t\\cos t\\,dt.\n$$\n\n因此 $L=4\\int_0^{\\pi/2}ds=4\\cdot3a/2=6a$。\n\n第三步，旋转体的圆盘半径取上半平面的 $y$，左右两半对称，所以\n\n$$\nV=2\\pi\\int_0^{\\pi/2}y^2(-x')\\,dt\n=6\\pi a^3\\int_0^{\\pi/2}\\sin^7t\\cos^2t\\,dt\n=6\\pi a^3\\cdot\\frac{16}{315}\n=\\frac{32\\pi a^3}{105}.\n$$\n\n这个积分令 $u=\\cos t$ 后成为 $\\int_0^1(1-u^2)^3u^2\\,du=1/3-3/5+3/7-1/9=16/315$。\n\n第四步，旋转曲面由上半条曲线生成，左右两半对称：\n\n$$\nS=2\\cdot2\\pi\\int_0^{\\pi/2}y\\,ds\n=12\\pi a^2\\int_0^{\\pi/2}\\sin^4t\\cos t\\,dt\n=\\frac{12\\pi a^2}{5}.\n$$\n\n面积和全长乘4；旋转体积和表面积只计算上半边，再按左右对称乘2。下半边旋转会生成同一个曲面，不能重复计算。"
+    "explanation": "第一步，利用四个象限的对称性计算面积。在第一象限 $0\\leq t\\leq\\frac{\\pi}{2}$，$x$ 递减，故\n\n$$\nA=4\\int_0^{\\frac{\\pi}{2}}y(-x')\\,dt\n=12a^2\\int_0^{\\frac{\\pi}{2}}\\sin^4t\\cos^2t\\,dt\n=12a^2\\cdot\\frac{\\pi}{32}\n=\\frac{3\\pi a^2}{8}.\n$$\n\n其中三角积分也可写成 $\\int\\sin^4t\\,dt-\\int\\sin^6t\\,dt=\\frac{3\\pi}{16}-\\frac{5\\pi}{32}=\\frac{\\pi}{32}$，积分范围均为 $[0,\\frac{\\pi}{2}]$。\n\n第二步，第一象限弧长微元为\n\n$$\nds=\\sqrt{(-3a\\cos^2t\\sin t)^2+(3a\\sin^2t\\cos t)^2}\\,dt\n=3a\\sin t\\cos t\\,dt.\n$$\n\n因此 $L=4\\int_0^{\\frac{\\pi}{2}}ds=4\\cdot\\frac{3a}{2}=6a$。\n\n第三步，旋转体的圆盘半径取上半平面的 $y$，左右两半对称，所以\n\n$$\nV=2\\pi\\int_0^{\\frac{\\pi}{2}}y^2(-x')\\,dt\n=6\\pi a^3\\int_0^{\\frac{\\pi}{2}}\\sin^7t\\cos^2t\\,dt\n=6\\pi a^3\\cdot\\frac{16}{315}\n=\\frac{32\\pi a^3}{105}.\n$$\n\n这个积分令 $u=\\cos t$ 后成为 $\\int_0^1(1-u^2)^3u^2\\,du=\\frac{1}{3}-\\frac{3}{5}+\\frac{3}{7}-\\frac{1}{9}=\\frac{16}{315}$。\n\n第四步，旋转曲面由上半条曲线生成，左右两半对称：\n\n$$\nS=2\\cdot2\\pi\\int_0^{\\frac{\\pi}{2}}y\\,ds\n=12\\pi a^2\\int_0^{\\frac{\\pi}{2}}\\sin^4t\\cos t\\,dt\n=\\frac{12\\pi a^2}{5}.\n$$\n\n面积和全长乘4；旋转体积和表面积只计算上半边，再按左右对称乘2。下半边旋转会生成同一个曲面，不能重复计算。"
   },
   {
     "id": "math2-2016-q21-exercise1",
@@ -1657,9 +1657,9 @@
     "source": "张宇1000题 第87页第8题",
     "topic": "高等数学 / 一元积分 / 积分不等式与方程实根",
     "type": "solution",
-    "stem": "设函数 $f(x)$ 在 $[0,\\frac{3\\pi}{2}]$ 上连续，在 $(0,\\frac{3\\pi}{2})$ 内是 $\\frac{\\sin x}{x}$ 的一个原函数，且 $f(0)=0$。\n\n（1）证明 $f(\\frac{3\\pi}{2})>0$。\n\n（2）求方程\n\n$$\n\\int_1^x\\frac{\\sin t}{t}\\,dt=\\ln(x^2)\n$$\n\n的实根个数。",
-    "answer": "（1）$f(3\\pi/2)>0$；（2）共有2个实根，其中一个是1，另一个位于 $(-\\pi,0)$。",
-    "explanation": "第一步，由原函数关系及 $f(0)=0$，得到\n\n$$\nf(x)=\\int_0^x\\frac{\\sin t}{t}\\,dt.\n$$\n\n积分中的 $\\sin t/t$ 在0处按连续延拓取值1。要证明第一问，不能把整段被积函数都看成正数，因为 $(\\pi,3\\pi/2)$ 上的正弦为负。\n\n第二步，把负的那段换元 $t=\\pi+u$，和前面的正段配对：\n\n$$\nf\\left(\\frac{3\\pi}{2}\\right)\n=\\int_0^{\\pi/2}\\left(\\frac1u-\\frac1{\\pi+u}\\right)\\sin u\\,du\n+\\int_{\\pi/2}^{\\pi}\\frac{\\sin t}{t}\\,dt>0.\n$$\n\n两项都为正，第一问得证。\n\n第三步，第二问令\n\n$$\nG(x)=\\int_1^x\\frac{\\sin t}{t}\\,dt-\\ln(x^2),\\qquad x\\ne0.\n$$\n\n求导：\n\n$$\nG'(x)=\\frac{\\sin x-2}{x}.\n$$\n\n由于 $\\sin x-2<0$，$G$ 在正半轴严格递减，在负半轴严格递增。\n\n第四步，在正半轴 $G(1)=0$，严格单调保证只有这一个根。负半轴上，\n\n$$\n\\lim_{x\\to0^-}G(x)=+\\infty,\n$$\n\n因为积分部分趋于有限值，而 $-\\ln(x^2)\\to+\\infty$。另一方面，\n\n$$\nG(-\\pi)=-\\int_{-\\pi}^{1}\\frac{\\sin t}{t}\\,dt-2\\ln\\pi<0,\n$$\n\n积分中的函数在这段上非负且不恒为0。由连续性，$(-\\pi,0)$ 内至少有一个根；再由负半轴严格单调，至多一个根。合起来恰有2个实根。\n\n判断根的个数，先按定义域分段证明单调，再用已知零点或异号端点证明存在。"
+    "stem": "设函数 $f(x)$ 在 $[0,\\dfrac{3\\pi}{2}]$ 上连续，在 $(0,\\dfrac{3\\pi}{2})$ 内是 $\\dfrac{\\sin x}{x}$ 的一个原函数，且 $f(0)=0$。\n\n（1）证明 $f(\\dfrac{3\\pi}{2})>0$。\n\n（2）求方程\n\n$$\n\\int_1^x\\frac{\\sin t}{t}\\,dt=\\ln(x^2)\n$$\n\n的实根个数。",
+    "answer": "（1）$f(\\frac{3\\pi}{2})>0$；（2）共有2个实根，其中一个是1，另一个位于 $(-\\pi,0)$。",
+    "explanation": "第一步，由原函数关系及 $f(0)=0$，得到\n\n$$\nf(x)=\\int_0^x\\frac{\\sin t}{t}\\,dt.\n$$\n\n积分中的 $\\frac{\\sin t}{t}$ 在0处按连续延拓取值1。要证明第一问，不能把整段被积函数都看成正数，因为 $(\\pi,\\frac{3\\pi}{2})$ 上的正弦为负。\n\n第二步，把负的那段换元 $t=\\pi+u$，和前面的正段配对：\n\n$$\nf\\left(\\frac{3\\pi}{2}\\right)\n=\\int_0^{\\frac{\\pi}{2}}\\left(\\frac1u-\\frac1{\\pi+u}\\right)\\sin u\\,du\n+\\int_{\\frac{\\pi}{2}}^{\\pi}\\frac{\\sin t}{t}\\,dt>0.\n$$\n\n两项都为正，第一问得证。\n\n第三步，第二问令\n\n$$\nG(x)=\\int_1^x\\frac{\\sin t}{t}\\,dt-\\ln(x^2),\\qquad x\\ne0.\n$$\n\n求导：\n\n$$\nG'(x)=\\frac{\\sin x-2}{x}.\n$$\n\n由于 $\\sin x-2<0$，$G$ 在正半轴严格递减，在负半轴严格递增。\n\n第四步，在正半轴 $G(1)=0$，严格单调保证只有这一个根。负半轴上，\n\n$$\n\\lim_{x\\to0^-}G(x)=+\\infty,\n$$\n\n因为积分部分趋于有限值，而 $-\\ln(x^2)\\to+\\infty$。另一方面，\n\n$$\nG(-\\pi)=-\\int_{-\\pi}^{1}\\frac{\\sin t}{t}\\,dt-2\\ln\\pi<0,\n$$\n\n积分中的函数在这段上非负且不恒为0。由连续性，$(-\\pi,0)$ 内至少有一个根；再由负半轴严格单调，至多一个根。合起来恰有2个实根。\n\n判断根的个数，先按定义域分段证明单调，再用已知零点或异号端点证明存在。"
   },
   {
     "id": "math2-2016-q22-exercise1",
@@ -1736,7 +1736,7 @@
     "type": "solution",
     "stem": "设 $A$ 是3阶实对称矩阵，$\\operatorname{tr}(A)=1$，齐次线性方程组 $Ax=0$ 的通解为\n\n$$\nx=k_1\\begin{pmatrix}-2\\\\1\\\\0\\end{pmatrix}\n+k_2\\begin{pmatrix}-3\\\\0\\\\1\\end{pmatrix}\n$$\n\n（$k_1,k_2$ 为任意常数），求 $A^n$。",
     "answer": "对正整数 $n$，\n\n$$\nA^n=A=\\frac1{14}\\begin{pmatrix}1&2&3\\\\2&4&6\\\\3&6&9\\end{pmatrix}.\n$$",
-    "explanation": "第一步，由通解中的两个线性无关向量，知道0特征值的特征空间是二维。$A$ 是实对称矩阵，可以正交对角化，所以两个特征值为0。又 $\\operatorname{tr}(A)=1$，故第三个特征值为1。\n\n第二步，实对称矩阵不同特征值对应的特征向量正交。设1对应的特征向量为 $u=(u_1,u_2,u_3)^{\\mathrm T}$，则\n\n$$\n-2u_1+u_2=0,\\qquad -3u_1+u_3=0.\n$$\n\n可取 $u=(1,2,3)^{\\mathrm T}$，单位化为 $q=u/\\sqrt{14}$。\n\n第三步，$A$ 在零特征空间上作用为0，在 $q$ 方向上作用为1，所以\n\n$$\nA=qq^{\\mathrm T}=\\frac{uu^{\\mathrm T}}{u^{\\mathrm T}u}\n=\\frac1{14}\\begin{pmatrix}1&2&3\\\\2&4&6\\\\3&6&9\\end{pmatrix}.\n$$\n\n由于 $q^{\\mathrm T}q=1$，有 $A^2=qq^{\\mathrm T}qq^{\\mathrm T}=A$，于是 $A^n=A$。\n\n上述 $qq^{\\mathrm T}$ 的写法可以由正交对角化解释：若把 $q$ 作为正交矩阵 $Q$ 的第一列，其余两列取零特征值的单位特征向量，则 $A=Q\\operatorname{diag}(1,0,0)Q^{\\mathrm T}=qq^{\\mathrm T}$。因为另两项系数为0，无须把另外两列具体算出来。若 $n=0$，则另有 $A^0=E$。"
+    "explanation": "第一步，由通解中的两个线性无关向量，知道0特征值的特征空间是二维。$A$ 是实对称矩阵，可以正交对角化，所以两个特征值为0。又 $\\operatorname{tr}(A)=1$，故第三个特征值为1。\n\n第二步，实对称矩阵不同特征值对应的特征向量正交。设1对应的特征向量为 $u=(u_1,u_2,u_3)^{\\mathrm T}$，则\n\n$$\n-2u_1+u_2=0,\\qquad -3u_1+u_3=0.\n$$\n\n可取 $u=(1,2,3)^{\\mathrm T}$，单位化为 $q=\\frac{u}{\\sqrt{14}}$。\n\n第三步，$A$ 在零特征空间上作用为0，在 $q$ 方向上作用为1，所以\n\n$$\nA=qq^{\\mathrm T}=\\frac{uu^{\\mathrm T}}{u^{\\mathrm T}u}\n=\\frac1{14}\\begin{pmatrix}1&2&3\\\\2&4&6\\\\3&6&9\\end{pmatrix}.\n$$\n\n由于 $q^{\\mathrm T}q=1$，有 $A^2=qq^{\\mathrm T}qq^{\\mathrm T}=A$，于是 $A^n=A$。\n\n上述 $qq^{\\mathrm T}$ 的写法可以由正交对角化解释：若把 $q$ 作为正交矩阵 $Q$ 的第一列，其余两列取零特征值的单位特征向量，则 $A=Q\\operatorname{diag}(1,0,0)Q^{\\mathrm T}=qq^{\\mathrm T}$。因为另两项系数为0，无须把另外两列具体算出来。若 $n=0$，则另有 $A^0=E$。"
   },
   {
     "id": "math2-2016-q23-exercise2",
@@ -1749,7 +1749,7 @@
     "type": "solution",
     "stem": "某核反应堆中，$\\alpha$ 粒子每秒分裂为3个 $\\beta$ 粒子，$\\beta$ 粒子每秒分裂为2个 $\\beta$ 粒子和1个 $\\alpha$ 粒子。$t=0$ 时只有1个 $\\alpha$ 粒子，设 $t=n$ 时 $\\alpha,\\beta$ 粒子的数量分别为 $a_n,b_n$。\n\n（1）证明\n\n$$\n\\begin{pmatrix}a_n\\\\a_{n-1}\\end{pmatrix}\n=\\begin{pmatrix}2&3\\\\1&0\\end{pmatrix}^{n-1}\n\\begin{pmatrix}0\\\\1\\end{pmatrix}.\n$$\n\n（2）求粒子总数 $a_n+b_n$。",
     "answer": "（1）矩阵递推式成立；（2）总粒子数 $a_n+b_n=3^n$。",
-    "explanation": "第一步，每个 $\\beta$ 粒子产生1个 $\\alpha$，每个 $\\alpha$ 产生3个 $\\beta$，每个 $\\beta$ 同时产生2个 $\\beta$。因此\n\n$$\na_n=b_{n-1},\\qquad b_n=3a_{n-1}+2b_{n-1},\\qquad a_0=1,\\ b_0=0.\n$$\n\n消去 $b$，对 $n\\geq2$ 有\n\n$$\na_n=2a_{n-1}+3a_{n-2}.\n$$\n\n又 $a_1=b_0=0$，所以\n\n$$\n\\begin{pmatrix}a_n\\\\a_{n-1}\\end{pmatrix}\n=\\begin{pmatrix}2&3\\\\1&0\\end{pmatrix}\n\\begin{pmatrix}a_{n-1}\\\\a_{n-2}\\end{pmatrix}\n=\\begin{pmatrix}2&3\\\\1&0\\end{pmatrix}^{n-1}\n\\begin{pmatrix}0\\\\1\\end{pmatrix},\n$$\n\n第一问得证。\n\n第二步，求总数可直接把两个递推式相加：\n\n$$\na_n+b_n=3(a_{n-1}+b_{n-1}).\n$$\n\n初始总数为1，故 $a_n+b_n=3^n$。这也符合每种粒子每秒都分裂成3个粒子的实际含义。\n\n第三步，若要用矩阵幂求每一类粒子的数量，特征方程为 $\\lambda^2-2\\lambda-3=0$，根为3、$-1$。对应数列通项为\n\n$$\na_n=C\\,3^n+D(-1)^n.\n$$\n\n由 $a_0=1,a_1=0$，得到 $C=1/4,D=3/4$，所以\n\n$$\na_n=\\frac{3^n+3(-1)^n}{4},\\qquad\nb_n=a_{n+1}=\\frac{3^{n+1}-3(-1)^n}{4}.\n$$\n\n两式相加再次得到 $3^n$。"
+    "explanation": "第一步，每个 $\\beta$ 粒子产生1个 $\\alpha$，每个 $\\alpha$ 产生3个 $\\beta$，每个 $\\beta$ 同时产生2个 $\\beta$。因此\n\n$$\na_n=b_{n-1},\\qquad b_n=3a_{n-1}+2b_{n-1},\\qquad a_0=1,\\ b_0=0.\n$$\n\n消去 $b$，对 $n\\geq2$ 有\n\n$$\na_n=2a_{n-1}+3a_{n-2}.\n$$\n\n又 $a_1=b_0=0$，所以\n\n$$\n\\begin{pmatrix}a_n\\\\a_{n-1}\\end{pmatrix}\n=\\begin{pmatrix}2&3\\\\1&0\\end{pmatrix}\n\\begin{pmatrix}a_{n-1}\\\\a_{n-2}\\end{pmatrix}\n=\\begin{pmatrix}2&3\\\\1&0\\end{pmatrix}^{n-1}\n\\begin{pmatrix}0\\\\1\\end{pmatrix},\n$$\n\n第一问得证。\n\n第二步，求总数可直接把两个递推式相加：\n\n$$\na_n+b_n=3(a_{n-1}+b_{n-1}).\n$$\n\n初始总数为1，故 $a_n+b_n=3^n$。这也符合每种粒子每秒都分裂成3个粒子的实际含义。\n\n第三步，若要用矩阵幂求每一类粒子的数量，特征方程为 $\\lambda^2-2\\lambda-3=0$，根为3、$-1$。对应数列通项为\n\n$$\na_n=C\\,3^n+D(-1)^n.\n$$\n\n由 $a_0=1,a_1=0$，得到 $C=\\frac{1}{4},D=\\frac{3}{4}$，所以\n\n$$\na_n=\\frac{3^n+3(-1)^n}{4},\\qquad\nb_n=a_{n+1}=\\frac{3^{n+1}-3(-1)^n}{4}.\n$$\n\n两式相加再次得到 $3^n$。"
   },
   {
     "id": "math2-2016-q23-exercise3",
@@ -1762,6 +1762,6 @@
     "type": "solution",
     "stem": "设矩阵\n\n$$\nA=\\begin{pmatrix}1&2&1\\\\2&4&k\\\\1&k&1\\end{pmatrix}\n$$\n\n有特征值0，求 $k$，并求正交矩阵 $Q$，使 $Q^{\\mathrm T}AQ=\\Lambda$，其中 $\\Lambda$ 为对角矩阵。",
     "answer": "$k=2$。可取\n\n$$\nQ=\\begin{pmatrix}\n\\frac1{\\sqrt2}&\\frac1{\\sqrt3}&\\frac1{\\sqrt6}\\\\\n0&-\\frac1{\\sqrt3}&\\frac2{\\sqrt6}\\\\\n-\\frac1{\\sqrt2}&\\frac1{\\sqrt3}&\\frac1{\\sqrt6}\n\\end{pmatrix},\\qquad\n\\Lambda=\\begin{pmatrix}0&0&0\\\\0&0&0\\\\0&0&6\\end{pmatrix}.\n$$",
-    "explanation": "第一步，有特征值0等价于行列式为0。展开得\n\n$$\n|A|=4-k^2-2(2-k)+(2k-4)=-(k-2)^2.\n$$\n\n因此 $k=2$，此时\n\n$$\nA=\\begin{pmatrix}1&2&1\\\\2&4&2\\\\1&2&1\\end{pmatrix}\n=uu^{\\mathrm T},\\qquad u=(1,2,1)^{\\mathrm T}.\n$$\n\n第二步，$Au=(u^{\\mathrm T}u)u=6u$，所以6是特征值，单位特征向量为 $q_3=u/\\sqrt6$。零特征空间满足 $x_1+2x_2+x_3=0$，可选\n\n$$\nv_1=(1,0,-1)^{\\mathrm T},\\qquad v_2=(1,-1,1)^{\\mathrm T}.\n$$\n\n两个向量都与 $u$ 正交，而且相互正交。单位化后得 $q_1=v_1/\\sqrt2,\\;q_2=v_2/\\sqrt3$。\n\n第三步，以这些单位特征向量作列组成 $Q=(q_1,q_2,q_3)$。三列构成标准正交组，所以 $Q^{\\mathrm T}Q=E$；又\n\n$$\nAQ=Q\\operatorname{diag}(0,0,6),\n$$\n\n左乘 $Q^{\\mathrm T}$ 即得到 $Q^{\\mathrm T}AQ=\\Lambda$。\n\n正交矩阵的列次序可以改变，相应对角元次序也要一起改变，结果不必与某个固定答案矩阵完全相同。"
+    "explanation": "第一步，有特征值0等价于行列式为0。展开得\n\n$$\n|A|=4-k^2-2(2-k)+(2k-4)=-(k-2)^2.\n$$\n\n因此 $k=2$，此时\n\n$$\nA=\\begin{pmatrix}1&2&1\\\\2&4&2\\\\1&2&1\\end{pmatrix}\n=uu^{\\mathrm T},\\qquad u=(1,2,1)^{\\mathrm T}.\n$$\n\n第二步，$Au=(u^{\\mathrm T}u)u=6u$，所以6是特征值，单位特征向量为 $q_3=\\frac{u}{\\sqrt{6}}$。零特征空间满足 $x_1+2x_2+x_3=0$，可选\n\n$$\nv_1=(1,0,-1)^{\\mathrm T},\\qquad v_2=(1,-1,1)^{\\mathrm T}.\n$$\n\n两个向量都与 $u$ 正交，而且相互正交。单位化后得 $q_1=\\frac{v_1}{\\sqrt{2}},\\;q_2=\\frac{v_2}{\\sqrt{3}}$。\n\n第三步，以这些单位特征向量作列组成 $Q=(q_1,q_2,q_3)$。三列构成标准正交组，所以 $Q^{\\mathrm T}Q=E$；又\n\n$$\nAQ=Q\\operatorname{diag}(0,0,6),\n$$\n\n左乘 $Q^{\\mathrm T}$ 即得到 $Q^{\\mathrm T}AQ=\\Lambda$。\n\n正交矩阵的列次序可以改变，相应对角元次序也要一起改变，结果不必与某个固定答案矩阵完全相同。"
   }
 ]

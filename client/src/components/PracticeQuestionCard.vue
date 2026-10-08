@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import MathMarkdown from '@/components/MathMarkdown.vue'
 import PracticeIcon from '@/components/PracticeIcon.vue'
 import type { Mastery, PracticeQuestion, QuestionProgress } from '@/math/practice'
@@ -12,11 +12,6 @@ const selectedOption = ref('')
 const statuses: { value: Mastery; label: string }[] = [
   { value: 'unfamiliar', label: '不熟练' }, { value: 'unknown', label: '不会' }, { value: 'mastered', label: '掌握' },
 ]
-// 短公式随题干排版，矩阵、分段函数与多行公式保留独立行。
-const stem = computed(() => props.question.stem.replace(/\s*\$\$([\s\S]*?)\$\$\s*/g, (block, formula: string) => {
-  const latex = formula.trim()
-  return latex.length <= 110 && !/\\begin\{|\\\\/.test(latex) ? ` $${latex.replace(/\s+/g, ' ')}$ ` : `\n\n${block.trim()}\n\n`
-}).trim())
 </script>
 
 <template>
@@ -28,7 +23,7 @@ const stem = computed(() => props.question.stem.replace(/\s*\$\$([\s\S]*?)\$\$\s
     </header>
     <h3 :id="`title-${question.id}`" class="visually-hidden">{{ question.year }} 年 {{ question.source }} {{ question.number }}题</h3>
     <p class="question-topic">{{ question.topic }}</p>
-    <MathMarkdown class="question-stem" :source="stem" compact />
+    <MathMarkdown class="question-stem" :source="question.stem" compact />
     <fieldset v-if="question.options?.length" class="options">
       <legend class="visually-hidden">第 {{ index }} 题，选择你的答案</legend>
       <label v-for="option in question.options" :key="option.key" class="option" :class="{ selected: selectedOption === option.key, correct: answerOpen && question.correctOption === option.key, wrong: answerOpen && selectedOption === option.key && question.correctOption !== option.key }">
