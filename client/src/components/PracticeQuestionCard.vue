@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import MathMarkdown from '@/components/MathMarkdown.vue'
 import PracticeIcon from '@/components/PracticeIcon.vue'
 import type { Mastery, PracticeQuestion, QuestionProgress } from '@/math/practice'
@@ -9,6 +9,7 @@ const emit = defineEmits<{ mark: [id: string, mastery: Mastery]; note: [id: stri
 const answerOpen = ref(false)
 const noteOpen = ref(false)
 const selectedOption = ref('')
+const showResult = computed(() => answerOpen.value || Boolean(selectedOption.value))
 const statuses: { value: Mastery; label: string }[] = [
   { value: 'unfamiliar', label: '不熟练' }, { value: 'unknown', label: '不会' }, { value: 'mastered', label: '掌握' },
 ]
@@ -26,11 +27,12 @@ const statuses: { value: Mastery; label: string }[] = [
     <MathMarkdown class="question-stem" :source="question.stem" compact />
     <fieldset v-if="question.options?.length" class="options">
       <legend class="visually-hidden">第 {{ index }} 题，选择你的答案</legend>
-      <label v-for="option in question.options" :key="option.key" class="option" :class="{ selected: selectedOption === option.key, correct: answerOpen && question.correctOption === option.key, wrong: answerOpen && selectedOption === option.key && question.correctOption !== option.key }">
+      <label v-for="option in question.options" :key="option.key" class="option" :class="{ selected: selectedOption === option.key, correct: showResult && question.correctOption === option.key, wrong: showResult && selectedOption === option.key && question.correctOption !== option.key }">
         <input v-model="selectedOption" type="radio" :name="question.id" :value="option.key" :aria-label="`选项 ${option.key}`" />
-        <span class="option-key">{{ option.key }}.</span><MathMarkdown :source="option.text" inline compact /><PracticeIcon v-if="answerOpen && question.correctOption === option.key" name="check" class="option-result" />
+        <span class="option-key">{{ option.key }}.</span><MathMarkdown :source="option.text" inline compact /><PracticeIcon v-if="showResult && question.correctOption === option.key" name="check" class="option-result" /><PracticeIcon v-else-if="selectedOption === option.key && question.correctOption !== option.key" name="unknown" class="option-result incorrect" />
       </label>
     </fieldset>
+    <p v-if="selectedOption && question.correctOption" class="choice-feedback" :class="selectedOption === question.correctOption ? 'correct' : 'incorrect'" role="status" aria-live="polite"><PracticeIcon :name="selectedOption === question.correctOption ? 'check' : 'unknown'" />{{ selectedOption === question.correctOption ? `回答正确，答案是 ${question.correctOption}` : `回答错误，你选了 ${selectedOption}，正确答案是 ${question.correctOption}` }}</p>
     <div class="question-actions">
       <button class="answer-toggle" :aria-expanded="answerOpen" :aria-controls="`answer-${question.id}`" @click="answerOpen = !answerOpen"><PracticeIcon name="eye" />{{ answerOpen ? '收起答案与解析' : '查看答案与解析' }}</button>
       <div class="mastery-controls" role="group" :aria-label="`第 ${index} 题掌握程度`"><button v-for="status in statuses" :key="status.value" :class="[status.value, { marked: progress?.mastery === status.value }]" :aria-pressed="progress?.mastery === status.value" @click="emit('mark', question.id, status.value)"><PracticeIcon :name="status.value === 'mastered' ? 'check' : status.value" />{{ status.label }}</button></div>
@@ -38,7 +40,6 @@ const statuses: { value: Mastery; label: string }[] = [
     </div>
     <section v-if="answerOpen" :id="`answer-${question.id}`" class="answer-panel" aria-label="答案与解析">
       <h4>答案</h4><MathMarkdown :source="question.answer" compact />
-      <p v-if="selectedOption && question.correctOption" class="answer-feedback">{{ selectedOption === question.correctOption ? '选择正确' : `本次选择 ${selectedOption}，正确选项为 ${question.correctOption}` }}</p>
       <h4>解析</h4><MathMarkdown :source="question.explanation" compact />
     </section>
     <label v-if="noteOpen" :id="`note-${question.id}`" class="note-area"><span>错因笔记</span><textarea :aria-label="`${question.source}的错因笔记`" :value="progress?.note ?? ''" maxlength="10000" placeholder="记录错因或易忘的步骤" rows="2" @input="emit('note', question.id, ($event.target as HTMLTextAreaElement).value)" /><small>{{ storageFailed ? '保存失败，请导出备份' : '自动保存' }}</small></label>
@@ -81,7 +82,7 @@ button { cursor: pointer; transition: background .16s, border-color .16s, color 
 .answer-panel { margin: 10px 0; border-top: 1px solid var(--line); padding: 14px 0 4px; font-size: 16px; line-height: 1.75; }
 .answer-panel h4 { margin: 0 0 6px; color: var(--accent-dark); font-size: 14px; }
 .answer-panel h4:not(:first-child) { margin-top: 16px; }
-.answer-feedback { margin: 8px 0; color: var(--ink-soft); font-size: 13px; }
+.choice-feedback { display: flex; align-items: center; gap: 8px; margin: 0 0 14px; border-radius: 6px; padding: 10px 12px; font-size: 14px; line-height: 1.6; }.choice-feedback.correct { background: var(--success-tint); color: var(--success); }.choice-feedback.incorrect { background: var(--danger-tint); color: var(--danger); }.option-result.incorrect { color: var(--danger); }
 .note-area { display: grid; gap: 6px; margin: 12px 0 6px; font-size: 13px; }
 .note-area textarea { width: 100%; border: 1px solid var(--line-strong); border-radius: 6px; padding: 9px 11px; background: var(--paper); color: var(--ink); font: inherit; line-height: 1.7; resize: vertical; }
 .note-area small { color: var(--muted); }
