@@ -5,7 +5,11 @@ import ts from 'typescript'
 
 const root = resolve(import.meta.dirname, '..')
 async function loadModule(file) {
-  const source = readFileSync(resolve(root, file), 'utf8')
+  let source = readFileSync(resolve(root, file), 'utf8')
+  if (file.endsWith('practiceQuestions.ts')) {
+    const questions = readFileSync(resolve(root, 'client/src/content/practice-questions.json'), 'utf8')
+    source = source.replace("import questions from '@/content/practice-questions.json'", `const questions = ${questions}`)
+  }
   const compiled = ts.transpileModule(source, { compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ESNext } }).outputText
   return import(`data:text/javascript;base64,${Buffer.from(compiled).toString('base64')}`)
 }

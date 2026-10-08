@@ -3,6 +3,8 @@ export type PracticeQuestion = {
   id: string
   year: number
   number: string
+  examNumber?: string
+  exerciseIndex?: number
   source: string
   topic: string
   type: 'choice' | 'fill' | 'solution'
