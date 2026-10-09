@@ -788,8 +788,8 @@ export const mathChapters: MathChapter[] = [
       {
         "id": "calculus-01-002",
         "title": "极限",
-        "body": "##### 极限运算法则、等价无穷小与高阶无穷小公式\n\n**极限运算法则**　若 \\(\\lim f=A,\\lim g=B\\)，则\n\n<!-- formula {\"items\":[{\"id\":\"calculus-1mvw3nb-1\",\"title\":\"极限运算法则、等价无穷小与高阶无穷小公式：lim(af+bg)\",\"aliases\":[],\"context\":\"极限运算法则　若 \\\\lim f=A,\\\\lim g=B，则\",\"latex\":\"\\\\lim(af+bg)=aA+bB\"},{\"id\":\"calculus-1mvw3nb-2\",\"title\":\"极限运算法则、等价无穷小与高阶无穷小公式：lim(fg)\",\"aliases\":[],\"context\":\"极限运算法则　若 \\\\lim f=A,\\\\lim g=B，则\",\"latex\":\"\\\\lim(fg)=AB\"},{\"id\":\"calculus-1mvw3nb-3\",\"title\":\"极限运算法则、等价无穷小与高阶无穷小公式：limfrac fg\",\"aliases\":[],\"context\":\"极限运算法则　若 \\\\lim f=A,\\\\lim g=B，则\",\"latex\":\"\\\\lim\\\\frac fg=\\\\frac AB\\\\quad (B\\\\ne0)\"}]} -->\n\\[\n\\lim(af+bg)=aA+bB,\\qquad\n\\lim(fg)=AB,\\qquad\n\\lim\\frac fg=\\frac AB\\quad(B\\ne0).\n\\]\n\n若 \\(\\varphi(x)\\to u_0\\)，且 \\(f\\) 在 \\(u_0\\) 连续，则\n\n<!-- formula {\"id\":\"calculus-8wjxb\",\"title\":\"极限运算法则、等价无穷小与高阶无穷小公式：lim f(φ(x))\",\"aliases\":[],\"context\":\"若 \\\\(\\\\varphi(x)\\\\to u_0\\\\)，且 f 在 u_0 连续，则\"} -->\n\\[\n\\lim f(\\varphi(x))=f(u_0).\n\\]\n\n当 \\(x\\to0\\) 时：\n\n<!-- formula {\"items\":[{\"id\":\"calculus-1yof5kw-1\",\"title\":\"极限运算法则、等价无穷小与高阶无穷小公式：sin x\",\"aliases\":[],\"context\":\"当 x\\\\to0 时：\",\"latex\":\"\\\\sin x\\\\sim x\"},{\"id\":\"calculus-1yof5kw-2\",\"title\":\"极限运算法则、等价无穷小与高阶无穷小公式：tan x\",\"aliases\":[],\"context\":\"当 x\\\\to0 时：\",\"latex\":\"\\\\tan x\\\\sim x\"},{\"id\":\"calculus-1yof5kw-3\",\"title\":\"极限运算法则、等价无穷小与高阶无穷小公式：arcsin x\",\"aliases\":[],\"context\":\"当 x\\\\to0 时：\",\"latex\":\"\\\\arcsin x\\\\sim x\"},{\"id\":\"calculus-1yof5kw-4\",\"title\":\"极限运算法则、等价无穷小与高阶无穷小公式：arctan x\",\"aliases\":[],\"context\":\"当 x\\\\to0 时：\",\"latex\":\"\\\\arctan x\\\\sim x\"}]} -->\n\\[\n\\sin x\\sim x,\\quad \\tan x\\sim x,\\quad \\arcsin x\\sim x,\\quad \\arctan x\\sim x,\n\\]\n\n<!-- formula {\"items\":[{\"id\":\"calculus-en5lzh-1\",\"title\":\"极限运算法则、等价无穷小与高阶无穷小公式：e^x-1\",\"aliases\":[],\"context\":\"所属知识点：极限运算法则、等价无穷小与高阶无穷小公式。\",\"latex\":\"e^x-1\\\\sim x\"},{\"id\":\"calculus-en5lzh-2\",\"title\":\"极限运算法则、等价无穷小与高阶无穷小公式：ln(1+x)\",\"aliases\":[],\"context\":\"所属知识点：极限运算法则、等价无穷小与高阶无穷小公式。\",\"latex\":\"\\\\ln(1+x)\\\\sim x\"},{\"id\":\"calculus-en5lzh-3\",\"title\":\"极限运算法则、等价无穷小与高阶无穷小公式：(1+x)^a-1\",\"aliases\":[],\"context\":\"所属知识点：极限运算法则、等价无穷小与高阶无穷小公式。\",\"latex\":\"(1+x)^a-1\\\\sim ax\"}]} -->\n\\[\ne^x-1\\sim x,\\quad \\ln(1+x)\\sim x,\\quad (1+x)^a-1\\sim ax,\n\\]\n\n<!-- formula {\"items\":[{\"id\":\"calculus-15hshia-1\",\"title\":\"极限运算法则、等价无穷小与高阶无穷小公式：1-cos x\",\"aliases\":[],\"context\":\"所属知识点：极限运算法则、等价无穷小与高阶无穷小公式。\",\"latex\":\"1-\\\\cos x\\\\sim \\\\frac{x^2}{2}\"},{\"id\":\"calculus-15hshia-2\",\"title\":\"极限运算法则、等价无穷小与高阶无穷小公式：a^x-1\",\"aliases\":[],\"context\":\"所属知识点：极限运算法则、等价无穷小与高阶无穷小公式。\",\"latex\":\"a^x-1\\\\sim x\\\\ln a\"}]} -->\n\\[\n1-\\cos x\\sim \\frac{x^2}{2},\\qquad a^x-1\\sim x\\ln a.\n\\]\n\n高阶常用等价式：\n\n<!-- formula {\"items\":[{\"id\":\"calculus-fem39z-1\",\"title\":\"极限运算法则、等价无穷小与高阶无穷小公式：x-sin x\",\"aliases\":[],\"context\":\"高阶常用等价式：\",\"latex\":\"x-\\\\sin x\\\\sim\\\\frac{x^3}{6}\"},{\"id\":\"calculus-fem39z-2\",\"title\":\"极限运算法则、等价无穷小与高阶无穷小公式：tan x-x\",\"aliases\":[],\"context\":\"高阶常用等价式：\",\"latex\":\"\\\\tan x-x\\\\sim\\\\frac{x^3}{3}\"}]} -->\n\\[\nx-\\sin x\\sim\\frac{x^3}{6},\\qquad\n\\tan x-x\\sim\\frac{x^3}{3},\n\\]\n\n<!-- formula {\"items\":[{\"id\":\"calculus-4t1nrh-1\",\"title\":\"极限运算法则、等价无穷小与高阶无穷小公式：arcsin x-x\",\"aliases\":[],\"context\":\"所属知识点：极限运算法则、等价无穷小与高阶无穷小公式。\",\"latex\":\"\\\\arcsin x-x\\\\sim\\\\frac{x^3}{6}\"},{\"id\":\"calculus-4t1nrh-2\",\"title\":\"极限运算法则、等价无穷小与高阶无穷小公式：x-arctan x\",\"aliases\":[],\"context\":\"所属知识点：极限运算法则、等价无穷小与高阶无穷小公式。\",\"latex\":\"x-\\\\arctan x\\\\sim\\\\frac{x^3}{3}\"}]} -->\n\\[\n\\arcsin x-x\\sim\\frac{x^3}{6},\\qquad\nx-\\arctan x\\sim\\frac{x^3}{3}.\n\\]\n\n<!-- formula {\"items\":[{\"id\":\"calculus-1058a1k-1\",\"title\":\"极限运算法则、等价无穷小与高阶无穷小公式：x-ln(1+x)\",\"aliases\":[],\"context\":\"所属知识点：极限运算法则、等价无穷小与高阶无穷小公式。\",\"latex\":\"x-\\\\ln(1+x)\\\\sim\\\\frac{x^2}{2}\"},{\"id\":\"calculus-1058a1k-2\",\"title\":\"极限运算法则、等价无穷小与高阶无穷小公式：ln\",\"aliases\":[],\"context\":\"所属知识点：极限运算法则、等价无穷小与高阶无穷小公式。\",\"latex\":\"\\\\ln\\\\!\\\\left(x+\\\\sqrt{1+x^2}\\\\right)-x\\\\sim-\\\\frac{x^3}{6}\"}]} -->\n\\[\nx-\\ln(1+x)\\sim\\frac{x^2}{2},\\qquad\n\\ln\\!\\left(x+\\sqrt{1+x^2}\\right)-x\\sim-\\frac{x^3}{6}.\n\\]\n\n等价无穷小的等价判据：\n\n<!-- formula {\"id\":\"calculus-18r0zly\",\"title\":\"极限运算法则、等价无穷小与高阶无穷小公式：α\",\"aliases\":[],\"context\":\"等价无穷小的等价判据：\"} -->\n\\[\n\\alpha\\sim\\beta\n\\Longleftrightarrow \\alpha-\\beta=o(\\alpha)\n\\Longleftrightarrow \\alpha-\\beta=o(\\beta).\n\\]\n\n若 \\(u(x)\\to0\\)，则可把上式中的 \\(x\\) 换成 \\(u(x)\\)。更一般地，若 \\(u\\to0\\)、\\(uv\\to0\\)，则\n\n<!-- formula {\"id\":\"calculus-ndli7f\",\"title\":\"极限运算法则、等价无穷小与高阶无穷小公式：(1+u)^v-1\",\"aliases\":[],\"context\":\"若 \\\\(u(x)\\\\to0\\\\)，则可把上式中的 x 换成 \\\\(u(x)\\\\)。更一般地，若 u\\\\to0、uv\\\\to0，则\"} -->\n\\[\n(1+u)^v-1\\sim uv.\n\\]\n\n##### 常用泰勒展开式（集中速查）\n\n指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 \\(x\\to0\\) 时，只记到做题所需的阶数：\n\n<!-- formula {\"items\":[{\"id\":\"calculus-1hq160m-1\",\"title\":\"常用泰勒展开式（集中速查）：e^x\",\"aliases\":[],\"context\":\"指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 x\\\\to0 时，只记到做题所需的阶数：\",\"latex\":\"e^x=1+x+\\\\frac{x^2}{2}+\\\\frac{x^3}{6}+o(x^3)\"},{\"id\":\"calculus-1hq160m-2\",\"title\":\"常用泰勒展开式（集中速查）：frac11-x\",\"aliases\":[],\"context\":\"指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 x\\\\to0 时，只记到做题所需的阶数：\",\"latex\":\"\\\\frac1{1-x}=1+x+x^2+x^3+o(x^3)\"},{\"id\":\"calculus-1hq160m-3\",\"title\":\"常用泰勒展开式（集中速查）：frac11+x\",\"aliases\":[],\"context\":\"指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 x\\\\to0 时，只记到做题所需的阶数：\",\"latex\":\"\\\\frac1{1+x}=1-x+x^2-x^3+o(x^3)\"},{\"id\":\"calculus-1hq160m-4\",\"title\":\"常用泰勒展开式（集中速查）：ln(1+x)\",\"aliases\":[],\"context\":\"指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 x\\\\to0 时，只记到做题所需的阶数：\",\"latex\":\"\\\\ln(1+x)=x-\\\\frac{x^2}{2}+\\\\frac{x^3}{3}+o(x^3)\"},{\"id\":\"calculus-1hq160m-5\",\"title\":\"常用泰勒展开式（集中速查）：sin x\",\"aliases\":[],\"context\":\"指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 x\\\\to0 时，只记到做题所需的阶数：\",\"latex\":\"\\\\sin x=x-\\\\frac{x^3}{6}+\\\\frac{x^5}{120}+o(x^5)\"},{\"id\":\"calculus-1hq160m-6\",\"title\":\"常用泰勒展开式（集中速查）：cos x\",\"aliases\":[],\"context\":\"指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 x\\\\to0 时，只记到做题所需的阶数：\",\"latex\":\"\\\\cos x=1-\\\\frac{x^2}{2}+\\\\frac{x^4}{24}+o(x^4)\"},{\"id\":\"calculus-1hq160m-7\",\"title\":\"常用泰勒展开式（集中速查）：(1+x)^a\",\"aliases\":[],\"context\":\"指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 x\\\\to0 时，只记到做题所需的阶数：\",\"latex\":\"(1+x)^a=1+ax+\\\\frac{a(a-1)}{2}x^2+\\\\frac{a(a-1)(a-2)}{6}x^3+o(x^3)\"}]} -->\n\\[\n\\begin{aligned}\ne^x&=1+x+\\frac{x^2}{2}+\\frac{x^3}{6}+o(x^3),\\\\\n\\frac1{1-x}&=1+x+x^2+x^3+o(x^3),\\\\\n\\frac1{1+x}&=1-x+x^2-x^3+o(x^3),\\\\\n\\ln(1+x)&=x-\\frac{x^2}{2}+\\frac{x^3}{3}+o(x^3),\\\\\n\\sin x&=x-\\frac{x^3}{6}+\\frac{x^5}{120}+o(x^5),\\\\\n\\cos x&=1-\\frac{x^2}{2}+\\frac{x^4}{24}+o(x^4),\\\\\n(1+x)^a&=1+ax+\\frac{a(a-1)}{2}x^2+\\frac{a(a-1)(a-2)}{6}x^3+o(x^3).\n\\end{aligned}\n\\]\n\n补充几个常用三阶式：\n\n<!-- formula {\"items\":[{\"id\":\"calculus-1knzfju-1\",\"title\":\"常用泰勒展开式（集中速查）：tan x\",\"aliases\":[],\"context\":\"补充几个常用三阶式：\",\"latex\":\"\\\\tan x=x+\\\\frac{x^3}{3}+o(x^3)\"},{\"id\":\"calculus-1knzfju-2\",\"title\":\"常用泰勒展开式（集中速查）：arcsin x\",\"aliases\":[],\"context\":\"补充几个常用三阶式：\",\"latex\":\"\\\\arcsin x=x+\\\\frac{x^3}{6}+o(x^3)\"},{\"id\":\"calculus-1knzfju-3\",\"title\":\"常用泰勒展开式（集中速查）：arctan x\",\"aliases\":[],\"context\":\"补充几个常用三阶式：\",\"latex\":\"\\\\arctan x=x-\\\\frac{x^3}{3}+o(x^3)\"}]} -->\n\\[\n\\tan x=x+\\frac{x^3}{3}+o(x^3),\\quad\n\\arcsin x=x+\\frac{x^3}{6}+o(x^3),\\quad\n\\arctan x=x-\\frac{x^3}{3}+o(x^3),\n\\]\n\n<!-- formula {\"items\":[{\"id\":\"calculus-1nfa9d9-1\",\"title\":\"常用泰勒展开式（集中速查）：sqrt1+x\",\"aliases\":[],\"context\":\"所属知识点：常用泰勒展开式（集中速查）。\",\"latex\":\"\\\\sqrt{1+x}=1+\\\\frac{x}{2}-\\\\frac{x^2}{8}+o(x^2)\"},{\"id\":\"calculus-1nfa9d9-2\",\"title\":\"常用泰勒展开式（集中速查）：ln\",\"aliases\":[],\"context\":\"所属知识点：常用泰勒展开式（集中速查）。\",\"latex\":\"\\\\ln\\\\!\\\\left(x+\\\\sqrt{1+x^2}\\\\right)=x-\\\\frac{x^3}{6}+o(x^3)\"}]} -->\n\\[\n\\sqrt{1+x}=1+\\frac{x}{2}-\\frac{x^2}{8}+o(x^2),\\qquad\n\\ln\\!\\left(x+\\sqrt{1+x^2}\\right)=x-\\frac{x^3}{6}+o(x^3).\n\\]\n\n通用公式（\\(x_0=0\\) 时即麦克劳林公式）：\n\n<!-- formula {\"id\":\"calculus-1cqcqda\",\"title\":\"常用泰勒展开式（集中速查）：f(x)\",\"aliases\":[],\"context\":\"通用公式（x_0=0 时即麦克劳林公式）：\"} -->\n\\[\nf(x)=\\sum_{k=0}^{n}\\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k+R_n(x).\n\\]\n\n求等价无穷小时用佩亚诺余项 <!-- formula {\"id\":\"calculus-taylor-peano-remainder\",\"title\":\"泰勒公式的佩亚诺余项\",\"aliases\":[\"佩亚诺余项\",\"小o余项\"],\"context\":\"用于局部等价与阶数比较；x 趋于 x₀。\"} -->\\(R_n(x)=o((x-x_0)^n)\\)；需要估计误差时可用拉格朗日余项 <!-- formula {\"id\":\"calculus-taylor-lagrange-remainder\",\"title\":\"泰勒公式的拉格朗日余项\",\"aliases\":[\"拉格朗日余项\",\"泰勒误差估计\"],\"context\":\"f 在相关区间上具有 n+1 阶导数，ξ 位于 x 与 x₀ 之间。\"} -->\\(R_n(x)=\\frac{f^{(n+1)}(\\xi)}{(n+1)!}(x-x_0)^{n+1}\\)。不要在和差中只替换最低阶等价式，先看前几项是否抵消。\n\n##### 七类未定式、洛必达法则与幂指函数极限\n\n- \\(\\frac00\\)、\\(\\frac{\\infty}{\\infty}\\)：先化简、等价替换或洛必达；洛必达前必须确认型别和条件。\n- \\(0\\cdot\\infty\\)：改写成商。\n- \\(\\infty-\\infty\\)：通分、有理化或提取主项。\n- \\(1^\\infty\\)、\\(0^0\\)、\\(\\infty^0\\)：设原式为 \\(y\\)，先求 \\(\\ln y\\)，最后取指数。\n- 分子分母相减严重时，展开到第一个不抵消的项；不必把所有因子展开到同一阶。\n\n**洛必达法则**　当 \\(\\frac fg\\) 为 \\(\\frac00\\) 型或 \\(\\frac{\\infty}{\\infty}\\) 型，并满足相应可导条件，且导数之比的极限存在或为无穷时：\n\n<!-- formula {\"id\":\"calculus-83v85p\",\"title\":\"七类未定式、洛必达法则与幂指函数极限：lim(f(x))/(g(x))\",\"aliases\":[],\"context\":\"分子分母相减严重时，展开到第一个不抵消的项；不必把所有因子展开到同一阶。\"} -->\n\\[\n\\lim\\frac{f(x)}{g(x)}=\\lim\\frac{f'(x)}{g'(x)}.\n\\]\n\n洛必达后若仍是相同未定式可以继续使用；每次都要重新检查型别。等价无穷小只能直接替换乘积或商中的因子，和差中的替换必须保证不会丢掉抵消后的首个非零项。\n\n幂指型极限统一公式：\n\n<!-- formula {\"id\":\"calculus-l7xpfv-1\",\"title\":\"七类未定式、洛必达法则与幂指函数极限：lim f(x)^g(x)\",\"aliases\":[],\"context\":\"幂指型极限统一公式：\"} -->\n\\[\n\\lim f(x)^{g(x)}\n=\\exp\\!\\left(\\lim g(x)\\ln f(x)\\right)\\qquad(f(x)>0).\n\\]\n\n特别地，若 \\(u(x)\\to0\\)、\\(v(x)\\to\\infty\\)、\\(u(x)v(x)\\to A\\)，则\n\n<!-- formula {\"id\":\"calculus-1c5ti32\",\"title\":\"七类未定式、洛必达法则与幂指函数极限：[1+u(x)]^v(x)to e^A\",\"aliases\":[],\"context\":\"特别地，若 \\\\(u(x)\\\\to0\\\\)、\\\\(v(x)\\\\to\\\\infty\\\\)、\\\\(u(x)v(x)\\\\to A\\\\)，则\"} -->\n\\[\n[1+u(x)]^{v(x)}\\to e^A.\n\\]\n\n##### 两个重要极限、数列极限、黎曼和与递推数列\n\n两个重要极限：\n\n<!-- formula {\"items\":[{\"id\":\"calculus-8xvs7x-1\",\"title\":\"两个重要极限、数列极限、黎曼和与递推数列：lim_xto0(sin x)/(x)\",\"aliases\":[],\"context\":\"两个重要极限：\",\"latex\":\"\\\\lim_{x\\\\to0}\\\\frac{\\\\sin x}{x}=1\"},{\"id\":\"calculus-8xvs7x-2\",\"title\":\"两个重要极限、数列极限、黎曼和与递推数列：lim_xto0(1+x)^frac1x\",\"aliases\":[],\"context\":\"两个重要极限：\",\"latex\":\"\\\\lim_{x\\\\to0}(1+x)^{\\\\frac1x}=e\"}]} -->\n\\[\n\\lim_{x\\to0}\\frac{\\sin x}{x}=1,\\qquad\n\\lim_{x\\to0}(1+x)^{\\frac1x}=e,\n\\]\n\n以及等价形式\n\n<!-- formula {\"items\":[{\"id\":\"calculus-3qrfxs-1\",\"title\":\"两个重要极限、数列极限、黎曼和与递推数列：lim_nto∞\",\"aliases\":[],\"context\":\"以及等价形式\",\"latex\":\"\\\\lim_{n\\\\to\\\\infty}\\\\left(1+\\\\frac1n\\\\right)^n=e\"},{\"id\":\"calculus-3qrfxs-2\",\"title\":\"两个重要极限、数列极限、黎曼和与递推数列：lim_xto∞\",\"aliases\":[],\"context\":\"以及等价形式\",\"latex\":\"\\\\lim_{x\\\\to\\\\infty}\\\\left(1+\\\\frac ax\\\\right)^x=e^a\"}]} -->\n\\[\n\\lim_{n\\to\\infty}\\left(1+\\frac1n\\right)^n=e,\\qquad\n\\lim_{x\\to\\infty}\\left(1+\\frac ax\\right)^x=e^a.\n\\]\n\n<!-- formula {\"id\":\"calculus-102nllp\",\"title\":\"两个重要极限、数列极限、黎曼和与递推数列：lim_nto∞a^frac1n\",\"aliases\":[],\"context\":\"所属知识点：两个重要极限、数列极限、黎曼和与递推数列。\"} -->\n\\[\n\\lim_{n\\to\\infty}a^{\\frac1n}=1\\quad(a>0),\\qquad\n\\lim_{n\\to\\infty}n^{\\frac1n}=1.\n\\]\n\n若 \\(a_1,\\ldots,a_m>0\\)，则\n\n<!-- formula {\"id\":\"calculus-1lfos2w\",\"title\":\"有限个正数的 n 次根极限取最大值\",\"aliases\":[],\"context\":\"若 a_1,\\\\ldots,a_m>0，则\"} -->\n\\[\n\\lim_{n\\to\\infty}\\sqrt[n]{a_1^n+a_2^n+\\cdots+a_m^n}\n=\\max\\{a_1,a_2,\\ldots,a_m\\}.\n\\]\n\n若 \\(a_0b_0\\ne0\\)，则\n\n<!-- formula {\"id\":\"calculus-79gyl1\",\"title\":\"两个重要极限、数列极限、黎曼和与递推数列：lim_xto∞\",\"aliases\":[],\"context\":\"若 a_0b_0\\\\ne0，则\"} -->\n\\[\n\\lim_{x\\to\\infty}\n\\frac{a_0x^n+a_1x^{n-1}+\\cdots+a_n}\n{b_0x^m+b_1x^{m-1}+\\cdots+b_m}\n=\n\\begin{cases}\n0,&n<m,\\\\\n\\dfrac{a_0}{b_0},&n=m,\\\\\n\\infty\\text{ 或 }-\\infty,&n>m,\n\\end{cases}\n\\]\n\n最后一种情形的符号由最高次项决定。\n\n<!-- formula {\"id\":\"calculus-v7iqrw\",\"title\":\"两个重要极限、数列极限、黎曼和与递推数列：lim_nto∞frac1nΣ_k\",\"aliases\":[],\"context\":\"最后一种情形的符号由最高次项决定。\"} -->\n\\[\n\\lim_{n\\to\\infty}\\frac1n\\sum_{k=1}^n f\\!\\left(\\frac{k}{n}\\right)=\\int_0^1 f(x)\\,dx.\n\\]\n\n一般区间 \\([a,b]\\) 的和要整理成“函数值乘小区间宽度”。乘积先取对数化为和。递推数列先证单调有界，再令极限为 \\(L\\) 代回递推式；代数方程有多个根时，用数列范围筛选。\n\n夹逼准则：若在去心邻域内 \\(g(x)\\le f(x)\\le h(x)\\)，且 \\(g,h\\to A\\)，则 \\(f\\to A\\)。单调有界数列一定收敛；递增数列的极限是其上确界，递减数列的极限是其下确界。\n\n##### 极限存在、左右极限、局部有界性、保号性与保序性\n\n<!-- formula {\"id\":\"calculus-1i1evgc\",\"title\":\"极限存在、左右极限、局部有界性、保号性与保序性：lim_xto x_0f(x)\",\"aliases\":[],\"context\":\"所属知识点：极限存在、左右极限、局部有界性、保号性与保序性。\"} -->\n\\[\n\\lim_{x\\to x_0}f(x)=A\n\\Longleftrightarrow\n\\lim_{x\\to x_0^-}f(x)=\\lim_{x\\to x_0^+}f(x)=A.\n\\]\n\n有限极限存在时，函数在该点的某个去心邻域内有界；若 \\(A>0\\)，则该邻域内 \\(f(x)>0\\)。若附近恒有 \\(f(x)\\le g(x)\\)，且两边极限都存在，则\n\n<!-- formula {\"id\":\"calculus-173gpr9\",\"title\":\"极限存在、左右极限、局部有界性、保号性与保序性：lim f(x)\",\"aliases\":[],\"context\":\"有限极限存在时，函数在该点的某个去心邻域内有界；若 A>0，则该邻域内 \\\\(f(x)>0\\\\)。若附近恒有 \\\\(f(x)\\\\le g(x)\\\\)，且两边极限都存在，则\"} -->\n\\[\n\\lim f(x)\\le\\lim g(x).\n\\]\n\n##### 夹逼准则、无穷小乘有界量与递推数列压缩估计\n\n<!-- formula {\"id\":\"calculus-t5e1pl\",\"title\":\"夹逼准则、无穷小乘有界量与递推数列压缩估计：g(x)\",\"aliases\":[],\"context\":\"所属知识点：夹逼准则、无穷小乘有界量与递推数列压缩估计。\"} -->\n\\[\ng(x)\\le f(x)\\le h(x),\\qquad g(x),h(x)\\to A\n\\Longrightarrow f(x)\\to A.\n\\]\n\n<!-- formula {\"id\":\"calculus-6qws51\",\"title\":\"夹逼准则、无穷小乘有界量与递推数列压缩估计：α(x)to0, β(x) 有界\",\"aliases\":[],\"context\":\"所属知识点：夹逼准则、无穷小乘有界量与递推数列压缩估计。\"} -->\n\\[\n\\alpha(x)\\to0,\\qquad \\beta(x)\\text{ 有界}\n\\Longrightarrow \\alpha(x)\\beta(x)\\to0.\n\\]\n\n若递推数列在一个不变区间内满足\n\n<!-- formula {\"id\":\"calculus-1qr3ruk-1\",\"title\":\"夹逼准则、无穷小乘有界量与递推数列压缩估计：|a_n+1-A|\",\"aliases\":[],\"context\":\"若递推数列在一个不变区间内满足\"} -->\n\\[\n|a_{n+1}-A|\\le q|a_n-A|,\\qquad 0<q<1,\n\\]\n\n则\n\n<!-- formula {\"id\":\"calculus-u3z71g\",\"title\":\"夹逼准则、无穷小乘有界量与递推数列压缩估计：|a_n-A|\",\"aliases\":[],\"context\":\"所属知识点：夹逼准则、无穷小乘有界量与递推数列压缩估计。\"} -->\n\\[\n|a_n-A|\\le q^{n-1}|a_1-A|\\to0.\n\\]\n\n##### 数列乘积、无限乘积与对数化\n\n各因子为正时，乘积先取对数：\n\n<!-- formula {\"id\":\"calculus-9esrln\",\"title\":\"数列乘积、无限乘积与对数化：u_n\",\"aliases\":[],\"context\":\"各因子为正时，乘积先取对数：\"} -->\n\\[\nu_n=\\prod_{k=1}^n a_k\n\\Longrightarrow\n\\ln u_n=\\sum_{k=1}^n\\ln a_k.\n\\]\n\n常用望远镜乘积：\n\n<!-- formula {\"id\":\"calculus-1lhjtmk\",\"title\":\"数列乘积、无限乘积与对数化：(1-x)(1+x)(1+x^2)cdots(1+x^2^n)\",\"aliases\":[],\"context\":\"常用望远镜乘积：\"} -->\n\\[\n(1-x)(1+x)(1+x^2)\\cdots(1+x^{2^n})=1-x^{2^{n+1}}.\n\\]\n\n##### 无穷小阶数、等价判据与积分等价\n\n若\n\n<!-- formula {\"id\":\"calculus-137lxxy\",\"title\":\"无穷小阶数、等价判据与积分等价：lim(α(x))/(β(x))\",\"aliases\":[],\"context\":\"所属知识点：无穷小阶数、等价判据与积分等价。\"} -->\n\\[\n\\lim\\frac{\\alpha(x)}{\\beta(x)}=\n\\begin{cases}\n0,&\\alpha\\text{ 比 }\\beta\\text{ 高阶},\\\\\nc\\ne0,&\\alpha\\text{ 与 }\\beta\\text{ 同阶},\\\\\n1,&\\alpha\\sim\\beta,\\\\\n\\infty,&\\alpha\\text{ 比 }\\beta\\text{ 低阶}.\n\\end{cases}\n\\]\n\n“无界”不等于“趋于无穷大”；趋于无穷大一定无界，反过来不成立。\n\n若 \\(f(x)\\sim g(x)\\)、二者在去心邻域内同号且积分存在，则在相应端点附近\n\n<!-- formula {\"id\":\"calculus-o00lnb\",\"title\":\"无穷小阶数、等价判据与积分等价：∫_x_0^xf(t) dt\",\"aliases\":[],\"context\":\"若 \\\\(f(x)\\\\sim g(x)\\\\)、二者在去心邻域内同号且积分存在，则在相应端点附近\"} -->\n\\[\n\\int_{x_0}^{x}f(t)\\,dt\\sim\\int_{x_0}^{x}g(t)\\,dt.\n\\]\n\n若 \\(f(t)\\sim c t^m\\ (t\\to0^+)\\)、\\(\\varphi(x)\\sim d x^n\\ (x\\to0^+)\\)，其中\n\\(c\\ne0\\)、\\(d>0\\)、\\(m,n\\) 为非负整数，则\n\n<!-- formula {\"id\":\"calculus-1po8to\",\"title\":\"无穷小阶数、等价判据与积分等价：∫_0^φ(x)f(t) dt\",\"aliases\":[],\"context\":\"若 \\\\(f(t)\\\\sim c t^m\\\\ (t\\\\to0^+)\\\\)、\\\\(\\\\varphi(x)\\\\sim d x^n\\\\ (x\\\\to0^+)\\\\)，其中\"} -->\n\\[\n\\int_0^{\\varphi(x)}f(t)\\,dt\n\\sim\\frac{c}{m+1}[\\varphi(x)]^{m+1}\n\\sim\\frac{cd^{m+1}}{m+1}x^{n(m+1)}.\n\\]\n\n##### 含参数极限、导数定义型极限与三类渐近线\n\n<!-- formula {\"id\":\"calculus-4w22q8\",\"title\":\"含参数极限、导数定义型极限与三类渐近线：x\",\"aliases\":[],\"context\":\"所属知识点：含参数极限、导数定义型极限与三类渐近线。\"} -->\n\\[\nx=x_0:\\ \\lim_{x\\to x_0}f(x)=\\infty,\n\\]\n\n<!-- formula {\"id\":\"calculus-18wudsw\",\"title\":\"含参数极限、导数定义型极限与三类渐近线：y\",\"aliases\":[],\"context\":\"所属知识点：含参数极限、导数定义型极限与三类渐近线。\"} -->\n\\[\ny=b:\\ \\lim_{x\\to\\pm\\infty}f(x)=b,\n\\]\n\n<!-- formula {\"items\":[{\"id\":\"calculus-1443xil-1\",\"title\":\"含参数极限、导数定义型极限与三类渐近线：y\",\"aliases\":[],\"context\":\"所属知识点：含参数极限、导数定义型极限与三类渐近线。\",\"latex\":\"y=kx+b:\\\\ k=\\\\lim_{x\\\\to\\\\pm\\\\infty}\\\\frac{f(x)}x\"},{\"id\":\"calculus-1443xil-2\",\"title\":\"含参数极限、导数定义型极限与三类渐近线：b\",\"aliases\":[],\"context\":\"所属知识点：含参数极限、导数定义型极限与三类渐近线。\",\"latex\":\"b=\\\\lim_{x\\\\to\\\\pm\\\\infty}[f(x)-kx]\"}]} -->\n\\[\ny=kx+b:\\ k=\\lim_{x\\to\\pm\\infty}\\frac{f(x)}x,\\quad\nb=\\lim_{x\\to\\pm\\infty}[f(x)-kx].\n\\]\n\n含参数极限存在时，先让左右极限相等，再排除分母为零或表达式无意义的参数。极限中出现\n\n<!-- formula {\"id\":\"calculus-m3ictv\",\"title\":\"含参数极限、导数定义型极限与三类渐近线：(f(x)-f(x_0))/(x-x_0)\",\"aliases\":[],\"context\":\"含参数极限存在时，先让左右极限相等，再排除分母为零或表达式无意义的参数。极限中出现\"} -->\n\\[\n\\frac{f(x)-f(x_0)}{x-x_0}\n\\]\n\n时，直接按导数定义识别。",
-        "searchText": "极限 极限 极限 极限运算法则、等价无穷小与高阶无穷小公式 极限运算法则 若 f=A, g=B，则 (af+bg)=aA+bB, (fg)=AB, fg= AB (B≠0). 若 (x) u 0，且 f 在 u 0 连续，则 f( (x))=f(u 0). 当 x 0 时： x x, x x, x x, x x, e^x-1 x, (1+x) x, (1+x)^a-1 ax, 1- x x^2 2 , a^x-1 x a. 高阶常用等价式： x- x x^3 6 , x-x x^3 3 , x-x x^3 6 , x- x x^3 3 . x- (1+x) x^2 2 , \\!≤ft(x+ 1+x^2 )-x - x^3 6 . 等价无穷小的等价判据： - =o( ) - =o( ). 若 u(x) 0，则可把上式中的 x 换成 u(x)。更一般地，若 u 0、uv 0，则 (1+u)^v-1 uv. 常用泰勒展开式（集中速查） 指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 x 0 时，只记到做题所需的阶数： aligned e^x&=1+x+ x^2 2 + x^3 6 +o(x^3),\\\\ 1 1-x &=1+x+x^2+x^3+o(x^3),\\\\ 1 1+x &=1-x+x^2-x^3+o(x^3),\\\\ (1+x)&=x- x^2 2 + x^3 3 +o(x^3),\\\\ x&=x- x^3 6 + x^5 120 +o(x^5),\\\\ x&=1- x^2 2 + x^4 24 +o(x^4),\\\\ (1+x)^a&=1+ax+ a(a-1) 2 x^2+ a(a-1)(a-2) 6 x^3+o(x^3). aligned 补充几个常用三阶式： x=x+ x^3 3 +o(x^3), x=x+ x^3 6 +o(x^3), x=x- x^3 3 +o(x^3), 1+x =1+ x 2 - x^2 8 +o(x^2), \\!≤ft(x+ 1+x^2 )=x- x^3 6 +o(x^3). 通用公式（x 0=0 时即麦克劳林公式）： f(x)= k=0 ^ n f^ (k) (x 0) k! (x-x 0)^k+R n(x). 求等价无穷小时用佩亚诺余项 R n(x)=o((x-x 0)^n)；需要估计误差时可用拉格朗日余项 R n(x)= f^ (n+1) ( ) (n+1)! (x-x 0)^ n+1 。不要在和差中只替换最低阶等价式，先看前几项是否抵消。 七类未定式、洛必达法则与幂指函数极限 00、 ：先化简、等价替换或洛必达；洛必达前必须确认型别和条件。 0 ：改写成商。 - ：通分、有理化或提取主项。 1^ 、0^0、 ^0：设原式为 y，先求 y，最后取指数。 分子分母相减严重时，展开到第一个不抵消的项；不必把所有因子展开到同一阶。 洛必达法则 当 fg 为 00 型或 型，并满足相应可导条件，且导数之比的极限存在或为无穷时： f(x) g(x) = f'(x) g'(x) . 洛必达后若仍是相同未定式可以继续使用；每次都要重新检查型别。等价无穷小只能直接替换乘积或商中的因子，和差中的替换必须保证不会丢掉抵消后的首个非零项。 幂指型极限统一公式： f(x)^ g(x) = \\!≤ft( g(x) f(x) ) (f(x) 0). 特别地，若 u(x) 0、v(x) 、u(x)v(x) A，则 [1+u(x)]^ v(x) e^A. 两个重要极限、数列极限、黎曼和与递推数列 两个重要极限： x 0 x x =1, x 0 (1+x)^ 1x =e, 以及等价形式 n ≤ft(1+ 1n )^n=e, x ≤ft(1+ ax )^x=e^a. n a^ 1n =1 (a 0), n n^ 1n =1. 若 a 1, ,a m 0，则 n [n] a 1^n+a 2^n+ +a m^n = \\ a 1,a 2, ,a m\\ . 若 a 0b 0≠0，则 x a 0x^n+a 1x^ n-1 + +a n b 0x^m+b 1x^ m-1 + +b m = cases 0,&n<m,\\\\ a 0 b 0 ,&n=m,\\\\ 或 - ,&n m, cases 最后一种情形的符号由最高次项决定。 n 1n k=1 ^n f\\!≤ft( k n )= 0^1 f(x)\\,dx. 一般区间 [a,b] 的和要整理成“函数值乘小区间宽度”。乘积先取对数化为和。递推数列先证单调有界，再令极限为 L 代回递推式；代数方程有多个根时，用数列范围筛选。 夹逼准则：若在去心邻域内 g(x)≤ f(x)≤ h(x)，且 g,h A，则 f A。单调有界数列一定收敛；递增数列的极限是其上确界，递减数列的极限是其下确界。 极限存在、左右极限、局部有界性、保号性与保序性 x x 0 f(x)=A x x 0^- f(x)= x x 0^+ f(x)=A. 有限极限存在时，函数在该点的某个去心邻域内有界；若 A 0，则该邻域内 f(x) 0。若附近恒有 f(x)≤ g(x)，且两边极限都存在，则 f(x)≤ g(x). 夹逼准则、无穷小乘有界量与递推数列压缩估计 g(x)≤ f(x)≤ h(x), g(x),h(x) A ⇒ f(x) A. (x) 0, (x) 有界 ⇒ (x) (x) 0. 若递推数列在一个不变区间内满足 a n+1 -A ≤ q a n-A , 0<q<1, 则 a n-A ≤ q^ n-1 a 1-A 0. 数列乘积、无限乘积与对数化 各因子为正时，乘积先取对数： u n= k=1 ^n a k ⇒ u n= k=1 ^n a k. 常用望远镜乘积： (1-x)(1+x)(1+x^2) (1+x^ 2^n )=1-x^ 2^ n+1 . 无穷小阶数、等价判据与积分等价 若 (x) (x) = cases 0,& 比 高阶,\\\\ c≠0,& 与 同阶,\\\\ 1,& ,\\\\ ,& 比 低阶. cases “无界”不等于“趋于无穷大”；趋于无穷大一定无界，反过来不成立。 若 f(x) g(x)、二者在去心邻域内同号且积分存在，则在相应端点附近 x 0 ^ x f(t)\\,dt x 0 ^ x g(t)\\,dt. 若 f(t) c t^m\\ (t 0^+)、 (x) d x^n\\ (x 0^+)，其中 c≠0、d 0、m,n 为非负整数，则 0^ (x) f(t)\\,dt c m+1 [ (x)]^ m+1 cd^ m+1 m+1 x^ n(m+1) . 含参数极限、导数定义型极限与三类渐近线 x=x 0:\\ x x 0 f(x)= , y=b:\\ x f(x)=b, y=kx+b:\\ k= x f(x) x, b= x [f(x)-kx]. 含参数极限存在时，先让左右极限相等，再排除分母为零或表达式无意义的参数。极限中出现 f(x)-f(x 0) x-x 0 时，直接按导数定义识别。",
+        "body": "##### 极限运算法则、等价无穷小与高阶无穷小公式\n\n**极限运算法则**　若 \\(\\lim f=A,\\lim g=B\\)，则\n\n<!-- formula {\"items\":[{\"id\":\"calculus-1mvw3nb-1\",\"title\":\"极限运算法则、等价无穷小与高阶无穷小公式：lim(af+bg)\",\"aliases\":[],\"context\":\"极限运算法则　若 \\\\lim f=A,\\\\lim g=B，则\",\"latex\":\"\\\\lim(af+bg)=aA+bB\"},{\"id\":\"calculus-1mvw3nb-2\",\"title\":\"极限运算法则、等价无穷小与高阶无穷小公式：lim(fg)\",\"aliases\":[],\"context\":\"极限运算法则　若 \\\\lim f=A,\\\\lim g=B，则\",\"latex\":\"\\\\lim(fg)=AB\"},{\"id\":\"calculus-1mvw3nb-3\",\"title\":\"极限运算法则、等价无穷小与高阶无穷小公式：limfrac fg\",\"aliases\":[],\"context\":\"极限运算法则　若 \\\\lim f=A,\\\\lim g=B，则\",\"latex\":\"\\\\lim\\\\frac fg=\\\\frac AB\\\\quad (B\\\\ne0)\"}]} -->\n\\[\n\\lim(af+bg)=aA+bB,\\qquad\n\\lim(fg)=AB,\\qquad\n\\lim\\frac fg=\\frac AB\\quad(B\\ne0).\n\\]\n\n若 \\(\\varphi(x)\\to u_0\\)，且 \\(f\\) 在 \\(u_0\\) 连续，则\n\n<!-- formula {\"id\":\"calculus-8wjxb\",\"title\":\"极限运算法则、等价无穷小与高阶无穷小公式：lim f(φ(x))\",\"aliases\":[],\"context\":\"若 \\\\(\\\\varphi(x)\\\\to u_0\\\\)，且 f 在 u_0 连续，则\"} -->\n\\[\n\\lim f(\\varphi(x))=f(u_0).\n\\]\n\n当 \\(x\\to0\\) 时：\n\n<!-- formula {\"items\":[{\"id\":\"calculus-1yof5kw-1\",\"title\":\"极限运算法则、等价无穷小与高阶无穷小公式：sin x\",\"aliases\":[],\"context\":\"当 x\\\\to0 时：\",\"latex\":\"\\\\sin x\\\\sim x\"},{\"id\":\"calculus-1yof5kw-2\",\"title\":\"极限运算法则、等价无穷小与高阶无穷小公式：tan x\",\"aliases\":[],\"context\":\"当 x\\\\to0 时：\",\"latex\":\"\\\\tan x\\\\sim x\"},{\"id\":\"calculus-1yof5kw-3\",\"title\":\"极限运算法则、等价无穷小与高阶无穷小公式：arcsin x\",\"aliases\":[],\"context\":\"当 x\\\\to0 时：\",\"latex\":\"\\\\arcsin x\\\\sim x\"},{\"id\":\"calculus-1yof5kw-4\",\"title\":\"极限运算法则、等价无穷小与高阶无穷小公式：arctan x\",\"aliases\":[],\"context\":\"当 x\\\\to0 时：\",\"latex\":\"\\\\arctan x\\\\sim x\"}]} -->\n\\[\n\\sin x\\sim x,\\quad \\tan x\\sim x,\\quad \\arcsin x\\sim x,\\quad \\arctan x\\sim x,\n\\]\n\n<!-- formula {\"items\":[{\"id\":\"calculus-en5lzh-1\",\"title\":\"极限运算法则、等价无穷小与高阶无穷小公式：e^x-1\",\"aliases\":[],\"context\":\"所属知识点：极限运算法则、等价无穷小与高阶无穷小公式。\",\"latex\":\"e^x-1\\\\sim x\"},{\"id\":\"calculus-en5lzh-2\",\"title\":\"极限运算法则、等价无穷小与高阶无穷小公式：ln(1+x)\",\"aliases\":[],\"context\":\"所属知识点：极限运算法则、等价无穷小与高阶无穷小公式。\",\"latex\":\"\\\\ln(1+x)\\\\sim x\"},{\"id\":\"calculus-en5lzh-3\",\"title\":\"极限运算法则、等价无穷小与高阶无穷小公式：(1+x)^a-1\",\"aliases\":[],\"context\":\"所属知识点：极限运算法则、等价无穷小与高阶无穷小公式。\",\"latex\":\"(1+x)^a-1\\\\sim ax\"}]} -->\n\\[\ne^x-1\\sim x,\\quad \\ln(1+x)\\sim x,\\quad (1+x)^a-1\\sim ax,\n\\]\n\n<!-- formula {\"items\":[{\"id\":\"calculus-15hshia-1\",\"title\":\"极限运算法则、等价无穷小与高阶无穷小公式：1-cos x\",\"aliases\":[],\"context\":\"所属知识点：极限运算法则、等价无穷小与高阶无穷小公式。\",\"latex\":\"1-\\\\cos x\\\\sim \\\\frac{x^2}{2}\"},{\"id\":\"calculus-15hshia-2\",\"title\":\"极限运算法则、等价无穷小与高阶无穷小公式：a^x-1\",\"aliases\":[],\"context\":\"所属知识点：极限运算法则、等价无穷小与高阶无穷小公式。\",\"latex\":\"a^x-1\\\\sim x\\\\ln a\"}]} -->\n\\[\n1-\\cos x\\sim \\frac{x^2}{2},\\qquad a^x-1\\sim x\\ln a.\n\\]\n\n高阶常用等价式：\n\n<!-- formula {\"items\":[{\"id\":\"calculus-fem39z-1\",\"title\":\"极限运算法则、等价无穷小与高阶无穷小公式：x-sin x\",\"aliases\":[],\"context\":\"高阶常用等价式：\",\"latex\":\"x-\\\\sin x\\\\sim\\\\frac{x^3}{6}\"},{\"id\":\"calculus-fem39z-2\",\"title\":\"极限运算法则、等价无穷小与高阶无穷小公式：tan x-x\",\"aliases\":[],\"context\":\"高阶常用等价式：\",\"latex\":\"\\\\tan x-x\\\\sim\\\\frac{x^3}{3}\"}]} -->\n\\[\nx-\\sin x\\sim\\frac{x^3}{6},\\qquad\n\\tan x-x\\sim\\frac{x^3}{3},\n\\]\n\n<!-- formula {\"items\":[{\"id\":\"calculus-4t1nrh-1\",\"title\":\"极限运算法则、等价无穷小与高阶无穷小公式：arcsin x-x\",\"aliases\":[],\"context\":\"所属知识点：极限运算法则、等价无穷小与高阶无穷小公式。\",\"latex\":\"\\\\arcsin x-x\\\\sim\\\\frac{x^3}{6}\"},{\"id\":\"calculus-4t1nrh-2\",\"title\":\"极限运算法则、等价无穷小与高阶无穷小公式：x-arctan x\",\"aliases\":[],\"context\":\"所属知识点：极限运算法则、等价无穷小与高阶无穷小公式。\",\"latex\":\"x-\\\\arctan x\\\\sim\\\\frac{x^3}{3}\"}]} -->\n\\[\n\\arcsin x-x\\sim\\frac{x^3}{6},\\qquad\nx-\\arctan x\\sim\\frac{x^3}{3}.\n\\]\n\n<!-- formula {\"items\":[{\"id\":\"calculus-1058a1k-1\",\"title\":\"极限运算法则、等价无穷小与高阶无穷小公式：x-ln(1+x)\",\"aliases\":[],\"context\":\"所属知识点：极限运算法则、等价无穷小与高阶无穷小公式。\",\"latex\":\"x-\\\\ln(1+x)\\\\sim\\\\frac{x^2}{2}\"},{\"id\":\"calculus-1058a1k-2\",\"title\":\"极限运算法则、等价无穷小与高阶无穷小公式：ln\",\"aliases\":[],\"context\":\"所属知识点：极限运算法则、等价无穷小与高阶无穷小公式。\",\"latex\":\"\\\\ln\\\\!\\\\left(x+\\\\sqrt{1+x^2}\\\\right)-x\\\\sim-\\\\frac{x^3}{6}\"}]} -->\n\\[\nx-\\ln(1+x)\\sim\\frac{x^2}{2},\\qquad\n\\ln\\!\\left(x+\\sqrt{1+x^2}\\right)-x\\sim-\\frac{x^3}{6}.\n\\]\n\n等价无穷小的等价判据：\n\n<!-- formula {\"id\":\"calculus-18r0zly\",\"title\":\"极限运算法则、等价无穷小与高阶无穷小公式：α\",\"aliases\":[],\"context\":\"等价无穷小的等价判据：\"} -->\n\\[\n\\alpha\\sim\\beta\n\\Longleftrightarrow \\alpha-\\beta=o(\\alpha)\n\\Longleftrightarrow \\alpha-\\beta=o(\\beta).\n\\]\n\n若 \\(u(x)\\to0\\)，则可把上式中的 \\(x\\) 换成 \\(u(x)\\)。更一般地，若 \\(u\\to0\\)、\\(uv\\to0\\)，则\n\n<!-- formula {\"id\":\"calculus-ndli7f\",\"title\":\"极限运算法则、等价无穷小与高阶无穷小公式：(1+u)^v-1\",\"aliases\":[],\"context\":\"若 \\\\(u(x)\\\\to0\\\\)，则可把上式中的 x 换成 \\\\(u(x)\\\\)。更一般地，若 u\\\\to0、uv\\\\to0，则\"} -->\n\\[\n(1+u)^v-1\\sim uv.\n\\]\n\n##### 常用泰勒展开式（集中速查）\n\n以下均为 \\(x\\to0\\) 时的有限阶展开，\\(n\\) 为正整数。通项可展开到任意所需阶数；正弦和反三角函数保留到 \\(2n+1\\) 次，余弦保留到 \\(2n\\) 次。\n\n<!-- formula {\"items\":[{\"id\":\"calculus-1hq160m-1\",\"title\":\"常用泰勒展开式（集中速查）：e^x\",\"aliases\":[\"泰勒通项\",\"麦克劳林通项\",\"任意阶展开\"],\"context\":\"x 趋于 0 时的任意有限阶通项；按所需阶数截断。\",\"latex\":\"e^x=\\\\sum_{k=0}^{n}\\\\frac{x^k}{k!}+o(x^n)\"},{\"id\":\"calculus-1hq160m-2\",\"title\":\"常用泰勒展开式（集中速查）：frac11-x\",\"aliases\":[\"泰勒通项\",\"麦克劳林通项\",\"任意阶展开\"],\"context\":\"x 趋于 0 时的任意有限阶通项；按所需阶数截断。\",\"latex\":\"\\\\frac1{1-x}=\\\\sum_{k=0}^{n}x^k+o(x^n)\"},{\"id\":\"calculus-1hq160m-3\",\"title\":\"常用泰勒展开式（集中速查）：frac11+x\",\"aliases\":[\"泰勒通项\",\"麦克劳林通项\",\"任意阶展开\"],\"context\":\"x 趋于 0 时的任意有限阶通项；按所需阶数截断。\",\"latex\":\"\\\\frac1{1+x}=\\\\sum_{k=0}^{n}(-1)^k x^k+o(x^n)\"},{\"id\":\"calculus-1hq160m-4\",\"title\":\"常用泰勒展开式（集中速查）：ln(1+x)\",\"aliases\":[\"泰勒通项\",\"麦克劳林通项\",\"任意阶展开\"],\"context\":\"x 趋于 0 时的任意有限阶通项；按所需阶数截断。\",\"latex\":\"\\\\ln(1+x)=\\\\sum_{k=1}^{n}\\\\frac{(-1)^{k-1}}{k}x^k+o(x^n)\"},{\"id\":\"calculus-1hq160m-5\",\"title\":\"常用泰勒展开式（集中速查）：sin x\",\"aliases\":[\"泰勒通项\",\"麦克劳林通项\",\"任意阶展开\"],\"context\":\"x 趋于 0 时的任意有限阶通项；按所需阶数截断。\",\"latex\":\"\\\\sin x=\\\\sum_{k=0}^{n}\\\\frac{(-1)^k x^{2k+1}}{(2k+1)!}+o(x^{2n+1})\"},{\"id\":\"calculus-1hq160m-6\",\"title\":\"常用泰勒展开式（集中速查）：cos x\",\"aliases\":[\"泰勒通项\",\"麦克劳林通项\",\"任意阶展开\"],\"context\":\"x 趋于 0 时的任意有限阶通项；按所需阶数截断。\",\"latex\":\"\\\\cos x=\\\\sum_{k=0}^{n}\\\\frac{(-1)^k x^{2k}}{(2k)!}+o(x^{2n})\"},{\"id\":\"calculus-1hq160m-7\",\"title\":\"常用泰勒展开式（集中速查）：(1+x)^a\",\"aliases\":[\"泰勒通项\",\"麦克劳林通项\",\"任意阶展开\"],\"context\":\"x 趋于 0 时的任意有限阶通项；按所需阶数截断。\",\"latex\":\"(1+x)^a=\\\\sum_{k=0}^{n}\\\\binom ak x^k+o(x^n)\"}]} -->\n\\[\n\\begin{aligned}\ne^x&=1+x+\\frac{x^2}{2}+\\frac{x^3}{6}+o(x^3),\\\\\n\\frac1{1-x}&=1+x+x^2+x^3+o(x^3),\\\\\n\\frac1{1+x}&=1-x+x^2-x^3+o(x^3),\\\\\n\\ln(1+x)&=x-\\frac{x^2}{2}+\\frac{x^3}{3}+o(x^3),\\\\\n\\sin x&=x-\\frac{x^3}{6}+\\frac{x^5}{120}+o(x^5),\\\\\n\\cos x&=1-\\frac{x^2}{2}+\\frac{x^4}{24}+o(x^4),\\\\\n(1+x)^a&=1+ax+\\frac{a(a-1)}{2}x^2+\\frac{a(a-1)(a-2)}{6}x^3+o(x^3).\n\\end{aligned}\n\\]\n\n再补充正切与反三角函数的低阶式：\n\n<!-- formula {\"items\":[{\"id\":\"calculus-1knzfju-1\",\"title\":\"常用泰勒展开式（集中速查）：tan x\",\"aliases\":[\"泰勒通项\",\"麦克劳林通项\",\"任意阶展开\"],\"context\":\"x 趋于 0 时的任意有限阶通项；按所需阶数截断。\",\"latex\":\"\\\\begin{aligned}\\\\tan x&=\\\\sum_{k=0}^{n}c_k x^{2k+1}+o(x^{2n+1}),\\\\\\\\c_0&=1,\\\\quad c_m=\\\\frac{\\\\sum_{j=0}^{m-1}c_j c_{m-1-j}}{2m+1}\\\\quad(m\\\\ge1).\\\\end{aligned}\"},{\"id\":\"calculus-1knzfju-2\",\"title\":\"常用泰勒展开式（集中速查）：arcsin x\",\"aliases\":[\"泰勒通项\",\"麦克劳林通项\",\"任意阶展开\"],\"context\":\"x 趋于 0 时的任意有限阶通项；按所需阶数截断。\",\"latex\":\"\\\\arcsin x=\\\\sum_{k=0}^{n}\\\\frac{(2k)!}{4^k(k!)^2(2k+1)}x^{2k+1}+o(x^{2n+1})\"},{\"id\":\"calculus-1knzfju-3\",\"title\":\"常用泰勒展开式（集中速查）：arctan x\",\"aliases\":[\"泰勒通项\",\"麦克劳林通项\",\"任意阶展开\"],\"context\":\"x 趋于 0 时的任意有限阶通项；按所需阶数截断。\",\"latex\":\"\\\\arctan x=\\\\sum_{k=0}^{n}\\\\frac{(-1)^k x^{2k+1}}{2k+1}+o(x^{2n+1})\"}]} -->\n\\[\n\\tan x=x+\\frac{x^3}{3}+o(x^3),\\quad\n\\arcsin x=x+\\frac{x^3}{6}+o(x^3),\\quad\n\\arctan x=x-\\frac{x^3}{3}+o(x^3),\n\\]\n\n<!-- formula {\"items\":[{\"id\":\"calculus-1nfa9d9-1\",\"title\":\"常用泰勒展开式（集中速查）：sqrt1+x\",\"aliases\":[\"泰勒通项\",\"麦克劳林通项\",\"任意阶展开\"],\"context\":\"x 趋于 0 时的任意有限阶通项；按所需阶数截断。\",\"latex\":\"\\\\sqrt{1+x}=\\\\sum_{k=0}^{n}\\\\binom{1/2}{k}x^k+o(x^n)\"},{\"id\":\"calculus-1nfa9d9-2\",\"title\":\"常用泰勒展开式（集中速查）：ln\",\"aliases\":[\"泰勒通项\",\"麦克劳林通项\",\"任意阶展开\"],\"context\":\"x 趋于 0 时的任意有限阶通项；按所需阶数截断。\",\"latex\":\"\\\\ln\\\\!\\\\left(x+\\\\sqrt{1+x^2}\\\\right)=\\\\sum_{k=0}^{n}\\\\frac{(-1)^k(2k)!}{4^k(k!)^2(2k+1)}x^{2k+1}+o(x^{2n+1})\"}]} -->\n\\[\n\\sqrt{1+x}=1+\\frac{x}{2}-\\frac{x^2}{8}+o(x^2),\\qquad\n\\ln\\!\\left(x+\\sqrt{1+x^2}\\right)=x-\\frac{x^3}{6}+o(x^3).\n\\]\n\n**任意阶通项。** 指数函数的展开写全为（\\(n\\ge4\\)）：\n\n<!-- formula {\"id\":\"calculus-taylor-exp-expanded\",\"title\":\"指数函数泰勒展开的任意阶完整形式\",\"aliases\":[\"指数函数终极通项\",\"e的x次方n阶展开\"],\"context\":\"x 趋于 0；n 为不小于 4 的整数。\"} -->\n\\[\ne^x=1+x+\\frac{x^2}{2!}+\\frac{x^3}{3!}+\\cdots+\\frac{x^n}{n!}+o(x^n).\n\\]\n\n常用函数的通项如下，\\(0!=1\\)，\\(f^{(0)}=f\\)：\n\n<!-- formula {\"id\":\"calculus-taylor-general-collection\",\"title\":\"常用函数任意阶泰勒展开通项表\",\"aliases\":[\"泰勒通项表\",\"麦克劳林通项表\"],\"context\":\"x 趋于 0；n 为正整数。\"} -->\n\\[\n\\begin{aligned}\ne^x&=\\sum_{k=0}^{n}\\frac{x^k}{k!}+o(x^n)\\\\[0.6em]\n\\frac1{1-x}&=\\sum_{k=0}^{n}x^k+o(x^n)\\\\[0.6em]\n\\frac1{1+x}&=\\sum_{k=0}^{n}(-1)^k x^k+o(x^n)\\\\[0.6em]\n\\ln(1+x)&=\\sum_{k=1}^{n}\\frac{(-1)^{k-1}}{k}x^k+o(x^n)\\\\[0.6em]\n\\sin x&=\\sum_{k=0}^{n}\\frac{(-1)^k x^{2k+1}}{(2k+1)!}+o(x^{2n+1})\\\\[0.6em]\n\\cos x&=\\sum_{k=0}^{n}\\frac{(-1)^k x^{2k}}{(2k)!}+o(x^{2n})\\\\[0.6em]\n(1+x)^a&=\\sum_{k=0}^{n}\\binom ak x^k+o(x^n)\n\\end{aligned}\n\\]\n\n其中广义二项式系数为 \\(\\binom a0=1\\)，当 \\(k\\ge1\\) 时：\n\n<!-- formula {\"id\":\"calculus-taylor-binomial-coefficient\",\"title\":\"广义二项式展开的通项系数\",\"aliases\":[\"广义二项式系数\",\"幂函数展开系数\"],\"context\":\"a 为固定实数，k 为正整数；k=0 时系数为 1。\"} -->\n\\[\n\\binom ak=\\frac{a(a-1)\\cdots(a-k+1)}{k!}.\n\\]\n\n反三角函数、根式及对数复合函数的通项为：\n\n<!-- formula {\"id\":\"calculus-taylor-inverse-general-collection\",\"title\":\"反三角函数与根式的泰勒通项表\",\"aliases\":[\"arcsin通项\",\"arctan通项\",\"根式展开通项\"],\"context\":\"x 趋于 0；n 为正整数。\"} -->\n\\[\n\\begin{aligned}\n\\arcsin x&=\\sum_{k=0}^{n}\\frac{(2k)!}{4^k(k!)^2(2k+1)}x^{2k+1}+o(x^{2n+1})\\\\[0.8em]\n\\arctan x&=\\sum_{k=0}^{n}\\frac{(-1)^k x^{2k+1}}{2k+1}+o(x^{2n+1})\\\\[0.8em]\n\\sqrt{1+x}&=\\sum_{k=0}^{n}\\binom{1/2}{k}x^k+o(x^n)\\\\[0.8em]\n\\ln\\!\\left(x+\\sqrt{1+x^2}\\right)&=\\sum_{k=0}^{n}\\frac{(-1)^k(2k)!}{4^k(k!)^2(2k+1)}x^{2k+1}+o(x^{2n+1})\n\\end{aligned}\n\\]\n\n**正切的任意阶系数。** 正切不像正弦、余弦那样只有交错的阶乘系数，做题通常记到三阶或五阶。需要更高阶时，可用 \\(c_0=1\\) 和下面的递推关系逐项求出：\n\n<!-- formula {\"id\":\"calculus-taylor-tan-coefficient-recurrence\",\"title\":\"正切函数泰勒通项与系数递推\",\"aliases\":[\"tan任意阶展开\",\"正切展开系数\"],\"context\":\"x 趋于 0；m 为正整数；系数来自 (tan x)'=1+tan²x。\"} -->\n\\[\n\\begin{aligned}\\tan x&=\\sum_{k=0}^{n}c_k x^{2k+1}+o(x^{2n+1}),\\\\c_0&=1,\\quad c_m=\\frac{\\sum_{j=0}^{m-1}c_j c_{m-1-j}}{2m+1}\\quad(m\\ge1).\\end{aligned}\n\\]\n\n由 \\((\\tan x)'=1+\\tan^2x\\) 比较 \\(x^{2m}\\) 的系数即得递推式。它给出 \\(c_1=\\frac13\\)、\\(c_2=\\frac2{15}\\)、\\(c_3=\\frac{17}{315}\\)，所以\n\\(\\tan x=x+\\frac{x^3}{3}+\\frac{2x^5}{15}+\\frac{17x^7}{315}+o(x^7)\\)。\n\n**有限阶公式与无穷级数。** 有限阶式在 \\(x\\to0\\) 时使用，不能把末尾的 \\(o\\) 余项直接删掉，写成任意 \\(x\\) 下的恒等式。指数函数还满足下面的无穷级数恒等式：\n\n<!-- formula {\"id\":\"calculus-taylor-exp-infinite-series\",\"title\":\"指数函数麦克劳林无穷级数\",\"aliases\":[\"e^x无穷级数\",\"指数函数级数通项\"],\"context\":\"对所有实数 x 成立；与有限阶展开中的小 o 余项区分。\"} -->\n\\[\ne^x=\\sum_{k=0}^{\\infty}\\frac{x^k}{k!},\\qquad x\\in\\mathbb R.\n\\]\n\n其他函数改写成无穷级数时，正弦、余弦对全部实数成立；倒数、对数、一般二项式、根式及上述反三角展开可统一在 \\(|x|<1\\) 内使用；正切在 \\(|x|<\\pi/2\\) 内使用。端点不能直接套用这一统一范围。考研数学二做极限题时，通常用有限阶式即可。\n\n**通用公式。** \\(x_0=0\\) 时即麦克劳林公式；展开中心不为零时，幂次应写成 \\((x-x_0)^k\\)：\n\n<!-- formula {\"id\":\"calculus-1cqcqda\",\"title\":\"常用泰勒展开式（集中速查）：f(x)\",\"aliases\":[],\"context\":\"通用公式（x_0=0 时即麦克劳林公式）：\"} -->\n\\[\nf(x)=\\sum_{k=0}^{n}\\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k+R_n(x).\n\\]\n\n当 \\(f\\) 在展开点邻域具有到 \\(n\\) 阶的连续导数时，求等价无穷小可用佩亚诺余项 <!-- formula {\"id\":\"calculus-taylor-peano-remainder\",\"title\":\"泰勒公式的佩亚诺余项\",\"aliases\":[\"佩亚诺余项\",\"小o余项\"],\"context\":\"用于局部等价与阶数比较；x 趋于 x₀。\"} -->\\(R_n(x)=o((x-x_0)^n)\\)；需要估计误差时可用拉格朗日余项 <!-- formula {\"id\":\"calculus-taylor-lagrange-remainder\",\"title\":\"泰勒公式的拉格朗日余项\",\"aliases\":[\"拉格朗日余项\",\"泰勒误差估计\"],\"context\":\"f 在相关区间上具有 n+1 阶导数，ξ 位于 x 与 x₀ 之间。\"} -->\\(R_n(x)=\\frac{f^{(n+1)}(\\xi)}{(n+1)!}(x-x_0)^{n+1}\\)。不要在和差中只替换最低阶等价式，先看前几项是否抵消。\n\n##### 七类未定式、洛必达法则与幂指函数极限\n\n- \\(\\frac00\\)、\\(\\frac{\\infty}{\\infty}\\)：先化简、等价替换或洛必达；洛必达前必须确认型别和条件。\n- \\(0\\cdot\\infty\\)：改写成商。\n- \\(\\infty-\\infty\\)：通分、有理化或提取主项。\n- \\(1^\\infty\\)、\\(0^0\\)、\\(\\infty^0\\)：设原式为 \\(y\\)，先求 \\(\\ln y\\)，最后取指数。\n- 分子分母相减严重时，展开到第一个不抵消的项；不必把所有因子展开到同一阶。\n\n**洛必达法则**　当 \\(\\frac fg\\) 为 \\(\\frac00\\) 型或 \\(\\frac{\\infty}{\\infty}\\) 型，并满足相应可导条件，且导数之比的极限存在或为无穷时：\n\n<!-- formula {\"id\":\"calculus-83v85p\",\"title\":\"七类未定式、洛必达法则与幂指函数极限：lim(f(x))/(g(x))\",\"aliases\":[],\"context\":\"分子分母相减严重时，展开到第一个不抵消的项；不必把所有因子展开到同一阶。\"} -->\n\\[\n\\lim\\frac{f(x)}{g(x)}=\\lim\\frac{f'(x)}{g'(x)}.\n\\]\n\n洛必达后若仍是相同未定式可以继续使用；每次都要重新检查型别。等价无穷小只能直接替换乘积或商中的因子，和差中的替换必须保证不会丢掉抵消后的首个非零项。\n\n幂指型极限统一公式：\n\n<!-- formula {\"id\":\"calculus-l7xpfv-1\",\"title\":\"七类未定式、洛必达法则与幂指函数极限：lim f(x)^g(x)\",\"aliases\":[],\"context\":\"幂指型极限统一公式：\"} -->\n\\[\n\\lim f(x)^{g(x)}\n=\\exp\\!\\left(\\lim g(x)\\ln f(x)\\right)\\qquad(f(x)>0).\n\\]\n\n特别地，若 \\(u(x)\\to0\\)、\\(v(x)\\to\\infty\\)、\\(u(x)v(x)\\to A\\)，则\n\n<!-- formula {\"id\":\"calculus-1c5ti32\",\"title\":\"七类未定式、洛必达法则与幂指函数极限：[1+u(x)]^v(x)to e^A\",\"aliases\":[],\"context\":\"特别地，若 \\\\(u(x)\\\\to0\\\\)、\\\\(v(x)\\\\to\\\\infty\\\\)、\\\\(u(x)v(x)\\\\to A\\\\)，则\"} -->\n\\[\n[1+u(x)]^{v(x)}\\to e^A.\n\\]\n\n##### 两个重要极限、数列极限、黎曼和与递推数列\n\n两个重要极限：\n\n<!-- formula {\"items\":[{\"id\":\"calculus-8xvs7x-1\",\"title\":\"两个重要极限、数列极限、黎曼和与递推数列：lim_xto0(sin x)/(x)\",\"aliases\":[],\"context\":\"两个重要极限：\",\"latex\":\"\\\\lim_{x\\\\to0}\\\\frac{\\\\sin x}{x}=1\"},{\"id\":\"calculus-8xvs7x-2\",\"title\":\"两个重要极限、数列极限、黎曼和与递推数列：lim_xto0(1+x)^frac1x\",\"aliases\":[],\"context\":\"两个重要极限：\",\"latex\":\"\\\\lim_{x\\\\to0}(1+x)^{\\\\frac1x}=e\"}]} -->\n\\[\n\\lim_{x\\to0}\\frac{\\sin x}{x}=1,\\qquad\n\\lim_{x\\to0}(1+x)^{\\frac1x}=e,\n\\]\n\n以及等价形式\n\n<!-- formula {\"items\":[{\"id\":\"calculus-3qrfxs-1\",\"title\":\"两个重要极限、数列极限、黎曼和与递推数列：lim_nto∞\",\"aliases\":[],\"context\":\"以及等价形式\",\"latex\":\"\\\\lim_{n\\\\to\\\\infty}\\\\left(1+\\\\frac1n\\\\right)^n=e\"},{\"id\":\"calculus-3qrfxs-2\",\"title\":\"两个重要极限、数列极限、黎曼和与递推数列：lim_xto∞\",\"aliases\":[],\"context\":\"以及等价形式\",\"latex\":\"\\\\lim_{x\\\\to\\\\infty}\\\\left(1+\\\\frac ax\\\\right)^x=e^a\"}]} -->\n\\[\n\\lim_{n\\to\\infty}\\left(1+\\frac1n\\right)^n=e,\\qquad\n\\lim_{x\\to\\infty}\\left(1+\\frac ax\\right)^x=e^a.\n\\]\n\n<!-- formula {\"id\":\"calculus-102nllp\",\"title\":\"两个重要极限、数列极限、黎曼和与递推数列：lim_nto∞a^frac1n\",\"aliases\":[],\"context\":\"所属知识点：两个重要极限、数列极限、黎曼和与递推数列。\"} -->\n\\[\n\\lim_{n\\to\\infty}a^{\\frac1n}=1\\quad(a>0),\\qquad\n\\lim_{n\\to\\infty}n^{\\frac1n}=1.\n\\]\n\n若 \\(a_1,\\ldots,a_m>0\\)，则\n\n<!-- formula {\"id\":\"calculus-1lfos2w\",\"title\":\"有限个正数的 n 次根极限取最大值\",\"aliases\":[],\"context\":\"若 a_1,\\\\ldots,a_m>0，则\"} -->\n\\[\n\\lim_{n\\to\\infty}\\sqrt[n]{a_1^n+a_2^n+\\cdots+a_m^n}\n=\\max\\{a_1,a_2,\\ldots,a_m\\}.\n\\]\n\n若 \\(a_0b_0\\ne0\\)，则\n\n<!-- formula {\"id\":\"calculus-79gyl1\",\"title\":\"两个重要极限、数列极限、黎曼和与递推数列：lim_xto∞\",\"aliases\":[],\"context\":\"若 a_0b_0\\\\ne0，则\"} -->\n\\[\n\\lim_{x\\to\\infty}\n\\frac{a_0x^n+a_1x^{n-1}+\\cdots+a_n}\n{b_0x^m+b_1x^{m-1}+\\cdots+b_m}\n=\n\\begin{cases}\n0,&n<m,\\\\\n\\dfrac{a_0}{b_0},&n=m,\\\\\n\\infty\\text{ 或 }-\\infty,&n>m,\n\\end{cases}\n\\]\n\n最后一种情形的符号由最高次项决定。\n\n<!-- formula {\"id\":\"calculus-v7iqrw\",\"title\":\"两个重要极限、数列极限、黎曼和与递推数列：lim_nto∞frac1nΣ_k\",\"aliases\":[],\"context\":\"最后一种情形的符号由最高次项决定。\"} -->\n\\[\n\\lim_{n\\to\\infty}\\frac1n\\sum_{k=1}^n f\\!\\left(\\frac{k}{n}\\right)=\\int_0^1 f(x)\\,dx.\n\\]\n\n一般区间 \\([a,b]\\) 的和要整理成“函数值乘小区间宽度”。乘积先取对数化为和。递推数列先证单调有界，再令极限为 \\(L\\) 代回递推式；代数方程有多个根时，用数列范围筛选。\n\n夹逼准则：若在去心邻域内 \\(g(x)\\le f(x)\\le h(x)\\)，且 \\(g,h\\to A\\)，则 \\(f\\to A\\)。单调有界数列一定收敛；递增数列的极限是其上确界，递减数列的极限是其下确界。\n\n##### 极限存在、左右极限、局部有界性、保号性与保序性\n\n<!-- formula {\"id\":\"calculus-1i1evgc\",\"title\":\"极限存在、左右极限、局部有界性、保号性与保序性：lim_xto x_0f(x)\",\"aliases\":[],\"context\":\"所属知识点：极限存在、左右极限、局部有界性、保号性与保序性。\"} -->\n\\[\n\\lim_{x\\to x_0}f(x)=A\n\\Longleftrightarrow\n\\lim_{x\\to x_0^-}f(x)=\\lim_{x\\to x_0^+}f(x)=A.\n\\]\n\n有限极限存在时，函数在该点的某个去心邻域内有界；若 \\(A>0\\)，则该邻域内 \\(f(x)>0\\)。若附近恒有 \\(f(x)\\le g(x)\\)，且两边极限都存在，则\n\n<!-- formula {\"id\":\"calculus-173gpr9\",\"title\":\"极限存在、左右极限、局部有界性、保号性与保序性：lim f(x)\",\"aliases\":[],\"context\":\"有限极限存在时，函数在该点的某个去心邻域内有界；若 A>0，则该邻域内 \\\\(f(x)>0\\\\)。若附近恒有 \\\\(f(x)\\\\le g(x)\\\\)，且两边极限都存在，则\"} -->\n\\[\n\\lim f(x)\\le\\lim g(x).\n\\]\n\n##### 夹逼准则、无穷小乘有界量与递推数列压缩估计\n\n<!-- formula {\"id\":\"calculus-t5e1pl\",\"title\":\"夹逼准则、无穷小乘有界量与递推数列压缩估计：g(x)\",\"aliases\":[],\"context\":\"所属知识点：夹逼准则、无穷小乘有界量与递推数列压缩估计。\"} -->\n\\[\ng(x)\\le f(x)\\le h(x),\\qquad g(x),h(x)\\to A\n\\Longrightarrow f(x)\\to A.\n\\]\n\n<!-- formula {\"id\":\"calculus-6qws51\",\"title\":\"夹逼准则、无穷小乘有界量与递推数列压缩估计：α(x)to0, β(x) 有界\",\"aliases\":[],\"context\":\"所属知识点：夹逼准则、无穷小乘有界量与递推数列压缩估计。\"} -->\n\\[\n\\alpha(x)\\to0,\\qquad \\beta(x)\\text{ 有界}\n\\Longrightarrow \\alpha(x)\\beta(x)\\to0.\n\\]\n\n若递推数列在一个不变区间内满足\n\n<!-- formula {\"id\":\"calculus-1qr3ruk-1\",\"title\":\"夹逼准则、无穷小乘有界量与递推数列压缩估计：|a_n+1-A|\",\"aliases\":[],\"context\":\"若递推数列在一个不变区间内满足\"} -->\n\\[\n|a_{n+1}-A|\\le q|a_n-A|,\\qquad 0<q<1,\n\\]\n\n则\n\n<!-- formula {\"id\":\"calculus-u3z71g\",\"title\":\"夹逼准则、无穷小乘有界量与递推数列压缩估计：|a_n-A|\",\"aliases\":[],\"context\":\"所属知识点：夹逼准则、无穷小乘有界量与递推数列压缩估计。\"} -->\n\\[\n|a_n-A|\\le q^{n-1}|a_1-A|\\to0.\n\\]\n\n##### 数列乘积、无限乘积与对数化\n\n各因子为正时，乘积先取对数：\n\n<!-- formula {\"id\":\"calculus-9esrln\",\"title\":\"数列乘积、无限乘积与对数化：u_n\",\"aliases\":[],\"context\":\"各因子为正时，乘积先取对数：\"} -->\n\\[\nu_n=\\prod_{k=1}^n a_k\n\\Longrightarrow\n\\ln u_n=\\sum_{k=1}^n\\ln a_k.\n\\]\n\n常用望远镜乘积：\n\n<!-- formula {\"id\":\"calculus-1lhjtmk\",\"title\":\"数列乘积、无限乘积与对数化：(1-x)(1+x)(1+x^2)cdots(1+x^2^n)\",\"aliases\":[],\"context\":\"常用望远镜乘积：\"} -->\n\\[\n(1-x)(1+x)(1+x^2)\\cdots(1+x^{2^n})=1-x^{2^{n+1}}.\n\\]\n\n##### 无穷小阶数、等价判据与积分等价\n\n若\n\n<!-- formula {\"id\":\"calculus-137lxxy\",\"title\":\"无穷小阶数、等价判据与积分等价：lim(α(x))/(β(x))\",\"aliases\":[],\"context\":\"所属知识点：无穷小阶数、等价判据与积分等价。\"} -->\n\\[\n\\lim\\frac{\\alpha(x)}{\\beta(x)}=\n\\begin{cases}\n0,&\\alpha\\text{ 比 }\\beta\\text{ 高阶},\\\\\nc\\ne0,&\\alpha\\text{ 与 }\\beta\\text{ 同阶},\\\\\n1,&\\alpha\\sim\\beta,\\\\\n\\infty,&\\alpha\\text{ 比 }\\beta\\text{ 低阶}.\n\\end{cases}\n\\]\n\n“无界”不等于“趋于无穷大”；趋于无穷大一定无界，反过来不成立。\n\n若 \\(f(x)\\sim g(x)\\)、二者在去心邻域内同号且积分存在，则在相应端点附近\n\n<!-- formula {\"id\":\"calculus-o00lnb\",\"title\":\"无穷小阶数、等价判据与积分等价：∫_x_0^xf(t) dt\",\"aliases\":[],\"context\":\"若 \\\\(f(x)\\\\sim g(x)\\\\)、二者在去心邻域内同号且积分存在，则在相应端点附近\"} -->\n\\[\n\\int_{x_0}^{x}f(t)\\,dt\\sim\\int_{x_0}^{x}g(t)\\,dt.\n\\]\n\n若 \\(f(t)\\sim c t^m\\ (t\\to0^+)\\)、\\(\\varphi(x)\\sim d x^n\\ (x\\to0^+)\\)，其中\n\\(c\\ne0\\)、\\(d>0\\)、\\(m,n\\) 为非负整数，则\n\n<!-- formula {\"id\":\"calculus-1po8to\",\"title\":\"无穷小阶数、等价判据与积分等价：∫_0^φ(x)f(t) dt\",\"aliases\":[],\"context\":\"若 \\\\(f(t)\\\\sim c t^m\\\\ (t\\\\to0^+)\\\\)、\\\\(\\\\varphi(x)\\\\sim d x^n\\\\ (x\\\\to0^+)\\\\)，其中\"} -->\n\\[\n\\int_0^{\\varphi(x)}f(t)\\,dt\n\\sim\\frac{c}{m+1}[\\varphi(x)]^{m+1}\n\\sim\\frac{cd^{m+1}}{m+1}x^{n(m+1)}.\n\\]\n\n##### 含参数极限、导数定义型极限与三类渐近线\n\n<!-- formula {\"id\":\"calculus-4w22q8\",\"title\":\"含参数极限、导数定义型极限与三类渐近线：x\",\"aliases\":[],\"context\":\"所属知识点：含参数极限、导数定义型极限与三类渐近线。\"} -->\n\\[\nx=x_0:\\ \\lim_{x\\to x_0}f(x)=\\infty,\n\\]\n\n<!-- formula {\"id\":\"calculus-18wudsw\",\"title\":\"含参数极限、导数定义型极限与三类渐近线：y\",\"aliases\":[],\"context\":\"所属知识点：含参数极限、导数定义型极限与三类渐近线。\"} -->\n\\[\ny=b:\\ \\lim_{x\\to\\pm\\infty}f(x)=b,\n\\]\n\n<!-- formula {\"items\":[{\"id\":\"calculus-1443xil-1\",\"title\":\"含参数极限、导数定义型极限与三类渐近线：y\",\"aliases\":[],\"context\":\"所属知识点：含参数极限、导数定义型极限与三类渐近线。\",\"latex\":\"y=kx+b:\\\\ k=\\\\lim_{x\\\\to\\\\pm\\\\infty}\\\\frac{f(x)}x\"},{\"id\":\"calculus-1443xil-2\",\"title\":\"含参数极限、导数定义型极限与三类渐近线：b\",\"aliases\":[],\"context\":\"所属知识点：含参数极限、导数定义型极限与三类渐近线。\",\"latex\":\"b=\\\\lim_{x\\\\to\\\\pm\\\\infty}[f(x)-kx]\"}]} -->\n\\[\ny=kx+b:\\ k=\\lim_{x\\to\\pm\\infty}\\frac{f(x)}x,\\quad\nb=\\lim_{x\\to\\pm\\infty}[f(x)-kx].\n\\]\n\n含参数极限存在时，先让左右极限相等，再排除分母为零或表达式无意义的参数。极限中出现\n\n<!-- formula {\"id\":\"calculus-m3ictv\",\"title\":\"含参数极限、导数定义型极限与三类渐近线：(f(x)-f(x_0))/(x-x_0)\",\"aliases\":[],\"context\":\"含参数极限存在时，先让左右极限相等，再排除分母为零或表达式无意义的参数。极限中出现\"} -->\n\\[\n\\frac{f(x)-f(x_0)}{x-x_0}\n\\]\n\n时，直接按导数定义识别。",
+        "searchText": "极限 极限 极限 极限运算法则、等价无穷小与高阶无穷小公式 极限运算法则 若 f=A, g=B，则 (af+bg)=aA+bB, (fg)=AB, fg= AB (B≠0). 若 (x) u 0，且 f 在 u 0 连续，则 f( (x))=f(u 0). 当 x 0 时： x x, x x, x x, x x, e^x-1 x, (1+x) x, (1+x)^a-1 ax, 1- x x^2 2 , a^x-1 x a. 高阶常用等价式： x- x x^3 6 , x-x x^3 3 , x-x x^3 6 , x- x x^3 3 . x- (1+x) x^2 2 , \\!≤ft(x+ 1+x^2 )-x - x^3 6 . 等价无穷小的等价判据： - =o( ) - =o( ). 若 u(x) 0，则可把上式中的 x 换成 u(x)。更一般地，若 u 0、uv 0，则 (1+u)^v-1 uv. 常用泰勒展开式（集中速查） 以下均为 x 0 时的有限阶展开，n 为正整数。通项可展开到任意所需阶数；正弦和反三角函数保留到 2n+1 次，余弦保留到 2n 次。 aligned e^x&=1+x+ x^2 2 + x^3 6 +o(x^3),\\\\ 1 1-x &=1+x+x^2+x^3+o(x^3),\\\\ 1 1+x &=1-x+x^2-x^3+o(x^3),\\\\ (1+x)&=x- x^2 2 + x^3 3 +o(x^3),\\\\ x&=x- x^3 6 + x^5 120 +o(x^5),\\\\ x&=1- x^2 2 + x^4 24 +o(x^4),\\\\ (1+x)^a&=1+ax+ a(a-1) 2 x^2+ a(a-1)(a-2) 6 x^3+o(x^3). aligned 再补充正切与反三角函数的低阶式： x=x+ x^3 3 +o(x^3), x=x+ x^3 6 +o(x^3), x=x- x^3 3 +o(x^3), 1+x =1+ x 2 - x^2 8 +o(x^2), \\!≤ft(x+ 1+x^2 )=x- x^3 6 +o(x^3). 任意阶通项。 指数函数的展开写全为（n≥4）： e^x=1+x+ x^2 2! + x^3 3! + + x^n n! +o(x^n). 常用函数的通项如下，0!=1，f^ (0) =f： aligned e^x&= k=0 ^ n x^k k! +o(x^n)\\\\[0.6em] 1 1-x &= k=0 ^ n x^k+o(x^n)\\\\[0.6em] 1 1+x &= k=0 ^ n (-1)^k x^k+o(x^n)\\\\[0.6em] (1+x)&= k=1 ^ n (-1)^ k-1 k x^k+o(x^n)\\\\[0.6em] x&= k=0 ^ n (-1)^k x^ 2k+1 (2k+1)! +o(x^ 2n+1 )\\\\[0.6em] x&= k=0 ^ n (-1)^k x^ 2k (2k)! +o(x^ 2n )\\\\[0.6em] (1+x)^a&= k=0 ^ n ak x^k+o(x^n) aligned 其中广义二项式系数为 a0=1，当 k≥1 时： ak= a(a-1) (a-k+1) k! . 反三角函数、根式及对数复合函数的通项为： aligned x&= k=0 ^ n (2k)! 4^k(k!)^2(2k+1) x^ 2k+1 +o(x^ 2n+1 )\\\\[0.8em] x&= k=0 ^ n (-1)^k x^ 2k+1 2k+1 +o(x^ 2n+1 )\\\\[0.8em] 1+x &= k=0 ^ n 1/2 k x^k+o(x^n)\\\\[0.8em] \\!≤ft(x+ 1+x^2 )&= k=0 ^ n (-1)^k(2k)! 4^k(k!)^2(2k+1) x^ 2k+1 +o(x^ 2n+1 ) aligned 正切的任意阶系数。 正切不像正弦、余弦那样只有交错的阶乘系数，做题通常记到三阶或五阶。需要更高阶时，可用 c 0=1 和下面的递推关系逐项求出： aligned x&= k=0 ^ n c k x^ 2k+1 +o(x^ 2n+1 ),\\ 0&=1, c m= j=0 ^ m-1 c j c m-1-j 2m+1 (m≥1). aligned 由 ( x)'=1+ ^2x 比较 x^ 2m 的系数即得递推式。它给出 c 1= 13、c 2= 2 15 、c 3= 17 315 ，所以 x=x+ x^3 3 + 2x^5 15 + 17x^7 315 +o(x^7)。 有限阶公式与无穷级数。 有限阶式在 x 0 时使用，不能把末尾的 o 余项直接删掉，写成任意 x 下的恒等式。指数函数还满足下面的无穷级数恒等式： e^x= k=0 ^ x^k k! , x R. 其他函数改写成无穷级数时，正弦、余弦对全部实数成立；倒数、对数、一般二项式、根式及上述反三角展开可统一在 x <1 内使用；正切在 x < /2 内使用。端点不能直接套用这一统一范围。考研数学二做极限题时，通常用有限阶式即可。 通用公式。 x 0=0 时即麦克劳林公式；展开中心不为零时，幂次应写成 (x-x 0)^k： f(x)= k=0 ^ n f^ (k) (x 0) k! (x-x 0)^k+R n(x). 当 f 在展开点邻域具有到 n 阶的连续导数时，求等价无穷小可用佩亚诺余项 R n(x)=o((x-x 0)^n)；需要估计误差时可用拉格朗日余项 R n(x)= f^ (n+1) ( ) (n+1)! (x-x 0)^ n+1 。不要在和差中只替换最低阶等价式，先看前几项是否抵消。 七类未定式、洛必达法则与幂指函数极限 00、 ：先化简、等价替换或洛必达；洛必达前必须确认型别和条件。 0 ：改写成商。 - ：通分、有理化或提取主项。 1^ 、0^0、 ^0：设原式为 y，先求 y，最后取指数。 分子分母相减严重时，展开到第一个不抵消的项；不必把所有因子展开到同一阶。 洛必达法则 当 fg 为 00 型或 型，并满足相应可导条件，且导数之比的极限存在或为无穷时： f(x) g(x) = f'(x) g'(x) . 洛必达后若仍是相同未定式可以继续使用；每次都要重新检查型别。等价无穷小只能直接替换乘积或商中的因子，和差中的替换必须保证不会丢掉抵消后的首个非零项。 幂指型极限统一公式： f(x)^ g(x) = \\!≤ft( g(x) f(x) ) (f(x) 0). 特别地，若 u(x) 0、v(x) 、u(x)v(x) A，则 [1+u(x)]^ v(x) e^A. 两个重要极限、数列极限、黎曼和与递推数列 两个重要极限： x 0 x x =1, x 0 (1+x)^ 1x =e, 以及等价形式 n ≤ft(1+ 1n )^n=e, x ≤ft(1+ ax )^x=e^a. n a^ 1n =1 (a 0), n n^ 1n =1. 若 a 1, ,a m 0，则 n [n] a 1^n+a 2^n+ +a m^n = \\ a 1,a 2, ,a m\\ . 若 a 0b 0≠0，则 x a 0x^n+a 1x^ n-1 + +a n b 0x^m+b 1x^ m-1 + +b m = cases 0,&n<m,\\\\ a 0 b 0 ,&n=m,\\\\ 或 - ,&n m, cases 最后一种情形的符号由最高次项决定。 n 1n k=1 ^n f\\!≤ft( k n )= 0^1 f(x)\\,dx. 一般区间 [a,b] 的和要整理成“函数值乘小区间宽度”。乘积先取对数化为和。递推数列先证单调有界，再令极限为 L 代回递推式；代数方程有多个根时，用数列范围筛选。 夹逼准则：若在去心邻域内 g(x)≤ f(x)≤ h(x)，且 g,h A，则 f A。单调有界数列一定收敛；递增数列的极限是其上确界，递减数列的极限是其下确界。 极限存在、左右极限、局部有界性、保号性与保序性 x x 0 f(x)=A x x 0^- f(x)= x x 0^+ f(x)=A. 有限极限存在时，函数在该点的某个去心邻域内有界；若 A 0，则该邻域内 f(x) 0。若附近恒有 f(x)≤ g(x)，且两边极限都存在，则 f(x)≤ g(x). 夹逼准则、无穷小乘有界量与递推数列压缩估计 g(x)≤ f(x)≤ h(x), g(x),h(x) A ⇒ f(x) A. (x) 0, (x) 有界 ⇒ (x) (x) 0. 若递推数列在一个不变区间内满足 a n+1 -A ≤ q a n-A , 0<q<1, 则 a n-A ≤ q^ n-1 a 1-A 0. 数列乘积、无限乘积与对数化 各因子为正时，乘积先取对数： u n= k=1 ^n a k ⇒ u n= k=1 ^n a k. 常用望远镜乘积： (1-x)(1+x)(1+x^2) (1+x^ 2^n )=1-x^ 2^ n+1 . 无穷小阶数、等价判据与积分等价 若 (x) (x) = cases 0,& 比 高阶,\\\\ c≠0,& 与 同阶,\\\\ 1,& ,\\\\ ,& 比 低阶. cases “无界”不等于“趋于无穷大”；趋于无穷大一定无界，反过来不成立。 若 f(x) g(x)、二者在去心邻域内同号且积分存在，则在相应端点附近 x 0 ^ x f(t)\\,dt x 0 ^ x g(t)\\,dt. 若 f(t) c t^m\\ (t 0^+)、 (x) d x^n\\ (x 0^+)，其中 c≠0、d 0、m,n 为非负整数，则 0^ (x) f(t)\\,dt c m+1 [ (x)]^ m+1 cd^ m+1 m+1 x^ n(m+1) . 含参数极限、导数定义型极限与三类渐近线 x=x 0:\\ x x 0 f(x)= , y=b:\\ x f(x)=b, y=kx+b:\\ k= x f(x) x, b= x [f(x)-kx]. 含参数极限存在时，先让左右极限相等，再排除分母为零或表达式无意义的参数。极限中出现 f(x)-f(x 0) x-x 0 时，直接按导数定义识别。",
         "summary": "极限运算法则、等价无穷小与高阶无穷小公式 极限运算法则 若 f=A, g=B，则 (af+bg)=aA+bB, (fg)=AB, fg= AB (B≠0). 若 (x) u 0，且 f 在 u 0 连续，则 f( (x))=f(u 0). 当 x 0 时：…",
         "anchors": [
           {
@@ -804,9 +804,9 @@ export const mathChapters: MathChapter[] = [
             "id": "anchor-t8lpq4",
             "legacyId": "calculus-01-002-anchor-002",
             "title": "常用泰勒展开式（集中速查）",
-            "searchText": "常用泰勒展开式（集中速查） 指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 x 0 时，只记到做题所需的阶数： aligned e^x&=1+x+ x^2 2 + x^3 6 +o(x^3),\\\\ 1 1-x &=1+x+x^2+x^3+o(x^3),\\\\ 1 1+x &=1-x+x^2-x^3+o(x^3),\\\\ (1+x)&=x- x^2 2 + x^3 3 +o(x^3),\\\\ x&=x- x^3 6 + x^5 120 +o(x^5),\\\\ x&=1- x^2 2 + x^4 24 +o(x^4),\\\\ (1+x)^a&=1+ax+ a(a-1) 2 x^2+ a(a-1)(a-2) 6 x^3+o(x^3). aligned 补充几个常用三阶式： x=x+ x^3 3 +o(x^3), x=x+ x^3 6 +o(x^3), x=x- x^3 3 +o(x^3), 1+x =1+ x 2 - x^2 8 +o(x^2), \\!≤ft(x+ 1+x^2 )=x- x^3 6 +o(x^3). 通用公式（x 0=0 时即麦克劳林公式）： f(x)= k=0 ^ n f^ (k) (x 0) k! (x-x 0)^k+R n(x). 求等价无穷小时用佩亚诺余项 R n(x)=o((x-x 0)^n)；需要估计误差时可用拉格朗日余项 R n(x)= f^ (n+1) ( ) (n+1)! (x-x 0)^ n+1 。不要在和差中只替换最低阶等价式，先看前几项是否抵消。",
-            "summary": "指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 x 0 时，只记到做题所需的阶数： aligned e^x&=1+x+ x^2 2 + x^3 6 +o(x^3),\\\\ 1 1-x &=1+x+x^2+x^3+o(x^3…",
-            "displaySummary": "指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 \\(x\\to0\\) 时，只记到做题所需的阶数："
+            "searchText": "常用泰勒展开式（集中速查） 以下均为 x 0 时的有限阶展开，n 为正整数。通项可展开到任意所需阶数；正弦和反三角函数保留到 2n+1 次，余弦保留到 2n 次。 aligned e^x&=1+x+ x^2 2 + x^3 6 +o(x^3),\\\\ 1 1-x &=1+x+x^2+x^3+o(x^3),\\\\ 1 1+x &=1-x+x^2-x^3+o(x^3),\\\\ (1+x)&=x- x^2 2 + x^3 3 +o(x^3),\\\\ x&=x- x^3 6 + x^5 120 +o(x^5),\\\\ x&=1- x^2 2 + x^4 24 +o(x^4),\\\\ (1+x)^a&=1+ax+ a(a-1) 2 x^2+ a(a-1)(a-2) 6 x^3+o(x^3). aligned 再补充正切与反三角函数的低阶式： x=x+ x^3 3 +o(x^3), x=x+ x^3 6 +o(x^3), x=x- x^3 3 +o(x^3), 1+x =1+ x 2 - x^2 8 +o(x^2), \\!≤ft(x+ 1+x^2 )=x- x^3 6 +o(x^3). 任意阶通项。 指数函数的展开写全为（n≥4）： e^x=1+x+ x^2 2! + x^3 3! + + x^n n! +o(x^n). 常用函数的通项如下，0!=1，f^ (0) =f： aligned e^x&= k=0 ^ n x^k k! +o(x^n)\\\\[0.6em] 1 1-x &= k=0 ^ n x^k+o(x^n)\\\\[0.6em] 1 1+x &= k=0 ^ n (-1)^k x^k+o(x^n)\\\\[0.6em] (1+x)&= k=1 ^ n (-1)^ k-1 k x^k+o(x^n)\\\\[0.6em] x&= k=0 ^ n (-1)^k x^ 2k+1 (2k+1)! +o(x^ 2n+1 )\\\\[0.6em] x&= k=0 ^ n (-1)^k x^ 2k (2k)! +o(x^ 2n )\\\\[0.6em] (1+x)^a&= k=0 ^ n ak x^k+o(x^n) aligned 其中广义二项式系数为 a0=1，当 k≥1 时： ak= a(a-1) (a-k+1) k! . 反三角函数、根式及对数复合函数的通项为： aligned x&= k=0 ^ n (2k)! 4^k(k!)^2(2k+1) x^ 2k+1 +o(x^ 2n+1 )\\\\[0.8em] x&= k=0 ^ n (-1)^k x^ 2k+1 2k+1 +o(x^ 2n+1 )\\\\[0.8em] 1+x &= k=0 ^ n 1/2 k x^k+o(x^n)\\\\[0.8em] \\!≤ft(x+ 1+x^2 )&= k=0 ^ n (-1)^k(2k)! 4^k(k!)^2(2k+1) x^ 2k+1 +o(x^ 2n+1 ) aligned 正切的任意阶系数。 正切不像正弦、余弦那样只有交错的阶乘系数，做题通常记到三阶或五阶。需要更高阶时，可用 c 0=1 和下面的递推关系逐项求出： aligned x&= k=0 ^ n c k x^ 2k+1 +o(x^ 2n+1 ),\\ 0&=1, c m= j=0 ^ m-1 c j c m-1-j 2m+1 (m≥1). aligned 由 ( x)'=1+ ^2x 比较 x^ 2m 的系数即得递推式。它给出 c 1= 13、c 2= 2 15 、c 3= 17 315 ，所以 x=x+ x^3 3 + 2x^5 15 + 17x^7 315 +o(x^7)。 有限阶公式与无穷级数。 有限阶式在 x 0 时使用，不能把末尾的 o 余项直接删掉，写成任意 x 下的恒等式。指数函数还满足下面的无穷级数恒等式： e^x= k=0 ^ x^k k! , x R. 其他函数改写成无穷级数时，正弦、余弦对全部实数成立；倒数、对数、一般二项式、根式及上述反三角展开可统一在 x <1 内使用；正切在 x < /2 内使用。端点不能直接套用这一统一范围。考研数学二做极限题时，通常用有限阶式即可。 通用公式。 x 0=0 时即麦克劳林公式；展开中心不为零时，幂次应写成 (x-x 0)^k： f(x)= k=0 ^ n f^ (k) (x 0) k! (x-x 0)^k+R n(x). 当 f 在展开点邻域具有到 n 阶的连续导数时，求等价无穷小可用佩亚诺余项 R n(x)=o((x-x 0)^n)；需要估计误差时可用拉格朗日余项 R n(x)= f^ (n+1) ( ) (n+1)! (x-x 0)^ n+1 。不要在和差中只替换最低阶等价式，先看前几项是否抵消。",
+            "summary": "以下均为 x 0 时的有限阶展开，n 为正整数。通项可展开到任意所需阶数；正弦和反三角函数保留到 2n+1 次，余弦保留到 2n 次。 aligned e^x&=1+x+ x^2 2 + x^3 6 +o(x^3),\\\\ 1 1-x &=1+x+x^2+x…",
+            "displaySummary": "以下均为 \\(x\\to0\\) 时的有限阶展开，\\(n\\) 为正整数。通项可展开到任意所需阶数；正弦和反三角函数保留到 \\(2n+1\\) 次，余弦保留到 \\(2n\\) 次。"
           },
           {
             "id": "anchor-5x1cm7",
@@ -1165,14 +1165,17 @@ export const mathChapters: MathChapter[] = [
             "parentAnchorId": "anchor-t8lpq4",
             "legacyParentAnchorId": "calculus-01-002-anchor-002",
             "title": "指数函数的泰勒展开",
-            "latex": "e^x=1+x+\\frac{x^2}{2}+\\frac{x^3}{6}+o(x^3)",
-            "sourceBlockIndex": 21,
+            "latex": "e^x=\\sum_{k=0}^{n}\\frac{x^k}{k!}+o(x^n)",
+            "sourceBlockIndex": 24,
             "searchAliases": [
+              "泰勒通项",
+              "麦克劳林通项",
+              "任意阶展开",
               "e^x展开",
               "指数函数麦克劳林展开"
             ],
-            "context": "指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 x\\to0 时，只记到做题所需的阶数：",
-            "displayContext": "指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 \\(x\\to0\\) 时，只记到做题所需的阶数：",
+            "context": "x 趋于 0 时的任意有限阶通项；按所需阶数截断。",
+            "displayContext": "以下均为 \\(x\\to0\\) 时的有限阶展开，\\(n\\) 为正整数。通项可展开到任意所需阶数；正弦和反三角函数保留到 \\(2n+1\\) 次，余弦保留到 \\(2n\\) 次。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 21
@@ -1182,14 +1185,17 @@ export const mathChapters: MathChapter[] = [
             "parentAnchorId": "anchor-t8lpq4",
             "legacyParentAnchorId": "calculus-01-002-anchor-002",
             "title": "一减x的倒数的泰勒展开",
-            "latex": "\\frac1{1-x}=1+x+x^2+x^3+o(x^3)",
-            "sourceBlockIndex": 21,
+            "latex": "\\frac1{1-x}=\\sum_{k=0}^{n}x^k+o(x^n)",
+            "sourceBlockIndex": 24,
             "searchAliases": [
+              "泰勒通项",
+              "麦克劳林通项",
+              "任意阶展开",
               "几何级数展开",
               "1减x倒数展开"
             ],
-            "context": "指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 x\\to0 时，只记到做题所需的阶数：",
-            "displayContext": "指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 \\(x\\to0\\) 时，只记到做题所需的阶数：",
+            "context": "x 趋于 0 时的任意有限阶通项；按所需阶数截断。",
+            "displayContext": "以下均为 \\(x\\to0\\) 时的有限阶展开，\\(n\\) 为正整数。通项可展开到任意所需阶数；正弦和反三角函数保留到 \\(2n+1\\) 次，余弦保留到 \\(2n\\) 次。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 22
@@ -1199,14 +1205,17 @@ export const mathChapters: MathChapter[] = [
             "parentAnchorId": "anchor-t8lpq4",
             "legacyParentAnchorId": "calculus-01-002-anchor-002",
             "title": "一加x的倒数的泰勒展开",
-            "latex": "\\frac1{1+x}=1-x+x^2-x^3+o(x^3)",
-            "sourceBlockIndex": 21,
+            "latex": "\\frac1{1+x}=\\sum_{k=0}^{n}(-1)^k x^k+o(x^n)",
+            "sourceBlockIndex": 24,
             "searchAliases": [
+              "泰勒通项",
+              "麦克劳林通项",
+              "任意阶展开",
               "几何级数交错展开",
               "1加x倒数展开"
             ],
-            "context": "指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 x\\to0 时，只记到做题所需的阶数：",
-            "displayContext": "指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 \\(x\\to0\\) 时，只记到做题所需的阶数：",
+            "context": "x 趋于 0 时的任意有限阶通项；按所需阶数截断。",
+            "displayContext": "以下均为 \\(x\\to0\\) 时的有限阶展开，\\(n\\) 为正整数。通项可展开到任意所需阶数；正弦和反三角函数保留到 \\(2n+1\\) 次，余弦保留到 \\(2n\\) 次。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 23
@@ -1216,14 +1225,17 @@ export const mathChapters: MathChapter[] = [
             "parentAnchorId": "anchor-t8lpq4",
             "legacyParentAnchorId": "calculus-01-002-anchor-002",
             "title": "自然对数的泰勒展开",
-            "latex": "\\ln(1+x)=x-\\frac{x^2}{2}+\\frac{x^3}{3}+o(x^3)",
-            "sourceBlockIndex": 21,
+            "latex": "\\ln(1+x)=\\sum_{k=1}^{n}\\frac{(-1)^{k-1}}{k}x^k+o(x^n)",
+            "sourceBlockIndex": 24,
             "searchAliases": [
+              "泰勒通项",
+              "麦克劳林通项",
+              "任意阶展开",
               "ln(1+x)展开",
               "对数函数麦克劳林展开"
             ],
-            "context": "指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 x\\to0 时，只记到做题所需的阶数：",
-            "displayContext": "指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 \\(x\\to0\\) 时，只记到做题所需的阶数：",
+            "context": "x 趋于 0 时的任意有限阶通项；按所需阶数截断。",
+            "displayContext": "以下均为 \\(x\\to0\\) 时的有限阶展开，\\(n\\) 为正整数。通项可展开到任意所需阶数；正弦和反三角函数保留到 \\(2n+1\\) 次，余弦保留到 \\(2n\\) 次。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 24
@@ -1233,14 +1245,17 @@ export const mathChapters: MathChapter[] = [
             "parentAnchorId": "anchor-t8lpq4",
             "legacyParentAnchorId": "calculus-01-002-anchor-002",
             "title": "正弦函数的泰勒展开",
-            "latex": "\\sin x=x-\\frac{x^3}{6}+\\frac{x^5}{120}+o(x^5)",
-            "sourceBlockIndex": 21,
+            "latex": "\\sin x=\\sum_{k=0}^{n}\\frac{(-1)^k x^{2k+1}}{(2k+1)!}+o(x^{2n+1})",
+            "sourceBlockIndex": 24,
             "searchAliases": [
+              "泰勒通项",
+              "麦克劳林通项",
+              "任意阶展开",
               "sin x展开",
               "正弦麦克劳林展开"
             ],
-            "context": "指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 x\\to0 时，只记到做题所需的阶数：",
-            "displayContext": "指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 \\(x\\to0\\) 时，只记到做题所需的阶数：",
+            "context": "x 趋于 0 时的任意有限阶通项；按所需阶数截断。",
+            "displayContext": "以下均为 \\(x\\to0\\) 时的有限阶展开，\\(n\\) 为正整数。通项可展开到任意所需阶数；正弦和反三角函数保留到 \\(2n+1\\) 次，余弦保留到 \\(2n\\) 次。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 25
@@ -1250,14 +1265,17 @@ export const mathChapters: MathChapter[] = [
             "parentAnchorId": "anchor-t8lpq4",
             "legacyParentAnchorId": "calculus-01-002-anchor-002",
             "title": "余弦函数的泰勒展开",
-            "latex": "\\cos x=1-\\frac{x^2}{2}+\\frac{x^4}{24}+o(x^4)",
-            "sourceBlockIndex": 21,
+            "latex": "\\cos x=\\sum_{k=0}^{n}\\frac{(-1)^k x^{2k}}{(2k)!}+o(x^{2n})",
+            "sourceBlockIndex": 24,
             "searchAliases": [
+              "泰勒通项",
+              "麦克劳林通项",
+              "任意阶展开",
               "cos x展开",
               "余弦麦克劳林展开"
             ],
-            "context": "指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 x\\to0 时，只记到做题所需的阶数：",
-            "displayContext": "指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 \\(x\\to0\\) 时，只记到做题所需的阶数：",
+            "context": "x 趋于 0 时的任意有限阶通项；按所需阶数截断。",
+            "displayContext": "以下均为 \\(x\\to0\\) 时的有限阶展开，\\(n\\) 为正整数。通项可展开到任意所需阶数；正弦和反三角函数保留到 \\(2n+1\\) 次，余弦保留到 \\(2n\\) 次。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 26
@@ -1267,14 +1285,17 @@ export const mathChapters: MathChapter[] = [
             "parentAnchorId": "anchor-t8lpq4",
             "legacyParentAnchorId": "calculus-01-002-anchor-002",
             "title": "一加x的幂的泰勒展开",
-            "latex": "(1+x)^a=1+ax+\\frac{a(a-1)}{2}x^2+\\frac{a(a-1)(a-2)}{6}x^3+o(x^3)",
-            "sourceBlockIndex": 21,
+            "latex": "(1+x)^a=\\sum_{k=0}^{n}\\binom ak x^k+o(x^n)",
+            "sourceBlockIndex": 24,
             "searchAliases": [
+              "泰勒通项",
+              "麦克劳林通项",
+              "任意阶展开",
               "二项式展开",
               "广义二项式展开"
             ],
-            "context": "指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 x\\to0 时，只记到做题所需的阶数：",
-            "displayContext": "指数、几何级数、对数、正弦、余弦、二项式、正切和反三角函数的泰勒展开都放在这里。在 \\(x\\to0\\) 时，只记到做题所需的阶数：",
+            "context": "x 趋于 0 时的任意有限阶通项；按所需阶数截断。",
+            "displayContext": "以下均为 \\(x\\to0\\) 时的有限阶展开，\\(n\\) 为正整数。通项可展开到任意所需阶数；正弦和反三角函数保留到 \\(2n+1\\) 次，余弦保留到 \\(2n\\) 次。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 27
@@ -1284,11 +1305,15 @@ export const mathChapters: MathChapter[] = [
             "parentAnchorId": "anchor-t8lpq4",
             "legacyParentAnchorId": "calculus-01-002-anchor-002",
             "title": "tan x 的泰勒展开",
-            "latex": "\\tan x=x+\\frac{x^3}{3}+o(x^3)",
-            "sourceBlockIndex": 22,
-            "searchAliases": [],
-            "context": "补充几个常用三阶式：",
-            "displayContext": "补充几个常用三阶式：",
+            "latex": "\\begin{aligned}\\tan x&=\\sum_{k=0}^{n}c_k x^{2k+1}+o(x^{2n+1}),\\\\c_0&=1,\\quad c_m=\\frac{\\sum_{j=0}^{m-1}c_j c_{m-1-j}}{2m+1}\\quad(m\\ge1).\\end{aligned}",
+            "sourceBlockIndex": 25,
+            "searchAliases": [
+              "泰勒通项",
+              "麦克劳林通项",
+              "任意阶展开"
+            ],
+            "context": "x 趋于 0 时的任意有限阶通项；按所需阶数截断。",
+            "displayContext": "再补充正切与反三角函数的低阶式：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 28
@@ -1298,11 +1323,15 @@ export const mathChapters: MathChapter[] = [
             "parentAnchorId": "anchor-t8lpq4",
             "legacyParentAnchorId": "calculus-01-002-anchor-002",
             "title": "arcsin x 的泰勒展开",
-            "latex": "\\arcsin x=x+\\frac{x^3}{6}+o(x^3)",
-            "sourceBlockIndex": 22,
-            "searchAliases": [],
-            "context": "补充几个常用三阶式：",
-            "displayContext": "补充几个常用三阶式：",
+            "latex": "\\arcsin x=\\sum_{k=0}^{n}\\frac{(2k)!}{4^k(k!)^2(2k+1)}x^{2k+1}+o(x^{2n+1})",
+            "sourceBlockIndex": 25,
+            "searchAliases": [
+              "泰勒通项",
+              "麦克劳林通项",
+              "任意阶展开"
+            ],
+            "context": "x 趋于 0 时的任意有限阶通项；按所需阶数截断。",
+            "displayContext": "再补充正切与反三角函数的低阶式：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 29
@@ -1312,11 +1341,15 @@ export const mathChapters: MathChapter[] = [
             "parentAnchorId": "anchor-t8lpq4",
             "legacyParentAnchorId": "calculus-01-002-anchor-002",
             "title": "arctan x 的泰勒展开",
-            "latex": "\\arctan x=x-\\frac{x^3}{3}+o(x^3)",
-            "sourceBlockIndex": 22,
-            "searchAliases": [],
-            "context": "补充几个常用三阶式：",
-            "displayContext": "补充几个常用三阶式：",
+            "latex": "\\arctan x=\\sum_{k=0}^{n}\\frac{(-1)^k x^{2k+1}}{2k+1}+o(x^{2n+1})",
+            "sourceBlockIndex": 25,
+            "searchAliases": [
+              "泰勒通项",
+              "麦克劳林通项",
+              "任意阶展开"
+            ],
+            "context": "x 趋于 0 时的任意有限阶通项；按所需阶数截断。",
+            "displayContext": "再补充正切与反三角函数的低阶式：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 30
@@ -1326,11 +1359,15 @@ export const mathChapters: MathChapter[] = [
             "parentAnchorId": "anchor-t8lpq4",
             "legacyParentAnchorId": "calculus-01-002-anchor-002",
             "title": "sqrt1+x 的泰勒展开",
-            "latex": "\\sqrt{1+x}=1+\\frac{x}{2}-\\frac{x^2}{8}+o(x^2)",
-            "sourceBlockIndex": 23,
-            "searchAliases": [],
-            "context": "所属知识点：常用泰勒展开式（集中速查）。",
-            "displayContext": "补充几个常用三阶式：",
+            "latex": "\\sqrt{1+x}=\\sum_{k=0}^{n}\\binom{1/2}{k}x^k+o(x^n)",
+            "sourceBlockIndex": 26,
+            "searchAliases": [
+              "泰勒通项",
+              "麦克劳林通项",
+              "任意阶展开"
+            ],
+            "context": "x 趋于 0 时的任意有限阶通项；按所需阶数截断。",
+            "displayContext": "再补充正切与反三角函数的低阶式：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 31
@@ -1340,14 +1377,121 @@ export const mathChapters: MathChapter[] = [
             "parentAnchorId": "anchor-t8lpq4",
             "legacyParentAnchorId": "calculus-01-002-anchor-002",
             "title": "ln 的泰勒展开",
-            "latex": "\\ln\\!\\left(x+\\sqrt{1+x^2}\\right)=x-\\frac{x^3}{6}+o(x^3)",
-            "sourceBlockIndex": 23,
-            "searchAliases": [],
-            "context": "所属知识点：常用泰勒展开式（集中速查）。",
-            "displayContext": "补充几个常用三阶式：",
+            "latex": "\\ln\\!\\left(x+\\sqrt{1+x^2}\\right)=\\sum_{k=0}^{n}\\frac{(-1)^k(2k)!}{4^k(k!)^2(2k+1)}x^{2k+1}+o(x^{2n+1})",
+            "sourceBlockIndex": 26,
+            "searchAliases": [
+              "泰勒通项",
+              "麦克劳林通项",
+              "任意阶展开"
+            ],
+            "context": "x 趋于 0 时的任意有限阶通项；按所需阶数截断。",
+            "displayContext": "再补充正切与反三角函数的低阶式：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
             "order": 32
+          },
+          {
+            "id": "calculus-taylor-exp-expanded",
+            "parentAnchorId": "anchor-t8lpq4",
+            "legacyParentAnchorId": "calculus-01-002-anchor-002",
+            "title": "指数函数泰勒展开的任意阶完整形式",
+            "latex": "e^x=1+x+\\frac{x^2}{2!}+\\frac{x^3}{3!}+\\cdots+\\frac{x^n}{n!}+o(x^n).",
+            "sourceBlockIndex": 28,
+            "searchAliases": [
+              "指数函数终极通项",
+              "e的x次方n阶展开"
+            ],
+            "context": "x 趋于 0；n 为不小于 4 的整数。",
+            "displayContext": "**任意阶通项。** 指数函数的展开写全为（\\(n\\ge4\\)）：",
+            "chapterId": "calculus-01",
+            "topicId": "calculus-01-002",
+            "order": 33
+          },
+          {
+            "id": "calculus-taylor-general-collection",
+            "parentAnchorId": "anchor-t8lpq4",
+            "legacyParentAnchorId": "calculus-01-002-anchor-002",
+            "title": "常用函数任意阶泰勒展开通项表",
+            "latex": "\\begin{aligned}\ne^x&=\\sum_{k=0}^{n}\\frac{x^k}{k!}+o(x^n)\\\\[0.6em]\n\\frac1{1-x}&=\\sum_{k=0}^{n}x^k+o(x^n)\\\\[0.6em]\n\\frac1{1+x}&=\\sum_{k=0}^{n}(-1)^k x^k+o(x^n)\\\\[0.6em]\n\\ln(1+x)&=\\sum_{k=1}^{n}\\frac{(-1)^{k-1}}{k}x^k+o(x^n)\\\\[0.6em]\n\\sin x&=\\sum_{k=0}^{n}\\frac{(-1)^k x^{2k+1}}{(2k+1)!}+o(x^{2n+1})\\\\[0.6em]\n\\cos x&=\\sum_{k=0}^{n}\\frac{(-1)^k x^{2k}}{(2k)!}+o(x^{2n})\\\\[0.6em]\n(1+x)^a&=\\sum_{k=0}^{n}\\binom ak x^k+o(x^n)\n\\end{aligned}",
+            "sourceBlockIndex": 31,
+            "searchAliases": [
+              "泰勒通项表",
+              "麦克劳林通项表"
+            ],
+            "context": "x 趋于 0；n 为正整数。",
+            "displayContext": "常用函数的通项如下，\\(0!=1\\)，\\(f^{(0)}=f\\)：",
+            "chapterId": "calculus-01",
+            "topicId": "calculus-01-002",
+            "order": 34
+          },
+          {
+            "id": "calculus-taylor-binomial-coefficient",
+            "parentAnchorId": "anchor-t8lpq4",
+            "legacyParentAnchorId": "calculus-01-002-anchor-002",
+            "title": "广义二项式展开的通项系数",
+            "latex": "\\binom ak=\\frac{a(a-1)\\cdots(a-k+1)}{k!}.",
+            "sourceBlockIndex": 34,
+            "searchAliases": [
+              "广义二项式系数",
+              "幂函数展开系数"
+            ],
+            "context": "a 为固定实数，k 为正整数；k=0 时系数为 1。",
+            "displayContext": "其中广义二项式系数为 \\(\\binom a0=1\\)，当 \\(k\\ge1\\) 时：",
+            "chapterId": "calculus-01",
+            "topicId": "calculus-01-002",
+            "order": 35
+          },
+          {
+            "id": "calculus-taylor-inverse-general-collection",
+            "parentAnchorId": "anchor-t8lpq4",
+            "legacyParentAnchorId": "calculus-01-002-anchor-002",
+            "title": "反三角函数与根式的泰勒通项表",
+            "latex": "\\begin{aligned}\n\\arcsin x&=\\sum_{k=0}^{n}\\frac{(2k)!}{4^k(k!)^2(2k+1)}x^{2k+1}+o(x^{2n+1})\\\\[0.8em]\n\\arctan x&=\\sum_{k=0}^{n}\\frac{(-1)^k x^{2k+1}}{2k+1}+o(x^{2n+1})\\\\[0.8em]\n\\sqrt{1+x}&=\\sum_{k=0}^{n}\\binom{1/2}{k}x^k+o(x^n)\\\\[0.8em]\n\\ln\\!\\left(x+\\sqrt{1+x^2}\\right)&=\\sum_{k=0}^{n}\\frac{(-1)^k(2k)!}{4^k(k!)^2(2k+1)}x^{2k+1}+o(x^{2n+1})\n\\end{aligned}",
+            "sourceBlockIndex": 35,
+            "searchAliases": [
+              "arcsin通项",
+              "arctan通项",
+              "根式展开通项"
+            ],
+            "context": "x 趋于 0；n 为正整数。",
+            "displayContext": "反三角函数、根式及对数复合函数的通项为：",
+            "chapterId": "calculus-01",
+            "topicId": "calculus-01-002",
+            "order": 36
+          },
+          {
+            "id": "calculus-taylor-tan-coefficient-recurrence",
+            "parentAnchorId": "anchor-t8lpq4",
+            "legacyParentAnchorId": "calculus-01-002-anchor-002",
+            "title": "正切函数泰勒通项与系数递推",
+            "latex": "\\begin{aligned}\\tan x&=\\sum_{k=0}^{n}c_k x^{2k+1}+o(x^{2n+1}),\\\\c_0&=1,\\quad c_m=\\frac{\\sum_{j=0}^{m-1}c_j c_{m-1-j}}{2m+1}\\quad(m\\ge1).\\end{aligned}",
+            "sourceBlockIndex": 37,
+            "searchAliases": [
+              "tan任意阶展开",
+              "正切展开系数"
+            ],
+            "context": "x 趋于 0；m 为正整数；系数来自 (tan x)'=1+tan²x。",
+            "displayContext": "**正切的任意阶系数。** 正切不像正弦、余弦那样只有交错的阶乘系数，做题通常记到三阶或五阶。需要更高阶时，可用 \\(c_0=1\\) 和下面的递推关系逐项求出：",
+            "chapterId": "calculus-01",
+            "topicId": "calculus-01-002",
+            "order": 37
+          },
+          {
+            "id": "calculus-taylor-exp-infinite-series",
+            "parentAnchorId": "anchor-t8lpq4",
+            "legacyParentAnchorId": "calculus-01-002-anchor-002",
+            "title": "指数函数麦克劳林无穷级数",
+            "latex": "e^x=\\sum_{k=0}^{\\infty}\\frac{x^k}{k!},\\qquad x\\in\\mathbb R.",
+            "sourceBlockIndex": 47,
+            "searchAliases": [
+              "e^x无穷级数",
+              "指数函数级数通项"
+            ],
+            "context": "对所有实数 x 成立；与有限阶展开中的小 o 余项区分。",
+            "displayContext": "**有限阶公式与无穷级数。** 有限阶式在 \\(x\\to0\\) 时使用，不能把末尾的 \\(o\\) 余项直接删掉，写成任意 \\(x\\) 下的恒等式。指数函数还满足下面的无穷级数恒等式：",
+            "chapterId": "calculus-01",
+            "topicId": "calculus-01-002",
+            "order": 38
           },
           {
             "id": "calculus-1cqcqda",
@@ -1355,16 +1499,16 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "calculus-01-002-anchor-002",
             "title": "泰勒公式的通式",
             "latex": "f(x)=\\sum_{k=0}^{n}\\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k+R_n(x).",
-            "sourceBlockIndex": 25,
+            "sourceBlockIndex": 52,
             "searchAliases": [
               "泰勒展开通式",
               "麦克劳林公式"
             ],
             "context": "通用公式（x_0=0 时即麦克劳林公式）：",
-            "displayContext": "通用公式（\\(x_0=0\\) 时即麦克劳林公式）：",
+            "displayContext": "**通用公式。** \\(x_0=0\\) 时即麦克劳林公式；展开中心不为零时，幂次应写成 \\((x-x_0)^k\\)：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
-            "order": 33
+            "order": 39
           },
           {
             "id": "calculus-taylor-peano-remainder",
@@ -1372,16 +1516,16 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "calculus-01-002-anchor-002",
             "title": "泰勒公式的佩亚诺余项",
             "latex": "R_n(x)=o((x-x_0)^n)",
-            "sourceBlockIndex": 26,
+            "sourceBlockIndex": 55,
             "searchAliases": [
               "佩亚诺余项",
               "小o余项"
             ],
             "context": "用于局部等价与阶数比较；x 趋于 x₀。",
-            "displayContext": "求等价无穷小时用佩亚诺余项",
+            "displayContext": "当 \\(f\\) 在展开点邻域具有到 \\(n\\) 阶的连续导数时，求等价无穷小可用佩亚诺余项",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
-            "order": 34
+            "order": 40
           },
           {
             "id": "calculus-taylor-lagrange-remainder",
@@ -1389,16 +1533,16 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "calculus-01-002-anchor-002",
             "title": "泰勒公式的拉格朗日余项",
             "latex": "R_n(x)=\\frac{f^{(n+1)}(\\xi)}{(n+1)!}(x-x_0)^{n+1}",
-            "sourceBlockIndex": 27,
+            "sourceBlockIndex": 56,
             "searchAliases": [
               "拉格朗日余项",
               "泰勒误差估计"
             ],
             "context": "f 在相关区间上具有 n+1 阶导数，ξ 位于 x 与 x₀ 之间。",
-            "displayContext": "通用公式（\\(x_0=0\\) 时即麦克劳林公式）：",
+            "displayContext": "**通用公式。** \\(x_0=0\\) 时即麦克劳林公式；展开中心不为零时，幂次应写成 \\((x-x_0)^k\\)：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
-            "order": 35
+            "order": 41
           },
           {
             "id": "calculus-83v85p",
@@ -1406,13 +1550,13 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "calculus-01-002-anchor-003",
             "title": "七类未定式、洛必达法则与幂指函数极限：lim(f(x))/(g(x))",
             "latex": "\\lim\\frac{f(x)}{g(x)}=\\lim\\frac{f'(x)}{g'(x)}.",
-            "sourceBlockIndex": 40,
+            "sourceBlockIndex": 69,
             "searchAliases": [],
             "context": "分子分母相减严重时，展开到第一个不抵消的项；不必把所有因子展开到同一阶。",
             "displayContext": "**洛必达法则**　当 \\(\\frac fg\\) 为 \\(\\frac00\\) 型或 \\(\\frac{\\infty}{\\infty}\\) 型，并满足相应可导条件，且导数之比的极限存在或为无穷时：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
-            "order": 36
+            "order": 42
           },
           {
             "id": "calculus-l7xpfv-1",
@@ -1420,13 +1564,13 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "calculus-01-002-anchor-003",
             "title": "七类未定式、洛必达法则与幂指函数极限：lim f(x)^g(x)",
             "latex": "\\lim f(x)^{g(x)}\n=\\exp\\!\\left(\\lim g(x)\\ln f(x)\\right)\\qquad(f(x)>0).",
-            "sourceBlockIndex": 41,
+            "sourceBlockIndex": 70,
             "searchAliases": [],
             "context": "幂指型极限统一公式：",
             "displayContext": "幂指型极限统一公式：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
-            "order": 37
+            "order": 43
           },
           {
             "id": "calculus-1c5ti32",
@@ -1434,13 +1578,13 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "calculus-01-002-anchor-003",
             "title": "七类未定式、洛必达法则与幂指函数极限：[1+u(x)]^v(x)to e^A",
             "latex": "[1+u(x)]^{v(x)}\\to e^A.",
-            "sourceBlockIndex": 45,
+            "sourceBlockIndex": 74,
             "searchAliases": [],
             "context": "特别地，若 \\(u(x)\\to0\\)、\\(v(x)\\to\\infty\\)、\\(u(x)v(x)\\to A\\)，则",
             "displayContext": "特别地，若 \\(u(x)\\to0\\)、\\(v(x)\\to\\infty\\)、\\(u(x)v(x)\\to A\\)，则",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
-            "order": 38
+            "order": 44
           },
           {
             "id": "calculus-8xvs7x-1",
@@ -1448,13 +1592,13 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "calculus-01-002-anchor-004",
             "title": "两个重要极限、数列极限、黎曼和与递推数列：lim_xto0(sin x)/(x)",
             "latex": "\\lim_{x\\to0}\\frac{\\sin x}{x}=1",
-            "sourceBlockIndex": 46,
+            "sourceBlockIndex": 75,
             "searchAliases": [],
             "context": "两个重要极限：",
             "displayContext": "两个重要极限：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
-            "order": 39
+            "order": 45
           },
           {
             "id": "calculus-8xvs7x-2",
@@ -1462,13 +1606,13 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "calculus-01-002-anchor-004",
             "title": "两个重要极限、数列极限、黎曼和与递推数列：lim_xto0(1+x)^frac1x",
             "latex": "\\lim_{x\\to0}(1+x)^{\\frac1x}=e",
-            "sourceBlockIndex": 46,
+            "sourceBlockIndex": 75,
             "searchAliases": [],
             "context": "两个重要极限：",
             "displayContext": "两个重要极限：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
-            "order": 40
+            "order": 46
           },
           {
             "id": "calculus-3qrfxs-1",
@@ -1476,13 +1620,13 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "calculus-01-002-anchor-004",
             "title": "两个重要极限、数列极限、黎曼和与递推数列：lim_nto∞",
             "latex": "\\lim_{n\\to\\infty}\\left(1+\\frac1n\\right)^n=e",
-            "sourceBlockIndex": 47,
+            "sourceBlockIndex": 76,
             "searchAliases": [],
             "context": "以及等价形式",
             "displayContext": "以及等价形式",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
-            "order": 41
+            "order": 47
           },
           {
             "id": "calculus-3qrfxs-2",
@@ -1490,13 +1634,13 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "calculus-01-002-anchor-004",
             "title": "两个重要极限、数列极限、黎曼和与递推数列：lim_xto∞",
             "latex": "\\lim_{x\\to\\infty}\\left(1+\\frac ax\\right)^x=e^a",
-            "sourceBlockIndex": 47,
+            "sourceBlockIndex": 76,
             "searchAliases": [],
             "context": "以及等价形式",
             "displayContext": "以及等价形式",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
-            "order": 42
+            "order": 48
           },
           {
             "id": "calculus-102nllp",
@@ -1504,13 +1648,13 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "calculus-01-002-anchor-004",
             "title": "两个重要极限、数列极限、黎曼和与递推数列：lim_nto∞a^frac1n",
             "latex": "\\lim_{n\\to\\infty}a^{\\frac1n}=1\\quad(a>0),\\qquad\n\\lim_{n\\to\\infty}n^{\\frac1n}=1.",
-            "sourceBlockIndex": 48,
+            "sourceBlockIndex": 77,
             "searchAliases": [],
             "context": "所属知识点：两个重要极限、数列极限、黎曼和与递推数列。",
             "displayContext": "以及等价形式",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
-            "order": 43
+            "order": 49
           },
           {
             "id": "calculus-1lfos2w",
@@ -1518,13 +1662,13 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "calculus-01-002-anchor-004",
             "title": "有限个正数的 n 次根极限取最大值",
             "latex": "\\lim_{n\\to\\infty}\\sqrt[n]{a_1^n+a_2^n+\\cdots+a_m^n}\n=\\max\\{a_1,a_2,\\ldots,a_m\\}.",
-            "sourceBlockIndex": 50,
+            "sourceBlockIndex": 79,
             "searchAliases": [],
             "context": "若 a_1,\\ldots,a_m>0，则",
             "displayContext": "若 \\(a_1,\\ldots,a_m>0\\)，则",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
-            "order": 44
+            "order": 50
           },
           {
             "id": "calculus-79gyl1",
@@ -1532,13 +1676,13 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "calculus-01-002-anchor-004",
             "title": "两个重要极限、数列极限、黎曼和与递推数列：lim_xto∞",
             "latex": "\\lim_{x\\to\\infty}\n\\frac{a_0x^n+a_1x^{n-1}+\\cdots+a_n}\n{b_0x^m+b_1x^{m-1}+\\cdots+b_m}\n=\n\\begin{cases}\n0,&n<m,\\\\\n\\dfrac{a_0}{b_0},&n=m,\\\\\n\\infty\\text{ 或 }-\\infty,&n>m,\n\\end{cases}",
-            "sourceBlockIndex": 52,
+            "sourceBlockIndex": 81,
             "searchAliases": [],
             "context": "若 a_0b_0\\ne0，则",
             "displayContext": "若 \\(a_0b_0\\ne0\\)，则",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
-            "order": 45
+            "order": 51
           },
           {
             "id": "calculus-v7iqrw",
@@ -1546,13 +1690,13 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "calculus-01-002-anchor-004",
             "title": "两个重要极限、数列极限、黎曼和与递推数列：lim_nto∞frac1nΣ_k",
             "latex": "\\lim_{n\\to\\infty}\\frac1n\\sum_{k=1}^n f\\!\\left(\\frac{k}{n}\\right)=\\int_0^1 f(x)\\,dx.",
-            "sourceBlockIndex": 53,
+            "sourceBlockIndex": 82,
             "searchAliases": [],
             "context": "最后一种情形的符号由最高次项决定。",
             "displayContext": "最后一种情形的符号由最高次项决定。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
-            "order": 46
+            "order": 52
           },
           {
             "id": "calculus-1i1evgc",
@@ -1560,13 +1704,13 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "calculus-01-002-anchor-005",
             "title": "极限存在、左右极限、局部有界性、保号性与保序性：lim_xto x_0f(x)",
             "latex": "\\lim_{x\\to x_0}f(x)=A\n\\Longleftrightarrow\n\\lim_{x\\to x_0^-}f(x)=\\lim_{x\\to x_0^+}f(x)=A.",
-            "sourceBlockIndex": 59,
+            "sourceBlockIndex": 88,
             "searchAliases": [],
             "context": "所属知识点：极限存在、左右极限、局部有界性、保号性与保序性。",
             "displayContext": "所属知识点：极限存在、左右极限、局部有界性、保号性与保序性。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
-            "order": 47
+            "order": 53
           },
           {
             "id": "calculus-173gpr9",
@@ -1574,13 +1718,13 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "calculus-01-002-anchor-005",
             "title": "极限存在、左右极限、局部有界性、保号性与保序性：lim f(x)",
             "latex": "\\lim f(x)\\le\\lim g(x).",
-            "sourceBlockIndex": 63,
+            "sourceBlockIndex": 92,
             "searchAliases": [],
             "context": "有限极限存在时，函数在该点的某个去心邻域内有界；若 A>0，则该邻域内 \\(f(x)>0\\)。若附近恒有 \\(f(x)\\le g(x)\\)，且两边极限都存在，则",
             "displayContext": "有限极限存在时，函数在该点的某个去心邻域内有界；若 \\(A>0\\)，则该邻域内 \\(f(x)>0\\)。若附近恒有 \\(f(x)\\le g(x)\\)，且两边极限都存在，则",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
-            "order": 48
+            "order": 54
           },
           {
             "id": "calculus-t5e1pl",
@@ -1588,13 +1732,13 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "calculus-01-002-anchor-006",
             "title": "夹逼准则、无穷小乘有界量与递推数列压缩估计：g(x)",
             "latex": "g(x)\\le f(x)\\le h(x),\\qquad g(x),h(x)\\to A\n\\Longrightarrow f(x)\\to A.",
-            "sourceBlockIndex": 64,
+            "sourceBlockIndex": 93,
             "searchAliases": [],
             "context": "所属知识点：夹逼准则、无穷小乘有界量与递推数列压缩估计。",
             "displayContext": "所属知识点：夹逼准则、无穷小乘有界量与递推数列压缩估计。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
-            "order": 49
+            "order": 55
           },
           {
             "id": "calculus-6qws51",
@@ -1602,13 +1746,13 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "calculus-01-002-anchor-006",
             "title": "夹逼准则、无穷小乘有界量与递推数列压缩估计：α(x)to0, β(x) 有界",
             "latex": "\\alpha(x)\\to0,\\qquad \\beta(x)\\text{ 有界}\n\\Longrightarrow \\alpha(x)\\beta(x)\\to0.",
-            "sourceBlockIndex": 65,
+            "sourceBlockIndex": 94,
             "searchAliases": [],
             "context": "所属知识点：夹逼准则、无穷小乘有界量与递推数列压缩估计。",
             "displayContext": "所属知识点：夹逼准则、无穷小乘有界量与递推数列压缩估计。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
-            "order": 50
+            "order": 56
           },
           {
             "id": "calculus-1qr3ruk-1",
@@ -1616,13 +1760,13 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "calculus-01-002-anchor-006",
             "title": "夹逼准则、无穷小乘有界量与递推数列压缩估计：|a_n+1-A|",
             "latex": "|a_{n+1}-A|\\le q|a_n-A|,\\qquad 0<q<1,",
-            "sourceBlockIndex": 66,
+            "sourceBlockIndex": 95,
             "searchAliases": [],
             "context": "若递推数列在一个不变区间内满足",
             "displayContext": "若递推数列在一个不变区间内满足",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
-            "order": 51
+            "order": 57
           },
           {
             "id": "calculus-u3z71g",
@@ -1630,13 +1774,13 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "calculus-01-002-anchor-006",
             "title": "夹逼准则、无穷小乘有界量与递推数列压缩估计：|a_n-A|",
             "latex": "|a_n-A|\\le q^{n-1}|a_1-A|\\to0.",
-            "sourceBlockIndex": 67,
+            "sourceBlockIndex": 96,
             "searchAliases": [],
             "context": "所属知识点：夹逼准则、无穷小乘有界量与递推数列压缩估计。",
             "displayContext": "则",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
-            "order": 52
+            "order": 58
           },
           {
             "id": "calculus-9esrln",
@@ -1644,13 +1788,13 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "calculus-01-002-anchor-007",
             "title": "数列乘积、无限乘积与对数化：u_n",
             "latex": "u_n=\\prod_{k=1}^n a_k\n\\Longrightarrow\n\\ln u_n=\\sum_{k=1}^n\\ln a_k.",
-            "sourceBlockIndex": 68,
+            "sourceBlockIndex": 97,
             "searchAliases": [],
             "context": "各因子为正时，乘积先取对数：",
             "displayContext": "各因子为正时，乘积先取对数：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
-            "order": 53
+            "order": 59
           },
           {
             "id": "calculus-1lhjtmk",
@@ -1658,13 +1802,13 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "calculus-01-002-anchor-007",
             "title": "数列乘积、无限乘积与对数化：(1-x)(1+x)(1+x^2)cdots(1+x^2^n)",
             "latex": "(1-x)(1+x)(1+x^2)\\cdots(1+x^{2^n})=1-x^{2^{n+1}}.",
-            "sourceBlockIndex": 69,
+            "sourceBlockIndex": 98,
             "searchAliases": [],
             "context": "常用望远镜乘积：",
             "displayContext": "常用望远镜乘积：",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
-            "order": 54
+            "order": 60
           },
           {
             "id": "calculus-137lxxy",
@@ -1672,13 +1816,13 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "calculus-01-002-anchor-008",
             "title": "无穷小阶数、等价判据与积分等价：lim(α(x))/(β(x))",
             "latex": "\\lim\\frac{\\alpha(x)}{\\beta(x)}=\n\\begin{cases}\n0,&\\alpha\\text{ 比 }\\beta\\text{ 高阶},\\\\\nc\\ne0,&\\alpha\\text{ 与 }\\beta\\text{ 同阶},\\\\\n1,&\\alpha\\sim\\beta,\\\\\n\\infty,&\\alpha\\text{ 比 }\\beta\\text{ 低阶}.\n\\end{cases}",
-            "sourceBlockIndex": 70,
+            "sourceBlockIndex": 99,
             "searchAliases": [],
             "context": "所属知识点：无穷小阶数、等价判据与积分等价。",
             "displayContext": "若",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
-            "order": 55
+            "order": 61
           },
           {
             "id": "calculus-o00lnb",
@@ -1686,13 +1830,13 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "calculus-01-002-anchor-008",
             "title": "无穷小阶数、等价判据与积分等价：∫_x_0^xf(t) dt",
             "latex": "\\int_{x_0}^{x}f(t)\\,dt\\sim\\int_{x_0}^{x}g(t)\\,dt.",
-            "sourceBlockIndex": 72,
+            "sourceBlockIndex": 101,
             "searchAliases": [],
             "context": "若 \\(f(x)\\sim g(x)\\)、二者在去心邻域内同号且积分存在，则在相应端点附近",
             "displayContext": "若 \\(f(x)\\sim g(x)\\)、二者在去心邻域内同号且积分存在，则在相应端点附近",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
-            "order": 56
+            "order": 62
           },
           {
             "id": "calculus-1po8to",
@@ -1700,13 +1844,13 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "calculus-01-002-anchor-008",
             "title": "无穷小阶数、等价判据与积分等价：∫_0^φ(x)f(t) dt",
             "latex": "\\int_0^{\\varphi(x)}f(t)\\,dt\n\\sim\\frac{c}{m+1}[\\varphi(x)]^{m+1}\n\\sim\\frac{cd^{m+1}}{m+1}x^{n(m+1)}.",
-            "sourceBlockIndex": 78,
+            "sourceBlockIndex": 107,
             "searchAliases": [],
             "context": "若 \\(f(t)\\sim c t^m\\ (t\\to0^+)\\)、\\(\\varphi(x)\\sim d x^n\\ (x\\to0^+)\\)，其中",
             "displayContext": "若 \\(f(t)\\sim c t^m\\ (t\\to0^+)\\)、\\(\\varphi(x)\\sim d x^n\\ (x\\to0^+)\\)，其中\n\\(c\\ne0\\)、\\(d>0\\)、\\(m,n\\) 为非负整数，则",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
-            "order": 57
+            "order": 63
           },
           {
             "id": "calculus-4w22q8",
@@ -1714,13 +1858,13 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "calculus-01-002-anchor-009",
             "title": "含参数极限、导数定义型极限与三类渐近线：x",
             "latex": "x=x_0:\\ \\lim_{x\\to x_0}f(x)=\\infty,",
-            "sourceBlockIndex": 79,
+            "sourceBlockIndex": 108,
             "searchAliases": [],
             "context": "所属知识点：含参数极限、导数定义型极限与三类渐近线。",
             "displayContext": "所属知识点：含参数极限、导数定义型极限与三类渐近线。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
-            "order": 58
+            "order": 64
           },
           {
             "id": "calculus-18wudsw",
@@ -1728,13 +1872,13 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "calculus-01-002-anchor-009",
             "title": "含参数极限、导数定义型极限与三类渐近线：y",
             "latex": "y=b:\\ \\lim_{x\\to\\pm\\infty}f(x)=b,",
-            "sourceBlockIndex": 80,
+            "sourceBlockIndex": 109,
             "searchAliases": [],
             "context": "所属知识点：含参数极限、导数定义型极限与三类渐近线。",
             "displayContext": "所属知识点：含参数极限、导数定义型极限与三类渐近线。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
-            "order": 59
+            "order": 65
           },
           {
             "id": "calculus-1443xil-1",
@@ -1742,13 +1886,13 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "calculus-01-002-anchor-009",
             "title": "含参数极限、导数定义型极限与三类渐近线：y",
             "latex": "y=kx+b:\\ k=\\lim_{x\\to\\pm\\infty}\\frac{f(x)}x",
-            "sourceBlockIndex": 81,
+            "sourceBlockIndex": 110,
             "searchAliases": [],
             "context": "所属知识点：含参数极限、导数定义型极限与三类渐近线。",
             "displayContext": "所属知识点：含参数极限、导数定义型极限与三类渐近线。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
-            "order": 60
+            "order": 66
           },
           {
             "id": "calculus-1443xil-2",
@@ -1756,13 +1900,13 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "calculus-01-002-anchor-009",
             "title": "含参数极限、导数定义型极限与三类渐近线：b",
             "latex": "b=\\lim_{x\\to\\pm\\infty}[f(x)-kx]",
-            "sourceBlockIndex": 81,
+            "sourceBlockIndex": 110,
             "searchAliases": [],
             "context": "所属知识点：含参数极限、导数定义型极限与三类渐近线。",
             "displayContext": "所属知识点：含参数极限、导数定义型极限与三类渐近线。",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
-            "order": 61
+            "order": 67
           },
           {
             "id": "calculus-m3ictv",
@@ -1770,13 +1914,13 @@ export const mathChapters: MathChapter[] = [
             "legacyParentAnchorId": "calculus-01-002-anchor-009",
             "title": "含参数极限、导数定义型极限与三类渐近线：(f(x)-f(x_0))/(x-x_0)",
             "latex": "\\frac{f(x)-f(x_0)}{x-x_0}",
-            "sourceBlockIndex": 82,
+            "sourceBlockIndex": 111,
             "searchAliases": [],
             "context": "含参数极限存在时，先让左右极限相等，再排除分母为零或表达式无意义的参数。极限中出现",
             "displayContext": "含参数极限存在时，先让左右极限相等，再排除分母为零或表达式无意义的参数。极限中出现",
             "chapterId": "calculus-01",
             "topicId": "calculus-01-002",
-            "order": 62
+            "order": 68
           }
         ]
       },
