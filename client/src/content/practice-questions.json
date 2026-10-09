@@ -55,7 +55,7 @@
     "type": "fill",
     "stem": "函数 $y=\\ln(1-2x)$ 在 $x=0$ 处的 $n$ 阶导数 $y^{(n)}(0)=\\underline{\\qquad}$（$n\\ge1$）。",
     "answer": "$-2^n(n-1)!$。",
-    "explanation": "先求 $y'=-2(1-2x)^{-1}$，再求 $y''=-4(1-2x)^{-2}$。逐次求导并用数学归纳法得到\n$$y^{(n)}(x)=-2^n(n-1)!(1-2x)^{-n}.$$\n令 $x=0$ 即得 $y^{(n)}(0)=-2^n(n-1)!$。这里各阶导数前的符号始终为负，并非正负交替。"
+    "explanation": "先求前两阶导数，观察系数的规律：\n$$y'=-\\frac{2}{1-2x},\\qquad y''=-\\frac{2^2}{(1-2x)^2}.$$\n设第 $n$ 阶导数为\n$$y^{(n)}(x)=-2^n(n-1)!(1-2x)^{-n}.$$\n对右侧再求一次导数：\n$$\\begin{aligned}\ny^{(n+1)}(x)&=-2^n(n-1)!\\cdot(-n)(1-2x)^{-n-1}\\cdot(-2)\\\\\n&=-2^{n+1}n!(1-2x)^{-n-1}.\n\\end{aligned}$$\n因此该公式由数学归纳法成立，代入 $x=0$ 得 $y^{(n)}(0)=-2^n(n-1)!$。负号始终保留，不能把它写成 $(-2)^n$。"
   },
   {
     "id": "math2-2010-q12-original",
@@ -94,7 +94,7 @@
     "type": "solution",
     "stem": "函数 $y=f(x)$ 由参数方程\n$$\\begin{cases}x=2t+t^2,\\\\ y=\\psi(t),\\end{cases}\\qquad t>-1$$\n确定，其中 $\\psi(t)$ 具有二阶导数，且 $\\psi(1)=\\dfrac52$、$\\psi'(1)=6$。已知 $\\dfrac{d^2y}{dx^2}=\\dfrac3{4(1+t)}$，求 $\\psi(t)$。",
     "answer": "$\\psi(t)=t^3+\\dfrac32t^2$（$t>-1$）。",
-    "explanation": "由 $x'=2(t+1)$，先求\n$$\\frac{dy}{dx}=\\frac{\\psi'(t)}{2(t+1)}.$$\n再关于 $t$ 求导并除以 $x'$：\n$$\\frac{d^2y}{dx^2}=\\frac{(t+1)\\psi''(t)-\\psi'(t)}{4(t+1)^3}.$$\n代入已知条件，得 $(t+1)\\psi''-\\psi'=3(t+1)^2$。令 $p=\\psi'$，则\n$$p'-\\frac{p}{t+1}=3(t+1),\\qquad \\left(\\frac p{t+1}\\right)'=3.$$\n故 $p=(t+1)(3t+C)$。由 $p(1)=6$ 得 $C=0$，所以 $\\psi'=3t^2+3t$，积分得 $\\psi=t^3+\\dfrac32t^2+C_0$。再由 $\\psi(1)=\\dfrac52$ 得 $C_0=0$。注意二阶导数需要再除一次 $x'(t)$。"
+    "explanation": "参数曲线求二阶导数时，必须每次都除以 $dx/dt$：\n$$\\frac{dy}{dx}=\\frac{\\psi'(t)}{2(1+t)},\\qquad\n\\frac{d^2y}{dx^2}=\\frac1{2(1+t)}\\frac d{dt}\\left[\\frac{\\psi'(t)}{2(1+t)}\\right].$$\n代入已知的二阶导数，并利用 $t>-1$，得到\n$$\\frac d{dt}\\left[\\frac{\\psi'(t)}{2(1+t)}\\right]=\\frac32.$$\n积分得\n$$\\frac{\\psi'(t)}{2(1+t)}=\\frac32t+C_1.$$\n由 $\\psi'(1)=6$，左侧在 $t=1$ 时为 $3/2$，故 $C_1=0$。于是\n$$\\psi'(t)=3t(1+t),\\qquad \\psi(t)=t^3+\\frac32t^2+C_2.$$\n再由 $\\psi(1)=5/2$ 得 $C_2=0$，即所求结果。这种写法直接积分已知的二阶导数关系，比先展开成关于 $\\psi'$ 的微分方程更简洁。"
   },
   {
     "id": "math2-2010-q18-original",
@@ -309,7 +309,7 @@
     "type": "solution",
     "stem": "（Ⅰ）证明对任意正整数 $n$，有\n$$\\frac1{n+1}<\\ln\\!\\left(1+\\frac1n\\right)<\\frac1n.$$\n（Ⅱ）设 $a_n=1+\\dfrac12+\\cdots+\\dfrac1n-\\ln n$，证明数列 $\\{a_n\\}$ 收敛。",
     "answer": "（Ⅰ）不等式成立；（Ⅱ）$\\{a_n\\}$ 严格递减且下界为 $0$，所以收敛。",
-    "explanation": "（Ⅰ）对 $\\ln x$ 在 $[n,n+1]$ 上应用拉格朗日中值定理，存在 $\\xi\\in(n,n+1)$ 使\n$$\\ln\\!\\left(1+\\frac1n\\right)=\\frac1\\xi.$$\n由 $n<\\xi<n+1$ 即得不等式。\n\n（Ⅱ）利用第一问的左侧不等式：\n$$a_{n+1}-a_n=\\frac1{n+1}-\\ln\\!\\left(1+\\frac1n\\right)<0.$$\n再利用第一问的右侧不等式，对 $k=1,\\ldots,n-1$ 求和，得\n$$\\ln n=\\sum_{k=1}^{n-1}\\ln\\!\\left(1+\\frac1k\\right)<\\sum_{k=1}^{n-1}\\frac1k.$$\n所以 $a_n>\\dfrac1n>0$（$n=1$ 时也成立）。由单调有界准则，数列收敛。只需证明收敛，不需要求出极限常数。"
+    "explanation": "（Ⅰ）对 $\\ln x$ 在 $[n,n+1]$ 上用拉格朗日中值定理，存在 $\\xi\\in(n,n+1)$ 使\n$$\\ln\\left(1+\\frac1n\\right)=\\frac1\\xi.$$\n由 $n<\\xi<n+1$，取倒数即得\n$$\\frac1{n+1}<\\ln\\left(1+\\frac1n\\right)<\\frac1n.$$\n（Ⅱ）先证单调性。用第一问的左侧不等式，得\n$$a_{n+1}-a_n=\\frac1{n+1}-\\ln\\left(1+\\frac1n\\right)<0.$$\n再证有下界。对 $n\\ge2$，将第一问的右侧不等式从 $k=1$ 加到 $n-1$：\n$$\\ln n=\\sum_{k=1}^{n-1}\\ln\\left(1+\\frac1k\\right)<\\sum_{k=1}^{n-1}\\frac1k,$$\n故 $a_n>1/n>0$；$n=1$ 时直接有 $a_1=1>0$。因此数列严格递减且有下界，由单调有界准则收敛。题目只要求证明收敛，无须求极限的具体数值。"
   },
   {
     "id": "math2-2011-q20-original",
@@ -446,7 +446,7 @@
     "topic": "高等数学 / 微分方程 / 交换自变量与因变量",
     "type": "fill",
     "stem": "微分方程 $y\\,dx+(x-3y^2)\\,dy=0$ 满足 $y|_{x=1}=1$ 的解为 $y=\\underline{\\qquad}$。",
-    "answer": "$y=\\sqrt x$。",
+    "answer": "$y=\\sqrt x$，包含初始点的解区间为 $x>0$。",
     "explanation": "将 $x$ 视为 $y$ 的函数，得到 $y\\dfrac{dx}{dy}+x=3y^2$，即\n$$\\frac d{dy}(xy)=3y^2.$$\n积分得 $xy=y^3+C$。由 $(x,y)=(1,1)$ 得 $C=0$，在初值附近 $y\\ne0$，故 $x=y^2$。根据 $y(1)=1$ 选择正根，得到 $y=\\sqrt x$（$x>0$）。若把 $y$ 当作因变量直接分离，形式反而更复杂。"
   },
   {
@@ -473,7 +473,7 @@
     "type": "solution",
     "stem": "过点 $(0,1)$ 作曲线 $L:y=\\ln x$ 的切线，切点为 $A$；$L$ 与 $x$ 轴交于 $B$。区域 $D$ 由曲线 $L$ 与直线 $AB$ 围成，求 $D$ 的面积以及绕 $x$ 轴旋转一周所得旋转体的体积。",
     "answer": "$S=2$，$V=\\dfrac{2\\pi}3(e^2-1)$。",
-    "explanation": "设切点 $A=(x_0,\\ln x_0)$。切线斜率为 $\\dfrac1{x_0}$，又切线过 $(0,1)$，所以 $\\ln x_0-1=1$，得 $A=(e^2,2)$；曲线与 $x$ 轴交点为 $B=(1,0)$。直线 $AB$ 为 $y=\\dfrac{2(x-1)}{e^2-1}$，在 $1\\le x\\le e^2$ 上位于 $\\ln x$ 下方。\n\n面积为\n$$S=\\int_1^{e^2}\\left(\\ln x-\\frac{2(x-1)}{e^2-1}\\right)dx=(e^2+1)-(e^2-1)=2.$$\n旋转体截面为圆环，故\n$$V=\\pi\\int_1^{e^2}\\left[(\\ln x)^2-\\frac{4(x-1)^2}{(e^2-1)^2}\\right]dx.$$\n分部积分可得 $\\int_1^{e^2}(\\ln x)^2dx=2(e^2-1)$，而第二项积分为 $\\dfrac43(e^2-1)$，因此 $V=\\dfrac{2\\pi}3(e^2-1)$。"
+    "explanation": "**确定边界。** 设切点为 $A=(x_0,\\ln x_0)$，切线为\n$$y-\\ln x_0=\\frac{x-x_0}{x_0}.$$\n代入切线经过的点 $(0,1)$，得 $1-\\ln x_0=-1$，所以 $A=(e^2,2)$。又 $B=(1,0)$，因此直线 $AB$ 为\n$$y=\\frac{2(x-1)}{e^2-1}.$$\n由于 $(\\ln x)''=-1/x^2<0$，对数曲线在弦 $AB$ 上方；两条边界在 $[1,e^2]$ 上均非负。\n\n**面积。** 上边界减下边界：\n$$\\begin{aligned}\nS&=\\int_1^{e^2}\\left[\\ln x-\\frac{2(x-1)}{e^2-1}\\right]dx\\\\\n&=[x\\ln x-x]_1^{e^2}-\\frac{(e^2-1)^2}{e^2-1}\\\\\n&=(e^2+1)-(e^2-1)=2.\n\\end{aligned}$$\n**体积。** 绕 $x$ 轴旋转后，外半径为 $\\ln x$，内半径为直线的纵坐标，使用圆环法：\n$$V=\\pi\\int_1^{e^2}\\left[(\\ln x)^2-\\frac{4(x-1)^2}{(e^2-1)^2}\\right]dx.$$\n分别计算：\n$$\\int_1^{e^2}(\\ln x)^2dx=[x((\\ln x)^2-2\\ln x+2)]_1^{e^2}=2(e^2-1),$$\n$$\\frac4{(e^2-1)^2}\\int_1^{e^2}(x-1)^2dx=\\frac43(e^2-1).$$\n所以 $V=\\frac{2\\pi}{3}(e^2-1)$。圆环面积是 $\\pi(R^2-r^2)$，不能写成 $\\pi(R-r)^2$。"
   },
   {
     "id": "math2-2012-q18-original",
@@ -770,7 +770,7 @@
     "type": "solution",
     "stem": "已知 $\\dfrac{\\partial f}{\\partial y}=2(y+1)$，且 $f(y,y)=(y+1)^2-(2-y)\\ln y$。求曲线 $f(x,y)=0$ 所围图形绕直线 $y=-1$ 旋转所得旋转体的体积。",
     "answer": "$V=\\pi\\left(2\\ln2-\\dfrac54\\right)$。",
-    "explanation": "对 $y$ 积分得 $f(x,y)=(y+1)^2+C(x)$。由对角线上的条件得 $C(x)=-(2-x)\\ln x$，所以曲线为\n$$(y+1)^2=(2-x)\\ln x.$$\n右侧非负且 $x>0$，故封闭图形的横坐标范围为 $1\\le x\\le2$。两条边界分支关于旋转轴 $y=-1$ 对称，图形旋转后的截面是半径 $\\sqrt{(2-x)\\ln x}$ 的圆盘。因此\n$$V=\\pi\\int_1^2(2-x)\\ln x\\,dx.$$\n分部积分，取 $u=\\ln x$、$dv=(2-x)dx$，可得积分为 $2\\ln2-\\dfrac54$。旋转的是两分支之间的整个区域，不能把两个分支的圆盘重复相加。"
+    "explanation": "**先还原曲线。** 由 $f_y=2(y+1)$，对 $y$ 积分得\n$$f(x,y)=(y+1)^2+C(x).$$\n这里积分常数可以依赖 $x$。代入 $f(y,y)$ 的条件，得 $C(y)=-(2-y)\\ln y$，因此\n$$f(x,y)=(y+1)^2-(2-x)\\ln x.$$\n曲线为 $(y+1)^2=(2-x)\\ln x$。要求 $x>0$ 且右侧非负，故 $1\\le x\\le2$；上下两条分支是\n$$y=-1\\pm\\sqrt{(2-x)\\ln x}.$$\n**再建立体积积分。** 图形关于旋转轴 $y=-1$ 对称，固定 $x$ 的整个线段旋转成一个圆盘，其半径为 $\\sqrt{(2-x)\\ln x}$。故\n$$V=\\pi\\int_1^2(2-x)\\ln x\\,dx.$$\n分部积分得到\n$$\\begin{aligned}\n\\int_1^2(2-x)\\ln x\\,dx\n&=\\left[\\left(2x-\\frac{x^2}{2}\\right)\\ln x-2x+\\frac{x^2}{4}\\right]_1^2\\\\\n&=2\\ln2-\\frac54.\n\\end{aligned}$$\n因此 $V=\\pi(2\\ln2-5/4)$。上下两条分支旋转生成同一个圆盘，体积不能重复乘 $2$。"
   },
   {
     "id": "math2-2014-q22-original",
@@ -783,7 +783,7 @@
     "type": "solution",
     "stem": "设\n$$A=\\begin{pmatrix}1&-2&3&-4\\\\0&1&-1&1\\\\1&2&0&-3\\end{pmatrix},$$\n$E$ 为三阶单位矩阵。（Ⅰ）求 $Ax=0$ 的一个基础解系；（Ⅱ）求满足 $AB=E$ 的全部矩阵 $B$。",
     "answer": "（Ⅰ）$\\xi=(-1,2,3,1)^{\\mathsf T}$；（Ⅱ）\n$$B=\\begin{pmatrix}2-k_1&6-k_2&-1-k_3\\\\-1+2k_1&-3+2k_2&1+2k_3\\\\-1+3k_1&-4+3k_2&1+3k_3\\\\k_1&k_2&k_3\\end{pmatrix},\\qquad k_1,k_2,k_3\\in\\mathbb R.$$",
-    "explanation": "（Ⅰ）对 $A$ 作行变换得到\n$$\\begin{pmatrix}1&0&0&1\\\\0&1&0&-2\\\\0&0&1&-3\\end{pmatrix}.$$\n所以 $x_1=-x_4$、$x_2=2x_4$、$x_3=3x_4$，取 $x_4=1$ 得基础解系 $\\xi$。\n\n（Ⅱ）令 $B=(b_1,b_2,b_3)$，则 $AB=E$ 等价于 $Ab_j=e_j$。三个非齐次方程分别有特解\n$$p_1=(2,-1,-1,0)^{\\mathsf T},\\quad p_2=(6,-3,-4,0)^{\\mathsf T},\\quad p_3=(-1,1,1,0)^{\\mathsf T}.$$\n每列通解为 $b_j=p_j+k_j\\xi$，组合后得到答案。三个参数彼此独立，不能误用同一个参数控制所有列。"
+    "explanation": "将三个右端项与系数矩阵一起作行变换，既能求齐次解，也能求第二问的三个特解：\n$$\\left(\\begin{array}{cccc|ccc}\n1&-2&3&-4&1&0&0\\\\\n0&1&-1&1&0&1&0\\\\\n1&2&0&-3&0&0&1\n\\end{array}\\right)\n\\longrightarrow\n\\left(\\begin{array}{cccc|ccc}\n1&0&0&1&2&6&-1\\\\\n0&1&0&-2&-1&-3&1\\\\\n0&0&1&-3&-1&-4&1\n\\end{array}\\right).$$\n一种行变换顺序是：$R_3\\leftarrow R_3-R_1$，$R_3\\leftarrow R_3-4R_2$，$R_2\\leftarrow R_2+R_3$，再用第二、三行消去第一行的第二、三列。\n\n（Ⅰ）取右端项全为零，有\n$$x_1=-x_4,\\qquad x_2=2x_4,\\qquad x_3=3x_4.$$\n系数矩阵秩为 $3$，自由变量只有 $x_4$，故一个基础解系为 $\\xi=(-1,2,3,1)^{\\mathsf T}$。\n\n（Ⅱ）写 $B=(b_1,b_2,b_3)$，则 $AB=E$ 等价于 $Ab_j=e_j$。从增广矩阵右半部分读取，在 $x_4=0$ 时三个特解为\n$$p_1=(2,-1,-1,0)^{\\mathsf T},\\quad p_2=(6,-3,-4,0)^{\\mathsf T},\\quad p_3=(-1,1,1,0)^{\\mathsf T}.$$\n每列分别取通解 $b_j=p_j+k_j\\xi$，因此全部解为\n$$B=\\begin{pmatrix}2&6&-1\\\\-1&-3&1\\\\-1&-4&1\\\\0&0&0\\end{pmatrix}+\\xi\\begin{pmatrix}k_1&k_2&k_3\\end{pmatrix}.$$\n三个参数互相独立，展开即得答案中的矩阵。"
   },
   {
     "id": "math2-2014-q23-original",
@@ -982,8 +982,8 @@
     "topic": "分段函数的原函数",
     "type": "choice",
     "stem": "已知 $f(x)=\\begin{cases}2(x-1),&x<1,\\\\\\ln x,&x\\ge1.\\end{cases}$，则 $f(x)$ 的一个原函数是（）。",
-    "answer": "D。",
-    "explanation": "先检查各开区间上的导数：$[x(\\ln x-1)]'=\\ln x$，而 $[x(\\ln x+1)]'=\\ln x+2$，排除 B、C。\n原函数还必须在连接点 $x=1$ 可导，从而连续。A 的左极限为 $0$，右侧函数值为 $-1$，不连续。D 两侧函数值都为 $0$，并且左右导数都为 $0=f(1)$，所以 D 正确。",
+    "answer": "**D**，$F(x)=\\begin{cases}(x-1)^2,&x<1,\\\\x(\\ln x-1)+1,&x\\ge1.\\end{cases}$。",
+    "explanation": "原函数要在整个定义域满足 $F'(x)=f(x)$，不能只检查拼接点两侧。\n\n先分别积分：\n$$F(x)=\\begin{cases}(x-1)^2+C_1,&x<1,\\\\x\\ln x-x+C_2,&x\\ge1.\\end{cases}$$\n原函数在 $x=1$ 必须连续，故 $C_1=-1+C_2$。选项 D 取 $C_1=0,C_2=1$，两边在 $x=1$ 都取值 $0$。\n\n再用导数定义检查这一点：\n$$\\lim_{h\\to0^-}\\frac{F(1+h)-F(1)}h=\\lim_{h\\to0^-}h=0,$$\n$$\\lim_{h\\to0^+}\\frac{(1+h)\\ln(1+h)-h}{h}=0.$$\n所以 $F'(1)=0=f(1)$。其他点直接求导即可，故 D 正确。A 在拼接点不连续；B、C 中 $[x(\\ln x+1)]'=\\ln x+2$，也不符合要求。",
     "options": [
       {
         "key": "A",
@@ -1014,7 +1014,7 @@
     "topic": "相似矩阵的性质",
     "type": "choice",
     "stem": "设 $A,B$ 为可逆矩阵，且 $A$ 与 $B$ 相似，则下列结论错误的是（）。",
-    "answer": "C。",
+    "answer": "**C**。$A+A^{\\mathsf T}$ 与 $B+B^{\\mathsf T}$ 不一定相似，反例见解析。",
     "explanation": "由 $B=P^{-1}AP$，可得 $B^{-1}=P^{-1}A^{-1}P$，并且 $B+B^{-1}=P^{-1}(A+A^{-1})P$，所以 B、D 正确。转置后 $B^\\mathsf T=P^\\mathsf TA^\\mathsf T(P^\\mathsf T)^{-1}$，A 也正确。\nC 中的两个转置项通常不能使用同一个相似变换。取\n$$A=\\begin{pmatrix}1&0\\\\0&2\\end{pmatrix},\\qquad B=\\begin{pmatrix}1&1\\\\0&2\\end{pmatrix}.$$\n两者都有不同的特征值 $1,2$，所以可逆且相似，但 $\\det(A+A^\\mathsf T)=8$，$\\det(B+B^\\mathsf T)=7$，故这两个和矩阵不相似。",
     "options": [
       {
@@ -1079,7 +1079,7 @@
     "type": "fill",
     "stem": "已知 $y=x^2-e^x$ 与 $y=x^2$ 是某一阶非齐次线性微分方程的两个特解，求该微分方程。",
     "answer": "$y\\prime-y=2x-x^2$。",
-    "explanation": "设方程为 $y\\prime+p(x)y=q(x)$。两个特解之差 $-e^x$ 必为对应齐次方程的解，所以 $-e^x+p(x)(-e^x)=0$，得 $p(x)=-1$。再代入特解 $y=x^2$，得 $q(x)=2x-x^2$。"
+    "explanation": "设所求一阶非齐次线性微分方程为\n$$y'+p(x)y=q(x).$$\n同一非齐次方程的两个特解之差，一定满足对应的齐次方程。由\n$$y_1-y_2=(x^2-e^x)-x^2=-e^x,$$\n得到\n$$(-e^x)'+p(x)(-e^x)=0,$$\n即 $-(1+p(x))e^x=0$。因为 $e^x\\ne0$，故 $p(x)=-1$。\n\n再将特解 $y_2=x^2$ 代入：\n$$q(x)=2x-x^2.$$\n因此所求方程为 $y'-y=2x-x^2$。代入另一个特解也有\n$$(2x-e^x)-(x^2-e^x)=2x-x^2,$$\n两特解均满足方程。"
   },
   {
     "id": "math2-2016-q13-original",
@@ -1182,8 +1182,8 @@
     "topic": "高等数学 / 多元微分 / 隐函数求导",
     "type": "solution",
     "stem": "设函数 $z=z(x,y)$ 由方程 $F\\!\\left(x+\\dfrac{z}{y},\\,y+\\dfrac{z}{x}\\right)=0$ 确定，且 $F(u,v)$ 具有连续偏导数，求 $x\\dfrac{\\partial z}{\\partial x}+y\\dfrac{\\partial z}{\\partial y}$。",
-    "answer": "在 $x\\ne0,y\\ne0$ 且 $\\frac{F_1}{y}+\\frac{F_2}{x}\\ne0$ 的隐函数求导条件下，结果为 $z-xy$。",
-    "explanation": "令 $G(x,y,z)=F\\!\\left(x+\\frac{z}{y},\\,y+\\frac{z}{x}\\right)$，$F_1,F_2$ 表示 $F$ 对第一、第二个自变量的偏导数，均在题中的复合自变量处取值。隐函数求导需要 $G_z=\\frac{F_1}{y}+\\frac{F_2}{x}\\ne0$；题干只说“确定隐函数”，未明确写出这一条件，以下按通常的隐函数求导条件计算。\n\n分别对 $x,y$ 求偏导，注意 $z$ 也随 $x,y$ 变化：\n\n$$\nF_1\\left(1+\\frac{z_x}{y}\\right)+F_2\\left(\\frac{z_x}{x}-\\frac z{x^2}\\right)=0,\n$$\n\n$$\nF_1\\left(\\frac{z_y}{y}-\\frac z{y^2}\\right)+F_2\\left(1+\\frac{z_y}{x}\\right)=0.\n$$\n\n第一式乘 $x$，第二式乘 $y$ 后相加，令 $S=xz_x+yz_y$，得\n\n$$\nF_1\\left(x+\\frac{S-z}{y}\\right)+F_2\\left(y+\\frac{S-z}{x}\\right)\n=\\left(\\frac{F_1}{y}+\\frac{F_2}{x}\\right)(xy+S-z)=0.\n$$\n\n由非零条件可约去第一个因子，故 $S=z-xy$。这类题直接求所需的偏导数组合，比先分别求出 $z_x,z_y$ 更简洁。\n\n仅有“$F$ 具有连续偏导数”不能保证上述非零条件，不能无条件约去这个因子。"
+    "answer": "$xz_x+yz_y=z-xy$。推导按通常的隐函数求导条件 $G_z\\ne0$ 进行，具体条件见解析。",
+    "explanation": "令 $u=x+z/y$、$v=y+z/x$，$F_1,F_2$ 分别表示 $F$ 对两个自变量的偏导数，均在 $(u,v)$ 处取值。设 $G(x,y,z)=F(u,v)$；在 $x,y\\ne0$ 且 $G_z=F_1/y+F_2/x\\ne0$ 时，可以作隐函数求导。\n\n分别对 $x,y$ 求偏导：\n$$F_1\\left(1+\\frac{z_x}{y}\\right)+F_2\\left(\\frac{z_x}{x}-\\frac z{x^2}\\right)=0,$$\n$$F_1\\left(\\frac{z_y}{y}-\\frac z{y^2}\\right)+F_2\\left(1+\\frac{z_y}{x}\\right)=0.$$\n题目只求组合 $S=xz_x+yz_y$，因此第一式乘 $x$、第二式乘 $y$ 后相加：\n$$\\begin{aligned}\n0&=F_1\\left(x+\\frac{S-z}{y}\\right)+F_2\\left(y+\\frac{S-z}{x}\\right)\\\\\n&=\\left(\\frac{F_1}{y}+\\frac{F_2}{x}\\right)(xy+S-z).\n\\end{aligned}$$\n约去非零因子 $G_z$，得 $S=z-xy$。\n\n**条件说明：** 原题没有明写 $G_z\\ne0$，它是上述约分所需的非退化条件；仅有 $F$ 可微不足以保证该因子非零。"
   },
   {
     "id": "math2-2010-q5-exercise2",
@@ -1227,7 +1227,7 @@
     "topic": "高等数学 / 微分方程 / 常系数线性微分方程",
     "type": "choice",
     "stem": "具有特解 $y_1=e^{-x}$、$y_2=2xe^{-x}$、$y_3=3e^x$ 的三阶常系数齐次线性微分方程是（　）。",
-    "answer": "B。",
+    "answer": "**B**，$y'''+y''-y'-y=0$。",
     "explanation": "第一步，由 $e^{-x}$ 是解，知道特征根有 $-1$；由 $xe^{-x}$ 也是解，知道 $-1$ 至少是二重根。解前面的非零常数2、3不会影响特征根。\n\n第二步，由 $e^x$ 是解，知道另一个特征根是1。方程是三阶，所以这三个根已用完所有重数，特征多项式为\n\n$$\n(\\lambda+1)^2(\\lambda-1)=\\lambda^3+\\lambda^2-\\lambda-1.\n$$\n\n第三步，将特征多项式中的 $\\lambda^3,\\lambda^2,\\lambda,1$ 分别对应到 $y''',y'',y',y$，得到\n\n$$\ny'''+y''-y'-y=0.\n$$\n\n记住：$e^{rx}$ 对应根 $r$，$xe^{rx}$ 与它同时出现时，对应二重根。",
     "options": [
       {
@@ -1259,7 +1259,7 @@
     "topic": "高等数学 / 微分方程 / 常系数线性微分方程",
     "type": "choice",
     "stem": "在下列方程中，以 $y=C_1e^x+C_2\\cos 2x+C_3\\sin 2x$（$C_1,C_2,C_3$ 为任意常数）为通解的是（　）。",
-    "answer": "D。",
+    "answer": "**D**，$y'''-y''+4y'-4y=0$。",
     "explanation": "第一步，$e^x$ 对应实根1；$\\cos2x,\\sin2x$ 对应一对共轭复根 $2i,-2i$。\n\n第二步，写出特征多项式：\n\n$$\n(\\lambda-1)(\\lambda^2+4)=\\lambda^3-\\lambda^2+4\\lambda-4.\n$$\n\n第三步，得到对应微分方程\n\n$$\ny'''-y''+4y'-4y=0.\n$$\n\n更一般地，$e^{ax}\\cos bx$、$e^{ax}\\sin bx$ 对应根 $a\\pm bi$。本题没有指数因子，因此实部为0。",
     "options": [
       {
@@ -1391,8 +1391,8 @@
     "topic": "高等数学 / 微分方程 / 一阶与二阶微分方程",
     "type": "choice",
     "stem": "微分方程 $4y''-12y'+9y=e^{\\dfrac{3x}{2}}(3x^2+2)$ 的特解形式为（　）。",
-    "answer": "D。",
-    "explanation": "第一步，齐次方程的特征多项式为 $4\\lambda^2-12\\lambda+9=(2\\lambda-3)^2$，所以 $\\frac{3}{2}$ 是二重特征根。\n\n第二步，右边是二次多项式乘 $e^{\\frac{3x}{2}}$。未发生共振时应设二次多项式乘指数；但指数对应二重特征根，所以必须额外乘 $x^2$，得到D。\n\n第三步，也可令 $y=e^{\\frac{3x}{2}}v$，左边化为 $4e^{\\frac{3x}{2}}v''$，于是 $4v''=3x^2+2$。两次积分所得特解可取 $v=\\frac{x^4}{16}+\\frac{x^2}{4}$，它确实具有 $x^2$ 乘二次多项式的形式。",
+    "answer": "**D**，$x^2(Ax^2+Bx+C)e^{\\dfrac{3x}{2}}$。",
+    "explanation": "**判断重复次数。** 齐次方程的特征方程为\n$$4r^2-12r+9=(2r-3)^2=0,$$\n所以 $r=3/2$ 为二重根。右侧为二次多项式乘 $e^{3x/2}$，待定系数法需设\n$$y^*=x^2(Ax^2+Bx+C)e^{3x/2},$$\n故选 D。二次多项式中的三个系数都要先保留，不能因为原式没有一次项就提前删去 $Bx$。\n\n**用代入说明为何乘 $x^2$。** 令 $y=e^{3x/2}v$，则\n$$4y''-12y'+9y=4e^{3x/2}v''.$$\n因此 $v''=(3x^2+2)/4$。取两次积分中的常数为零，可得一个特解\n$$v=\\frac{x^4}{16}+\\frac{x^2}{4},\\qquad\ny^*=x^2\\left(\\frac{x^2}{16}+\\frac14\\right)e^{3x/2}.$$\n另两个积分常数产生的是齐次解，不必放进特解。",
     "options": [
       {
         "key": "A",
@@ -1423,7 +1423,7 @@
     "topic": "高等数学 / 一元积分 / 奇偶性与积分比较",
     "type": "choice",
     "stem": "设\n\n$$\n\\begin{aligned}\nM&=\\int_{-\\frac{\\pi}{2}}^{\\frac{\\pi}{2}}\\frac{(1+x)^2}{1+x^2}\\,dx,\\\\[4pt]\nN&=\\int_{-\\frac{\\pi}{2}}^{\\frac{\\pi}{2}}(1+x)e^{-x}\\,dx,\\\\[4pt]\nK&=\\int_{-\\frac{\\pi}{2}}^{\\frac{\\pi}{2}}(1+\\sqrt{\\cos x})\\,dx\n\\end{aligned}\n$$\n\n则（　）。",
-    "answer": "C。",
+    "answer": "**C**，$K>M>N$。",
     "explanation": "先用对称区间上的奇偶性计算 $M$：\n\n$$\nM=\\int_{-\\frac{\\pi}{2}}^{\\frac{\\pi}{2}}\\left(1+\\frac{2x}{1+x^2}\\right)dx=\\pi.\n$$\n\n又因为 $\\sqrt{\\cos x}$ 在区间内非负，且在内部为正，所以\n\n$$\nK=\\pi+\\int_{-\\frac{\\pi}{2}}^{\\frac{\\pi}{2}}\\sqrt{\\cos x}\\,dx>\\pi=M.\n$$\n\n比较 $N$ 与 $M$，将负半轴上的积分换元 $x=-t$，与正半轴配对：\n\n$$\nN=\\int_0^{\\frac{\\pi}{2}}\\bigl[(1+x)e^{-x}+(1-x)e^x\\bigr]dx.\n$$\n\n令 $H(x)=(1+x)e^{-x}+(1-x)e^x$，则\n\n$$\nH(0)=2,\\qquad H'(x)=-x(e^{-x}+e^x)<0\\quad(x>0).\n$$\n\n故 $H(x)<2$，从而 $N<\\int_0^{\\frac{\\pi}{2}}2\\,dx=\\pi$。合并得 $K>M>N$，选C。整个比较只用奇偶性、换元和导数，不必求出 $N,K$ 的精确值。",
     "options": [
       {
@@ -1455,7 +1455,7 @@
     "topic": "高等数学 / 一元积分 / 奇偶性与积分比较",
     "type": "choice",
     "stem": "设\n\n$$\n\\begin{aligned}\nM&=\\int_{-\\frac{\\pi}{2}}^{\\frac{\\pi}{2}}\\frac{x\\cos^5x}{1+x^2}\\,dx,\\\\[4pt]\nN&=\\int_{-\\frac{\\pi}{2}}^{\\frac{\\pi}{2}}(x^2\\sin x+\\sin^2x\\cos x)\\,dx,\\\\[4pt]\nP&=\\int_{-\\frac{\\pi}{2}}^{\\frac{\\pi}{2}}(\\sin^3x-\\cos^4x)\\,dx\n\\end{aligned}\n$$\n\n则有（　）。",
-    "answer": "D。",
+    "answer": "**D**，$P<M<N$。",
     "explanation": "第一步，$\\frac{x}{1+x^2}$ 是奇函数，$\\cos^5x$ 是偶函数，乘积为奇函数，所以 $M=0$。\n\n第二步，$x^2\\sin x$ 是奇函数，其积分为0；$\\sin^2x\\cos x$ 在区间内非负且不恒为0，因此 $N>0$。令 $u=\\sin x$，还可算得 $N=\\int_{-1}^1u^2\\,du=\\frac{2}{3}$。\n\n第三步，$\\sin^3x$ 是奇函数，积分为0，故 $P=-\\int_{-\\frac{\\pi}{2}}^{\\frac{\\pi}{2}}\\cos^4x\\,dx<0$。因此 $P<M<N$。",
     "options": [
       {
@@ -1487,7 +1487,7 @@
     "topic": "高等数学 / 一元积分 / 奇偶性与积分比较",
     "type": "choice",
     "stem": "设\n\n$$\n\\begin{aligned}\nI_1&=\\int_0^{2\\pi}\\frac{\\sin x}{x}\\,dx,\\\\[4pt]\nI_2&=\\int_0^{2\\pi}\\frac{\\sin x}{2\\pi-x}\\,dx,\\\\[4pt]\nI_3&=\\int_0^{2\\pi}\\frac{\\sin x}{x(2\\pi-x)}\\,dx\n\\end{aligned}\n$$\n\n则（　）。",
-    "answer": "C。",
+    "answer": "**C**，$I_2<I_3<I_1$。",
     "explanation": "第一步，对 $I_2$ 换元 $u=2\\pi-x$，利用 $\\sin(2\\pi-u)=-\\sin u$，得到 $I_2=-I_1$。\n\n第二步，分解\n\n$$\n\\frac1{x(2\\pi-x)}=\\frac1{2\\pi}\\left(\\frac1x+\\frac1{2\\pi-x}\\right),\n$$\n\n所以 $I_3=\\frac{I_1+I_2}{2\\pi}=0$。\n\n第三步，要确定 $I_1$ 的正负，将后半段换元 $x=\\pi+u$：\n\n$$\nI_1=\\int_0^\\pi\\sin u\\left(\\frac1u-\\frac1{\\pi+u}\\right)\\,du>0.\n$$\n\n因此 $I_2<0=I_3<I_1$，选C。积分两端的表面奇点均可连续延拓，不会影响上述换元。",
     "options": [
       {
@@ -1519,7 +1519,7 @@
     "topic": "线性代数 / 线性方程组 / 非齐次通解",
     "type": "choice",
     "stem": "设 $A$ 为 $n(n>2)$ 阶方阵，$r(A^*)=1$，$\\alpha_1,\\alpha_2$ 是非齐次线性方程组 $Ax=b$ 的两个不同解，$k$ 为任意常数，则方程组的通解为（　）。",
-    "answer": "D。",
+    "answer": "**D**，$(k+1)\\alpha_1-k\\alpha_2$。",
     "explanation": "第一步，$r(A^*)=1$ 说明 $r(A)=n-1$，所以齐次方程 $Ax=0$ 的解空间是一维。\n\n第二步，两个非齐次解相减后满足 $A(\\alpha_1-\\alpha_2)=b-b=0$，而且它们不同，所以 $\\alpha_1-\\alpha_2\\ne0$，可作齐次方程的一组基础解系。\n\n第三步，非齐次通解等于一个特解加齐次通解：\n\n$$\nx=\\alpha_1+k(\\alpha_1-\\alpha_2)=(k+1)\\alpha_1-k\\alpha_2.\n$$\n\n选D。非齐次两个解的任意线性组合不一定还是解，组合系数之和必须为1。",
     "options": [
       {
@@ -1577,7 +1577,7 @@
     "topic": "高等数学 / 一元微分 / 参数方程与极值",
     "type": "choice",
     "stem": "设函数 $y=y(x)$ 由参数方程\n\n$$\n\\begin{cases}\nx=\\frac{t^3}{t^2+1},\\\\[5pt]\ny=\\frac{t^3-2t^2}{t^2+1}\n\\end{cases}\n$$\n\n确定，则它的极小值为（　）。",
-    "answer": "C。",
+    "answer": "**C**，$-\\dfrac12$。",
     "explanation": "第一步，参数 $x(t)$ 严格递增。除 $t=0$ 外，\n\n$$\nx'=\\frac{t^2(t^2+3)}{(1+t^2)^2}>0,\\qquad\n\\frac{dy}{dx}=\\frac{(t-1)(t^2+t+4)}{t(t^2+3)}.\n$$\n\n第二步，$t^2+t+4>0$，所以导数在 $t<0$ 时为正，在 $0<t<1$ 时为负，在 $t>1$ 时为正。因而 $t=1$ 处导数由负转正，是极小值点。\n\n第三步，代回得 $x=\\frac{1}{2},\\;y=-\\frac{1}{2}$，所以极小值为 $-\\frac{1}{2}$。$t=0$ 处参数导数分母为0，需单独看左右单调性，它对应极大值0，不影响本题的极小值。",
     "options": [
       {
@@ -1636,7 +1636,7 @@
     "type": "solution",
     "stem": "容器由曲线 $y=x^2$，$0\\leq x\\leq2$，绕 $y$ 轴旋转而成。容器中的水量为容量的四分之一，求水面高度。若水的密度为 $\\rho$，将容器中这部分水全部抽出，需要作多少功？",
     "answer": "水面高度为2，抽水功为 $\\frac{16}{3}\\pi\\rho g$。",
-    "explanation": "第一步，容器顶部高度为4。高度 $y$ 处半径为 $\\sqrt y$，水平截面积为 $\\pi y$，因此总容量为 $\\int_0^4\\pi y\\,dy=8\\pi$。\n\n第二步，四分之一容量为 $2\\pi$。若水深为 $h$，则 $\\int_0^h\\pi y\\,dy=\\frac{\\pi h^2}{2}=2\\pi$，所以 $h=2$。\n\n第三步，高度 $y$ 的薄水层体积为 $\\pi y\\,dy$，重量为 $\\rho g\\pi y\\,dy$，提升到顶部的距离为 $4-y$，所以\n\n$$\nW=\\pi\\rho g\\int_0^2y(4-y)\\,dy\n=\\pi\\rho g\\left[2y^2-\\frac{y^3}{3}\\right]_0^2\n=\\frac{16}{3}\\pi\\rho g.\n$$\n\n水量为容量的四分之一，不代表水面高度是总高度的四分之一，必须通过体积积分求高度。",
+    "explanation": "**先求水面高度。** 容器上沿位于 $x=2,y=4$，高度 $y$ 处的半径满足 $r^2=y$，所以水平截面积为 $A(y)=\\pi y$。总容量为\n$$V_{\\text{总}}=\\int_0^4\\pi y\\,dy=8\\pi.$$\n水量为其四分之一，即 $2\\pi$。设水面高度为 $h\\ge0$，则\n$$\\int_0^h\\pi y\\,dy=\\frac{\\pi h^2}{2}=2\\pi,$$\n因此 $h=2$。水量的比例不能直接当成高度的比例，因为截面积随高度变化。\n\n**再计算抽水功。** 按从容器上沿抽出的通常模型，高度 $y$ 处、厚度 $dy$ 的薄水层有\n$$dV=\\pi y\\,dy,\\qquad dm=\\rho\\pi y\\,dy,$$\n且需提升的距离为 $4-y$。因此\n$$\\begin{aligned}\nW&=\\int_0^2g(4-y)\\,dm\\\\\n&=\\pi\\rho g\\int_0^2y(4-y)\\,dy\\\\\n&=\\pi\\rho g\\left[2y^2-\\frac{y^3}{3}\\right]_0^2\n=\\frac{16}{3}\\pi\\rho g.\n\\end{aligned}$$\n积分上限取实际水面 $2$，提升的终点取容器上沿 $4$，两者不能混淆。",
     "figures": [
       {
         "src": "practice-figures/660-q138-schematic.svg",
@@ -1658,7 +1658,7 @@
     "type": "solution",
     "stem": "内表面为旋转抛物面的水缸，深为 $a$ m，口直径为 $2a$ m，内部装满水。水的密度为 $\\rho$ kg/m³，以每分钟 $b$ m³的速率把缸中的水全部抽出。第一问，共需多少时间？第二问，需作多少功？",
     "answer": "时间为 $\\frac{\\pi a^3}{2b}$ min，功为 $\\frac{\\pi\\rho g a^4}{6}$ J。",
-    "explanation": "第一步，以缸底为高度0，顶部高度为 $a$，顶部半径为 $a$。旋转抛物面的母线满足 $y=\\frac{x^2}{a}$，所以高度 $y$ 处半径平方为 $ay$，水平截面积为 $\\pi ay$。\n\n第二步，总水量为\n\n$$\nV=\\pi a\\int_0^a y\\,dy=\\frac{\\pi a^3}{2}.\n$$\n\n流量恒为 $b$ m³/min，故抽水时间 $T=\\frac{V}{b}=\\frac{\\pi a^3}{2b}$ min。\n\n第三步，高度 $y$ 处薄水层需提升 $a-y$，所以\n\n$$\nW=\\pi\\rho ga\\int_0^a y(a-y)\\,dy\n=\\pi\\rho ga\\cdot\\frac{a^3}{6}\n=\\frac{\\pi\\rho ga^4}{6}.\n$$\n\n这是抛物面水缸，截面积随高度变化，不能按圆柱体处理。",
+    "explanation": "**建立截面积公式。** 以缸底为原点，竖直方向为 $y$ 轴，母线设为 $y=kx^2$。缸深为 $a$、口半径也是 $a$，所以母线过 $(a,a)$，得 $k=1/a$。因此\n$$y=\\frac{x^2}{a},\\qquad r^2=ay,\\qquad A(y)=\\pi ay,\\quad 0\\le y\\le a.$$\n（Ⅰ）先求总水量，再除以每分钟抽出的体积：\n$$V=\\int_0^aA(y)\\,dy=\\frac{\\pi a^3}{2},\\qquad\nT=\\frac Vb=\\frac{\\pi a^3}{2b}\\ \\mathrm{min}.$$\n（Ⅱ）高度 $y$ 处厚度 $dy$ 的薄水层体积为 $\\pi ay\\,dy$，重量为 $\\rho g\\pi ay\\,dy$，抽至上沿的提升距离为 $a-y$。因此\n$$\\begin{aligned}\nW&=\\pi\\rho ga\\int_0^ay(a-y)\\,dy\\\\\n&=\\pi\\rho ga\\left[\\frac{ay^2}{2}-\\frac{y^3}{3}\\right]_0^a\n=\\frac{\\pi\\rho ga^4}{6}\\ \\mathrm J.\n\\end{aligned}$$\n抽水速率 $b$ 决定时间；理想抽水功由水的重量和提升高度决定，不需要再乘抽水时间。",
     "figures": [
       {
         "src": "practice-figures/1000-p29-q4-schematic.svg",
@@ -1740,8 +1740,8 @@
     "topic": "高等数学 / 多元微分 / 复合函数与隐函数求导",
     "type": "solution",
     "stem": "设函数 $F(u,v)$ 可微，且 $F\\!\\left(x+\\dfrac{z}{y},\\,y+\\dfrac{z}{x}\\right)=0$ 确定隐函数 $z=z(x,y)$，求 $z-x\\dfrac{\\partial z}{\\partial x}-y\\dfrac{\\partial z}{\\partial y}$。",
-    "answer": "按隐函数求导条件 $x,y\\ne0$、$G_z=\\frac{F_u}{y}+\\frac{F_v}{x}\\ne0$，结果为 $xy$，其中 $G(x,y,z)=F\\!\\left(x+\\frac{z}{y},\\,y+\\frac{z}{x}\\right)$。",
-    "explanation": "记 $u=x+\\frac{z}{y},\\;v=y+\\frac{z}{x}$。分别对 $x,y$ 求偏导：\n\n$$\nF_u(1+\\frac{z_x}{y})+F_v(\\frac{z_x}{x}-\\frac{z}{x^2})=0,\n$$\n\n$$\nF_u(\\frac{z_y}{y}-\\frac{z}{y^2})+F_v(1+\\frac{z_y}{x})=0.\n$$\n\n第一式乘 $x$、第二式乘 $y$ 后相加，得到\n\n$$\n(\\frac{F_u}{y}+\\frac{F_v}{x})(xy+xz_x+yz_y-z)=0.\n$$\n\n按隐函数求导的通常非退化条件 $F_z=\\frac{F_u}{y}+\\frac{F_v}{x}\\ne0$，可得 $z-xz_x-yz_y=xy$。\n\n题干没有明确列出 $G_z\\ne0$，这一条件是约去系数的依据，不能只凭“$F$ 可微”就断定该系数非零。"
+    "answer": "$z-xz_x-yz_y=xy$，按通常的隐函数非退化条件 $G_z\\ne0$ 求得。",
+    "explanation": "令 $u=x+z/y$、$v=y+z/x$，设 $G(x,y,z)=F(u,v)$。在 $x,y\\ne0$ 且 $G_z=F_u/y+F_v/x\\ne0$ 时，分别对原式求偏导：\n$$F_u\\left(1+\\frac{z_x}{y}\\right)+F_v\\left(\\frac{z_x}{x}-\\frac z{x^2}\\right)=0,$$\n$$F_u\\left(\\frac{z_y}{y}-\\frac z{y^2}\\right)+F_v\\left(1+\\frac{z_y}{x}\\right)=0.$$\n第一式乘 $x$，第二式乘 $y$，再相加整理：\n$$\\left(\\frac{F_u}{y}+\\frac{F_v}{x}\\right)(xy+xz_x+yz_y-z)=0.$$\n由 $G_z\\ne0$，得到 $z-xz_x-yz_y=xy$。直接组合偏导方程即可，无须分别解出 $z_x,z_y$。\n\n**条件说明：** 题干未明确列出非退化条件，不能仅凭 $F$ 可微约去系数。这里应记为 $G_z$，不能把 $F$ 对其两个自变量的偏导数混写成 $F_z$。"
   },
   {
     "id": "math2-2012-q11-exercise2",
@@ -1811,7 +1811,7 @@
     "topic": "线性代数 / 行列式 / 初等变换",
     "type": "choice",
     "stem": "设\n\n$$\n\\begin{aligned}\nA&=\\begin{pmatrix}a_1&a_2&a_3\\\\b_1&b_2&b_3\\\\c_1&c_2&c_3\\end{pmatrix},\\\\[7pt]\nB&=\\begin{pmatrix}b_1&b_3&b_2\\\\a_1&a_3&a_2\\\\c_1+a_1&c_3+a_3&c_2+a_2\\end{pmatrix}\n\\end{aligned}\n$$\n\n则：",
-    "answer": "D。",
+    "answer": "**D**，$|A|=|B|$。",
     "explanation": "从 $A$ 出发，先把第1行加到第3行，行列式不变；交换第1、2行，行列式变号；再交换第2、3列，行列式再次变号。此时得到 $B$，两次变号抵消，所以 $|B|=|A|$。这些操作对奇异矩阵也成立。",
     "options": [
       {
@@ -1895,7 +1895,7 @@
     "topic": "高等数学 / 极限 / 连续性与可导性",
     "type": "choice",
     "stem": "设\n\n$$\n\\begin{aligned}\nf(x)&=\\lim_{t\\to+\\infty}\\frac{x+2^{tx}}{1+2^{tx}},\\\\[5pt]\nF(x)&=\\int_{-1}^x f(t)\\,dt.\n\\end{aligned}\n$$\n\n则 $F(x)$ 在 $x=0$ 处：",
-    "answer": "C。",
+    "answer": "**C**，不可导但连续。",
     "explanation": "分 $x$ 的正负求极限，得到\n\n$$\nf(x)=\\begin{cases}x,&x<0,\\\\\\frac{1}{2},&x=0,\\\\1,&x>0.\\end{cases}\n$$\n\n单个点的函数值不影响定积分，因此\n\n$$\nF(x)=\\begin{cases}\\frac{x^2-1}{2},&x\\le0,\\\\x-\\frac{1}{2},&x\\ge0.\\end{cases}\n$$\n\n两边在0处的函数值均为 $-\\frac{1}{2}$，故连续；左导数为0，右导数为1，故不可导。不能因为 $f(0)$ 存在就直接断定 $F'(0)=f(0)$。",
     "options": [
       {
@@ -1940,7 +1940,7 @@
     "topic": "高等数学 / 极限 / 数列收敛",
     "type": "choice",
     "stem": "设正项数列 $\\{x_n\\}$ 满足 $x_{n+1}<2-\\dfrac{1}{x_n}$，$n=1,2,\\ldots$，则：",
-    "answer": "B。",
+    "answer": "**B**，$\\{x_n\\}$ 收敛于1。",
     "explanation": "先证明单调性：\n\n$$\nx_{n+1}-x_n<2-\\frac1{x_n}-x_n\n=-\\frac{(x_n-1)^2}{x_n}\\le0.\n$$\n\n数列严格递减且下界为0，所以存在极限 $L\\ge0$。又因 $x_{n+1}>0$，原不等式要求 $2-\\frac{1}{x_n}>0$，即每项 $x_n>\\frac{1}{2}$，从而 $L\\ge\\frac{1}{2}>0$。\n\n对不等式取极限，严格小于只能变成小于等于，得到\n\n$$\nL\\le2-\\frac1L,\\qquad (L-1)^2\\le0.\n$$\n\n因此 $L=1$。必须先证明收敛，才能代入极限关系。",
     "options": [
       {
@@ -2037,7 +2037,7 @@
     "topic": "高等数学 / 一元微分 / 中值定理与不等式",
     "type": "choice",
     "stem": "设函数 $f(x)$ 在 $[0,1]$ 上可导，$f(0)=0$，$f'(x)$ 严格单调递增，则对任意 $x\\in(0,1)$，有：",
-    "answer": "D。",
+    "answer": "**D**，$f(1)x>f(x)>f'(0)x$。",
     "explanation": "由拉格朗日中值定理，存在 $\\xi\\in(0,x)$，使 $\\frac{f(x)}{x}=f'(\\xi)>f'(0)$，得到 $f(x)>f'(0)x$。\n\n再分别对 $[0,x]$ 与 $[x,1]$ 使用中值定理。因导数严格递增，两段割线斜率满足\n\n$$\n\\frac{f(x)}x<\\frac{f(1)-f(x)}{1-x}.\n$$\n\n交叉相乘得 $f(x)<xf(1)$。合并即得 $f(1)x>f(x)>f'(0)x$。",
     "options": [
       {
@@ -2082,7 +2082,7 @@
     "topic": "线性代数 / 向量 / 线性无关与充要条件",
     "type": "choice",
     "stem": "已知向量组 $\\alpha,\\beta,\\gamma$ 线性无关，则 $k\\ne1$ 是向量组 $\\alpha+k\\beta,\\;\\beta+k\\gamma,\\;\\alpha-\\gamma$ 线性无关的：",
-    "answer": "C。",
+    "answer": "**C**，必要非充分条件。",
     "explanation": "以 $\\alpha,\\beta,\\gamma$ 为基，三个新向量的坐标列组成矩阵\n\n$$\nM=\\begin{pmatrix}1&0&1\\\\k&1&0\\\\0&k&-1\\end{pmatrix},\\qquad |M|=k^2-1.\n$$\n\n因此线性无关的充要条件是 $k\\ne1$ 且 $k\\ne-1$。线性无关一定推出 $k\\ne1$，所以必要；但 $k=-1$ 满足 $k\\ne1$ 却使行列式为0，所以不充分。",
     "options": [
       {
@@ -2140,8 +2140,8 @@
     "topic": "线性代数 / 二次型 / 惯性指数与规范形",
     "type": "choice",
     "stem": "二次型\n\n$$\na x_1^2+(2a-1)x_2^2+a x_3^2-2x_1x_2+2a x_1x_3-2x_2x_3\n$$\n\n的正惯性指数 $p=1$，则 $a$ 属于：",
-    "answer": "C。",
-    "explanation": "二次型矩阵为\n\n$$\nA=\\begin{pmatrix}a&-1&a\\\\-1&2a-1&-1\\\\a&-1&a\\end{pmatrix}.\n$$\n\n正惯性指数等于实对称矩阵的正特征值个数，按重数计。计算特征多项式，作“第1行减第3行”后按该行展开，可得\n\n$$\n|\\lambda E-A|\n=\\lambda\\bigl[(\\lambda-2a)(\\lambda-2a+1)-2\\bigr]\n=\\lambda(\\lambda-2a-1)(\\lambda-2a+2).\n$$\n\n故三个特征值为 $0,2a+1,2a-2$。由于 $2a+1>2a-2$，恰有一个正特征值的充要条件是\n\n$$\n2a+1>0,\\qquad 2a-2\\le0,\n$$\n\n即 $-\\frac{1}{2}<a\\le1$，选C。当 $a=-\\frac{1}{2}$ 时没有正特征值，不能取；当 $a=1$ 时特征值为 $0,3,0$，正惯性指数仍为1，必须取。",
+    "answer": "**C**，$(-\\dfrac{1}{2},1]$。",
+    "explanation": "二次型的矩阵为\n$$A=\\begin{pmatrix}a&-1&a\\\\-1&2a-1&-1\\\\a&-1&a\\end{pmatrix}.$$\n正惯性指数等于正特征值的个数，按重数计。\n\n第一、三列相同，故 $v_1=(1,0,-1)^{\\mathsf T}$ 满足 $Av_1=0$。再直接计算另外两个方向：\n$$A\\begin{pmatrix}1\\\\-1\\\\1\\end{pmatrix}\n=(2a+1)\\begin{pmatrix}1\\\\-1\\\\1\\end{pmatrix},\\qquad\nA\\begin{pmatrix}1\\\\2\\\\1\\end{pmatrix}\n=(2a-2)\\begin{pmatrix}1\\\\2\\\\1\\end{pmatrix}.$$\n三个向量两两正交且非零，构成一组基，所以全部特征值为 $0,2a+1,2a-2$。\n\n因为 $2a+1>2a-2$，恰有一个正特征值要求\n$$2a+1>0,\\qquad 2a-2\\le0,$$\n即 $-1/2<a\\le1$。在 $a=1$ 处另外两个特征值为零，仍只有一个正特征值；在 $a=-1/2$ 处没有正特征值，不能取。",
     "options": [
       {
         "key": "A",
@@ -2250,7 +2250,7 @@
     "topic": "高等数学 / 极限 / 间断点",
     "type": "choice",
     "stem": "设函数\n\n$$\nf(x)=\\lim_{t\\to+\\infty}\\frac{x+e^{tx}}{1+e^{tx}}.\n$$\n\n则 $x=0$ 是 $f(x)$ 的：",
-    "answer": "B。",
+    "answer": "**B**，跳跃间断点。",
     "explanation": "当 $x<0$，$e^{tx}\\to0$，所以 $f(x)=x$；当 $x>0$，把分子分母同除以 $e^{tx}$，极限为1；当 $x=0$，$f(0)=\\frac{1}{2}$。于是\n\n$$\n\\lim_{x\\to0^-}f(x)=0,\\qquad \\lim_{x\\to0^+}f(x)=1.\n$$\n\n左右极限都有限但不相等，故0是跳跃间断点。求题目给出的极限时要先固定 $x$，不能先令 $x\\to0$。",
     "options": [
       {
@@ -2282,7 +2282,7 @@
     "topic": "线性代数 / 二次型 / 正交变换",
     "type": "choice",
     "stem": "设二次型 $f(x_1,x_2,x_3)$ 在正交变换 $x=Py$ 下的标准形为 $y_1^2+y_2^2-2y_3^2$，其中 $P=[e_1,e_2,e_3]$。若 $Q=[-e_3,e_2,e_1]$，则 $f$ 在正交变换 $x=Qy$ 下的标准形为：",
-    "answer": "C。",
+    "answer": "**C**，$-2y_1^2+y_2^2+y_3^2$。",
     "explanation": "矩阵 $P$ 的三列分别对应系数1、1、负2。矩阵 $Q$ 把第3列调到第1列，第1列调到第3列，并将原第3列乘以负1。特征向量乘以负1不改变特征值，所以新的系数次序为负2、1、1。\n\n也可记旧变量为 $u$。由 $Pu=Qy$，得到 $u_1=y_3,u_2=y_2,u_3=-y_1$。代入旧标准形，就得到 $-2y_1^2+y_2^2+y_3^2$。",
     "options": [
       {
@@ -2314,7 +2314,7 @@
     "topic": "高等数学 / 一元微分 / 泰勒展开与高阶导数",
     "type": "choice",
     "stem": "设 $f(x)=x^2e^{3x}$，则 $f^{(n)}(0)$ 等于：",
-    "answer": "C。",
+    "answer": "**C**，$3^{n-2}n(n-1)$。",
     "explanation": "用莱布尼茨公式求乘积的 $n$ 阶导数。$x^2$ 的三阶及以上导数均为0，所以对 $n\\ge2$，只需保留三项：\n\n$$\nf^{(n)}(x)=x^2\\,3^ne^{3x}\n+n(2x)3^{n-1}e^{3x}\n+\\binom n2\\cdot2\\cdot3^{n-2}e^{3x}.\n$$\n\n代入 $x=0$，前两项为0，得到\n\n$$\nf^{(n)}(0)=n(n-1)3^{n-2}.\n$$\n\n$n=1$ 时直接求导得 $f'(0)=0$，选项C也给出0。因此选C。组合系数 $\\binom n2$ 表示 $n$ 次求导中有两次落在 $x^2$ 上；不必展开无穷级数，也不必逐次求到第 $n$ 阶。",
     "options": [
       {
@@ -2346,8 +2346,8 @@
     "topic": "高等数学 / 微分方程 / 二阶线性方程",
     "type": "choice",
     "stem": "设 $y''-y=x^2$ 的解 $y=\\varphi(x)$ 在 $x\\to0$ 时是较 $x^2$ 高阶的无穷小，则 $\\varphi(x)$ 为：",
-    "answer": "A。",
-    "explanation": "齐次方程特征根为正1、负1；取多项式特解 $-x^2-2$，故通解为\n\n$$\ny=C_1e^x+C_2e^{-x}-x^2-2.\n$$\n\n在0处展开：\n\n$$\ny=(C_1+C_2-2)+(C_1-C_2)x\n+\\left(\\frac{C_1+C_2}{2}-1\\right)x^2+O(x^3).\n$$\n\n由 $y=o(x^2)$，常数项和一次项必须为0，得到 $C_1=C_2=1$；二次项随之为0。代回后 $y=\\frac{x^4}{12}+O(x^6)$，确实是 $x^2$ 的高阶无穷小，并满足原微分方程。",
+    "answer": "**A**，$e^x+e^{-x}-x^2-2$。",
+    "explanation": "齐次方程特征根为 $\\pm1$，设多项式特解 $y_p=ax^2+bx+c$。代入 $y''-y=x^2$，比较系数得 $a=-1,b=0,c=-2$。因此通解为\n$$y=C_1e^x+C_2e^{-x}-x^2-2.$$\n由 $y=o(x^2)$，在 $x=0$ 附近展开至二次项：\n$$\\begin{aligned}\ny={}&(C_1+C_2-2)+(C_1-C_2)x\\\\\n&+\\left(\\frac{C_1+C_2}{2}-1\\right)x^2+o(x^2).\n\\end{aligned}$$\n要使 $y/x^2\\to0$，常数项、一次项和二次项必须都为零。前两项给出 $C_1=C_2=1$，第三项随之为零，故\n$$\\varphi(x)=e^x+e^{-x}-x^2-2.$$\n最后确认高阶性：$e^x+e^{-x}=2+x^2+x^4/12+O(x^6)$，因此 $\\varphi(x)=x^4/12+O(x^6)=o(x^2)$，选 A。",
     "options": [
       {
         "key": "A",
@@ -2430,7 +2430,7 @@
     "topic": "高等数学 / 一元微分 / 单调性与方程实根",
     "type": "choice",
     "stem": "设方程 $\\dfrac{\\tan x}{x}=k$ 在 $(0,\\dfrac{\\pi}{4})$ 内有实根，则常数 $k$ 的取值范围为：",
-    "answer": "C。",
+    "answer": "**C**，$1<k<\\dfrac{4}{\\pi}$。",
     "explanation": "令 $h(x)=\\frac{\\tan x}{x}$。其导数为\n\n$$\nh'(x)=\\frac{x\\sec^2x-\\tan x}{x^2}.\n$$\n\n分子记作 $q(x)$，有 $q(0)=0$，且 $q'(x)=2x\\sec^2x\\tan x>0$，故 $h'(x)>0$。两端极限为\n\n$$\n\\lim_{x\\to0^+}h(x)=1,\\qquad\n\\lim_{x\\to(\\frac{\\pi}{4})^-}h(x)=\\frac{4}{\\pi}.\n$$\n\n因此值域为 $(1,\\frac{4}{\\pi})$。原区间两端都是开端点，取值范围两端也都不包含。",
     "options": [
       {
@@ -2507,7 +2507,7 @@
     "topic": "高等数学 / 一元积分 / 原函数",
     "type": "choice",
     "stem": "函数\n\n$$\nf(x)=\\begin{cases}x^2+1,&x\\leq0,\\\\ \\cos x,&x>0\\end{cases}\n$$\n\n的一个原函数是（　）。",
-    "answer": "D。",
+    "answer": "**D**，$F(x)=\\begin{cases}\\frac{x^3}{3}+x,&x\\leq0,\\\\ \\sin x,&x>0\\end{cases}$。",
     "explanation": "第一步，在两侧分别积分。所有原函数应写成\n\n$$\nF(x)=\\begin{cases}\n\\frac{x^3}{3}+x+C_1,&x\\leq0,\\\\\n\\sin x+C_2,&x>0.\n\\end{cases}\n$$\n\n第二步，原函数必须在0处可导，所以首先必须连续。左右极限分别为 $C_1,C_2$，故必须 $C_1=C_2$。A、B、C的两边常数不同，0处不连续，均不能成为整个区间上的原函数。\n\n第三步，D对应 $C_1=C_2=0$。用导数定义检查拼接点：\n\n$$\n\\lim_{h\\to0^-}\\frac{\\frac{h^3}{3}+h}{h}=1,\\qquad\n\\lim_{h\\to0^+}\\frac{\\sin h}{h}=1.\n$$\n\n所以 $F'(0)=1=f(0)$，其他点也有 $F'(x)=f(x)$，D正确。分段原函数不能给左右两段随意配不同的积分常数。",
     "options": [
       {
@@ -2539,7 +2539,7 @@
     "topic": "线性代数 / 矩阵 / 相似矩阵",
     "type": "choice",
     "stem": "设 $A,B,C,D$ 都是 $n$ 阶矩阵，$A\\sim C$、$B\\sim D$，则必有（　）。",
-    "answer": "B。",
+    "answer": "**B**，$\\begin{pmatrix}A&O\\\\O&B\\end{pmatrix}\\sim\\begin{pmatrix}C&O\\\\O&D\\end{pmatrix}$。",
     "explanation": "第一步，由 $A\\sim C$、$B\\sim D$，存在可逆矩阵 $P,Q$，使 $P^{-1}AP=C$、$Q^{-1}BQ=D$。令\n\n$$\nS=\\begin{pmatrix}P&O\\\\O&Q\\end{pmatrix},\n$$\n\n则\n\n$$\nS^{-1}\\begin{pmatrix}A&O\\\\O&B\\end{pmatrix}S\n=\\begin{pmatrix}C&O\\\\O&D\\end{pmatrix}.\n$$\n\n这就证明B必成立。\n\n第二步，A、C涉及两个矩阵同时相加或相乘，但两组相似变换使用的可逆矩阵可以不同，因此不能直接合并。取\n\n$$\nA=B=C=\\begin{pmatrix}1&0\\\\0&2\\end{pmatrix},\\qquad\nD=\\begin{pmatrix}2&0\\\\0&1\\end{pmatrix}.\n$$\n\n显然 $A\\sim C$、$B\\sim D$。但 $A+B$ 的特征值为2、4，$C+D$ 的特征值为3、3，故A不成立；$AB$ 的特征值为1、4，而 $CD$ 为2、2，故C不成立。\n\n第三步，同一个例子也能排除D。若两个非对角分块矩阵相似，它们的平方也相似；而其平方分别是 $\\operatorname{diag}(AB,BA)$、$\\operatorname{diag}(CD,DC)$，前者特征值为1、4、1、4，后者全为2，矛盾。",
     "options": [
       {
@@ -2603,7 +2603,7 @@
     "topic": "线性代数 / 矩阵 / 相似矩阵",
     "type": "choice",
     "stem": "设 $A,B$ 为可逆矩阵且相似，则下列结论中错误的是（　）。",
-    "answer": "C。",
+    "answer": "**C**。$A+A^{\\mathsf T}$ 与 $B+B^{\\mathsf T}$ 不一定相似，反例见解析。",
     "explanation": "第一步，设 $B=P^{-1}AP$。由转置公式，$A^{\\mathrm T}\\sim B^{\\mathrm T}$，所以A正确；由\n\n$$\nB^2+B^{-1}=P^{-1}(A^2+A^{-1})P,\n$$\n\n所以B正确。又因为 $|A|=|B|$，有\n\n$$\nB^*-B^{-1}=P^{-1}(A^*-A^{-1})P,\n$$\n\n所以D正确。\n\n第二步，C的问题在于 $B$ 和 $B^{\\mathrm T}$ 的相似变换矩阵一般不相同，不能把这两个相似关系相加。给出一个可逆矩阵的反例：\n\n$$\nA=\\begin{pmatrix}1&0\\\\0&2\\end{pmatrix},\\qquad\nB=\\begin{pmatrix}1&1\\\\0&2\\end{pmatrix}.\n$$\n\n它们都有两个不同特征值1、2，因此都相似于 $\\operatorname{diag}(1,2)$，所以 $A\\sim B$。但是\n\n$$\nA+A^{\\mathrm T}=\\begin{pmatrix}2&0\\\\0&4\\end{pmatrix},\\qquad\nB+B^{\\mathrm T}=\\begin{pmatrix}2&1\\\\1&4\\end{pmatrix},\n$$\n\n行列式分别为8、7。相似矩阵必须行列式相等，故这两个矩阵不相似。",
     "options": [
       {
@@ -2699,8 +2699,8 @@
     "topic": "线性代数 / 二次型 / 惯性指数",
     "type": "solution",
     "stem": "二次型\n\n$$\nf=ax_1x_2+x_1x_3-x_2x_3\n$$\n\n的正惯性指数为2，负惯性指数为1，则下列结论可能成立的是（　）。\n\n原题选项：A. $a=-1$；B. $a=1$；C. $a\\ge0$；D. $a<0$。\n\n题面校核：这些选项与“可能成立”的表述不能组成答案唯一的单选题，以下求出完整参数范围。",
-    "answer": "正惯性指数为2、负惯性指数为1的充要条件是 $a>0$。原题按“可能成立”理解，B与C均符合，不能唯一选B；C不是完整的充要条件，因为它还包含不符合题设的 $a=0$。",
-    "explanation": "令 $x_1=u+v,x_2=u-v,x_3=w$，这是可逆变换，二次型化为\n\n$$\nf=a u^2-a v^2+2vw.\n$$\n\n当 $a\\ne0$ 时配方：\n\n$$\nf=a u^2-a\\left(v-\\frac wa\\right)^2+\\frac1a w^2.\n$$\n\n这一变换仍可逆。若 $a>0$，三个平方项系数依次为正、负、正，故正惯性指数为2、负惯性指数为1；若 $a<0$，系数依次为负、正、负，故正惯性指数为1、负惯性指数为2。\n\n若 $a=0$，则 $f=2vw$。令 $v=\\frac{s+t}{\\sqrt{2}},w=\\frac{s-t}{\\sqrt{2}}$，得到 $f=s^2-t^2$，另一个变量的系数为0，所以正、负惯性指数都为1，秩为2。\n\n因此完整结论是 $a>0$。据此，A和D不可能成立，B的 $a=1$ 符合题设；C的 $a\\ge0$ 也可以成立，而且是题设必然推出的较弱条件。不能因为C包含 $a=0$，就将“C不能保证题设”误写成“题设不可能推出C”。原解析混淆了必要条件与充分条件。"
+    "answer": "完整参数范围为 $a>0$。原选项 B（$a=1$）与 C（$a\\ge0$）均可满足“可能成立”，题面无法确定唯一选项。",
+    "explanation": "先求完整参数范围，再判断选项。令 $x_1=u+v,x_2=u-v,x_3=w$，这是可逆线性变换，二次型变为\n$$f=au^2-av^2+2vw.$$\n当 $a\\ne0$ 时配方：\n$$f=au^2-a\\left(v-\\frac wa\\right)^2+\\frac1a w^2.$$\n该变换仍可逆，故可以按平方项的符号判断惯性指数：$a>0$ 时系数为正、负、正，符合题设；$a<0$ 时系数为负、正、负，不符合。\n\n当 $a=0$ 时，$f=2vw$。令 $v=(s+t)/\\sqrt2,w=(s-t)/\\sqrt2$，则 $f=s^2-t^2$，另一个平方项为零，正负惯性指数各为 $1$，也不符合题设。因此充要条件是 $a>0$。\n\n**题面问题：** 按当前“可能成立”的表述，$a=1$ 可以成立，$a\\ge0$ 也可以成立，而且后者是 $a>0$ 的必要结论。C 包含 $a=0$ 只说明它不能充分保证题设，不能据此排除“可能成立”。因此保留完整参数结论，不给出虚假的单选答案。"
   },
   {
     "id": "math2-2016-q11-exercise1",
@@ -2789,8 +2789,8 @@
     "topic": "高等数学 / 一元积分 / 变限积分与最值",
     "type": "solution",
     "stem": "设函数 $f$ 满足\n\n$$\ne^{-x}-\\frac{x^2}{2}=1+\\int_0^x f(t-x)\\,dt,\n$$\n\n求 $f$ 在全体实数上的最值。",
-    "answer": "在 $f$ 连续的通常条件下，$f(x)=x-e^x$；最大值为 $-1$，在 $x=0$ 处取得，无最小值。原题若完全不对 $f$ 作连续性等约束，则不能唯一确定最值。",
-    "explanation": "第一步，积分里同时有上限 $x$ 和自变量 $t-x$，先换元。令 $u=t-x$，得到\n\n$$\n\\int_0^x f(t-x)\\,dt=\\int_{-x}^0f(u)\\,du.\n$$\n\n于是题设变为 $e^{-x}-\\frac{x^2}{2}=1+\\int_{-x}^0f(u)\\,du$。\n\n第二步，两边对 $x$ 求导，注意下限是 $-x$：\n\n$$\n-e^{-x}-x=f(-x).\n$$\n\n把 $-x$ 换成新的自变量，得到 $f(x)=x-e^x$。\n\n第三步，求导判断全实数上的最值：\n\n$$\nf'(x)=1-e^x.\n$$\n\n当 $x<0$ 时导数为正，当 $x>0$ 时导数为负，所以 $x=0$ 处取得最大值 $f(0)=-1$。又当 $x\\to-\\infty$ 或 $x\\to+\\infty$ 时，$f(x)\\to-\\infty$，因此函数没有最小值。\n\n本题先换元消除积分中的 $t-x$，能避免把它误当成普通变上限积分。\n\n条件说明：用变限积分求导得到 $f(-x)$，需要 $f$ 在对应点连续。若题目只要求积分存在，则改变 $f$ 在一个点的值不会改变题设积分，却可能改变其最大值、最小值。因此题干应补充“$f$ 连续”；上述答案是在这一考研题常用条件下得到的。"
+    "answer": "$f(x)=x-e^x$；最大值为 $-1$，在 $x=0$ 处取得，无最小值。按 $f$ 连续的通常条件求解，条件缺失的影响见解析。",
+    "explanation": "先换元 $u=t-x$，把积分中的移动自变量消去：\n$$\\int_0^xf(t-x)\\,dt=\\int_{-x}^0f(u)\\,du.$$\n题设变为 $e^{-x}-x^2/2=1+\\int_{-x}^0f(u)\\,du$。按 $f$ 连续的通常条件，用变限积分求导：\n$$-e^{-x}-x=0-f(-x)\\cdot(-1)=f(-x).$$\n以 $-x$ 为新的自变量，得 $f(x)=x-e^x$。\n\n再求导：$f'(x)=1-e^x$。在 $(-\\infty,0)$ 上导数为正，在 $(0,+\\infty)$ 上为负，因此 $x=0$ 处取得全局最大值 $f(0)=-1$。又 $x\\to\\pm\\infty$ 时 $f(x)\\to-\\infty$，所以无最小值。\n\n**条件说明：** 原题未明写 $f$ 连续。若只要求积分存在，任意修改 $f$ 在一个点的值都不改变题设积分，却可能改变最值；因而不能无条件断定最值。上面的解答使用考研变限积分求导题通常给定的连续性条件。"
   },
   {
     "id": "math2-2016-q16-exercise3",
