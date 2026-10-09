@@ -50,7 +50,7 @@ const statuses: { value: Mastery; label: string }[] = [
 
 <style scoped>
 .question-card { scroll-margin-top: 22px; min-width: 0; border: 1px solid var(--line); border-radius: 11px; padding: 17px 21px 10px; background: var(--paper); }
-.question-card:focus { outline: 2px solid var(--accent); outline-offset: 3px; }
+.question-card:focus { outline: none; }
 svg { width: 17px; height: 17px; flex-shrink: 0; }
 button { cursor: pointer; transition: background .16s, border-color .16s, color .16s; }
 .question-meta { display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 12px; }
