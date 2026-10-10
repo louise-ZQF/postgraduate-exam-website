@@ -9,15 +9,16 @@ const height = 300
 const padding = 28
 const plotWidth = width - padding * 2
 const plotHeight = height - padding * 2
+const scale = computed(() => Math.min(plotWidth / (props.graph.xRange[1] - props.graph.xRange[0]), plotHeight / (props.graph.yRange[1] - props.graph.yRange[0])))
 
 function sx(x: number) {
   const [min, max] = props.graph.xRange
-  return padding + ((x - min) / (max - min)) * plotWidth
+  return props.graph.equalScale ? width / 2 + (x - (min + max) / 2) * scale.value : padding + ((x - min) / (max - min)) * plotWidth
 }
 
 function sy(y: number) {
   const [min, max] = props.graph.yRange
-  return height - padding - ((y - min) / (max - min)) * plotHeight
+  return props.graph.equalScale ? height / 2 - (y - (min + max) / 2) * scale.value : height - padding - ((y - min) / (max - min)) * plotHeight
 }
 
 const curvePaths = computed(() => props.graph.segments.map((item) => {
@@ -40,6 +41,13 @@ const curvePaths = computed(() => props.graph.segments.map((item) => {
 
 const verticalGrid = [0.2, 0.4, 0.6, 0.8].map((ratio) => padding + plotWidth * ratio)
 const horizontalGrid = [0.2, 0.4, 0.6, 0.8].map((ratio) => padding + plotHeight * ratio)
+const parametricPaths = computed(() => (props.graph.parametricSegments ?? []).map((item) => {
+  const points = Array.from({ length: 721 }, (_, index) => {
+    const t = item.from + (item.to - item.from) * index / 720
+    return `${index ? 'L' : 'M'}${sx(item.x(t)).toFixed(2)},${sy(item.y(t)).toFixed(2)}`
+  })
+  return { path: points.join(' ') + (item.closed ? ' Z' : ''), closed: item.closed }
+}))
 const xAxis = computed(() => props.graph.yRange[0] <= 0 && props.graph.yRange[1] >= 0 ? sy(0) : null)
 const yAxis = computed(() => props.graph.xRange[0] <= 0 && props.graph.xRange[1] >= 0 ? sx(0) : null)
 </script>
@@ -82,6 +90,15 @@ const yAxis = computed(() => props.graph.xRange[0] <= 0 && props.graph.xRange[1]
     />
 
     <path
+      v-for="(item, index) in parametricPaths"
+      :key="`parametric-${index}`"
+      class="curve"
+      :class="{ 'closed-region': item.closed }"
+      :d="item.path"
+      :stroke="`url(#curve-${graph.id})`"
+    />
+
+    <path
       v-for="(path, index) in curvePaths"
       :key="index"
       class="curve"
@@ -104,6 +121,7 @@ const yAxis = computed(() => props.graph.xRange[0] <= 0 && props.graph.xRange[1]
 .axis-label { fill: #65796e; font-family: Georgia, serif; font-size: 14px; font-style: italic; }
 .asymptote { stroke: #c38a48; stroke-width: 1.25; stroke-dasharray: 7 6; opacity: .78; }
 .curve { fill: none; stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.curve.closed-region { fill: rgba(31,104,74,.08); fill-rule: evenodd; }
 .key-point { fill: #fff; stroke: #1f684a; stroke-width: 2; vector-effect: non-scaling-stroke; }
 .point-label { fill: #5a6e63; font-size: 11px; paint-order: stroke; stroke: #f8fbf9; stroke-width: 4px; stroke-linejoin: round; }
 </style>

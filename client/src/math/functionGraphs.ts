@@ -1,4 +1,14 @@
-export type GraphCategory = '基本函数' | '分式函数' | '指数对数' | '三角函数' | '反三角函数'
+import { integralCurves } from './integralCurves'
+
+export type GraphCategory = '基本函数' | '分式函数' | '指数对数' | '三角函数' | '反三角函数' | '二重积分曲线'
+
+export interface ParametricSegment {
+  from: number
+  to: number
+  x: (t: number) => number
+  y: (t: number) => number
+  closed?: boolean
+}
 
 export interface GraphSegment {
   from: number
@@ -24,6 +34,9 @@ export interface FunctionGraph {
   xRange: [number, number]
   yRange: [number, number]
   segments: GraphSegment[]
+  parametricSegments?: ParametricSegment[]
+  equalScale?: boolean
+  region?: string
   verticalAsymptotes?: number[]
   horizontalAsymptotes?: number[]
   points?: GraphPoint[]
@@ -31,9 +44,10 @@ export interface FunctionGraph {
 
 const segment = (from: number, to: number, fn: (x: number) => number): GraphSegment => ({ from, to, fn })
 
-export const graphCategories: GraphCategory[] = ['基本函数', '分式函数', '指数对数', '三角函数', '反三角函数']
+export const graphCategories: GraphCategory[] = ['二重积分曲线', '基本函数', '分式函数', '指数对数', '三角函数', '反三角函数']
 
 export const functionGraphs: FunctionGraph[] = [
+  ...integralCurves,
   {
     id: 'linear',
     title: '一次函数',

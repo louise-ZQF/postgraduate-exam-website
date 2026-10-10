@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
+import { useRoute } from 'vue-router'
 import MathHeader from '@/components/MathHeader.vue'
 import MathMarkdown from '@/components/MathMarkdown.vue'
 import FunctionPlot from '@/components/FunctionPlot.vue'
 import { functionGraphs, graphCategories, type GraphCategory } from '@/math/functionGraphs'
 
-const selectedCategory = ref<'全部' | GraphCategory>('全部')
+const route = useRoute()
+const selectedCategory = ref<'全部' | GraphCategory>(graphCategories.find((category) => category === route.query.category) ?? '全部')
 const graphQuery = ref('')
 
 const filteredGraphs = computed(() => {
@@ -35,7 +37,7 @@ function categoryCount(category: GraphCategory) {
         </div>
         <div class="hero-summary" aria-label="图像库统计">
           <strong>{{ functionGraphs.length }}</strong>
-          <span>幅可缩放函数图像</span>
+          <span>幅函数与积分曲线</span>
           <small>公式实时绘制 · 关键结论随图记忆</small>
         </div>
       </section>
@@ -43,13 +45,14 @@ function categoryCount(category: GraphCategory) {
       <section class="graph-tools" aria-label="图像筛选">
         <label class="graph-search">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16.5 16.5 4 4"/></svg>
-          <input v-model="graphQuery" placeholder="搜索函数，例如：反正切、幂指函数" />
+          <input v-model="graphQuery" aria-label="搜索函数与积分曲线" placeholder="搜索图像，例如：双纽线、心形线、反正切" />
         </label>
         <div class="category-tabs">
           <button :class="{ active: selectedCategory === '全部' }" @click="selectedCategory = '全部'">全部 <span>{{ functionGraphs.length }}</span></button>
           <button
             v-for="category in graphCategories"
             :key="category"
+            :aria-pressed="selectedCategory === category"
             :class="{ active: selectedCategory === category }"
             @click="selectedCategory = category"
           >{{ category }} <span>{{ categoryCount(category) }}</span></button>
@@ -71,10 +74,11 @@ function categoryCount(category: GraphCategory) {
             </header>
             <FunctionPlot :graph="graph" />
             <dl>
-              <div><dt>定义域</dt><dd>{{ graph.domain }}</dd></div>
-              <div><dt>值域</dt><dd>{{ graph.range }}</dd></div>
+              <div><dt>{{ graph.category === '二重积分曲线' ? '参数范围' : '定义域' }}</dt><dd><MathMarkdown :source="graph.domain" inline /></dd></div>
+              <div><dt>{{ graph.category === '二重积分曲线' ? '围成面积' : '值域' }}</dt><dd><MathMarkdown :source="graph.range" inline /></dd></div>
             </dl>
-            <p class="conclusion">{{ graph.conclusion }}</p>
+            <p class="conclusion"><MathMarkdown :source="graph.conclusion" inline /></p>
+            <div v-if="graph.region" class="integral-region"><MathMarkdown :source="graph.region" /></div>
           </article>
         </div>
 
@@ -129,6 +133,9 @@ h1 em { color: var(--brand-600); font-style: normal; }
 .graph-card dt { color: var(--ink-400); font-size: 11px; }
 .graph-card dd { margin: 0; color: var(--ink-800); font-family: Georgia, "Times New Roman", serif; font-size: 12px; }
 .conclusion { min-height: 48px; margin: 12px 0 0; border-left: 3px solid var(--accent); padding: 5px 0 5px 12px; color: var(--ink-soft); font-size: 13px; line-height: 1.7; }
+.integral-region { margin-top: 12px; padding: 10px 12px; border-radius: 6px; background: var(--surface-soft); color: var(--ink-800); font-size: 13px; }
+.graph-card header strong { max-width: 100%; overflow-x: auto; }
+.graph-card dd { min-width: 0; overflow-x: auto; }
 .empty-state { border: 1px dashed #c8d7cf; border-radius: 18px; padding: 70px 20px; background: rgba(255,255,255,.65); text-align: center; }
 .empty-state strong { color: var(--ink-800); font-size: 20px; }.empty-state p { color: var(--ink-400); }.empty-state button { border: 0; border-radius: 10px; padding: 10px 16px; background: var(--brand-700); color: white; }
 @media (max-width: 980px) { .graphs-hero { grid-template-columns: 1fr; gap: 28px; }.hero-summary { width: fit-content; }.graph-grid { grid-template-columns: 1fr; } }
