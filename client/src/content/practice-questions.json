@@ -2972,5 +2972,581 @@
     "stem": "设矩阵\n\n$$\nA=\\begin{pmatrix}1&2&1\\\\2&4&k\\\\1&k&1\\end{pmatrix}\n$$\n\n有特征值0，求 $k$，并求正交矩阵 $Q$，使 $Q^{\\mathrm T}AQ=\\Lambda$，其中 $\\Lambda$ 为对角矩阵。",
     "answer": "$k=2$。可取\n\n$$\nQ=\\begin{pmatrix}\n\\frac1{\\sqrt2}&\\frac1{\\sqrt3}&\\frac1{\\sqrt6}\\\\\n0&-\\frac1{\\sqrt3}&\\frac2{\\sqrt6}\\\\\n-\\frac1{\\sqrt2}&\\frac1{\\sqrt3}&\\frac1{\\sqrt6}\n\\end{pmatrix},\\qquad\n\\Lambda=\\begin{pmatrix}0&0&0\\\\0&0&0\\\\0&0&6\\end{pmatrix}.\n$$",
     "explanation": "第一步，有特征值0等价于行列式为0。展开得\n\n$$\n|A|=4-k^2-2(2-k)+(2k-4)=-(k-2)^2.\n$$\n\n因此 $k=2$，此时\n\n$$\nA=\\begin{pmatrix}1&2&1\\\\2&4&2\\\\1&2&1\\end{pmatrix}\n=uu^{\\mathrm T},\\qquad u=(1,2,1)^{\\mathrm T}.\n$$\n\n第二步，$Au=(u^{\\mathrm T}u)u=6u$，所以6是特征值，单位特征向量为 $q_3=\\frac{u}{\\sqrt{6}}$。零特征空间满足 $x_1+2x_2+x_3=0$，可选\n\n$$\nv_1=(1,0,-1)^{\\mathrm T},\\qquad v_2=(1,-1,1)^{\\mathrm T}.\n$$\n\n两个向量都与 $u$ 正交，而且相互正交。单位化后得 $q_1=\\frac{v_1}{\\sqrt{2}},\\;q_2=\\frac{v_2}{\\sqrt{3}}$。\n\n第三步，以这些单位特征向量作列组成 $Q=(q_1,q_2,q_3)$。三列构成标准正交组，所以 $Q^{\\mathrm T}Q=E$；又\n\n$$\nAQ=Q\\operatorname{diag}(0,0,6),\n$$\n\n左乘 $Q^{\\mathrm T}$ 即得到 $Q^{\\mathrm T}AQ=\\Lambda$。\n\n正交矩阵的列次序可以改变，相应对角元次序也要一起改变，结果不必与某个固定答案矩阵完全相同。"
+  },
+  {
+    "id": "math2-2017-q2-exercise1",
+    "year": 2017,
+    "number": "2-1",
+    "examNumber": "2",
+    "exerciseIndex": 1,
+    "kind": "exercise",
+    "source": "张宇1000题 第18页第5题",
+    "topic": "高等数学 / 一元积分 / 变上限积分与积分比较",
+    "type": "choice",
+    "stem": "设 $f(x)$ 在 $(0,+\\infty)$ 内连续且恒为正，$f'(x)<0$，令\n$$g(x)=\\int_1^x f(t)\\,dt.$$\n则 $\\left(g\\left(\\frac12\\right),g\\left(\\frac32\\right)\\right)$ 的取值可能是（　）。",
+    "answer": "A。",
+    "explanation": "因为 $f>0$，所以 $g\\!\\left(\\frac12\\right)<0$、$g\\!\\left(\\frac32\\right)>0$。又因 $f$ 严格递减，两个积分区间等长，故\n$$-g\\!\\left(\\frac12\\right)=\\int_{\\frac12}^1 f(t)\\,dt>\\int_1^{\\frac32}f(t)\\,dt=g\\!\\left(\\frac32\\right).$$\n因此左侧负值的绝对值大于右侧正值，只可能选A。可取 $f(t)=4e^{-2(\\ln2)(t-1)}\\ln2$，直接得到这两个积分为 $-2$ 和 $1$，也验证了A确实可以达到。",
+    "options": [
+      {
+        "key": "A",
+        "text": "$(-2,1)$"
+      },
+      {
+        "key": "B",
+        "text": "$(-2,3)$"
+      },
+      {
+        "key": "C",
+        "text": "$(2,-1)$"
+      },
+      {
+        "key": "D",
+        "text": "$(2,-3)$"
+      }
+    ],
+    "correctOption": "A"
+  },
+  {
+    "id": "math2-2017-q10-exercise1",
+    "year": 2017,
+    "number": "10-1",
+    "examNumber": "10",
+    "exerciseIndex": 1,
+    "kind": "exercise",
+    "source": "李林880题 第二章·基础题·填空题第5题",
+    "topic": "高等数学 / 一元微分 / 麦克劳林展开",
+    "type": "fill",
+    "stem": "设函数 $f(x)$ 有连续导数，且\n$$\\lim_{x\\to0}\\left[\\frac{\\sin x}{x^2}+\\frac{f(x)}x\\right]=2,$$\n则 $f(x)$ 的一阶麦克劳林展开式为________。",
+    "answer": "$f(x)=-1+2x+o(x)$，$x\\to0$。",
+    "explanation": "把极限中的式子合并为\n$$\\frac{\\frac{\\sin x}x+f(x)}x.$$\n极限有限，分子必趋于0；由连续性得到 $f(0)=-1$。利用\n$$\\frac{\\sin x}{x}=1+O(x^2),\\qquad f(x)=f(0)+f'(0)x+o(x),$$\n代回可知原极限等于 $f'(0)$，因此 $f'(0)=2$，得到所求展开式。"
+  },
+  {
+    "id": "math2-2017-q11-exercise1",
+    "year": 2017,
+    "number": "11-1",
+    "examNumber": "11",
+    "exerciseIndex": 1,
+    "kind": "exercise",
+    "source": "基础过关660题 高数第119题",
+    "topic": "高等数学 / 一元积分 / 广义积分",
+    "type": "solution",
+    "stem": "计算广义积分\n$$I=\\int_0^{+\\infty}\\frac{\\arctan x}{(1+x^2)^{\\frac52}}\\,dx.$$",
+    "answer": "$\\displaystyle I=\\frac\\pi3-\\frac79$。",
+    "explanation": "令 $t=\\arctan x$，则 $x=\\tan t$，$dx=\\sec^2t\\,dt$，故\n$$I=\\int_0^{\\frac\\pi2}t\\cos^3t\\,dt\n=\\frac34\\int_0^{\\frac\\pi2}t\\cos t\\,dt+\\frac14\\int_0^{\\frac\\pi2}t\\cos3t\\,dt.$$\n分别分部积分：\n$$\\int_0^{\\frac\\pi2}t\\cos t\\,dt=\\frac\\pi2-1,$$\n$$\\int_0^{\\frac\\pi2}t\\cos3t\\,dt=-\\frac\\pi6-\\frac19.$$\n代入即得 $I=\\frac\\pi3-\\frac79$。"
+  },
+  {
+    "id": "math2-2017-q11-exercise2",
+    "year": 2017,
+    "number": "11-2",
+    "examNumber": "11",
+    "exerciseIndex": 2,
+    "kind": "exercise",
+    "source": "张宇1000题 第82页第28题",
+    "topic": "高等数学 / 一元积分 / 广义积分",
+    "type": "fill",
+    "stem": "$$\\int_0^{+\\infty}\\frac{x\\ln x}{1+x^4}\\,dx=\\underline{\\qquad}.$$",
+    "answer": "0。",
+    "explanation": "在0附近，被积函数为 $O(x|\\ln x|)$；在无穷远处为 $O(\\frac{\\ln x}{x^3})$，所以积分绝对收敛。令 $x=\\frac1t$，有\n$$I=\\int_0^{+\\infty}\\frac{t\\ln(\\frac1t)}{1+t^4}\\,dt\n=-\\int_0^{+\\infty}\\frac{t\\ln t}{1+t^4}\\,dt=-I.$$\n于是 $I=0$。这里先确认收敛，才可以合法地使用对称换元。"
+  },
+  {
+    "id": "math2-2017-q13-exercise1",
+    "year": 2017,
+    "number": "13-1",
+    "examNumber": "13",
+    "exerciseIndex": 1,
+    "kind": "exercise",
+    "source": "张宇1000题 第33页第5题",
+    "topic": "高等数学 / 二重积分 / 交换积分次序",
+    "type": "solution",
+    "stem": "计算\n$$I=\\int_0^1dx\\int_0^{\\sqrt x}e^{-\\frac{y^2}2}\\,dy.$$",
+    "answer": "$e^{-\\frac12}$。",
+    "explanation": "积分区域满足 $0\\le x\\le1$、$0\\le y\\le\\sqrt x$。交换积分次序，等价于 $0\\le y\\le1$、$y^2\\le x\\le1$，故\n$$I=\\int_0^1dy\\int_{y^2}^1e^{-\\frac{y^2}2}\\,dx\n=\\int_0^1(1-y^2)e^{-\\frac{y^2}2}\\,dy.$$\n注意\n$$\\frac d{dy}\\left(ye^{-\\frac{y^2}2}\\right)=(1-y^2)e^{-\\frac{y^2}2},$$\n所以 $I=[ye^{-\\frac{y^2}2}]_0^1=e^{-\\frac12}$。"
+  },
+  {
+    "id": "math2-2017-q19-exercise1",
+    "year": 2017,
+    "number": "19-1",
+    "examNumber": "19",
+    "exerciseIndex": 1,
+    "kind": "exercise",
+    "source": "李林880题 第二章·综合题·解答题第6题",
+    "topic": "高等数学 / 一元微分 / 介值定理与罗尔定理",
+    "type": "solution",
+    "stem": "设 $f(x)$ 在 $[0,1]$ 上二阶可导，且\n$$\\lim_{x\\to0^+}\\frac{f(x)}x=\\lim_{x\\to1^-}\\frac{f(x)}{x-1}=1.$$\n证明：\n\n（I）至少存在一点 $\\xi\\in(0,1)$，使得 $f(\\xi)=0$；\n\n（II）至少存在一点 $\\eta\\in(0,1)$，使得 $f''(\\eta)=f(\\eta)$。",
+    "answer": "（Ⅰ）存在 $\\xi\\in(0,1)$ 使 $f(\\xi)=0$；（Ⅱ）存在 $\\eta\\in(0,1)$ 使 $f^{\\prime\\prime}(\\eta)=f(\\eta)$。",
+    "explanation": "（I）由两个极限和连续性，得 $f(0)=f(1)=0$。当 $x>0$ 充分接近0时，$\\frac{f(x)}x>0$，故 $f(x)>0$；当 $x<1$ 充分接近1时，$\\frac{f(x)}{x-1}>0$，故 $f(x)<0$。在这两个内部点之间应用介值定理，得到 $\\xi\\in(0,1)$，满足 $f(\\xi)=0$。\n\n（II）令 $F(x)=e^xf(x)$。由于 $F(0)=F(\\xi)=F(1)=0$，分别在 $[0,\\xi]$ 与 $[\\xi,1]$ 上应用罗尔定理，得到\n$$u\\in(0,\\xi),\\quad v\\in(\\xi,1),\\quad F'(u)=F'(v)=0.$$\n再令\n$$G(x)=e^{-2x}F'(x)=e^{-x}\\bigl(f'(x)+f(x)\\bigr).$$\n则 $G(u)=G(v)=0$，在 $[u,v]$ 上再次应用罗尔定理，存在 $\\eta\\in(u,v)$，使得\n$$0=G'(\\eta)=e^{-\\eta}\\bigl(f''(\\eta)-f(\\eta)\\bigr).$$\n于是 $f''(\\eta)=f(\\eta)$。"
+  },
+  {
+    "id": "math2-2017-q20-exercise1",
+    "year": 2017,
+    "number": "20-1",
+    "examNumber": "20",
+    "exerciseIndex": 1,
+    "kind": "exercise",
+    "source": "张宇1000题 第94页第11题",
+    "topic": "高等数学 / 二重积分 / 对称性与极坐标",
+    "type": "solution",
+    "stem": "设 $D:x^2+y^2\\le1$，计算\n$$I=\\iint_D(x-2y)^2\\,dx\\,dy.$$",
+    "answer": "$\\frac{5\\pi}4$。",
+    "explanation": "展开后\n$$I=\\iint_Dx^2\\,dx\\,dy-4\\iint_Dxy\\,dx\\,dy+4\\iint_Dy^2\\,dx\\,dy.$$\n圆盘关于坐标轴对称，所以 $\\iint_Dxy=0$；又因交换 $x,y$ 不改变区域，两个平方项积分相同。用极坐标计算：\n$$\\iint_Dx^2\\,dx\\,dy=\\int_0^{2\\pi}\\cos^2\\theta\\,d\\theta\\int_0^1r^3\\,dr=\\frac\\pi4.$$\n因此 $I=\\frac\\pi4+4\\frac\\pi4=\\frac{5\\pi}4$。"
+  },
+  {
+    "id": "math2-2017-q21-exercise1",
+    "year": 2017,
+    "number": "21-1",
+    "examNumber": "21",
+    "exerciseIndex": 1,
+    "kind": "exercise",
+    "source": "张宇1000题 第100页第35题",
+    "topic": "高等数学 / 微分方程 / 初值问题",
+    "type": "solution",
+    "stem": "设 $y=y(x)$ 有二阶连续导数，其图形在原点处与直线 $y=x$ 相切；在任一点处，切线倾角 $\\theta$ 对横坐标 $x$ 的变化率等于该点的导数 $y'(x)$。求 $y(x)$。",
+    "answer": "\n$$y(x)=\\arcsin\\frac{e^x}{\\sqrt2}-\\frac\\pi4,\\qquad x<\\frac12\\ln2.$$\n这是包含原点的最大解区间。",
+    "explanation": "由相切条件得 $y(0)=0$、$y'(0)=1$。令 $p=y'$，在原点附近取连续的倾角分支，有 $\\tan\\theta=p$，于是\n$$\\frac{d\\theta}{dx}=\\frac{p'}{1+p^2}=p,$$\n即 $p'=p(1+p^2)$。初值 $p(0)=1$，故所求解分支上 $p>0$。分离变量：\n$$\\ln\\frac{p}{\\sqrt{1+p^2}}=x+C.$$\n代入初值，得 $\\frac{p}{\\sqrt{1+p^2}}=\\frac{e^x}{\\sqrt2}$，因此\n$$y'=p=\\frac{e^x}{\\sqrt{2-e^{2x}}}.$$\n积分并由 $y(0)=0$ 确定常数，得到答案。根式分母必须为正，所以 $x<\\frac12\\ln2$。"
+  },
+  {
+    "id": "math2-2018-q1-exercise1",
+    "year": 2018,
+    "number": "1-1",
+    "examNumber": "1",
+    "exerciseIndex": 1,
+    "kind": "exercise",
+    "source": "基础过关660题 高数第2题",
+    "topic": "高等数学 / 极限与连续 / 极限计算与间断点",
+    "type": "solution",
+    "stem": "设 $a,b$ 为常数，且\n$$\\lim_{x\\to+\\infty}\\left(\\sqrt[3]{1-x^6}-ax^2-b\\right)=0,$$\n求 $a,b$。",
+    "answer": "$a=-1$，$b=0$。",
+    "explanation": "先确定二次项系数：\n$$\\frac{\\sqrt[3]{1-x^6}}{x^2}=-\\left(1-\\frac1{x^6}\\right)^{\\frac13}\\longrightarrow-1.$$\n原极限为0，因此 $a=-1$。进一步利用 $(1-u)^{\\frac13}=1-\\frac u3+O(u^2)$，得\n$$\\sqrt[3]{1-x^6}+x^2=\\frac1{3x^4}+O(x^{-10})\\longrightarrow0.$$\n所以 $b=0$。"
+  },
+  {
+    "id": "math2-2018-q1-exercise2",
+    "year": 2018,
+    "number": "1-2",
+    "examNumber": "1",
+    "exerciseIndex": 2,
+    "kind": "exercise",
+    "source": "李林880题 第一章·基础题·选择题第6题",
+    "topic": "高等数学 / 极限与连续 / 极限计算与间断点",
+    "type": "choice",
+    "stem": "已知\n$$\\lim_{x\\to\\infty}\\left(\\frac{x^2}{x+1}-ax-b\\right)=0,$$\n则（　）。",
+    "answer": "C。",
+    "explanation": "用多项式除法：\n$$\\frac{x^2}{x+1}=x-1+\\frac1{x+1}.$$\n原式为 $(1-a)x-(1+b)+\\frac1{x+1}$。要使其趋于0，必须 $1-a=0$、$1+b=0$，即 $a=1,b=-1$。",
+    "options": [
+      {
+        "key": "A",
+        "text": "$a=1,b=1$"
+      },
+      {
+        "key": "B",
+        "text": "$a=-1,b=1$"
+      },
+      {
+        "key": "C",
+        "text": "$a=1,b=-1$"
+      },
+      {
+        "key": "D",
+        "text": "$a=-1,b=-1$"
+      }
+    ],
+    "correctOption": "C"
+  },
+  {
+    "id": "math2-2018-q1-exercise3",
+    "year": 2018,
+    "number": "1-3",
+    "examNumber": "1",
+    "exerciseIndex": 3,
+    "kind": "exercise",
+    "source": "李林880题 第一章·综合题·选择题第8题",
+    "topic": "高等数学 / 极限与连续 / 极限计算与间断点",
+    "type": "choice",
+    "stem": "函数\n$$f(x)=\\frac{x\\ln|x|}{|x-1|}\\,e^{\\frac1{(x-1)(x-2)}}$$\n的无穷间断点的个数为（　）。",
+    "answer": "C，共2个。",
+    "explanation": "可能的间断点是0、1、2。在 $x\\to0$ 时，$x\\ln|x|\\to0$，其余因子趋于有限值，所以0为可去间断点。\n\n在 $x\\to1$ 时，$\\frac{x\\ln|x|}{|x-1|}$ 的左、右极限分别为 $-1,1$。而指数项在 $x\\to1^-$ 时趋于 $+\\infty$，在 $x\\to1^+$ 时趋于0，故 $f(1^-)=-\\infty$、$f(1^+)=0$，1是无穷间断点。\n\n在 $x\\to2$ 时，前面的因子趋于 $2\\ln2>0$；指数项在左侧趋于0，右侧趋于 $+\\infty$，故2也是无穷间断点。",
+    "options": [
+      {
+        "key": "A",
+        "text": "0"
+      },
+      {
+        "key": "B",
+        "text": "1"
+      },
+      {
+        "key": "C",
+        "text": "2"
+      },
+      {
+        "key": "D",
+        "text": "3"
+      }
+    ],
+    "correctOption": "C"
+  },
+  {
+    "id": "math2-2018-q2-exercise1",
+    "year": 2018,
+    "number": "2-1",
+    "examNumber": "2",
+    "exerciseIndex": 1,
+    "kind": "exercise",
+    "source": "李林880题 第二章·综合题·选择题第10题",
+    "topic": "高等数学 / 一元微分 / 导数定义",
+    "type": "choice",
+    "stem": "下列函数在 $x=0$ 处不可导的是（　）。",
+    "answer": "D。",
+    "explanation": "A中，$\\sin(t^2)=O(t^2)$，所以函数为 $O(|x|^4)$，在0处的差商趋于0。\n\nB中，$x-\\sin x=O(x^3)$，所以函数为 $O(|x|^3)$，在0处的差商也趋于0。\n\nC的被积函数在0处虽然按原表达式未定义，但 $\\sqrt{|t|}\\ln|t|\\to0$，将其连续补成0后不改变积分。由微积分基本定理，该函数在0处的导数为0。\n\nD为 $e^{\\frac{|x|}2}$，右导数为 $\\frac12$、左导数为 $-\\frac12$，故不可导。",
+    "options": [
+      {
+        "key": "A",
+        "text": "$\\lvert x\\rvert\\displaystyle\\int_0^x\\sin(t^2)\\,dt$"
+      },
+      {
+        "key": "B",
+        "text": "$\\lvert\\sin(x-\\sin x)\\rvert$"
+      },
+      {
+        "key": "C",
+        "text": "$\\displaystyle\\int_{-1}^x\\sqrt{\\lvert t\\rvert}\\ln\\lvert t\\rvert\\,dt$"
+      },
+      {
+        "key": "D",
+        "text": "$\\sqrt{e^{\\lvert x\\rvert}}$"
+      }
+    ],
+    "correctOption": "D"
+  },
+  {
+    "id": "math2-2018-q6-exercise1",
+    "year": 2018,
+    "number": "6-1",
+    "examNumber": "6",
+    "exerciseIndex": 1,
+    "kind": "exercise",
+    "source": "张宇1000题 第94页第20题",
+    "topic": "高等数学 / 二重积分 / 极坐标换元",
+    "type": "solution",
+    "stem": "计算\n$$I=\\int_{-\\sqrt2}^0dx\\int_{-x}^{\\sqrt{4-x^2}}\\sqrt{x^2+y^2}\\,dy\n+\\int_0^2dx\\int_{\\sqrt{2x-x^2}}^{\\sqrt{4-x^2}}\\sqrt{x^2+y^2}\\,dy.$$",
+    "answer": "$\\displaystyle 2\\pi-\\frac{16}{9}$。",
+    "explanation": "第一部分区域在第二象限，位于 $y=-x$ 上方、圆 $x^2+y^2=4$ 内，对应\n$$\\frac\\pi2\\le\\theta\\le\\frac{3\\pi}4,\\qquad0\\le r\\le2.$$\n第二部分在第一象限，位于圆 $x^2+y^2=2x$ 外、圆 $x^2+y^2=4$ 内，对应\n$$0\\le\\theta\\le\\frac\\pi2,\\qquad2\\cos\\theta\\le r\\le2.$$\n因为被积函数为 $r$、面积元为 $r\\,dr\\,d\\theta$，所以\n$$I=\\int_{\\frac\\pi2}^{3\\frac\\pi4}d\\theta\\int_0^2r^2\\,dr\n+\\int_0^{\\frac\\pi2}d\\theta\\int_{2\\cos\\theta}^2r^2\\,dr.$$\n于是\n$$I=\\frac83\\cdot\\frac{3\\pi}4-\\frac83\\int_0^{\\frac\\pi2}\\cos^3\\theta\\,d\\theta\n=2\\pi-\\frac83\\cdot\\frac23=2\\pi-\\frac{16}{9}.$$"
+  },
+  {
+    "id": "math2-2018-q12-exercise1",
+    "year": 2018,
+    "number": "12-1",
+    "examNumber": "12",
+    "exerciseIndex": 1,
+    "kind": "exercise",
+    "source": "李林880题 第二章·基础题·填空题第20题",
+    "topic": "高等数学 / 一元微分 / 参数曲线曲率",
+    "type": "fill",
+    "stem": "曲线\n$$x=a\\cos^3t,\\qquad y=a\\sin^3t\\quad(a>0)$$\n在 $t=\\frac\\pi4$ 处的曲率为________。",
+    "answer": "$\\frac{2}{3a}$。",
+    "explanation": "参数曲线的曲率公式是\n$$\\kappa=\\frac{|x'y''-y'x''|}{(x'^2+y'^2)^{\\frac32}}.$$\n记 $s=\\sin t,c=\\cos t$，则\n$$x'=-3ac^2s,\\quad y'=3as^2c,$$\n$$x''=6acs^2-3ac^3,\\quad y''=6as c^2-3as^3.$$\n因此\n$$|x'y''-y'x''|=9a^2s^2c^2,\\qquad x'^2+y'^2=9a^2s^2c^2,$$\n在第一象限得到 $\\kappa=\\frac1{3a\\sin t\\cos t}$。代入 $s=c=\\frac1{\\sqrt2}$，得 $\\kappa=\\frac{2}{3a}$。"
+  },
+  {
+    "id": "math2-2018-q12-exercise2",
+    "year": 2018,
+    "number": "12-2",
+    "examNumber": "12",
+    "exerciseIndex": 2,
+    "kind": "exercise",
+    "source": "张宇1000题 第73页第30题",
+    "topic": "高等数学 / 一元微分 / 参数曲线曲率",
+    "type": "fill",
+    "stem": "曲线\n$$\\begin{cases}x=2e^t+t+1,\\\\y=4(t-1)e^t+t^2\\end{cases}$$\n在 $t=0$ 处的曲率为________。",
+    "answer": "$\\frac23$。",
+    "explanation": "求导：\n$$x'=2e^t+1,\\quad x''=2e^t,\\quad y'=4te^t+2t,\\quad y''=4(t+1)e^t+2.$$\n在 $t=0$ 处，$x'=3,x''=2,y'=0,y''=6$。代入参数曲线曲率公式：\n$$\\kappa=\\frac{|3\\cdot6-0\\cdot2|}{(3^2+0^2)^{\\frac32}}=\\frac{18}{27}=\\frac23.$$"
+  },
+  {
+    "id": "math2-2018-q14-exercise1",
+    "year": 2018,
+    "number": "14-1",
+    "examNumber": "14",
+    "exerciseIndex": 1,
+    "kind": "exercise",
+    "source": "基础过关660题 线代第645题",
+    "topic": "线性代数 / 特征值 / 矩阵多项式",
+    "type": "choice",
+    "stem": "设 $A$ 为三阶可逆矩阵，$\\lambda=2$ 为 $A$ 的一个特征值，则矩阵 $\\frac13A^2-2E$ 必有特征值（　），其中 $E$ 为单位矩阵。",
+    "answer": "B。",
+    "explanation": "取非零特征向量 $v$，满足 $Av=2v$，则 $A^2v=4v$，因此\n$$\\left(\\frac13A^2-2E\\right)v=\\left(\\frac43-2\\right)v=-\\frac23v.$$\n所以必有特征值 $-\\frac23$。",
+    "options": [
+      {
+        "key": "A",
+        "text": "$\\frac23$"
+      },
+      {
+        "key": "B",
+        "text": "$-\\frac23$"
+      },
+      {
+        "key": "C",
+        "text": "2"
+      },
+      {
+        "key": "D",
+        "text": "6"
+      }
+    ],
+    "correctOption": "B"
+  },
+  {
+    "id": "math2-2018-q15-exercise1",
+    "year": 2018,
+    "number": "15-1",
+    "examNumber": "15",
+    "exerciseIndex": 1,
+    "kind": "exercise",
+    "source": "李林880题 第三章·基础题·解答题第1题（IV）",
+    "topic": "高等数学 / 一元积分 / 换元与分部积分",
+    "type": "solution",
+    "stem": "求不定积分\n$$\\int\\frac{\\arctan x}{x^2(1+x^2)}\\,dx.$$",
+    "answer": "\n$$-\\frac{\\arctan x}{x}+\\ln|x|-\\frac12\\ln(1+x^2)-\\frac12(\\arctan x)^2+C.$$\n在不含0的区间上使用此表达式。",
+    "explanation": "利用\n$$\\frac1{x^2(1+x^2)}=\\frac1{x^2}-\\frac1{1+x^2},$$\n把原积分拆成两项。第一项分部积分：\n$$\\int\\frac{\\arctan x}{x^2}\\,dx=-\\frac{\\arctan x}{x}+\\int\\frac{dx}{x(1+x^2)}$$\n$$=-\\frac{\\arctan x}{x}+\\ln|x|-\\frac12\\ln(1+x^2).$$\n第二项令 $u=\\arctan x$，得到\n$$\\int\\frac{\\arctan x}{1+x^2}\\,dx=\\frac12(\\arctan x)^2.$$\n两项相减即可。"
+  },
+  {
+    "id": "math2-2018-q15-exercise2",
+    "year": 2018,
+    "number": "15-2",
+    "examNumber": "15",
+    "exerciseIndex": 2,
+    "kind": "exercise",
+    "source": "李林880题 第三章·基础题·解答题第2题（V）",
+    "topic": "高等数学 / 一元积分 / 换元与分部积分",
+    "type": "solution",
+    "stem": "求不定积分\n$$\\int\\frac{\\arctan\\sqrt{x-1}}{x\\sqrt{x-1}}\\,dx.$$",
+    "answer": "$\\bigl(\\arctan\\sqrt{x-1}\\bigr)^2+C$，$x>1$。",
+    "explanation": "令 $u=\\arctan\\sqrt{x-1}$，则\n$$du=\\frac{dx}{2x\\sqrt{x-1}}.$$\n原积分等于 $2\\int u\\,du=u^2+C$，代回即得结果。"
+  },
+  {
+    "id": "math2-2018-q17-exercise1",
+    "year": 2018,
+    "number": "17-1",
+    "examNumber": "17",
+    "exerciseIndex": 1,
+    "kind": "exercise",
+    "source": "李林880题 第五章·综合题·解答题第1题",
+    "topic": "高等数学 / 二重积分 / 绝对值分段",
+    "type": "solution",
+    "stem": "设 $D:|x|\\le1,\\ 0\\le y\\le2$，计算\n$$I=\\iint_D|y-x^2|\\,dx\\,dy.$$",
+    "answer": "$\\frac{46}{15}$。",
+    "explanation": "对于每个 $x\\in[-1,1]$，都有 $0\\le x^2\\le1<2$，应在 $y=x^2$ 处分段去掉绝对值：\n$$I=\\int_{-1}^1\\left[\\int_0^{x^2}(x^2-y)\\,dy+\\int_{x^2}^2(y-x^2)\\,dy\\right]dx.$$\n括号内的积分等于 $x^4-2x^2+2$，所以\n$$I=2\\int_0^1(x^4-2x^2+2)\\,dx\n=2\\left(\\frac15-\\frac23+2\\right)=\\frac{46}{15}.$$"
+  },
+  {
+    "id": "math2-2018-q18-exercise1",
+    "year": 2018,
+    "number": "18-1",
+    "examNumber": "18",
+    "exerciseIndex": 1,
+    "kind": "exercise",
+    "source": "李林880题 第二章·基础题·解答题第20题",
+    "topic": "高等数学 / 一元微分 / 不等式证明",
+    "type": "solution",
+    "stem": "证明下列不等式：\n\n（I）当 $0<x<\\pi$ 时，有 $\\sin(\\frac x2)>\\frac x\\pi$；\n\n（II）当 $e<a<b$ 时，有 $a^b>b^a$；\n\n（III）当 $x>0$ 时，有 $(x^2-1)\\ln x\\ge(x-1)^2$；\n\n（IV）设 $f(x)$ 在包含 $0$ 的区间内二阶可导，若 $\\displaystyle\\lim_{x\\to0}\\frac{f(x)}x=1$，且 $f''(x)>0$，则 $f(x)\\ge x$。",
+    "answer": "四个不等式均成立；（Ⅲ）等号当且仅当 $x=1$，（Ⅳ）等号当且仅当 $x=0$。",
+    "explanation": "（I）令 $t=\\frac x2\\in(0,\\frac\\pi2)$。函数 $\\sin t$ 在此区间严格凹，其图像严格位于连接 $(0,0)$ 与 $(\\frac\\pi2,1)$ 的弦上方，故\n$$\\sin t>\\frac{2t}{\\pi}=\\frac x\\pi.$$\n也可令 $h(x)=\\sin(\\frac x2)-\\frac x\\pi$，用 $h(0)=h(\\pi)=0$、$h''<0$ 得到相同结论。\n\n（II）令 $h(t)=\\frac{\\ln t}t$，当 $t>e$ 时\n$$h'(t)=\\frac{1-\\ln t}{t^2}<0.$$\n因此 $\\frac{\\ln a}a>\\frac{\\ln b}b$，即 $b\\ln a>a\\ln b$。两边取指数，得 $a^b>b^a$。\n\n（III）令\n$$H(x)=\\ln x-\\frac{x-1}{x+1}.$$\n有 $H(1)=0$，且\n$$H'(x)=\\frac1x-\\frac2{(x+1)^2}=\\frac{x^2+1}{x(x+1)^2}>0.$$\n所以 $H(x)$ 与 $x-1$ 同号，$x^2-1$ 也与 $x-1$ 同号，于是\n$$0\\le(x^2-1)H(x)=(x^2-1)\\ln x-(x-1)^2.$$\n这就证明了不等式；等号仅在 $x=1$ 时成立。\n\n（IV）由极限及可导性得 $f(0)=0$、$f'(0)=1$。因为 $f''(x)>0$，由拉格朗日中值定理可知 $f'(x)$ 严格递增。对于任意 $x\\ne0$，在 $0$ 与 $x$ 之间存在 $c$，使\n$$f(x)-f(0)=f'(c)x.$$\n若 $x>0$，则 $c>0$、$f'(c)>1$，于是 $f(x)>x$；若 $x<0$，则 $c<0$、$f'(c)<1$，乘以负数 $x$ 后仍得 $f(x)>x$。当 $x=0$ 时等号成立，故 $f(x)\\ge x$。"
+  },
+  {
+    "id": "math2-2018-q18-exercise2",
+    "year": 2018,
+    "number": "18-2",
+    "examNumber": "18",
+    "exerciseIndex": 2,
+    "kind": "exercise",
+    "source": "李林880题 第二章·基础题·解答题第21题",
+    "topic": "高等数学 / 一元微分 / 不等式证明",
+    "type": "solution",
+    "stem": "设 $x>0$，证明\n$$\\left(1+\\frac1{2x}\\right)\\left(1+\\frac1x\\right)^x>e.$$",
+    "answer": "对任意 $x>0$，均有 $\\left(1+\\frac1{2x}\\right)\\left(1+\\frac1x\\right)^x>e$。",
+    "explanation": "令 $u=\\frac1x>0$。取对数后，只需证明\n$$\\ln\\left(1+\\frac u2\\right)+\\frac{\\ln(1+u)}u>1.$$\n先证 $\\ln(1+u)>\\frac{2u}{u+2}$。设\n$$h(u)=\\ln(1+u)-\\frac{2u}{u+2},$$\n则 $h(0)=0$、\n$$h'(u)=\\frac{u^2}{(1+u)(u+2)^2}>0,$$\n故 $\\frac{\\ln(1+u)}u>\\frac2{u+2}$。\n\n再用 $\\ln v>1-\\frac1v$（$v>1$；对两边之差求导即可证明），取 $v=1+\\frac u2$，得\n$$\\ln(1+\\frac u2)>\\frac u{u+2}.$$\n两式相加，左侧严格大于 $\\frac{u+2}{u+2}=1$，证明完成。"
+  },
+  {
+    "id": "math2-2018-q18-exercise3",
+    "year": 2018,
+    "number": "18-3",
+    "examNumber": "18",
+    "exerciseIndex": 3,
+    "kind": "exercise",
+    "source": "张宇1000题 第70页第6题",
+    "topic": "高等数学 / 一元微分 / 不等式证明",
+    "type": "solution",
+    "stem": "若不等式 $e^{ax}\\ge1+x$ 对一切实数 $x$ 成立，求 $a$ 的值。",
+    "answer": "$a=1$。",
+    "explanation": "令 $F(x)=e^{ax}-1-x$。题设说明 $F(x)\\ge0$，且 $F(0)=0$，所以0是极小值点，必须\n$$F'(0)=a-1=0.$$\n故 $a=1$。反过来，当 $a=1$ 时，$F'(x)=e^x-1$ 在0左侧为负、右侧为正，0是全局最小值点，最小值为0。因此该值充分且必要。"
+  },
+  {
+    "id": "math2-2018-q19-exercise1",
+    "year": 2018,
+    "number": "19-1",
+    "examNumber": "19",
+    "exerciseIndex": 1,
+    "kind": "exercise",
+    "source": "基础过关660题 高数第436题",
+    "topic": "高等数学 / 多元微分 / 最值",
+    "type": "choice",
+    "stem": "设 $x,y,z$ 均为正数，且 $x+y+z=a$（$a>0$）。若 $xyz\\le b$ 对满足上述条件的 $x,y,z$ 恒成立，则 $b$ 的最小值为（　）。",
+    "answer": "D。",
+    "explanation": "由算术平均数不小于几何平均数：\n$$\\sqrt[3]{xyz}\\le\\frac{x+y+z}3=\\frac a3,$$\n得到 $xyz\\le \\frac{a^3}{27}$。当 $x=y=z=\\frac a3$ 时等号成立，所以这是乘积的最大值，也正是使上界恒成立的最小 $b$。",
+    "options": [
+      {
+        "key": "A",
+        "text": "$\\frac{a^3}{21}$"
+      },
+      {
+        "key": "B",
+        "text": "$\\frac{a^3}{18}$"
+      },
+      {
+        "key": "C",
+        "text": "$\\frac{a^3}9$"
+      },
+      {
+        "key": "D",
+        "text": "$\\frac{a^3}{27}$"
+      }
+    ],
+    "correctOption": "D"
+  },
+  {
+    "id": "math2-2018-q20-exercise1",
+    "year": 2018,
+    "number": "20-1",
+    "examNumber": "20",
+    "exerciseIndex": 1,
+    "kind": "exercise",
+    "source": "李林880题 第二章·基础题·解答题第10题",
+    "topic": "高等数学 / 积分应用 / 相关变化率",
+    "type": "solution",
+    "stem": "动点 $P$ 在曲线 $9y=4x^2$ 上运动，已知其横坐标变化速率为 $30\\,\\mathrm{cm/s}$。当点 $P$ 经过 $(3,4)$ 时，从原点到点 $P$ 的距离 $S$ 的变化率是多少？设坐标轴的单位长度为 $1\\,\\mathrm{cm}$。",
+    "answer": "$82\\,\\mathrm{cm/s}$。",
+    "explanation": "由 $y=\\frac{4x^2}9$，得\n$$\\frac{dy}{dt}=\\frac{8x}{9}\\frac{dx}{dt}.$$\n当 $x=3$、$\\frac{dx}{dt}=30$ 时，$\\frac{dy}{dt}=80\\,\\mathrm{cm/s}$。又 $S=\\sqrt{x^2+y^2}$，因此\n$$\\frac{dS}{dt}=\\frac{x\\,\\frac{dx}{dt}+y\\,\\frac{dy}{dt}}{\\sqrt{x^2+y^2}}\n=\\frac{3\\cdot30+4\\cdot80}{5}=82\\,\\mathrm{cm/s}.$$"
+  },
+  {
+    "id": "math2-2018-q20-exercise2",
+    "year": 2018,
+    "number": "20-2",
+    "examNumber": "20",
+    "exerciseIndex": 2,
+    "kind": "exercise",
+    "source": "张宇1000题 第77页第3题",
+    "topic": "高等数学 / 积分应用 / 相关变化率",
+    "type": "solution",
+    "stem": "已知曲线 $L:y=\\ln\\sqrt x$（$2\\le x\\le4$）。在 $L$ 上任意一点 $P(x,y)$ 处作切线，设该切线、曲线 $L$ 及直线 $x=2$、$x=4$ 所围成的区域的面积为 $S$。\n\n（1）求一点 $P_0$，使该面积 $S$ 关于点 $P$ 横坐标 $x$ 的变化率为零；\n\n（2）当点 $P$ 沿曲线移动到 $(e,\\frac12)$ 时，横坐标关于时间的变化率为1，求面积关于时间的变化率 $\\frac{dS}{dt}$。",
+    "answer": "$\\displaystyle P_0=(3,\\tfrac12\\ln3)$；$\\displaystyle\\frac{dS}{dt}=\\frac{e-3}{e^2}$。",
+    "explanation": "为区分积分变量与切点横坐标，用 $u$ 表示切点横坐标，令 $f(x)=\\frac12\\ln x$。其切线为\n$$T_u(x)=f(u)+f'(u)(x-u).$$\n因为 $f''(x)=-\\frac1{2x^2}<0$，切线在曲线上方，故\n$$S(u)=\\int_2^4\\left[f(u)+f'(u)(x-u)-f(x)\\right]dx.$$\n对 $u$ 求导：\n$$S'(u)=f''(u)\\int_2^4(x-u)dx\n=-\\frac1{2u^2}(6-2u)=\\frac{u-3}{u^2}.$$\n所以 $S'(u)=0$ 时 $u=3$，得到 $P_0$。在第二问中，$u=e$、$\\frac{du}{dt}=1$，链式法则给出\n$$\\frac{dS}{dt}=S'(e)\\frac{du}{dt}=\\frac{e-3}{e^2}.$$\n结果为负，表示此时面积正在减小。"
+  },
+  {
+    "id": "math2-2018-q21-exercise1",
+    "year": 2018,
+    "number": "21-1",
+    "examNumber": "21",
+    "exerciseIndex": 1,
+    "kind": "exercise",
+    "source": "李林880题 第一章·综合题·解答题第13题",
+    "topic": "高等数学 / 极限与连续 / 数列极限",
+    "type": "solution",
+    "stem": "设 $x_1>0$，数列 $\\{x_n\\}$ 满足\n$$x_{n+1}=\\ln(e^{x_n}-1)-\\ln x_n.$$\n证明 $\\displaystyle\\lim_{n\\to\\infty}x_n$ 存在，并求其值。",
+    "answer": "极限存在且等于0。",
+    "explanation": "当 $x>0$ 时，$e^x>1+x$，所以 $\\frac{e^x-1}x>1$，从而\n$$\\ln\\frac{e^x-1}{x}>0.$$\n另一方面，$1-e^{-x}<x$，等价于 $\\frac{e^x-1}x<e^x$，所以\n$$0<\\ln\\frac{e^x-1}{x}<x.$$\n因此 $0<x_{n+1}<x_n$。数列严格递减且下界为0，故有极限 $L\\ge0$。\n\n假设 $L>0$，在递推式中取极限，得\n$$L=\\ln\\frac{e^L-1}{L},$$\n即 $1-e^{-L}=L$，与 $1-e^{-L}<L$ 矛盾。所以 $L=0$。"
+  },
+  {
+    "id": "math2-2018-q21-exercise2",
+    "year": 2018,
+    "number": "21-2",
+    "examNumber": "21",
+    "exerciseIndex": 2,
+    "kind": "exercise",
+    "source": "张宇1000题 第7页第10题",
+    "topic": "高等数学 / 极限与连续 / 数列极限",
+    "type": "solution",
+    "stem": "设 $a_n>0$，$\\displaystyle\\lim_{n\\to\\infty}b_n=0$，且\n$$e^{a_n}+a_n=e^{b_n},\\qquad n=1,2,\\ldots.$$\n求 $\\displaystyle\\lim_{n\\to\\infty}a_n$。",
+    "answer": "0。",
+    "explanation": "因为 $a_n>0$，有 $e^{a_n}>1$。由题设\n$$0<a_n=e^{b_n}-e^{a_n}<e^{b_n}-1.$$\n而 $b_n\\to0$，故 $e^{b_n}-1\\to0$。根据夹逼定理，$a_n\\to0$。题设同时保证 $e^{b_n}>1$，所以右侧上界确实为正。"
+  },
+  {
+    "id": "math2-2018-q22-exercise1",
+    "year": 2018,
+    "number": "22-1",
+    "examNumber": "22",
+    "exerciseIndex": 1,
+    "kind": "exercise",
+    "source": "李林880题 第十二章·基础题·解答题第5题",
+    "topic": "线性代数 / 二次型 / 标准形与规范形",
+    "type": "solution",
+    "stem": "设二次型\n$$f(x_1,x_2,x_3)=(x_1+x_2)^2+(x_2-x_3)^2+(x_1+ax_3)^2.$$\n\n（I）求 $f(x_1,x_2,x_3)=0$ 的解；\n\n（II）当 $f(x_1,x_2,x_3)=0$ 有非零解时，求正交变换 $X=QY$，将 $f$ 化为标准形；\n\n（III）求 $f$ 的规范形。",
+    "answer": "（Ⅰ）$a\\ne1$ 时仅有零解；$a=1$ 时 $X=t(-1,1,1)^T$。\n\n（Ⅱ）$a=1$ 时标准形为 $3y_1^2+3y_2^2$，正交矩阵见解析。\n\n（Ⅲ）$a=1$ 时规范形为 $z_1^2+z_2^2$；$a\\ne1$ 时为 $z_1^2+z_2^2+z_3^2$。",
+    "explanation": "（I）三个平方项均非负，故 $f=0$ 当且仅当\n$$x_1+x_2=0,\\qquad x_2-x_3=0,\\qquad x_1+ax_3=0.$$\n前两式给出 $x_1=-t,x_2=x_3=t$，最后一式为 $(a-1)t=0$。因此，$a\\ne1$ 时只有零解；$a=1$ 时全部解为\n$$X=t(-1,1,1)^T,\\qquad t\\in\\mathbb R.$$\n\n（II）有非零解要求 $a=1$。此时二次型矩阵为\n$$A=\\begin{pmatrix}2&1&1\\\\1&2&-1\\\\1&-1&2\\end{pmatrix}.$$\n取正交单位向量\n$$q_1=\\frac1{\\sqrt2}(1,1,0)^T,\\quad\nq_2=\\frac1{\\sqrt6}(1,-1,2)^T,\\quad\nq_3=\\frac1{\\sqrt3}(-1,1,1)^T.$$\n直接验证 $Aq_1=3q_1,Aq_2=3q_2,Aq_3=0$。令\n$$Q=(q_1,q_2,q_3)=\\begin{pmatrix}\n\\frac1{\\sqrt2}&\\frac1{\\sqrt6}&-\\frac1{\\sqrt3}\\\\\n\\frac1{\\sqrt2}&-\\frac1{\\sqrt6}&\\frac1{\\sqrt3}\\\\\n0&\\frac2{\\sqrt6}&\\frac1{\\sqrt3}\n\\end{pmatrix},$$\n则 $Q^TQ=E$、$Q^TAQ=\\operatorname{diag}(3,3,0)$，所以标准形为\n$$f=3y_1^2+3y_2^2.$$\n\n（III）$a=1$ 时，令 $z_1=\\sqrt3y_1,z_2=\\sqrt3y_2,z_3=y_3$，规范形为 $z_1^2+z_2^2$。$a\\ne1$ 时，三个线性式 $x_1+x_2,x_2-x_3,x_1+ax_3$ 构成可逆变换，直接以它们为新变量，规范形为 $z_1^2+z_2^2+z_3^2$。"
+  },
+  {
+    "id": "math2-2018-q22-exercise2",
+    "year": 2018,
+    "number": "22-2",
+    "examNumber": "22",
+    "exerciseIndex": 2,
+    "kind": "exercise",
+    "source": "李林880题 第十二章·综合题·解答题第8题",
+    "topic": "线性代数 / 二次型 / 标准形与规范形",
+    "type": "solution",
+    "stem": "设二次型\n$$f(x_1,x_2,x_3)=X^TAX=ax_1^2+ax_2^2+(a-1)x_3^2+2x_1x_3-2x_2x_3,$$\n其中 $a$ 为常数，$A^T=A$，$X=(x_1,x_2,x_3)^T$。\n\n（I）求一个正交变换 $X=QY$，将 $f$ 化为标准形；\n\n（II）求方程 $X^T(aE-A)^2X=0$ 的全部解。",
+    "answer": "（Ⅰ）标准形为 $ay_1^2+(a+1)y_2^2+(a-2)y_3^2$，正交矩阵见解析。\n\n（Ⅱ）全部解为 $X=t(1,1,0)^T$，$t\\in\\mathbb R$。",
+    "explanation": "（I）二次型矩阵为\n$$A=\\begin{pmatrix}a&0&1\\\\0&a&-1\\\\1&-1&a-1\\end{pmatrix}=aE+K,$$\n其中 $K$ 的特征值为 $0,1,-2$。取对应的正交单位特征向量\n$$q_1=\\frac1{\\sqrt2}(1,1,0)^T,\\quad\nq_2=\\frac1{\\sqrt3}(1,-1,1)^T,\\quad\nq_3=\\frac1{\\sqrt6}(1,-1,-2)^T.$$\n令 $Q=(q_1,q_2,q_3)$，则\n$$Q^TAQ=\\operatorname{diag}(a,a+1,a-2),$$\n从而标准形为\n$$f=ay_1^2+(a+1)y_2^2+(a-2)y_3^2.$$\n\n（II）因为 $aE-A$ 为实对称矩阵，\n$$X^T(aE-A)^2X=\\|(aE-A)X\\|^2.$$\n所以原方程等价于 $(aE-A)X=0$，也就是 $KX=0$。展开为 $x_3=0$、$x_1-x_2-x_3=0$，全部解为\n$$X=t(1,1,0)^T,\\qquad t\\in\\mathbb R.$$"
+  },
+  {
+    "id": "math2-2018-q22-exercise3",
+    "year": 2018,
+    "number": "22-3",
+    "examNumber": "22",
+    "exerciseIndex": 3,
+    "kind": "exercise",
+    "source": "张宇1000题 综合篇·测试卷一第22题",
+    "topic": "线性代数 / 二次型 / 标准形与规范形",
+    "type": "solution",
+    "stem": "已知二次型\n$$f(x_1,x_2,x_3)=X^T\\begin{pmatrix}1&1&1\\\\3&4&5\\\\5&7&9\\end{pmatrix}X,\n\\qquad X=(x_1,x_2,x_3)^T.$$\n\n（1）求正交变换 $X=QY$，将 $f$ 化为标准形；\n\n（2）求 $f(x_1,x_2,x_3)=0$ 的解。",
+    "answer": "（1）标准形为 $f=14y_1^2$，正交矩阵见解析。\n\n（2）全部解为 $X=(-2s-3t,s,t)^T$，$s,t\\in\\mathbb R$。",
+    "explanation": "（1）原矩阵 $M$ 不对称，不能直接对它作实对称矩阵的正交对角化。先取对称部分：\n$$S=\\frac{M+M^T}{2}=\\begin{pmatrix}1&2&3\\\\2&4&6\\\\3&6&9\\end{pmatrix}=vv^T,\n\\qquad v=(1,2,3)^T.$$\n由于反对称部分满足 $X^T(M-M^T)X=0$，有 $f=X^TSX=(x_1+2x_2+3x_3)^2$。\n\n$S$ 的特征值为14、0、0。取\n$$q_1=\\frac1{\\sqrt{14}}(1,2,3)^T,\\quad\nq_2=\\frac1{\\sqrt5}(2,-1,0)^T,\\quad\nq_3=\\frac1{\\sqrt{70}}(3,6,-5)^T.$$\n这三个向量两两正交且长度为1。令 $Q=(q_1,q_2,q_3)$，则 $Q^TSQ=\\operatorname{diag}(14,0,0)$，标准形为\n$$f=14y_1^2.$$\n\n（2）$f=0$ 等价于 $x_1+2x_2+3x_3=0$，全部解为\n$$X=(-2s-3t,s,t)^T,\\qquad s,t\\in\\mathbb R.$$"
+  },
+  {
+    "id": "math2-2018-q23-exercise1",
+    "year": 2018,
+    "number": "23-1",
+    "examNumber": "23",
+    "exerciseIndex": 1,
+    "kind": "exercise",
+    "source": "基础过关660题 线代第516题",
+    "topic": "线性代数 / 线性方程组 / 矩阵方程",
+    "type": "solution",
+    "stem": "求矩阵方程\n$$\\begin{pmatrix}1&1\\\\2&2\\end{pmatrix}X=\\begin{pmatrix}2&3\\\\4&6\\end{pmatrix}$$\n的全部解。",
+    "answer": "\n$$X=\\begin{pmatrix}s&t\\\\2-s&3-t\\end{pmatrix},\\qquad s,t\\in\\mathbb R.$$",
+    "explanation": "设 $X=(x_{ij})_{2\\times2}$。按矩阵乘法，第一行给出 $x_{11}+x_{21}=2$、$x_{12}+x_{22}=3$；第二行恰好是第一行的2倍，没有新增约束。取 $x_{11}=s,x_{12}=t$，即得到上述全部解。"
+  },
+  {
+    "id": "math2-2018-q23-exercise2",
+    "year": 2018,
+    "number": "23-2",
+    "examNumber": "23",
+    "exerciseIndex": 2,
+    "kind": "exercise",
+    "source": "李林880题 第八章·综合题·解答题第5题",
+    "topic": "线性代数 / 线性方程组 / 矩阵方程",
+    "type": "solution",
+    "stem": "设矩阵 $X$ 满足\n$$\\begin{pmatrix}1&0&1\\\\2&1&-1\\\\-1&-1&2\\end{pmatrix}X\n=\\begin{pmatrix}0&1\\\\2&0\\\\-2&1\\end{pmatrix},$$\n求 $X$。",
+    "answer": "\n$$X=\\begin{pmatrix}-s&1-t\\\\2+3s&-2+3t\\\\s&t\\end{pmatrix},\\qquad s,t\\in\\mathbb R.$$",
+    "explanation": "分别求两列。若某一列未知量为 $(u,v,w)^T$，右侧对应列为 $(b_1,b_2,b_3)^T$，则\n$$u+w=b_1,\\qquad2u+v-w=b_2,\\qquad-u-v+2w=b_3.$$\n前两式给出 $u=b_1-w$、$v=b_2-2b_1+3w$；代入第三式，得到相容条件 $b_3=b_1-b_2$。\n\n右侧第一列 $(0,2,-2)^T$ 和第二列 $(1,0,1)^T$ 都满足相容条件。分别令第一列的 $w=s$、第二列的 $w=t$，即得全部解。"
+  },
+  {
+    "id": "math2-2018-q23-exercise3",
+    "year": 2018,
+    "number": "23-3",
+    "examNumber": "23",
+    "exerciseIndex": 3,
+    "kind": "exercise",
+    "source": "张宇1000题 第104页第9题",
+    "topic": "线性代数 / 线性方程组 / 矩阵方程",
+    "type": "solution",
+    "stem": "设\n$$A=\\begin{pmatrix}2&-2&-4\\\\-1&3&4\\\\1&-2&-3\\end{pmatrix}.$$\n是否存在非单位矩阵 $B$，使 $AB=A$？若存在，求出所有这样的矩阵 $B$。",
+    "answer": "存在。全部非单位矩阵解为\n$$B=\\begin{pmatrix}1+s&t&u\\\\-s&1-t&-u\\\\s&t&1+u\\end{pmatrix},$$\n其中 $s,t,u\\in\\mathbb R$，且 $(s,t,u)\\ne(0,0,0)$。",
+    "explanation": "方程等价于 $A(B-E)=0$。求 $Az=0$：第一行给出 $z_1=z_2+2z_3$；代入第二行得 $z_2=-z_3$，所以 $z_1=z_3$，第三行自动满足。因此\n$$\\ker A=\\{k(1,-1,1)^T:k\\in\\mathbb R\\}.$$\n$B-E$ 的每一列都必须属于该零空间，所以\n$$B-E=(1,-1,1)^T(s,t,u).$$\n展开得到答案。三个参数全为0时 $B=E$，应按照题目要求排除。"
   }
 ]
