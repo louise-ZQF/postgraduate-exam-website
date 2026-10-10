@@ -3548,5 +3548,373 @@
     "stem": "设\n$$A=\\begin{pmatrix}2&-2&-4\\\\-1&3&4\\\\1&-2&-3\\end{pmatrix}.$$\n是否存在非单位矩阵 $B$，使 $AB=A$？若存在，求出所有这样的矩阵 $B$。",
     "answer": "存在。全部非单位矩阵解为\n$$B=\\begin{pmatrix}1+s&t&u\\\\-s&1-t&-u\\\\s&t&1+u\\end{pmatrix},$$\n其中 $s,t,u\\in\\mathbb R$，且 $(s,t,u)\\ne(0,0,0)$。",
     "explanation": "方程等价于 $A(B-E)=0$。求 $Az=0$：第一行给出 $z_1=z_2+2z_3$；代入第二行得 $z_2=-z_3$，所以 $z_1=z_3$，第三行自动满足。因此\n$$\\ker A=\\{k(1,-1,1)^T:k\\in\\mathbb R\\}.$$\n$B-E$ 的每一列都必须属于该零空间，所以\n$$B-E=(1,-1,1)^T(s,t,u).$$\n展开得到答案。三个参数全为0时 $B=E$，应按照题目要求排除。"
+  },
+  {
+    "id": "math2-2017-q2-original",
+    "year": 2017,
+    "number": "2",
+    "examNumber": "2",
+    "kind": "original",
+    "source": "2017 年数学二真题 · 第 2 题",
+    "topic": "高等数学 / 一元微分 / 凸函数与积分比较",
+    "type": "choice",
+    "stem": "设二阶可导函数 $f(x)$ 满足 $f(1)=f(-1)=1$，$f(0)=-1$，且 $f''(x)>0$，则（　）。",
+    "answer": "B。",
+    "explanation": "由 $f''(x)>0$，函数严格凸，曲线在连接其两点的弦下方。连接 $(-1,1)$ 与 $(0,-1)$ 的弦为 $y=-2x-1$，连接 $(0,-1)$ 与 $(1,1)$ 的弦为 $y=2x-1$，所以\n$$\\int_{-1}^1 f(x)\\,dx<\\int_{-1}^0(-2x-1)\\,dx+\\int_0^1(2x-1)\\,dx=0.$$\n因此选 B。不能由端点函数值相同推出偶函数。例如 $f(x)=2x^2-1$ 满足题设，两个半区间上的积分相等，故 C、D 均不是必然结论。",
+    "options": [
+      {
+        "key": "A",
+        "text": "$\\displaystyle\\int_{-1}^1f(x)\\,dx>0$"
+      },
+      {
+        "key": "B",
+        "text": "$\\displaystyle\\int_{-1}^1f(x)\\,dx<0$"
+      },
+      {
+        "key": "C",
+        "text": "$\\displaystyle\\int_{-1}^0f(x)\\,dx>\\int_0^1f(x)\\,dx$"
+      },
+      {
+        "key": "D",
+        "text": "$\\displaystyle\\int_{-1}^0f(x)\\,dx<\\int_0^1f(x)\\,dx$"
+      }
+    ],
+    "correctOption": "B"
+  },
+  {
+    "id": "math2-2017-q3-original",
+    "year": 2017,
+    "number": "3",
+    "examNumber": "3",
+    "kind": "original",
+    "source": "2017 年数学二真题 · 第 3 题",
+    "topic": "高等数学 / 极限与连续 / 数列极限",
+    "type": "choice",
+    "stem": "设数列 $\\{x_n\\}$ 收敛，则（　）。",
+    "answer": "D。",
+    "explanation": "设 $x_n\\to L$。由 D 的条件及连续性得 $L+\\sin L=0$。若 $L\\ne0$，则 $|\\sin L|<|L|$，不可能有 $\\sin L=-L$，故 $L=0$。\n\nA 可取恒为 $\\pi$ 的数列；B、C 均可取恒为 $-1$ 的数列。这些数列均收敛且满足对应前提，但极限不为 $0$，故三项均不成立。",
+    "options": [
+      {
+        "key": "A",
+        "text": "当 $\\displaystyle\\lim_{n\\to\\infty}\\sin x_n=0$ 时，$\\displaystyle\\lim_{n\\to\\infty}x_n=0$。"
+      },
+      {
+        "key": "B",
+        "text": "当 $\\displaystyle\\lim_{n\\to\\infty}(x_n+\\sqrt{|x_n|})=0$ 时，$\\displaystyle\\lim_{n\\to\\infty}x_n=0$。"
+      },
+      {
+        "key": "C",
+        "text": "当 $\\displaystyle\\lim_{n\\to\\infty}(x_n+x_n^2)=0$ 时，$\\displaystyle\\lim_{n\\to\\infty}x_n=0$。"
+      },
+      {
+        "key": "D",
+        "text": "当 $\\displaystyle\\lim_{n\\to\\infty}(x_n+\\sin x_n)=0$ 时，$\\displaystyle\\lim_{n\\to\\infty}x_n=0$。"
+      }
+    ],
+    "correctOption": "D"
+  },
+  {
+    "id": "math2-2017-q10-original",
+    "year": 2017,
+    "number": "10",
+    "examNumber": "10",
+    "kind": "original",
+    "source": "2017 年数学二真题 · 第 10 题",
+    "topic": "高等数学 / 一元微分 / 参数方程二阶导数",
+    "type": "fill",
+    "stem": "设函数 $y=y(x)$ 由参数方程\n$$\\begin{cases}x=t+e^t,\\\\y=\\sin t\\end{cases}$$\n确定，则 $\\displaystyle\\left.\\frac{d^2y}{dx^2}\\right|_{t=0}=$________。",
+    "answer": "$-\\dfrac18$。",
+    "explanation": "参数方程求二阶导数时，每次对 $x$ 求导都须除以 $x'(t)$：\n$$\\frac{dy}{dx}=\\frac{\\cos t}{1+e^t},\\qquad\n\\frac{d^2y}{dx^2}=\\frac1{1+e^t}\\frac d{dt}\\left(\\frac{\\cos t}{1+e^t}\\right)\n=\\frac{-\\sin t(1+e^t)-e^t\\cos t}{(1+e^t)^3}.$$\n代入 $t=0$ 得 $-\\dfrac18$。"
+  },
+  {
+    "id": "math2-2017-q11-original",
+    "year": 2017,
+    "number": "11",
+    "examNumber": "11",
+    "kind": "original",
+    "source": "2017 年数学二真题 · 第 11 题",
+    "topic": "高等数学 / 一元积分 / 广义积分",
+    "type": "fill",
+    "stem": "$\\displaystyle\\int_0^{+\\infty}\\frac{\\ln(1+x)}{(1+x)^2}\\,dx=$________。",
+    "answer": "$1$。",
+    "explanation": "先在 $[0,R]$ 上分部积分，取 $u=\\ln(1+x)$、$dv=\\dfrac{dx}{(1+x)^2}$，则\n$$\\begin{aligned}\n\\int_0^R\\frac{\\ln(1+x)}{(1+x)^2}\\,dx\n&=-\\frac{\\ln(1+R)}{1+R}+\\int_0^R\\frac{dx}{(1+x)^2}\\\\\n&=-\\frac{\\ln(1+R)}{1+R}+1-\\frac1{1+R}.\n\\end{aligned}$$\n由于 $\\dfrac{\\ln(1+R)}{1+R}\\to0$，令 $R\\to+\\infty$，原积分等于 $1$。"
+  },
+  {
+    "id": "math2-2017-q13-original",
+    "year": 2017,
+    "number": "13",
+    "examNumber": "13",
+    "kind": "original",
+    "source": "2017 年数学二真题 · 第 13 题",
+    "topic": "高等数学 / 二重积分 / 交换积分次序",
+    "type": "fill",
+    "stem": "$\\displaystyle\\int_0^1dy\\int_y^1\\frac{\\tan x}{x}\\,dx=$________。",
+    "answer": "$-\\ln(\\cos1)$。",
+    "explanation": "区域为 $0\\le y\\le x\\le1$，交换积分次序得到\n$$\\int_0^1dx\\int_0^x\\frac{\\tan x}{x}\\,dy=\\int_0^1\\tan x\\,dx\n=\\left[-\\ln(\\cos x)\\right]_0^1=-\\ln(\\cos1).$$\n$\\dfrac{\\tan x}{x}$ 在 $x=0$ 的极限为 $1$，可连续补定义。"
+  },
+  {
+    "id": "math2-2017-q19-original",
+    "year": 2017,
+    "number": "19",
+    "examNumber": "19",
+    "kind": "original",
+    "source": "2017 年数学二真题 · 第 19 题",
+    "topic": "高等数学 / 一元微分 / 介值定理与罗尔定理",
+    "type": "solution",
+    "stem": "设函数 $f(x)$ 在区间 $[0,1]$ 上具有二阶导数，且\n$$f(1)>0,\\qquad\\lim_{x\\to0^+}\\frac{f(x)}x<0.$$\n证明：（Ⅰ）方程 $f(x)=0$ 在 $(0,1)$ 内至少有一个实根；（Ⅱ）方程 $f(x)f''(x)+[f'(x)]^2=0$ 在 $(0,1)$ 内至少有两个不同实根。",
+    "answer": "（Ⅰ）至少有一个实根；（Ⅱ）至少有两个不同实根。",
+    "explanation": "（Ⅰ）由极限条件及连续性得 $f(0)=0$，且存在充分小的 $a>0$ 使 $f(a)<0$。因 $f(1)>0$，由介值定理存在 $\\xi\\in(a,1)$，满足 $f(\\xi)=0$。\n\n（Ⅱ）在 $[0,\\xi]$ 上对 $f$ 应用罗尔定理，得 $c\\in(0,\\xi)$，使 $f'(c)=0$。令 $H(x)=f(x)f'(x)$，则\n$$H(0)=H(c)=H(\\xi)=0.$$\n分别在 $[0,c]$、$[c,\\xi]$ 上对 $H$ 应用罗尔定理，得\n$$\\eta_1\\in(0,c),\\quad\\eta_2\\in(c,\\xi),\\quad H'(\\eta_1)=H'(\\eta_2)=0.$$\n因 $H'=ff''+(f')^2$，这两点就是所需的两个不同实根。两个点分别位于互不相交的区间内，保证了它们不同。"
+  },
+  {
+    "id": "math2-2017-q20-original",
+    "year": 2017,
+    "number": "20",
+    "examNumber": "20",
+    "kind": "original",
+    "source": "2017 年数学二真题 · 第 20 题",
+    "topic": "高等数学 / 二重积分 / 对称性与平移换元",
+    "type": "solution",
+    "stem": "已知区域 $D=\\{(x,y)\\mid x^2+y^2\\le2y\\}$，计算\n$$\\iint_D(x+1)^2\\,dx\\,dy.$$",
+    "answer": "$\\dfrac{5\\pi}4$。",
+    "explanation": "区域为 $x^2+(y-1)^2\\le1$，即圆心 $(0,1)$、半径 $1$ 的圆盘，关于 $y$ 轴对称。因此\n$$\\iint_Dx\\,dx\\,dy=0,\\qquad\\iint_D1\\,dx\\,dy=\\pi.$$\n令 $x=r\\cos\\theta$、$y=1+r\\sin\\theta$，则\n$$\\iint_Dx^2\\,dx\\,dy=\\int_0^{2\\pi}\\cos^2\\theta\\,d\\theta\\int_0^1r^3\\,dr=\\frac\\pi4.$$\n展开 $(x+1)^2=x^2+2x+1$ 后，积分等于 $\\dfrac\\pi4+\\pi=\\dfrac{5\\pi}4$。"
+  },
+  {
+    "id": "math2-2017-q21-original",
+    "year": 2017,
+    "number": "21",
+    "examNumber": "21",
+    "kind": "original",
+    "source": "2017 年数学二真题 · 第 21 题",
+    "topic": "高等数学 / 微分方程 / 齐次方程",
+    "type": "solution",
+    "stem": "设 $y(x)$ 是 $\\left(0,\\dfrac32\\right)$ 内的可导函数，且 $y(1)=0$。点 $P$ 是曲线 $l:y=y(x)$ 上任意一点，切线与 $y$ 轴交于 $(0,Y_P)$，法线与 $x$ 轴交于 $(X_P,0)$。若 $X_P=Y_P$，求曲线上点 $(x,y)$ 满足的方程。",
+    "answer": "$$\\ln(x^2+y^2)+2\\arctan\\frac yx=0.$$\n取经过 $(1,0)$ 的曲线分支，$0<x<\\dfrac32$。",
+    "explanation": "设 $P=(x,y)$，切线纵截距为 $Y_P=y-xy'$。法线写成 $X-x+y'(Y-y)=0$，横截距为 $X_P=x+yy'$，该写法在 $y'=0$ 时也适用。由题设\n$$x+yy'=y-xy',\\qquad y'=\\frac{y-x}{x+y}.$$\n$x+y$ 不能为 $0$，否则前式要求 $x=y=0$，与 $x>0$ 矛盾。\n\n令 $v=\\dfrac yx$，则 $y'=v+xv'$，代入并整理：\n$$xv'=-\\frac{1+v^2}{1+v},\\qquad\\frac{1+v}{1+v^2}\\,dv=-\\frac{dx}x.$$\n积分得\n$$\\arctan v+\\frac12\\ln(1+v^2)=-\\ln x+C.$$\n由 $x=1,y=0$ 得 $C=0$。代回并利用 $x>0$ 整理，得到答案。"
+  },
+  {
+    "id": "math2-2018-q1-original",
+    "year": 2018,
+    "number": "1",
+    "examNumber": "1",
+    "kind": "original",
+    "source": "2018 年数学二真题 · 第 1 题",
+    "topic": "高等数学 / 极限与连续 / 幂指函数极限",
+    "type": "choice",
+    "stem": "若 $\\displaystyle\\lim_{x\\to0}(e^x+ax^2+bx)^{\\frac1{x^2}}=1$，则（　）。",
+    "answer": "B。",
+    "explanation": "底数在 $0$ 附近为正，可取对数。原极限为 $1$ 等价于\n$$\\lim_{x\\to0}\\frac{\\ln(e^x+ax^2+bx)}{x^2}=0.$$\n展开底数：\n$$e^x+ax^2+bx=1+(1+b)x+\\left(a+\\frac12\\right)x^2+o(x^2).$$\n再利用 $\\ln(1+u)=u-\\dfrac{u^2}2+o(u^2)$，得到\n$$\\frac{\\ln(e^x+ax^2+bx)}{x^2}\n=\\frac{1+b}x+a+\\frac12-\\frac{(1+b)^2}2+o(1).$$\n有限极限要求 $b=-1$，此时极限为 $a+\\dfrac12$。要使它等于 $0$，须 $a=-\\dfrac12$。代回即可验证充分性。",
+    "options": [
+      {
+        "key": "A",
+        "text": "$a=\\dfrac12,\\ b=-1$"
+      },
+      {
+        "key": "B",
+        "text": "$a=-\\dfrac12,\\ b=-1$"
+      },
+      {
+        "key": "C",
+        "text": "$a=\\dfrac12,\\ b=1$"
+      },
+      {
+        "key": "D",
+        "text": "$a=-\\dfrac12,\\ b=1$"
+      }
+    ],
+    "correctOption": "B"
+  },
+  {
+    "id": "math2-2018-q2-original",
+    "year": 2018,
+    "number": "2",
+    "examNumber": "2",
+    "kind": "original",
+    "source": "2018 年数学二真题 · 第 2 题",
+    "topic": "高等数学 / 一元微分 / 导数定义",
+    "type": "choice",
+    "stem": "下列函数中，在 $x=0$ 处不可导的是（　）。",
+    "answer": "D。",
+    "explanation": "A 的差商为 $\\dfrac{|x|}x\\sin|x|\\to0$；B 的差商为 $\\dfrac{|x|}x\\sin\\sqrt{|x|}\\to0$；C 等于 $\\cos x$，在 $0$ 处导数为 $0$。\n\n对 D，利用 $\\cos u=1-\\dfrac{u^2}2+o(u^2)$，有\n$$\\frac{f(x)-f(0)}x=-\\frac{|x|}{2x}+o(1).$$\n右导数为 $-\\dfrac12$，左导数为 $\\dfrac12$，故 D 不可导。",
+    "options": [
+      {
+        "key": "A",
+        "text": "$f(x)=|x|\\sin|x|$"
+      },
+      {
+        "key": "B",
+        "text": "$f(x)=|x|\\sin\\sqrt{|x|}$"
+      },
+      {
+        "key": "C",
+        "text": "$f(x)=\\cos|x|$"
+      },
+      {
+        "key": "D",
+        "text": "$f(x)=\\cos\\sqrt{|x|}$"
+      }
+    ],
+    "correctOption": "D"
+  },
+  {
+    "id": "math2-2018-q6-original",
+    "year": 2018,
+    "number": "6",
+    "examNumber": "6",
+    "kind": "original",
+    "source": "2018 年数学二真题 · 第 6 题",
+    "topic": "高等数学 / 二重积分 / 对称性",
+    "type": "choice",
+    "stem": "$$\\int_{-1}^0dx\\int_{-x}^{2-x^2}(1-xy)\\,dy+\\int_0^1dx\\int_x^{2-x^2}(1-xy)\\,dy=$$\n（　）。",
+    "answer": "C。",
+    "explanation": "两项区域合起来为 $-1\\le x\\le1$、$|x|\\le y\\le2-x^2$，关于 $y$ 轴对称。因 $xy$ 关于 $x$ 为奇函数，$\\iint_Dxy\\,dx\\,dy=0$，原式等于区域面积：\n$$\\int_{-1}^1(2-x^2-|x|)\\,dx=2\\int_0^1(2-x^2-x)\\,dx\n=2\\left(2-\\frac13-\\frac12\\right)=\\frac73.$$",
+    "options": [
+      {
+        "key": "A",
+        "text": "$\\dfrac53$"
+      },
+      {
+        "key": "B",
+        "text": "$\\dfrac56$"
+      },
+      {
+        "key": "C",
+        "text": "$\\dfrac73$"
+      },
+      {
+        "key": "D",
+        "text": "$\\dfrac76$"
+      }
+    ],
+    "correctOption": "C"
+  },
+  {
+    "id": "math2-2018-q12-original",
+    "year": 2018,
+    "number": "12",
+    "examNumber": "12",
+    "kind": "original",
+    "source": "2018 年数学二真题 · 第 12 题",
+    "topic": "高等数学 / 一元微分 / 参数曲线曲率",
+    "type": "fill",
+    "stem": "曲线 $\\begin{cases}x=\\cos^3t,\\\\y=\\sin^3t\\end{cases}$ 在 $t=\\dfrac\\pi4$ 对应点处的曲率为________。",
+    "answer": "$\\dfrac23$。",
+    "explanation": "参数曲线的曲率公式为\n$$\\kappa=\\frac{|x'y''-y'x''|}{[(x')^2+(y')^2]^{3/2}}.$$\n在 $t=\\dfrac\\pi4$ 处，\n$$x'=-\\frac{3\\sqrt2}4,\\quad y'=\\frac{3\\sqrt2}4,\\quad x''=y''=\\frac{3\\sqrt2}4.$$\n因此\n$$\\kappa=\\frac{\\frac94}{\\left(\\frac94\\right)^{3/2}}=\\frac23.$$"
+  },
+  {
+    "id": "math2-2018-q14-original",
+    "year": 2018,
+    "number": "14",
+    "examNumber": "14",
+    "kind": "original",
+    "source": "2018 年数学二真题 · 第 14 题",
+    "topic": "线性代数 / 特征值 / 相似矩阵",
+    "type": "fill",
+    "stem": "设 $A$ 为三阶矩阵，$\\alpha_1,\\alpha_2,\\alpha_3$ 线性无关。若\n$$\\begin{aligned}A\\alpha_1&=2\\alpha_1+\\alpha_2+\\alpha_3,\\\\ A\\alpha_2&=\\alpha_2+2\\alpha_3,\\\\ A\\alpha_3&=-\\alpha_2+\\alpha_3,\\end{aligned}$$\n则 $A$ 的实特征值为________。",
+    "answer": "$2$。",
+    "explanation": "令 $P=(\\alpha_1,\\alpha_2,\\alpha_3)$，由线性无关性知 $P$ 可逆。将各式系数按列排列，有\n$$AP=PM,\\qquad M=\\begin{pmatrix}2&0&0\\\\1&1&-1\\\\1&2&1\\end{pmatrix}.$$\n故 $P^{-1}AP=M$，$A$ 与 $M$ 有相同特征值。计算\n$$\\det(\\lambda E-M)=(\\lambda-2)[(\\lambda-1)^2+2].$$\n三个特征值为 $2,1+i\\sqrt2,1-i\\sqrt2$，唯一实特征值为 $2$。"
+  },
+  {
+    "id": "math2-2018-q15-original",
+    "year": 2018,
+    "number": "15",
+    "examNumber": "15",
+    "kind": "original",
+    "source": "2018 年数学二真题 · 第 15 题",
+    "topic": "高等数学 / 一元积分 / 分部积分与换元",
+    "type": "solution",
+    "stem": "求不定积分 $\\displaystyle\\int e^{2x}\\arctan\\sqrt{e^x-1}\\,dx$。",
+    "answer": "$$\\frac12e^{2x}\\arctan\\sqrt{e^x-1}-\\frac16(e^x-1)^{\\frac32}-\\frac12\\sqrt{e^x-1}+C.$$",
+    "explanation": "在实数范围取 $x>0$。令 $u=\\arctan\\sqrt{e^x-1}$、$dv=e^{2x}dx$，则\n$$du=\\frac{dx}{2\\sqrt{e^x-1}},\\qquad v=\\frac12e^{2x}.$$\n分部积分得到\n$$I=\\frac12e^{2x}\\arctan\\sqrt{e^x-1}-\\frac14\\int\\frac{e^{2x}}{\\sqrt{e^x-1}}\\,dx.$$\n令 $z=\\sqrt{e^x-1}$，则 $e^x=1+z^2$、$dx=\\dfrac{2z}{1+z^2}\\,dz$，所以后一积分为\n$$2\\int(1+z^2)\\,dz=2z+\\frac23z^3.$$\n代回得到答案，$C$ 为任意常数。"
+  },
+  {
+    "id": "math2-2018-q17-original",
+    "year": 2018,
+    "number": "17",
+    "examNumber": "17",
+    "kind": "original",
+    "source": "2018 年数学二真题 · 第 17 题",
+    "topic": "高等数学 / 二重积分 / 摆线区域",
+    "type": "solution",
+    "stem": "设区域 $D$ 由曲线\n$$\\begin{cases}x=t-\\sin t,\\\\y=1-\\cos t\\end{cases}\\qquad(0\\le t\\le2\\pi)$$\n与 $x$ 轴围成，计算 $\\displaystyle\\iint_D(x+2y)\\,dx\\,dy$。",
+    "answer": "$3\\pi^2+5\\pi$。",
+    "explanation": "记摆线高度为 $Y(x)$，由 $dx=(1-\\cos t)dt$，区域面积为\n$$|D|=\\int_0^{2\\pi}Y(x)\\,dx=\\int_0^{2\\pi}(1-\\cos t)^2\\,dt=3\\pi.$$\n区域关于 $x=\\pi$ 对称，故 $\\iint_Dx\\,dx\\,dy=\\pi|D|=3\\pi^2$。\n\n另一项先对 $y$ 积分：\n$$\\iint_D2y\\,dx\\,dy=\\int_0^{2\\pi}Y(x)^2\\,dx=\\int_0^{2\\pi}(1-\\cos t)^3\\,dt=5\\pi.$$\n最后一步展开三次方，利用全周期内 $\\cos t$、$\\cos^3t$ 的积分均为 $0$，$\\cos^2t$ 的积分为 $\\pi$。两项相加即得结果。"
+  },
+  {
+    "id": "math2-2018-q18-original",
+    "year": 2018,
+    "number": "18",
+    "examNumber": "18",
+    "kind": "original",
+    "source": "2018 年数学二真题 · 第 18 题",
+    "topic": "高等数学 / 一元微分 / 不等式证明",
+    "type": "solution",
+    "stem": "已知常数 $k\\ge\\ln2-1$。证明对 $x>0$，\n$$(x-1)(x-\\ln^2x+2k\\ln x-1)\\ge0.$$",
+    "answer": "不等式成立，等号当且仅当 $x=1$。",
+    "explanation": "令 $t=\\ln x$，设 $H(t)=e^t-t^2+2kt-1$，则 $H(0)=0$、$H'(t)=e^t-2t+2k$。\n\n令 $h(t)=e^t-2t$，则 $h'(t)=e^t-2$，在 $t=\\ln2$ 左侧为负、右侧为正，故全局最小值为 $2-2\\ln2$。于是\n$$H'(t)\\ge2-2\\ln2+2k\\ge0.$$\n因此 $H$ 单调不减。实际上 $H'$ 至多在 $t=\\ln2$ 一个点为 $0$，故 $H$ 严格递增，$H(t)$ 与 $t$ 同号。$x-1=e^t-1$ 也与 $t$ 同号，所以两者乘积非负，且仅在 $t=0$，即 $x=1$ 时取等号。"
+  },
+  {
+    "id": "math2-2018-q19-original",
+    "year": 2018,
+    "number": "19",
+    "examNumber": "19",
+    "kind": "original",
+    "source": "2018 年数学二真题 · 第 19 题",
+    "topic": "高等数学 / 多元微分 / 最值",
+    "type": "solution",
+    "stem": "将长为 $2\\,\\mathrm m$ 的铁丝分成三段，依次围成圆、正方形与正三角形。三个图形的面积之和是否存在最小值？若存在，求出最小值。",
+    "answer": "存在，最小值为 $\\displaystyle\\frac1{\\pi+4+3\\sqrt3}\\,\\mathrm m^2$。",
+    "explanation": "设三段长度依次为 $u,v,w>0$，$u+v+w=2$，则面积和为\n$$S=\\frac{u^2}{4\\pi}+\\frac{v^2}{16}+\\frac{\\sqrt3w^2}{36}\n=\\frac{u^2}{4\\pi}+\\frac{v^2}{16}+\\frac{w^2}{12\\sqrt3}.$$\n由柯西不等式，\n$$(u+v+w)^2\\le\\left(\\frac{u^2}{4\\pi}+\\frac{v^2}{16}+\\frac{w^2}{12\\sqrt3}\\right)(4\\pi+16+12\\sqrt3),$$\n故 $S\\ge\\dfrac1{\\pi+4+3\\sqrt3}$。等号当且仅当\n$$u:v:w=4\\pi:16:12\\sqrt3=\\pi:4:3\\sqrt3.$$\n三段按此比例分配总长 $2$ 米，都为正且能取得等号，所以该下界就是最小值。"
+  },
+  {
+    "id": "math2-2018-q20-original",
+    "year": 2018,
+    "number": "20",
+    "examNumber": "20",
+    "kind": "original",
+    "source": "2018 年数学二真题 · 第 20 题",
+    "topic": "高等数学 / 积分应用 / 面积变化率",
+    "type": "solution",
+    "stem": "已知曲线 $L:y=\\dfrac49x^2$（$x\\ge0$），点 $O(0,0)$、$A(0,1)$。设 $P$ 是 $L$ 上的动点，$S$ 是直线 $OA$、直线 $AP$ 及曲线 $L$ 所围图形的面积。若 $P$ 运动到 $(3,4)$ 时沿 $x$ 轴正向的速度是 $4$，求此时 $S$ 关于时间 $t$ 的变化率。",
+    "answer": "$\\displaystyle\\frac{dS}{dt}=10$。",
+    "explanation": "设 $P=(u,\\dfrac49u^2)$，$u>0$，直线 $AP$ 为\n$$y=1+\\left(\\frac{4u}9-\\frac1u\\right)x.$$\n在 $0\\le x\\le u$ 上，该直线在抛物线上方，故\n$$S(u)=\\int_0^u\\left[1+\\left(\\frac{4u}9-\\frac1u\\right)x-\\frac49x^2\\right]dx=\\frac u2+\\frac{2u^3}{27}.$$\n由链式法则，在 $u=3$、$\\dfrac{du}{dt}=4$ 时，\n$$\\frac{dS}{dt}=\\left(\\frac12+\\frac{2u^2}9\\right)\\frac{du}{dt}=\\frac52\\times4=10.$$"
+  },
+  {
+    "id": "math2-2018-q21-original",
+    "year": 2018,
+    "number": "21",
+    "examNumber": "21",
+    "kind": "original",
+    "source": "2018 年数学二真题 · 第 21 题",
+    "topic": "高等数学 / 极限与连续 / 数列极限",
+    "type": "solution",
+    "stem": "设数列 $\\{x_n\\}$ 满足 $x_1>0$，\n$$x_ne^{x_{n+1}}=e^{x_n}-1,\\qquad n=1,2,\\ldots.$$\n证明 $\\{x_n\\}$ 收敛，并求 $\\displaystyle\\lim_{n\\to\\infty}x_n$。",
+    "answer": "数列收敛，极限为 $0$。",
+    "explanation": "对 $x>0$，由 $e^x>1+x$ 和 $1-e^{-x}<x$，得\n$$1<\\frac{e^x-1}x<e^x.$$\n递推式改写为 $x_{n+1}=\\ln\\dfrac{e^{x_n}-1}{x_n}$，从 $x_1>0$ 出发，由上述不等式及归纳法得 $0<x_{n+1}<x_n$。数列严格递减且下界为 $0$，故存在极限 $L\\ge0$。\n\n在原递推式中取极限，得 $Le^L=e^L-1$，即 $L=1-e^{-L}$。若 $L>0$，则 $1-e^{-L}<L$，矛盾，所以 $L=0$。"
+  },
+  {
+    "id": "math2-2018-q22-original",
+    "year": 2018,
+    "number": "22",
+    "examNumber": "22",
+    "kind": "original",
+    "source": "2018 年数学二真题 · 第 22 题",
+    "topic": "线性代数 / 二次型 / 规范形",
+    "type": "solution",
+    "stem": "设实二次型\n$$f(x_1,x_2,x_3)=(x_1-x_2+x_3)^2+(x_2+x_3)^2+(x_1+ax_3)^2,$$\n其中 $a$ 为参数。（Ⅰ）求 $f=0$ 的解；（Ⅱ）求 $f$ 的规范形。",
+    "answer": "（Ⅰ）$a\\ne2$ 时仅有零解；$a=2$ 时 $X=s(-2,-1,1)^T$，$s\\in\\mathbb R$。\n\n（Ⅱ）$a\\ne2$ 时规范形为 $y_1^2+y_2^2+y_3^2$；$a=2$ 时为 $y_1^2+y_2^2$。",
+    "explanation": "（Ⅰ）三个平方项非负，所以 $f=0$ 等价于\n$$x_1-x_2+x_3=0,\\quad x_2+x_3=0,\\quad x_1+ax_3=0.$$\n前两式得 $x_2=-x_3$、$x_1=-2x_3$，第三式为 $(a-2)x_3=0$。因此得到答案中的全部解。\n\n（Ⅱ）若 $a\\ne2$，取 $y_1=x_1-x_2+x_3$、$y_2=x_2+x_3$、$y_3=x_1+ax_3$，变换矩阵行列式为 $a-2\\ne0$，故是可逆线性变换，规范形为 $y_1^2+y_2^2+y_3^2$。\n\n若 $a=2$，令 $u=x_1-x_2+x_3$、$v=x_2+x_3$，则 $x_1+2x_3=u+v$，有\n$$f=u^2+v^2+(u+v)^2=2\\left(u+\\frac v2\\right)^2+\\frac32v^2.$$\n取 $y_1=\\sqrt2\\left(u+\\dfrac v2\\right)$、$y_2=\\sqrt{\\dfrac32}\\,v$、$y_3=x_3$。该变换可逆，得到规范形 $y_1^2+y_2^2+0y_3^2$。"
+  },
+  {
+    "id": "math2-2018-q23-original",
+    "year": 2018,
+    "number": "23",
+    "examNumber": "23",
+    "kind": "original",
+    "source": "2018 年数学二真题 · 第 23 题",
+    "topic": "线性代数 / 线性方程组 / 初等列变换与矩阵方程",
+    "type": "solution",
+    "stem": "已知 $a$ 为常数，矩阵\n$$A=\\begin{pmatrix}1&2&a\\\\1&3&0\\\\2&7&-a\\end{pmatrix}$$\n可经初等列变换化为\n$$B=\\begin{pmatrix}1&a&2\\\\0&1&1\\\\-1&1&1\\end{pmatrix}.$$\n（Ⅰ）求 $a$；（Ⅱ）求满足 $AP=B$ 的可逆矩阵 $P$。",
+    "answer": "（Ⅰ）$a=2$。\n\n（Ⅱ）可取\n$$P=\\begin{pmatrix}3&4&-2\\\\-1&-1&1\\\\0&0&1\\end{pmatrix}.$$\n全部可逆解见解析。",
+    "explanation": "（Ⅰ）初等列变换保持列空间不变。$A$ 的各列均满足第三个分量等于第一个分量的负数加第二个分量的三倍，即 $(-1,3,-1)A=0$。因此\n$$(-1,3,-1)B=(0,2-a,0)=0,$$\n得 $a=2$。下面构造的可逆 $P$ 也验证此值充分。\n\n（Ⅱ）代入 $a=2$，逐列解 $AP=B$。设一列未知向量为 $(u,v,w)^T$，右端为 $(b_1,b_2,b_3)^T$，前两行给出\n$$u+2v+2w=b_1,\\quad u+3v=b_2.$$\n于是 $v=b_2-b_1+2w$、$u=3b_1-2b_2-6w$；第三行由前两行线性组合得到，自动满足。\n\n三列的自由参数分别取 $s,t,r$，得到全部矩阵解\n$$P=\\begin{pmatrix}3-6s&4-6t&4-6r\\\\-1+2s&-1+2t&-1+2r\\\\s&t&r\\end{pmatrix}.$$\n计算 $\\det P=r-t$，故全部可逆解要求 $r\\ne t$。取 $s=t=0,r=1$ 即得答案中的矩阵，其行列式为 $1$。"
   }
 ]
