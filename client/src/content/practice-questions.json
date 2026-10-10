@@ -8,9 +8,9 @@
     "source": "2010 年数学二真题 · 第 5 题",
     "topic": "高等数学 / 多元微分 / 隐函数求导",
     "type": "choice",
-    "stem": "设函数 $z=z(x,y)$ 由方程 $F\\!\\left(\\dfrac{y}{x},\\dfrac{z}{x}\\right)=0$ 确定，其中 $F$ 为可微函数，且 $F'_2\\ne0$，则 $x\\dfrac{\\partial z}{\\partial x}+y\\dfrac{\\partial z}{\\partial y}=$（　）。",
+    "stem": "设函数 $z=z(x,y)$ 由方程 $F\\!\\left(\\dfrac{y}{x},\\dfrac{z}{x}\\right)=0$ 确定，记 $u=\\frac{y}{x}$、$v=\\frac{z}{x}$，其中 $F(u,v)$ 为可微函数，且 $\\frac{\\partial F}{\\partial v}\\ne0$，则 $x\\dfrac{\\partial z}{\\partial x}+y\\dfrac{\\partial z}{\\partial y}=$（　）。",
     "answer": "**B**，$z$。",
-    "explanation": "记 $u=\\dfrac{y}{x}$、$v=\\dfrac{z}{x}$。对原方程分别关于 $x,y$ 求偏导：\n$$\n\\begin{aligned}\n-yF'_1+(xz_x-z)F'_2&=0,\\\\[0.5em]\nF'_1+z_yF'_2&=0.\n\\end{aligned}\n$$\n第二式乘以 $y$ 后与第一式相加，得 $(xz_x+yz_y-z)F'_2=0$。由 $F'_2\\ne0$，得 $xz_x+yz_y=z$。求偏导时，$z$ 也随 $x,y$ 变化，必须使用复合函数求导法则。",
+    "explanation": "记 $u=\\dfrac{y}{x}$、$v=\\dfrac{z}{x}$。对原方程分别关于 $x,y$ 求偏导：\n$$\n\\begin{aligned}\n-y\\frac{\\partial F}{\\partial u}+(x\\frac{\\partial z}{\\partial x}-z)\\frac{\\partial F}{\\partial v}&=0,\\\\[0.5em]\n\\frac{\\partial F}{\\partial u}+\\frac{\\partial z}{\\partial y}\\frac{\\partial F}{\\partial v}&=0.\n\\end{aligned}\n$$\n第二式乘以 $y$ 后与第一式相加，得 $(x\\frac{\\partial z}{\\partial x}+y\\frac{\\partial z}{\\partial y}-z)\\frac{\\partial F}{\\partial v}=0$。由 $\\frac{\\partial F}{\\partial v}\\ne0$，得 $x\\frac{\\partial z}{\\partial x}+y\\frac{\\partial z}{\\partial y}=z$。求偏导时，$z$ 也随 $x,y$ 变化，必须使用复合函数求导法则。",
     "options": [
       {
         "key": "A",
@@ -342,9 +342,9 @@
     "source": "2011 年数学二真题 · 第 21 题",
     "topic": "高等数学 / 二重积分 / 分部积分",
     "type": "solution",
-    "stem": "已知 $f(x,y)$ 具有二阶连续偏导数，且 $f(1,y)=f(x,1)=0$，$\\displaystyle\\iint_D f(x,y)\\,dx\\,dy=a$，其中 $D=\\{(x,y)\\mid0\\le x\\le1,\\ 0\\le y\\le1\\}$。求\n$$I=\\iint_Dxy\\,f_{xy}(x,y)\\,dx\\,dy.$$",
+    "stem": "已知 $f(x,y)$ 具有二阶连续偏导数，且 $f(1,y)=f(x,1)=0$，$\\displaystyle\\iint_D f(x,y)\\,dx\\,dy=a$，其中 $D=\\{(x,y)\\mid0\\le x\\le1,\\ 0\\le y\\le1\\}$。求\n$$I=\\iint_Dxy\\,\\frac{\\partial^{2}f}{\\partial x\\partial y}(x,y)\\,dx\\,dy.$$",
     "answer": "$I=a$。",
-    "explanation": "由 $f(x,1)\\equiv0$，可知 $f_x(x,1)=0$。先对 $y$ 分部积分：\n$$\\int_0^1y f_{xy}(x,y)\\,dy=[y f_x(x,y)]_0^1-\\int_0^1f_x(x,y)\\,dy=-\\int_0^1f_x(x,y)\\,dy.$$\n交换积分次序，再对 $x$ 分部积分，并用 $f(1,y)=0$，得\n$$\\begin{aligned}\nI&=-\\int_0^1dy\\int_0^1x f_x(x,y)\\,dx\\\\\n&=-\\int_0^1\\left([xf(x,y)]_0^1-\\int_0^1f(x,y)\\,dx\\right)dy\\\\\n&=\\iint_D f(x,y)\\,dx\\,dy=a.\n\\end{aligned}$$\n连续偏导保证这里交换积分次序与分部积分可行。"
+    "explanation": "由 $f(x,1)\\equiv0$，可知 $\\frac{\\partial f}{\\partial x}(x,1)=0$。先对 $y$ 分部积分：\n$$\\int_0^1y \\frac{\\partial^{2}f}{\\partial x\\partial y}(x,y)\\,dy=[y \\frac{\\partial f}{\\partial x}(x,y)]_0^1-\\int_0^1\\frac{\\partial f}{\\partial x}(x,y)\\,dy=-\\int_0^1\\frac{\\partial f}{\\partial x}(x,y)\\,dy.$$\n交换积分次序，再对 $x$ 分部积分，并用 $f(1,y)=0$，得\n$$\\begin{aligned}\nI&=-\\int_0^1dy\\int_0^1x \\frac{\\partial f}{\\partial x}(x,y)\\,dx\\\\\n&=-\\int_0^1\\left([xf(x,y)]_0^1-\\int_0^1f(x,y)\\,dx\\right)dy\\\\\n&=\\iint_D f(x,y)\\,dx\\,dy=a.\n\\end{aligned}$$\n连续偏导保证这里交换积分次序与分部积分可行。"
   },
   {
     "id": "math2-2012-q3-original",
@@ -434,7 +434,7 @@
     "type": "fill",
     "stem": "设 $z=f\\!\\left(\\ln x+\\dfrac1y\\right)$，其中 $f(u)$ 可微，则 $x\\dfrac{\\partial z}{\\partial x}+y^2\\dfrac{\\partial z}{\\partial y}=\\underline{\\qquad}$。",
     "answer": "$0$。",
-    "explanation": "记 $u=\\ln x+\\dfrac1y$。由链式法则，$z_x=f'(u)\\dfrac1x$，$z_y=-f'(u)\\dfrac1{y^2}$，故\n$$xz_x+y^2z_y=f'(u)-f'(u)=0.$$\n两项中的 $f'$ 都要在同一个中间变量 $u$ 处取值。"
+    "explanation": "记 $u=\\ln x+\\dfrac1y$。由链式法则，$\\frac{\\partial z}{\\partial x}=f'(u)\\dfrac1x$，$\\frac{\\partial z}{\\partial y}=-f'(u)\\dfrac1{y^2}$，故\n$$x\\frac{\\partial z}{\\partial x}+y^2\\frac{\\partial z}{\\partial y}=f'(u)-f'(u)=0.$$\n两项中的 $f'$ 都要在同一个中间变量 $u$ 处取值。"
   },
   {
     "id": "math2-2012-q12-original",
@@ -770,7 +770,7 @@
     "type": "solution",
     "stem": "已知 $\\dfrac{\\partial f}{\\partial y}=2(y+1)$，且 $f(y,y)=(y+1)^2-(2-y)\\ln y$。求曲线 $f(x,y)=0$ 所围图形绕直线 $y=-1$ 旋转所得旋转体的体积。",
     "answer": "$V=\\pi\\left(2\\ln2-\\dfrac54\\right)$。",
-    "explanation": "**先还原曲线。** 由 $f_y=2(y+1)$，对 $y$ 积分得\n$$f(x,y)=(y+1)^2+C(x).$$\n这里积分常数可以依赖 $x$。代入 $f(y,y)$ 的条件，得 $C(y)=-(2-y)\\ln y$，因此\n$$f(x,y)=(y+1)^2-(2-x)\\ln x.$$\n曲线为 $(y+1)^2=(2-x)\\ln x$。要求 $x>0$ 且右侧非负，故 $1\\le x\\le2$；上下两条分支是\n$$y=-1\\pm\\sqrt{(2-x)\\ln x}.$$\n**再建立体积积分。** 图形关于旋转轴 $y=-1$ 对称，固定 $x$ 的整个线段旋转成一个圆盘，其半径为 $\\sqrt{(2-x)\\ln x}$。故\n$$V=\\pi\\int_1^2(2-x)\\ln x\\,dx.$$\n分部积分得到\n$$\\begin{aligned}\n\\int_1^2(2-x)\\ln x\\,dx\n&=\\left[\\left(2x-\\frac{x^2}{2}\\right)\\ln x-2x+\\frac{x^2}{4}\\right]_1^2\\\\\n&=2\\ln2-\\frac54.\n\\end{aligned}$$\n因此 $V=\\pi(2\\ln2-5/4)$。上下两条分支旋转生成同一个圆盘，体积不能重复乘 $2$。"
+    "explanation": "**先还原曲线。** 由 $\\frac{\\partial f}{\\partial y}=2(y+1)$，对 $y$ 积分得\n$$f(x,y)=(y+1)^2+C(x).$$\n这里积分常数可以依赖 $x$。代入 $f(y,y)$ 的条件，得 $C(y)=-(2-y)\\ln y$，因此\n$$f(x,y)=(y+1)^2-(2-x)\\ln x.$$\n曲线为 $(y+1)^2=(2-x)\\ln x$。要求 $x>0$ 且右侧非负，故 $1\\le x\\le2$；上下两条分支是\n$$y=-1\\pm\\sqrt{(2-x)\\ln x}.$$\n**再建立体积积分。** 图形关于旋转轴 $y=-1$ 对称，固定 $x$ 的整个线段旋转成一个圆盘，其半径为 $\\sqrt{(2-x)\\ln x}$。故\n$$V=\\pi\\int_1^2(2-x)\\ln x\\,dx.$$\n分部积分得到\n$$\\begin{aligned}\n\\int_1^2(2-x)\\ln x\\,dx\n&=\\left[\\left(2x-\\frac{x^2}{2}\\right)\\ln x-2x+\\frac{x^2}{4}\\right]_1^2\\\\\n&=2\\ln2-\\frac54.\n\\end{aligned}$$\n因此 $V=\\pi(2\\ln2-5/4)$。上下两条分支旋转生成同一个圆盘，体积不能重复乘 $2$。"
   },
   {
     "id": "math2-2014-q22-original",
@@ -1118,7 +1118,7 @@
     "type": "solution",
     "stem": "函数 $z=z(x,y)$ 由 $(x^2+y^2)z+\\ln z+2(x+y+1)=0$ 确定，求 $z(x,y)$ 的极值。",
     "answer": "在 $(-1,-1)$ 处取得极大值 $z=1$，也是全局最大值；无极小值。",
-    "explanation": "令 $F=(x^2+y^2)z+\\ln z+2(x+y+1)$。因 $z>0$ 且 $F_z=x^2+y^2+\\frac1z>0$，可求偏导：\n$$z_x=-\\frac{2xz+2}{F_z},\\qquad z_y=-\\frac{2yz+2}{F_z}.$$\n驻点满足 $x=y=-\\frac1z$。代入原式得 $\\ln z=\\frac2z-2$。函数 $h(z)=\\ln z-\\frac2z+2$ 严格递增且 $h(1)=0$，所以只有驻点 $(-1,-1)$，对应 $z=1$。\n在该点 $F_z=3$，且 $z_x=z_y=0$，二次求导得 $z_{xx}=z_{yy}=-\\frac23$、$z_{xy}=0$。于是 $z_{xx}z_{yy}-z_{xy}^2=\\frac49>0$，$z_{xx}<0$，为极大值。\n进一步，固定任意 $x,y$，$F$ 关于 $z$ 严格递增，且 $F(x,y,1)=(x+1)^2+(y+1)^2\\ge0$，因此其根满足 $z\\le1$，仅在 $(-1,-1)$ 取等号。全平面上仅此一个驻点，故无极小值。"
+    "explanation": "令 $F=(x^2+y^2)z+\\ln z+2(x+y+1)$。因 $z>0$ 且 $\\frac{\\partial F}{\\partial z}=x^2+y^2+\\frac1z>0$，可求偏导：\n$$\\frac{\\partial z}{\\partial x}=-\\frac{2xz+2}{\\frac{\\partial F}{\\partial z}},\\qquad \\frac{\\partial z}{\\partial y}=-\\frac{2yz+2}{\\frac{\\partial F}{\\partial z}}.$$\n驻点满足 $x=y=-\\frac1z$。代入原式得 $\\ln z=\\frac2z-2$。函数 $h(z)=\\ln z-\\frac2z+2$ 严格递增且 $h(1)=0$，所以只有驻点 $(-1,-1)$，对应 $z=1$。\n在该点 $\\frac{\\partial F}{\\partial z}=3$，且 $\\frac{\\partial z}{\\partial x}=\\frac{\\partial z}{\\partial y}=0$，二次求导得 $\\frac{\\partial^{2}z}{\\partial x^{2}}=\\frac{\\partial^{2}z}{\\partial y^{2}}=-\\frac23$、$\\frac{\\partial^{2}z}{\\partial x\\partial y}=0$。于是 $\\frac{\\partial^{2}z}{\\partial x^{2}}\\frac{\\partial^{2}z}{\\partial y^{2}}-{\\frac{\\partial^{2}z}{\\partial x\\partial y}}^2=\\frac49>0$，$\\frac{\\partial^{2}z}{\\partial x^{2}}<0$，为极大值。\n进一步，固定任意 $x,y$，$F$ 关于 $z$ 严格递增，且 $F(x,y,1)=(x+1)^2+(y+1)^2\\ge0$，因此其根满足 $z\\le1$，仅在 $(-1,-1)$ 取等号。全平面上仅此一个驻点，故无极小值。"
   },
   {
     "id": "math2-2016-q20-original",
@@ -1182,8 +1182,8 @@
     "topic": "高等数学 / 多元微分 / 隐函数求导",
     "type": "solution",
     "stem": "设函数 $z=z(x,y)$ 由方程 $F\\!\\left(x+\\dfrac{z}{y},\\,y+\\dfrac{z}{x}\\right)=0$ 确定，且 $F(u,v)$ 具有连续偏导数，求 $x\\dfrac{\\partial z}{\\partial x}+y\\dfrac{\\partial z}{\\partial y}$。",
-    "answer": "$xz_x+yz_y=z-xy$。推导按通常的隐函数求导条件 $G_z\\ne0$ 进行，具体条件见解析。",
-    "explanation": "令 $u=x+z/y$、$v=y+z/x$，$F_1,F_2$ 分别表示 $F$ 对两个自变量的偏导数，均在 $(u,v)$ 处取值。设 $G(x,y,z)=F(u,v)$；在 $x,y\\ne0$ 且 $G_z=F_1/y+F_2/x\\ne0$ 时，可以作隐函数求导。\n\n分别对 $x,y$ 求偏导：\n$$F_1\\left(1+\\frac{z_x}{y}\\right)+F_2\\left(\\frac{z_x}{x}-\\frac z{x^2}\\right)=0,$$\n$$F_1\\left(\\frac{z_y}{y}-\\frac z{y^2}\\right)+F_2\\left(1+\\frac{z_y}{x}\\right)=0.$$\n题目只求组合 $S=xz_x+yz_y$，因此第一式乘 $x$、第二式乘 $y$ 后相加：\n$$\\begin{aligned}\n0&=F_1\\left(x+\\frac{S-z}{y}\\right)+F_2\\left(y+\\frac{S-z}{x}\\right)\\\\\n&=\\left(\\frac{F_1}{y}+\\frac{F_2}{x}\\right)(xy+S-z).\n\\end{aligned}$$\n约去非零因子 $G_z$，得 $S=z-xy$。\n\n**条件说明：** 原题没有明写 $G_z\\ne0$，它是上述约分所需的非退化条件；仅有 $F$ 可微不足以保证该因子非零。"
+    "answer": "$x\\frac{\\partial z}{\\partial x}+y\\frac{\\partial z}{\\partial y}=z-xy$。推导按通常的隐函数求导条件 $\\frac{\\partial G}{\\partial z}\\ne0$ 进行，具体条件见解析。",
+    "explanation": "令 $u=x+z/y$、$v=y+z/x$，$\\frac{\\partial F}{\\partial u},\\frac{\\partial F}{\\partial v}$ 分别表示 $F$ 对两个自变量的偏导数，均在 $(u,v)$ 处取值。设 $G(x,y,z)=F(u,v)$；在 $x,y\\ne0$ 且 $\\frac{\\partial G}{\\partial z}=\\frac{\\partial F}{\\partial u}/y+\\frac{\\partial F}{\\partial v}/x\\ne0$ 时，可以作隐函数求导。\n\n分别对 $x,y$ 求偏导：\n$$\\frac{\\partial F}{\\partial u}\\left(1+\\frac{\\frac{\\partial z}{\\partial x}}{y}\\right)+\\frac{\\partial F}{\\partial v}\\left(\\frac{\\frac{\\partial z}{\\partial x}}{x}-\\frac z{x^2}\\right)=0,$$\n$$\\frac{\\partial F}{\\partial u}\\left(\\frac{\\frac{\\partial z}{\\partial y}}{y}-\\frac z{y^2}\\right)+\\frac{\\partial F}{\\partial v}\\left(1+\\frac{\\frac{\\partial z}{\\partial y}}{x}\\right)=0.$$\n题目只求组合 $S=x\\frac{\\partial z}{\\partial x}+y\\frac{\\partial z}{\\partial y}$，因此第一式乘 $x$、第二式乘 $y$ 后相加：\n$$\\begin{aligned}\n0&=\\frac{\\partial F}{\\partial u}\\left(x+\\frac{S-z}{y}\\right)+\\frac{\\partial F}{\\partial v}\\left(y+\\frac{S-z}{x}\\right)\\\\\n&=\\left(\\frac{\\frac{\\partial F}{\\partial u}}{y}+\\frac{\\frac{\\partial F}{\\partial v}}{x}\\right)(xy+S-z).\n\\end{aligned}$$\n约去非零因子 $\\frac{\\partial G}{\\partial z}$，得 $S=z-xy$。\n\n**条件说明：** 原题没有明写 $\\frac{\\partial G}{\\partial z}\\ne0$，它是上述约分所需的非退化条件；仅有 $F$ 可微不足以保证该因子非零。"
   },
   {
     "id": "math2-2010-q5-exercise2",
@@ -1196,7 +1196,7 @@
     "type": "choice",
     "stem": "设 $F(u,v)$ 具有一阶连续偏导数，且 $z=z(x,y)$ 由方程 $F\\!\\left(\\dfrac{x}{z},\\,yz\\right)=0$ 确定。设题中出现的分母不为零，则 $x\\dfrac{\\partial z}{\\partial x}-y\\dfrac{\\partial z}{\\partial y}=$（　）。",
     "answer": "B，即 $z$。",
-    "explanation": "第一步，令 $u=\\frac{x}{z}$、$v=yz$。分别对 $x,y$ 求偏导，得到\n\n$$\nF_1\\left(\\frac1z-\\frac{xz_x}{z^2}\\right)+F_2\\,yz_x=0,\n$$\n\n$$\n-F_1\\frac{xz_y}{z^2}+F_2(z+yz_y)=0.\n$$\n\n第二步，第一式乘 $x$，第二式乘 $y$，再用前者减去后者。记 $S=xz_x-yz_y$，则\n\n$$\nF_1\\left(\\frac{x}{z}-\\frac{xS}{z^2}\\right)+F_2(yS-yz)\n=(z-S)\\left(\\frac{xF_1}{z^2}-yF_2\\right)=0.\n$$\n\n第三步，隐函数求导的分母为 $G_z=-\\frac{xF_1}{z^2}+yF_2$，其中 $G=F(\\frac{x}{z},yz)$。题设“分母不为零”应包括 $z\\ne0$ 和 $G_z\\ne0$，因此上式第二个因子非零，可得 $z-S=0$，所以\n\n$$\nx\\frac{\\partial z}{\\partial x}-y\\frac{\\partial z}{\\partial y}=z.\n$$\n\n两道题的做法相同：先看题目要的是偏导数的哪种组合，再把偏导方程按对应系数相加或相减。",
+    "explanation": "第一步，令 $u=\\frac{x}{z}$、$v=yz$。分别对 $x,y$ 求偏导，得到\n\n$$\n\\frac{\\partial F}{\\partial u}\\left(\\frac1z-\\frac{x\\frac{\\partial z}{\\partial x}}{z^2}\\right)+\\frac{\\partial F}{\\partial v}\\,y\\frac{\\partial z}{\\partial x}=0,\n$$\n\n$$\n-\\frac{\\partial F}{\\partial u}\\frac{x\\frac{\\partial z}{\\partial y}}{z^2}+\\frac{\\partial F}{\\partial v}(z+y\\frac{\\partial z}{\\partial y})=0.\n$$\n\n第二步，第一式乘 $x$，第二式乘 $y$，再用前者减去后者。记 $S=x\\frac{\\partial z}{\\partial x}-y\\frac{\\partial z}{\\partial y}$，则\n\n$$\n\\frac{\\partial F}{\\partial u}\\left(\\frac{x}{z}-\\frac{xS}{z^2}\\right)+\\frac{\\partial F}{\\partial v}(yS-yz)\n=(z-S)\\left(\\frac{x\\frac{\\partial F}{\\partial u}}{z^2}-y\\frac{\\partial F}{\\partial v}\\right)=0.\n$$\n\n第三步，隐函数求导的分母为 $\\frac{\\partial G}{\\partial z}=-\\frac{x\\frac{\\partial F}{\\partial u}}{z^2}+y\\frac{\\partial F}{\\partial v}$，其中 $G=F(\\frac{x}{z},yz)$。题设“分母不为零”应包括 $z\\ne0$ 和 $\\frac{\\partial G}{\\partial z}\\ne0$，因此上式第二个因子非零，可得 $z-S=0$，所以\n\n$$\nx\\frac{\\partial z}{\\partial x}-y\\frac{\\partial z}{\\partial y}=z.\n$$\n\n两道题的做法相同：先看题目要的是偏导数的哪种组合，再把偏导方程按对应系数相加或相减。",
     "options": [
       {
         "key": "A",
@@ -1740,8 +1740,8 @@
     "topic": "高等数学 / 多元微分 / 复合函数与隐函数求导",
     "type": "solution",
     "stem": "设函数 $F(u,v)$ 可微，且 $F\\!\\left(x+\\dfrac{z}{y},\\,y+\\dfrac{z}{x}\\right)=0$ 确定隐函数 $z=z(x,y)$，求 $z-x\\dfrac{\\partial z}{\\partial x}-y\\dfrac{\\partial z}{\\partial y}$。",
-    "answer": "$z-xz_x-yz_y=xy$，按通常的隐函数非退化条件 $G_z\\ne0$ 求得。",
-    "explanation": "令 $u=x+z/y$、$v=y+z/x$，设 $G(x,y,z)=F(u,v)$。在 $x,y\\ne0$ 且 $G_z=F_u/y+F_v/x\\ne0$ 时，分别对原式求偏导：\n$$F_u\\left(1+\\frac{z_x}{y}\\right)+F_v\\left(\\frac{z_x}{x}-\\frac z{x^2}\\right)=0,$$\n$$F_u\\left(\\frac{z_y}{y}-\\frac z{y^2}\\right)+F_v\\left(1+\\frac{z_y}{x}\\right)=0.$$\n第一式乘 $x$，第二式乘 $y$，再相加整理：\n$$\\left(\\frac{F_u}{y}+\\frac{F_v}{x}\\right)(xy+xz_x+yz_y-z)=0.$$\n由 $G_z\\ne0$，得到 $z-xz_x-yz_y=xy$。直接组合偏导方程即可，无须分别解出 $z_x,z_y$。\n\n**条件说明：** 题干未明确列出非退化条件，不能仅凭 $F$ 可微约去系数。这里应记为 $G_z$，不能把 $F$ 对其两个自变量的偏导数混写成 $F_z$。"
+    "answer": "$z-x\\frac{\\partial z}{\\partial x}-y\\frac{\\partial z}{\\partial y}=xy$，按通常的隐函数非退化条件 $\\frac{\\partial G}{\\partial z}\\ne0$ 求得。",
+    "explanation": "令 $u=x+z/y$、$v=y+z/x$，设 $G(x,y,z)=F(u,v)$。在 $x,y\\ne0$ 且 $\\frac{\\partial G}{\\partial z}=\\frac{\\partial F}{\\partial u}/y+\\frac{\\partial F}{\\partial v}/x\\ne0$ 时，分别对原式求偏导：\n$$\\frac{\\partial F}{\\partial u}\\left(1+\\frac{\\frac{\\partial z}{\\partial x}}{y}\\right)+\\frac{\\partial F}{\\partial v}\\left(\\frac{\\frac{\\partial z}{\\partial x}}{x}-\\frac z{x^2}\\right)=0,$$\n$$\\frac{\\partial F}{\\partial u}\\left(\\frac{\\frac{\\partial z}{\\partial y}}{y}-\\frac z{y^2}\\right)+\\frac{\\partial F}{\\partial v}\\left(1+\\frac{\\frac{\\partial z}{\\partial y}}{x}\\right)=0.$$\n第一式乘 $x$，第二式乘 $y$，再相加整理：\n$$\\left(\\frac{\\frac{\\partial F}{\\partial u}}{y}+\\frac{\\frac{\\partial F}{\\partial v}}{x}\\right)(xy+x\\frac{\\partial z}{\\partial x}+y\\frac{\\partial z}{\\partial y}-z)=0.$$\n由 $\\frac{\\partial G}{\\partial z}\\ne0$，得到 $z-x\\frac{\\partial z}{\\partial x}-y\\frac{\\partial z}{\\partial y}=xy$。直接组合偏导方程即可，无须分别解出 $\\frac{\\partial z}{\\partial x},\\frac{\\partial z}{\\partial y}$。\n\n**条件说明：** 题干未明确列出非退化条件，不能仅凭 $F$ 可微约去系数。这里应记为 $\\frac{\\partial G}{\\partial z}$，不能把 $F$ 对其两个自变量的偏导数混写成 $\\frac{\\partial F}{\\partial z}$。"
   },
   {
     "id": "math2-2012-q11-exercise2",
@@ -1754,7 +1754,7 @@
     "type": "choice",
     "stem": "设隐函数 $z=z(x,y)$ 由方程 $y+z=xf(y^2-z^2)$ 确定，$f$ 可微，则 $x\\dfrac{\\partial z}{\\partial x}+z\\dfrac{\\partial z}{\\partial y}$ 等于：",
     "answer": "在隐函数求导的分母 $1+2xz f'(y^2-z^2)\\ne0$ 的条件下，选C，结果为 $y$。",
-    "explanation": "记 $s=y^2-z^2$。对原式分别求偏导，整理得\n\n$$\n(1+2xz f'(s))z_x=f(s),\\qquad\n(1+2xz f'(s))z_y=2xy f'(s)-1.\n$$\n\n第一式乘 $x$、第二式乘 $z$ 相加，再用 $xf(s)=y+z$，得到\n\n$$\n(1+2xz f'(s))(xz_x+zz_y)\n=y+2xyz f'(s).\n$$\n\n在隐函数求导的非退化条件下，两边除以 $1+2xz f'(s)$，结果为 $y$。注意题目第二项是 $zz_y$，不是 $yz_y$。\n\n题干应补充上述分母非零的条件；若分母为零，这个推导不能直接约分。",
+    "explanation": "记 $s=y^2-z^2$。对原式分别求偏导，整理得\n\n$$\n(1+2xz f'(s))\\frac{\\partial z}{\\partial x}=f(s),\\qquad\n(1+2xz f'(s))\\frac{\\partial z}{\\partial y}=2xy f'(s)-1.\n$$\n\n第一式乘 $x$、第二式乘 $z$ 相加，再用 $xf(s)=y+z$，得到\n\n$$\n(1+2xz f'(s))(x\\frac{\\partial z}{\\partial x}+z\\frac{\\partial z}{\\partial y})\n=y+2xyz f'(s).\n$$\n\n在隐函数求导的非退化条件下，两边除以 $1+2xz f'(s)$，结果为 $y$。注意题目第二项是 $z\\frac{\\partial z}{\\partial y}$，不是 $y\\frac{\\partial z}{\\partial y}$。\n\n题干应补充上述分母非零的条件；若分母为零，这个推导不能直接约分。",
     "options": [
       {
         "key": "A",
@@ -1786,7 +1786,7 @@
     "type": "solution",
     "stem": "设 $f(u)$ 可导，$z=f(\\cos y-\\cos x)+xy$，求\n\n$$\n\\frac{1}{\\sin x}\\frac{\\partial z}{\\partial x}\n+\\frac{1}{\\sin y}\\frac{\\partial z}{\\partial y}.\n$$",
     "answer": "$\\frac{y}{\\sin x}+\\frac{x}{\\sin y}$，在题式有定义处成立。",
-    "explanation": "由复合函数求导，\n\n$$\nz_x=f'(\\cos y-\\cos x)\\sin x+y,\\qquad\nz_y=-f'(\\cos y-\\cos x)\\sin y+x.\n$$\n\n分别除以 $\\sin x,\\sin y$ 后相加，两项 $f'$ 正好抵消，即得结果。求导时 $-\\cos x$ 的导数是 $+\\sin x$。"
+    "explanation": "由复合函数求导，\n\n$$\n\\frac{\\partial z}{\\partial x}=f'(\\cos y-\\cos x)\\sin x+y,\\qquad\n\\frac{\\partial z}{\\partial y}=-f'(\\cos y-\\cos x)\\sin y+x.\n$$\n\n分别除以 $\\sin x,\\sin y$ 后相加，两项 $f'$ 正好抵消，即得结果。求导时 $-\\cos x$ 的导数是 $+\\sin x$。"
   },
   {
     "id": "math2-2012-q12-exercise1",
@@ -2225,7 +2225,7 @@
     "type": "solution",
     "stem": "设函数 $z=xy\\,f\\!\\left(\\dfrac{y}{x}\\right)$，其中 $f(u)$ 可导，且满足\n\n$$\nx\\frac{\\partial z}{\\partial x}+y\\frac{\\partial z}{\\partial y}\n=y^2(\\ln y-\\ln x).\n$$\n\n第一问：求 $f(x)$ 的表达式。\n\n第二问：求 $f(x)$ 与 $x$ 轴所围图形的面积，以及该图形绕 $x$ 轴旋转一周所得旋转体的体积。",
     "answer": "$f(x)=\\frac12x\\ln x$，$x>0$；面积为 $\\frac{1}{8}$，体积为 $\\frac{\\pi}{54}$。",
-    "explanation": "第一问，原式的对数要求 $x>0,y>0$。令 $u=\\frac{y}{x}$，用复合函数求导法则得到\n\n$$\nz_x=yf(u)-\\frac{y^2}{x}f'(u),\\qquad\nz_y=xf(u)+yf'(u).\n$$\n\n故 $xz_x+yz_y=2xyf(u)$。与题设比较：\n\n$$\n2xyf(u)=y^2\\ln\\!\\left(\\frac{y}{x}\\right),\\qquad f(u)=\\frac12u\\ln u.\n$$\n\n因此 $f(x)=\\frac{x\\ln x}{2}$，$x>0$。\n\n第二问，$f(x)<0$ 在 $0<x<1$ 上成立；$x\\to0^+$ 时 $f(x)\\to0$，且 $f(1)=0$。面积为\n\n$$\nS=-\\frac12\\int_0^1x\\ln x\\,dx\n=-\\frac12\\left[\\frac{x^2}{2}\\ln x-\\frac{x^2}{4}\\right]_0^1=\\frac18.\n$$\n\n下端按极限处理，$x^2\\ln x\\to0$。绕 $x$ 轴旋转的体积为 $V=\\frac\\pi4 J$，其中 $J=\\int_0^1x^2(\\ln x)^2dx$。分部积分两次：\n\n$$\nJ=\\left[\\frac{x^3}{3}(\\ln x)^2\\right]_0^1\n-\\frac23\\int_0^1x^2\\ln x\\,dx,\n$$\n\n$$\n\\int_0^1x^2\\ln x\\,dx\n=\\left[\\frac{x^3}{3}\\ln x\\right]_0^1-\\frac13\\int_0^1x^2dx=-\\frac19.\n$$\n\n边界项均为0，故 $J=\\frac{2}{27}$，$V=\\frac{\\pi}{54}$。面积应取上下边界之差；旋转体积用半径平方，不会带入函数值的负号。"
+    "explanation": "第一问，原式的对数要求 $x>0,y>0$。令 $u=\\frac{y}{x}$，用复合函数求导法则得到\n\n$$\n\\frac{\\partial z}{\\partial x}=yf(u)-\\frac{y^2}{x}f'(u),\\qquad\n\\frac{\\partial z}{\\partial y}=xf(u)+yf'(u).\n$$\n\n故 $x\\frac{\\partial z}{\\partial x}+y\\frac{\\partial z}{\\partial y}=2xyf(u)$。与题设比较：\n\n$$\n2xyf(u)=y^2\\ln\\!\\left(\\frac{y}{x}\\right),\\qquad f(u)=\\frac12u\\ln u.\n$$\n\n因此 $f(x)=\\frac{x\\ln x}{2}$，$x>0$。\n\n第二问，$f(x)<0$ 在 $0<x<1$ 上成立；$x\\to0^+$ 时 $f(x)\\to0$，且 $f(1)=0$。面积为\n\n$$\nS=-\\frac12\\int_0^1x\\ln x\\,dx\n=-\\frac12\\left[\\frac{x^2}{2}\\ln x-\\frac{x^2}{4}\\right]_0^1=\\frac18.\n$$\n\n下端按极限处理，$x^2\\ln x\\to0$。绕 $x$ 轴旋转的体积为 $V=\\frac\\pi4 J$，其中 $J=\\int_0^1x^2(\\ln x)^2dx$。分部积分两次：\n\n$$\nJ=\\left[\\frac{x^3}{3}(\\ln x)^2\\right]_0^1\n-\\frac23\\int_0^1x^2\\ln x\\,dx,\n$$\n\n$$\n\\int_0^1x^2\\ln x\\,dx\n=\\left[\\frac{x^3}{3}\\ln x\\right]_0^1-\\frac13\\int_0^1x^2dx=-\\frac19.\n$$\n\n边界项均为0，故 $J=\\frac{2}{27}$，$V=\\frac{\\pi}{54}$。面积应取上下边界之差；旋转体积用半径平方，不会带入函数值的负号。"
   },
   {
     "id": "math2-2014-q22-exercise1",
@@ -2816,7 +2816,7 @@
     "type": "solution",
     "stem": "求由方程 $2x^2+2y^2+z^2+8xz-z+8=0$ 确定的函数 $z=z(x,y)$ 的极值，并指出是极大值还是极小值。",
     "answer": "在 $(-2,0)$ 处取得极小值1，在 $(\\frac{16}{7},0)$ 处取得极大值 $-\\frac{8}{7}$，分别对应方程的两个局部隐函数分支。",
-    "explanation": "第一步，令\n\n$$\nF(x,y,z)=2x^2+2y^2+z^2+8xz-z+8.\n$$\n\n当 $F_z=2z+8x-1\\ne0$ 时，隐函数偏导数为\n\n$$\nz_x=-\\frac{4x+8z}{2z+8x-1},\\qquad\nz_y=-\\frac{4y}{2z+8x-1}.\n$$\n\n驻点必须满足 $z_x=z_y=0$，因此 $x=-2z,\\;y=0$。\n\n第二步，把这两个条件代回原方程：\n\n$$\n-7z^2-z+8=0,\\qquad (7z+8)(z-1)=0.\n$$\n\n得到两个候选点\n\n$$\n(x,y,z)=(-2,0,1),\\qquad\n\\left(\\frac{16}{7},0,-\\frac87\\right).\n$$\n\n这两处 $F_z$ 分别为 $-15,15$，都能确定局部隐函数。\n\n第三步，在驻点处 $z_x=z_y=0$，二阶求导式简化为\n\n$$\nz_{xx}=-\\frac4{F_z},\\qquad z_{xy}=0,\\qquad z_{yy}=-\\frac4{F_z}.\n$$\n\n第一处二阶导数矩阵为 $\\operatorname{diag}(\\frac{4}{15},\\frac{4}{15})$，正定，所以极小值为1。第二处为 $\\operatorname{diag}(-\\frac{4}{15},-\\frac{4}{15})$，负定，所以极大值为 $-\\frac{8}{7}$。\n\n这是两个分支各自的局部极值，不能把它们当作同一分支上相互比较的最大值、最小值。"
+    "explanation": "第一步，令\n\n$$\nF(x,y,z)=2x^2+2y^2+z^2+8xz-z+8.\n$$\n\n当 $\\frac{\\partial F}{\\partial z}=2z+8x-1\\ne0$ 时，隐函数偏导数为\n\n$$\n\\frac{\\partial z}{\\partial x}=-\\frac{4x+8z}{2z+8x-1},\\qquad\n\\frac{\\partial z}{\\partial y}=-\\frac{4y}{2z+8x-1}.\n$$\n\n驻点必须满足 $\\frac{\\partial z}{\\partial x}=\\frac{\\partial z}{\\partial y}=0$，因此 $x=-2z,\\;y=0$。\n\n第二步，把这两个条件代回原方程：\n\n$$\n-7z^2-z+8=0,\\qquad (7z+8)(z-1)=0.\n$$\n\n得到两个候选点\n\n$$\n(x,y,z)=(-2,0,1),\\qquad\n\\left(\\frac{16}{7},0,-\\frac87\\right).\n$$\n\n这两处 $\\frac{\\partial F}{\\partial z}$ 分别为 $-15,15$，都能确定局部隐函数。\n\n第三步，在驻点处 $\\frac{\\partial z}{\\partial x}=\\frac{\\partial z}{\\partial y}=0$，二阶求导式简化为\n\n$$\n\\frac{\\partial^{2}z}{\\partial x^{2}}=-\\frac4{\\frac{\\partial F}{\\partial z}},\\qquad \\frac{\\partial^{2}z}{\\partial x\\partial y}=0,\\qquad \\frac{\\partial^{2}z}{\\partial y^{2}}=-\\frac4{\\frac{\\partial F}{\\partial z}}.\n$$\n\n第一处二阶导数矩阵为 $\\operatorname{diag}(\\frac{4}{15},\\frac{4}{15})$，正定，所以极小值为1。第二处为 $\\operatorname{diag}(-\\frac{4}{15},-\\frac{4}{15})$，负定，所以极大值为 $-\\frac{8}{7}$。\n\n这是两个分支各自的局部极值，不能把它们当作同一分支上相互比较的最大值、最小值。"
   },
   {
     "id": "math2-2016-q17-exercise2",
@@ -2829,7 +2829,7 @@
     "type": "solution",
     "stem": "设函数 $z=z(x,y)$ 由方程 $x^2-6xy+10y^2-2yz-z^2+18=0$ 确定，求其极值。",
     "answer": "在 $(9,3)$ 处取得极小值3，在 $(-9,-3)$ 处取得极大值 $-3$，分别属于两个隐函数分支。",
-    "explanation": "第一步，令\n\n$$\nF=x^2-6xy+10y^2-2yz-z^2+18,\\qquad F_z=-2y-2z.\n$$\n\n由 $z_x=-\\frac{F_x}{F_z},\\;z_y=-\\frac{F_y}{F_z}$，驻点须满足\n\n$$\n2x-6y=0,\\qquad -6x+20y-2z=0.\n$$\n\n因此 $x=3y,\\;y=z$，也就是 $x=3z$。\n\n第二步，代回原方程，得到 $-2z^2+18=0$，所以\n\n$$\n(x,y,z)=(9,3,3),\\qquad (-9,-3,-3).\n$$\n\n两处 $F_z=-4z\\ne0$，可以使用隐函数的二阶导数。\n\n第三步，在驻点处得到\n\n$$\nz_{xx}=\\frac1{2z},\\qquad z_{xy}=-\\frac3{2z},\\qquad z_{yy}=\\frac5z,\n$$\n\n$$\nz_{xx}z_{yy}-z_{xy}^2=\\frac1{4z^2}>0.\n$$\n\n当 $z=3$ 时 $z_{xx}>0$，所以是极小值3；当 $z=-3$ 时 $z_{xx}<0$，所以是极大值 $-3$。\n\n还可用配方检验：\n\n$$\n(x-3y)^2+(y-z)^2=2z^2-18\\geq0,\n$$\n\n故正分支满足 $z\\geq3$，负分支满足 $z\\leq-3$，与极值结论一致。"
+    "explanation": "第一步，令\n\n$$\nF=x^2-6xy+10y^2-2yz-z^2+18,\\qquad \\frac{\\partial F}{\\partial z}=-2y-2z.\n$$\n\n由 $\\frac{\\partial z}{\\partial x}=-\\frac{\\frac{\\partial F}{\\partial x}}{\\frac{\\partial F}{\\partial z}},\\;\\frac{\\partial z}{\\partial y}=-\\frac{\\frac{\\partial F}{\\partial y}}{\\frac{\\partial F}{\\partial z}}$，驻点须满足\n\n$$\n2x-6y=0,\\qquad -6x+20y-2z=0.\n$$\n\n因此 $x=3y,\\;y=z$，也就是 $x=3z$。\n\n第二步，代回原方程，得到 $-2z^2+18=0$，所以\n\n$$\n(x,y,z)=(9,3,3),\\qquad (-9,-3,-3).\n$$\n\n两处 $\\frac{\\partial F}{\\partial z}=-4z\\ne0$，可以使用隐函数的二阶导数。\n\n第三步，在驻点处得到\n\n$$\n\\frac{\\partial^{2}z}{\\partial x^{2}}=\\frac1{2z},\\qquad \\frac{\\partial^{2}z}{\\partial x\\partial y}=-\\frac3{2z},\\qquad \\frac{\\partial^{2}z}{\\partial y^{2}}=\\frac5z,\n$$\n\n$$\n\\frac{\\partial^{2}z}{\\partial x^{2}}\\frac{\\partial^{2}z}{\\partial y^{2}}-{\\frac{\\partial^{2}z}{\\partial x\\partial y}}^2=\\frac1{4z^2}>0.\n$$\n\n当 $z=3$ 时 $\\frac{\\partial^{2}z}{\\partial x^{2}}>0$，所以是极小值3；当 $z=-3$ 时 $\\frac{\\partial^{2}z}{\\partial x^{2}}<0$，所以是极大值 $-3$。\n\n还可用配方检验：\n\n$$\n(x-3y)^2+(y-z)^2=2z^2-18\\geq0,\n$$\n\n故正分支满足 $z\\geq3$，负分支满足 $z\\leq-3$，与极值结论一致。"
   },
   {
     "id": "math2-2016-q20-exercise1",
