@@ -4,11 +4,11 @@ import MathMarkdown from '@/components/MathMarkdown.vue'
 import PracticeIcon from '@/components/PracticeIcon.vue'
 import type { Mastery, PracticeQuestion, QuestionProgress } from '@/math/practice'
 
-const props = defineProps<{ question: PracticeQuestion; index: number; progress?: QuestionProgress; storageFailed: boolean }>()
-const emit = defineEmits<{ mark: [id: string, mastery: Mastery]; note: [id: string, note: string] }>()
+const props = defineProps<{ question: PracticeQuestion; index: number; progress?: QuestionProgress; storageFailed: boolean; showNote?: boolean }>()
+const emit = defineEmits<{ mark: [id: string, mastery: Mastery]; note: [id: string, note: string]; noteBlur: [] }>()
 const figureUrl = (src: string) => `${import.meta.env.BASE_URL}${src}`
 const answerOpen = ref(false)
-const noteOpen = ref(false)
+const noteOpen = ref(props.showNote ?? false)
 const selectedOption = ref('')
 const showResult = computed(() => answerOpen.value || Boolean(selectedOption.value))
 const statuses: { value: Mastery; label: string }[] = [
@@ -44,7 +44,7 @@ const statuses: { value: Mastery; label: string }[] = [
       <h4>答案</h4><MathMarkdown :source="question.answer" compact />
       <h4>解析</h4><MathMarkdown :source="question.explanation" compact />
     </section>
-    <label v-if="noteOpen" :id="`note-${question.id}`" class="note-area"><span>错因笔记</span><textarea :aria-label="`${question.source}的错因笔记`" :value="progress?.note ?? ''" maxlength="10000" placeholder="记录错因或易忘的步骤" rows="2" @input="emit('note', question.id, ($event.target as HTMLTextAreaElement).value)" /><small>{{ storageFailed ? '保存失败，请导出备份' : '自动保存' }}</small></label>
+    <label v-if="noteOpen" :id="`note-${question.id}`" class="note-area"><span>错因笔记</span><textarea :aria-label="`${question.source}的错因笔记`" :value="progress?.note ?? ''" maxlength="10000" @blur="emit('noteBlur')" placeholder="记录错因或易忘的步骤" rows="2" @input="emit('note', question.id, ($event.target as HTMLTextAreaElement).value)" /><small>{{ storageFailed ? '保存失败，请导出备份' : '自动保存' }}</small></label>
   </article>
 </template>
 

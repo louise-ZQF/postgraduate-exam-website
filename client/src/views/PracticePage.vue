@@ -5,7 +5,7 @@ import MathHeader from '@/components/MathHeader.vue'
 import PracticeQuestionCard from '@/components/PracticeQuestionCard.vue'
 import PracticeIcon from '@/components/PracticeIcon.vue'
 import { demoQuestion, practiceQuestions } from '@/math/practiceQuestions'
-import { isPending, mergeProgress, normalizeProgress, PRACTICE_STORAGE_KEY, readPracticeProgress, savePracticeProgress, type Mastery, type PracticeProgress } from '@/math/practice'
+import { hasNote, isPending, mergeProgress, normalizeProgress, PRACTICE_STORAGE_KEY, readPracticeProgress, savePracticeProgress, type Mastery, type PracticeProgress } from '@/math/practice'
 
 const route = useRoute()
 const router = useRouter()
@@ -19,12 +19,12 @@ const questionById = new Map([...questions, demoQuestion].map(q => [q.id, q]))
 const progress = ref<PracticeProgress>(readPracticeProgress())
 const demoProgress = ref<PracticeProgress>({})
 const demoMode = ref(questions.length === 0)
-const mode = computed(() => route.query.view === 'review' ? 'review' : 'all')
+const mode = computed(() => route.query.view === 'notes' ? 'notes' : route.query.view === 'review' ? 'review' : 'all')
 const selectedYear = computed(() => {
   const requested = Number(route.query.year)
   if (questions.some(q => q.year === requested)) return String(requested)
   const linked = questionById.get(String(route.query.question ?? ''))
-  return String(linked?.year || questions[0]?.year || '')
+  return String(linked?.year || (mode.value === 'notes' ? '' : questions[0]?.year) || '')
 })
 const keyword = ref('')
 const statusFilter = ref('all')
@@ -41,20 +41,23 @@ const activeProgress = computed(() => demoMode.value ? demoProgress.value : prog
 const sourceQuestions = computed(() => demoMode.value ? [demoQuestion] : questions)
 const pendingInPaper = computed(() => questions.filter(q => String(q.year) === selectedYear.value && isPending(progress.value[q.id])).length)
 const pendingCount = computed(() => questions.filter(q => isPending(progress.value[q.id])).length)
+const notedCount = computed(() => questions.filter(q => hasNote(progress.value[q.id])).length)
 const masteredCount = computed(() => questions.filter(q => progress.value[q.id]?.mastery === 'mastered').length)
 const years = computed(() => [...new Set(questions.map(q => q.year))].map(value => {
   const group = questions.filter(q => q.year === value)
-  return { value, count: group.length, pending: group.filter(q => isPending(progress.value[q.id])).length }
+  return { value, count: group.length, pending: group.filter(q => isPending(progress.value[q.id])).length, notes: group.filter(q => hasNote(progress.value[q.id])).length }
 }))
+const directoryYears = computed(() => mode.value === 'notes' ? years.value.filter(item => item.notes > 0) : years.value)
 const filtered = computed(() => sourceQuestions.value.filter(q => {
   const item = activeProgress.value[q.id]
-  return (demoMode.value || String(q.year) === selectedYear.value)
+  return (demoMode.value || (mode.value === 'notes' && !selectedYear.value) || String(q.year) === selectedYear.value)
     && (mode.value !== 'review' || isPending(item))
+    && (mode.value !== 'notes' || hasNote(item))
     && (statusFilter.value === 'all' || (statusFilter.value === 'unmarked' ? !item?.mastery : item?.mastery === statusFilter.value))
-    && (!keyword.value.trim() || `${q.year} ${q.number} ${q.source} ${q.topic} ${q.stem}`.toLowerCase().includes(keyword.value.trim().toLowerCase()))
+    && (!keyword.value.trim() || `${q.year} ${q.number} ${q.source} ${q.topic} ${q.stem} ${mode.value === 'notes' ? item?.note ?? '' : ''}`.toLowerCase().includes(keyword.value.trim().toLowerCase()))
 }))
 const queue = computed(() => queueIds.value.map(id => questionById.get(id)).filter(q => q !== undefined))
-const heading = computed(() => demoMode.value ? '错题示例' : mode.value === 'review' ? '数学二错题再练' : '数学二错题本')
+const heading = computed(() => demoMode.value ? '错题示例' : mode.value === 'notes' ? '有笔记的题目' : mode.value === 'review' ? '数学二错题再练' : '数学二错题本')
 const markedInQueue = computed(() => queue.value.filter(q => activeProgress.value[q.id]?.mastery).length)
 const yearGroups = computed(() => [...new Set(queue.value.map(q => q.year))].map(value => ({
   year: value, questions: queue.value.filter(q => q.year === value),
@@ -84,10 +87,10 @@ async function jumpToRoute() {
   }
 }
 watch(() => [route.query.year, route.query.question, route.query.view], jumpToRoute)
-async function selectView(view: 'all' | 'review', targetYear = selectedYear.value) {
+async function selectView(view: 'all' | 'review' | 'notes', targetYear = view === 'notes' ? '' : selectedYear.value) {
   directoryOpen.value = false
   statusFilter.value = 'all'
-  await router.push({ name: 'practice', query: { ...(view === 'review' ? { view } : {}), ...(targetYear ? { year: targetYear } : {}) } })
+  await router.push({ name: 'practice', query: { ...(view !== 'all' ? { view } : {}), ...(targetYear ? { year: targetYear } : {}) } })
   await jumpToRoute()
 }
 function persist(id: string, patch: { mastery?: Mastery; note?: string; reviews?: number }) {
@@ -104,6 +107,10 @@ function mark(id: string, mastery: Mastery) {
   notice.value = demoMode.value ? '示例状态已更新' : mastery === 'mastered' ? '已掌握，已移出待复习集合' : '已加入错题再练'
 }
 function saveNote(id: string, note: string) { persist(id, { note }) }
+function refreshNotesQueue() {
+  // 清空笔记后等编辑结束再移出，避免输入途中卡片消失。
+  if (mode.value === 'notes') queueIds.value = filtered.value.map(q => q.id)
+}
 function exportBackup() {
   const blob = new Blob([JSON.stringify({ version: 1, exportedAt: new Date().toISOString(), progress: progress.value }, null, 2)], { type: 'application/json' })
   const url = URL.createObjectURL(blob)
@@ -127,7 +134,12 @@ async function importBackup(event: Event) {
   } catch { notice.value = '无法恢复，请选择本页面导出的 JSON 进度备份（不超过 5 MB）。' }
   input.value = ''
 }
-function syncProgress(event: StorageEvent) { if (event.key === PRACTICE_STORAGE_KEY || event.key === null) progress.value = readPracticeProgress() }
+function syncProgress(event: StorageEvent) {
+  if (event.key === PRACTICE_STORAGE_KEY || event.key === null) {
+    progress.value = readPracticeProgress()
+    refreshNotesQueue()
+  }
+}
 onMounted(() => {
   window.addEventListener('storage', syncProgress)
   jumpToRoute()
@@ -147,12 +159,14 @@ onBeforeUnmount(() => {
         <div id="directory-content" class="directory-content" :class="{ open: directoryOpen }">
           <div class="directory-brand"><PracticeIcon name="book" /><div><strong>错题工作台</strong></div></div>
           <nav class="collection-nav" aria-label="错题集合">
-            <button :class="{ active: mode === 'all' }" @click="selectView('all')"><PracticeIcon name="book" />年份试卷<span>{{ questions.length }}</span></button>
-            <button :class="{ active: mode === 'review' }" @click="selectView('review')"><PracticeIcon name="repeat" />错题再练<span>{{ pendingCount }}</span></button>
+            <button :aria-pressed="mode === 'all'" :class="{ active: mode === 'all' }" @click="selectView('all')"><PracticeIcon name="book" />年份试卷<span>{{ questions.length }}</span></button>
+            <button :aria-pressed="mode === 'review'" :class="{ active: mode === 'review' }" @click="selectView('review')"><PracticeIcon name="repeat" />错题再练<span>{{ pendingCount }}</span></button>
+            <button :aria-pressed="mode === 'notes'" :class="{ active: mode === 'notes' }" @click="selectView('notes')"><PracticeIcon name="note" />有笔记的题目<span>{{ notedCount }}</span></button>
           </nav>
-          <div class="directory-heading">试卷年份<span>{{ years.length }} 个年份</span></div>
+          <div class="directory-heading">{{ mode === 'notes' ? '笔记年份' : '试卷年份' }}<span>{{ directoryYears.length }} 个年份</span></div>
           <nav class="year-nav" aria-label="年份分类">
-            <button v-for="item in years" :key="item.value" :class="{ active: selectedYear === String(item.value) }" @click="selectView(mode, String(item.value))"><span>{{ item.value }} 年</span><span>{{ mode === 'review' ? item.pending : item.count }}</span></button>
+            <button v-if="mode === 'notes'" :aria-pressed="!selectedYear" :class="{ active: !selectedYear }" @click="selectView('notes')"><span>全部年份</span><span>{{ notedCount }}</span></button>
+            <button v-for="item in directoryYears" :aria-pressed="selectedYear === String(item.value)" :key="item.value" :class="{ active: selectedYear === String(item.value) }" @click="selectView(mode, String(item.value))"><span>{{ item.value }} 年</span><span>{{ mode === 'notes' ? item.notes : mode === 'review' ? item.pending : item.count }}</span></button>
           </nav>
           <p v-if="!years.length" class="directory-empty">题目上传后，这里会自动按真实年份生成目录。</p>
           <div class="progress-card"><div><span>已掌握</span><strong>{{ masteredCount }} <small>/ {{ questions.length }}</small></strong></div><progress :value="masteredCount" :max="questions.length || 1" aria-label="正式错题掌握进度" /><p>不熟练和不会的题，会自动收集到错题再练。</p></div>
@@ -161,18 +175,18 @@ onBeforeUnmount(() => {
         </div>
       </aside>
       <main id="practice-main">
-        <header class="workspace-heading"><div><h1>{{ heading }}</h1><p v-if="mode === 'review'">不熟练和不会的题</p></div><button class="primary-button" @click="mode === 'review' ? restartQueue() : selectView('review')"><PracticeIcon name="repeat" />{{ mode === 'review' ? '重新开始本轮' : '本卷错题再练' }}<span v-if="mode !== 'review'">{{ pendingInPaper }}</span></button></header>
+        <header class="workspace-heading"><div><h1>{{ heading }}</h1><p v-if="mode === 'notes'">写过笔记的题目，按年份汇总</p><p v-else-if="mode === 'review'">不熟练和不会的题</p></div><button v-if="mode !== 'notes'" class="primary-button" @click="mode === 'review' ? restartQueue() : selectView('review')"><PracticeIcon name="repeat" />{{ mode === 'review' ? '重新开始本轮' : '本卷错题再练' }}<span v-if="mode !== 'review'">{{ pendingInPaper }}</span></button></header>
         <section v-if="!questions.length" class="preview-banner"><PracticeIcon name="book" /><div><strong>错题本已就绪，等待录入你的题目</strong><p>下方使用你提供的截图演示操作，年份尚未确认，不计入正式题库和复习统计。</p></div><button @click="demoMode = !demoMode">{{ demoMode ? '收起示例' : '体验示例' }}</button></section>
         <p v-if="storageFailed" role="alert" class="storage-error">浏览器暂时无法保存进度，请立即导出备份以保留本次标记和笔记。</p>
-        <div class="toolbar"><div class="scope-label">{{ demoMode ? '交互示例' : `${selectedYear} 年错题卷` }}<span>{{ queue.length }} 题 · 已标记 {{ markedInQueue }}</span></div><div class="toolbar-filters"><label class="question-search"><PracticeIcon name="search" /><input v-model="keyword" maxlength="80" aria-label="搜索错题" placeholder="搜索题目、知识点" /></label><select v-model="statusFilter" aria-label="按掌握程度筛选"><option value="all">全部状态</option><option value="unmarked">未标记</option><option v-for="status in statuses" :key="status.value" :value="status.value">{{ status.label }}</option></select></div></div>
+        <div class="toolbar"><div class="scope-label">{{ demoMode ? '交互示例' : mode === 'notes' ? (selectedYear ? `${selectedYear} 年笔记题目` : '全部笔记题目') : `${selectedYear} 年错题卷` }}<span>{{ queue.length }} 题 · 已标记 {{ markedInQueue }}</span></div><div class="toolbar-filters"><label class="question-search"><PracticeIcon name="search" /><input v-model="keyword" maxlength="80" aria-label="搜索错题" :placeholder="mode === 'notes' ? '搜索题目、笔记内容' : '搜索题目、知识点'" /></label><select v-model="statusFilter" aria-label="按掌握程度筛选"><option value="all">全部状态</option><option value="unmarked">未标记</option><option v-for="status in statuses" :key="status.value" :value="status.value">{{ status.label }}</option></select></div></div>
         <div v-if="queue.length" class="question-list">
           <section v-for="group in yearGroups" :id="`practice-year-${group.year}`" :key="group.year" class="year-section" :aria-labelledby="`year-title-${group.year}`">
-            <header class="paper-heading"><div><span class="paper-label">真题与配套练习</span><h2 :id="`year-title-${group.year}`">{{ group.year }} 年数学二 · 错题卷</h2></div><span>{{ group.questions.length }} 题</span></header>
-            <div class="year-questions"><PracticeQuestionCard v-for="(question, index) in group.questions" :key="`${round}-${question.id}`" :question="question" :index="index + 1" :progress="activeProgress[question.id]" :storage-failed="storageFailed" @mark="mark" @note="saveNote" /></div>
+            <header class="paper-heading"><div><span class="paper-label">{{ mode === 'notes' ? '有笔记的题目' : '真题与配套练习' }}</span><h2 :id="`year-title-${group.year}`">{{ group.year }} 年数学二 · {{ mode === 'notes' ? '笔记题目' : '错题卷' }}</h2></div><span>{{ group.questions.length }} 题</span></header>
+            <div class="year-questions"><PracticeQuestionCard v-for="(question, index) in group.questions" :key="`${round}-${question.id}`" :question="question" :index="index + 1" :progress="activeProgress[question.id]" :storage-failed="storageFailed" :show-note="mode === 'notes'" @note-blur="refreshNotesQueue" @mark="mark" @note="saveNote" /></div>
           </section>
-          <footer class="paper-end"><strong>{{ selectedYear }} 年错题卷 · 本卷结束</strong></footer>
+          <footer class="paper-end"><strong>{{ mode === 'notes' ? '笔记汇总 · 本页结束' : `${selectedYear} 年错题卷 · 本卷结束` }}</strong></footer>
         </div>
-        <section v-else class="empty-state"><PracticeIcon :name="mode === 'review' ? 'check' : 'book'" /><h2>{{ mode === 'review' ? '这里暂时没有需要再练的题' : questions.length ? '没有符合筛选条件的题目' : '准备好收集你的第一道错题' }}</h2><p>{{ mode === 'review' ? '将题目标为“不熟练”或“不会”后，它们会自动出现在这里。' : questions.length ? '试试其他年份、状态，或清空搜索关键词。' : '上传题目时附上年份，我会把题干、答案和解析一起录入。' }}</p><button v-if="mode === 'review'" class="primary-button" @click="selectView('all')">返回本卷错题</button></section>
+        <section v-else class="empty-state"><PracticeIcon :name="mode === 'review' ? 'check' : 'book'" /><h2>{{ mode === 'notes' ? '暂无符合条件的笔记题目' : mode === 'review' ? '这里暂时没有需要再练的题' : questions.length ? '没有符合筛选条件的题目' : '准备好收集你的第一道错题' }}</h2><p>{{ mode === 'notes' ? '在题目下方写下笔记后，会自动收集到这里；也可以调整年份、状态或搜索条件。' : mode === 'review' ? '将题目标为“不熟练”或“不会”后，它们会自动出现在这里。' : questions.length ? '试试其他年份、状态，或清空搜索关键词。' : '上传题目时附上年份，我会把题干、答案和解析一起录入。' }}</p><button v-if="mode !== 'all'" class="primary-button" @click="selectView('all')">返回错题本</button></section>
         <p v-if="notice" class="notice" role="status" aria-live="polite">{{ notice }}</p>
       </main>
     </div>

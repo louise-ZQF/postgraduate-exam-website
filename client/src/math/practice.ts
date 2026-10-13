@@ -41,6 +41,10 @@ export function isPending(item?: QuestionProgress): boolean {
   return item?.mastery === 'unfamiliar' || item?.mastery === 'unknown'
 }
 
+export function hasNote(item?: QuestionProgress): boolean {
+  return Boolean(item?.note?.trim())
+}
+
 export function mergeProgress(current: PracticeProgress, incoming: PracticeProgress): PracticeProgress {
   const result = normalizeProgress(current)
   for (const [id, item] of Object.entries(normalizeProgress(incoming))) {
