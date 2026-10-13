@@ -16,7 +16,7 @@ export type PracticeQuestion = {
   answer: string
   explanation: string
 }
-export type QuestionProgress = { mastery?: Mastery; note: string; updatedAt: number; reviews: number }
+export type QuestionProgress = { mastery?: Mastery; removed?: boolean; note: string; updatedAt: number; reviews: number }
 export type PracticeProgress = Record<string, QuestionProgress>
 export const PRACTICE_STORAGE_KEY = 'math2-practice-progress-v1'
 
@@ -29,6 +29,7 @@ export function normalizeProgress(value: unknown): PracticeProgress {
     const mastery = ['unfamiliar', 'unknown', 'mastered'].includes(item.mastery ?? '') ? item.mastery : undefined
     result[id] = {
       mastery,
+      ...(typeof item.removed === 'boolean' ? { removed: item.removed } : {}),
       note: typeof item.note === 'string' ? item.note.slice(0, 10000) : '',
       updatedAt: typeof item.updatedAt === 'number' && Number.isFinite(item.updatedAt) ? item.updatedAt : 0,
       reviews: typeof item.reviews === 'number' && Number.isFinite(item.reviews) ? Math.max(0, Math.floor(item.reviews)) : 0,

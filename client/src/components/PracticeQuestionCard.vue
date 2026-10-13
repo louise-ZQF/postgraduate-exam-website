@@ -4,8 +4,8 @@ import MathMarkdown from '@/components/MathMarkdown.vue'
 import PracticeIcon from '@/components/PracticeIcon.vue'
 import type { Mastery, PracticeQuestion, QuestionProgress } from '@/math/practice'
 
-const props = defineProps<{ question: PracticeQuestion; index: number; progress?: QuestionProgress; storageFailed: boolean; showNote?: boolean }>()
-const emit = defineEmits<{ mark: [id: string, mastery: Mastery]; note: [id: string, note: string]; noteBlur: [] }>()
+const props = defineProps<{ question: PracticeQuestion; index: number; progress?: QuestionProgress; storageFailed: boolean; showNote?: boolean; removed?: boolean; manageable?: boolean }>()
+const emit = defineEmits<{ mark: [id: string, mastery: Mastery]; note: [id: string, note: string]; noteBlur: []; remove: [id: string]; restore: [id: string] }>()
 const figureUrl = (src: string) => `${import.meta.env.BASE_URL}${src}`
 const answerOpen = ref(false)
 const noteOpen = ref(props.showNote ?? false)
@@ -22,6 +22,7 @@ const statuses: { value: Mastery; label: string }[] = [
       <span class="question-index">{{ question.number }}</span>
       <div class="question-source"><span>{{ question.source }}</span><span v-if="question.exerciseIndex" class="exam-number">真题 {{ question.examNumber }} · 练习 {{ question.exerciseIndex }}</span></div>
       <span v-if="progress?.mastery" class="mastery-badge" :class="progress.mastery">{{ statuses.find(s => s.value === progress?.mastery)?.label }}</span>
+      <button v-if="manageable" class="question-manage" :class="{ restore: removed }" :aria-label="`${question.source}：${removed ? '恢复题目' : '移除题目'}`" @click="removed ? emit('restore', question.id) : emit('remove', question.id)"><PracticeIcon :name="removed ? 'repeat' : 'trash'" />{{ removed ? '恢复题目' : '移除题目' }}</button>
     </header>
     <h3 :id="`title-${question.id}`" class="visually-hidden">{{ question.year }} 年 {{ question.source }} {{ question.number }}题</h3>
     <p class="question-topic">{{ question.topic }}</p>
@@ -58,6 +59,7 @@ button { cursor: pointer; transition: background .16s, border-color .16s, color 
 .question-source { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; min-width: 0; line-height: 1.6; }
 .exam-number { white-space: nowrap; }
 .mastery-badge { margin-left: auto; border-radius: 5px; padding: 3px 7px; white-space: nowrap; }
+.question-manage { display: inline-flex; align-items: center; justify-content: center; gap: 5px; flex-shrink: 0; min-height: 44px; margin-left: auto; border: 0; border-radius: 6px; padding: 0 8px; background: transparent; color: var(--muted); font-size: 12px; }.question-manage:hover { color: var(--danger); background: var(--danger-tint); }.question-manage.restore { color: var(--accent-dark); }.question-manage.restore:hover { background: var(--accent-tint); }
 .question-topic { margin: 6px 0 0 38px; color: var(--muted); font-size: 12px; line-height: 1.5; }
 .question-stem { margin: 14px 0; font-size: 18px; line-height: 1.7; font-weight: 500; }
 .question-figures { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin: 12px 0 18px; }.question-figures figure { margin: 0; width: 340px; max-width: 100%; text-align: center; }.question-figures img { display: block; width: 100%; max-height: 260px; height: auto; object-fit: contain; margin: 0 auto; border-radius: 6px; background: white; }.question-figures figcaption { margin-top: 6px; color: var(--muted); font-size: 12px; line-height: 1.7; }
@@ -91,5 +93,6 @@ button { cursor: pointer; transition: background .16s, border-color .16s, color 
 .note-area small { color: var(--muted); }
 .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 @media (max-width: 1000px) { .mastery-controls { margin-left: 0; }.note-toggle { margin-left: auto; } }
-@media (max-width: 600px) { .question-card { padding: 14px 14px 8px; }.question-stem { font-size: 17px; }.question-topic { margin-left: 0; }.options { grid-template-columns: 1fr; }.question-actions { gap: 5px 8px; }.answer-toggle { order: 0; }.note-toggle { order: 1; }.mastery-controls { order: 2; width: 100%; }.mastery-controls button { flex: 1; }.question-source { font-size: 12px; } }
+@media (max-width: 600px) { .question-card { padding: 14px 14px 8px; }.question-stem { font-size: 17px; }.question-manage { display: inline-flex; align-items: center; justify-content: center; gap: 5px; flex-shrink: 0; min-height: 44px; margin-left: auto; border: 0; border-radius: 6px; padding: 0 8px; background: transparent; color: var(--muted); font-size: 12px; }.question-manage:hover { color: var(--danger); background: var(--danger-tint); }.question-manage.restore { color: var(--accent-dark); }.question-manage.restore:hover { background: var(--accent-tint); }
+.question-topic { margin-left: 0; }.options { grid-template-columns: 1fr; }.question-actions { gap: 5px 8px; }.answer-toggle { order: 0; }.note-toggle { order: 1; }.mastery-controls { order: 2; width: 100%; }.mastery-controls button { flex: 1; }.question-source { font-size: 12px; } }
 </style>
