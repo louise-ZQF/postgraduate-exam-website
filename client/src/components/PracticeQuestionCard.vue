@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import MathMarkdown from '@/components/MathMarkdown.vue'
 import PracticeIcon from '@/components/PracticeIcon.vue'
 import type { Mastery, PracticeQuestion, QuestionProgress } from '@/math/practice'
@@ -8,6 +8,52 @@ const props = defineProps<{ question: PracticeQuestion; index: number; progress?
 const emit = defineEmits<{ mark: [id: string, mastery: Mastery]; note: [id: string, note: string]; noteBlur: []; remove: [id: string]; restore: [id: string] }>()
 const figureUrl = (src: string) => `${import.meta.env.BASE_URL}${src}`
 const answerOpen = ref(false)
+const answerPanel = ref<HTMLElement>()
+let answerObserver: IntersectionObserver | undefined
+let collapseTimer: number | undefined
+let collapseDeadline = 0
+let answerInViewport = true
+
+function cancelAutoCollapse() {
+  if (collapseTimer !== undefined) window.clearTimeout(collapseTimer)
+  collapseTimer = undefined
+  collapseDeadline = 0
+}
+function updateAutoCollapse() {
+  // 后台标签页可能延迟执行定时器，恢复时也检查实际离开时长。
+  if (answerOpen.value && collapseDeadline && Date.now() >= collapseDeadline) {
+    answerOpen.value = false
+    cancelAutoCollapse()
+    return
+  }
+  if (!answerOpen.value || (answerInViewport && !document.hidden)) {
+    cancelAutoCollapse()
+  } else if (collapseTimer === undefined) {
+    collapseDeadline = Date.now() + 60_000
+    collapseTimer = window.setTimeout(() => {
+      answerOpen.value = false
+      cancelAutoCollapse()
+    }, 60_000)
+  }
+}
+watch(answerPanel, panel => {
+  answerObserver?.disconnect()
+  cancelAutoCollapse()
+  answerInViewport = true
+  if (!panel) return
+  answerObserver = new IntersectionObserver(entries => {
+    answerInViewport = entries.some(entry => entry.isIntersecting)
+    updateAutoCollapse()
+  })
+  answerObserver.observe(panel)
+  updateAutoCollapse()
+}, { flush: 'post' })
+onMounted(() => document.addEventListener('visibilitychange', updateAutoCollapse))
+onBeforeUnmount(() => {
+  answerObserver?.disconnect()
+  cancelAutoCollapse()
+  document.removeEventListener('visibilitychange', updateAutoCollapse)
+})
 const noteOpen = ref(props.showNote ?? false)
 const selectedOption = ref('')
 const showResult = computed(() => answerOpen.value || Boolean(selectedOption.value))
@@ -43,7 +89,7 @@ const statuses: { value: Mastery; label: string }[] = [
       <div class="mastery-controls" role="group" :aria-label="`第 ${index} 题掌握程度`"><button v-for="status in statuses" :key="status.value" :class="[status.value, { marked: progress?.mastery === status.value }]" :aria-pressed="progress?.mastery === status.value" @click="emit('mark', question.id, status.value)"><PracticeIcon :name="status.value === 'mastered' ? 'check' : status.value" />{{ status.label }}</button></div>
       <button class="note-toggle" :class="{ 'has-note': progress?.note }" :aria-label="progress?.note ? '查看错因笔记' : '记录错因笔记'" :aria-expanded="noteOpen" :aria-controls="`note-${question.id}`" @click="noteOpen = !noteOpen"><PracticeIcon name="note" /><span class="visually-hidden">错因笔记</span></button>
     </div>
-    <section v-if="answerOpen" :id="`answer-${question.id}`" class="answer-panel" aria-label="答案与解析">
+    <section v-if="answerOpen" ref="answerPanel" :id="`answer-${question.id}`" class="answer-panel" aria-label="答案与解析">
       <h4>答案</h4><MathMarkdown :source="question.answer" compact />
       <h4>解析</h4><MathMarkdown :source="question.explanation" compact />
     </section>
