@@ -21,6 +21,7 @@ const demoProgress = ref<PracticeProgress>({})
 const demoMode = ref(questions.length === 0)
 const mode = computed(() => route.query.view === 'removed' ? 'removed' : route.query.view === 'notes' ? 'notes' : route.query.view === 'review' ? 'review' : 'all')
 const selectedYear = computed(() => {
+  if (mode.value === 'review') return ''
   const requested = Number(route.query.year)
   if (questions.some(q => q.year === requested)) return String(requested)
   const linked = questionById.get(String(route.query.question ?? ''))
@@ -32,6 +33,9 @@ const directoryOpen = ref(false)
 const notice = ref('')
 const undoRemovalId = ref('')
 const storageFailed = ref(false)
+const exportingPdf = ref(false)
+const pdfTitle = ref('')
+let savedDocumentTitle = ''
 const importInput = ref<HTMLInputElement>()
 const queueIds = ref<string[]>([])
 const round = ref(0)
@@ -42,7 +46,6 @@ const activeProgress = computed(() => demoMode.value ? demoProgress.value : prog
 const sourceQuestions = computed(() => demoMode.value ? [demoQuestion] : questions)
 const visibleQuestions = computed(() => questions.filter(q => !progress.value[q.id]?.removed))
 const removedCount = computed(() => questions.length - visibleQuestions.value.length)
-const pendingInPaper = computed(() => visibleQuestions.value.filter(q => String(q.year) === selectedYear.value && isPending(progress.value[q.id])).length)
 const pendingCount = computed(() => visibleQuestions.value.filter(q => isPending(progress.value[q.id])).length)
 const notedCount = computed(() => visibleQuestions.value.filter(q => hasNote(progress.value[q.id])).length)
 const masteredCount = computed(() => visibleQuestions.value.filter(q => progress.value[q.id]?.mastery === 'mastered').length)
@@ -53,7 +56,7 @@ const years = computed(() => [...new Set(questions.map(q => q.year))].map(value 
 const directoryYears = computed(() => mode.value === 'removed' ? years.value.filter(item => item.removed > 0) : mode.value === 'notes' ? years.value.filter(item => item.notes > 0) : years.value)
 const filtered = computed(() => sourceQuestions.value.filter(q => {
   const item = activeProgress.value[q.id]
-  return (demoMode.value || (['notes', 'removed'].includes(mode.value) && !selectedYear.value) || String(q.year) === selectedYear.value)
+  return (mode.value === 'review' || demoMode.value || (['notes', 'removed'].includes(mode.value) && !selectedYear.value) || String(q.year) === selectedYear.value)
     && (mode.value === 'removed' ? Boolean(item?.removed) : !item?.removed)
     && (mode.value !== 'review' || isPending(item))
     && (mode.value !== 'notes' || hasNote(item))
@@ -94,7 +97,7 @@ watch(() => [route.query.year, route.query.question, route.query.view], jumpToRo
 async function selectView(view: 'all' | 'review' | 'notes' | 'removed', targetYear = ['notes', 'removed'].includes(view) ? '' : selectedYear.value) {
   directoryOpen.value = false
   statusFilter.value = 'all'
-  await router.push({ name: 'practice', query: { ...(view !== 'all' ? { view } : {}), ...(targetYear ? { year: targetYear } : {}) } })
+  await router.push({ name: 'practice', query: { ...(view !== 'all' ? { view } : {}), ...(targetYear && view !== 'review' ? { year: targetYear } : {}) } })
   await jumpToRoute()
 }
 function persist(id: string, patch: { mastery?: Mastery; removed?: boolean; note?: string; reviews?: number }) {
@@ -127,6 +130,30 @@ function restoreQuestion(id: string) {
   undoRemovalId.value = ''
   notice.value = '题目已恢复，笔记和熟练度已保留。'
 }
+async function exportPdf() {
+  if (!queue.value.length || exportingPdf.value) return
+  exportingPdf.value = true
+  pdfTitle.value = `${heading.value} · ${queue.value.length}题`
+  savedDocumentTitle = document.title
+  document.title = pdfTitle.value
+  await nextTick()
+  try {
+    await document.fonts.ready
+    await Promise.all(Array.from(document.querySelectorAll<HTMLImageElement>('#practice-main img')).map(img => {
+      img.loading = 'eager'
+      return img.decode().catch(() => undefined)
+    }))
+    window.print()
+  } catch {
+    finishPdfExport()
+    notice.value = '无法打开导出窗口，请重试。'
+  }
+}
+function finishPdfExport() {
+  if (!exportingPdf.value) return
+  exportingPdf.value = false
+  document.title = savedDocumentTitle
+}
 function exportBackup() {
   const blob = new Blob([JSON.stringify({ version: 1, exportedAt: new Date().toISOString(), progress: progress.value }, null, 2)], { type: 'application/json' })
   const url = URL.createObjectURL(blob)
@@ -158,16 +185,19 @@ function syncProgress(event: StorageEvent) {
 }
 onMounted(() => {
   window.addEventListener('storage', syncProgress)
+  window.addEventListener('afterprint', finishPdfExport)
   jumpToRoute()
 })
 onBeforeUnmount(() => {
   window.removeEventListener('storage', syncProgress)
+  window.removeEventListener('afterprint', finishPdfExport)
+  finishPdfExport()
   if (noticeTimer) window.clearTimeout(noticeTimer)
 })
 </script>
 
 <template>
-  <div class="practice-page">
+  <div class="practice-page" :class="{ 'pdf-export': exportingPdf }">
     <MathHeader hide-search />
     <div class="practice-layout">
       <aside class="directory" aria-label="错题分类">
@@ -180,10 +210,10 @@ onBeforeUnmount(() => {
             <button :aria-pressed="mode === 'notes'" :class="{ active: mode === 'notes' }" @click="selectView('notes')"><PracticeIcon name="note" />有笔记的题目<span>{{ notedCount }}</span></button>
             <button :aria-pressed="mode === 'removed'" :class="{ active: mode === 'removed' }" @click="selectView('removed')"><PracticeIcon name="trash" />已移除题目<span>{{ removedCount }}</span></button>
           </nav>
-          <div class="directory-heading">{{ mode === 'removed' ? '移除年份' : mode === 'notes' ? '笔记年份' : '试卷年份' }}<span>{{ directoryYears.length }} 个年份</span></div>
-          <nav class="year-nav" aria-label="年份分类">
+          <div v-if="mode !== 'review'" class="directory-heading">{{ mode === 'removed' ? '移除年份' : mode === 'notes' ? '笔记年份' : '试卷年份' }}<span>{{ directoryYears.length }} 个年份</span></div>
+          <nav v-if="mode !== 'review'" class="year-nav" aria-label="年份分类">
             <button v-if="mode === 'notes' || mode === 'removed'" :aria-pressed="!selectedYear" :class="{ active: !selectedYear }" @click="selectView(mode)"><span>全部年份</span><span>{{ mode === 'removed' ? removedCount : notedCount }}</span></button>
-            <button v-for="item in directoryYears" :aria-pressed="selectedYear === String(item.value)" :key="item.value" :class="{ active: selectedYear === String(item.value) }" @click="selectView(mode, String(item.value))"><span>{{ item.value }} 年</span><span>{{ mode === 'removed' ? item.removed : mode === 'notes' ? item.notes : mode === 'review' ? item.pending : item.count }}</span></button>
+            <button v-for="item in directoryYears" :aria-pressed="selectedYear === String(item.value)" :key="item.value" :class="{ active: selectedYear === String(item.value) }" @click="selectView(mode, String(item.value))"><span>{{ item.value }} 年</span><span>{{ mode === 'removed' ? item.removed : mode === 'notes' ? item.notes : item.count }}</span></button>
           </nav>
           <p v-if="!years.length" class="directory-empty">题目上传后，这里会自动按真实年份生成目录。</p>
           <div class="progress-card"><div><span>已掌握</span><strong>{{ masteredCount }} <small>/ {{ visibleQuestions.length }}</small></strong></div><progress :value="masteredCount" :max="visibleQuestions.length || 1" aria-label="正式错题掌握进度" /><p>不熟练和不会的题，会自动收集到错题再练。</p></div>
@@ -192,16 +222,18 @@ onBeforeUnmount(() => {
         </div>
       </aside>
       <main id="practice-main">
-        <header class="workspace-heading"><div><h1>{{ heading }}</h1><p v-if="mode === 'removed'">移除的题目可以随时恢复</p><p v-else-if="mode === 'notes'">写过笔记的题目，按年份汇总</p><p v-else-if="mode === 'review'">不熟练和不会的题</p></div><button v-if="mode === 'all' || mode === 'review'" class="primary-button" @click="mode === 'review' ? restartQueue() : selectView('review')"><PracticeIcon name="repeat" />{{ mode === 'review' ? '重新开始本轮' : '本卷错题再练' }}<span v-if="mode !== 'review'">{{ pendingInPaper }}</span></button></header>
+        <header class="workspace-heading"><div><h1>{{ heading }}</h1><p v-if="mode === 'removed'">移除的题目可以随时恢复</p><p v-else-if="mode === 'notes'">写过笔记的题目，按年份汇总</p><p v-else-if="mode === 'review'">所有年份的不熟练和不会题目</p></div><button v-if="mode === 'all' || mode === 'review'" class="primary-button" @click="mode === 'review' ? restartQueue() : selectView('review')"><PracticeIcon name="repeat" />{{ mode === 'review' ? '重新开始本轮' : '全部错题再练' }}<span v-if="mode !== 'review'">{{ pendingCount }}</span></button></header>
         <section v-if="!questions.length" class="preview-banner"><PracticeIcon name="book" /><div><strong>错题本已就绪，等待录入你的题目</strong><p>下方使用你提供的截图演示操作，年份尚未确认，不计入正式题库和复习统计。</p></div><button @click="demoMode = !demoMode">{{ demoMode ? '收起示例' : '体验示例' }}</button></section>
         <p v-if="storageFailed" role="alert" class="storage-error">浏览器暂时无法保存进度，请立即导出备份以保留本次标记和笔记。</p>
-        <div class="toolbar"><div class="scope-label">{{ demoMode ? '交互示例' : mode === 'removed' ? (selectedYear ? `${selectedYear} 年已移除题目` : '全部已移除题目') : mode === 'notes' ? (selectedYear ? `${selectedYear} 年笔记题目` : '全部笔记题目') : `${selectedYear} 年错题卷` }}<span>{{ queue.length }} 题 · 已标记 {{ markedInQueue }}</span></div><div class="toolbar-filters"><label class="question-search"><PracticeIcon name="search" /><input v-model="keyword" maxlength="80" aria-label="搜索错题" :placeholder="mode === 'notes' ? '搜索题目、笔记内容' : '搜索题目、知识点'" /></label><select v-model="statusFilter" aria-label="按掌握程度筛选"><option value="all">全部状态</option><option value="unmarked">未标记</option><option v-for="status in statuses" :key="status.value" :value="status.value">{{ status.label }}</option></select></div></div>
+        <p class="print-summary print-only">{{ pdfTitle }} · 含答案解析与笔记</p>
+        <div class="toolbar"><div class="scope-label">{{ demoMode ? '交互示例' : mode === 'review' ? '全部年份错题' : mode === 'removed' ? (selectedYear ? `${selectedYear} 年已移除题目` : '全部已移除题目') : mode === 'notes' ? (selectedYear ? `${selectedYear} 年笔记题目` : '全部笔记题目') : `${selectedYear} 年错题卷` }}<span>{{ queue.length }} 题 · 已标记 {{ markedInQueue }}</span></div><div class="toolbar-filters"><button class="pdf-button" :disabled="!queue.length || exportingPdf" @click="exportPdf"><PracticeIcon name="download" />{{ exportingPdf ? '准备导出…' : '导出 PDF' }}</button><label class="question-search"><PracticeIcon name="search" /><input v-model="keyword" maxlength="80" aria-label="搜索错题" :placeholder="mode === 'notes' ? '搜索题目、笔记内容' : '搜索题目、知识点'" /></label><select v-model="statusFilter" aria-label="按掌握程度筛选"><option value="all">全部状态</option><option value="unmarked">未标记</option><option v-for="status in statuses" :key="status.value" :value="status.value">{{ status.label }}</option></select></div></div>
         <div v-if="queue.length" class="question-list">
-          <section v-for="group in yearGroups" :id="`practice-year-${group.year}`" :key="group.year" class="year-section" :aria-labelledby="`year-title-${group.year}`">
+          <div v-if="mode === 'review'" class="year-questions review-questions"><PracticeQuestionCard v-for="(question, index) in queue" :key="`${round}-${question.id}`" :question="question" :index="index + 1" :progress="activeProgress[question.id]" :storage-failed="storageFailed" :print-mode="exportingPdf" :manageable="!demoMode" @remove="removeQuestion" @restore="restoreQuestion" @note-blur="refreshNotesQueue" @mark="mark" @note="saveNote" /></div>
+          <section v-for="group in mode === 'review' ? [] : yearGroups" :id="`practice-year-${group.year}`" :key="group.year" class="year-section" :aria-labelledby="`year-title-${group.year}`">
             <header class="paper-heading"><div><span class="paper-label">{{ mode === 'removed' ? '已移除题目' : mode === 'notes' ? '有笔记的题目' : '真题与配套练习' }}</span><h2 :id="`year-title-${group.year}`">{{ group.year }} 年数学二 · {{ mode === 'removed' ? '已移除题目' : mode === 'notes' ? '笔记题目' : '错题卷' }}</h2></div><span>{{ group.questions.length }} 题</span></header>
-            <div class="year-questions"><PracticeQuestionCard v-for="(question, index) in group.questions" :key="`${round}-${question.id}`" :question="question" :index="index + 1" :progress="activeProgress[question.id]" :storage-failed="storageFailed" :show-note="mode === 'notes' || mode === 'removed'" :manageable="!demoMode" :removed="mode === 'removed'" @remove="removeQuestion" @restore="restoreQuestion" @note-blur="refreshNotesQueue" @mark="mark" @note="saveNote" /></div>
+            <div class="year-questions"><PracticeQuestionCard v-for="(question, index) in group.questions" :key="`${round}-${question.id}`" :question="question" :index="index + 1" :progress="activeProgress[question.id]" :storage-failed="storageFailed" :print-mode="exportingPdf" :show-note="mode === 'notes' || mode === 'removed'" :manageable="!demoMode" :removed="mode === 'removed'" @remove="removeQuestion" @restore="restoreQuestion" @note-blur="refreshNotesQueue" @mark="mark" @note="saveNote" /></div>
           </section>
-          <footer class="paper-end"><strong>{{ mode === 'removed' ? '已移除题目 · 本页结束' : mode === 'notes' ? '笔记汇总 · 本页结束' : `${selectedYear} 年错题卷 · 本卷结束` }}</strong></footer>
+          <footer class="paper-end"><strong>{{ mode === 'review' ? '错题再练 · 本轮结束' : mode === 'removed' ? '已移除题目 · 本页结束' : mode === 'notes' ? '笔记汇总 · 本页结束' : `${selectedYear} 年错题卷 · 本卷结束` }}</strong></footer>
         </div>
         <section v-else class="empty-state"><PracticeIcon :name="mode === 'review' ? 'check' : 'book'" /><h2>{{ mode === 'removed' ? '暂无符合条件的已移除题目' : mode === 'notes' ? '暂无符合条件的笔记题目' : mode === 'review' ? '这里暂时没有需要再练的题' : questions.length ? '没有符合筛选条件的题目' : '准备好收集你的第一道错题' }}</h2><p>{{ mode === 'removed' ? '点击题目上的“移除题目”后，会收集到这里，笔记和熟练度保留。' : mode === 'notes' ? '在题目下方写下笔记后，会自动收集到这里；也可以调整年份、状态或搜索条件。' : mode === 'review' ? '将题目标为“不熟练”或“不会”后，它们会自动出现在这里。' : questions.length ? '试试其他年份、状态，或清空搜索关键词。' : '上传题目时附上年份，我会把题干、答案和解析一起录入。' }}</p><button v-if="mode !== 'all'" class="primary-button" @click="selectView('all')">返回错题本</button></section>
         <p v-if="notice" class="notice" role="status" aria-live="polite">{{ notice }}<button v-if="undoRemovalId && notice.startsWith('已移除')" @click="restoreQuestion(undoRemovalId)">撤销</button></p>
@@ -211,6 +243,8 @@ onBeforeUnmount(() => {
 </template>
 
 <style scoped>
+.print-only { display: none; }
+.pdf-button { display: inline-flex; align-items: center; gap: 7px; min-height: 44px; border: 1px solid var(--line); border-radius: 8px; padding: 0 12px; background: var(--paper); color: var(--accent-dark); font-size: 12px; white-space: nowrap; }.pdf-button:disabled { opacity: .5; cursor: default; }
 .practice-page { min-height: 100vh; }
 .practice-layout { display: grid; grid-template-columns: 232px minmax(0, 1fr); gap: 30px; width: min(1280px, calc(100% - 64px)); margin: 0 auto; padding: 24px 0 64px; }
 svg { width: 19px; height: 19px; flex-shrink: 0; }
@@ -241,4 +275,32 @@ main { min-width: 0; }.workspace-heading { display: flex; justify-content: space
 
 <style scoped>
 @media (max-width: 600px) { .paper-heading h2 { font-size: 19px; }.paper-heading { padding: 14px 2px; } }
+</style>
+
+<style>
+@media print {
+  @page { size: A4; margin: 15mm; }
+  body { background: white !important; }
+  .pdf-export ~ .app-footer, .pdf-export .site-header, .pdf-export .directory,
+  .pdf-export .toolbar, .pdf-export .workspace-heading, .pdf-export .notice,
+  .pdf-export .storage-error, .pdf-export .paper-end, .route-loading-overlay { display: none !important; }
+  .pdf-export .practice-layout { display: block; width: 100%; margin: 0; padding: 0; }
+  .pdf-export .print-only { display: block !important; }
+  .pdf-export .print-summary { font-size: 16pt; font-weight: 700; margin: 0 0 14pt; }
+  .pdf-export .question-list { margin: 0; }
+  .pdf-export .year-questions { display: block; }
+  .pdf-export .question-card { border: 0; border-bottom: 1px solid #ccc; border-radius: 0; padding: 12pt 0; margin: 0; break-inside: avoid; }
+  .pdf-export .question-card h3, .pdf-export .options legend { display: none; }
+  .pdf-export .question-actions, .pdf-export .question-meta-actions, .pdf-export .choice-feedback,
+  .pdf-export .note-area, .pdf-export .option input, .pdf-export .option-result { display: none !important; }
+  .pdf-export .question-meta { break-after: avoid; }
+  .pdf-export .question-stem, .pdf-export .answer-panel, .pdf-export .print-note { font-size: 10.5pt; line-height: 1.6; }
+  .pdf-export .math-markdown { color: #000; font-size: 10.5pt !important; line-height: 1.6 !important; }
+  .pdf-export .katex-display, .pdf-export .reading-math { overflow: visible !important; break-inside: avoid; }
+  .pdf-export .options { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pdf-export .option { font-size: 10.5pt; border-color: #ccc !important; background: white !important; color: #000 !important; min-height: 0; }
+  .pdf-export .question-figures img { max-height: 180pt; }
+  .pdf-export .print-note p { white-space: pre-wrap; overflow-wrap: anywhere; }
+  .pdf-export .paper-heading { break-after: avoid; }
+}
 </style>

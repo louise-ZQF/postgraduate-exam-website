@@ -4,7 +4,7 @@ import MathMarkdown from '@/components/MathMarkdown.vue'
 import PracticeIcon from '@/components/PracticeIcon.vue'
 import type { Mastery, PracticeQuestion, QuestionProgress } from '@/math/practice'
 
-const props = defineProps<{ question: PracticeQuestion; index: number; progress?: QuestionProgress; storageFailed: boolean; showNote?: boolean; removed?: boolean; manageable?: boolean }>()
+const props = defineProps<{ question: PracticeQuestion; index: number; progress?: QuestionProgress; storageFailed: boolean; showNote?: boolean; removed?: boolean; manageable?: boolean; printMode?: boolean }>()
 const emit = defineEmits<{ mark: [id: string, mastery: Mastery]; note: [id: string, note: string]; noteBlur: []; remove: [id: string]; restore: [id: string] }>()
 const figureUrl = (src: string) => `${import.meta.env.BASE_URL}${src}`
 const answerOpen = ref(false)
@@ -89,15 +89,17 @@ const statuses: { value: Mastery; label: string }[] = [
       <div class="mastery-controls" role="group" :aria-label="`第 ${index} 题掌握程度`"><button v-for="status in statuses" :key="status.value" :class="[status.value, { marked: progress?.mastery === status.value }]" :aria-pressed="progress?.mastery === status.value" @click="emit('mark', question.id, status.value)"><PracticeIcon :name="status.value === 'mastered' ? 'check' : status.value" />{{ status.label }}</button></div>
       <button class="note-toggle" :class="{ 'has-note': progress?.note }" :aria-label="progress?.note ? '查看错因笔记' : '记录错因笔记'" :aria-expanded="noteOpen" :aria-controls="`note-${question.id}`" @click="noteOpen = !noteOpen"><PracticeIcon name="note" /><span class="visually-hidden">错因笔记</span></button>
     </div>
-    <section v-if="answerOpen" ref="answerPanel" :id="`answer-${question.id}`" class="answer-panel" aria-label="答案与解析">
+    <section v-if="answerOpen || printMode" :class="{ 'print-only': !answerOpen }" ref="answerPanel" :id="`answer-${question.id}`" class="answer-panel" aria-label="答案与解析">
       <h4>答案</h4><MathMarkdown :source="question.answer" compact />
       <h4>解析</h4><MathMarkdown :source="question.explanation" compact />
     </section>
+    <section v-if="printMode && progress?.note?.trim()" class="print-note print-only"><h4>错因笔记</h4><p>{{ progress.note }}</p></section>
     <label v-if="noteOpen" :id="`note-${question.id}`" class="note-area"><span>错因笔记</span><textarea :aria-label="`${question.source}的错因笔记`" :value="progress?.note ?? ''" maxlength="10000" @blur="emit('noteBlur')" placeholder="记录错因或易忘的步骤" rows="2" @input="emit('note', question.id, ($event.target as HTMLTextAreaElement).value)" /><small>{{ storageFailed ? '保存失败，请导出备份' : '自动保存' }}</small></label>
   </article>
 </template>
 
 <style scoped>
+.print-only { display: none; }
 .question-card { scroll-margin-top: 22px; min-width: 0; border: 1px solid var(--line); border-radius: 11px; padding: 17px 21px 10px; background: var(--paper); }
 .question-card:focus { outline: none; }
 svg { width: 17px; height: 17px; flex-shrink: 0; }
