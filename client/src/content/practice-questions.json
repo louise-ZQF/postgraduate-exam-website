@@ -4016,37 +4016,37 @@
     "correctOption": "D"
   },
   {
-    "id": "math2-2019-q3-exercise3",
+    "id": "math2-2019-q3-web1239",
     "year": 2019,
     "number": "3-3",
     "examNumber": "3",
     "kind": "exercise",
-    "source": "疾风劲草 #5756｜2016年数学二第3题",
+    "source": "大观园 #1239｜900题第三章·数二A类第24题",
     "topic": "高等数学 / 一元积分 / 反常积分敛散性",
     "type": "choice",
-    "stem": "反常积分\n$$I_1=\\int_{-\\infty}^0\\frac1{x^2}e^{\\frac1x}\\,dx,\\qquad\nI_2=\\int_0^{+\\infty}\\frac1{x^2}e^{\\frac1x}\\,dx$$\n的敛散性为（　）。",
-    "answer": "B。",
-    "explanation": "因为 $(e^{\\frac1x})'=-\\frac{e^{\\frac1x}}{x^2}$，原函数为 $-e^{\\frac1x}$。第一项可分在 $x=-1$ 处：\n$$\\int_{-\\infty}^{-1}\\frac{e^{\\frac1x}}{x^2}\\,dx=1-e^{-1},\\qquad\n\\int_{-1}^{0}\\frac{e^{\\frac1x}}{x^2}\\,dx=e^{-1}.$$\n所以 $I_1=1$，两个反常端点都收敛。其中 $x\\to0^-$ 时，$e^{\\frac1x}\\to0$；$x\\to-\\infty$ 时，$e^{\\frac1x}\\to1$。\n\n对第二项，只看0附近就足够：\n$$\\int_\\varepsilon^1\\frac{e^{\\frac1x}}{x^2}\\,dx=e^{\\frac1\\varepsilon}-e\\longrightarrow+\\infty.$$\n所以 $I_2$ 发散。两侧差别来自 $x\\to0^+$ 时指数趋于 $+\\infty$。",
+    "stem": "下列反常积分中，发散的是（　）。",
+    "answer": "D。",
+    "explanation": "第一步，A中 $x<0$，$|1-e^{2x}|=1-e^{2x}$，令 $u=e^x$，得\n$$\\int_{-1}^{0}\\frac{e^x}{\\sqrt{1-e^{2x}}}\\,dx\n=\\lim_{b\\to1^-}\\int_{e^{-1}}^b\\frac{du}{\\sqrt{1-u^2}}\n=\\frac\\pi2-\\arcsin(e^{-1}),$$\n极限有限，所以收敛。\n\n第二步，B中 $x>0$，$|1-e^{2x}|=e^{2x}-1$，同样令 $u=e^x$：\n$$\\lim_{a\\to1^+}\\int_a^e\\frac{du}{\\sqrt{u^2-1}}\n=\\left[\\ln(u+\\sqrt{u^2-1})\\right]_1^e\n=\\ln(e+\\sqrt{e^2-1}),$$\n因此也收敛。\n\n第三步，C、D的原函数均为 $-e^{\\frac1x}$。C从0左侧趋近，有 $e^{\\frac1x}\\to0$，故\n$$\\lim_{b\\to0^-}\\int_{-1}^b\\frac{e^{\\frac1x}}{x^2}\\,dx\n=\\lim_{b\\to0^-}(-e^{\\frac1b}+e^{-1})=e^{-1}.$$\nD从0右侧趋近，有 $e^{\\frac1x}\\to+\\infty$，故\n$$\\lim_{a\\to0^+}\\int_a^1\\frac{e^{\\frac1x}}{x^2}\\,dx\n=\\lim_{a\\to0^+}(e^{\\frac1a}-e)=+\\infty.$$\n因此D发散。关键仍是原函数在反常端点处的极限，不能把左右两侧混为一谈。",
     "exerciseIndex": 3,
     "options": [
       {
         "key": "A",
-        "text": "$I_1$ 收敛，$I_2$ 收敛。"
+        "text": "$\\displaystyle\\int_{-1}^{0}\\frac{e^x}{\\sqrt{|1-e^{2x}|}}\\,dx$。"
       },
       {
         "key": "B",
-        "text": "$I_1$ 收敛，$I_2$ 发散。"
+        "text": "$\\displaystyle\\int_{0}^{1}\\frac{e^x}{\\sqrt{|1-e^{2x}|}}\\,dx$。"
       },
       {
         "key": "C",
-        "text": "$I_1$ 发散，$I_2$ 收敛。"
+        "text": "$\\displaystyle\\int_{-1}^{0}\\frac{e^{\\frac1x}}{x^2}\\,dx$。"
       },
       {
         "key": "D",
-        "text": "$I_1$ 发散，$I_2$ 发散。"
+        "text": "$\\displaystyle\\int_{0}^{1}\\frac{e^{\\frac1x}}{x^2}\\,dx$。"
       }
     ],
-    "correctOption": "B"
+    "correctOption": "D"
   },
   {
     "id": "math2-2019-q6-original",
@@ -4095,37 +4095,37 @@
     "exerciseIndex": 1
   },
   {
-    "id": "math2-2019-q6-exercise2",
+    "id": "math2-2019-q6-web1693",
     "year": 2019,
     "number": "6-2",
     "examNumber": "6",
     "kind": "exercise",
-    "source": "疾风劲草 #5758｜2016年数学二第5题",
+    "source": "大观园 #1693｜880题第二章·综合选择第18题",
     "topic": "高等数学 / 一元微分 / 泰勒展开与曲率",
     "type": "choice",
-    "stem": "设函数 $f_i(x)\\ (i=1,2)$ 具有二阶连续导数，且 $f_i''(x_0)<0\\ (i=1,2)$。若两条曲线 $y=f_i(x)\\ (i=1,2)$ 在点 $(x_0,y_0)$ 处具有公切线 $y=g(x)$，且在该点处曲线 $y=f_1(x)$ 的曲率大于曲线 $y=f_2(x)$ 的曲率，则在 $x_0$ 的某个邻域内，有（　）。",
-    "answer": "A。",
-    "explanation": "第一步，共同点和公切线给出 $f_1(x_0)=f_2(x_0)=y_0$、$f_1'(x_0)=f_2'(x_0)=m$，且 $g(x)=y_0+m(x-x_0)$。\n\n第二步，曲率公式的分母相同，曲率大小只取决于 $|f_i''(x_0)|$。已知两个二阶导数都小于0，所以\n$$|f_1''(x_0)|>|f_2''(x_0)|\\quad\\Longrightarrow\\quad f_1''(x_0)<f_2''(x_0)<0.$$\n\n第三步，令 $h=x-x_0$，作二阶展开：\n$$f_i(x)-g(x)=\\frac12f_i''(x_0)h^2+o(h^2),$$\n$$f_1(x)-f_2(x)=\\frac12[f_1''(x_0)-f_2''(x_0)]h^2+o(h^2).$$\n充分接近 $x_0$ 且 $h\\ne0$ 时，这些差均为负，所以 $f_1(x)<f_2(x)<g(x)$；在 $x=x_0$ 处三者相等。因此A成立。",
+    "stem": "设函数 $f_1(x),f_2(x)$ 有二阶连续导数，且 $f_1''(x)>0,f_2''(x)>0$。若曲线 $y=f_1(x)$ 与 $y=f_2(x)$ 在点 $(x_0,y_0)$ 处有公切线 $y=g(x)$，且在该点处曲线 $y=f_1(x)$ 的曲率半径小于 $y=f_2(x)$ 的曲率半径，则在 $x_0$ 的某邻域内有（　）。",
+    "answer": "C。",
+    "explanation": "第一步，公切线给出 $f_1(x_0)=f_2(x_0)=y_0$、$f_1'(x_0)=f_2'(x_0)=m$，且 $g(x)=y_0+m(x-x_0)$。\n\n第二步，曲率半径为\n$$R_i=\\frac{[1+(f_i'(x_0))^2]^{\\frac32}}{|f_i''(x_0)|}.$$\n两条曲线的一阶导数相同，分子相同，且两个二阶导数均为正。由 $R_1<R_2$ 得 $f_1''(x_0)>f_2''(x_0)>0$。\n\n第三步，令 $h=x-x_0$，二阶展开得到\n$$f_2(x)-g(x)=\\frac12f_2''(x_0)h^2+o(h^2),$$\n$$f_1(x)-f_2(x)=\\frac12[f_1''(x_0)-f_2''(x_0)]h^2+o(h^2).$$\n两个二次项系数都为正，所以充分接近 $x_0$ 且 $h\\ne0$ 时，有 $f_1(x)>f_2(x)>g(x)$；在 $x_0$ 处三者相等。因此选C。\n\n对应真题的关键：公切线只决定零阶、一次项；附近位置由二阶项决定。真题若没有二阶导数的同号条件，就不能从曲率相等直接推出二阶导数相等。",
     "exerciseIndex": 2,
     "options": [
       {
         "key": "A",
-        "text": "$f_1(x)\\le f_2(x)\\le g(x)$。"
+        "text": "$g(x)\\ge f_2(x)\\ge f_1(x)$。"
       },
       {
         "key": "B",
-        "text": "$f_2(x)\\le f_1(x)\\le g(x)$。"
+        "text": "$g(x)\\ge f_1(x)\\ge f_2(x)$。"
       },
       {
         "key": "C",
-        "text": "$f_1(x)\\le g(x)\\le f_2(x)$。"
+        "text": "$f_1(x)\\ge f_2(x)\\ge g(x)$。"
       },
       {
         "key": "D",
-        "text": "$f_2(x)\\le g(x)\\le f_1(x)$。"
+        "text": "$f_1(x)\\ge g(x)\\ge f_2(x)$。"
       }
     ],
-    "correctOption": "A"
+    "correctOption": "C"
   },
   {
     "id": "math2-2019-q8-original",
@@ -4261,17 +4261,17 @@
     "exerciseIndex": 2
   },
   {
-    "id": "math2-2019-q13-exercise3",
+    "id": "math2-2019-q13-web2042",
     "year": 2019,
     "number": "13-3",
     "examNumber": "13",
     "kind": "exercise",
-    "source": "大观园 #2038｜2013年数学一（网站未标题号）",
+    "source": "大观园 #2042｜880题·综合填空第9题",
     "topic": "高等数学 / 一元积分 / 分部积分与变上限积分",
-    "type": "solution",
-    "stem": "计算 $\\displaystyle\\int_0^1\\frac{f(x)}{\\sqrt x}\\,dx$，其中\n$$f(x)=\\int_1^x\\frac{\\ln(t+1)}t\\,dt.$$",
-    "answer": "$8-4\\ln2-2\\pi$。",
-    "explanation": "第一步，取 $u=f(x),dv=x^{-\\frac12}dx$，则 $v=2\\sqrt x$、$du=\\ln(1+x)\\frac{dx}x$。因此\n$$I=[2\\sqrt x\\,f(x)]_0^1-2\\int_0^1\\frac{\\ln(1+x)}{\\sqrt x}\\,dx.$$\n因 $f(1)=0$，且 $\\frac{\\ln(1+t)}t\\to1$ 保证 $f(x)$ 在0处有有限极限，边界项为0。\n\n第二步，令 $x=s^2$，$dx=2s\\,ds$，得到\n$$I=-4\\int_0^1\\ln(1+s^2)\\,ds.$$\n第三步，再分部积分：\n$$\\int_0^1\\ln(1+s^2)\\,ds\n=[s\\ln(1+s^2)]_0^1-\\int_0^1\\frac{2s^2}{1+s^2}\\,ds\n=\\ln2-2+\\frac\\pi2.$$\n代回即得 $8-4\\ln2-2\\pi$。",
+    "type": "fill",
+    "stem": "设 $f(x)=\\displaystyle\\int_0^x e^{\\cos t}\\,dt$，则 $I=\\displaystyle\\int_0^\\pi f(x)\\cos x\\,dx=$________。",
+    "answer": "$e^{-1}-e$。",
+    "explanation": "第一步，$f'(x)=e^{\\cos x}$，把内层积分看作整体，取 $u=f(x),dv=\\cos x\\,dx$，得\n$$I=[f(x)\\sin x]_0^\\pi-\\int_0^\\pi \\sin x\\,e^{\\cos x}\\,dx.$$\n两端的正弦值均为0，边界项消失。\n\n第二步，令 $v=\\cos x$，$dv=-\\sin x\\,dx$，上、下限从 $0,\\pi$ 变成 $1,-1$，于是\n$$I=\\int_1^{-1}e^v\\,dv=[e^v]_1^{-1}=e^{-1}-e.$$\n关键与原题相同：复杂的内层积分交给求导，简单的外层因子交给积分。",
     "exerciseIndex": 3
   },
   {
@@ -4357,17 +4357,17 @@
     "exerciseIndex": 2
   },
   {
-    "id": "math2-2019-q19-exercise3",
+    "id": "math2-2019-q19-web2356",
     "year": 2019,
     "number": "19-3",
     "examNumber": "19",
     "kind": "exercise",
-    "source": "大观园 #2310｜2019年数学一第17题、数学三第18题",
+    "source": "大观园 #2356｜880题·综合解答第33题",
     "topic": "高等数学 / 积分应用 / 分块积分与等比求和",
     "type": "solution",
-    "stem": "求曲线 $y=e^{-x}\\sin x\\ (x\\ge0)$ 与 $x$ 轴之间图形的面积。",
-    "answer": "$\\dfrac{1+e^{-\\pi}}{2(1-e^{-\\pi})}$。",
-    "explanation": "面积为 $S=\\int_0^{+\\infty}e^{-x}|\\sin x|\\,dx$，不是直接积分 $e^{-x}\\sin x$。第一块面积\n$$J=\\int_0^\\pi e^{-x}\\sin x\\,dx=\\frac{1+e^{-\\pi}}2,$$\n分部积分两次可得 $J=1+e^{-\\pi}-J$，所以 $J=\\frac{1+e^{-\\pi}}2$。\n\n在第 $k+1$ 块令 $x=k\\pi+t$，$0\\le t\\le\\pi$，得到该块面积为 $e^{-k\\pi}J$。于是\n$$S=\\lim_{n\\to\\infty}J\\sum_{k=0}^{n-1}e^{-k\\pi}\n=\\frac{J}{1-e^{-\\pi}}=\\frac{1+e^{-\\pi}}{2(1-e^{-\\pi})}.$$",
+    "stem": "求曲线 $y=e^{-x}\\sqrt{\\sin x}$（$x\\ge0$）绕 $x$ 轴旋转所得旋转体的体积。\n\n根号内无绝对值，因此只在 $[2k\\pi,(2k+1)\\pi]$（$k=0,1,2,\\ldots$）上有实数曲线。",
+    "answer": "$\\dfrac{\\pi}{5(1-e^{-2\\pi})}$。",
+    "explanation": "第一步，绕 $x$ 轴旋转采用截面圆盘面积 $\\pi y^2$。记\n$$J=\\int_0^\\pi e^{-2t}\\sin t\\,dt,\\qquad K=\\int_0^\\pi e^{-2t}\\cos t\\,dt.$$\n连续两次分部积分给出\n$$J=\\frac12K,\\qquad K=\\frac{1+e^{-2\\pi}}2-\\frac12J.$$\n代入得 $J=\\frac{1+e^{-2\\pi}}5$，所以第一块体积 $V_0=\\pi J$。\n\n第二步，在第 $k$ 块中令 $x=2k\\pi+t$，$0\\le t\\le\\pi$，则\n$$V_k=\\pi\\int_{2k\\pi}^{(2k+1)\\pi}e^{-2x}\\sin x\\,dx\n=\\pi\\int_0^\\pi e^{-4k\\pi}e^{-2t}\\sin t\\,dt\n=e^{-4k\\pi}V_0.$$\n这里 $e^{-4k\\pi}$ 与积分变量 $t$ 无关，因此可以从积分号内提出。\n\n第三步，按公比 $e^{-4\\pi}$ 求和：\n$$V=\\frac{V_0}{1-e^{-4\\pi}}=\\frac{\\pi(1+e^{-2\\pi})}{5(1-e^{-4\\pi})}\n=\\frac\\pi{5(1-e^{-2\\pi})}.$$\n它与对照表1000题 P83-7是不同指数条件：本题曲线为 $e^{-x}\\sqrt{\\sin x}$，平方后出现 $e^{-2x}$；1000题为 $e^{-x/2}\\sqrt{\\sin x}$，平方后出现 $e^{-x}$，两题的数值答案不能混用。",
     "exerciseIndex": 3
   },
   {
