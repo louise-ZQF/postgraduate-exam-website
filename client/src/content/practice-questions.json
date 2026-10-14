@@ -3916,5 +3916,617 @@
     "stem": "已知 $a$ 为常数，矩阵\n$$A=\\begin{pmatrix}1&2&a\\\\1&3&0\\\\2&7&-a\\end{pmatrix}$$\n可经初等列变换化为\n$$B=\\begin{pmatrix}1&a&2\\\\0&1&1\\\\-1&1&1\\end{pmatrix}.$$\n（Ⅰ）求 $a$；（Ⅱ）求满足 $AP=B$ 的可逆矩阵 $P$。",
     "answer": "（Ⅰ）$a=2$。\n\n（Ⅱ）可取\n$$P=\\begin{pmatrix}3&4&-2\\\\-1&-1&1\\\\0&0&1\\end{pmatrix}.$$\n全部可逆解见解析。",
     "explanation": "（Ⅰ）初等列变换保持列空间不变。$A$ 的各列均满足第三个分量等于第一个分量的负数加第二个分量的三倍，即 $(-1,3,-1)A=0$。因此\n$$(-1,3,-1)B=(0,2-a,0)=0,$$\n得 $a=2$。下面构造的可逆 $P$ 也验证此值充分。\n\n（Ⅱ）代入 $a=2$，逐列解 $AP=B$。设一列未知向量为 $(u,v,w)^T$，右端为 $(b_1,b_2,b_3)^T$，前两行给出\n$$u+2v+2w=b_1,\\quad u+3v=b_2.$$\n于是 $v=b_2-b_1+2w$、$u=3b_1-2b_2-6w$；第三行由前两行线性组合得到，自动满足。\n\n三列的自由参数分别取 $s,t,r$，得到全部矩阵解\n$$P=\\begin{pmatrix}3-6s&4-6t&4-6r\\\\-1+2s&-1+2t&-1+2r\\\\s&t&r\\end{pmatrix}.$$\n计算 $\\det P=r-t$，故全部可逆解要求 $r\\ne t$。取 $s=t=0,r=1$ 即得答案中的矩阵，其行列式为 $1$。"
+  },
+  {
+    "id": "math2-2019-q3-original",
+    "year": 2019,
+    "number": "3",
+    "examNumber": "3",
+    "kind": "original",
+    "source": "2019 年数学二真题 · 第 3 题",
+    "topic": "高等数学 / 一元积分 / 反常积分敛散性",
+    "type": "choice",
+    "stem": "下列反常积分发散的是（　）。",
+    "answer": "D。",
+    "explanation": "起手：这四个被积函数在0附近都没有不可积的奇点，因此先把上限 $+\\infty$ 换成 $R$，算完后取 $R\\to+\\infty$。\n\n第一步，A用分部积分：\n$$\\int_0^Rxe^{-x}\\,dx=[-(x+1)e^{-x}]_0^R=1-(R+1)e^{-R}\\longrightarrow1.$$\n所以A收敛。\n\n第二步，B把 $x\\,dx$ 与 $e^{-x^2}$ 配在一起：\n$$\\int_0^Rxe^{-x^2}\\,dx=[-\\tfrac12e^{-x^2}]_0^R=\\frac12(1-e^{-R^2})\\longrightarrow\\frac12.$$\n所以B收敛。\n\n第三步，C注意到 $(\\arctan x)'=\\frac1{1+x^2}$：\n$$\\int_0^R\\frac{\\arctan x}{1+x^2}\\,dx\n=\\left[\\frac12(\\arctan x)^2\\right]_0^R\\longrightarrow\\frac{\\pi^2}{8}.$$\n所以C收敛。\n\n第四步，D有\n$$\\int_0^R\\frac{x}{1+x^2}\\,dx=\\frac12\\ln(1+R^2)\\longrightarrow+\\infty,$$\n因此D发散。\n\n关键：有容易求出的原函数时，先用“有限区间积分＋端点极限”判断，不必一上来套复杂判别法。只有极限为有限实数，才叫反常积分收敛。",
+    "options": [
+      {
+        "key": "A",
+        "text": "$\\displaystyle\\int_0^{+\\infty}xe^{-x}\\,dx$。"
+      },
+      {
+        "key": "B",
+        "text": "$\\displaystyle\\int_0^{+\\infty}xe^{-x^2}\\,dx$。"
+      },
+      {
+        "key": "C",
+        "text": "$\\displaystyle\\int_0^{+\\infty}\\frac{\\arctan x}{1+x^2}\\,dx$。"
+      },
+      {
+        "key": "D",
+        "text": "$\\displaystyle\\int_0^{+\\infty}\\frac{x}{1+x^2}\\,dx$。"
+      }
+    ],
+    "correctOption": "D"
+  },
+  {
+    "id": "math2-2019-q3-exercise1",
+    "year": 2019,
+    "number": "3-1",
+    "examNumber": "3",
+    "kind": "exercise",
+    "source": "张宇1000题 第79页第15题",
+    "topic": "高等数学 / 一元积分 / 反常积分敛散性",
+    "type": "choice",
+    "stem": "下列反常积分中发散的是（　）。",
+    "answer": "C。",
+    "explanation": "A在0附近等价于 $x^{-\\frac12}$，可积；在无穷远处有指数衰减，也可积。B在0附近连续，无穷远处指数衰减，收敛。\n\nC在0和1两个端点都需检查。令 $u=-\\ln x$，$\\frac{dx}x=-du$，整个积分变为 $\\int_0^{+\\infty}u^{-2}\\,du$；在 $u=0$ 处发散，对应原积分的 $x=1$ 处。也可利用原函数 $-\\frac1{\\ln x}$：当 $x\\to1^-$ 时它趋于 $+\\infty$。不要误判为在0处发散。\n\nD直接计算：\n$$\\int_1^R\\frac{dx}{(x+2)\\ln^2(x+2)}\n=\\left[-\\frac1{\\ln(x+2)}\\right]_1^R\\longrightarrow\\frac1{\\ln3}.$$\n因此只有C发散。",
+    "exerciseIndex": 1,
+    "options": [
+      {
+        "key": "A",
+        "text": "$\\displaystyle\\int_0^{+\\infty}\\frac{e^{-x}}{\\sqrt x}\\,dx$。"
+      },
+      {
+        "key": "B",
+        "text": "$\\displaystyle\\int_0^{+\\infty}x^2e^{-x^2}\\,dx$。"
+      },
+      {
+        "key": "C",
+        "text": "$\\displaystyle\\int_0^1\\frac{dx}{x\\ln^2x}$。"
+      },
+      {
+        "key": "D",
+        "text": "$\\displaystyle\\int_1^{+\\infty}\\frac{dx}{(x+2)\\ln^2(x+2)}$。"
+      }
+    ],
+    "correctOption": "C"
+  },
+  {
+    "id": "math2-2019-q3-exercise2",
+    "year": 2019,
+    "number": "3-2",
+    "examNumber": "3",
+    "kind": "exercise",
+    "source": "大观园 #1238｜900题第三章·数二A类第23题",
+    "topic": "高等数学 / 一元积分 / 反常积分敛散性",
+    "type": "choice",
+    "stem": "下列反常积分中，发散的是（　）。",
+    "answer": "D。",
+    "explanation": "A的积分为1；C的积分为 $\\frac{\\pi^2}8$，计算与真题相同。\n\nB令 $u=x^2$，则 $x^3\\,dx=\\frac u2\\,du$，所以\n$$\\int_0^{+\\infty}x^3e^{-x^2}\\,dx=\\frac12\\int_0^{+\\infty}ue^{-u}\\,du=\\frac12.$$\n\nD的原函数为 $\\ln(\\arctan x)$。对 $0<\\varepsilon<R$，\n$$\\int_\\varepsilon^R\\frac{dx}{(1+x^2)\\arctan x}\n=\\ln(\\arctan R)-\\ln(\\arctan\\varepsilon).$$\n当 $\\varepsilon\\to0^+$ 时，后一项趋于 $-\\infty$，积分趋于 $+\\infty$，因此发散。注意它的主要问题在0，而不是无穷远处。",
+    "exerciseIndex": 2,
+    "options": [
+      {
+        "key": "A",
+        "text": "$\\displaystyle\\int_0^{+\\infty}xe^{-x}\\,dx$。"
+      },
+      {
+        "key": "B",
+        "text": "$\\displaystyle\\int_0^{+\\infty}x^3e^{-x^2}\\,dx$。"
+      },
+      {
+        "key": "C",
+        "text": "$\\displaystyle\\int_0^{+\\infty}\\frac{\\arctan x}{1+x^2}\\,dx$。"
+      },
+      {
+        "key": "D",
+        "text": "$\\displaystyle\\int_0^{+\\infty}\\frac{dx}{(1+x^2)\\arctan x}$。"
+      }
+    ],
+    "correctOption": "D"
+  },
+  {
+    "id": "math2-2019-q3-exercise3",
+    "year": 2019,
+    "number": "3-3",
+    "examNumber": "3",
+    "kind": "exercise",
+    "source": "疾风劲草 #5756｜2016年数学二第3题",
+    "topic": "高等数学 / 一元积分 / 反常积分敛散性",
+    "type": "choice",
+    "stem": "反常积分\n$$I_1=\\int_{-\\infty}^0\\frac1{x^2}e^{\\frac1x}\\,dx,\\qquad\nI_2=\\int_0^{+\\infty}\\frac1{x^2}e^{\\frac1x}\\,dx$$\n的敛散性为（　）。",
+    "answer": "B。",
+    "explanation": "因为 $(e^{\\frac1x})'=-\\frac{e^{\\frac1x}}{x^2}$，原函数为 $-e^{\\frac1x}$。第一项可分在 $x=-1$ 处：\n$$\\int_{-\\infty}^{-1}\\frac{e^{\\frac1x}}{x^2}\\,dx=1-e^{-1},\\qquad\n\\int_{-1}^{0}\\frac{e^{\\frac1x}}{x^2}\\,dx=e^{-1}.$$\n所以 $I_1=1$，两个反常端点都收敛。其中 $x\\to0^-$ 时，$e^{\\frac1x}\\to0$；$x\\to-\\infty$ 时，$e^{\\frac1x}\\to1$。\n\n对第二项，只看0附近就足够：\n$$\\int_\\varepsilon^1\\frac{e^{\\frac1x}}{x^2}\\,dx=e^{\\frac1\\varepsilon}-e\\longrightarrow+\\infty.$$\n所以 $I_2$ 发散。两侧差别来自 $x\\to0^+$ 时指数趋于 $+\\infty$。",
+    "exerciseIndex": 3,
+    "options": [
+      {
+        "key": "A",
+        "text": "$I_1$ 收敛，$I_2$ 收敛。"
+      },
+      {
+        "key": "B",
+        "text": "$I_1$ 收敛，$I_2$ 发散。"
+      },
+      {
+        "key": "C",
+        "text": "$I_1$ 发散，$I_2$ 收敛。"
+      },
+      {
+        "key": "D",
+        "text": "$I_1$ 发散，$I_2$ 发散。"
+      }
+    ],
+    "correctOption": "B"
+  },
+  {
+    "id": "math2-2019-q6-original",
+    "year": 2019,
+    "number": "6",
+    "examNumber": "6",
+    "kind": "original",
+    "source": "2019 年数学二真题 · 第 6 题",
+    "topic": "高等数学 / 一元微分 / 泰勒展开与曲率",
+    "type": "choice",
+    "stem": "已知 $f(x),g(x)$ 二阶可导，且二阶导函数在 $x=a$ 处连续，则\n$$\\lim_{x\\to a}\\frac{f(x)-g(x)}{(x-a)^2}=0$$\n是曲线 $y=f(x)$ 和 $y=g(x)$ 在 $x=a$ 对应的点处相切且曲率相等的（　）。",
+    "answer": "A，充分非必要条件。",
+    "explanation": "起手：把极限条件和几何条件分别翻译成函数值、导数的条件，再检查两个方向。\n\n第一步，令 $h(x)=f(x)-g(x)$。在 $a$ 处作二阶泰勒展开：\n$$h(x)=h(a)+h'(a)(x-a)+\\frac12h''(a)(x-a)^2+o((x-a)^2).$$\n题设要求 $\\frac{h(x)}{(x-a)^2}\\to0$，所以常数项、一次项、二次项都必须为0，即\n$$f(a)=g(a),\\qquad f'(a)=g'(a),\\qquad f''(a)=g''(a).$$\n也可分次理解：先由 $h(x)\\to0$ 得 $h(a)=0$；再由 $\\frac{h(x)}{x-a}\\to0$ 得 $h'(a)=0$；最后二阶项除以 $(x-a)^2$ 后趋于 $\\frac{h^{\\prime\\prime}(a)}2$，故 $h''(a)=0$。\n\n第二步，前两个等式保证两曲线在同一个点具有相同切线。曲率公式为\n$$\\kappa_f=\\frac{|f''(a)|}{[1+(f'(a))^2]^{\\frac32}},\\qquad\n\\kappa_g=\\frac{|g''(a)|}{[1+(g'(a))^2]^{\\frac32}}.$$\n三项相等必然推出曲率相等，所以该极限条件充分。\n\n第三步，检查必要性。曲率相等只要求二阶导数的绝对值相同，并不要求二阶导数本身相同。取 $a=0,f(x)=x^2,g(x)=-x^2$：两曲线在原点都与 $x$ 轴相切，曲率都为2，但\n$$\\lim_{x\\to0}\\frac{f(x)-g(x)}{x^2}=\\lim_{x\\to0}\\frac{2x^2}{x^2}=2\\ne0.$$\n所以不必要，选A。\n\n关键：把“极限为0”翻译成低阶泰勒系数相同；判断反向推理时，注意曲率公式中的绝对值会丢掉二阶导数的正负号。",
+    "options": [
+      {
+        "key": "A",
+        "text": "充分非必要条件。"
+      },
+      {
+        "key": "B",
+        "text": "充分必要条件。"
+      },
+      {
+        "key": "C",
+        "text": "必要非充分条件。"
+      },
+      {
+        "key": "D",
+        "text": "既非充分又非必要条件。"
+      }
+    ],
+    "correctOption": "A"
+  },
+  {
+    "id": "math2-2019-q6-exercise1",
+    "year": 2019,
+    "number": "6-1",
+    "examNumber": "6",
+    "kind": "exercise",
+    "source": "大观园 #1703｜880题第二章·综合填空第12题",
+    "topic": "高等数学 / 一元微分 / 泰勒展开与曲率",
+    "type": "fill",
+    "stem": "设 $f(x)$ 有连续的二阶导数，曲线 $y=f(x)$ 在点 $(0,0)$ 处与 $x$ 轴相切，且\n$$\\lim_{x\\to0}\\frac{f(x)}{x^2}=1,$$\n则曲线 $y=f(x)$ 在点 $(0,0)$ 处的曲率圆方程为________。",
+    "answer": "$x^2+(y-\\tfrac12)^2=\\tfrac14$。",
+    "explanation": "第一步，曲线过原点且与 $x$ 轴相切，给出 $f(0)=0,f'(0)=0$。二阶泰勒展开为\n$$f(x)=\\frac12f''(0)x^2+o(x^2).$$\n除以 $x^2$，结合题设，得到 $f''(0)=2$。\n\n第二步，曲率为 $\\kappa=\\frac{|f''(0)|}{[1+(f'(0))^2]^{\\frac32}}=2$，曲率半径为 $R=\\frac12$。\n\n第三步，原点处切线水平，法线为 $y$ 轴；$f''(0)>0$ 表示曲线向上弯，曲率圆圆心在原点上方，距原点 $\\frac12$，即 $(0,\\frac12)$。因此圆方程为 $x^2+(y-\\frac12)^2=\\frac14$。",
+    "exerciseIndex": 1
+  },
+  {
+    "id": "math2-2019-q6-exercise2",
+    "year": 2019,
+    "number": "6-2",
+    "examNumber": "6",
+    "kind": "exercise",
+    "source": "疾风劲草 #5758｜2016年数学二第5题",
+    "topic": "高等数学 / 一元微分 / 泰勒展开与曲率",
+    "type": "choice",
+    "stem": "设函数 $f_i(x)\\ (i=1,2)$ 具有二阶连续导数，且 $f_i''(x_0)<0\\ (i=1,2)$。若两条曲线 $y=f_i(x)\\ (i=1,2)$ 在点 $(x_0,y_0)$ 处具有公切线 $y=g(x)$，且在该点处曲线 $y=f_1(x)$ 的曲率大于曲线 $y=f_2(x)$ 的曲率，则在 $x_0$ 的某个邻域内，有（　）。",
+    "answer": "A。",
+    "explanation": "第一步，共同点和公切线给出 $f_1(x_0)=f_2(x_0)=y_0$、$f_1'(x_0)=f_2'(x_0)=m$，且 $g(x)=y_0+m(x-x_0)$。\n\n第二步，曲率公式的分母相同，曲率大小只取决于 $|f_i''(x_0)|$。已知两个二阶导数都小于0，所以\n$$|f_1''(x_0)|>|f_2''(x_0)|\\quad\\Longrightarrow\\quad f_1''(x_0)<f_2''(x_0)<0.$$\n\n第三步，令 $h=x-x_0$，作二阶展开：\n$$f_i(x)-g(x)=\\frac12f_i''(x_0)h^2+o(h^2),$$\n$$f_1(x)-f_2(x)=\\frac12[f_1''(x_0)-f_2''(x_0)]h^2+o(h^2).$$\n充分接近 $x_0$ 且 $h\\ne0$ 时，这些差均为负，所以 $f_1(x)<f_2(x)<g(x)$；在 $x=x_0$ 处三者相等。因此A成立。",
+    "exerciseIndex": 2,
+    "options": [
+      {
+        "key": "A",
+        "text": "$f_1(x)\\le f_2(x)\\le g(x)$。"
+      },
+      {
+        "key": "B",
+        "text": "$f_2(x)\\le f_1(x)\\le g(x)$。"
+      },
+      {
+        "key": "C",
+        "text": "$f_1(x)\\le g(x)\\le f_2(x)$。"
+      },
+      {
+        "key": "D",
+        "text": "$f_2(x)\\le g(x)\\le f_1(x)$。"
+      }
+    ],
+    "correctOption": "A"
+  },
+  {
+    "id": "math2-2019-q8-original",
+    "year": 2019,
+    "number": "8",
+    "examNumber": "8",
+    "kind": "original",
+    "source": "2019 年数学二真题 · 第 8 题",
+    "topic": "线性代数 / 二次型 / 特征值与规范形",
+    "type": "choice",
+    "stem": "设 $A$ 是3阶实对称矩阵，$E$ 是3阶单位矩阵。若 $A^2+A=2E$，且 $|A|=4$，则二次型 $x^{\\mathsf T}Ax$ 的规范形为（　）。",
+    "answer": "C。",
+    "explanation": "第一步，设 $\\lambda$ 是 $A$ 的特征值，$v\\ne0$ 是相应特征向量。将 $A^2+A=2E$ 作用于 $v$：\n$$\\lambda^2v+\\lambda v=2v,$$\n故 $\\lambda^2+\\lambda-2=0$，即 $(\\lambda-1)(\\lambda+2)=0$。每个特征值只能是1或 $-2$。\n\n第二步，三个特征值的乘积为 $|A|=4$。设有 $m$ 个 $-2$，则乘积为 $(-2)^m$，在 $m=0,1,2,3$ 中只有 $m=2$ 满足题设。因此特征值为 $1,-2,-2$，正惯性指数为1，负惯性指数为2。\n\n第三步，实对称矩阵可正交对角化，先得到标准形 $u_1^2-2u_2^2-2u_3^2$。再令 $y_1=u_1,y_2=\\sqrt2u_2,y_3=\\sqrt2u_3$，得到规范形\n$$y_1^2-y_2^2-y_3^2.$$\n注意“规范形”的非零系数为 $+1$ 或 $-1$。",
+    "options": [
+      {
+        "key": "A",
+        "text": "$y_1^2+y_2^2+y_3^2$。"
+      },
+      {
+        "key": "B",
+        "text": "$y_1^2+y_2^2-y_3^2$。"
+      },
+      {
+        "key": "C",
+        "text": "$y_1^2-y_2^2-y_3^2$。"
+      },
+      {
+        "key": "D",
+        "text": "$-y_1^2-y_2^2-y_3^2$。"
+      }
+    ],
+    "correctOption": "C"
+  },
+  {
+    "id": "math2-2019-q8-exercise1",
+    "year": 2019,
+    "number": "8-1",
+    "examNumber": "8",
+    "kind": "exercise",
+    "source": "张宇1000题 第117页第2题",
+    "topic": "线性代数 / 二次型 / 特征值与规范形",
+    "type": "choice",
+    "stem": "设 $A$ 为3阶实对称方阵，$r(E-A)=1$，且 $A^2+2A=3E$，则二次型 $f(x_1,x_2,x_3)=x^{\\mathsf T}Ax$ 的规范形为（　）。",
+    "answer": "B。",
+    "explanation": "第一步，特征值满足 $\\lambda^2+2\\lambda=3$，故 $\\lambda=1$ 或 $-3$。\n\n第二步，$E-A$ 的特征值为 $1-\\lambda$。$r(E-A)=1$ 表示只有一个非零特征值，所以 $A$ 有两个特征值1、一个特征值 $-3$。\n\n第三步，正交变换得到标准形 $u_1^2+u_2^2-3u_3^2$，再作非零尺度变换得到规范形 $z_1^2+z_2^2-z_3^2$。\n\n与真题的变化：真题用行列式确定重数，本题用秩确定重数；其余步骤相同。",
+    "exerciseIndex": 1,
+    "options": [
+      {
+        "key": "A",
+        "text": "$z_1^2+z_2^2+z_3^2$。"
+      },
+      {
+        "key": "B",
+        "text": "$z_1^2+z_2^2-z_3^2$。"
+      },
+      {
+        "key": "C",
+        "text": "$z_1^2-z_2^2-z_3^2$。"
+      },
+      {
+        "key": "D",
+        "text": "$-z_1^2-z_2^2-z_3^2$。"
+      }
+    ],
+    "correctOption": "B"
+  },
+  {
+    "id": "math2-2019-q9-original",
+    "year": 2019,
+    "number": "9",
+    "examNumber": "9",
+    "kind": "original",
+    "source": "2019 年数学二真题 · 第 9 题",
+    "topic": "高等数学 / 极限与连续 / 幂指函数极限",
+    "type": "fill",
+    "stem": "$\\displaystyle\\lim_{x\\to0}(x+2^x)^{\\frac2x}=$________。",
+    "answer": "$4e^2$。",
+    "explanation": "第一步，$2^x=e^{x\\ln2}=1+x\\ln2+o(x)$，因此\n$$x+2^x=1+(1+\\ln2)x+o(x).$$\n第二步，这是 $1^\\infty$ 型极限，先对幂式取对数：\n$$\\frac2x\\ln(x+2^x)\n=\\frac2x\\big[(1+\\ln2)x+o(x)\\big]\\longrightarrow2(1+\\ln2).$$\n第三步，取指数，原极限为 $e^{2(1+\\ln2)}=4e^2$。\n\n关键：$2^x$ 的一次项是 $x\\ln2$；对数只用底数偏离1的一阶项即可。"
+  },
+  {
+    "id": "math2-2019-q9-exercise1",
+    "year": 2019,
+    "number": "9-1",
+    "examNumber": "9",
+    "kind": "exercise",
+    "source": "张宇1000题 第59页第3题",
+    "topic": "高等数学 / 极限与连续 / 幂指函数极限",
+    "type": "fill",
+    "stem": "$\\displaystyle\\lim_{x\\to+\\infty}\\left(x^{\\frac2x}-1\\right)^{\\frac2{\\ln x}}=$________。",
+    "answer": "$e^{-2}$。",
+    "explanation": "第一步，底数为正，记整个幂式为 $Y(x)$。因为 $\\frac{2\\ln x}x\\to0$，\n$$x^{\\frac2x}-1=e^{\\frac{2\\ln x}x}-1\\sim\\frac{2\\ln x}{x}.$$\n第二步，在对数里使用这个等价关系：\n$$\\ln Y(x)=\\frac2{\\ln x}\\ln\\left(x^{\\frac2x}-1\\right)\n=\\frac2{\\ln x}\\left[\\ln2+\\ln\\ln x-\\ln x+o(1)\\right]\\longrightarrow-2.$$\n这里 $\\frac{\\ln\\ln x}{\\ln x}\\to0$。最后取指数，得到 $e^{-2}$。",
+    "exerciseIndex": 1
+  },
+  {
+    "id": "math2-2019-q13-original",
+    "year": 2019,
+    "number": "13",
+    "examNumber": "13",
+    "kind": "original",
+    "source": "2019 年数学二真题 · 第 13 题",
+    "topic": "高等数学 / 一元积分 / 分部积分与变上限积分",
+    "type": "fill",
+    "stem": "已知函数\n$$f(x)=x\\int_1^x\\frac{\\sin t^2}{t}\\,dt,$$\n则 $\\displaystyle\\int_0^1f(x)\\,dx=$________。",
+    "answer": "$\\dfrac{\\cos1-1}{4}$。",
+    "explanation": "起手：内层积分难直接求原函数，但它对上限求导很简单。把内层积分看成一个整体，让它在分部积分中被求导。\n\n第一步，记 $F(x)=\\int_1^x\\frac{\\sin(t^2)}t\\,dt$，则 $F'(x)=\\frac{\\sin(x^2)}x$。原式为 $\\int_0^1xF(x)\\,dx$。取 $u=F(x),dv=x\\,dx$，得到\n$$I=\\left[\\frac{x^2}{2}F(x)\\right]_0^1-\\frac12\\int_0^1x^2F'(x)\\,dx.$$\n在 $x=1$ 处，$F(1)=0$；在0处，因 $\\frac{\\sin(t^2)}t\\to0$，$F(x)$ 有有限极限，所以 $x^2F(x)\\to0$。边界项全部为0。\n\n第二步，代入导数，消去内层积分：\n$$I=-\\frac12\\int_0^1x\\sin(x^2)\\,dx.$$\n第三步，令 $v=x^2$，$dv=2x\\,dx$，得\n$$I=-\\frac14\\int_0^1\\sin v\\,dv=\\frac{\\cos1-1}{4}.$$\n\n关键：看到“容易积分的因子乘一个变上限积分”，先考虑分部积分；不要把时间花在求内层积分的原函数上。"
+  },
+  {
+    "id": "math2-2019-q13-exercise1",
+    "year": 2019,
+    "number": "13-1",
+    "examNumber": "13",
+    "kind": "exercise",
+    "source": "张宇1000题 第23页第18题",
+    "topic": "高等数学 / 一元积分 / 分部积分与变上限积分",
+    "type": "fill",
+    "stem": "已知函数 $f(x)=\\displaystyle\\int_1^x\\sqrt{1+t^3}\\,dt$，则 $\\displaystyle\\int_0^1xf(x)\\,dx=$________。",
+    "answer": "$\\dfrac{1-2\\sqrt2}{9}$。",
+    "explanation": "令 $u=f(x),dv=x\\,dx$。由 $f'(x)=\\sqrt{1+x^3}$ 和 $f(1)=0$，\n$$I=\\left[\\frac{x^2}2f(x)\\right]_0^1-\\frac12\\int_0^1x^2\\sqrt{1+x^3}\\,dx\n=-\\frac12\\int_0^1x^2\\sqrt{1+x^3}\\,dx.$$\n再令 $v=1+x^3$，$dv=3x^2dx$，得\n$$I=-\\frac16\\int_1^2v^{\\frac12}\\,dv=-\\frac19(2^{\\frac32}-1)=\\frac{1-2\\sqrt2}{9}.$$\n起手与真题完全相同：不求内层积分的原函数。",
+    "exerciseIndex": 1
+  },
+  {
+    "id": "math2-2019-q13-exercise2",
+    "year": 2019,
+    "number": "13-2",
+    "examNumber": "13",
+    "kind": "exercise",
+    "source": "张宇1000题 第23页第19题",
+    "topic": "高等数学 / 一元积分 / 分部积分与变上限积分",
+    "type": "fill",
+    "stem": "设连续函数 $f(x)$ 满足 $\\displaystyle\\int_0^xf(t)\\,dt=xe^x$，则 $\\displaystyle\\int_1^e\\frac{f(\\ln x)}x\\,dx=$________。",
+    "answer": "$e$。",
+    "explanation": "令 $u=\\ln x$，则 $du=\\frac{dx}x$，积分上下限从 $1,e$ 变为 $0,1$。于是\n$$\\int_1^e\\frac{f(\\ln x)}x\\,dx=\\int_0^1f(u)\\,du=1\\cdot e=e.$$\n最后一步直接使用题设在 $x=1$ 时的等式即可。也可先求导得到 $f(u)=(1+u)e^u$，但这里不必先求 $f$。",
+    "exerciseIndex": 2
+  },
+  {
+    "id": "math2-2019-q13-exercise3",
+    "year": 2019,
+    "number": "13-3",
+    "examNumber": "13",
+    "kind": "exercise",
+    "source": "大观园 #2038｜2013年数学一（网站未标题号）",
+    "topic": "高等数学 / 一元积分 / 分部积分与变上限积分",
+    "type": "solution",
+    "stem": "计算 $\\displaystyle\\int_0^1\\frac{f(x)}{\\sqrt x}\\,dx$，其中\n$$f(x)=\\int_1^x\\frac{\\ln(t+1)}t\\,dt.$$",
+    "answer": "$8-4\\ln2-2\\pi$。",
+    "explanation": "第一步，取 $u=f(x),dv=x^{-\\frac12}dx$，则 $v=2\\sqrt x$、$du=\\ln(1+x)\\frac{dx}x$。因此\n$$I=[2\\sqrt x\\,f(x)]_0^1-2\\int_0^1\\frac{\\ln(1+x)}{\\sqrt x}\\,dx.$$\n因 $f(1)=0$，且 $\\frac{\\ln(1+t)}t\\to1$ 保证 $f(x)$ 在0处有有限极限，边界项为0。\n\n第二步，令 $x=s^2$，$dx=2s\\,ds$，得到\n$$I=-4\\int_0^1\\ln(1+s^2)\\,ds.$$\n第三步，再分部积分：\n$$\\int_0^1\\ln(1+s^2)\\,ds\n=[s\\ln(1+s^2)]_0^1-\\int_0^1\\frac{2s^2}{1+s^2}\\,ds\n=\\ln2-2+\\frac\\pi2.$$\n代回即得 $8-4\\ln2-2\\pi$。",
+    "exerciseIndex": 3
+  },
+  {
+    "id": "math2-2019-q13-exercise4",
+    "year": 2019,
+    "number": "13-4",
+    "examNumber": "13",
+    "kind": "exercise",
+    "source": "大观园 #2040｜900题第三章·数二B类第27题",
+    "topic": "高等数学 / 一元积分 / 分部积分与变上限积分",
+    "type": "fill",
+    "stem": "已知函数\n$$f(x)=\\cos x\\int_1^x\\ln|\\cos t|\\,dt,$$\n则 $\\displaystyle\\int_0^1f(x)\\,dx=$________。",
+    "answer": "$1-\\cos1+\\cos1\\ln(\\cos1)$。",
+    "explanation": "第一步，记 $F(x)=\\int_1^x\\ln|\\cos t|\\,dt$，取 $u=F(x),dv=\\cos x\\,dx$，得\n$$I=[\\sin x\\,F(x)]_0^1-\\int_0^1\\sin x\\ln(\\cos x)\\,dx.$$\n在 $[0,1]$ 内 $\\cos x>0$，绝对值可去掉；$F(1)=0$，$\\sin0=0$，边界项为0。\n\n第二步，令 $v=\\cos x$，$dv=-\\sin x\\,dx$，则\n$$I=\\int_1^{\\cos1}\\ln v\\,dv=[v\\ln v-v]_1^{\\cos1}\n=1-\\cos1+\\cos1\\ln(\\cos1).$$\n注意换元后的上下限从1变到 $\\cos1$，不要同时再额外改变一次符号。",
+    "exerciseIndex": 4
+  },
+  {
+    "id": "math2-2019-q18-original",
+    "year": 2019,
+    "number": "18",
+    "examNumber": "18",
+    "kind": "original",
+    "source": "2019 年数学二真题 · 第 18 题",
+    "topic": "高等数学 / 二重积分 / 极坐标与对称性",
+    "type": "solution",
+    "stem": "已知平面区域\n$$D=\\{(x,y)\\mid |x|\\le y,\\ (x^2+y^2)^3\\le y^4\\},$$\n计算二重积分 $\\displaystyle\\iint_D\\frac{x+y}{\\sqrt{x^2+y^2}}\\,dx\\,dy$。",
+    "answer": "$\\dfrac{43\\sqrt2}{120}$。",
+    "explanation": "第一步，区域关于 $y$ 轴对称，$\\frac{x}{\\sqrt{x^2+y^2}}$ 关于 $x$ 为奇函数，其积分为0。原积分化为\n$$I=\\iint_D\\frac{y}{\\sqrt{x^2+y^2}}\\,dx\\,dy.$$\n原点处可任意补一个函数值，单点不影响积分。\n\n第二步，使用极坐标 $x=r\\cos\\theta,y=r\\sin\\theta$。条件 $|x|\\le y$ 表示点在上方两条直线 $y=|x|$ 之间，故\n$$\\frac\\pi4\\le\\theta\\le\\frac{3\\pi}{4}.$$\n另一个条件化为 $r^6\\le r^4\\sin^4\\theta$，因此 $0\\le r\\le\\sin^2\\theta$。注意上限是 $\\sin^2\\theta$，不是 $\\sin\\theta$。\n\n第三步，被积函数变成 $\\sin\\theta$，面积元为 $r\\,dr\\,d\\theta$，所以\n$$I=\\int_{\\frac\\pi4}^{\\frac{3\\pi}4}\\int_0^{\\sin^2\\theta}\\sin\\theta\\,r\\,dr\\,d\\theta\n=\\frac12\\int_{\\frac\\pi4}^{\\frac{3\\pi}4}\\sin^5\\theta\\,d\\theta\n=\\int_{\\frac\\pi4}^{\\frac\\pi2}\\sin^5\\theta\\,d\\theta.$$\n最后一步利用两侧关于 $\\theta=\\frac\\pi2$ 对称。\n\n第四步，令 $u=\\cos\\theta$，则\n$$I=\\int_0^{\\frac{\\sqrt2}2}(1-u^2)^2\\,du\n=\\left[u-\\frac23u^3+\\frac15u^5\\right]_0^{\\frac{\\sqrt2}2}\n=\\frac{43\\sqrt2}{120}.$$\n\n关键：先用对称性消掉奇函数项，再将两个区域条件分别翻译成角度范围和半径范围。"
+  },
+  {
+    "id": "math2-2019-q18-exercise1",
+    "year": 2019,
+    "number": "18-1",
+    "examNumber": "18",
+    "kind": "exercise",
+    "source": "张宇1000题 第34页第16题",
+    "topic": "高等数学 / 二重积分 / 极坐标与对称性",
+    "type": "solution",
+    "stem": "计算二重积分 $\\displaystyle\\iint_D\\sqrt{1-x^2-y^2}\\,d\\sigma$，其中 $D=\\{(x,y)\\mid x^2+y^2\\le y\\}$。",
+    "answer": "$\\dfrac\\pi3-\\dfrac49$。",
+    "explanation": "第一步，区域是圆盘 $x^2+(y-\\frac12)^2\\le\\frac14$。改用极坐标，$r^2\\le r\\sin\\theta$，得到\n$$0\\le\\theta\\le\\pi,\\qquad0\\le r\\le\\sin\\theta.$$\n第二步，$d\\sigma=r\\,dr\\,d\\theta$，故\n$$I=\\int_0^\\pi\\!\\int_0^{\\sin\\theta}\\sqrt{1-r^2}\\,r\\,dr\\,d\\theta\n=\\frac13\\int_0^\\pi[1-|\\cos\\theta|^3]\\,d\\theta.$$\n注意 $\\sqrt{\\cos^2\\theta}=|\\cos\\theta|$。由对称性，\n$$\\int_0^\\pi|\\cos\\theta|^3d\\theta=2\\int_0^{\\frac\\pi2}\\cos^3\\theta\\,d\\theta=\\frac43,$$\n所以 $I=\\frac\\pi3-\\frac49$。",
+    "exerciseIndex": 1
+  },
+  {
+    "id": "math2-2019-q19-original",
+    "year": 2019,
+    "number": "19",
+    "examNumber": "19",
+    "kind": "original",
+    "source": "2019 年数学二真题 · 第 19 题",
+    "topic": "高等数学 / 积分应用 / 分块积分与等比求和",
+    "type": "solution",
+    "stem": "设 $n$ 为正整数，记 $S_n$ 为曲线 $y=e^{-x}\\sin x\\ (0\\le x\\le n\\pi)$ 与 $x$ 轴所围图形的面积，求 $S_n$，并求 $\\displaystyle\\lim_{n\\to\\infty}S_n$。",
+    "answer": "$$S_n=\\frac{1+e^{-\\pi}}{2(1-e^{-\\pi})}(1-e^{-n\\pi}),\\qquad\n\\lim_{n\\to\\infty}S_n=\\frac{1+e^{-\\pi}}{2(1-e^{-\\pi})}.$$",
+    "explanation": "起手：面积不能让上下方互相抵消，必须积分 $e^{-x}|\\sin x|$。按每个长度为 $\\pi$ 的区间拆分，再看各块面积之间有什么关系。\n\n第一步，先算第一块面积，记 $r=e^{-\\pi}$，\n$$J=\\int_0^\\pi e^{-x}\\sin x\\,dx.$$\n分部积分得\n$$J=[-e^{-x}\\sin x]_0^\\pi+\\int_0^\\pi e^{-x}\\cos x\\,dx\n=\\int_0^\\pi e^{-x}\\cos x\\,dx.$$\n对后一项再分部积分：\n$$\\int_0^\\pi e^{-x}\\cos x\\,dx\n=[-e^{-x}\\cos x]_0^\\pi-\\int_0^\\pi e^{-x}\\sin x\\,dx\n=1+r-J.$$\n所以 $J=\\frac{1+r}2$。\n\n第二步，对第 $k+1$ 块，令 $x=k\\pi+t$，其中 $0\\le t\\le\\pi$。有\n$$e^{-x}=e^{-k\\pi}e^{-t}=r^ke^{-t},\\qquad |\\sin(k\\pi+t)|=\\sin t.$$\n因此\n$$\\int_{k\\pi}^{(k+1)\\pi}e^{-x}|\\sin x|\\,dx=r^kJ.$$\n各块面积依次为 $J,rJ,r^2J,\\ldots$，是等比数列。\n\n第三步，将前 $n$ 块相加：\n$$S_n=J\\sum_{k=0}^{n-1}r^k=J\\frac{1-r^n}{1-r}\n=\\frac{1+r}{2(1-r)}(1-r^n).$$\n因 $0<r<1$，$r^n\\to0$，得到题设极限。\n\n关键：$e^{-x}\\sin x$ 本身不是周期函数；周期性来自 $|\\sin x|$，指数因子让平移后的每块面积按固定比例缩小。"
+  },
+  {
+    "id": "math2-2019-q19-exercise1",
+    "year": 2019,
+    "number": "19-1",
+    "examNumber": "19",
+    "kind": "exercise",
+    "source": "李林880题 第36-(42)",
+    "topic": "高等数学 / 积分应用 / 分块积分与等比求和",
+    "type": "solution",
+    "stem": "设 $f(x)=x^n\\sqrt{1-x^2}$，$x\\in[0,1]$，与 $y=0$ 所围平面区域的面积为 $S_n$；$g(x)=\\sin^{\\frac n2}x$，$x\\in[0,\\frac\\pi2]$，与 $y=0$ 所围平面区域绕 $x$ 轴旋转一周所得体积为 $V_n$（$n=1,2,\\ldots$），求极限 $\\displaystyle\\lim_{n\\to\\infty}\\frac{\\pi S_n}{V_n}$。",
+    "answer": "0。",
+    "explanation": "记 $W_n=\\int_0^{\\frac\\pi2}\\sin^nt\\,dt$。旋转体体积为 $V_n=\\pi W_n$。面积中令 $x=\\sin t$，得到\n$$S_n=\\int_0^{\\frac\\pi2}\\sin^nt\\cos^2t\\,dt=W_n-W_{n+2}.$$\n对 $W_{n+2}=\\int\\sin^{n+1}t\\sin t\\,dt$ 分部积分，取 $u=\\sin^{n+1}t,dv=\\sin t\\,dt$，边界项为0，得\n$$W_{n+2}=(n+1)\\int_0^{\\frac\\pi2}\\sin^nt\\cos^2t\\,dt=(n+1)(W_n-W_{n+2}).$$\n所以 $W_{n+2}=\\frac{n+1}{n+2}W_n$，$S_n=\\frac{W_n}{n+2}$。因此\n$$\\frac{\\pi S_n}{V_n}=\\frac1{n+2}\\longrightarrow0.$$",
+    "exerciseIndex": 1
+  },
+  {
+    "id": "math2-2019-q19-exercise2",
+    "year": 2019,
+    "number": "19-2",
+    "examNumber": "19",
+    "kind": "exercise",
+    "source": "张宇1000题 第83页第7题",
+    "topic": "高等数学 / 积分应用 / 分块积分与等比求和",
+    "type": "solution",
+    "stem": "求曲线 $y=e^{-\\frac x2}\\sqrt{\\sin x}$（$x\\ge0$）绕 $x$ 轴旋转一周所得旋转体的体积。\n\n原题根号内没有绝对值，曲线的实数定义域为 $x\\in\\bigcup_{k=0}^{\\infty}[2k\\pi,(2k+1)\\pi]$。此处与上传解析册的解释一致。",
+    "answer": "$\\dfrac{\\pi}{2(1-e^{-\\pi})}$。",
+    "explanation": "第一块位于 $[0,\\pi]$，其体积为\n$$V_0=\\pi\\int_0^\\pi y^2dx=\\pi\\int_0^\\pi e^{-x}\\sin x\\,dx=\\frac\\pi2(1+e^{-\\pi}).$$\n下一块从 $2\\pi$ 开始，不能从 $\\pi$ 开始，因为在 $(\\pi,2\\pi)$ 上 $\\sqrt{\\sin x}$ 没有实数值。\n\n第 $k$ 块令 $x=2k\\pi+t$，$0\\le t\\le\\pi$，则\n$$V_k=\\pi\\int_{2k\\pi}^{(2k+1)\\pi}e^{-x}\\sin x\\,dx=e^{-2k\\pi}V_0.$$\n由公比 $e^{-2\\pi}$，\n$$V=\\frac{V_0}{1-e^{-2\\pi}}=\\frac{\\pi(1+e^{-\\pi})}{2(1-e^{-2\\pi})}=\\frac\\pi{2(1-e^{-\\pi})}.$$\n真题每隔 $\\pi$ 都有面积块，本题每隔 $2\\pi$ 才有实数曲线块；这个条件变化必须识别。",
+    "exerciseIndex": 2
+  },
+  {
+    "id": "math2-2019-q19-exercise3",
+    "year": 2019,
+    "number": "19-3",
+    "examNumber": "19",
+    "kind": "exercise",
+    "source": "大观园 #2310｜2019年数学一第17题、数学三第18题",
+    "topic": "高等数学 / 积分应用 / 分块积分与等比求和",
+    "type": "solution",
+    "stem": "求曲线 $y=e^{-x}\\sin x\\ (x\\ge0)$ 与 $x$ 轴之间图形的面积。",
+    "answer": "$\\dfrac{1+e^{-\\pi}}{2(1-e^{-\\pi})}$。",
+    "explanation": "面积为 $S=\\int_0^{+\\infty}e^{-x}|\\sin x|\\,dx$，不是直接积分 $e^{-x}\\sin x$。第一块面积\n$$J=\\int_0^\\pi e^{-x}\\sin x\\,dx=\\frac{1+e^{-\\pi}}2,$$\n分部积分两次可得 $J=1+e^{-\\pi}-J$，所以 $J=\\frac{1+e^{-\\pi}}2$。\n\n在第 $k+1$ 块令 $x=k\\pi+t$，$0\\le t\\le\\pi$，得到该块面积为 $e^{-k\\pi}J$。于是\n$$S=\\lim_{n\\to\\infty}J\\sum_{k=0}^{n-1}e^{-k\\pi}\n=\\frac{J}{1-e^{-\\pi}}=\\frac{1+e^{-\\pi}}{2(1-e^{-\\pi})}.$$",
+    "exerciseIndex": 3
+  },
+  {
+    "id": "math2-2019-q19-exercise4",
+    "year": 2019,
+    "number": "19-4",
+    "examNumber": "19",
+    "kind": "exercise",
+    "source": "大观园 #2333｜1000题25版·第十章·强化第10题",
+    "topic": "高等数学 / 积分应用 / 分块积分与等比求和",
+    "type": "fill",
+    "stem": "当 $x\\ge0$ 时，在曲线 $y=e^{-2x}$ 上方作宽度均为1的台阶：对每个 $k=0,1,2,\\ldots$，台阶在区间 $[k,k+1]$ 上的高度为 $e^{-2k}$。\n\n各级台阶与曲线之间的面积之和 $S=$________。",
+    "answer": "$\\dfrac{1+e^{-2}}{2(1-e^{-2})}$，也可写成 $\\dfrac1{1-e^{-2}}-\\dfrac12$。",
+    "explanation": "第一步，曲线递减，每级台阶位于曲线上方。第一块面积为\n$$J=\\int_0^1(1-e^{-2x})\\,dx=1-\\frac{1-e^{-2}}2=\\frac{1+e^{-2}}2.$$\n第二步，对区间 $[k,k+1]$ 内的一块，令 $x=k+t$，则\n$$S_k=\\int_k^{k+1}(e^{-2k}-e^{-2x})\\,dx\n=e^{-2k}\\int_0^1(1-e^{-2t})\\,dt=e^{-2k}J.$$\n第三步，由 $0<e^{-2}<1$，\n$$S=J\\sum_{k=0}^{+\\infty}e^{-2k}=\\frac{J}{1-e^{-2}}\n=\\frac{1+e^{-2}}{2(1-e^{-2})}.$$\n与真题的对应关系：块宽从 $\\pi$ 变为1，公比从 $e^{-\\pi}$ 变为 $e^{-2}$，其余推理步骤保持相同。",
+    "exerciseIndex": 4
+  },
+  {
+    "id": "math2-2019-q22-original",
+    "year": 2019,
+    "number": "22",
+    "examNumber": "22",
+    "kind": "original",
+    "source": "2019 年数学二真题 · 第 22 题",
+    "topic": "线性代数 / 向量组 / 等价与线性表示",
+    "type": "solution",
+    "stem": "已知向量组\n$$\\mathrm I:\\quad\\alpha_1=\\begin{pmatrix}1\\\\1\\\\4\\end{pmatrix},\\quad\n\\alpha_2=\\begin{pmatrix}1\\\\0\\\\4\\end{pmatrix},\\quad\n\\alpha_3=\\begin{pmatrix}1\\\\2\\\\a^2+3\\end{pmatrix},$$\n与\n$$\\mathrm {II}:\\quad\\beta_1=\\begin{pmatrix}1\\\\1\\\\a+3\\end{pmatrix},\\quad\n\\beta_2=\\begin{pmatrix}0\\\\2\\\\1-a\\end{pmatrix},\\quad\n\\beta_3=\\begin{pmatrix}1\\\\3\\\\a^2+3\\end{pmatrix}.$$\n若向量组I与II等价，求 $a$ 的取值，并将 $\\beta_3$ 用 $\\alpha_1,\\alpha_2,\\alpha_3$ 线性表示。",
+    "answer": "$a\\ne-1$，可以统一表示为 $\\beta_3=\\alpha_1-\\alpha_2+\\alpha_3$。",
+    "explanation": "第一步，将两组向量作列，记\n$$M=\\begin{pmatrix}1&1&1\\\\1&0&2\\\\4&4&a^2+3\\end{pmatrix},\\qquad\nN=\\begin{pmatrix}1&0&1\\\\1&2&3\\\\a+3&1-a&a^2+3\\end{pmatrix}.$$\n对 $M$ 用第三行减去第一行的4倍，可得 $\\det M=1-a^2$；对 $N$ 用第三行减去第一行的 $a+3$ 倍，得到\n$$\\det N=\\begin{vmatrix}1&0&1\\\\1&2&3\\\\0&1-a&a^2-a\\end{vmatrix}=2(a^2-1).$$\n所以 $a\\ne\\pm1$ 时，两组都是 $\\mathbb R^3$ 的基，张成空间都是 $\\mathbb R^3$，必然等价。\n\n第二步，检查临界值。$a=1$ 时，两组所有向量都满足第三个分量等于第一个分量的4倍；且各组前两个向量线性无关。因此两组都张成平面 $z=4x$，等价。\n\n$a=-1$ 时，I组仍张成平面 $z=4x$，但II组的 $\\beta_2=(0,2,2)^{\\mathsf T}$ 不在该平面内，所以不等价。合并得 $a\\ne-1$。\n\n第三步，直接检查所求线性表示：\n$$\\alpha_1-\\alpha_2+\\alpha_3\n=\\begin{pmatrix}1-1+1\\\\1-0+2\\\\4-4+(a^2+3)\\end{pmatrix}\n=\\begin{pmatrix}1\\\\3\\\\a^2+3\\end{pmatrix}=\\beta_3.$$\n这组系数对所有允许的 $a$ 都成立。当 $a\\ne\\pm1$ 时表示唯一；当 $a=1$ 时不唯一，全部表示为\n$$\\beta_3=(3-2t)\\alpha_1+(t-2)\\alpha_2+t\\alpha_3,\\qquad t\\in\\mathbb R.$$\n\n关键：向量组等价要求张成空间相同；在行列式为0的临界值处，不能只凭两组秩相同就断定等价。"
+  },
+  {
+    "id": "math2-2019-q22-exercise1",
+    "year": 2019,
+    "number": "22-1",
+    "examNumber": "22",
+    "kind": "exercise",
+    "source": "基础过关660题 第53页第614题",
+    "topic": "线性代数 / 向量组 / 等价与线性表示",
+    "type": "choice",
+    "stem": "设 $A,B$ 为 $n$ 阶方阵，$P,Q$ 为 $n$ 阶可逆矩阵，下列命题不正确的是（　）。",
+    "answer": "C。",
+    "explanation": "$B=AQ$ 及 $A=BQ^{-1}$ 保证列向量组能相互线性表示，所以A正确。同理 $B=PA$ 及 $A=P^{-1}B$ 保证行向量组等价，所以B正确。行或列向量组等价必然同秩，同秩矩阵等价，所以D正确。\n\n但 $B=PAQ$ 只保证矩阵等价、秩相同。反例取\n$$A=\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix},\\quad B=\\begin{pmatrix}0&0\\\\0&1\\end{pmatrix},\\quad P=Q=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}.$$\n有 $B=PAQ$，而A的行空间、列空间均为 $\\operatorname{span}\\{(1,0)\\}$，B的则均为 $\\operatorname{span}\\{(0,1)\\}$，向量组不等价。",
+    "exerciseIndex": 1,
+    "options": [
+      {
+        "key": "A",
+        "text": "若 $B=AQ$，则 $A$ 的列向量组与 $B$ 的列向量组等价。"
+      },
+      {
+        "key": "B",
+        "text": "若 $B=PA$，则 $A$ 的行向量组与 $B$ 的行向量组等价。"
+      },
+      {
+        "key": "C",
+        "text": "若 $B=PAQ$，则 $A$ 的行（列）向量组与 $B$ 的行（列）向量组等价。"
+      },
+      {
+        "key": "D",
+        "text": "若 $A$ 的行（列）向量组与矩阵 $B$ 的行（列）向量组等价，则矩阵 $A$ 与 $B$ 等价。"
+      }
+    ],
+    "correctOption": "C"
+  },
+  {
+    "id": "math2-2019-q22-exercise2",
+    "year": 2019,
+    "number": "22-2",
+    "examNumber": "22",
+    "kind": "exercise",
+    "source": "基础过关660题 第53页第615题",
+    "topic": "线性代数 / 向量组 / 等价与线性表示",
+    "type": "choice",
+    "stem": "已知两个 $n$ 维向量组\n$$\\mathrm{(I)}\\ \\alpha_1,\\alpha_2,\\ldots,\\alpha_s,\\qquad\n\\mathrm{(II)}\\ \\alpha_1,\\alpha_2,\\ldots,\\alpha_s,\\alpha_{s+1},\\ldots,\\alpha_{s+t}.$$\n若向量组的秩 $r(\\mathrm I)=p,r(\\mathrm{II})=q$，则下列条件中不能判定（I）是（II）的极大线性无关组的是（　）。",
+    "answer": "A。",
+    "explanation": "极大线性无关组需要两个条件：自身无关，即 $p=s$；能表示（II），即 $p=q$。合起来就是 $p=q=s$。\n\nA只保证同秩和可表示，不能保证（I）自身无关。反例令 $s=2$，$\\alpha_1=\\alpha_2=\\alpha_3=(1,0)^{\\mathsf T}$。此时（I）为前两个向量，（II）为三个向量，有 $p=q=1$，且（II）可由（I）表示，但（I）线性相关，所以不是极大无关组。\n\nB中两组等价给出 $p=q$，再由 $s=q$ 得 $p=q=s$。C中（I）无关给出 $p=s$，结合 $p=q$ 同样成立。D直接给出全部条件。因此选A。",
+    "exerciseIndex": 2,
+    "options": [
+      {
+        "key": "A",
+        "text": "$p=q$，（II）可由（I）线性表出。"
+      },
+      {
+        "key": "B",
+        "text": "$s=q$，（I）与（II）是等价向量组。"
+      },
+      {
+        "key": "C",
+        "text": "$p=q$，（I）线性无关。"
+      },
+      {
+        "key": "D",
+        "text": "$p=q=s$。"
+      }
+    ],
+    "correctOption": "A"
+  },
+  {
+    "id": "math2-2019-q22-exercise3",
+    "year": 2019,
+    "number": "22-3",
+    "examNumber": "22",
+    "kind": "exercise",
+    "source": "李林880题 第73-一(3)",
+    "topic": "线性代数 / 向量组 / 等价与线性表示",
+    "type": "choice",
+    "stem": "设向量 $\\alpha_1,\\alpha_2,\\alpha_3$ 满足 $k_1\\alpha_1+k_2\\alpha_2+k_3\\alpha_3=0$，$k_1,k_2,k_3$ 为常数，且 $k_1k_3\\ne0$，则（　）。",
+    "answer": "C。",
+    "explanation": "由 $k_1\\ne0$ 和 $k_3\\ne0$，分别得到\n$$\\alpha_1=-\\frac{k_2}{k_1}\\alpha_2-\\frac{k_3}{k_1}\\alpha_3,\\qquad\n\\alpha_3=-\\frac{k_1}{k_3}\\alpha_1-\\frac{k_2}{k_3}\\alpha_2.$$\n所以 $(\\alpha_1,\\alpha_2)$ 与 $(\\alpha_2,\\alpha_3)$ 能相互线性表示，C成立。\n\n$k_2$ 可能为0，不能强行解出 $\\alpha_2$。取 $\\alpha_1=\\alpha_3=(1,0)^{\\mathsf T}$、$\\alpha_2=(0,1)^{\\mathsf T}$ 可否定B、D。另取 $\\alpha_1=(1,0)^{\\mathsf T}$、$\\alpha_2=(1,1)^{\\mathsf T}$、$\\alpha_3=(0,1)^{\\mathsf T}$，有 $\\alpha_1-\\alpha_2+\\alpha_3=0$，但 $\\alpha_1$ 与 $\\alpha_3$ 不等价，可否定A。",
+    "exerciseIndex": 3,
+    "options": [
+      {
+        "key": "A",
+        "text": "$\\alpha_1$ 与 $\\alpha_3$ 等价。"
+      },
+      {
+        "key": "B",
+        "text": "$\\alpha_1,\\alpha_2$ 与 $\\alpha_1,\\alpha_3$ 等价。"
+      },
+      {
+        "key": "C",
+        "text": "$\\alpha_1,\\alpha_2$ 与 $\\alpha_2,\\alpha_3$ 等价。"
+      },
+      {
+        "key": "D",
+        "text": "$\\alpha_1,\\alpha_3$ 与 $\\alpha_2,\\alpha_3$ 等价。"
+      }
+    ],
+    "correctOption": "C"
+  },
+  {
+    "id": "math2-2019-q22-exercise4",
+    "year": 2019,
+    "number": "22-4",
+    "examNumber": "22",
+    "kind": "exercise",
+    "source": "李林880题 第73-一(4)",
+    "topic": "线性代数 / 向量组 / 等价与线性表示",
+    "type": "choice",
+    "stem": "设 $n$ 维向量组（I）$\\alpha_1,\\alpha_2,\\ldots,\\alpha_k$（$k<n$）线性无关，则 $n$ 维向量组（II）$\\beta_1,\\beta_2,\\ldots,\\beta_k$ 也线性无关的充分必要条件是（　）。",
+    "answer": "D。",
+    "explanation": "记 $M=(\\alpha_1,\\ldots,\\alpha_k)$、$N=(\\beta_1,\\ldots,\\beta_k)$。已知 $r(M)=k$，而（II）无关等价于 $r(N)=k$。同型矩阵等价的充要条件是秩相同，所以D恰好是充要条件。\n\nA不充分：取全部 $\\beta_i=0$，仍能由（I）表示，但（II）相关。B、C能保证（II）无关，却不必要：取 $n=2,k=1$，$\\alpha_1=(1,0)^{\\mathsf T}$、$\\beta_1=(0,1)^{\\mathsf T}$，两组各自无关，但不能相互表示，也不等价。",
+    "exerciseIndex": 4,
+    "options": [
+      {
+        "key": "A",
+        "text": "$\\beta_1,\\ldots,\\beta_k$ 可由 $\\alpha_1,\\ldots,\\alpha_k$ 线性表示。"
+      },
+      {
+        "key": "B",
+        "text": "$\\alpha_1,\\ldots,\\alpha_k$ 可由 $\\beta_1,\\ldots,\\beta_k$ 线性表示。"
+      },
+      {
+        "key": "C",
+        "text": "向量组（I）与（II）等价。"
+      },
+      {
+        "key": "D",
+        "text": "矩阵 $(\\alpha_1,\\ldots,\\alpha_k)$ 与 $(\\beta_1,\\ldots,\\beta_k)$ 等价。"
+      }
+    ],
+    "correctOption": "D"
   }
 ]
