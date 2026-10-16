@@ -66,7 +66,7 @@ const statuses: { value: Mastery; label: string }[] = [
   <article :id="question.id" class="question-card" tabindex="-1" :aria-labelledby="`title-${question.id}`">
     <header class="question-meta">
       <span class="question-index">{{ question.number }}</span>
-      <div class="question-source"><span>{{ question.source }}</span><span v-if="question.exerciseIndex" class="exam-number">真题 {{ question.examNumber }} · 练习 {{ question.exerciseIndex }}</span></div>
+      <div class="question-source"><span>{{ question.source }}</span><span v-if="question.exerciseIndex" class="exam-number">{{ question.paperId ? '原题' : '真题' }} {{ question.examNumber }} · 练习 {{ question.exerciseIndex }}</span></div>
       <div v-if="progress?.mastery || manageable" class="question-meta-actions">
         <span v-if="progress?.mastery" class="mastery-badge" :class="progress.mastery">{{ statuses.find(s => s.value === progress?.mastery)?.label }}</span>
         <button v-if="manageable" class="question-manage" :class="{ restore: removed }" :aria-label="`${question.source}：${removed ? '恢复题目' : '移除题目'}`" @click="removed ? emit('restore', question.id) : emit('remove', question.id)"><PracticeIcon :name="removed ? 'repeat' : 'trash'" />{{ removed ? '恢复题目' : '移除题目' }}</button>

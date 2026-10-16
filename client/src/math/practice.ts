@@ -2,6 +2,8 @@ export type Mastery = 'unfamiliar' | 'unknown' | 'mastered'
 export type PracticeQuestion = {
   id: string
   year: number
+  paperId?: string
+  paperTitle?: string
   number: string
   examNumber?: string
   exerciseIndex?: number

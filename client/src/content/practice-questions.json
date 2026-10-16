@@ -5879,5 +5879,464 @@
     ],
     "correctOption": "C",
     "explanation": "把逆变换写出来更清楚：u=x、v=x²+y²。记新函数Z(u,v)=z(x,y)，由链式法则 $\\dfrac{\\partial z}{\\partial x}=\\dfrac{\\partial Z}{\\partial u}+2xZ_v$，$\\dfrac{\\partial z}{\\partial y}=2yZ_v$。代入后 $y(\\dfrac{\\partial Z}{\\partial u}+2xZ_v)-x(2yZ_v)=yZ_u=0$，由y≠0得$\\dfrac{\\partial Z}{\\partial u}$=0。\n\n这里只消去一组偏导，没有边界条件，也不求极值。因此它只练原题的第一步，不能代替完整变式。"
+  },
+  {
+    "id": "math2-zy2026-set1-q1-original",
+    "year": 2026,
+    "paperId": "zy2026-set1",
+    "paperTitle": "2026 张宇四套卷 · 第一套",
+    "number": "1",
+    "examNumber": "1",
+    "kind": "original",
+    "source": "张宇四套卷 · 2026版 · 数二第一套 · 第1题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 极限与连续 / 无穷小阶的比较",
+    "type": "choice",
+    "stem": "当 $x\\to0^+$ 时，下列无穷小量中，最高阶的是（　）。",
+    "answer": "**D**。",
+    "explanation": "第一步，分别找出被积函数在0附近的主要部分：$e^{t^2}+1\\sim2$，$\\ln(1+\\sqrt{t^3})\\sim t^{3/2}$，$\\cos(t^2)\\sim1$，$\\sqrt{(\\arcsin t)^3}\\sim t^{3/2}$。\n\n第二步，积分并处理上限，得到\n\n$$\nA\\sim2x^2,\\qquad B\\sim\\frac25x^{5/2},\\qquad C\\sim x,\n$$\n\n$$\nD\\sim\\frac25(1-\\cos x)^{5/2}\\sim\\frac{\\sqrt2}{20}x^5.\n$$\n\n第三步，比较指数。$x\\to0^+$ 时，指数越大，趋于0越快，阶越高，因此选D。",
+    "options": [
+      {
+        "key": "A",
+        "text": "$\\displaystyle\\int_0^{x^2}(e^{t^2}+1)\\,dt$。"
+      },
+      {
+        "key": "B",
+        "text": "$\\displaystyle\\int_0^x\\ln(1+\\sqrt{t^3})\\,dt$。"
+      },
+      {
+        "key": "C",
+        "text": "$\\displaystyle\\int_0^{\\sin x}\\cos(t^2)\\,dt$。"
+      },
+      {
+        "key": "D",
+        "text": "$\\displaystyle\\int_0^{1-\\cos x}\\sqrt{(\\arcsin t)^3}\\,dt$。"
+      }
+    ],
+    "correctOption": "D"
+  },
+  {
+    "id": "math2-zy2026-set1-q3-original",
+    "year": 2026,
+    "paperId": "zy2026-set1",
+    "paperTitle": "2026 张宇四套卷 · 第一套",
+    "number": "3",
+    "examNumber": "3",
+    "kind": "original",
+    "source": "张宇四套卷 · 2026版 · 数二第一套 · 第3题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 一元微分 / 渐近线",
+    "type": "choice",
+    "stem": "曲线 $y=x+\\sqrt{x^2-x+1}$ 的渐近线条数为（　）。",
+    "answer": "**B**。",
+    "explanation": "第一步，$x^2-x+1=(x-\\frac12)^2+\\frac34>0$，函数在整个实数范围连续，没有铅直渐近线。\n\n第二步，当 $x\\to+\\infty$ 时，\n\n$$\n\\lim\\frac yx=2,\\qquad\n\\lim(y-2x)=\\lim\\frac{-x+1}{\\sqrt{x^2-x+1}+x}=-\\frac12.\n$$\n\n所以有斜渐近线 $y=2x-\\frac12$。\n\n第三步，当 $x\\to-\\infty$ 时，\n\n$$\ny=\\frac{-x+1}{\\sqrt{x^2-x+1}-x}\\longrightarrow\\frac12,\n$$\n\n所以还有水平渐近线 $y=\\frac12$。注意：正、负无穷两个方向必须分别检查。",
+    "options": [
+      {
+        "key": "A",
+        "text": "1。"
+      },
+      {
+        "key": "B",
+        "text": "2。"
+      },
+      {
+        "key": "C",
+        "text": "3。"
+      },
+      {
+        "key": "D",
+        "text": "4。"
+      }
+    ],
+    "correctOption": "B"
+  },
+  {
+    "id": "math2-zy2026-set1-q4-original",
+    "year": 2026,
+    "paperId": "zy2026-set1",
+    "paperTitle": "2026 张宇四套卷 · 第一套",
+    "number": "4",
+    "examNumber": "4",
+    "kind": "original",
+    "source": "张宇四套卷 · 2026版 · 数二第一套 · 第4题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 多元微分 / 连续、偏导与可微",
+    "type": "choice",
+    "stem": "函数 $f(x,y)=\\sqrt{|xy|}$ 在 $(0,0)$ 点（　）。",
+    "answer": "**D**。",
+    "explanation": "第一步，判断连续。由 $2|xy|\\le x^2+y^2$，有\n\n$$\n0\\le\\sqrt{|xy|}\\le\\frac1{\\sqrt2}\\sqrt{x^2+y^2}\\longrightarrow0=f(0,0),\n$$\n\n所以原点处连续。\n\n第二步，用定义求原点的偏导。因为沿两条坐标轴函数值都为0，\n\n$$\n\\frac{\\partial f}{\\partial x}(0,0)=\\lim_{h\\to0}\\frac{f(h,0)-f(0,0)}h=0,\n\\qquad \\frac{\\partial f}{\\partial y}(0,0)=0.\n$$\n\n第三步，用可微定义检查剩余项。令 $\\rho=\\sqrt{h^2+k^2}$，则\n\n$$\n\\frac{f(h,k)-f(0,0)-\\frac{\\partial f}{\\partial x}(0,0)h-\\frac{\\partial f}{\\partial y}(0,0)k}{\\rho}\n=\\frac{\\sqrt{|hk|}}{\\sqrt{h^2+k^2}}.\n$$\n\n沿 $k=h\\to0$，上式恒等于 $1/\\sqrt2$，不趋于0，所以不可微。\n\n关键点：偏导存在只检查沿坐标轴的变化；可微需要控制所有方向。这里原点处连续、两个偏导也存在，仍然不可微。选项B也不成立，例如 $x,y>0$ 时 $\\frac{\\partial f}{\\partial x}=\\frac12\\sqrt{y/x}$，沿 $y=x\\to0^+$ 趋于 $\\frac12$，与 $\\frac{\\partial f}{\\partial x}(0,0)=0$ 不同。",
+    "options": [
+      {
+        "key": "A",
+        "text": "连续，但偏导数不存在。"
+      },
+      {
+        "key": "B",
+        "text": "偏导数存在且连续。"
+      },
+      {
+        "key": "C",
+        "text": "可微。"
+      },
+      {
+        "key": "D",
+        "text": "偏导数存在，但不可微。"
+      }
+    ],
+    "correctOption": "D"
+  },
+  {
+    "id": "math2-zy2026-set1-q5-original",
+    "year": 2026,
+    "paperId": "zy2026-set1",
+    "paperTitle": "2026 张宇四套卷 · 第一套",
+    "number": "5",
+    "examNumber": "5",
+    "kind": "original",
+    "source": "张宇四套卷 · 2026版 · 数二第一套 · 第5题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 积分应用 / 引力",
+    "type": "choice",
+    "stem": "设线密度为1的圆弧形细杆，其半径为1，圆心角为 $\\theta$，摆放位置如图所示，$G$ 为引力常数，则该细杆对位于圆心处、质量为 $m$ 的质点 $M$ 的水平引力大小为（　）。圆弧位于圆心右侧，关于水平轴对称，两端的极角分别为 $-\\frac\\theta2$ 与 $\\frac\\theta2$。",
+    "answer": "**A**。",
+    "explanation": "第一步，取极角为 $\\varphi$ 处的一小段圆弧。半径为1，所以弧长 $ds=d\\varphi$；线密度为1，所以这段质量 $dm=d\\varphi$。\n\n第二步，这一小段到圆心的距离为1，故引力大小为 $dF=Gm\\,d\\varphi$，水平分量为 $dF_x=Gm\\cos\\varphi\\,d\\varphi$。\n\n第三步，累加所有水平分量，\n\n$$\nF_x=\\int_{-\\frac\\theta2}^{\\frac\\theta2}Gm\\cos\\varphi\\,d\\varphi\n=2Gm\\sin\\frac\\theta2.\n$$",
+    "options": [
+      {
+        "key": "A",
+        "text": "$2Gm\\sin\\frac\\theta2$。"
+      },
+      {
+        "key": "B",
+        "text": "$\\sqrt2Gm\\sin\\frac\\theta2$。"
+      },
+      {
+        "key": "C",
+        "text": "$2Gm\\cos\\frac\\theta2$。"
+      },
+      {
+        "key": "D",
+        "text": "$\\sqrt2Gm\\cos\\frac\\theta2$。"
+      }
+    ],
+    "correctOption": "A",
+    "figures": [
+      {
+        "src": "practice-figures/zy2026-set1-q5.svg",
+        "alt": "圆弧在圆心M右侧，关于水平线对称，圆心角为θ，半径为1。",
+        "width": 400,
+        "height": 260
+      }
+    ]
+  },
+  {
+    "id": "math2-zy2026-set1-q7-original",
+    "year": 2026,
+    "paperId": "zy2026-set1",
+    "paperTitle": "2026 张宇四套卷 · 第一套",
+    "number": "7",
+    "examNumber": "7",
+    "kind": "original",
+    "source": "张宇四套卷 · 2026版 · 数二第一套 · 第7题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 二重积分 / 交换积分次序",
+    "type": "choice",
+    "stem": "计算\n\n$$\n\\int_{\\frac14}^{\\frac12}dy\\int_{\\frac12}^{\\sqrt y}e^{y/x}\\,dx\n+\\int_{\\frac12}^{1}dy\\int_y^{\\sqrt y}e^{y/x}\\,dx\n$$\n\n其值为（　）。",
+    "answer": "**C**。",
+    "explanation": "第一步，两块区域合并后，可统一写成\n\n$$\nD=\\{(x,y):\\tfrac12\\le x\\le1,\\ x^2\\le y\\le x\\}.\n$$\n\n第二步，交换次序，先对 $y$ 积分：\n\n$$\nI=\\int_{\\frac12}^1dx\\int_{x^2}^{x}e^{y/x}\\,dy\n=\\int_{\\frac12}^1 x(e-e^x)\\,dx.\n$$\n\n第三步，计算，\n\n$$\nI=\\left[\\frac e2x^2-(x-1)e^x\\right]_{\\frac12}^1\n=\\frac{3e}{8}-\\frac{\\sqrt e}{2}.\n$$",
+    "options": [
+      {
+        "key": "A",
+        "text": "$\\frac{3e}{4}-\\frac{\\sqrt e}{2}$。"
+      },
+      {
+        "key": "B",
+        "text": "$\\frac{3e}{4}+\\frac{\\sqrt e}{2}$。"
+      },
+      {
+        "key": "C",
+        "text": "$\\frac{3e}{8}-\\frac{\\sqrt e}{2}$。"
+      },
+      {
+        "key": "D",
+        "text": "$\\frac{3e}{8}+\\frac{\\sqrt e}{2}$。"
+      }
+    ],
+    "correctOption": "C"
+  },
+  {
+    "id": "math2-zy2026-set1-q10-original",
+    "year": 2026,
+    "paperId": "zy2026-set1",
+    "paperTitle": "2026 张宇四套卷 · 第一套",
+    "number": "10",
+    "examNumber": "10",
+    "kind": "original",
+    "source": "张宇四套卷 · 2026版 · 数二第一套 · 第10题",
+    "sourceCategory": "mock",
+    "topic": "线性代数 / 特征值 / 特征向量与矩阵乘法",
+    "type": "choice",
+    "stem": "设 $A$ 是3阶矩阵，向量 $\\alpha_1=(1,2,0)^T$、$\\alpha_2=(1,0,1)^T$、$\\beta=(-1,2,-2)^T$。已知 $\\lambda=2$ 是矩阵 $A$ 的特征值，$\\alpha_1,\\alpha_2$ 是矩阵 $A$ 的属于 $\\lambda=2$ 的特征向量，则 $A(\\alpha_1,\\alpha_2,\\beta)=$（　）。",
+    "answer": "**C**。",
+    "explanation": "第一步，由特征向量定义，$A\\alpha_1=2\\alpha_1$，$A\\alpha_2=2\\alpha_2$。\n\n第二步，观察 $\\beta=\\alpha_1-2\\alpha_2$，因此\n\n$$\nA\\beta=A(\\alpha_1-2\\alpha_2)=2\\alpha_1-4\\alpha_2=2\\beta.\n$$\n\n第三步，矩阵左乘按列计算，\n\n$$\nA(\\alpha_1,\\alpha_2,\\beta)=(2\\alpha_1,2\\alpha_2,2\\beta)\n=\\begin{pmatrix}2&2&-2\\\\4&0&4\\\\0&2&-4\\end{pmatrix}.\n$$",
+    "options": [
+      {
+        "key": "A",
+        "text": "$\\begin{pmatrix}2&2&-1\\\\4&0&2\\\\0&2&-2\\end{pmatrix}$"
+      },
+      {
+        "key": "B",
+        "text": "$\\begin{pmatrix}2&2&-1\\\\4&0&-2\\\\0&2&2\\end{pmatrix}$"
+      },
+      {
+        "key": "C",
+        "text": "$\\begin{pmatrix}2&2&-2\\\\4&0&4\\\\0&2&-4\\end{pmatrix}$"
+      },
+      {
+        "key": "D",
+        "text": "$\\begin{pmatrix}2&2&2\\\\4&0&-4\\\\0&2&4\\end{pmatrix}$"
+      }
+    ],
+    "correctOption": "C"
+  },
+  {
+    "id": "math2-zy2026-set1-q11-original",
+    "year": 2026,
+    "paperId": "zy2026-set1",
+    "paperTitle": "2026 张宇四套卷 · 第一套",
+    "number": "11",
+    "examNumber": "11",
+    "kind": "original",
+    "source": "张宇四套卷 · 2026版 · 数二第一套 · 第11题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 极限与连续 / 变上限积分与泰勒展开",
+    "type": "fill",
+    "stem": "$$\n\\lim_{x\\to0}\\frac{\\ln\\frac{\\sin x}{x}}{\\displaystyle\\int_0^{x^2}(1+t)^{1/t}\\,dt}=\\underline{\\qquad}.\n$$",
+    "answer": "$-\\frac1{6e}$。",
+    "explanation": "第一步，$\\frac{\\sin x}{x}=1-\\frac{x^2}6+o(x^2)$，因此\n\n$$\n\\ln\\frac{\\sin x}{x}=-\\frac{x^2}6+o(x^2).\n$$\n\n第二步，$(1+t)^{1/t}\\to e$，所以分母 $\\sim ex^2$。被积函数在 $t=0$ 处按极限补为 $e$ 即可。\n\n第三步，原极限为 $(-1/6)/e=-1/(6e)$。"
+  },
+  {
+    "id": "math2-zy2026-set1-q14-original",
+    "year": 2026,
+    "paperId": "zy2026-set1",
+    "paperTitle": "2026 张宇四套卷 · 第一套",
+    "number": "14",
+    "examNumber": "14",
+    "kind": "original",
+    "source": "张宇四套卷 · 2026版 · 数二第一套 · 第14题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 多元微分 / 隐函数偏导",
+    "type": "fill",
+    "stem": "设 $f(x)$ 为连续函数，且\n\n$$\nx^2+y^2+z^2=\\int_x^y f(x+y-t)\\,dt,\n$$\n\n则 $\\displaystyle z\\left(\\frac{\\partial z}{\\partial x}+\\frac{\\partial z}{\\partial y}\\right)=\\underline{\\qquad}$。",
+    "answer": "$\\displaystyle-(x+y)+\\frac{f(y)-f(x)}2$。",
+    "explanation": "第一步，用 $u=x+y-t$ 换元。$t=x$ 对应 $u=y$，$t=y$ 对应 $u=x$，且 $dt=-du$，所以\n\n$$\n\\int_x^y f(x+y-t)\\,dt=\\int_x^y f(u)\\,du.\n$$\n\n第二步，等式分别对 $x,y$ 求偏导：\n\n$$\n2x+2zz_x=-f(x),\\qquad 2y+2zz_y=f(y).\n$$\n\n第三步，两式相加并除以2，即得答案。对下限求导带负号，对上限求导带正号。"
+  },
+  {
+    "id": "math2-zy2026-set1-q15-original",
+    "year": 2026,
+    "paperId": "zy2026-set1",
+    "paperTitle": "2026 张宇四套卷 · 第一套",
+    "number": "15",
+    "examNumber": "15",
+    "kind": "original",
+    "source": "张宇四套卷 · 2026版 · 数二第一套 · 第15题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 微分方程 / 平移与齐次方程",
+    "type": "fill",
+    "stem": "微分方程 $(x-y-1)\\,dx+(x+4y-1)\\,dy=0$ 的通解为 $\\underline{\\qquad}$。",
+    "answer": "$$\n\\ln\\big[(x-1)^2+4y^2\\big]+\\arctan\\frac{2y}{x-1}=C.\n$$",
+    "explanation": "第一步，令 $X=x-1,Y=y$，方程化为\n\n$$\n\\frac{dY}{dX}=\\frac{-X+Y}{X+4Y}.\n$$\n\n第二步，令 $u=Y/X$，则 $Y=uX$，$dY/dX=u+X\\,du/dX$，代入得\n\n$$\nX\\frac{du}{dX}=-\\frac{1+4u^2}{1+4u},\\qquad\n\\frac{1+4u}{1+4u^2}\\,du=-\\frac{dX}X.\n$$\n\n第三步，两边积分，\n\n$$\n\\frac12\\arctan(2u)+\\frac12\\ln(1+4u^2)=-\\ln|X|+C.\n$$\n\n乘2、合并对数，再代回 $u=y/(x-1)$ 即得答案。反正切的表达在所选局部区间内使用，跨越分支时相应调整常数。"
+  },
+  {
+    "id": "math2-zy2026-set1-q16-original",
+    "year": 2026,
+    "paperId": "zy2026-set1",
+    "paperTitle": "2026 张宇四套卷 · 第一套",
+    "number": "16",
+    "examNumber": "16",
+    "kind": "original",
+    "source": "张宇四套卷 · 2026版 · 数二第一套 · 第16题",
+    "sourceCategory": "mock",
+    "topic": "线性代数 / 线性方程组 / 解集包含关系",
+    "type": "fill",
+    "stem": "已知方程组\n\n$$\n(\\mathrm I)\\begin{cases}x_2+ax_3=0,\\\\x_1+x_2+(a+1)x_3=0\\end{cases}\n$$\n\n的解均是方程组\n\n$$\n(\\mathrm {II})\\begin{cases}x_1+x_2+2x_3=0,\\\\x_1+x_2+bx_3=0\\end{cases}\n$$\n\n的解，但方程组（I）与方程组（II）不同解。设矩阵 $A$ 为方程组（I）的系数矩阵，矩阵 $B$ 为方程组（II）的系数矩阵，则 $B^TA=\\underline{\\qquad}$。",
+    "answer": "$$\n\\begin{pmatrix}1&2&3\\\\1&2&3\\\\2&4&6\\end{pmatrix}.\n$$",
+    "explanation": "第一步，先直接解（I）。由 $x_2=-ax_3$，再代入第二式得 $x_1=-x_3$，所以\n\n$$\nx=t(-1,-a,1)^T.\n$$\n\n第二步，这些解都满足（II），代入得 $-1-a+2=0$ 与 $-1-a+b=0$，所以 $a=1,b=2$。这时（II）只有一个独立方程，确实与（I）不同解。\n\n第三步，\n\n$$\nA=\\begin{pmatrix}0&1&1\\\\1&1&2\\end{pmatrix},\\qquad\nB=\\begin{pmatrix}1&1&2\\\\1&1&2\\end{pmatrix},\n$$\n\n$$\nB^TA=\\begin{pmatrix}1&1\\\\1&1\\\\2&2\\end{pmatrix}\n\\begin{pmatrix}0&1&1\\\\1&1&2\\end{pmatrix}\n=\\begin{pmatrix}1&2&3\\\\1&2&3\\\\2&4&6\\end{pmatrix}.\n$$"
+  },
+  {
+    "id": "math2-zy2026-set1-q20-original",
+    "year": 2026,
+    "paperId": "zy2026-set1",
+    "paperTitle": "2026 张宇四套卷 · 第一套",
+    "number": "20",
+    "examNumber": "20",
+    "kind": "original",
+    "source": "张宇四套卷 · 2026版 · 数二第一套 · 第20题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 二重积分 / 圆域与对称性",
+    "type": "solution",
+    "stem": "设 $D=\\{(x,y)\\mid x^2+y^2\\le2x+2y\\}$，求二重积分\n\n$$\n\\iint_D(x^2+x+y)\\,d\\sigma.\n$$",
+    "answer": "$7\\pi$。",
+    "explanation": "第一步，配方得 $(x-1)^2+(y-1)^2\\le2$。令 $u=x-1,v=y-1$，区域变为 $E:\\ u^2+v^2\\le2$，雅可比绝对值为1，被积函数变为 $u^2+3u+v+3$。\n\n第二步，圆域关于两条坐标轴对称，所以 $\\iint_Eu\\,dudv=\\iint_Ev\\,dudv=0$；又因交换 $u,v$ 后区域不变，\n\n$$\n\\iint_Eu^2\\,dudv=\\frac12\\iint_E(u^2+v^2)\\,dudv.\n$$\n\n第三步，圆面积为 $2\\pi$，再用极坐标：\n\n$$\nI=6\\pi+\\frac12\\int_0^{2\\pi}d\\theta\\int_0^{\\sqrt2}r^3\\,dr\n=6\\pi+\\pi=7\\pi.\n$$"
+  },
+  {
+    "id": "math2-zy2026-set1-q21-original",
+    "year": 2026,
+    "paperId": "zy2026-set1",
+    "paperTitle": "2026 张宇四套卷 · 第一套",
+    "number": "21",
+    "examNumber": "21",
+    "kind": "original",
+    "source": "张宇四套卷 · 2026版 · 数二第一套 · 第21题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 函数与微分方程 / 分段复合函数",
+    "type": "solution",
+    "stem": "设\n\n$$\nf(x)=\\begin{cases}x,&x<1,\\\\\\ln x,&x>1,\\end{cases}\n\\qquad g(x)=e^{x-1}.\n$$\n\n（I）求 $\\varphi(x)=f[g(x)]$。\n\n（II）求在 $(-\\infty,+\\infty)$ 内的连续函数 $y$，使它在 $(-\\infty,1)$ 与 $(1,+\\infty)$ 内满足微分方程 $y'-y=\\varphi(x)$，且 $y(0)=0$。",
+    "answer": "$\\varphi(x)=\\begin{cases}e^{x-1},&x<1,\\\\x-1,&x>1;\\end{cases}$ $y(x)=\\begin{cases}xe^{x-1},&x\\le1,\\\\-x+2e^{x-1},&x>1.\\end{cases}$",
+    "explanation": "$$\n\\varphi(x)=\\begin{cases}e^{x-1},&x<1,\\\\x-1,&x>1.\\end{cases}\n$$\n\n第一步，外层函数 $f$ 的分支由“放进去的数是否小于1”决定，因此要解 $g(x)<1$ 和 $g(x)>1$。\n\n第二步，因为 $e^{x-1}<1\\iff x<1$，所以此时走 $f(u)=u$ 这一支，得到 $f[g(x)]=e^{x-1}$。\n\n第三步，因为 $e^{x-1}>1\\iff x>1$，所以此时走 $f(u)=\\ln u$ 这一支，得到 $f[g(x)]=\\ln e^{x-1}=x-1$。原题没有定义 $f(1)$，所以也没有定义 $\\varphi(1)$，不能擅自补值。\n\n第二问答案：\n\n$$\ny(x)=\\begin{cases}xe^{x-1},&x\\le1,\\\\-x+2e^{x-1},&x>1.\\end{cases}\n$$\n\n第一步，在 $x<1$ 上，$y'-y=e^{x-1}$。乘积分因子 $e^{-x}$ 得\n\n$$\n(e^{-x}y)'=e^{-1},\\qquad y=e^x\\left(\\frac xe+C_1\\right).\n$$\n\n由 $y(0)=0$ 得 $C_1=0$，所以 $y=xe^{x-1}$，再由连续性得到 $y(1)=1$。\n\n第二步，在 $x>1$ 上，$y'-y=x-1$，乘 $e^{-x}$ 后积分，\n\n$$\ne^{-x}y=\\int(x-1)e^{-x}\\,dx+C_2=-xe^{-x}+C_2,\n$$\n\n所以 $y=-x+C_2e^x$。由右极限等于 $y(1)=1$ 得 $-1+C_2e=1$，所以 $C_2=2/e$。"
+  },
+  {
+    "id": "math2-zy2026-set1-q22-original",
+    "year": 2026,
+    "paperId": "zy2026-set1",
+    "paperTitle": "2026 张宇四套卷 · 第一套",
+    "number": "22",
+    "examNumber": "22",
+    "kind": "original",
+    "source": "张宇四套卷 · 2026版 · 数二第一套 · 第22题",
+    "sourceCategory": "mock",
+    "topic": "线性代数 / 二次型 / 正交变换与零值解",
+    "type": "solution",
+    "stem": "已知二次型\n\n$$\nf(x_1,x_2,x_3)=x^T\\begin{pmatrix}1&1&1\\\\3&4&5\\\\5&7&9\\end{pmatrix}x,\n\\qquad x=(x_1,x_2,x_3)^T.\n$$\n\n（1）求正交变换 $x=Qy$，将 $f(x_1,x_2,x_3)$ 化为标准形。\n\n（2）求 $f(x_1,x_2,x_3)=0$ 的解。",
+    "answer": "可取下列解析中的正交矩阵 $Q$，标准形为 $14y_1^2$。零值解为 $x=k_1(-2,1,0)^{\\mathsf T}+k_2(-3,0,1)^{\\mathsf T}$。",
+    "explanation": "可以取\n\n$$\nQ=\\begin{pmatrix}\n\\frac1{\\sqrt{14}}&-\\frac2{\\sqrt5}&-\\frac3{\\sqrt{70}}\\\\\n\\frac2{\\sqrt{14}}&\\frac1{\\sqrt5}&-\\frac6{\\sqrt{70}}\\\\\n\\frac3{\\sqrt{14}}&0&\\frac5{\\sqrt{70}}\n\\end{pmatrix},\n\\qquad f=14y_1^2.\n$$\n\n第一步，先写出二次型对应的对称矩阵。记原题矩阵为 $M$，则\n\n$$\nA=\\frac{M+M^T}2=\\begin{pmatrix}1&2&3\\\\2&4&6\\\\3&6&9\\end{pmatrix}.\n$$\n\n这是因为展开二次型时，$x_ix_j$ 项的系数是 $m_{ij}+m_{ji}$，所以 $x^TMx=x^TAx$。原题矩阵没有抄错。\n\n第二步，令 $a=(1,2,3)^T$，有 $A=aa^T$，所以 $Aa=14a$；与 $a$ 正交的向量都满足 $Av=0$。因此特征值为 $14,0,0$。\n\n第三步，单位化特征向量可取\n\n$$\n\\eta_1=\\frac{(1,2,3)^T}{\\sqrt{14}},\\qquad\n\\eta_2=\\frac{(-2,1,0)^T}{\\sqrt5},\\qquad\n\\eta_3=\\frac{(-3,-6,5)^T}{\\sqrt{70}}.\n$$\n\n三者两两正交，长度均为1。令 $Q=(\\eta_1,\\eta_2,\\eta_3)$，即有 $Q^TAQ=\\operatorname{diag}(14,0,0)$，故标准形为 $14y_1^2$。\n\n第二问答案：\n\n$$\nx_1+2x_2+3x_3=0,\n\\qquad\nx=k_1\\begin{pmatrix}-2\\\\1\\\\0\\end{pmatrix}\n+k_2\\begin{pmatrix}-3\\\\0\\\\1\\end{pmatrix},\\quad k_1,k_2\\in\\mathbb R.\n$$\n\n第二问直接做：展开原二次型，\n\n$$\nf=x_1^2+4x_2^2+9x_3^2+4x_1x_2+6x_1x_3+12x_2x_3\n=(x_1+2x_2+3x_3)^2.\n$$\n\n所以 $f=0$ 等价于括号内为0。令 $x_2=k_1,x_3=k_2$，得到 $x_1=-2k_1-3k_2$，即得通解。\n\n关键点：本题可写成一个平方，因此零值解是一个线性方程的解集。如果化成的是多个非负平方之和，等于0时每个平方都要为0；若平方项有正有负，就可能相互抵消，不能逐项令0。"
+  },
+  {
+    "id": "math2-zy2026-set1-q4-exercise1",
+    "year": 2026,
+    "paperId": "zy2026-set1",
+    "paperTitle": "2026 张宇四套卷 · 第一套",
+    "number": "4-1",
+    "examNumber": "4",
+    "kind": "exercise",
+    "source": "模拟卷 · 李艳芳三套 · 27版 · 数二第一套 · ID 11509",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 多元微分 / 连续、偏导与可微",
+    "type": "choice",
+    "stem": "设函数\n\n$$\nf(x,y)=\\begin{cases}\n\\left(\\dfrac1{x^2+y^2}\\right)^{|x|+|y|},&(x,y)\\ne(0,0),\\\\\n1,&(x,y)=(0,0).\n\\end{cases}\n$$\n\n则下列说法中，正确的是（　）。",
+    "answer": "**C**。",
+    "explanation": "第一步，令 $r=\\sqrt{x^2+y^2}$。当 $0<r<1$ 时，\n\n$$\n\\ln f=-2(|x|+|y|)\\ln r,\n\\qquad 0\\le\\ln f\\le-2\\sqrt2\\,r\\ln r\\longrightarrow0.\n$$\n\n所以 $f\\to1=f(0,0)$，原点处连续。\n\n第二步，沿 $x$ 轴，从右侧计算偏导定义中的差商：\n\n$$\n\\frac{f(x,0)-1}{x}\n=\\frac{e^{-2x\\ln x}-1}{-2x\\ln x}(-2\\ln x)\n\\longrightarrow+\\infty.\n$$\n\n因此原点处的 $x$ 偏导不存在，更不可能可微。",
+    "exerciseIndex": 1,
+    "sourceUrl": "https://cxyonly.fans/math/practice?questionId=11509&q=%E5%A5%97&conceptId=1055",
+    "options": [
+      {
+        "key": "A",
+        "text": "$f(x,y)$ 在原点处的二重极限不存在。"
+      },
+      {
+        "key": "B",
+        "text": "$f(x,y)$ 在原点处的二重极限存在，但在该点处不连续。"
+      },
+      {
+        "key": "C",
+        "text": "$f(x,y)$ 在原点处连续但不可微。"
+      },
+      {
+        "key": "D",
+        "text": "$f(x,y)$ 在原点处可微。"
+      }
+    ],
+    "correctOption": "C"
+  },
+  {
+    "id": "math2-zy2026-set1-q4-exercise2",
+    "year": 2026,
+    "paperId": "zy2026-set1",
+    "paperTitle": "2026 张宇四套卷 · 第一套",
+    "number": "4-2",
+    "examNumber": "4",
+    "kind": "exercise",
+    "source": "模拟卷 · 张宇八套 · 27版 · 数一第七套 · ID 11296",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 多元微分 / 连续、偏导与可微",
+    "type": "choice",
+    "stem": "二元函数 $f(x,y)$ 与 $g(x,y)$ 在点 $P_0(x_0,y_0)$ 的某邻域内有定义，已知 $f$ 在 $P_0$ 处可微，且 $f(x_0,y_0)=0$，$g$ 在 $P_0$ 处连续但不可微。设\n\n$$\n\\begin{aligned}\nF_1&=f|f|,\\\\F_2&=fg,\\\\F_3&=f|g|,\\\\F_4&=|f|g.\n\\end{aligned}\n$$\n\n由上述条件能够保证在 $P_0$ 处可微的函数是（　）。",
+    "answer": "**C**。",
+    "explanation": "第一步，记 $h=x-x_0,k=y-y_0$，$\\rho=\\sqrt{h^2+k^2}$，$L=\\frac{\\partial f}{\\partial x}(P_0)h+\\frac{\\partial f}{\\partial y}(P_0)k$。由可微且函数值为0，有 $f=L+o(\\rho)$，特别地 $f=O(\\rho)$；由 $g$ 连续，有 $g=g(P_0)+o(1)$，且 $|g|=|g(P_0)|+o(1)$。\n\n第二步，分别展开前三个乘积：\n\n$$\nf|f|=O(\\rho^2)=o(\\rho),\n$$\n\n$$\nfg=g(P_0)L+o(\\rho),\\qquad\nf|g|=|g(P_0)|L+o(\\rho).\n$$\n\n三者都有“线性部分加高阶无穷小”的形式，所以都可微。\n\n第三步，第四个不能保证。取 $P_0=(0,0)$，$f(x,y)=x$，$g(x,y)=1+|x|$，则条件全部满足，但 $F_4=|x|+x^2$ 在原点连 $x$ 偏导都不存在，因此不可微。",
+    "exerciseIndex": 2,
+    "sourceUrl": "https://cxyonly.fans/math/practice?questionId=11296&q=%E5%8F%AF%E5%BE%AE&sort=question_id_desc&conceptId=1055",
+    "options": [
+      {
+        "key": "A",
+        "text": "只有 $F_1$。"
+      },
+      {
+        "key": "B",
+        "text": "只有 $F_1,F_2$。"
+      },
+      {
+        "key": "C",
+        "text": "只有 $F_1,F_2,F_3$。"
+      },
+      {
+        "key": "D",
+        "text": "四个函数均可保证。"
+      }
+    ],
+    "correctOption": "C"
+  },
+  {
+    "id": "math2-zy2026-set1-q21-exercise1",
+    "year": 2026,
+    "paperId": "zy2026-set1",
+    "paperTitle": "2026 张宇四套卷 · 第一套",
+    "number": "21-1",
+    "examNumber": "21",
+    "kind": "exercise",
+    "source": "基础过关660题 · 26版 · 数二第426题 · ID 3794",
+    "sourceCategory": "book",
+    "topic": "高等数学 / 函数与微分方程 / 分段复合函数",
+    "type": "fill",
+    "stem": "设\n\n$$\nf(x)=\\begin{cases}x^3,&x<-1,\\\\2-x,&-1\\le x\\le0,\\\\2+x,&x>0,\\end{cases}\n\\qquad\ng(x)=\\begin{cases}x^2,&x<0,\\\\-x,&x\\ge0,\\end{cases}\n$$\n\n则 $\\displaystyle\\lim_{x\\to0}f[g(x)]=\\underline{\\qquad}$。",
+    "answer": "极限为 $2$；完整分段式见解析。",
+    "explanation": "原题极限为2，完整的复合函数为\n\n$$\nf[g(x)]=\\begin{cases}\n2+x^2,&x<0,\\\\\n2+x,&0\\le x\\le1,\\\\\n-x^3,&x>1.\n\\end{cases}\n$$\n\n第一步，当 $x<0$ 时，内层 $g(x)=x^2>0$，所以外层选 $f(u)=2+u$，得到 $2+x^2$。注意：$x$ 为负数，不代表放进外层函数的数也是负数。\n\n第二步，当 $x\\ge0$ 时，内层 $g(x)=-x\\le0$，还需要再判断它是否小于 $-1$。若 $0\\le x\\le1$，则 $-1\\le-x\\le0$，外层选 $2-u$，得到 $2+x$；若 $x>1$，则 $-x<-1$，外层选 $u^3$，得到 $-x^3$。\n\n第三步，$x\\to0^-$ 时用 $2+x^2$，$x\\to0^+$ 时用 $2+x$，两侧均趋于2，故极限为2。",
+    "exerciseIndex": 1,
+    "sourceUrl": "https://cxyonly.fans/math/practice?questionId=3794&q=%E5%A4%8D%E5%90%88&sort=question_id_desc&conceptId=914"
+  },
+  {
+    "id": "math2-zy2026-set1-q21-exercise2",
+    "year": 2026,
+    "paperId": "zy2026-set1",
+    "paperTitle": "2026 张宇四套卷 · 第一套",
+    "number": "21-2",
+    "examNumber": "21",
+    "kind": "exercise",
+    "source": "900题 · 数二第一章A类第28题 · ID 4366",
+    "sourceCategory": "book",
+    "topic": "高等数学 / 函数与微分方程 / 分段复合函数",
+    "type": "choice",
+    "stem": "设函数\n\n$$\nf(x)=\\begin{cases}a\\cos x,&x\\ge0,\\\\x+1,&x<0,\\end{cases}\n\\qquad\ng(x)=\\begin{cases}x^2-b^2,&x\\ge0,\\\\x+\\pi,&x<0.\\end{cases}\n$$\n\n已知 $b\\ne0$，若 $f(x)$ 连续，且 $f(g(x))$ 在 $x=0$ 处连续，则 $a^2+b^2=$（　）。",
+    "answer": "**C**。",
+    "explanation": "第一步，$f$ 在0处连续，要求左极限1等于函数值 $a\\cos0=a$，所以 $a=1$。\n\n第二步，当 $x<0$ 且靠近0时，$g(x)=x+\\pi>0$，外层选余弦分支，所以左极限为 $\\cos\\pi=-1$。\n\n第三步，当 $x\\ge0$ 且靠近0时，因为 $b\\ne0$，有 $g(x)=x^2-b^2<0$，外层选一次函数分支，得到 $f(g(x))=x^2-b^2+1$，其右极限及原点函数值均为 $1-b^2$。由连续性得 $1-b^2=-1$，所以 $b^2=2$。\n\n进一步写完整分段式。代入 $a=1,b^2=2$ 后，\n\n$$\nf(g(x))=\\begin{cases}\nx+\\pi+1,&x<-\\pi,\\\\\n\\cos(x+\\pi),&-\\pi\\le x<0,\\\\\nx^2-1,&0\\le x<\\sqrt2,\\\\\n\\cos(x^2-2),&x\\ge\\sqrt2.\n\\end{cases}\n$$\n\n为什么要分四段：先按内层 $g$ 的分界点0分成左右两侧，再分别解 $x+\\pi=0$ 与 $x^2-2=0$，找出内层函数值经过外层分界点0的位置。因此最终出现 $-\\pi,0,\\sqrt2$ 三个分界点。",
+    "exerciseIndex": 2,
+    "sourceUrl": "https://cxyonly.fans/math/practice?questionId=4366&q=%E5%A4%8D%E5%90%88&sort=question_id_desc&conceptId=914",
+    "options": [
+      {
+        "key": "A",
+        "text": "1。"
+      },
+      {
+        "key": "B",
+        "text": "2。"
+      },
+      {
+        "key": "C",
+        "text": "3。"
+      },
+      {
+        "key": "D",
+        "text": "5。"
+      }
+    ],
+    "correctOption": "C"
   }
 ]

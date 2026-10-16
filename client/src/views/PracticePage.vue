@@ -66,9 +66,15 @@ const filtered = computed(() => sourceQuestions.value.filter(q => {
 const queue = computed(() => queueIds.value.map(id => questionById.get(id)).filter(q => q !== undefined))
 const heading = computed(() => demoMode.value ? '错题示例' : mode.value === 'removed' ? '已移除题目' : mode.value === 'notes' ? '有笔记的题目' : mode.value === 'review' ? '数学二错题再练' : '数学二错题本')
 const markedInQueue = computed(() => queue.value.filter(q => activeProgress.value[q.id]?.mastery).length)
-const yearGroups = computed(() => [...new Set(queue.value.map(q => q.year))].map(value => ({
-  year: value, questions: queue.value.filter(q => q.year === value),
-})))
+function yearLabel(year: number) {
+  const papers = [...new Set(questions.filter(q => q.year === year).map(q => q.paperTitle ?? `${year} 年`))]
+  return papers.length === 1 ? papers[0] : `${year} 年`
+}
+const paperScope = computed(() => selectedYear.value ? `${yearLabel(Number(selectedYear.value))} · 错题卷` : '错题卷')
+const yearGroups = computed(() => [...new Set(queue.value.map(q => q.paperId ?? String(q.year)))].map(id => {
+  const group = queue.value.filter(q => (q.paperId ?? String(q.year)) === id)
+  return { id, title: group[0].paperTitle ?? `${group[0].year} 年数学二 · 错题卷`, mock: Boolean(group[0].paperId), questions: group }
+}))
 let noticeTimer: number | undefined
 
 function restartQueue() {
@@ -213,7 +219,7 @@ onBeforeUnmount(() => {
           <div v-if="mode !== 'review'" class="directory-heading">{{ mode === 'removed' ? '移除年份' : mode === 'notes' ? '笔记年份' : '试卷年份' }}<span>{{ directoryYears.length }} 个年份</span></div>
           <nav v-if="mode !== 'review'" class="year-nav" aria-label="年份分类">
             <button v-if="mode === 'notes' || mode === 'removed'" :aria-pressed="!selectedYear" :class="{ active: !selectedYear }" @click="selectView(mode)"><span>全部年份</span><span>{{ mode === 'removed' ? removedCount : notedCount }}</span></button>
-            <button v-for="item in directoryYears" :aria-pressed="selectedYear === String(item.value)" :key="item.value" :class="{ active: selectedYear === String(item.value) }" @click="selectView(mode, String(item.value))"><span>{{ item.value }} 年</span><span>{{ mode === 'removed' ? item.removed : mode === 'notes' ? item.notes : item.count }}</span></button>
+            <button v-for="item in directoryYears" :aria-pressed="selectedYear === String(item.value)" :key="item.value" :class="{ active: selectedYear === String(item.value) }" @click="selectView(mode, String(item.value))"><span>{{ yearLabel(item.value) }}</span><span>{{ mode === 'removed' ? item.removed : mode === 'notes' ? item.notes : item.count }}</span></button>
           </nav>
           <p v-if="!years.length" class="directory-empty">题目上传后，这里会自动按真实年份生成目录。</p>
           <div class="progress-card"><div><span>已掌握</span><strong>{{ masteredCount }} <small>/ {{ visibleQuestions.length }}</small></strong></div><progress :value="masteredCount" :max="visibleQuestions.length || 1" aria-label="正式错题掌握进度" /><p>不熟练和不会的题，会自动收集到错题再练。</p></div>
@@ -226,14 +232,14 @@ onBeforeUnmount(() => {
         <section v-if="!questions.length" class="preview-banner"><PracticeIcon name="book" /><div><strong>错题本已就绪，等待录入你的题目</strong><p>下方使用你提供的截图演示操作，年份尚未确认，不计入正式题库和复习统计。</p></div><button @click="demoMode = !demoMode">{{ demoMode ? '收起示例' : '体验示例' }}</button></section>
         <p v-if="storageFailed" role="alert" class="storage-error">浏览器暂时无法保存进度，请立即导出备份以保留本次标记和笔记。</p>
         <p class="print-summary print-only">{{ pdfTitle }} · 含答案解析与笔记</p>
-        <div class="toolbar"><div class="scope-label">{{ demoMode ? '交互示例' : mode === 'review' ? '全部年份错题' : mode === 'removed' ? (selectedYear ? `${selectedYear} 年已移除题目` : '全部已移除题目') : mode === 'notes' ? (selectedYear ? `${selectedYear} 年笔记题目` : '全部笔记题目') : `${selectedYear} 年错题卷` }}<span>{{ queue.length }} 题 · 已标记 {{ markedInQueue }}</span></div><div class="toolbar-filters"><button class="pdf-button" :disabled="!queue.length || exportingPdf" @click="exportPdf"><PracticeIcon name="download" />{{ exportingPdf ? '准备导出…' : '导出 PDF' }}</button><label class="question-search"><PracticeIcon name="search" /><input v-model="keyword" maxlength="80" aria-label="搜索错题" :placeholder="mode === 'notes' ? '搜索题目、笔记内容' : '搜索题目、知识点'" /></label><select v-model="statusFilter" aria-label="按掌握程度筛选"><option value="all">全部状态</option><option value="unmarked">未标记</option><option v-for="status in statuses" :key="status.value" :value="status.value">{{ status.label }}</option></select></div></div>
+        <div class="toolbar"><div class="scope-label">{{ demoMode ? '交互示例' : mode === 'review' ? '全部年份错题' : mode === 'removed' ? (selectedYear ? `${selectedYear} 年已移除题目` : '全部已移除题目') : mode === 'notes' ? (selectedYear ? `${selectedYear} 年笔记题目` : '全部笔记题目') : paperScope }}<span>{{ queue.length }} 题 · 已标记 {{ markedInQueue }}</span></div><div class="toolbar-filters"><button class="pdf-button" :disabled="!queue.length || exportingPdf" @click="exportPdf"><PracticeIcon name="download" />{{ exportingPdf ? '准备导出…' : '导出 PDF' }}</button><label class="question-search"><PracticeIcon name="search" /><input v-model="keyword" maxlength="80" aria-label="搜索错题" :placeholder="mode === 'notes' ? '搜索题目、笔记内容' : '搜索题目、知识点'" /></label><select v-model="statusFilter" aria-label="按掌握程度筛选"><option value="all">全部状态</option><option value="unmarked">未标记</option><option v-for="status in statuses" :key="status.value" :value="status.value">{{ status.label }}</option></select></div></div>
         <div v-if="queue.length" class="question-list">
           <div v-if="mode === 'review'" class="year-questions review-questions"><PracticeQuestionCard v-for="(question, index) in queue" :key="`${round}-${question.id}`" :question="question" :index="index + 1" :progress="activeProgress[question.id]" :storage-failed="storageFailed" :print-mode="exportingPdf" :manageable="!demoMode" @remove="removeQuestion" @restore="restoreQuestion" @note-blur="refreshNotesQueue" @mark="mark" @note="saveNote" /></div>
-          <section v-for="group in mode === 'review' ? [] : yearGroups" :id="`practice-year-${group.year}`" :key="group.year" class="year-section" :aria-labelledby="`year-title-${group.year}`">
-            <header class="paper-heading"><div><span class="paper-label">{{ mode === 'removed' ? '已移除题目' : mode === 'notes' ? '有笔记的题目' : '真题与配套练习' }}</span><h2 :id="`year-title-${group.year}`">{{ group.year }} 年数学二 · {{ mode === 'removed' ? '已移除题目' : mode === 'notes' ? '笔记题目' : '错题卷' }}</h2></div><span>{{ group.questions.length }} 题</span></header>
+          <section v-for="group in mode === 'review' ? [] : yearGroups" :id="`practice-year-${group.id}`" :key="group.id" class="year-section" :aria-labelledby="`year-title-${group.id}`">
+            <header class="paper-heading"><div><span class="paper-label">{{ mode === 'removed' ? '已移除题目' : mode === 'notes' ? '有笔记的题目' : group.mock ? '模拟卷与配套练习' : '真题与配套练习' }}</span><h2 :id="`year-title-${group.id}`">{{ group.title }}{{ mode === 'removed' ? ' · 已移除题目' : mode === 'notes' ? ' · 笔记题目' : '' }}</h2></div><span>{{ group.questions.length }} 题</span></header>
             <div class="year-questions"><PracticeQuestionCard v-for="(question, index) in group.questions" :key="`${round}-${question.id}`" :question="question" :index="index + 1" :progress="activeProgress[question.id]" :storage-failed="storageFailed" :print-mode="exportingPdf" :show-note="mode === 'notes' || mode === 'removed'" :manageable="!demoMode" :removed="mode === 'removed'" @remove="removeQuestion" @restore="restoreQuestion" @note-blur="refreshNotesQueue" @mark="mark" @note="saveNote" /></div>
           </section>
-          <footer class="paper-end"><strong>{{ mode === 'review' ? '错题再练 · 本轮结束' : mode === 'removed' ? '已移除题目 · 本页结束' : mode === 'notes' ? '笔记汇总 · 本页结束' : `${selectedYear} 年错题卷 · 本卷结束` }}</strong></footer>
+          <footer class="paper-end"><strong>{{ mode === 'review' ? '错题再练 · 本轮结束' : mode === 'removed' ? '已移除题目 · 本页结束' : mode === 'notes' ? '笔记汇总 · 本页结束' : `${paperScope} · 本卷结束` }}</strong></footer>
         </div>
         <section v-else class="empty-state"><PracticeIcon :name="mode === 'review' ? 'check' : 'book'" /><h2>{{ mode === 'removed' ? '暂无符合条件的已移除题目' : mode === 'notes' ? '暂无符合条件的笔记题目' : mode === 'review' ? '这里暂时没有需要再练的题' : questions.length ? '没有符合筛选条件的题目' : '准备好收集你的第一道错题' }}</h2><p>{{ mode === 'removed' ? '点击题目上的“移除题目”后，会收集到这里，笔记和熟练度保留。' : mode === 'notes' ? '在题目下方写下笔记后，会自动收集到这里；也可以调整年份、状态或搜索条件。' : mode === 'review' ? '将题目标为“不熟练”或“不会”后，它们会自动出现在这里。' : questions.length ? '试试其他年份、状态，或清空搜索关键词。' : '上传题目时附上年份，我会把题干、答案和解析一起录入。' }}</p><button v-if="mode !== 'all'" class="primary-button" @click="selectView('all')">返回错题本</button></section>
         <p v-if="notice" class="notice" role="status" aria-live="polite">{{ notice }}<button v-if="undoRemovalId && notice.startsWith('已移除')" @click="restoreQuestion(undoRemovalId)">撤销</button></p>
