@@ -5,18 +5,18 @@
 
 @layer base {
   :root {
-    --canvas: #f5f6fa;
+    --canvas: #f6f8fc;
     --paper: #ffffff;
-    --ink: #192236;
-    --ink-soft: #4d5a6f;
+    --ink: #24314a;
+    --ink-soft: #53627a;
     --muted: #637086;
-    --line: #e3e8f0;
-    --line-strong: #d4dce8;
-    --accent: #4268d5;
+    --line: #e4eaf3;
+    --line-strong: #d4deed;
+    --accent: #456bd8;
     --accent-dark: #3154b4;
-    --accent-tint: #edf2ff;
+    --accent-tint: #eef3ff;
     --focus-ring: rgba(66, 104, 213, .2);
-    --surface-soft: #f7f9fc;
+    --surface-soft: #f7f9fd;
     --success: #087855;
     --success-tint: #d4ede2;
     --warning: #916109;

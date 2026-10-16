@@ -7,8 +7,8 @@
 
 <style scoped>
 .brand { display: inline-flex; align-items: center; gap: 12px; width: max-content; min-height: 44px; color: var(--ink); }
-.brand-rule { width: 3px; height: 32px; background: var(--accent); }
+.brand-rule { width: 5px; height: 36px; border-radius: 4px; background: var(--accent); }
 .brand > span:last-child { display: grid; line-height: 1.1; }
-b { font-family: var(--serif); font-size: 17px; letter-spacing: .01em; }
-small { margin-top: 4px; color: var(--muted); font-size: 10px; letter-spacing: .08em; }
+b { font-size: 17px; font-weight: 750; letter-spacing: .01em; }
+small { margin-top: 4px; color: var(--muted); font-size: 11px; letter-spacing: .08em; }
 </style>
