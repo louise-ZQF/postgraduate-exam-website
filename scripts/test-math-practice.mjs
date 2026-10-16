@@ -21,7 +21,14 @@ for (const q of practiceQuestions) {
   assert.ok(!ids.has(q.id), `重复题目 ID：${q.id}`)
   ids.add(q.id)
   assert.ok(Number.isInteger(q.year) && q.year >= 1980 && q.year <= 2100, `年份无效：${q.id}`)
-  for (const field of ['number', 'source', 'topic', 'stem', 'answer', 'explanation']) assert.ok(typeof q[field] === 'string' && q[field].trim(), `${q.id} 缺少 ${field}`)
+  for (const field of ['number', 'source', 'topic', 'stem']) assert.ok(typeof q[field] === 'string' && q[field].trim(), `${q.id} 缺少 ${field}`)
+  if (q.answerAvailable === false) {
+    assert.equal(q.kind, 'original', `${q.id} 补充题不能缺少解析`)
+    assert.equal(q.answer, '')
+    assert.equal(q.explanation, '')
+  } else {
+    for (const field of ['answer', 'explanation']) assert.ok(typeof q[field] === 'string' && q[field].trim(), `${q.id} 缺少 ${field}`)
+  }
   assert.ok(['choice', 'fill', 'solution'].includes(q.type))
   if (q.type === 'choice') {
     assert.ok(q.options?.length >= 2)

@@ -7,6 +7,8 @@ export type PracticeQuestion = {
   exerciseIndex?: number
   kind?: 'original' | 'exercise'
   source: string
+  sourceCategory?: 'book' | 'mock'
+  sourceUrl?: string
   topic: string
   type: 'choice' | 'fill' | 'solution'
   stem: string
@@ -15,6 +17,7 @@ export type PracticeQuestion = {
   correctOption?: string
   answer: string
   explanation: string
+  answerAvailable?: boolean
 }
 export type QuestionProgress = { mastery?: Mastery; removed?: boolean; note: string; updatedAt: number; reviews: number }
 export type PracticeProgress = Record<string, QuestionProgress>

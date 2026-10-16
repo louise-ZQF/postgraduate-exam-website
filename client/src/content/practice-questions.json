@@ -4528,5 +4528,1356 @@
       }
     ],
     "correctOption": "D"
+  },
+  {
+    "id": "math2-2021-q9-original",
+    "year": 2021,
+    "number": "9",
+    "examNumber": "9",
+    "kind": "original",
+    "source": "2021 年数学二真题 · 第 9 题",
+    "topic": "线性代数 / 向量组 / 线性表出与解空间包含",
+    "type": "choice",
+    "stem": "设3阶矩阵 $A=(\\alpha_1,\\alpha_2,\\alpha_3)$，$B=(\\beta_1,\\beta_2,\\beta_3)$。若向量组 $\\alpha_1,\\alpha_2,\\alpha_3$ 可以由向量组 $\\beta_1,\\beta_2$ 线性表出，则（　）。",
+    "sourceUrl": "https://dongyu-will.github.io/zhijian/books/math-two-exams/chapters/2021/",
+    "answer": "**D**。",
+    "options": [
+      {
+        "key": "A",
+        "text": "$Ax=0$ 的解均为 $Bx=0$ 的解。"
+      },
+      {
+        "key": "B",
+        "text": "$A^{\\mathsf T}x=0$ 的解均为 $B^{\\mathsf T}x=0$ 的解。"
+      },
+      {
+        "key": "C",
+        "text": "$Bx=0$ 的解均为 $Ax=0$ 的解。"
+      },
+      {
+        "key": "D",
+        "text": "$B^{\\mathsf T}x=0$ 的解均为 $A^{\\mathsf T}x=0$ 的解。"
+      }
+    ],
+    "correctOption": "D",
+    "explanation": "第一步，转置后的方程 $B^{\\mathsf T}x=0$ 就是\n$$\\beta_1^{\\mathsf T}x=\\beta_2^{\\mathsf T}x=\\beta_3^{\\mathsf T}x=0,$$\n表示 $x$ 与B的每一个列向量正交。\n\n第二步，每个 $\\alpha_i$ 都可写成 $\\alpha_i=c_i\\beta_1+d_i\\beta_2$。对刚才的解 $x$，\n$$\\alpha_i^{\\mathsf T}x=c_i\\beta_1^{\\mathsf T}x+d_i\\beta_2^{\\mathsf T}x=0\\quad(i=1,2,3).$$\n所以 $A^{\\mathsf T}x=0$，得到D。\n\n关键：题设讲的是列向量的线性表示，先写出转置方程的每一行，就能直接代入证明；不要只凭“向量多、向量少”猜包含方向。$Ax=0$ 则是 $x_1\\alpha_1+x_2\\alpha_2+x_3\\alpha_3=0$，这里的x是组合系数，含义不同。"
+  },
+  {
+    "id": "math2-2021-q9-book1",
+    "year": 2021,
+    "number": "9-1",
+    "examNumber": "9",
+    "kind": "exercise",
+    "source": "李林880·线代·基础选择11 · 原书P77，一(11)",
+    "topic": "线性代数 / 向量组 / 线性表出与解空间包含",
+    "type": "choice",
+    "stem": "设A是 $m\\times s$ 矩阵，B是 $s\\times n$ 矩阵，则方程组 $ABX=0$ 与 $BX=0$ 同解的充分必要条件是（　）。",
+    "exerciseIndex": 1,
+    "sourceCategory": "book",
+    "answer": "**B**。",
+    "options": [
+      {
+        "key": "A",
+        "text": "$r(A)=s$。"
+      },
+      {
+        "key": "B",
+        "text": "$r(AB)=r(B)$。"
+      },
+      {
+        "key": "C",
+        "text": "$r(A)=r(B)$。"
+      },
+      {
+        "key": "D",
+        "text": "$r(A)=m$。"
+      }
+    ],
+    "correctOption": "B",
+    "explanation": "先写出必然成立的包含关系：$BX=0\\Rightarrow ABX=0$。两者都有n个未知量，解空间维数分别为 $n-r(B)$、$n-r(AB)$。已经包含的两个有限维空间相等，当且仅当维数相等，即 $r(AB)=r(B)$。"
+  },
+  {
+    "id": "math2-2021-q9-book2",
+    "year": 2021,
+    "number": "9-2",
+    "examNumber": "9",
+    "kind": "exercise",
+    "source": "李林880·线代·基础选择12 · 原书P77，一(12)",
+    "topic": "线性代数 / 向量组 / 线性表出与解空间包含",
+    "type": "choice",
+    "stem": "设A为3阶矩阵，$\\alpha_1=(1,2,-2)^{\\mathsf T}$、$\\alpha_2=(2,1,-1)^{\\mathsf T}$、$\\alpha_3=(1,1,a)^{\\mathsf T}$（$a\\ne-1$）是非齐次线性方程组 $AX=b$ 的三个解，$A^*$ 是A的伴随矩阵，则（　）。",
+    "exerciseIndex": 2,
+    "sourceCategory": "book",
+    "answer": "**C**。",
+    "options": [
+      {
+        "key": "A",
+        "text": "$AX=0$ 与 $A^*X=0$ 同解。"
+      },
+      {
+        "key": "B",
+        "text": "$A^*X=0$ 的解均是 $AX=0$ 的解，但二者不同解。"
+      },
+      {
+        "key": "C",
+        "text": "$AX=0$ 的解均是 $A^*X=0$ 的解，但二者不同解。"
+      },
+      {
+        "key": "D",
+        "text": "$AX=0$ 与 $A^*X=0$ 没有非零公共解。"
+      }
+    ],
+    "correctOption": "C",
+    "explanation": "非齐次方程的解相减得到齐次解：$\\alpha_2-\\alpha_1=(1,-1,1)^{\\mathsf T}$，$\\alpha_3-\\alpha_1=(0,-1,a+2)^{\\mathsf T}$。这两个向量线性无关，因此 $\\dim\\ker A\\ge2$，$r(A)\\le1$。又因为方程非齐次且有解，$b\\ne0$，所以 $A\\ne O$，从而 $r(A)=1$。所有二阶子式均为0，故 $A^*=O$。于是 $A^*X=0$ 的解是全体三维向量，而 $AX=0$ 的解空间只有二维，包含方向为C。"
+  },
+  {
+    "id": "math2-2021-q9-book3",
+    "year": 2021,
+    "number": "9-3",
+    "examNumber": "9",
+    "kind": "exercise",
+    "source": "张宇1000·线代·题12 · 原书P47，12",
+    "topic": "线性代数 / 向量组 / 线性表出与解空间包含",
+    "type": "choice",
+    "stem": "设3阶矩阵A、B的列向量组等价，考虑下列结论：\n\n① $AX=0$ 与 $BX=0$ 同解；② $A^{\\mathsf T}X=0$ 与 $B^{\\mathsf T}X=0$ 同解；③ $\\begin{pmatrix}A\\\\B\\end{pmatrix}X=0$ 与 $AX=0$ 同解；④ $\\begin{pmatrix}A^{\\mathsf T}\\\\B^{\\mathsf T}\\end{pmatrix}X=0$ 与 $A^{\\mathsf T}X=0$ 同解。",
+    "exerciseIndex": 3,
+    "sourceCategory": "book",
+    "answer": "**C**。",
+    "options": [
+      {
+        "key": "A",
+        "text": "①②。"
+      },
+      {
+        "key": "B",
+        "text": "①③。"
+      },
+      {
+        "key": "C",
+        "text": "②④。"
+      },
+      {
+        "key": "D",
+        "text": "①②③④。"
+      }
+    ],
+    "correctOption": "C",
+    "explanation": "列向量组等价意味着列空间相等。$A^{\\mathsf T}X=0$ 表示X与A的每一列正交，因此两组列张成相同空间时，它们的正交补相同，②成立。④只是在同一个齐次方程组后重复添加等价约束，也成立。\n\n①、③不能由列向量组等价推出。例如取 $A=\\operatorname{diag}(1,0,0)$、$B=\\begin{pmatrix}0&1&0\\\\0&0&0\\\\0&0&0\\end{pmatrix}$，两者列空间相同，但前者要求 $x_1=0$，后者要求 $x_2=0$。"
+  },
+  {
+    "id": "math2-2021-q9-book4",
+    "year": 2021,
+    "number": "9-4",
+    "examNumber": "9",
+    "kind": "exercise",
+    "source": "张宇1000·线代·题13 · 原书P47，13",
+    "topic": "线性代数 / 向量组 / 线性表出与解空间包含",
+    "type": "choice",
+    "stem": "设A为 $m\\times n$ 矩阵，$e=(1,1,\\ldots,1)^{\\mathsf T}$，且 $AY=e$ 有解。记方程组(I)为 $A^{\\mathsf T}X=0$；方程组(II)为 $A^{\\mathsf T}X=0,\\ e^{\\mathsf T}X=0$。则（　）。",
+    "exerciseIndex": 4,
+    "sourceCategory": "book",
+    "answer": "**D**。",
+    "options": [
+      {
+        "key": "A",
+        "text": "(I)的解都是(II)的解，但(II)的解未必是(I)的解。"
+      },
+      {
+        "key": "B",
+        "text": "(II)的解都是(I)的解，但(I)的解未必是(II)的解。"
+      },
+      {
+        "key": "C",
+        "text": "(I)的解未必是(II)的解，(II)的解未必是(I)的解。"
+      },
+      {
+        "key": "D",
+        "text": "(I)的解都是(II)的解，(II)的解都是(I)的解。"
+      }
+    ],
+    "correctOption": "D",
+    "explanation": "取一个满足 $AY_0=e$ 的解，若 $A^{\\mathsf T}X=0$，则 $e^{\\mathsf T}X=(AY_0)^{\\mathsf T}X=Y_0^{\\mathsf T}A^{\\mathsf T}X=0$，所以新增条件自动满足。反向包含由(II)已经含有(I)直接得到。"
+  },
+  {
+    "id": "math2-2021-q9-book5",
+    "year": 2021,
+    "number": "9-5",
+    "examNumber": "9",
+    "kind": "exercise",
+    "source": "张宇1000·线代·题14 · 原书P47，14",
+    "topic": "线性代数 / 向量组 / 线性表出与解空间包含",
+    "type": "solution",
+    "stem": "在方程组(I)\n$$\\begin{cases}x_1+3x_3+5x_4=0,\\\\x_1-x_2-2x_3+2x_4=0,\\\\2x_1-x_2+x_3+3x_4=0\\end{cases}$$\n中添加方程 $ax_1+bx_2+cx_3+dx_4=0$ 得到方程组(II)。问a、b、c、d满足什么条件时两个方程组同解？并求此时的通解。",
+    "exerciseIndex": 5,
+    "sourceCategory": "book",
+    "answer": "$c=3a+5b$，$d$ 任意；$X=t(-3,-5,1,0)^{\\mathsf T}$。",
+    "explanation": "原方程组第三式减去前两式之和，得 $-4x_4=0$，故 $x_4=0$；继而 $x_1=-3x_3$，$x_2=-5x_3$。因此(I)通解为 $X=t(-3,-5,1,0)^{\\mathsf T}$，$t\\in\\mathbb R$。\n\n新增方程不能删掉这些解，所以要求对任意t有 $t(-3a-5b+c)=0$，即 $c=3a+5b$，d任意。满足此条件时(II)的通解也是上述形式。"
+  },
+  {
+    "id": "math2-2021-q9-mock576",
+    "year": 2021,
+    "number": "9-6",
+    "examNumber": "9",
+    "kind": "exercise",
+    "source": "模拟卷 · 张宇八套·27版·卷八",
+    "topic": "线性代数 / 向量组 / 线性表出与解空间包含",
+    "type": "solution",
+    "stem": "设矩阵A、B满足：对任意 $x_1,x_2,x_3$，均有\n$$A\\begin{pmatrix}x_1\\\\x_2\\end{pmatrix}=\\begin{pmatrix}x_1+2x_2\\\\x_1-x_2\\\\2x_1+ax_2\\end{pmatrix},\\quad B\\begin{pmatrix}x_1\\\\x_2\\\\x_3\\end{pmatrix}=\\begin{pmatrix}x_1+2x_2+3x_3\\\\bx_1-2x_2-3x_3\\end{pmatrix}.$$\n若 $A^{\\mathsf T}X=0$ 的解均为 $BX=0$ 的解，且它们不同解。\n\n（1）求a、b；（2）用正交矩阵Q将二次型 $f(x_1,x_2)=X^{\\mathsf T}BAX$ 化为标准形，其中此处 $X=(x_1,x_2)^{\\mathsf T}$。",
+    "exerciseIndex": 6,
+    "sourceCategory": "mock",
+    "sourceUrl": "https://cxyonly.fans/math/practice?listId=mock&categoryId=2502&q=%E5%90%8C%E8%A7%A3&questionId=576",
+    "answer": "$a=1,b=-1$；标准形为 $(3+3\\sqrt5)y_1^2+(3-3\\sqrt5)y_2^2$，正交矩阵见解析。",
+    "explanation": "先读出 $A=\\begin{pmatrix}1&2\\\\1&-1\\\\2&a\\end{pmatrix}$、$B=\\begin{pmatrix}1&2&3\\\\b&-2&-3\\end{pmatrix}$。A前两行构成的二阶子式为-3，所以r(A)=2，$A^{\\mathsf T}X=0$ 的解空间一维。它严格包含于B的零空间，而B非零，因此r(B)=1，两行成比例，得b=-1。\n\nB的第一行转置必须属于A的列空间。解 $c(1,1,2)^{\\mathsf T}+d(2,-1,a)^{\\mathsf T}=(1,2,3)^{\\mathsf T}$，前两式得 $c=5/3,d=-\\frac13$，第三式得a=1。\n\n此时 $BA=\\begin{pmatrix}9&3\\\\-9&-3\\end{pmatrix}$，不是对称矩阵。二次型实际为 $9x_1^2-6x_1x_2-3x_2^2$，对应对称矩阵 $S=\\begin{pmatrix}9&-3\\\\-3&-3\\end{pmatrix}$。特征值 $3\\pm3\\sqrt5$，对应单位正交特征向量可组成\n$$Q=\\begin{pmatrix}\\frac1{\\sqrt{10-4\\sqrt5}}&\\frac1{\\sqrt{10+4\\sqrt5}}\\\\\\frac{2-\\sqrt5}{\\sqrt{10-4\\sqrt5}}&\\frac{2+\\sqrt5}{\\sqrt{10+4\\sqrt5}}\\end{pmatrix}.$$\n令X=QY，标准形为 $(3+3\\sqrt5)y_1^2+(3-3\\sqrt5)y_2^2$。"
+  },
+  {
+    "id": "math2-2021-q9-mock11381",
+    "year": 2021,
+    "number": "9-7",
+    "examNumber": "9",
+    "kind": "exercise",
+    "source": "模拟卷 · 27版押题王六套·卷一 · ID 11381",
+    "topic": "线性代数 / 向量组 / 线性表出与解空间包含",
+    "type": "choice",
+    "stem": "设A是3阶实对称矩阵，r(A)=1，$\\alpha=(-1,1,1)^{\\mathsf T}$ 满足 $(A-2E)\\alpha=0$，则 $AX=0$ 的基础解系为（　）。",
+    "exerciseIndex": 7,
+    "sourceCategory": "mock",
+    "sourceUrl": "https://cxyonly.fans/math/practice?listId=mock&categoryId=2502&q=%E5%90%8C%E8%A7%A3&questionId=11381",
+    "answer": "**B**。",
+    "options": [
+      {
+        "key": "A",
+        "text": "$(1,1,0)^{\\mathsf T},(1,-1,0)^{\\mathsf T}$。"
+      },
+      {
+        "key": "B",
+        "text": "$(1,1,0)^{\\mathsf T},(1,0,1)^{\\mathsf T}$。"
+      },
+      {
+        "key": "C",
+        "text": "$(1,1,0)^{\\mathsf T},(1,1,1)^{\\mathsf T}$。"
+      },
+      {
+        "key": "D",
+        "text": "$(1,1,0)^{\\mathsf T},(1,0,-1)^{\\mathsf T}$。"
+      }
+    ],
+    "correctOption": "B",
+    "explanation": "α是特征值2的特征向量；A秩为1，另两个特征值为0。实对称矩阵不同特征值的特征向量正交，所以零空间正是 $\\alpha^{\\mathsf T}X=0$，即 $-x_1+x_2+x_3=0$。B中两个向量都满足且线性无关，因此组成二维零空间的基础解系。"
+  },
+  {
+    "id": "math2-2021-q9-mock11555",
+    "year": 2021,
+    "number": "9-8",
+    "examNumber": "9",
+    "kind": "exercise",
+    "source": "模拟卷 · 李艳芳三套·27版·卷三 · ID 11555",
+    "topic": "线性代数 / 向量组 / 线性表出与解空间包含",
+    "type": "choice",
+    "stem": "设A为n阶矩阵，b为n维非零列向量，$B=\\begin{pmatrix}A&b\\\\b^{\\mathsf T}&0\\end{pmatrix}$。若r(A)=r(B)，则（　）。",
+    "exerciseIndex": 8,
+    "sourceCategory": "mock",
+    "sourceUrl": "https://cxyonly.fans/math/practice?listId=mock&categoryId=2502&q=%E5%90%8C%E8%A7%A3&questionId=11555",
+    "answer": "**C**。",
+    "options": [
+      {
+        "key": "A",
+        "text": "Ax=b无解。"
+      },
+      {
+        "key": "B",
+        "text": "Ax=b有解，但 $Ax=b,\\ b^{\\mathsf T}x=0$ 无解。"
+      },
+      {
+        "key": "C",
+        "text": "Ax=b与 $Ax=b,\\ b^{\\mathsf T}x=0$ 均有解且同解。"
+      },
+      {
+        "key": "D",
+        "text": "上述两个方程组均有解但不同解。"
+      }
+    ],
+    "correctOption": "C",
+    "explanation": "由 $r(A)\\le r(A,b)\\le r(B)=r(A)$，知Ax=b有解。又前n行 $(A,b)$ 的秩已经达到r(B)，故B的最后一行是前n行的线性组合，即存在行向量dᵀ使 $b^{\\mathsf T}=d^{\\mathsf T}A$、$d^{\\mathsf T}b=0$。任取Ax=b的解，便有 $b^{\\mathsf T}x=d^{\\mathsf T}Ax=d^{\\mathsf T}b=0$。新增方程自动满足，所以同解。"
+  },
+  {
+    "id": "math2-2021-q14-original",
+    "year": 2021,
+    "number": "14",
+    "examNumber": "14",
+    "kind": "original",
+    "source": "2021 年数学二真题 · 第 14 题",
+    "topic": "高等数学 / 二重积分 / 换序与参数求导",
+    "type": "fill",
+    "stem": "已知函数 $\\displaystyle f(t)=\\int_1^{t^2}dx\\int_{\\sqrt x}^{t}\\sin\\frac{x}{y}\\,dy$，则 $\\displaystyle f'\\!\\left(\\frac\\pi2\\right)=$________。",
+    "sourceUrl": "https://dongyu-will.github.io/zhijian/books/math-two-exams/chapters/2021/",
+    "answer": "$\\displaystyle\\frac\\pi2\\cos\\frac2\\pi$。",
+    "explanation": "第一步，在 $t=\\frac\\pi2$ 附近有 $t>1$。积分区域为 $1\\le x\\le t^2,\\sqrt x\\le y\\le t$。换序后是 $1\\le y\\le t,1\\le x\\le y^2$，因此\n$$f(t)=\\int_1^t dy\\int_1^{y^2}\\sin\\frac xy\\,dx.$$\n第二步，内层对x积分，y当作常数：\n$$\\int_1^{y^2}\\sin\\frac xy\\,dx=\\left[-y\\cos\\frac xy\\right]_1^{y^2}=y\\left(\\cos\\frac1y-\\cos y\\right).$$\n第三步，使用变上限积分求导：\n$$f'(t)=t\\left(\\cos\\frac1t-\\cos t\\right),\\qquad\nf'(\\frac\\pi2)=\\frac\\pi2\\cos\\frac2\\pi.$$\n关键：t同时出现在原积分的两个上限，不能只对最外层上限求导。先换序可将它变成普通变上限积分。"
+  },
+  {
+    "id": "math2-2021-q14-book1",
+    "year": 2021,
+    "number": "14-1",
+    "examNumber": "14",
+    "kind": "exercise",
+    "source": "张宇1000·二重积分·题28 · 原书P95，28",
+    "topic": "高等数学 / 二重积分 / 换序与参数求导",
+    "type": "solution",
+    "stem": "设 $f(t)=\\displaystyle\\int_1^{t^2}dx\\int_t^{\\sqrt{x}}e^{x/y}\\,dy$，求 $f'(\\pi)$。",
+    "exerciseIndex": 1,
+    "sourceCategory": "book",
+    "answer": "$\\pi(e^{1/\\pi}-e^\\pi)$。",
+    "explanation": "在 $t>1$ 时，先把内层反向：\n$$f(t)=-\\int_1^{t^2}dx\\int_{\\sqrt{x}}^t e^{x/y}dy\n=-\\int_1^t dy\\int_1^{y^2}e^{x/y}dx\n=-\\int_1^t y(e^y-e^{1/y})dy.$$\n最后只剩变上限积分，故 $f'(t)=t(e^{1/t}-e^t)$，答案 $\\pi(e^{1/\\pi}-e^\\pi)$。注意这道内层上下限方向与原题相反，前面有负号。"
+  },
+  {
+    "id": "math2-2021-q15-original",
+    "year": 2021,
+    "number": "15",
+    "examNumber": "15",
+    "kind": "original",
+    "source": "2021 年数学二真题 · 第 15 题",
+    "topic": "高等数学 / 微分方程 / 常系数高阶齐次方程",
+    "type": "fill",
+    "stem": "微分方程 $y'''-y=0$ 的通解为 $y=$________。",
+    "sourceUrl": "https://dongyu-will.github.io/zhijian/books/math-two-exams/chapters/2021/",
+    "answer": "$\\displaystyle y=C_1e^x+e^{-\\frac x2}\\left(C_2\\cos\\frac{\\sqrt3x}{2}+C_3\\sin\\frac{\\sqrt3x}{2}\\right)$。",
+    "explanation": "第一步，特征方程为 $\\lambda^3-1=0$。分解得\n$$\\lambda^3-1=(\\lambda-1)(\\lambda^2+\\lambda+1),$$\n所以三个特征根为 $1,-\\frac12\\pm(\\sqrt3/2)i$。\n\n第二步，实根1对应 $e^x$，共轭根对应 $e^{-\\frac x2}\\cos(\\sqrt3\\frac x2)$、$e^{-\\frac x2}\\sin(\\sqrt3\\frac x2)$。将三个独立解作任意线性组合即可。\n\n注意：$\\lambda^3=1$ 的根不是三重根1；只有 $(\\lambda-1)^3=0$ 才有三重根。"
+  },
+  {
+    "id": "math2-2021-q15-book1",
+    "year": 2021,
+    "number": "15-1",
+    "examNumber": "15",
+    "kind": "exercise",
+    "source": "张宇1000·微分方程·题28 · 原书P99，28",
+    "topic": "高等数学 / 微分方程 / 常系数高阶齐次方程",
+    "type": "solution",
+    "stem": "设 $y=y(x)$ 满足 $y^{(4)}-y''=0$，且当 $x\\to0$ 时y与 $x^3$ 是等价无穷小，求y。",
+    "exerciseIndex": 1,
+    "sourceCategory": "book",
+    "answer": "$y=3e^x-3e^{-x}-6x$。",
+    "explanation": "特征方程 $r^4-r^2=r^2(r-1)(r+1)=0$，所以 $y=C_1+C_2x+C_3e^x+C_4e^{-x}$。等价条件要求常数、一次、二次项都为0，三次项系数为1，即\n$$C_1+C_3+C_4=0,\\quad C_2+C_3-C_4=0,\\quad C_3+C_4=0,\\quad (C_3-C_4)/6=1.$$\n解得 $C_1=0,C_2=-6,C_3=3,C_4=-3$，所以 $y=3e^x-3e^{-x}-6x=6(\\sinh x-x)$。"
+  },
+  {
+    "id": "math2-2021-q18-original",
+    "year": 2021,
+    "number": "18",
+    "examNumber": "18",
+    "kind": "original",
+    "source": "2021 年数学二真题 · 第 18 题",
+    "topic": "高等数学 / 一元微分 / 凹凸性与渐近线",
+    "type": "solution",
+    "stem": "已知 $\\displaystyle f(x)=\\frac{x|x|}{1+x}$，求曲线 $y=f(x)$ 的凹凸区间及渐近线。",
+    "sourceUrl": "https://dongyu-will.github.io/zhijian/books/math-two-exams/chapters/2021/",
+    "answer": "凹区间为 $(-\\infty,-1)$、$(0,+\\infty)$；凸区间为 $(-1,0)$。渐近线为 $x=-1$、$y=-x+1$（左端）、$y=x-1$（右端）。",
+    "explanation": "定义域为 $x\\ne-1$。答案：凹区间为 $(-\\infty,-1)$、$(0,+\\infty)$；凸区间为 $(-1,0)$。这里凹表示 $f''>0$，凸表示 $f''<0$。渐近线为 $x=-1$、$y=-x+1$（左端）、$y=x-1$（右端）。\n\n第一步，按绝对值分段，并作除法：\n$$f(x)=\\begin{cases}-x+1-\\dfrac1{x+1},&x<0,\\\\[2pt]x-1+\\dfrac1{x+1},&x\\ge0.\\end{cases}$$\n第二步，分别求二阶导数：\n$$f''(x)=\\begin{cases}-\\dfrac2{(x+1)^3},&x<0,\\\\[2pt]\\dfrac2{(x+1)^3},&x>0.\\end{cases}$$\n在 $(-\\infty,-1)$、$(-1,0)$、$(0,+\\infty)$ 上依次为正、负、正，即得凹凸区间。0处二阶导数不存在，但曲线连续且两侧凹凸改变，所以 $(0,0)$ 是拐点；$x=-1$ 不在定义域内，不能作为拐点。\n\n第三步，$x\\to-1^-$ 时 $f(x)\\to+\\infty$，$x\\to-1^+$ 时 $f(x)\\to-\\infty$，故有竖直渐近线 $x=-1$。又\n$$\\lim_{x\\to-\\infty}[f(x)-(-x+1)]=0,\\quad\n\\lim_{x\\to+\\infty}[f(x)-(x-1)]=0,$$\n分别得到左右两条斜渐近线。"
+  },
+  {
+    "id": "math2-2021-q18-book1",
+    "year": 2021,
+    "number": "18-1",
+    "examNumber": "18",
+    "kind": "exercise",
+    "source": "李永乐660·高数·293 · 题293",
+    "topic": "高等数学 / 一元微分 / 凹凸性与渐近线",
+    "type": "choice",
+    "stem": "设曲线 $y=\\sqrt[3]{x-4}$，则（　）。",
+    "exerciseIndex": 1,
+    "sourceCategory": "book",
+    "answer": "**B**。",
+    "options": [
+      {
+        "key": "A",
+        "text": "凸区间 $(-\\infty,4)$，凹区间 $(4,+\\infty)$，拐点 $(4,0)$。"
+      },
+      {
+        "key": "B",
+        "text": "凹区间 $(-\\infty,4)$，凸区间 $(4,+\\infty)$，拐点 $(4,0)$。"
+      },
+      {
+        "key": "C",
+        "text": "凸区间 $(-\\infty,4)$，凹区间 $(4,+\\infty)$，无拐点。"
+      },
+      {
+        "key": "D",
+        "text": "凹区间 $(-\\infty,4)$，凸区间 $(4,+\\infty)$，无拐点。"
+      }
+    ],
+    "correctOption": "B",
+    "explanation": "当 $x\\ne4$，$y''=-2/[9(x-4)^{5/3}]$，所以左侧二阶导数为正、曲线凹，右侧为负、曲线凸。函数在4连续且两侧凹凸性改变，故 $(4,0)$ 是拐点。拐点处不要求二阶导数存在。"
+  },
+  {
+    "id": "math2-2021-q18-book2",
+    "year": 2021,
+    "number": "18-2",
+    "examNumber": "18",
+    "kind": "exercise",
+    "source": "张宇1000·导数应用·题7 · 原书P70，7",
+    "topic": "高等数学 / 一元微分 / 凹凸性与渐近线",
+    "type": "choice",
+    "stem": "设 $f(x)=\\displaystyle\\int_0^1t|t-x|dt$，$0<x<1$，则曲线 $y=f(x)$（　）。",
+    "exerciseIndex": 2,
+    "sourceCategory": "book",
+    "answer": "**A**。",
+    "options": [
+      {
+        "key": "A",
+        "text": "在 $(\\sqrt2/2,1)$ 单调增加，在 $(0,\\sqrt2/2)$ 单调减少，且是凹的。"
+      },
+      {
+        "key": "B",
+        "text": "在 $(0,\\sqrt2/2)$ 单调增加，在 $(\\sqrt2/2,1)$ 单调减少，且是凹的。"
+      },
+      {
+        "key": "C",
+        "text": "在 $(\\sqrt2/2,1)$ 单调增加，在 $(0,\\sqrt2/2)$ 单调减少，且是凸的。"
+      },
+      {
+        "key": "D",
+        "text": "在 $(0,\\sqrt2/2)$ 单调增加，在 $(\\sqrt2/2,1)$ 单调减少，且是凸的。"
+      }
+    ],
+    "correctOption": "A",
+    "explanation": "先按绝对值变号点t=x拆分：$f(x)=\\int_0^xt(x-t)dt+\\int_x^1t(t-x)dt=\\frac{x^3}3-\\frac x2+\\frac13$。于是 $f'(x)=x^2-\\frac12$，$f''(x)=2x>0$。一阶导数在 $\\sqrt2/2$ 处由负变正，且全区间曲线凹。"
+  },
+  {
+    "id": "math2-2021-q19-original",
+    "year": 2021,
+    "number": "19",
+    "examNumber": "19",
+    "kind": "original",
+    "source": "2021 年数学二真题 · 第 19 题",
+    "topic": "高等数学 / 积分应用 / 弧长与旋转曲面面积",
+    "type": "solution",
+    "stem": "设函数 $f(x)$ 满足 $\\displaystyle\\int\\frac{f(x)}{\\sqrt x}\\,dx=\\frac16x^2-x+C$。L为曲线 $y=f(x)$（$4\\le x\\le9$），记L的弧长为S，L绕x轴旋转一周所成旋转曲面的面积为A，求S和A。",
+    "sourceUrl": "https://dongyu-will.github.io/zhijian/books/math-two-exams/chapters/2021/",
+    "answerAvailable": false,
+    "answer": "",
+    "explanation": ""
+  },
+  {
+    "id": "math2-2021-q21-original",
+    "year": 2021,
+    "number": "21",
+    "examNumber": "21",
+    "kind": "original",
+    "source": "2021 年数学二真题 · 第 21 题",
+    "topic": "高等数学 / 二重积分 / 极坐标与角度限制",
+    "type": "solution",
+    "stem": "设平面区域D由曲线 $(x^2+y^2)^2=x^2-y^2$（$x\\ge0,y\\ge0$）与x轴围成，计算二重积分 $\\displaystyle\\iint_Dxy\\,dx\\,dy$。",
+    "sourceUrl": "https://dongyu-will.github.io/zhijian/books/math-two-exams/chapters/2021/",
+    "answer": "$\\frac1{48}$。",
+    "explanation": "第一步，代入 $x=r\\cos\\theta,y=r\\sin\\theta$，曲线变为 $r^4=r^2\\cos2\\theta$，除原点外即 $r^2=\\cos2\\theta$。因为 $r^2\\ge0$，第一象限内还必须有 $\\cos2\\theta\\ge0$，所以\n$$0\\le\\theta\\le\\frac\\pi4,\\qquad0\\le r\\le\\sqrt{\\cos2\\theta}.$$\n这就是本题最容易漏掉的角度限制，不能直接把第一象限写成 $0\\le\\theta\\le\\frac\\pi2$。\n\n第二步，$xy=r^2\\cos\\theta\\sin\\theta$，面积元为 $r\\,dr\\,d\\theta$：\n$$I=\\int_0^{\\frac\\pi4}\\!\\int_0^{\\sqrt{\\cos2\\theta}}r^3\\cos\\theta\\sin\\theta\\,dr\\,d\\theta\n=\\frac18\\int_0^{\\frac\\pi4}\\sin2\\theta\\cos^22\\theta\\,d\\theta.$$\n第三步，令 $u=\\cos2\\theta$，$du=-2\\sin2\\theta\\,d\\theta$，得\n$$I=\\frac1{16}\\int_0^1u^2du=\\frac1{48}.$$"
+  },
+  {
+    "id": "math2-2021-q21-book1",
+    "year": 2021,
+    "number": "21-1",
+    "examNumber": "21",
+    "kind": "exercise",
+    "source": "李林880·二重积分·基础解答2 · 原书P48，(2)",
+    "topic": "高等数学 / 二重积分 / 极坐标与角度限制",
+    "type": "solution",
+    "stem": "设 $D=\\{(x,y)\\mid x^2+y^2\\le1,\\ x^2+y^2\\le2x,\\ y\\ge0\\}$，计算 $I=\\displaystyle\\iint_Dxy\\,dxdy$。",
+    "exerciseIndex": 1,
+    "sourceCategory": "book",
+    "answer": "$\\dfrac5{48}$。",
+    "explanation": "原不等式变为 $0\\le\\theta\\le\\frac\\pi2$、$0\\le r\\le\\min(1,2\\cos\\theta)$。两条径向边界在 $1=2\\cos\\theta$，即 $\\theta=\\frac\\pi3$ 交接，因此必须分段：\n$$I=\\int_0^{\\frac\\pi3}\\cos\\theta\\sin\\theta\\,d\\theta\\int_0^1r^3dr\n+\\int_{\\frac\\pi3}^{\\frac\\pi2}\\cos\\theta\\sin\\theta\\,d\\theta\\int_0^{2\\cos\\theta}r^3dr.$$\n第一项 $3/32$，第二项 $1/96$，合计 $I=5/48$。先对每条射线确定最先遇到哪条边界，再决定分段角度。"
+  },
+  {
+    "id": "math2-2021-q21-mock12158",
+    "year": 2021,
+    "number": "21-2",
+    "examNumber": "21",
+    "kind": "exercise",
+    "source": "模拟卷 · 27版线代王六套·卷二 · ID 12158",
+    "topic": "高等数学 / 二重积分 / 极坐标与角度限制",
+    "type": "choice",
+    "stem": "设 $D=\\{(x,y)\\mid(x^2+y^2)^2\\le x^2-y^2,\\ x\\ge0,y\\ge0\\}$，则 $\\displaystyle\\iint_D(x^2+y^2)dxdy=$（　）。",
+    "exerciseIndex": 2,
+    "sourceCategory": "mock",
+    "sourceUrl": "https://cxyonly.fans/math/practice?listId=mock&categoryId=2502&q=%E6%9E%81%E5%9D%90%E6%A0%87&questionId=12158",
+    "answer": "**C**。",
+    "options": [
+      {
+        "key": "A",
+        "text": "$\\pi/8$。"
+      },
+      {
+        "key": "B",
+        "text": "$\\pi/16$。"
+      },
+      {
+        "key": "C",
+        "text": "$\\frac\\pi32$。"
+      },
+      {
+        "key": "D",
+        "text": "$\\pi/64$。"
+      }
+    ],
+    "correctOption": "C",
+    "explanation": "极坐标下不等式为 $r^4\\le r^2\\cos2\\theta$。除原点外，$r^2\\le\\cos2\\theta$，因此第一象限还必须加上 $\\cos2\\theta\\ge0$，角度只到π/4：\n$$I=\\int_0^{\\frac\\pi4}d\\theta\\int_0^{\\sqrt{\\cos2\\theta}}r^3dr\n=\\frac14\\int_0^{\\frac\\pi4}\\cos^22\\theta\\,d\\theta=\\frac\\pi{32}.$$\n原点单独满足原不等式，不影响二重积分。"
+  },
+  {
+    "id": "math2-2021-q21-mock11247",
+    "year": 2021,
+    "number": "21-3",
+    "examNumber": "21",
+    "kind": "exercise",
+    "source": "模拟卷 · 张宇八套·27版·卷五 · ID 11247",
+    "topic": "高等数学 / 二重积分 / 极坐标与角度限制",
+    "type": "choice",
+    "stem": "设D是由两圆 $x^2+y^2=ax$、$x^2+y^2=ay$（a>0）围成的位于第一象限的平面有界区域，f在D上连续。$\\iint_D f(x,y)dxdy$ 等于（　）。",
+    "exerciseIndex": 3,
+    "sourceCategory": "mock",
+    "sourceUrl": "https://cxyonly.fans/math/practice?listId=mock&categoryId=2502&q=%E6%9E%81%E5%9D%90%E6%A0%87&questionId=11247",
+    "answer": "**B**。",
+    "options": [
+      {
+        "key": "A",
+        "text": "$2\\int_0^{\\frac\\pi4}d\\theta\\int_0^{a(\\sin\\theta+\\cos\\theta)}f(r\\cos\\theta,r\\sin\\theta)rdr$。"
+      },
+      {
+        "key": "B",
+        "text": "$\\int_0^{a/\\sqrt2}rdr\\int_{\\arcsin(r/a)}^{\\arccos(r/a)}f(r\\cos\\theta,r\\sin\\theta)d\\theta$。"
+      },
+      {
+        "key": "C",
+        "text": "$\\int_0^{\\frac\\pi2}rdr\\int_0^{\\frac\\pi2}f(r\\cos\\theta,r\\sin\\theta)d\\theta$。"
+      },
+      {
+        "key": "D",
+        "text": "$2\\int_0^{\\frac\\pi4}d\\theta\\int_0^{a\\cos\\theta}f(r\\cos\\theta,r\\sin\\theta)rdr$。"
+      }
+    ],
+    "correctOption": "B",
+    "explanation": "取两圆盘的公共部分。两条限制为 $r\\le a\\cos\\theta$ 与 $r\\le a\\sin\\theta$，所以 $0\\le\\theta\\le\\frac\\pi2$、$r\\le a\\min(\\sin\\theta,\\cos\\theta)$。\n\n若先固定r，则同时要求 $\\theta\\ge\\arcsin(r/a)$、$\\theta\\le\\arccos(r/a)$。这个角度区间非空，当且仅当 $r\\le a/\\sqrt2$，从而得到B。也可按θ=π/4分段，前半段半径上界为a sinθ，后半段为a cosθ。f没有对称性条件，不能仅凭区域对称就把半区积分乘2。"
+  },
+  {
+    "id": "math2-2021-q21-mock12314",
+    "year": 2021,
+    "number": "21-4",
+    "examNumber": "21",
+    "kind": "exercise",
+    "source": "模拟卷 · 26版押题王六套·卷六 · ID 12314",
+    "topic": "高等数学 / 二重积分 / 极坐标与角度限制",
+    "type": "solution",
+    "stem": "计算 $\\displaystyle I=\\int_0^2dy\\int_{\\sqrt{2y-y^2}}^{\\sqrt{4-y^2}}(1+x^2+y^2)dx$。",
+    "exerciseIndex": 4,
+    "sourceCategory": "mock",
+    "sourceUrl": "https://cxyonly.fans/math/practice?listId=mock&categoryId=2502&q=%E6%9E%81%E5%9D%90%E6%A0%87&questionId=12314",
+    "answer": "$\\dfrac{7\\pi}4$。",
+    "explanation": "区域位于第一象限，外边界为 $x^2+y^2=4$，内边界为 $x^2+(y-1)^2=1$。原积分在小圆右边、大圆内部，故 $r\\le2$ 且 $r^2\\ge2r\\sin\\theta$，即\n$$0\\le\\theta\\le\\frac\\pi2,\\quad2\\sin\\theta\\le r\\le2.$$\n所以\n$$I=\\int_0^{\\frac\\pi2}d\\theta\\int_{2\\sin\\theta}^2(1+r^2)rdr\n=\\int_0^{\\frac\\pi2}(6-2\\sin^2\\theta-4\\sin^4\\theta)d\\theta\n=3\\pi-\\frac\\pi2-\\frac{3\\pi}4=\\frac{7\\pi}4.$$"
+  },
+  {
+    "id": "math2-2021-q21-mock11115",
+    "year": 2021,
+    "number": "21-5",
+    "examNumber": "21",
+    "kind": "exercise",
+    "source": "模拟卷 · 张宇八套·27版·卷一 · ID 11115",
+    "topic": "高等数学 / 二重积分 / 极坐标与角度限制",
+    "type": "choice",
+    "stem": "设f连续，$D=\\{(x,y)\\mid0\\le x\\le1,0\\le y\\le1\\}$。将 $\\iint_D f(x,y)dxdy$ 化为先对θ、后对r积分的极坐标形式，正确的是（　）。",
+    "exerciseIndex": 5,
+    "sourceCategory": "mock",
+    "sourceUrl": "https://cxyonly.fans/math/practice?listId=mock&categoryId=2502&q=%E6%9E%81%E5%9D%90%E6%A0%87&questionId=11115",
+    "answer": "**A**。",
+    "options": [
+      {
+        "key": "A",
+        "text": "$\\int_0^1dr\\int_0^{\\frac\\pi2}rf(r\\cos\\theta,r\\sin\\theta)d\\theta+\\int_1^{\\sqrt2}dr\\int_{\\arccos(1/r)}^{\\arcsin(1/r)}rf(r\\cos\\theta,r\\sin\\theta)d\\theta$。"
+      },
+      {
+        "key": "B",
+        "text": "$\\int_0^1dr\\int_0^{\\frac\\pi2}f(r\\cos\\theta,r\\sin\\theta)d\\theta+\\int_1^{\\sqrt2}dr\\int_{\\arccos(1/r)}^{\\arcsin(1/r)}f(r\\cos\\theta,r\\sin\\theta)d\\theta$。"
+      },
+      {
+        "key": "C",
+        "text": "$\\int_0^{\\sqrt2}dr\\int_{\\arccos(1/r)}^{\\arcsin(1/r)}rf(r\\cos\\theta,r\\sin\\theta)d\\theta$。"
+      },
+      {
+        "key": "D",
+        "text": "$\\int_0^{\\sqrt2}dr\\int_{\\arccos(1/r)}^{\\arcsin(1/r)}f(r\\cos\\theta,r\\sin\\theta)d\\theta$。"
+      }
+    ],
+    "correctOption": "A",
+    "explanation": "正方形给出 $r\\cos\\theta\\le1$、$r\\sin\\theta\\le1$。固定θ时：$0\\le\\theta\\le\\frac\\pi4$ 的半径上界是secθ，$\\frac\\pi4\\le\\theta\\le\\frac\\pi2$ 的半径上界是cscθ。\n\n本题要求反过来固定r。若0≤r≤1，角度可取整个第一象限；若1<r≤√2，则必须同时满足 $\\theta\\ge\\arccos(1/r)$ 与 $\\theta\\le\\arcsin(1/r)$。最后乘雅可比r，得到A。C、D对r<1使用反三角函数，已经没有实数意义。"
+  },
+  {
+    "id": "math2-2022-q1-original",
+    "year": 2022,
+    "number": "1",
+    "examNumber": "1",
+    "kind": "original",
+    "source": "2022 年数学二真题 · 第 1 题",
+    "topic": "高等数学 / 极限与连续 / 等价无穷小",
+    "type": "choice",
+    "stem": "当 $x\\to0$ 时，$\\alpha(x),\\beta(x)$ 是非零无穷小量，考察以下命题：\n\n① 若 $\\alpha(x)\\sim\\beta(x)$，则 $\\alpha^2(x)\\sim\\beta^2(x)$；\n\n② 若 $\\alpha^2(x)\\sim\\beta^2(x)$，则 $\\alpha(x)\\sim\\beta(x)$；\n\n③ 若 $\\alpha(x)\\sim\\beta(x)$，则 $\\alpha(x)-\\beta(x)=o(\\alpha(x))$；\n\n④ 若 $\\alpha(x)-\\beta(x)=o(\\alpha(x))$，则 $\\alpha(x)\\sim\\beta(x)$。\n\n真命题的序号为（　）。",
+    "sourceUrl": "https://dongyu-will.github.io/zhijian/books/math-two-exams/chapters/2022/",
+    "answer": "**C**。",
+    "options": [
+      {
+        "key": "A",
+        "text": "①③"
+      },
+      {
+        "key": "B",
+        "text": "①④"
+      },
+      {
+        "key": "C",
+        "text": "①③④"
+      },
+      {
+        "key": "D",
+        "text": "②③④。"
+      }
+    ],
+    "correctOption": "C",
+    "explanation": "第一步，全部翻译成比值极限。等价就是 $\\alpha/\\beta\\to1$，平方后比值仍趋于1，因此①正确。反过来，平方会丢掉符号，取 $\\alpha=x,\\beta=-x$，平方比值恒为1，但原比值恒为 $-1$，所以②错误。\n\n第二步，若 $\\alpha/\\beta\\to1$，则 $\\beta/\\alpha\\to1$，因此\n$$\\frac{\\alpha-\\beta}{\\alpha}=1-\\frac\\beta\\alpha\\longrightarrow0,$$\n这正是③。\n\n第三步，④的条件就是 $1-\\beta/\\alpha\\to0$，推出 $\\beta/\\alpha\\to1$，再取倒数便得到 $\\alpha/\\beta\\to1$。所以④也正确。\n\n关键：遇到等价、高阶或充分必要性，先写比值。涉及偶次幂时单独检查符号信息。"
+  },
+  {
+    "id": "math2-2022-q1-book1",
+    "year": 2022,
+    "number": "1-1",
+    "examNumber": "1",
+    "kind": "exercise",
+    "source": "张宇1000·极限·题24 · 原书P61，24",
+    "topic": "高等数学 / 极限与连续 / 等价无穷小",
+    "type": "choice",
+    "stem": "设 $\\alpha(x),\\beta(x)$ 在 $x\\to0$ 时是非零且不相等的等价无穷小。判断：① $\\alpha+\\beta=2\\alpha$；② $\\alpha+\\beta=2\\beta$；③ $\\alpha-\\beta=o(\\alpha)$；④ $\\alpha-\\beta=o(\\beta)$。",
+    "exerciseIndex": 1,
+    "sourceCategory": "book",
+    "answer": "**B**。",
+    "options": [
+      {
+        "key": "A",
+        "text": "①③。"
+      },
+      {
+        "key": "B",
+        "text": "③④。"
+      },
+      {
+        "key": "C",
+        "text": "全部正确。"
+      },
+      {
+        "key": "D",
+        "text": "②④。"
+      }
+    ],
+    "correctOption": "B",
+    "explanation": "已知 $\\beta/\\alpha\\to1$，但这不意味着α、β相等，因此①②的等号均不成立。又 $(\\alpha-\\beta)/\\alpha=1-\\beta/\\alpha\\to0$，得到③；同理④成立。\n\n若把①②的等号改为等价符号，则两者成立；但原题使用的是等号，必须分清。相减的主项抵消，只能推出更高阶，不能把差直接替换为0后继续相除。"
+  },
+  {
+    "id": "math2-2022-q1-mock12201",
+    "year": 2022,
+    "number": "1-2",
+    "examNumber": "1",
+    "kind": "exercise",
+    "source": "模拟卷 · 26版押题王六套·卷一 · ID 12201",
+    "topic": "高等数学 / 极限与连续 / 等价无穷小",
+    "type": "choice",
+    "stem": "设f有连续导数，$f(0)=0,f'(0)=2$。记 $\\alpha(x)=\\int_0^{x^2}f(t)dt$，$\\beta(x)=[\\int_0^xf(t)dt]^2$。当x→0时，α与β是（　）。",
+    "exerciseIndex": 2,
+    "sourceCategory": "mock",
+    "sourceUrl": "https://cxyonly.fans/math/practice?listId=mock&categoryId=2502&q=%E6%97%A0%E7%A9%B7%E5%B0%8F&questionId=12201",
+    "answer": "**B**。",
+    "options": [
+      {
+        "key": "A",
+        "text": "同阶但非等价无穷小。"
+      },
+      {
+        "key": "B",
+        "text": "等价无穷小。"
+      },
+      {
+        "key": "C",
+        "text": "前者是后者的高阶无穷小。"
+      },
+      {
+        "key": "D",
+        "text": "前者是后者的低阶无穷小。"
+      }
+    ],
+    "correctOption": "B",
+    "explanation": "由导数定义，$f(t)=2t+o(t)$。令 $H(s)=\\int_0^sf(t)dt$，则 $H(s)=s^2+o(s^2)$（正、负两侧都成立）。于是 $\\alpha=H(x^2)=x^4+o(x^4)$，$\\beta=H(x)^2=x^4+o(x^4)$，二者比值趋于1。\n\n这里是先确定每个积分的首项，再平方比较；不能因为两式形式中有平方，就直接判断等价。"
+  },
+  {
+    "id": "math2-2022-q1-mock11460",
+    "year": 2022,
+    "number": "1-3",
+    "examNumber": "1",
+    "kind": "exercise",
+    "source": "模拟卷 · 27版押题王六套·卷五 · ID 11460",
+    "topic": "高等数学 / 极限与连续 / 等价无穷小",
+    "type": "choice",
+    "stem": "设f、g连续，当x→0时均与x是等价无穷小。记 $F(x)=\\int_1^2xf(xt)dt$，$G(x)=\\int_0^xg(2x-t)dt$。则当x→0时，F是G的（　）。",
+    "exerciseIndex": 3,
+    "sourceCategory": "mock",
+    "sourceUrl": "https://cxyonly.fans/math/practice?listId=mock&categoryId=2502&q=%E6%97%A0%E7%A9%B7%E5%B0%8F&questionId=11460",
+    "answer": "**D**。",
+    "options": [
+      {
+        "key": "A",
+        "text": "高阶无穷小。"
+      },
+      {
+        "key": "B",
+        "text": "低阶无穷小。"
+      },
+      {
+        "key": "C",
+        "text": "同阶但不等价无穷小。"
+      },
+      {
+        "key": "D",
+        "text": "等价无穷小。"
+      }
+    ],
+    "correctOption": "D",
+    "explanation": "分别换元，得到 $F(x)=\\int_x^{2x}f(u)du$、$G(x)=\\int_x^{2x}g(u)du$。由f(u)=u+o(u)、g(u)=u+o(u)，两者都等于 $\\frac32x^2+o(x^2)$，故比值趋于1。\n\n积分区间随x缩到0，余项积分确实为o(x²)：若 $|f(u)-u|\\le\\varepsilon|u|$，则误差不超过 $\\varepsilon\\int_{\\min(x,2x)}^{\\max(x,2x)}|u|du=\\frac32\\varepsilon x^2$。x<0时也成立，不能忽略积分方向。"
+  },
+  {
+    "id": "math2-2022-q1-mock11431",
+    "year": 2022,
+    "number": "1-4",
+    "examNumber": "1",
+    "kind": "exercise",
+    "source": "模拟卷 · 27版押题王六套·卷三",
+    "topic": "高等数学 / 极限与连续 / 等价无穷小",
+    "type": "solution",
+    "stem": "问是否存在常数k，使当x→0时，$\\displaystyle\\int_0^{2x}|t-x|\\sin t\\,dt$ 与 $k|x|^3$ 是等价无穷小？若存在，求k；若不存在，说明理由。",
+    "exerciseIndex": 4,
+    "sourceCategory": "mock",
+    "sourceUrl": "https://cxyonly.fans/math/practice?listId=mock&categoryId=2502&q=%E6%97%A0%E7%A9%B7%E5%B0%8F&questionId=11431",
+    "answer": "存在，$k=1$。",
+    "explanation": "存在，k=1。令t=xs，积分上下限变为0、2，$|t-x|=|x||s-1|$，故\n$$I=x^2|x|\\int_0^2s|s-1|\\frac{\\sin(xs)}{xs}ds.$$\n在s=0处将比值按连续延拓取1。因0≤s≤2，$\\sin(xs)/(xs)\\to1$ 在此区间上一致成立，于是\n$$\\lim_{x\\to0}\\frac I{|x|^3}=\\int_0^1(s-s^2)ds+\\int_1^2(s^2-s)ds=\\frac16+\\frac56=1.$$\n换元时dt=x ds，负x的方向已经包含在x中；因此这是双侧极限。不能把|x|漏写成x，否则左侧的符号就错了。"
+  },
+  {
+    "id": "math2-2022-q4-original",
+    "year": 2022,
+    "number": "4",
+    "examNumber": "4",
+    "kind": "original",
+    "source": "2022 年数学二真题 · 第 4 题",
+    "topic": "高等数学 / 多元微分 / 变上限积分与复合函数求导",
+    "type": "choice",
+    "stem": "已知 $f(t)$ 连续，令 $\\displaystyle F(x,y)=\\int_0^{x-y}(x-y-t)f(t)\\,dt$，则（　）。",
+    "sourceUrl": "https://dongyu-will.github.io/zhijian/books/math-two-exams/chapters/2022/",
+    "answer": "**C**。",
+    "options": [
+      {
+        "key": "A",
+        "text": "$\\dfrac{\\partial F}{\\partial x}=\\dfrac{\\partial F}{\\partial y},\\ \\dfrac{\\partial^2 F}{\\partial x^2}=\\dfrac{\\partial^2 F}{\\partial y^2}$。"
+      },
+      {
+        "key": "B",
+        "text": "$\\dfrac{\\partial F}{\\partial x}=\\dfrac{\\partial F}{\\partial y},\\ \\dfrac{\\partial^2 F}{\\partial x^2}=-\\dfrac{\\partial^2 F}{\\partial y^2}$。"
+      },
+      {
+        "key": "C",
+        "text": "$\\dfrac{\\partial F}{\\partial x}=-\\dfrac{\\partial F}{\\partial y},\\ \\dfrac{\\partial^2 F}{\\partial x^2}=\\dfrac{\\partial^2 F}{\\partial y^2}$。"
+      },
+      {
+        "key": "D",
+        "text": "$\\dfrac{\\partial F}{\\partial x}=-\\dfrac{\\partial F}{\\partial y},\\ \\dfrac{\\partial^2 F}{\\partial x^2}=-\\dfrac{\\partial^2 F}{\\partial y^2}$。"
+      }
+    ],
+    "correctOption": "C",
+    "explanation": "第一步，直接展开积分，不用先换变量：\n$$F(x,y)=(x-y)\\int_0^{x-y}f(t)dt-\\int_0^{x-y}tf(t)dt.$$\n对x求偏导，乘积求导和变上限求导中的两项抵消，得到\n$$\\dfrac{\\partial F}{\\partial x}=\\int_0^{x-y}f(t)dt.$$\n对y求偏导时，上限对y的导数为 $-1$，同样抵消后得到\n$$\\dfrac{\\partial F}{\\partial y}=-\\int_0^{x-y}f(t)dt.$$\n第二步，分别再对相同变量求一次导数：\n$$\\dfrac{\\partial^2 F}{\\partial x^2}=f(x-y),\\qquad \\dfrac{\\partial^2 F}{\\partial y^2}=-f(x-y)\\cdot(-1)=f(x-y).$$\n因此一阶偏导互为相反数，二阶纯偏导相等。关键是每次都带上内层 $x-y$ 对当前变量的导数。"
+  },
+  {
+    "id": "math2-2022-q4-book1",
+    "year": 2022,
+    "number": "4-1",
+    "examNumber": "4",
+    "kind": "exercise",
+    "source": "张宇1000·多元微分·题5 · 原书P30，5",
+    "topic": "高等数学 / 多元微分 / 变上限积分与复合函数求导",
+    "type": "solution",
+    "stem": "设 $F(x,y)=\\displaystyle\\int_0^{x-y}(x-y-t)e^t\\,dt$，求 $\\dfrac{\\partial^2 F}{\\partial x^2}+\\dfrac{\\partial^2 F}{\\partial y^2}$。",
+    "exerciseIndex": 1,
+    "sourceCategory": "book",
+    "answer": "$2e^{x-y}$。",
+    "explanation": "记s=x-y、$H(s)=\\int_0^s(s-t)e^t dt$。莱布尼茨公式中上限边界项为 $(s-s)e^s=0$，所以 $H'(s)=\\int_0^se^t dt=e^s-1$，$H''(s)=e^s$。由链式法则 $\\dfrac{\\partial^2 F}{\\partial x^2}=H''(s)$、$\\dfrac{\\partial^2 F}{\\partial y^2}=H''(s)$，答案 $2e^{x-y}$。"
+  },
+  {
+    "id": "math2-2022-q5-original",
+    "year": 2022,
+    "number": "5",
+    "examNumber": "5",
+    "kind": "original",
+    "source": "2022 年数学二真题 · 第 5 题",
+    "topic": "高等数学 / 一元积分 / 反常积分敛散性",
+    "type": "choice",
+    "stem": "设p为常数，若反常积分 $\\displaystyle\\int_0^1\\frac{\\ln x}{x^p(1-x)^{1-p}}\\,dx$ 收敛，则p的取值范围是（　）。",
+    "sourceUrl": "https://dongyu-will.github.io/zhijian/books/math-two-exams/chapters/2022/",
+    "answer": "**A**。",
+    "options": [
+      {
+        "key": "A",
+        "text": "$(-1,1)$"
+      },
+      {
+        "key": "B",
+        "text": "$(-1,2)$"
+      },
+      {
+        "key": "C",
+        "text": "$(-\\infty,1)$"
+      },
+      {
+        "key": "D",
+        "text": "$(-\\infty,2)$。"
+      }
+    ],
+    "correctOption": "A",
+    "explanation": "第一步，两个端点分开检查。$x\\to0^+$ 时 $(1-x)^{1-p}\\to1$，要判断 $\\int_0^\\delta x^{-p}|\\ln x|dx$。令 $x=e^{-t}$，它等于\n$$\\int_{-\\ln\\delta}^{+\\infty}t\\,e^{(p-1)t}dt.$$\n当 $p<1$ 时指数衰减，收敛；$p=1$ 时变成 $\\int tdt$ 发散；$p>1$ 时更发散。因此0端要求 $p<1$。此处 $\\ln x$ 不趋于0，不能套 $\\ln(1+u)\\sim u$。\n\n第二步，$x\\to1^-$ 时 $x^p\\to1$，而 $\\ln x\\sim x-1=-(1-x)$，所以被积函数的绝对值等价于 $(1-x)^p$。令 $s=1-x$，对应 $\\int_0^\\delta s^pds$，收敛当且仅当 $p>-1$。\n\n第三步，两端条件取交集，得 $-1<p<1$。公式只能用于化简后的局部模型，不能看见 $x^p$ 就忽略分子和另一个端点。"
+  },
+  {
+    "id": "math2-2022-q5-book1",
+    "year": 2022,
+    "number": "5-1",
+    "examNumber": "5",
+    "kind": "exercise",
+    "source": "李永乐660·高数·126 · 题126",
+    "topic": "高等数学 / 一元积分 / 反常积分敛散性",
+    "type": "fill",
+    "stem": "设 $\\alpha>1$，反常积分 $\\displaystyle\\int_1^{+\\infty}\\frac{dx}{x^\\alpha\\ln^\\beta x}$ 收敛，则β的取值范围为________。",
+    "exerciseIndex": 1,
+    "sourceCategory": "book",
+    "answer": "$\\beta<1$。",
+    "explanation": "答案 $\\beta<1$。要分别检查1与无穷大。在 $x\\to1^+$ 时，$\\ln x\\sim x-1$，$x^\\alpha\\to1$，故被积函数与 $(x-1)^{-\\beta}$ 等价，该端收敛当且仅当 $\\beta<1$。\n\n无穷远处因α>1，无论β为何值，对数因子都不会改变收敛性。具体取 $0<\\varepsilon<\\alpha-1$，当β<0时 $(\\ln x)^{-\\beta}\\le x^\\varepsilon$ 最终成立，故被积函数不超过 $x^{-\\alpha+\\varepsilon}$；β≥0时更容易比较。综合得到β<1。"
+  },
+  {
+    "id": "math2-2022-q5-book2",
+    "year": 2022,
+    "number": "5-2",
+    "examNumber": "5",
+    "kind": "exercise",
+    "source": "李林880·反常积分·综合选择21 · 原书P31，21",
+    "topic": "高等数学 / 一元积分 / 反常积分敛散性",
+    "type": "choice",
+    "stem": "设p>0，若反常积分 $\\displaystyle\\int_0^{+\\infty}\\frac{x^{1-p}\\arctan x}{2+x^p}dx$ 收敛，则（　）。",
+    "exerciseIndex": 2,
+    "sourceCategory": "book",
+    "answer": "**A**。",
+    "options": [
+      {
+        "key": "A",
+        "text": "$1<p<3$。"
+      },
+      {
+        "key": "B",
+        "text": "$2<p<3$。"
+      },
+      {
+        "key": "C",
+        "text": "$1\\le p<2$。"
+      },
+      {
+        "key": "D",
+        "text": "$0<p<3$。"
+      }
+    ],
+    "correctOption": "A",
+    "explanation": "0附近 $\\arctan x\\sim x$、$2+x^p\\sim2$，被积函数等价于 $x^{2-p}/2$，要求 $2-p>-1$，即p<3。无穷远处 $\\arctan x\\to\\frac\\pi2$、$2+x^p\\sim x^p$，被积函数等价于 $(\\frac\\pi2)x^{1-2p}$，要求 $1-2p<-1$，即p>1。两条件取交集。"
+  },
+  {
+    "id": "math2-2022-q5-mock11439",
+    "year": 2022,
+    "number": "5-3",
+    "examNumber": "5",
+    "kind": "exercise",
+    "source": "模拟卷 · 27版押题王六套·卷四 · ID 11439",
+    "topic": "高等数学 / 一元积分 / 反常积分敛散性",
+    "type": "choice",
+    "stem": "已知反常积分 $\\displaystyle\\int_0^{+\\infty}\\frac{e^x-1}{x^ae^x}dx$ 收敛，则（　）。",
+    "exerciseIndex": 3,
+    "sourceCategory": "mock",
+    "sourceUrl": "https://cxyonly.fans/math/practice?listId=mock&categoryId=2502&q=%E5%8F%8D%E5%B8%B8%E7%A7%AF%E5%88%86&questionId=11439",
+    "answer": "**C**。",
+    "options": [
+      {
+        "key": "A",
+        "text": "$0<a\\le1$。"
+      },
+      {
+        "key": "B",
+        "text": "$1<a\\le2$。"
+      },
+      {
+        "key": "C",
+        "text": "$1<a<2$。"
+      },
+      {
+        "key": "D",
+        "text": "$0<a<1$。"
+      }
+    ],
+    "correctOption": "C",
+    "explanation": "先化为 $(1-e^{-x})/x^a$。0附近 $1-e^{-x}\\sim x$，等价于 $x^{1-a}$，要求a<2；无穷远处 $1-e^{-x}\\to1$，等价于x⁻ᵃ，要求a>1。两者交集1<a<2。a=1或2均在某一端出现1/x型发散，不能含等号。"
+  },
+  {
+    "id": "math2-2022-q5-mock12041",
+    "year": 2022,
+    "number": "5-4",
+    "examNumber": "5",
+    "kind": "exercise",
+    "source": "模拟卷 · 27版线代王六套·卷二 · ID 12041",
+    "topic": "高等数学 / 一元积分 / 反常积分敛散性",
+    "type": "choice",
+    "stem": "设a、b为常数，若反常积分 $\\displaystyle\\int_0^{+\\infty}\\frac{ax^2+bx+1}{(x-1)(x+1)^2}dx$ 收敛，则（　）。",
+    "exerciseIndex": 4,
+    "sourceCategory": "mock",
+    "sourceUrl": "https://cxyonly.fans/math/practice?listId=mock&categoryId=2502&q=%E5%8F%8D%E5%B8%B8%E7%A7%AF%E5%88%86&questionId=12041",
+    "answer": "**A**。",
+    "options": [
+      {
+        "key": "A",
+        "text": "a=0,b=-1。"
+      },
+      {
+        "key": "B",
+        "text": "a=0,b=1。"
+      },
+      {
+        "key": "C",
+        "text": "a=1,b=-2。"
+      },
+      {
+        "key": "D",
+        "text": "a=-1,b=0。"
+      }
+    ],
+    "correctOption": "A",
+    "explanation": "除了无穷大，还要检查区间内部x=1。若a≠0，无穷远处被积函数等价于a/x，发散，故a=0。此时若b+1≠0，在1附近为非零常数乘1/(x-1)，两侧反常积分分别发散，所以必须b=-1。\n\n代回后，对x≠1，函数化为 $-1/(x+1)^2$，x=1可补成连续点，0附近也没有问题，整段积分收敛，值为-1。普通反常积分不能靠奇点两侧正负抵消来算收敛。"
+  },
+  {
+    "id": "math2-2022-q5-mock11321",
+    "year": 2022,
+    "number": "5-5",
+    "examNumber": "5",
+    "kind": "exercise",
+    "source": "模拟卷 · 张宇八套·27版·卷七 · ID 11321",
+    "topic": "高等数学 / 一元积分 / 反常积分敛散性",
+    "type": "choice",
+    "stem": "反常积分① $I_1=\\int_0^{+\\infty}\\frac{|\\sin x|}{\\sqrt{x^3}}dx$，② $I_2=\\int_0^{+\\infty}\\frac1{1+\\sqrt{x}|\\sin x|}dx$ 的敛散性为（　）。",
+    "exerciseIndex": 5,
+    "sourceCategory": "mock",
+    "sourceUrl": "https://cxyonly.fans/math/practice?listId=mock&categoryId=2502&q=%E5%8F%8D%E5%B8%B8%E7%A7%AF%E5%88%86&questionId=11321",
+    "answer": "**B**。",
+    "options": [
+      {
+        "key": "A",
+        "text": "①②均收敛。"
+      },
+      {
+        "key": "B",
+        "text": "①收敛、②发散。"
+      },
+      {
+        "key": "C",
+        "text": "①发散、②收敛。"
+      },
+      {
+        "key": "D",
+        "text": "①②均发散。"
+      }
+    ],
+    "correctOption": "B",
+    "explanation": "第一积分在0附近 $|\\sin x|\\sim x$，被积函数等价于x⁻¹ᐟ²，可积；在x≥1处，由|sinx|≤1，它不超过x⁻³ᐟ²，故无穷远也收敛。\n\n第二积分在0处连续；但无穷远处有 $\\frac1{1+\\sqrt{x}|\\sin x|}\\ge\\frac1{1+\\sqrt{x}}$，而右边的积分发散，故第二积分发散。\n\nsinx∼x只在x→0时成立，不能拿到无穷远使用；在无穷远要改用有界性比较。"
+  },
+  {
+    "id": "math2-2022-q5-mock11158",
+    "year": 2022,
+    "number": "5-6",
+    "examNumber": "5",
+    "kind": "exercise",
+    "source": "模拟卷 · 张宇八套·27版·卷三 · ID 11158",
+    "topic": "高等数学 / 一元积分 / 反常积分敛散性",
+    "type": "choice",
+    "stem": "设p>0，反常积分 $\\displaystyle\\int_2^{+\\infty}\\frac{dx}{(\\ln x)^{(\\ln x)^p}}$ 收敛，则p的取值范围是（　）。",
+    "exerciseIndex": 6,
+    "sourceCategory": "mock",
+    "sourceUrl": "https://cxyonly.fans/math/practice?listId=mock&categoryId=2502&q=%E5%8F%8D%E5%B8%B8%E7%A7%AF%E5%88%86&questionId=11158",
+    "answer": "**C**。",
+    "options": [
+      {
+        "key": "A",
+        "text": "$0<p\\le1$。"
+      },
+      {
+        "key": "B",
+        "text": "$p\\ge2$。"
+      },
+      {
+        "key": "C",
+        "text": "$p\\ge1$。"
+      },
+      {
+        "key": "D",
+        "text": "$1\\le p<2$。"
+      }
+    ],
+    "correctOption": "C",
+    "explanation": "这不是固定幂的对数积分，先换元t=lnx，得到\n$$\\int_{\\ln2}^{+\\infty}\\exp(t-t^p\\ln t)dt.$$\n若p≥1，$t^{p-1}\\ln t\\to+\\infty$，最终 $t^p\\ln t\\ge2t$，被积函数不超过e⁻ᵗ，所以收敛。若0<p<1，则 $t^{p-1}\\ln t\\to0$，最终 $t^p\\ln t\\le t/2$，被积函数至少eᵗᐟ²，故发散。特别地p=1也收敛。"
+  },
+  {
+    "id": "math2-2022-q9-original",
+    "year": 2022,
+    "number": "9",
+    "examNumber": "9",
+    "kind": "original",
+    "source": "2022 年数学二真题 · 第 9 题",
+    "topic": "线性代数 / 线性方程组 / 秩与解的判定",
+    "type": "choice",
+    "stem": "设 $\\displaystyle A=\\begin{pmatrix}1&1&1\\\\1&a&a^2\\\\1&b&b^2\\end{pmatrix}$，$\\displaystyle\\boldsymbol b=\\begin{pmatrix}1\\\\2\\\\4\\end{pmatrix}$，则线性方程组 $Ax=\\boldsymbol b$ 的解的情况为（　）。",
+    "sourceUrl": "https://dongyu-will.github.io/zhijian/books/math-two-exams/chapters/2022/",
+    "answer": "**D**。",
+    "options": [
+      {
+        "key": "A",
+        "text": "无解"
+      },
+      {
+        "key": "B",
+        "text": "有解"
+      },
+      {
+        "key": "C",
+        "text": "有无穷多解或无解"
+      },
+      {
+        "key": "D",
+        "text": "有唯一解或无解。"
+      }
+    ],
+    "correctOption": "D",
+    "explanation": "第一步，按范德蒙德行列式，$\\det A=(a-1)(b-1)(b-a)$。三个因子都不为0时，A可逆，方程有唯一解。\n\n第二步，行列式为0时，至少出现以下一种情况：$a=1$，第2行左侧与第1行相同，右侧却分别为2和1；$b=1$，第3行与第1行左侧相同，右侧分别为4和1；$a=b$，第2行与第3行左侧相同，右侧分别为2和4。因此每一种都矛盾、无解。\n\n所以不存在无穷多解的情形。行列式为0只表示不能保证唯一解，还要继续看增广矩阵是否矛盾。"
+  },
+  {
+    "id": "math2-2022-q9-book1",
+    "year": 2022,
+    "number": "9-1",
+    "examNumber": "9",
+    "kind": "exercise",
+    "source": "李林880·线性方程组·基础填空2 · 原书P78，二(2)",
+    "topic": "线性代数 / 线性方程组 / 秩与解的判定",
+    "type": "fill",
+    "stem": "设 $A=\\begin{pmatrix}1&2&1\\\\2&3&a+2\\\\1&a&-2\\end{pmatrix}$，$\\beta_1=(1,3,4)^{\\mathsf T}$、$\\beta_2=(0,1,2)^{\\mathsf T}$。若 $AX=\\beta_1$ 有解，且 $AX=\\beta_2$ 无解，则a=________。",
+    "exerciseIndex": 1,
+    "sourceCategory": "book",
+    "answer": "$a=-1$。",
+    "explanation": "由第二个方程组无解，A必不可逆。先求 $|A|=-(a+1)(a-3)$，故a只能为-1或3。\n\n当a=-1，A的行关系为 $5R_1-3R_2+R_3=0$。第一个右端满足 $5\\cdot1-3\\cdot3+4=0$，故有解；第二个右端不满足 $5\\cdot0-3\\cdot1+2=0$，故无解。\n\n当a=3，A的行关系为 $-3R_1+R_2+R_3=0$，而 $-3\\cdot1+3+4\\ne0$，故第一个方程组无解，排除。所以答案 $a=-1$。"
+  },
+  {
+    "id": "math2-2022-q9-book2",
+    "year": 2022,
+    "number": "9-2",
+    "examNumber": "9",
+    "kind": "exercise",
+    "source": "张宇1000·线性方程组·题4 · 原书P107，4",
+    "topic": "线性代数 / 线性方程组 / 秩与解的判定",
+    "type": "choice",
+    "stem": "设A是秩为2的3阶实对称矩阵，α、β为三维非零列向量，$B=\\begin{pmatrix}A&\\beta\\\\\\alpha^{\\mathsf T}&1\\end{pmatrix}$。则 $r(B)=2$ 是方程组 $AX=\\beta,\\ \\alpha^{\\mathsf T}X=1$ 有解的（　）。",
+    "exerciseIndex": 2,
+    "sourceCategory": "book",
+    "answer": "**A**。",
+    "options": [
+      {
+        "key": "A",
+        "text": "充分非必要条件。"
+      },
+      {
+        "key": "B",
+        "text": "必要非充分条件。"
+      },
+      {
+        "key": "C",
+        "text": "充分必要条件。"
+      },
+      {
+        "key": "D",
+        "text": "既非充分又非必要条件。"
+      }
+    ],
+    "correctOption": "A",
+    "explanation": "B正是这个方程组的增广矩阵；系数矩阵为 $C=\\begin{pmatrix}A\\\\\\alpha^{\\mathsf T}\\end{pmatrix}$。由 $2=r(A)\\le r(C)\\le r(B)=2$ 得 $r(C)=r(B)$，故一定有解。\n\n反向不成立：取 $A=\\operatorname{diag}(1,1,0)$、$\\alpha=(0,0,1)^{\\mathsf T}$、$\\beta=(1,0,0)^{\\mathsf T}$，方程组有解 $X=(1,0,1)^{\\mathsf T}$，但此时 $r(B)=3$。"
+  },
+  {
+    "id": "math2-2022-q10-original",
+    "year": 2022,
+    "number": "10",
+    "examNumber": "10",
+    "kind": "original",
+    "source": "2022 年数学二真题 · 第 10 题",
+    "topic": "线性代数 / 向量组 / 等价与特殊参数",
+    "type": "choice",
+    "stem": "设 $\\alpha_1=(\\lambda,1,1)^{\\mathsf T}$，$\\alpha_2=(1,\\lambda,1)^{\\mathsf T}$，$\\alpha_3=(1,1,\\lambda)^{\\mathsf T}$，$\\alpha_4=(1,\\lambda,\\lambda^2)^{\\mathsf T}$。若向量组 $\\alpha_1,\\alpha_2,\\alpha_3$ 与 $\\alpha_1,\\alpha_2,\\alpha_4$ 等价，则 $\\lambda$ 的取值范围是（　）。",
+    "sourceUrl": "https://dongyu-will.github.io/zhijian/books/math-two-exams/chapters/2022/",
+    "answer": "**C**。",
+    "options": [
+      {
+        "key": "A",
+        "text": "$\\{0,1\\}$。"
+      },
+      {
+        "key": "B",
+        "text": "$\\{\\lambda\\in\\mathbb R:\\lambda\\ne-2\\}$。"
+      },
+      {
+        "key": "C",
+        "text": "$\\{\\lambda\\in\\mathbb R:\\lambda\\ne-1,\\lambda\\ne-2\\}$。"
+      },
+      {
+        "key": "D",
+        "text": "$\\{\\lambda\\in\\mathbb R:\\lambda\\ne-1\\}$。"
+      }
+    ],
+    "correctOption": "C",
+    "explanation": "第一步，将两组分别作列组成M、N。直接计算\n$$\\det M=(\\lambda-1)^2(\\lambda+2),\\qquad\n\\det N=(\\lambda-1)^2(\\lambda+1)^2.$$\n当 $\\lambda\\ne1,-1,-2$ 时，两组都张成 $\\mathbb R^3$，因此等价。\n\n第二步，检查三个临界值。$\\lambda=1$ 时四个向量均为 $(1,1,1)^{\\mathsf T}$，两组等价。$\\lambda=-1$ 时M可逆而N不可逆，秩不同，不等价；$\\lambda=-2$ 时M不可逆而N可逆，也不等价。\n\n合并得仅排除 $-1,-2$。关键：行列式不为0的情形一次处理；行列式为0时逐个检查，不能直接全部舍去。"
+  },
+  {
+    "id": "math2-2022-q10-book1",
+    "year": 2022,
+    "number": "10-1",
+    "examNumber": "10",
+    "kind": "exercise",
+    "source": "李永乐660·线代·612 · 原书P52，612",
+    "topic": "线性代数 / 向量组 / 等价与特殊参数",
+    "type": "choice",
+    "stem": "设 $A=[\\alpha_1,\\alpha_2,\\alpha_3]$、$B=[\\beta_1,\\beta_2,\\beta_3]$ 均为3阶矩阵，下列选项不正确的是（　）。",
+    "exerciseIndex": 1,
+    "sourceCategory": "book",
+    "answer": "**C**。",
+    "options": [
+      {
+        "key": "A",
+        "text": "若两组列向量等价，则A与B等价。"
+      },
+      {
+        "key": "B",
+        "text": "若 $r(A)=r(B)=3$，则两组列向量等价。"
+      },
+      {
+        "key": "C",
+        "text": "若 $r(A)=r(B)=2$，则两组列向量等价。"
+      },
+      {
+        "key": "D",
+        "text": "若 $r(A,B)=r(B)$，则 $\\alpha_1,\\alpha_2,\\alpha_3,\\beta_1,\\beta_2,\\beta_3$ 与 $\\beta_1,\\beta_2,\\beta_3$ 等价。"
+      }
+    ],
+    "correctOption": "C",
+    "explanation": "矩阵等价只要求秩相同；向量组等价还要求张成同一个空间。反例 $A=\\operatorname{diag}(1,1,0)$、$B=\\operatorname{diag}(1,0,1)$，秩同为2，列空间却分别为不同的坐标平面。\n\nA由列空间相同推出秩相同；B因两组都张成整个三维空间；D因B列空间已包含在合并列空间中，秩相同使二者相等。"
+  },
+  {
+    "id": "math2-2022-q10-book2",
+    "year": 2022,
+    "number": "10-2",
+    "examNumber": "10",
+    "kind": "exercise",
+    "source": "张宇1000·向量组·题11 · 原书P44，11",
+    "topic": "线性代数 / 向量组 / 等价与特殊参数",
+    "type": "choice",
+    "stem": "设 $\\alpha_1=(1,1,2)^{\\mathsf T}$、$\\alpha_2=(2,a,4)^{\\mathsf T}$、$\\alpha_3=(a,3,6)^{\\mathsf T}$、$\\alpha_4=(0,2,2a)^{\\mathsf T}$。若向量组 $\\alpha_1,\\alpha_2,\\alpha_3$ 与 $\\alpha_1,\\alpha_2,\\alpha_4$ 不等价，则a=（　）。",
+    "exerciseIndex": 2,
+    "sourceCategory": "book",
+    "answer": "**B**。",
+    "options": [
+      {
+        "key": "A",
+        "text": "2。"
+      },
+      {
+        "key": "B",
+        "text": "3。"
+      },
+      {
+        "key": "C",
+        "text": "4。"
+      },
+      {
+        "key": "D",
+        "text": "6。"
+      }
+    ],
+    "correctOption": "B",
+    "explanation": "a=3。记两组构成的矩阵为M、N，计算得 $|M|=-2(a-2)(a-3)$、$|N|=2a(a-2)$。当a不是0、2、3时，两组均满秩，必等价。当a=3，M秩为2而N秩为3，必不等价。还要检查其余特殊值：a=0时M满秩、N降秩，也不等价，但不在给出的选项内；a=2时 $\\alpha_2=2\\alpha_1$、$\\alpha_3=2\\alpha_1+\\frac12\\alpha_4$，且α₁、α₄独立，故两组等价。因此所给四个选项中只有3符合。"
+  },
+  {
+    "id": "math2-2022-q10-book3",
+    "year": 2022,
+    "number": "10-3",
+    "examNumber": "10",
+    "kind": "exercise",
+    "source": "张宇1000·向量组·题5 · 原书P110，5",
+    "topic": "线性代数 / 向量组 / 等价与特殊参数",
+    "type": "solution",
+    "stem": "设 $\\alpha_1=(1,-1,1)^{\\mathsf T}$、$\\alpha_2=(1,1,0)^{\\mathsf T}$、$\\alpha_3=(2,0,1)^{\\mathsf T}$，$\\beta_1=(a,-1,1)^{\\mathsf T}$、$\\beta_2=(4,0,b)^{\\mathsf T}$、$\\beta_3=(0,c,1)^{\\mathsf T}$。已知两组向量等价，求a、b、c，并把β₁用α组表示、把α₁用β组表示。",
+    "exerciseIndex": 3,
+    "sourceCategory": "book",
+    "answer": "$a=1,b=2,c=-2$；$\\beta_1=\\alpha_1$、$\\alpha_1=\\beta_1$。",
+    "explanation": "先注意 $\\alpha_3=\\alpha_1+\\alpha_2$，且前两个向量独立，所以α组张成二维平面。其法向量可取 $(-1,1,2)^{\\mathsf T}$，故平面方程为 $-x+y+2z=0$。\n\nβ组的每个向量都必须在此平面上，代入依次得到 $-a-1+2=0$、$-4+2b=0$、$c+2=0$，即 $a=1,b=2,c=-2$。此时 $\\beta_1=\\alpha_1$、$\\beta_2=2\\alpha_1+2\\alpha_2$，两者独立，确实张成同一平面。因此所求两种表示可以直接取 $\\beta_1=\\alpha_1$、$\\alpha_1=\\beta_1$。"
+  },
+  {
+    "id": "math2-2022-q16-original",
+    "year": 2022,
+    "number": "16",
+    "examNumber": "16",
+    "kind": "original",
+    "source": "2022 年数学二真题 · 第 16 题",
+    "topic": "线性代数 / 矩阵运算 / 初等变换与求逆",
+    "type": "fill",
+    "stem": "设A为3阶矩阵，交换A的第2行和第3行，再将第2列的 $-1$ 倍加到第1列，得到矩阵\n$$B=\\begin{pmatrix}-2&1&-1\\\\1&-1&0\\\\-1&0&0\\end{pmatrix}.$$\n则 $\\operatorname{tr}(A^{-1})=$________。",
+    "sourceUrl": "https://dongyu-will.github.io/zhijian/books/math-two-exams/chapters/2022/",
+    "answer": "$-1$。",
+    "explanation": "把操作逆向做回去：先将B的第2列加到第1列，再交换第2、3行，得到\n$$A=\\begin{pmatrix}-1&1&-1\\\\-1&0&0\\\\0&-1&0\\end{pmatrix}.$$\n逐列解 $AX=E$，得到\n$$A^{-1}=\\begin{pmatrix}0&-1&0\\\\0&0&-1\\\\-1&1&-1\\end{pmatrix}.$$\n因此 $\\operatorname{tr}(A^{-1})=-1$。可相乘验证 $AA^{-1}=E$。行操作对应左乘、列操作对应右乘；逆操作要倒序进行。"
+  },
+  {
+    "id": "math2-2022-q16-book1",
+    "year": 2022,
+    "number": "16-1",
+    "examNumber": "16",
+    "kind": "exercise",
+    "source": "李永乐660·线代·473 · 原书P5，473",
+    "topic": "线性代数 / 矩阵运算 / 初等变换与求逆",
+    "type": "fill",
+    "stem": "若 $A=\\begin{pmatrix}0&0&1\\\\0&1&0\\\\1&0&0\\end{pmatrix}\\begin{pmatrix}1&0&0\\\\0&1&2\\\\0&0&1\\end{pmatrix}\\begin{pmatrix}1&0&0\\\\0&3&0\\\\0&0&1\\end{pmatrix}$，则 $\\left(\\frac13A\\right)^{-1}=$________。",
+    "exerciseIndex": 1,
+    "sourceCategory": "book",
+    "answer": "$\\begin{pmatrix}0&0&3\\\\-2&1&0\\\\3&0&0\\end{pmatrix}$。",
+    "explanation": "记三个因子为P、Q、R，先逆序求逆：$(A/3)^{-1}=3R^{-1}Q^{-1}P^{-1}$。其中 $P^{-1}=P$，$Q^{-1}=\\begin{pmatrix}1&0&0\\\\0&1&-2\\\\0&0&1\\end{pmatrix}$，$R^{-1}=\\operatorname{diag}(1,\\frac13,1)$，相乘得\n$$\\begin{pmatrix}0&0&3\\\\-2&1&0\\\\3&0&0\\end{pmatrix}.$$"
+  },
+  {
+    "id": "math2-2022-q16-book2",
+    "year": 2022,
+    "number": "16-2",
+    "examNumber": "16",
+    "kind": "exercise",
+    "source": "李林880·矩阵·基础填空5 · 原书P66，二(5)",
+    "topic": "线性代数 / 矩阵运算 / 初等变换与求逆",
+    "type": "fill",
+    "stem": "设 $B=\\begin{pmatrix}0&-1&0\\\\1&0&0\\\\0&0&1\\end{pmatrix}$，$A=P^{-1}BP$，则 $A^4-2B^2=$________。",
+    "exerciseIndex": 2,
+    "sourceCategory": "book",
+    "answer": "$\\operatorname{diag}(3,3,-1)$。",
+    "explanation": "由相似关系 $A^4=P^{-1}B^4P$。先算 $B^2=\\operatorname{diag}(-1,-1,1)$，所以 $B^4=E$，$A^4=E$。答案 $E-2B^2=\\operatorname{diag}(3,3,-1)$。"
+  },
+  {
+    "id": "math2-2022-q20-original",
+    "year": 2022,
+    "number": "20",
+    "examNumber": "20",
+    "kind": "original",
+    "source": "2022 年数学二真题 · 第 20 题",
+    "topic": "高等数学 / 多元微分 / 链式法则与极值",
+    "type": "solution",
+    "stem": "已知可微函数 $f(u,v)$ 满足\n$$\\frac{\\partial f(u,v)}{\\partial u}-\\frac{\\partial f(u,v)}{\\partial v}=2(u-v)e^{-(u+v)},\\qquad f(u,0)=u^2e^{-u}.$$\n（I）记 $g(x,y)=f(x,y-x)$，求 $\\partial g(x,y)/\\partial x$；\n\n（II）求 $f(u,v)$ 的表达式与极值。",
+    "sourceUrl": "https://dongyu-will.github.io/zhijian/books/math-two-exams/chapters/2022/",
+    "answer": "$\\dfrac{\\partial g}{\\partial x}=2(2x-y)e^{-y}$；$f(u,v)=(u^2+v^2)e^{-(u+v)}$；在 $(0,0)$ 取得极小值0，也是全局最小值，无极大值。$(1,1)$ 是鞍点。",
+    "explanation": "第一步，g对x求偏导时，y保持不变。两个内层变量对x的导数分别为1、$-1$，所以\n$$\\dfrac{\\partial g}{\\partial x}=\\dfrac{\\partial f}{\\partial u}(x,y-x)-\\dfrac{\\partial f}{\\partial v}(x,y-x)=2[x-(y-x)]e^{-[x+(y-x)]}=2(2x-y)e^{-y}.$$\n第二步，把y当作常数，对x积分：\n$$g(x,y)=(2x^2-2xy)e^{-y}+C(y).$$\n这里的积分“常数”可以依赖y。要用 $f(u,0)$，就令g的第二个内层变量 $y-x=0$，即 $x=y$，于是\n$$g(y,y)=f(y,0)=y^2e^{-y},\\qquad C(y)=y^2e^{-y}.$$\n所以 $g(x,y)=(2x^2-2xy+y^2)e^{-y}$。\n\n第三步，还原自变量：$u=x,v=y-x$，所以 $x=u,y=u+v$。代入后整理得\n$$f(u,v)=[2u^2-2u(u+v)+(u+v)^2]e^{-(u+v)}=(u^2+v^2)e^{-(u+v)}.$$\n第四步，分别求一阶偏导：\n$$\\dfrac{\\partial f}{\\partial u}=e^{-(u+v)}(2u-u^2-v^2),\\qquad \\dfrac{\\partial f}{\\partial v}=e^{-(u+v)}(2v-u^2-v^2).$$\n同时为0，先相减得 $u=v$，代回得 $u=0$ 或1，故驻点只有 $(0,0)$、$(1,1)$。\n\n第五步，指数恒正且 $u^2+v^2\\ge0$，故原点取得全局最小值0。另有\n$$\\dfrac{\\partial^2 f}{\\partial u^2}=e^{-(u+v)}(2-4u+u^2+v^2),\\quad\n\\dfrac{\\partial^2 f}{\\partial u\\partial v}=e^{-(u+v)}(u^2+v^2-2u-2v),$$\n而 $\\dfrac{\\partial^2 f}{\\partial v^2}$ 由交换u、v得到。在 $(1,1)$，二阶判别式 $\\dfrac{\\partial^2 f}{\\partial u^2}\\dfrac{\\partial^2 f}{\\partial v^2}-\\dfrac{\\partial^2 f}{\\partial u\\partial v}^2=-4e^{-4}<0$，是鞍点。所有驻点已检查，因此没有极大值。\n\n起手提醒：题目专门定义g，是为了用链式法则凑出已知的 $\\dfrac{\\partial f}{\\partial u}-\\dfrac{\\partial f}{\\partial v}$。先按定义求导，再积分，再用边界条件确定 $C(y)$，最后还原变量。"
+  },
+  {
+    "id": "math2-2022-q20-book1",
+    "year": 2022,
+    "number": "20-1",
+    "examNumber": "20",
+    "kind": "exercise",
+    "source": "李林880·多元微分·综合解答21 · 原书P44，(21)",
+    "topic": "高等数学 / 多元微分 / 链式法则与极值",
+    "type": "solution",
+    "stem": "设可微函数 $f(u,v)$ 满足 $\\dfrac{\\partial f}{\\partial u}+\\dfrac{\\partial f}{\\partial v}=(u+v)e^{u-v}$，且 $f(0,v)=0$。令 $u=x,v=x+y$。\n\n（I）求 $\\dfrac{\\partial f(x,x+y)}{\\partial x}$；（II）求 $f(u,v)$ 的极值。",
+    "exerciseIndex": 1,
+    "sourceCategory": "book",
+    "answer": "$f(u,v)=uv e^{u-v}$；在 $(-1,1)$ 取得极小值 $-e^{-2}$，无极大值。",
+    "explanation": "记 $g(x,y)=f(x,x+y)$。固定y求导，就凑出已知的偏导和：\n$$\\dfrac{\\partial g}{\\partial x}=\\dfrac{\\partial f}{\\partial u}+\\dfrac{\\partial f}{\\partial v}=(2x+y)e^{-y}.$$\n对x积分得 $g=(x^2+xy)e^{-y}+C(y)$。利用 $x=0$ 时 $g(0,y)=f(0,y)=0$，得 $C(y)=0$。还原 $x=u,y=v-u$，所以 $f(u,v)=uv e^{u-v}$。\n\n求驻点：$\\dfrac{\\partial f}{\\partial u}=v(1+u)e^{u-v}$，$\\dfrac{\\partial f}{\\partial v}=u(1-v)e^{u-v}$，联立仅得 $(0,0)$、$(-1,1)$。在原点，Hessian行列式为-1，是鞍点。在 $(-1,1)$，$\\dfrac{\\partial^2 f}{\\partial u^2}=\\dfrac{\\partial^2 f}{\\partial v^2}=e^{-2}>0$、$\\dfrac{\\partial^2 f}{\\partial u\\partial v}=0$，故有极小值 $-e^{-2}$，没有极大值。这里是局部极小值，函数在整个平面上并没有全局最小值。"
+  },
+  {
+    "id": "math2-2022-q20-book2",
+    "year": 2022,
+    "number": "20-2",
+    "examNumber": "20",
+    "kind": "exercise",
+    "source": "张宇1000·多元微分·题39 · 原书P92，39",
+    "topic": "高等数学 / 多元微分 / 链式法则与极值",
+    "type": "solution",
+    "stem": "设可微函数 $f(u,v)$ 满足 $\\dfrac{\\partial f}{\\partial u}+\\dfrac{\\partial f}{\\partial v}=6(u+v)-3u^2$，且 $f(u,0)=3u^2-u^3$。令 $g(x,y)=f(x,x-y)$。\n\n（1）计算 $\\dfrac{\\partial g}{\\partial x}$；（2）求 $f(x,y)$ 在有界闭区域 $D=\\{(x,y)\\mid x^2+y^2\\le16\\}$ 上的最值。",
+    "exerciseIndex": 2,
+    "sourceCategory": "book",
+    "answer": "$\\dfrac{\\partial g}{\\partial x}=12x-6y-3x^2$；$f(u,v)=3(u^2+v^2)-u^3$；最大值 $112$，最小值 $-16$。",
+    "explanation": "链式求导得 $\\dfrac{\\partial g}{\\partial x}=\\dfrac{\\partial f}{\\partial u}+\\dfrac{\\partial f}{\\partial v}=6(2x-y)-3x^2$。对x积分：$g=6x^2-6xy-x^3+C(y)$。用边界条件时令 $x=y$，则 $g(y,y)=f(y,0)=3y^2-y^3$，所以 $C(y)=3y^2$。\n\n还原 $x=u,y=u-v$，整理为 $f(u,v)=3(u^2+v^2)-u^3$。\n\n闭圆盘最值必须同时检查内部与边界。内部驻点由 $\\dfrac{\\partial f}{\\partial x}=6x-3x^2=0$、$\\dfrac{\\partial f}{\\partial y}=6y=0$ 得 $(0,0)$、$(2,0)$，函数值分别为0、4。边界 $x^2+y^2=16$ 上，$f=48-x^3$，$-4\\le x\\le4$，所以边界最大值112在 $(-4,0)$，最小值-16在 $(4,0)$。比较四个候选值，圆盘上最大值112、最小值-16。"
+  },
+  {
+    "id": "math2-2022-q20-mock11294",
+    "year": 2022,
+    "number": "20-3",
+    "examNumber": "20",
+    "kind": "exercise",
+    "source": "模拟卷 · 张宇八套·27版·卷六 · ID 11294",
+    "topic": "高等数学 / 多元微分 / 链式法则与极值",
+    "type": "solution",
+    "stem": "已知可微函数f(u,v)满足 $\\dfrac{\\partial f}{\\partial u}+\\dfrac{\\partial f}{\\partial v}=e^{\\cos v}(1-u\\sin v)+u$，且 $f(u,0)=eu+u^2/2$。记g(x,y)=f(x,x-y)。\n\n（1）计算$\\dfrac{\\partial g}{\\partial x}$；（2）求f(x,y)的表达式。",
+    "exerciseIndex": 3,
+    "sourceCategory": "mock",
+    "sourceUrl": "https://cxyonly.fans/math/practice?listId=mock&categoryId=2502&q=g%28x%2Cy%29&questionId=11294",
+    "answer": "$\\dfrac{\\partial g}{\\partial x}=e^{\\cos(x-y)}[1-x\\sin(x-y)]+x$；$f(u,v)=ue^{\\cos v}+\\dfrac{u^2}2$。",
+    "explanation": "固定y，对x求导：$\\dfrac{\\partial g}{\\partial x}=\\dfrac{\\partial f}{\\partial u}+\\dfrac{\\partial f}{\\partial v}=e^{\\cos(x-y)}[1-x\\sin(x-y)]+x$。注意右边恰好是 $x e^{\\cos(x-y)}+\\frac{x^2}2$ 对x的导数，所以\n$$g(x,y)=x e^{\\cos(x-y)}+\\frac{x^2}2+C(y).$$\n为使用f(u,0)，令x-y=0，即x=y。于是 $g(y,y)=ey+y^2/2$，对照得C(y)=0。还原u=x、v=x-y，得\n$$f(u,v)=u e^{\\cos v}+u^2/2.$$\n因此 $f(x,y)=x e^{\\cos y}+\\frac{x^2}2$。代回可核对偏导和与边界值都满足。"
+  },
+  {
+    "id": "math2-2022-q20-mock12171",
+    "year": 2022,
+    "number": "20-4",
+    "examNumber": "20",
+    "kind": "exercise",
+    "source": "模拟卷 · 27版线代王六套·卷三 · ID 12171",
+    "topic": "高等数学 / 多元微分 / 链式法则与极值",
+    "type": "solution",
+    "stem": "设f具有连续偏导数，$\\dfrac{\\partial f}{\\partial u}+2uf_v=(1+2u^2)e^v$。令 $y(x)=e^{-x^2}f(x,x^2)$，且y(0)=1，求y(x)。",
+    "exerciseIndex": 4,
+    "sourceCategory": "mock",
+    "sourceUrl": "https://cxyonly.fans/math/practice?listId=mock&categoryId=2502&q=f%28u%2Cv%29&questionId=12171",
+    "answer": "$y(x)=x+e^{-x^2}$。",
+    "explanation": "先令h(x)=f(x,x²)，则 $h'=\\dfrac{\\partial f}{\\partial u}+2xf_v=(1+2x^2)e^{x^2}$。右边是 $x e^{x^2}$ 的导数，故 $h=x e^{x^2}+C$，从而 $y=x+C e^{-x^2}$。由y(0)=1得C=1，答案 $y=x+e^{-x^2}$。"
+  },
+  {
+    "id": "math2-2022-q20-mock11215",
+    "year": 2022,
+    "number": "20-5",
+    "examNumber": "20",
+    "kind": "exercise",
+    "source": "模拟卷 · 张宇八套·27版·卷四 · ID 11215",
+    "topic": "高等数学 / 多元微分 / 链式法则与极值",
+    "type": "choice",
+    "stem": "设z=f(x,y)具有二阶连续偏导数，x=u，$y^2=v-u^2$。以u、v为新自变量变换方程 $y \\dfrac{\\partial z}{\\partial x}-x \\dfrac{\\partial z}{\\partial y}=0$（y≠0），得到（　）。",
+    "exerciseIndex": 5,
+    "sourceCategory": "mock",
+    "sourceUrl": "https://cxyonly.fans/math/practice?listId=mock&categoryId=2502&q=%E5%81%8F%E5%AF%BC&questionId=11215",
+    "answer": "**C**。",
+    "options": [
+      {
+        "key": "A",
+        "text": "$\\dfrac{\\partial^2 z}{\\partial v^2}\\ne0$。"
+      },
+      {
+        "key": "B",
+        "text": "$\\dfrac{\\partial^2 z}{\\partial v\\partial u}\\ne0$。"
+      },
+      {
+        "key": "C",
+        "text": "$\\dfrac{\\partial z}{\\partial u}=0$。"
+      },
+      {
+        "key": "D",
+        "text": "$\\dfrac{\\partial z}{\\partial v}=0$。"
+      }
+    ],
+    "correctOption": "C",
+    "explanation": "把逆变换写出来更清楚：u=x、v=x²+y²。记新函数Z(u,v)=z(x,y)，由链式法则 $\\dfrac{\\partial z}{\\partial x}=\\dfrac{\\partial Z}{\\partial u}+2xZ_v$，$\\dfrac{\\partial z}{\\partial y}=2yZ_v$。代入后 $y(\\dfrac{\\partial Z}{\\partial u}+2xZ_v)-x(2yZ_v)=yZ_u=0$，由y≠0得$\\dfrac{\\partial Z}{\\partial u}$=0。\n\n这里只消去一组偏导，没有边界条件，也不求极值。因此它只练原题的第一步，不能代替完整变式。"
   }
 ]
