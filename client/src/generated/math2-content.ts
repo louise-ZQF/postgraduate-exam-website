@@ -9980,8 +9980,8 @@ export const mathChapters: MathChapter[] = [
       {
         "id": "linear-algebra-04-004",
         "title": "解的关系",
-        "body": "##### 齐次方程组的公共解\n\n两个齐次方程组 \\(Ax=0\\)、\\(Bx=0\\) 的公共解由\n\n<!-- formula {\"id\":\"linear-1pl7w9k\",\"title\":\"两个齐次方程组的公共解\",\"aliases\":[],\"context\":\"两个齐次方程组 Ax=0、Bx=0 的公共解由\"} -->\n\\[\n\\begin{pmatrix}A\\\\B\\end{pmatrix}x=0\n\\]\n\n给出。\n\n若未知数个数为 \\(n\\)，则公共解的基础解向量个数为\n\n<!-- formula {\"id\":\"linear-ohprr5\",\"title\":\"齐次公共解空间的维数\",\"aliases\":[],\"context\":\"若未知数个数为 n，则公共解的基础解向量个数为\"} -->\n\\[\nn-r\\!\\begin{pmatrix}A\\\\B\\end{pmatrix}.\n\\]\n\n若只给两组通解，分别写成\n\n<!-- formula {\"id\":\"linear-3dmf3l-1\",\"title\":\"齐次方程组的公共解：x\",\"aliases\":[],\"context\":\"若只给两组通解，分别写成\"} -->\n\\[\nx=U\\alpha,\\qquad x=V\\beta,\n\\]\n\n则解\n\n<!-- formula {\"id\":\"linear-1wncgu4\",\"title\":\"齐次方程组的公共解：Uα\",\"aliases\":[],\"context\":\"所属知识点：齐次方程组的公共解。\"} -->\n\\[\nU\\alpha=V\\beta,\n\\]\n\n再代回 \\(x=U\\alpha\\) 或 \\(x=V\\beta\\)。\n\n##### 非齐次方程组的公共解\n\n对\n\n<!-- formula {\"id\":\"linear-ax3nwd-1\",\"title\":\"非齐次方程组的公共解：Ax\",\"aliases\":[],\"context\":\"所属知识点：非齐次方程组的公共解。\"} -->\n\\[\nAx=b,\\qquad Bx=d,\n\\]\n\n上下联立：\n\n<!-- formula {\"id\":\"linear-149xlvw\",\"title\":\"两个非齐次方程组的公共解\",\"aliases\":[],\"context\":\"上下联立：\"} -->\n\\[\n\\begin{pmatrix}A\\\\B\\end{pmatrix}x\n=\\begin{pmatrix}b\\\\d\\end{pmatrix}.\n\\]\n\n##### 齐次方程组同解\n\n对同列数矩阵：\n\n<!-- formula {\"id\":\"linear-zowuos\",\"title\":\"齐次方程组同解：Ax\",\"aliases\":[],\"context\":\"对同列数矩阵：\"} -->\n\\[\nAx=0\\text{ 与 }Bx=0\\text{ 同解}\n\\Longleftrightarrow\nr(A)=r(B)=r\\!\\begin{pmatrix}A\\\\B\\end{pmatrix}.\n\\]\n\n同型矩阵还可分别化成行最简形比较。\n\n##### 非齐次方程组同解\n\n令\n\n<!-- formula {\"id\":\"linear-1na1j52-1\",\"title\":\"非齐次方程组同解：C\",\"aliases\":[],\"context\":\"所属知识点：非齐次方程组同解。\"} -->\n\\[\nC=\\begin{pmatrix}A\\\\B\\end{pmatrix},\\qquad\nc=\\begin{pmatrix}b\\\\d\\end{pmatrix}.\n\\]\n\n则 \\(Ax=b\\) 与 \\(Bx=d\\) 同解，当且仅当\n\n<!-- formula {\"id\":\"linear-1gs464a\",\"title\":\"非齐次方程组同解：r(A)\",\"aliases\":[],\"context\":\"则 Ax=b 与 Bx=d 同解，当且仅当\"} -->\n\\[\nr(A)=r(B)=r(C),qquad r(C)=r(C,c).\n\\]",
-        "searchText": "解的关系 解的关系 解的关系 齐次方程组的公共解 两个齐次方程组 Ax=0、Bx=0 的公共解由 pmatrix A\\ pmatrix x=0 给出。 若未知数个数为 n，则公共解的基础解向量个数为 n-r\\! pmatrix A\\ pmatrix . 若只给两组通解，分别写成 x=U , x=V , 则解 U =V , 再代回 x=U 或 x=V 。 非齐次方程组的公共解 对 Ax=b, Bx=d, 上下联立： pmatrix A\\ pmatrix x = pmatrix b\\ pmatrix . 齐次方程组同解 对同列数矩阵： Ax=0 与 Bx=0 同解 r(A)=r(B)=r\\! pmatrix A\\ pmatrix . 同型矩阵还可分别化成行最简形比较。 非齐次方程组同解 令 C= pmatrix A\\ pmatrix , c= pmatrix b\\ pmatrix . 则 Ax=b 与 Bx=d 同解，当且仅当 r(A)=r(B)=r(C),qquad r(C)=r(C,c).",
+        "body": "##### 齐次方程组的公共解\n\n两个齐次方程组 \\(Ax=0\\)、\\(Bx=0\\) 的公共解由\n\n<!-- formula {\"id\":\"linear-1pl7w9k\",\"title\":\"两个齐次方程组的公共解\",\"aliases\":[],\"context\":\"两个齐次方程组 Ax=0、Bx=0 的公共解由\"} -->\n\\[\n\\begin{pmatrix}A\\\\B\\end{pmatrix}x=0\n\\]\n\n给出。\n\n若未知数个数为 \\(n\\)，则公共解的基础解向量个数为\n\n<!-- formula {\"id\":\"linear-ohprr5\",\"title\":\"齐次公共解空间的维数\",\"aliases\":[],\"context\":\"若未知数个数为 n，则公共解的基础解向量个数为\"} -->\n\\[\nn-r\\!\\begin{pmatrix}A\\\\B\\end{pmatrix}.\n\\]\n\n若只给两组通解，分别写成\n\n<!-- formula {\"id\":\"linear-3dmf3l-1\",\"title\":\"齐次方程组的公共解：x\",\"aliases\":[],\"context\":\"若只给两组通解，分别写成\"} -->\n\\[\nx=U\\alpha,\\qquad x=V\\beta,\n\\]\n\n则解\n\n<!-- formula {\"id\":\"linear-1wncgu4\",\"title\":\"齐次方程组的公共解：Uα\",\"aliases\":[],\"context\":\"所属知识点：齐次方程组的公共解。\"} -->\n\\[\nU\\alpha=V\\beta,\n\\]\n\n再代回 \\(x=U\\alpha\\) 或 \\(x=V\\beta\\)。\n\n##### 非齐次方程组的公共解\n\n对\n\n<!-- formula {\"id\":\"linear-ax3nwd-1\",\"title\":\"非齐次方程组的公共解：Ax\",\"aliases\":[],\"context\":\"所属知识点：非齐次方程组的公共解。\"} -->\n\\[\nAx=b,\\qquad Bx=d,\n\\]\n\n上下联立：\n\n<!-- formula {\"id\":\"linear-149xlvw\",\"title\":\"两个非齐次方程组的公共解\",\"aliases\":[],\"context\":\"上下联立：\"} -->\n\\[\n\\begin{pmatrix}A\\\\B\\end{pmatrix}x\n=\\begin{pmatrix}b\\\\d\\end{pmatrix}.\n\\]\n\n##### 齐次方程组同解\n\n设两个方程组的未知数相同。“同解”就是解集完全相同：一个方程组的每个解都是另一个的解，反过来也成立。\n\n<!-- formula {\"id\":\"linear-zowuos\",\"title\":\"齐次方程组同解的秩判据\",\"aliases\":[],\"context\":\"两个齐次方程组的未知数相同，同解要求解集完全相同。\"} -->\n\\[\nAx=0\\text{ 与 }Bx=0\\text{ 同解}\n\\Longleftrightarrow\nr(A)=r(B)=r\\!\\begin{pmatrix}A\\\\B\\end{pmatrix}.\n\\]\n\n做题时，可以把两个系数矩阵分别化成行最简形，去掉零行后完全相同，就同解。只知道两个系数矩阵的秩相同，还不能判定同解。例如 \\(x_1=0\\) 与 \\(x_2=0\\) 的系数矩阵秩都为 \\(1\\)，解集却不同。\n\n##### 非齐次方程组同解\n\n设两个方程组为 \\(Ax=b\\)、\\(Bx=d\\)，未知数相同。先判断是否有解，再比较解集。下面的判据针对“有解且同解”：\n\n<!-- formula {\"id\":\"linear-1na1j52-1\",\"title\":\"非齐次方程组有解且同解的含义\",\"aliases\":[],\"context\":\"两个方程组至少有一个公共解，并且解集完全相同。\"} -->\n\\[\n\\{x\\mid Ax=b\\}=\\{x\\mid Bx=d\\}\\ne\\varnothing.\n\\]\n\n它的充要条件是\n\n<!-- formula {\"id\":\"linear-1gs464a\",\"title\":\"非齐次方程组有解且同解的秩判据\",\"aliases\":[],\"context\":\"比较两个系数矩阵的秩与上下联立后的增广矩阵的秩。\"} -->\n\\[\nr(A)=r(B)=r\\!\\begin{pmatrix}A&b\\\\B&d\\end{pmatrix}.\n\\]\n\n实际计算时，将两个增广矩阵 \\((A\\mid b)\\)、\\((B\\mid d)\\) 分别化成行最简形：先确认没有矛盾行，再去掉零行比较；完全相同，就有解且同解。\n\n只比较系数矩阵不够，还要比较右端常数。例如 \\(x_1=1\\) 与 \\(x_1=2\\) 的系数矩阵相同，但不同解。若两个方程组都无解，它们的解集都是空集；这也属于解集相同，但不属于上面的“有解且同解”。",
+        "searchText": "解的关系 解的关系 解的关系 齐次方程组的公共解 两个齐次方程组 Ax=0、Bx=0 的公共解由 pmatrix A\\ pmatrix x=0 给出。 若未知数个数为 n，则公共解的基础解向量个数为 n-r\\! pmatrix A\\ pmatrix . 若只给两组通解，分别写成 x=U , x=V , 则解 U =V , 再代回 x=U 或 x=V 。 非齐次方程组的公共解 对 Ax=b, Bx=d, 上下联立： pmatrix A\\ pmatrix x = pmatrix b\\ pmatrix . 齐次方程组同解 设两个方程组的未知数相同。“同解”就是解集完全相同：一个方程组的每个解都是另一个的解，反过来也成立。 Ax=0 与 Bx=0 同解 r(A)=r(B)=r\\! pmatrix A\\ pmatrix . 做题时，可以把两个系数矩阵分别化成行最简形，去掉零行后完全相同，就同解。只知道两个系数矩阵的秩相同，还不能判定同解。例如 x 1=0 与 x 2=0 的系数矩阵秩都为 1，解集却不同。 非齐次方程组同解 设两个方程组为 Ax=b、Bx=d，未知数相同。先判断是否有解，再比较解集。下面的判据针对“有解且同解”： \\ x Ax=b\\ =\\ x Bx=d\\ ≠ . 它的充要条件是 r(A)=r(B)=r\\! pmatrix A&b\\ &d pmatrix . 实际计算时，将两个增广矩阵 (A b)、(B d) 分别化成行最简形：先确认没有矛盾行，再去掉零行比较；完全相同，就有解且同解。 只比较系数矩阵不够，还要比较右端常数。例如 x 1=1 与 x 1=2 的系数矩阵相同，但不同解。若两个方程组都无解，它们的解集都是空集；这也属于解集相同，但不属于上面的“有解且同解”。",
         "summary": "齐次方程组的公共解 两个齐次方程组 Ax=0、Bx=0 的公共解由 pmatrix A\\ pmatrix x=0 给出。 若未知数个数为 n，则公共解的基础解向量个数为 n-r\\! pmatrix A\\ pmatrix . 若只给两组通解，分别写成 x=U…",
         "anchors": [
           {
@@ -10004,17 +10004,17 @@ export const mathChapters: MathChapter[] = [
             "id": "anchor-1c5wkkw",
             "legacyId": "linear-algebra-04-004-anchor-003",
             "title": "齐次方程组同解",
-            "searchText": "齐次方程组同解 对同列数矩阵： Ax=0 与 Bx=0 同解 r(A)=r(B)=r\\! pmatrix A\\ pmatrix . 同型矩阵还可分别化成行最简形比较。",
-            "summary": "对同列数矩阵： Ax=0 与 Bx=0 同解 r(A)=r(B)=r\\! pmatrix A\\ pmatrix . 同型矩阵还可分别化成行最简形比较。",
-            "displaySummary": "对同列数矩阵："
+            "searchText": "齐次方程组同解 设两个方程组的未知数相同。“同解”就是解集完全相同：一个方程组的每个解都是另一个的解，反过来也成立。 Ax=0 与 Bx=0 同解 r(A)=r(B)=r\\! pmatrix A\\ pmatrix . 做题时，可以把两个系数矩阵分别化成行最简形，去掉零行后完全相同，就同解。只知道两个系数矩阵的秩相同，还不能判定同解。例如 x 1=0 与 x 2=0 的系数矩阵秩都为 1，解集却不同。",
+            "summary": "设两个方程组的未知数相同。“同解”就是解集完全相同：一个方程组的每个解都是另一个的解，反过来也成立。 Ax=0 与 Bx=0 同解 r(A)=r(B)=r\\! pmatrix A\\ pmatrix . 做题时，可以把两个系数矩阵分别化成行最简形，去掉零行后…",
+            "displaySummary": "设两个方程组的未知数相同。“同解”就是解集完全相同：一个方程组的每个解都是另一个的解，反过来也成立。"
           },
           {
             "id": "anchor-c38nu6",
             "legacyId": "linear-algebra-04-004-anchor-004",
             "title": "非齐次方程组同解",
-            "searchText": "非齐次方程组同解 令 C= pmatrix A\\ pmatrix , c= pmatrix b\\ pmatrix . 则 Ax=b 与 Bx=d 同解，当且仅当 r(A)=r(B)=r(C),qquad r(C)=r(C,c).",
-            "summary": "令 C= pmatrix A\\ pmatrix , c= pmatrix b\\ pmatrix . 则 Ax=b 与 Bx=d 同解，当且仅当 r(A)=r(B)=r(C),qquad r(C)=r(C,c).",
-            "displaySummary": "令"
+            "searchText": "非齐次方程组同解 设两个方程组为 Ax=b、Bx=d，未知数相同。先判断是否有解，再比较解集。下面的判据针对“有解且同解”： \\ x Ax=b\\ =\\ x Bx=d\\ ≠ . 它的充要条件是 r(A)=r(B)=r\\! pmatrix A&b\\ &d pmatrix . 实际计算时，将两个增广矩阵 (A b)、(B d) 分别化成行最简形：先确认没有矛盾行，再去掉零行比较；完全相同，就有解且同解。 只比较系数矩阵不够，还要比较右端常数。例如 x 1=1 与 x 1=2 的系数矩阵相同，但不同解。若两个方程组都无解，它们的解集都是空集；这也属于解集相同，但不属于上面的“有解且同解”。",
+            "summary": "设两个方程组为 Ax=b、Bx=d，未知数相同。先判断是否有解，再比较解集。下面的判据针对“有解且同解”： \\ x Ax=b\\ =\\ x Bx=d\\ ≠ . 它的充要条件是 r(A)=r(B)=r\\! pmatrix A&b\\ &d pmatrix . 实…",
+            "displaySummary": "设两个方程组为 \\(Ax=b\\)、\\(Bx=d\\)，未知数相同。先判断是否有解，再比较解集。下面的判据针对“有解且同解”："
           }
         ],
         "formulas": [
@@ -10106,12 +10106,12 @@ export const mathChapters: MathChapter[] = [
             "id": "linear-zowuos",
             "parentAnchorId": "anchor-1c5wkkw",
             "legacyParentAnchorId": "linear-algebra-04-004-anchor-003",
-            "title": "齐次方程组同解：Ax",
+            "title": "齐次方程组同解的秩判据",
             "latex": "Ax=0\\text{ 与 }Bx=0\\text{ 同解}\n\\Longleftrightarrow\nr(A)=r(B)=r\\!\\begin{pmatrix}A\\\\B\\end{pmatrix}.",
             "sourceBlockIndex": 11,
             "searchAliases": [],
-            "context": "对同列数矩阵：",
-            "displayContext": "对同列数矩阵：",
+            "context": "两个齐次方程组的未知数相同，同解要求解集完全相同。",
+            "displayContext": "设两个方程组的未知数相同。“同解”就是解集完全相同：一个方程组的每个解都是另一个的解，反过来也成立。",
             "chapterId": "linear-algebra-04",
             "topicId": "linear-algebra-04-004",
             "order": 6
@@ -10120,12 +10120,12 @@ export const mathChapters: MathChapter[] = [
             "id": "linear-1na1j52-1",
             "parentAnchorId": "anchor-c38nu6",
             "legacyParentAnchorId": "linear-algebra-04-004-anchor-004",
-            "title": "非齐次方程组同解：C",
-            "latex": "C=\\begin{pmatrix}A\\\\B\\end{pmatrix},\\qquad\nc=\\begin{pmatrix}b\\\\d\\end{pmatrix}.",
-            "sourceBlockIndex": 12,
+            "title": "非齐次方程组有解且同解的含义",
+            "latex": "\\{x\\mid Ax=b\\}=\\{x\\mid Bx=d\\}\\ne\\varnothing.",
+            "sourceBlockIndex": 17,
             "searchAliases": [],
-            "context": "所属知识点：非齐次方程组同解。",
-            "displayContext": "令",
+            "context": "两个方程组至少有一个公共解，并且解集完全相同。",
+            "displayContext": "设两个方程组为 \\(Ax=b\\)、\\(Bx=d\\)，未知数相同。先判断是否有解，再比较解集。下面的判据针对“有解且同解”：",
             "chapterId": "linear-algebra-04",
             "topicId": "linear-algebra-04-004",
             "order": 7
@@ -10134,12 +10134,12 @@ export const mathChapters: MathChapter[] = [
             "id": "linear-1gs464a",
             "parentAnchorId": "anchor-c38nu6",
             "legacyParentAnchorId": "linear-algebra-04-004-anchor-004",
-            "title": "非齐次方程组同解：r(A)",
-            "latex": "r(A)=r(B)=r(C),qquad r(C)=r(C,c).",
-            "sourceBlockIndex": 15,
+            "title": "非齐次方程组有解且同解的秩判据",
+            "latex": "r(A)=r(B)=r\\!\\begin{pmatrix}A&b\\\\B&d\\end{pmatrix}.",
+            "sourceBlockIndex": 18,
             "searchAliases": [],
-            "context": "则 Ax=b 与 Bx=d 同解，当且仅当",
-            "displayContext": "则 \\(Ax=b\\) 与 \\(Bx=d\\) 同解，当且仅当",
+            "context": "比较两个系数矩阵的秩与上下联立后的增广矩阵的秩。",
+            "displayContext": "它的充要条件是",
             "chapterId": "linear-algebra-04",
             "topicId": "linear-algebra-04-004",
             "order": 8
