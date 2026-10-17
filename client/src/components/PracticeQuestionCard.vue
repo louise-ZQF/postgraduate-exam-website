@@ -2,11 +2,13 @@
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import MathMarkdown from '@/components/MathMarkdown.vue'
 import PracticeIcon from '@/components/PracticeIcon.vue'
+import arcDiagram from '@/assets/practice-figures/zy2026-set1-q5.svg?raw'
 import type { Mastery, PracticeQuestion, QuestionProgress } from '@/math/practice'
 
 const props = defineProps<{ question: PracticeQuestion; index: number; progress?: QuestionProgress; storageFailed: boolean; showNote?: boolean; removed?: boolean; manageable?: boolean; printMode?: boolean }>()
 const emit = defineEmits<{ mark: [id: string, mastery: Mastery]; note: [id: string, note: string]; noteBlur: []; remove: [id: string]; restore: [id: string] }>()
-const figureUrl = (src: string) => `${import.meta.env.BASE_URL}${src}`
+const arcDiagramUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(arcDiagram)}`
+const figureUrl = (src: string) => src === 'practice-figures/zy2026-set1-q5.svg' ? arcDiagramUrl : `${import.meta.env.BASE_URL}${src}`
 const answerOpen = ref(false)
 const answerPanel = ref<HTMLElement>()
 let answerObserver: IntersectionObserver | undefined
