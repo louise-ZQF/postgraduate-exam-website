@@ -6338,5 +6338,1053 @@
       }
     ],
     "correctOption": "C"
+  },
+  {
+    "id": "math2-2024-q2-original",
+    "year": 2024,
+    "number": "2",
+    "examNumber": "2",
+    "kind": "original",
+    "source": "2024年数学二真题 · 第 2 题",
+    "topic": "高等数学 / 一元微分 / 参数方程求导",
+    "type": "choice",
+    "options": [
+      {
+        "key": "A",
+        "text": "$2e$"
+      },
+      {
+        "key": "B",
+        "text": "$\\frac{4e}{3}$"
+      },
+      {
+        "key": "C",
+        "text": "$\\frac{2e}{3}$"
+      },
+      {
+        "key": "D",
+        "text": "$\\frac e3$"
+      }
+    ],
+    "correctOption": "B",
+    "stem": "函数 $y=f(x)$ 由参数方程\n$$x=1+t^3,\\qquad y=e^{t^2}$$\n确定，则 $\\displaystyle\\lim_{x\\to+\\infty}x\\left[f\\left(2+\\frac2x\\right)-f(2)\\right]=$（　）。",
+    "answer": "**B**，$\\frac{4e}{3}$。",
+    "explanation": "令 $h=\\frac2x$，则 $h\\to0^+$，原式为\n$$2\\lim_{h\\to0^+}\\frac{f(2+h)-f(2)}h=2f'(2).$$\n由 $1+t^3=2$ 得对应参数 $t=1$，而\n$$f'(x)=\\frac{\\frac{dy}{dt}}{\\frac{dx}{dt}}=\\frac{2te^{t^2}}{3t^2}=\\frac{2e^{t^2}}{3t}.$$\n所以 $f'(2)=\\frac{2e}{3}$，原极限为 $\\frac{4e}{3}$。指定的 $x$ 坐标是 $2$，对应的参数是 $1$，不能直接令 $t=2$。"
+  },
+  {
+    "id": "math2-2024-q2-a1",
+    "year": 2024,
+    "number": "2-1",
+    "examNumber": "2",
+    "kind": "exercise",
+    "exerciseIndex": 1,
+    "source": "1000题 · 基础篇P11题15",
+    "sourceCategory": "book",
+    "topic": "高等数学 / 一元微分 / 参数方程求导",
+    "type": "fill",
+    "stem": "曲线\n$$x=e^t\\sin2t,\\qquad y=e^t\\cos t$$\n在 $t=0$ 对应点处的切线方程为 $\\underline{\\qquad}$。",
+    "answer": "$y-1=\\frac x2$。",
+    "explanation": "$t=0$ 时切点为 $(0,1)$。对参数求导，得\n$$\\frac{dx}{dt}=e^t(\\sin2t+2\\cos2t),\\qquad \\frac{dy}{dt}=e^t(\\cos t-\\sin t).$$\n因此切线斜率为\n$$\\left.\\frac{dy}{dx}\\right|_{t=0}=\\left.\\frac{\\frac{dy}{dt}}{\\frac{dx}{dt}}\\right|_{t=0}=\\frac12,$$\n切线方程为 $y-1=\\frac x2$。"
+  },
+  {
+    "id": "math2-2024-q2-a2",
+    "year": 2024,
+    "number": "2-2",
+    "examNumber": "2",
+    "kind": "exercise",
+    "exerciseIndex": 2,
+    "source": "1000题 · 基础篇P11题16",
+    "sourceCategory": "book",
+    "topic": "高等数学 / 一元微分 / 参数方程求导",
+    "type": "fill",
+    "stem": "若 $x=\\ln|t|$，$y=e^{-t^2}$，则 $\\displaystyle\\left.\\frac{d^2y}{dx^2}\\right|_{t=\\sqrt2}=\\underline{\\qquad}$。",
+    "answer": "$8e^{-2}$。",
+    "explanation": "先求一阶导数：\n$$\\frac{dy}{dx}=\\frac{-2te^{-t^2}}{\\frac1t}=-2t^2e^{-t^2}.$$\n再次求导仍须先对 $t$ 求导，再除以 $\\frac{dx}{dt}$：\n$$\\frac{d^2y}{dx^2}=\\frac{\\frac d{dt}(-2t^2e^{-t^2})}{\\frac1t}=4t^2(t^2-1)e^{-t^2}.$$\n代入 $t^2=2$，得 $8e^{-2}$。"
+  },
+  {
+    "id": "math2-2024-q2-a3",
+    "year": 2024,
+    "number": "2-3",
+    "examNumber": "2",
+    "kind": "exercise",
+    "exerciseIndex": 3,
+    "source": "1000题 · 强化篇P65题6",
+    "sourceCategory": "book",
+    "topic": "高等数学 / 一元微分 / 参数方程求导",
+    "type": "choice",
+    "options": [
+      {
+        "key": "A",
+        "text": "$2e$"
+      },
+      {
+        "key": "B",
+        "text": "$\\frac{4e}{3}$"
+      },
+      {
+        "key": "C",
+        "text": "$\\frac{2e}{3}$"
+      },
+      {
+        "key": "D",
+        "text": "$\\frac e3$"
+      }
+    ],
+    "correctOption": "B",
+    "stem": "设 $y=f(x)$ 由参数方程\n$$x=t^3+\\frac\\pi2-1,\\qquad y=e^{t^2}$$\n确定，则 $\\displaystyle\\lim_{n\\to\\infty}n\\left[f\\left(\\frac\\pi2+\\frac2n\\right)-f\\left(\\frac\\pi2\\right)\\right]=$（　）。",
+    "answer": "**B**，$\\frac{4e}{3}$。",
+    "explanation": "令 $h=\\frac2n$，由导数定义，极限为 $2f'(\\frac\\pi2)$。由 $t^3+\\frac\\pi2-1=\\frac\\pi2$ 得 $t=1$。\n$$f'(x)=\\frac{2te^{t^2}}{3t^2},\\qquad f'\\left(\\frac\\pi2\\right)=\\frac{2e}{3}.$$\n所以原极限为 $\\frac{4e}{3}$。"
+  },
+  {
+    "id": "math2-2024-q2-a4",
+    "year": 2024,
+    "number": "2-4",
+    "examNumber": "2",
+    "kind": "exercise",
+    "exerciseIndex": 4,
+    "source": "张宇八套 · 27 · 卷八 · ID 11358",
+    "sourceCategory": "mock",
+    "sourceUrl": "https://cxyonly.fans/math/practice?listId=mock&categoryId=2502&q=%E5%8F%82%E6%95%B0%E6%96%B9%E7%A8%8B&questionId=11358",
+    "topic": "高等数学 / 一元微分 / 参数方程求导",
+    "type": "choice",
+    "options": [
+      {
+        "key": "A",
+        "text": "$y=x-e^\\pi$"
+      },
+      {
+        "key": "B",
+        "text": "$y=x+e^\\pi$"
+      },
+      {
+        "key": "C",
+        "text": "$y=x-\\sqrt2e^\\pi$"
+      },
+      {
+        "key": "D",
+        "text": "$y=x+\\sqrt2e^\\pi$"
+      }
+    ],
+    "correctOption": "D",
+    "stem": "曲线 $r=\\sqrt2e^\\theta$ 在 $\\theta=\\pi$ 对应点处的切线方程为（　）。",
+    "answer": "**D**，$y=x+\\sqrt2e^\\pi$。",
+    "explanation": "改写为参数方程：\n$$x=\\sqrt2e^\\theta\\cos\\theta,\\qquad y=\\sqrt2e^\\theta\\sin\\theta.$$\n故\n$$\\frac{dy}{dx}=\\frac{\\sin\\theta+\\cos\\theta}{\\cos\\theta-\\sin\\theta}.$$\n代入 $\\theta=\\pi$，斜率为 $1$，切点为 $(-\\sqrt2e^\\pi,0)$，切线为 $y=x+\\sqrt2e^\\pi$。"
+  },
+  {
+    "id": "math2-2024-q2-a5",
+    "year": 2024,
+    "number": "2-5",
+    "examNumber": "2",
+    "kind": "exercise",
+    "exerciseIndex": 5,
+    "source": "张宇八套 · 27 · 卷五 · ID 11252",
+    "sourceCategory": "mock",
+    "sourceUrl": "https://cxyonly.fans/math/practice?listId=mock&categoryId=2502&q=%E5%8F%82%E6%95%B0%E6%96%B9%E7%A8%8B&questionId=11252",
+    "topic": "高等数学 / 一元微分 / 参数方程求导",
+    "type": "fill",
+    "stem": "曲线\n$$x=\\int_0^t e^{-u^2}\\,du,\\qquad y=te^{-t^2}+\\int_0^t e^{-u^2}\\,du$$\n在其拐点处的法线方程为 $\\underline{\\qquad}$。",
+    "answer": "$y=-\\frac x2$。",
+    "explanation": "由变上限积分求导，得\n$$\\frac{dx}{dt}=e^{-t^2}>0,\\qquad \\frac{dy}{dt}=2(1-t^2)e^{-t^2}.$$\n因此\n$$\\frac{dy}{dx}=2(1-t^2),\\qquad \\frac{d^2y}{dx^2}=\\frac{-4t}{e^{-t^2}}=-4te^{t^2}.$$\n二阶导数在 $t=0$ 两侧变号，故对应拐点 $(0,0)$；切线斜率为 $2$，法线斜率为 $-\\frac12$，法线为 $y=-\\frac x2$。"
+  },
+  {
+    "id": "math2-2024-q2-a6",
+    "year": 2024,
+    "number": "2-6",
+    "examNumber": "2",
+    "kind": "exercise",
+    "exerciseIndex": 6,
+    "source": "张宇八套 · 27 · 卷六 · ID 11289",
+    "sourceCategory": "mock",
+    "sourceUrl": "https://cxyonly.fans/math/practice?listId=mock&categoryId=2502&q=%E5%8F%82%E6%95%B0%E6%96%B9%E7%A8%8B&questionId=11289",
+    "topic": "高等数学 / 一元微分 / 参数方程求导",
+    "type": "solution",
+    "stem": "若 $y=y(x)$ 由参数方程 $x=\\ln t$，$y=e^{t^2}$（$t>0$）确定，求 $\\displaystyle\\left.\\frac{d^2y}{dx^2}\\right|_{t=1}$。",
+    "answer": "$8e$。",
+    "explanation": "先求\n$$\\frac{dy}{dx}=\\frac{2te^{t^2}}{\\frac1t}=2t^2e^{t^2}.$$\n再对 $t$ 求导并除以 $\\frac{dx}{dt}$，得\n$$\\frac{d^2y}{dx^2}=\\frac{\\frac d{dt}(2t^2e^{t^2})}{\\frac1t}=4t^2(1+t^2)e^{t^2}.$$\n代入 $t=1$，得 $8e$。"
+  },
+  {
+    "id": "math2-2024-q7-original",
+    "year": 2024,
+    "number": "7",
+    "examNumber": "7",
+    "kind": "original",
+    "source": "2024年数学二真题 · 第 7 题",
+    "topic": "高等数学 / 一元积分 / 反常积分敛散性",
+    "type": "choice",
+    "options": [
+      {
+        "key": "A",
+        "text": "$0$"
+      },
+      {
+        "key": "B",
+        "text": "$1$"
+      },
+      {
+        "key": "C",
+        "text": "$2$"
+      },
+      {
+        "key": "D",
+        "text": "$3$"
+      }
+    ],
+    "correctOption": "B",
+    "stem": "设非负函数 $f(x)$ 在 $[0,+\\infty)$ 连续，给出三个命题：\n\n① 若 $\\displaystyle\\int_0^{+\\infty}f^2(x)\\,dx$ 收敛，则 $\\displaystyle\\int_0^{+\\infty}f(x)\\,dx$ 收敛。\n\n② 若存在 $p>1$，使得 $\\displaystyle\\lim_{x\\to+\\infty}x^p f(x)$ 存在，则 $\\displaystyle\\int_0^{+\\infty}f(x)\\,dx$ 收敛。\n\n③ 若 $\\displaystyle\\int_0^{+\\infty}f(x)\\,dx$ 收敛，则存在 $p>1$，使得 $\\displaystyle\\lim_{x\\to+\\infty}x^p f(x)$ 存在。\n\n真命题的个数是（　）。",
+    "answer": "**B**，只有②正确。",
+    "explanation": "这里“极限存在”指存在有限实数极限。\n\n① 取 $f(x)=\\frac1{1+x}$，则平方后的反常积分为 $1$，但\n$$\\int_0^{+\\infty}\\frac{dx}{1+x}=\\lim_{R\\to+\\infty}\\ln(1+R)=+\\infty,$$\n故①错误。\n\n② 设有限极限为 $L$。由 $f\\ge0$，存在 $M>0$、$R>0$，使 $x\\ge R$ 时\n$$0\\le x^p f(x)\\le M,\\qquad 0\\le f(x)\\le\\frac M{x^p}.$$\n$p>1$ 保证尾部积分收敛；有限区间上又因连续可积，故②正确。\n\n③ 取\n$$f(x)=\\frac1{(x+e)\\ln^2(x+e)}.$$\n令 $u=\\ln(x+e)$，得其反常积分为 $\\int_1^{+\\infty}u^{-2}\\,du=1$。但任意 $p>1$ 时\n$$x^p f(x)\\sim\\frac{x^{p-1}}{\\ln^2x}\\to+\\infty,$$\n不存在有限极限，故③错误。"
+  },
+  {
+    "id": "math2-2024-q9-original",
+    "year": 2024,
+    "number": "9",
+    "examNumber": "9",
+    "kind": "original",
+    "source": "2024年数学二真题 · 第 9 题",
+    "topic": "线性代数 / 矩阵 / 伴随矩阵与秩",
+    "type": "choice",
+    "options": [
+      {
+        "key": "A",
+        "text": "$0$ 或 $1$"
+      },
+      {
+        "key": "B",
+        "text": "$1$ 或 $3$"
+      },
+      {
+        "key": "C",
+        "text": "$2$ 或 $3$"
+      },
+      {
+        "key": "D",
+        "text": "$1$ 或 $2$"
+      }
+    ],
+    "correctOption": "D",
+    "stem": "设 $A$ 为 $4$ 阶矩阵，$A^*$ 为 $A$ 的伴随矩阵。若 $A(A-A^*)=O$，且 $A\\ne A^*$，则 $r(A)$ 可能为（　）。",
+    "answer": "**D**，$1$ 或 $2$。",
+    "explanation": "由 $AA^*=|A|E$ 得 $A^2=|A|E$。若 $A$ 可逆，原式左乘 $A^{-1}$ 得 $A=A^*$，矛盾；故 $|A|=0$，进而 $A^2=O$。\n\n由秩不等式，\n$$2r(A)\\le4+r(A^2)=4,$$\n所以 $r(A)\\le2$。若 $r(A)=0$，则 $A=O$，其伴随矩阵也为 $O$，又与 $A\\ne A^*$ 矛盾。\n\n秩为 $1$、$2$ 均能实现：分别取只有 $(1,2)$ 位置为 $1$ 的矩阵，以及 $(1,2)$、$(3,4)$ 位置均为 $1$ 的矩阵，其余元素为 $0$。两者平方均为 $O$，伴随矩阵均为 $O$，满足全部条件。"
+  },
+  {
+    "id": "math2-2024-q11-original",
+    "year": 2024,
+    "number": "11",
+    "examNumber": "11",
+    "kind": "original",
+    "source": "2024年数学二真题 · 第 11 题",
+    "topic": "高等数学 / 一元微分 / 曲率圆",
+    "type": "fill",
+    "stem": "曲线 $y^2=x$ 在点 $(0,0)$ 处的曲率圆方程为 $\\underline{\\qquad}$。",
+    "answer": "$\\left(x-\\frac12\\right)^2+y^2=\\frac14$。",
+    "explanation": "原点处切线竖直，改用 $x=y^2$，对 $y$ 求导得 $\\frac{dx}{dy}=2y$、$\\frac{d^2x}{dy^2}=2$。原点处曲率为\n$$\\kappa=\\frac{\\left|\\frac{d^2x}{dy^2}\\right|}{\\left[1+\\left(\\frac{dx}{dy}\\right)^2\\right]^{3/2}}=2,$$\n故曲率半径 $R=\\frac12$。法线为 $x$ 轴，曲线朝右弯，所以圆心为 $(\\frac12,0)$。圆方程为\n$$\\left(x-\\frac12\\right)^2+y^2=\\frac14.$$"
+  },
+  {
+    "id": "math2-2024-q11-b1",
+    "year": 2024,
+    "number": "11-1",
+    "examNumber": "11",
+    "kind": "exercise",
+    "exerciseIndex": 1,
+    "source": "1000题 · 基础篇P13题10",
+    "sourceCategory": "book",
+    "topic": "高等数学 / 一元微分 / 曲率圆",
+    "type": "choice",
+    "options": [
+      {
+        "key": "A",
+        "text": "$a=0,\\ b=1,\\ c=\\frac32$"
+      },
+      {
+        "key": "B",
+        "text": "$a=1,\\ b=0,\\ c=1$"
+      },
+      {
+        "key": "C",
+        "text": "$a=1,\\ b=1,\\ c=-1$"
+      },
+      {
+        "key": "D",
+        "text": "$a=1,\\ b=0,\\ c=-1$"
+      }
+    ],
+    "correctOption": "C",
+    "stem": "已知曲线 $y=f(x)$ 在点 $(0,1)$ 处的曲率圆为 $(x-1)^2+y^2=2$。当 $x\\to0$ 时，二阶可导函数 $f(x)$ 与 $a+bx+cx^2$ 之差为 $o(x^2)$，则（　）。",
+    "answer": "**C**，$a=1$，$b=1$，$c=-1$。",
+    "explanation": "由切点得 $f(0)=1$，所以 $a=1$。圆心 $(1,0)$ 与切点 $(0,1)$ 的连线为法线，斜率为 $-1$，故切线斜率 $f'(0)=1$，即 $b=1$。\n\n半径为 $\\sqrt2$，所以\n$$\\frac{|f''(0)|}{(1+1^2)^{3/2}}=\\frac1{\\sqrt2},$$\n得 $|f''(0)|=2$。圆心在切点下方，故 $f''(0)=-2$。因此\n$$f(x)=1+x-x^2+o(x^2),$$\n所以 $c=-1$，注意二次项系数为 $\\frac{f''(0)}2$。"
+  },
+  {
+    "id": "math2-2024-q11-b2",
+    "year": 2024,
+    "number": "11-2",
+    "examNumber": "11",
+    "kind": "exercise",
+    "exerciseIndex": 2,
+    "source": "1000题 · 基础篇P14题24",
+    "sourceCategory": "book",
+    "topic": "高等数学 / 一元微分 / 曲率圆",
+    "type": "fill",
+    "stem": "曲线 $x^2=y+1$ 在点 $(0,-1)$ 处的曲率圆方程为 $\\underline{\\qquad}$。",
+    "answer": "$x^2+\\left(y+\\frac12\\right)^2=\\frac14$。",
+    "explanation": "写成 $y=x^2-1$，得 $y'=2x$、$y''=2$。切点处切线水平，曲率为 $2$，半径为 $\\frac12$。又因 $y''>0$，圆心在切点上方，为 $(0,-\\frac12)$，所以\n$$x^2+\\left(y+\\frac12\\right)^2=\\frac14.$$"
+  },
+  {
+    "id": "math2-2024-q11-b3",
+    "year": 2024,
+    "number": "11-3",
+    "examNumber": "11",
+    "kind": "exercise",
+    "exerciseIndex": 3,
+    "source": "27线代王六套 · 卷一 · ID 12149",
+    "sourceCategory": "mock",
+    "sourceUrl": "https://cxyonly.fans/math/practice?listId=mock&categoryId=2502&q=%E6%9B%B2%E7%8E%87&questionId=12149",
+    "topic": "高等数学 / 一元微分 / 曲率圆",
+    "type": "choice",
+    "options": [
+      {
+        "key": "A",
+        "text": "$f'(0)=-1,\\ f''(0)=2$"
+      },
+      {
+        "key": "B",
+        "text": "$f'(0)=-1,\\ f''(0)=-2$"
+      },
+      {
+        "key": "C",
+        "text": "$f'(0)=1,\\ f''(0)=-2$"
+      },
+      {
+        "key": "D",
+        "text": "$f'(0)=1,\\ f''(0)=2$"
+      }
+    ],
+    "correctOption": "C",
+    "stem": "已知曲线 $y=f(x)$ 过原点，$f$ 二阶可导，且曲线在原点处的曲率中心为 $(1,-1)$，则（　）。",
+    "answer": "**C**，$f'(0)=1$，$f''(0)=-2$。",
+    "explanation": "圆心与原点连线为法线，斜率为 $-1$，故切线斜率 $f'(0)=1$。半径为 $\\sqrt2$，于是\n$$\\frac{|f''(0)|}{(1+1^2)^{3/2}}=\\frac1{\\sqrt2},$$\n解得 $|f''(0)|=2$。圆心在切点下方，曲线向下弯，故 $f''(0)=-2$。"
+  },
+  {
+    "id": "math2-2024-q11-b4",
+    "year": 2024,
+    "number": "11-4",
+    "examNumber": "11",
+    "kind": "exercise",
+    "exerciseIndex": 4,
+    "source": "李艳芳三套 · 27 · 卷三 · ID 11560",
+    "sourceCategory": "mock",
+    "sourceUrl": "https://cxyonly.fans/math/practice?listId=mock&categoryId=2502&q=%E6%9B%B2%E7%8E%87&questionId=11560",
+    "topic": "高等数学 / 一元微分 / 曲率圆",
+    "type": "fill",
+    "stem": "曲线\n$$x=2(\\cos t+t\\sin t),\\qquad y=2(\\sin t-t\\cos t),\\qquad 0\\le t\\le\\frac\\pi2$$\n在 $t=\\frac\\pi4$ 对应点处的曲率圆方程为 $\\underline{\\qquad}$。",
+    "answer": "$(x-\\sqrt2)^2+(y-\\sqrt2)^2=\\frac{\\pi^2}{4}$。",
+    "explanation": "对 $t$ 求导，得\n$$\\begin{aligned}\n\\frac{dx}{dt}&=2t\\cos t,&\\frac{dy}{dt}&=2t\\sin t,\\\\\n\\frac{d^2x}{dt^2}&=2\\cos t-2t\\sin t,&\\frac{d^2y}{dt^2}&=2\\sin t+2t\\cos t.\n\\end{aligned}$$\n因此 $\\frac{dx}{dt}\\frac{d^2y}{dt^2}-\\frac{dy}{dt}\\frac{d^2x}{dt^2}=4t^2$，速度平方为 $4t^2$，在 $t>0$ 时\n$$\\kappa=\\frac{4t^2}{(4t^2)^{3/2}}=\\frac1{2t},\\qquad R=2t.$$\n单位切向量为 $(\\cos t,\\sin t)$，朝圆心的单位法向量为 $(-\\sin t,\\cos t)$，所以圆心为\n$$C=(x-2t\\sin t,\\ y+2t\\cos t)=(2\\cos t,2\\sin t).$$\n代入 $t=\\frac\\pi4$，得圆心 $(\\sqrt2,\\sqrt2)$、半径 $\\frac\\pi2$，从而得到所求圆方程。"
+  },
+  {
+    "id": "math2-2024-q11-b5",
+    "year": 2024,
+    "number": "11-5",
+    "examNumber": "11",
+    "kind": "exercise",
+    "exerciseIndex": 5,
+    "source": "26押题王六套 · 卷三 · ID 12252",
+    "sourceCategory": "mock",
+    "sourceUrl": "https://cxyonly.fans/math/practice?listId=mock&categoryId=2502&q=%E9%AB%98%E9%98%B6&questionId=12252",
+    "topic": "高等数学 / 一元微分 / 曲率圆",
+    "type": "solution",
+    "stem": "设 $f$ 有二阶连续导数，$x\\to0$ 时 $2\\sin x+xf(x)$ 是比 $x^3$ 高阶的无穷小。求曲线 $y=f(x)$ 在 $(0,-2)$ 处的曲率圆方程。",
+    "answer": "$x^2+\\left(y+\\frac12\\right)^2=\\frac94$。",
+    "explanation": "利用泰勒展开，\n$$2\\sin x+xf(x)=[2+f(0)]x+f'(0)x^2+\\left[\\frac{f''(0)}2-\\frac13\\right]x^3+o(x^3).$$\n由题设前三项系数均为 $0$，得\n$$f(0)=-2,\\qquad f'(0)=0,\\qquad f''(0)=\\frac23.$$\n切线水平，曲率 $\\frac23$，半径 $\\frac32$，圆心在切点上方，为 $(0,-\\frac12)$。故圆方程为\n$$x^2+\\left(y+\\frac12\\right)^2=\\frac94.$$"
+  },
+  {
+    "id": "math2-2024-q11-b6",
+    "year": 2024,
+    "number": "11-6",
+    "examNumber": "11",
+    "kind": "exercise",
+    "exerciseIndex": 6,
+    "source": "27线代王六套 · 卷三 · ID 12072",
+    "sourceCategory": "mock",
+    "sourceUrl": "https://cxyonly.fans/math/practice?listId=mock&categoryId=2502&q=%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B&questionId=12072",
+    "topic": "高等数学 / 一元微分 / 曲率圆",
+    "type": "solution",
+    "stem": "设 $y=y(x)$ 为微分方程 $y'''-y''-y'+y=0$ 的解，且曲线在 $(0,0)$ 处的曲率圆为 $(x-1)^2+(y-1)^2=2$，求 $y(x)$。",
+    "answer": "$y=(x-1)e^x+e^{-x}$。",
+    "explanation": "切点给出 $y(0)=0$。圆心 $(1,1)$ 与原点连线是法线，斜率为 $1$，故 $y'(0)=-1$。圆心在切点上方，由曲率公式得\n$$\\frac{y''(0)}{(1+(-1)^2)^{3/2}}=\\frac1{\\sqrt2},\\qquad y''(0)=2.$$\n特征方程\n$$r^3-r^2-r+1=(r-1)^2(r+1)=0,$$\n故通解为 $y=(C_1+C_2x)e^x+C_3e^{-x}$。代入三个初值，得\n$$C_1+C_3=0,\\quad C_1+C_2-C_3=-1,\\quad C_1+2C_2+C_3=2.$$\n解得 $C_1=-1$、$C_2=1$、$C_3=1$，从而 $y=(x-1)e^x+e^{-x}$。"
+  },
+  {
+    "id": "math2-2024-q12-original",
+    "year": 2024,
+    "number": "12",
+    "examNumber": "12",
+    "kind": "original",
+    "source": "2024年数学二真题 · 第 12 题",
+    "topic": "高等数学 / 多元微分 / 二元函数极值",
+    "type": "fill",
+    "stem": "函数 $f(x,y)=2x^3-9x^2-6y^4+12x+24y$ 的极值点是 $\\underline{\\qquad}$。",
+    "answer": "$(1,1)$，为极大值点，极大值为 $23$。",
+    "explanation": "求一阶偏导，\n$$\\frac{\\partial f}{\\partial x}=6(x-1)(x-2),\\qquad \\frac{\\partial f}{\\partial y}=24-24y^3.$$\n联立为 $0$ 得驻点 $(1,1)$、$(2,1)$。二阶偏导为\n$$\\frac{\\partial^2 f}{\\partial x^2}=12x-18,\\quad \\frac{\\partial^2 f}{\\partial x\\partial y}=0,\\quad \\frac{\\partial^2 f}{\\partial y^2}=-72y^2.$$\n在 $(1,1)$ 处，判别式 $\\Delta=(-6)(-72)=432>0$，且 $\\frac{\\partial^2 f}{\\partial x^2}<0$，所以为极大值点，函数值为 $23$。在 $(2,1)$ 处，$\\Delta=6(-72)=-432<0$，是鞍点，不是极值点。"
+  },
+  {
+    "id": "math2-2024-q13-original",
+    "year": 2024,
+    "number": "13",
+    "examNumber": "13",
+    "kind": "original",
+    "source": "2024年数学二真题 · 第 13 题",
+    "topic": "高等数学 / 微分方程 / 整体换元",
+    "type": "fill",
+    "stem": "微分方程 $\\displaystyle y'=\\frac1{(x+y)^2}$ 满足条件 $y(1)=0$ 的解为 $\\underline{\\qquad}$。",
+    "answer": "$\\arctan(x+y)=y+\\frac\\pi4$，取 $x+y>0$ 的解支。",
+    "explanation": "令 $u=x+y$，则\n$$\\frac{du}{dx}=1+y'=1+\\frac1{u^2},\\qquad \\frac{u^2}{1+u^2}\\,du=dx.$$\n积分得 $u-\\arctan u=x+C$，代回得 $y-\\arctan(x+y)=C$。由 $y(1)=0$ 得 $C=-\\frac\\pi4$，故\n$$\\arctan(x+y)=y+\\frac\\pi4.$$\n初值处 $u=1>0$，取 $x+y>0$ 的解支；其最大存在区间为 $x>\\frac\\pi4$。换元时必须保留 $\\frac{du}{dx}$ 中的常数项 $1$。"
+  },
+  {
+    "id": "math2-2024-q13-c1",
+    "year": 2024,
+    "number": "13-1",
+    "examNumber": "13",
+    "kind": "exercise",
+    "exerciseIndex": 1,
+    "source": "1000题 · 基础篇P36题5",
+    "sourceCategory": "book",
+    "topic": "高等数学 / 微分方程 / 整体换元",
+    "type": "fill",
+    "stem": "过原点的曲线 $y=y(x)$ 满足 $\\displaystyle\\frac{dy}{dx}=(x+y)^2$，则 $\\displaystyle\\lim_{x\\to0^+}[y(x)]^x=\\underline{\\qquad}$。",
+    "answer": "$1$。",
+    "explanation": "令 $u=x+y$，则 $u'=1+u^2$。分离变量积分得 $\\arctan u=x+C$，由 $u(0)=0$ 得 $C=0$，所以 $y=\\tan x-x$。\n\n当 $x\\to0^+$ 时，$y\\sim\\frac{x^3}{3}>0$，取对数得\n$$\\ln(y^x)=x\\ln y=x[3\\ln x-\\ln3+o(1)]\\to0.$$\n故原极限为 $e^0=1$。"
+  },
+  {
+    "id": "math2-2024-q13-c2",
+    "year": 2024,
+    "number": "13-2",
+    "examNumber": "13",
+    "kind": "exercise",
+    "exerciseIndex": 2,
+    "source": "1000题 · 强化篇P98题21",
+    "sourceCategory": "book",
+    "topic": "高等数学 / 微分方程 / 整体换元",
+    "type": "fill",
+    "stem": "微分方程 $dy=\\cos(y-x)\\,dx$ 满足 $y(0)=\\frac\\pi2$ 的解为 $\\underline{\\qquad}$。",
+    "answer": "$\\cot\\frac{y-x}{2}=x+1$，取经过 $(0,\\frac\\pi2)$ 的连续解支。",
+    "explanation": "令 $u=y-x$，则\n$$u'=\\cos u-1=-2\\sin^2\\frac u2,\\qquad u(0)=\\frac\\pi2.$$\n分离变量并积分：\n$$\\int\\frac{du}{\\cos u-1}=\\int dx,\\qquad \\cot\\frac u2=x+C.$$\n初值给出 $C=1$，故 $\\cot\\frac{y-x}{2}=x+1$。也可写为\n$$y=x+2\\operatorname{arccot}(x+1),$$\n其中 $\\operatorname{arccot}$ 取值于 $(0,\\pi)$。"
+  },
+  {
+    "id": "math2-2024-q13-c3",
+    "year": 2024,
+    "number": "13-3",
+    "examNumber": "13",
+    "kind": "exercise",
+    "exerciseIndex": 3,
+    "source": "1000题 · 强化篇P98题22",
+    "sourceCategory": "book",
+    "topic": "高等数学 / 微分方程 / 整体换元",
+    "type": "fill",
+    "stem": "设 $y\\ge-2$，微分方程 $\\displaystyle x'-\\sqrt{x+y^2}=-2y$ 满足 $x(0)=1$ 的特解为 $\\underline{\\qquad}$，其中 $x=x(y)$、$x'=\\frac{dx}{dy}$。",
+    "answer": "$x=1+y-\\frac34y^2$，$y\\ge-2$。",
+    "explanation": "原方程写成 $x'+2y=\\sqrt{x+y^2}$，左侧是 $x+y^2$ 对 $y$ 的导数。令 $u=x+y^2$，得\n$$\\frac{du}{dy}=\\sqrt u,\\qquad u(0)=1.$$\n在 $u>0$ 的区间分离变量，得 $2\\sqrt u=y+C$。初值给出 $C=2$，所以\n$$u=\\frac{(y+2)^2}{4},\\qquad x=u-y^2=1+y-\\frac34y^2.$$\n题设 $y\\ge-2$ 保证 $\\sqrt u=\\frac{y+2}{2}$；在 $y=-2$ 处连续延拓后也满足原方程。"
+  },
+  {
+    "id": "math2-2024-q14-original",
+    "year": 2024,
+    "number": "14",
+    "examNumber": "14",
+    "kind": "original",
+    "source": "2024年数学二真题 · 第 14 题",
+    "topic": "高等数学 / 一元微分 / 高阶导数",
+    "type": "fill",
+    "stem": "已知函数 $f(x)=x^2(e^x+1)$，则 $f^{(5)}(1)=\\underline{\\qquad}$。",
+    "answer": "$31e$。",
+    "explanation": "拆成 $f(x)=x^2e^x+x^2$，其中 $x^2$ 的五阶导数为 $0$。由莱布尼茨公式，乘积中只保留 $x^2$ 分别求零、一、二阶导的三项：\n$$\\begin{aligned}f^{(5)}(x)&=x^2e^x+\\binom51(2x)e^x+\\binom52\\cdot2e^x\\\\&=(x^2+10x+20)e^x.\\end{aligned}$$\n代入 $x=1$，得 $f^{(5)}(1)=(1+10+20)e=31e$。"
+  },
+  {
+    "id": "math2-2024-q14-d1",
+    "year": 2024,
+    "number": "14-1",
+    "examNumber": "14",
+    "kind": "exercise",
+    "exerciseIndex": 1,
+    "source": "1000题 · 基础篇P11题17",
+    "sourceCategory": "book",
+    "topic": "高等数学 / 一元微分 / 高阶导数 / 莱布尼茨：多项式乘指数",
+    "type": "solution",
+    "stem": "已知 $f(x)=x^2(e^x+5)$，求 $f^{(5)}(1)$。",
+    "answer": "$31e$。",
+    "explanation": "$5x^2$ 的五阶导数为 $0$。对 $x^2e^x$ 用莱布尼茨公式，只保留三项：\n$$f^{(5)}(x)=e^x\\left[x^2+5\\cdot2x+\\binom52\\cdot2\\right]=(x^2+10x+20)e^x.$$\n代入 $x=1$，得 $31e$。"
+  },
+  {
+    "id": "math2-2024-q14-d2",
+    "year": 2024,
+    "number": "14-2",
+    "examNumber": "14",
+    "kind": "exercise",
+    "exerciseIndex": 2,
+    "source": "1000题 · 基础篇P11题18",
+    "sourceCategory": "book",
+    "topic": "高等数学 / 一元微分 / 高阶导数 / 莱布尼茨：指定点大量项为0",
+    "type": "choice",
+    "options": [
+      {
+        "key": "A",
+        "text": "$10!\\cos1$"
+      },
+      {
+        "key": "B",
+        "text": "$11!\\cos1$"
+      },
+      {
+        "key": "C",
+        "text": "$10!\\sin1$"
+      },
+      {
+        "key": "D",
+        "text": "$11!\\sin1$"
+      }
+    ],
+    "correctOption": "B",
+    "stem": "设 $f(x)=(x-1)^{10}\\sin x$，则 $f^{(11)}(1)=$（　）。",
+    "answer": "**B**，$11!\\cos1$。",
+    "explanation": "莱布尼茨公式中，$(x-1)^{10}$ 求零至九阶导后，在 $x=1$ 处仍为 $0$；求十一阶及以上导数则恒为 $0$。因此仅保留它求十阶导、$\\sin x$ 求一阶导的一项：\n$$f^{(11)}(1)=\\binom{11}{10}10!\\cos1=11!\\cos1.$$"
+  },
+  {
+    "id": "math2-2024-q14-d3",
+    "year": 2024,
+    "number": "14-3",
+    "examNumber": "14",
+    "kind": "exercise",
+    "exerciseIndex": 3,
+    "source": "1000题 · 基础篇P11题11",
+    "sourceCategory": "book",
+    "topic": "高等数学 / 一元微分 / 高阶导数 / 泰勒系数：多项式乘对数",
+    "type": "solution",
+    "stem": "已知 $f(x)=x^2\\ln(1-x)$，当整数 $n\\ge3$ 时，求 $f^{(n)}(0)$。",
+    "answer": "$-\\frac{n!}{n-2}$，$n\\ge3$。",
+    "explanation": "在 $|x|<1$ 内，\n$$\\ln(1-x)=-\\sum_{k=1}^{\\infty}\\frac{x^k}{k},\\qquad f(x)=-\\sum_{k=1}^{\\infty}\\frac{x^{k+2}}k.$$\n$x^n$ 的系数为 $-\\frac1{n-2}$，故 $f^{(n)}(0)=-\\frac{n!}{n-2}$。\n\n也可用莱布尼茨公式：在 $0$ 处只有 $x^2$ 恰好求二阶导的一项不为零，结果为 $\\binom n2\\cdot2\\cdot[-(n-3)!]=-\\frac{n!}{n-2}$。"
+  },
+  {
+    "id": "math2-2024-q14-d4",
+    "year": 2024,
+    "number": "14-4",
+    "examNumber": "14",
+    "kind": "exercise",
+    "exerciseIndex": 4,
+    "source": "1000题 · 强化篇P68题12",
+    "sourceCategory": "book",
+    "topic": "高等数学 / 一元微分 / 高阶导数 / 先确定一阶，再归纳",
+    "type": "solution",
+    "stem": "若 $f'(\\ln x)=x\\ln x$（$x>0$），求 $f^{(n)}(x)$，其中整数 $n\\ge1$。",
+    "answer": "$f^{(n)}(x)=(x+n-1)e^x$。",
+    "explanation": "令 $t=\\ln x$，则 $x=e^t$，题设化为 $f'(t)=te^t$，即 $f'(x)=xe^x$。继续求导：\n$$f''(x)=(x+1)e^x,\\qquad f'''(x)=(x+2)e^x.$$\n归纳可得 $f^{(n)}(x)=(x+n-1)e^x$。对右端再求导，确实得到 $(x+n)e^x$，递推成立。已知的是一阶导数，只须再求 $n-1$ 次。"
+  },
+  {
+    "id": "math2-2024-q14-d5",
+    "year": 2024,
+    "number": "14-5",
+    "examNumber": "14",
+    "kind": "exercise",
+    "exerciseIndex": 5,
+    "source": "1000题 · 强化篇P68题13",
+    "sourceCategory": "book",
+    "topic": "高等数学 / 一元微分 / 高阶导数 / 复合函数系数：先代数化简",
+    "type": "solution",
+    "stem": "设 $f(x)=\\ln(1+x+x^2)$，求 $f^{(5)}(0)$。",
+    "answer": "$24$。",
+    "explanation": "在 $0$ 附近，利用 $1+x+x^2=\\frac{1-x^3}{1-x}$，得\n$$f(x)=\\ln(1-x^3)-\\ln(1-x).$$\n第一项只含 $x^3,x^6,\\ldots$，不含五次项；第二项的五次项系数为 $\\frac15$。故\n$$f^{(5)}(0)=5!\\cdot\\frac15=24.$$"
+  },
+  {
+    "id": "math2-2024-q14-d6",
+    "year": 2024,
+    "number": "14-6",
+    "examNumber": "14",
+    "kind": "exercise",
+    "exerciseIndex": 6,
+    "source": "1000题 · 强化篇P68题14",
+    "sourceCategory": "book",
+    "topic": "高等数学 / 一元微分 / 高阶导数 / 有理函数系数",
+    "type": "solution",
+    "stem": "设 $\\displaystyle f(x)=\\frac{1+x+x^2}{1-x+x^2}$，求 $f^{(4)}(0)$。",
+    "answer": "$-48$。",
+    "explanation": "分子分母同乘 $1+x$，整理得\n$$f(x)=1+\\frac{2x+2x^2}{1+x^3}.$$\n在 $0$ 附近用 $\\frac1{1+x^3}=1-x^3+O(x^6)$，得\n$$f(x)=1+2x+2x^2-2x^4+O(x^5).$$\n四次项系数为 $-2$，故 $f^{(4)}(0)=-2\\cdot4!=-48$。"
+  },
+  {
+    "id": "math2-2024-q14-d7",
+    "year": 2024,
+    "number": "14-7",
+    "examNumber": "14",
+    "kind": "exercise",
+    "exerciseIndex": 7,
+    "source": "1000题 · 强化篇P69题15",
+    "sourceCategory": "book",
+    "topic": "高等数学 / 一元微分 / 高阶导数 / 先求一阶：反三角函数",
+    "type": "solution",
+    "stem": "设 $\\displaystyle f(x)=\\arctan\\frac{1+x}{1-x}$，整数 $n\\ge0$，求 $f^{(2n+1)}(0)$。",
+    "answer": "$(-1)^n(2n)!$。",
+    "explanation": "先求一阶导并化简，在 $0$ 的邻域有\n$$f'(x)=\\frac1{1+x^2}=\\sum_{k=0}^{\\infty}(-1)^kx^{2k}.$$\n$f'$ 的 $2n$ 阶导在 $0$ 处为 $(-1)^n(2n)!$，这就是 $f$ 的 $2n+1$ 阶导。\n\n也可用局部恒等式 $f(x)=\\frac\\pi4+\\arctan x$；此恒等式不能不加条件地推广到整个定义域。"
+  },
+  {
+    "id": "math2-2024-q14-d8",
+    "year": 2024,
+    "number": "14-8",
+    "examNumber": "14",
+    "kind": "exercise",
+    "exerciseIndex": 8,
+    "source": "1000题 · 强化篇P69题16",
+    "sourceCategory": "book",
+    "topic": "高等数学 / 一元微分 / 高阶导数 / 分段点的最高存在阶数",
+    "type": "choice",
+    "options": [
+      {
+        "key": "A",
+        "text": "$1$"
+      },
+      {
+        "key": "B",
+        "text": "$2$"
+      },
+      {
+        "key": "C",
+        "text": "$3$"
+      },
+      {
+        "key": "D",
+        "text": "$4$"
+      }
+    ],
+    "correctOption": "B",
+    "stem": "设 $f(x)=|x|\\sin^2x$，则 $f^{(n)}(0)$ 存在的阶数 $n$ 的最大值为（　）。",
+    "answer": "**B**，最高为二阶。",
+    "explanation": "由定义，$f'(0)=\\lim_{h\\to0}\\frac{|h|\\sin^2h}{h}=0$。当 $x>0$ 时\n$$f'(x)=\\sin^2x+x\\sin2x=3x^2+O(x^4),$$\n当 $x<0$ 时取其相反数，故 $\\frac{f'(x)-f'(0)}x\\to0$，即 $f''(0)=0$。\n\n再看 $x\\ne0$ 时的二阶导：右侧为\n$$f''(x)=2\\sin2x+2x\\cos2x\\sim6x,$$\n左侧为其相反数。因此 $\\frac{f''(x)-f''(0)}x$ 的右极限为 $6$、左极限为 $-6$，三阶导不存在。"
+  },
+  {
+    "id": "math2-2024-q14-d9",
+    "year": 2024,
+    "number": "14-9",
+    "examNumber": "14",
+    "kind": "exercise",
+    "exerciseIndex": 9,
+    "source": "1000题 · 基础篇P10题10",
+    "sourceCategory": "book",
+    "topic": "高等数学 / 一元微分 / 高阶导数 / 已知微分关系，递推求导",
+    "type": "choice",
+    "options": [
+      {
+        "key": "A",
+        "text": "$-6$"
+      },
+      {
+        "key": "B",
+        "text": "$-4$"
+      },
+      {
+        "key": "C",
+        "text": "$4$"
+      },
+      {
+        "key": "D",
+        "text": "$6$"
+      }
+    ],
+    "correctOption": "D",
+    "stem": "设可导函数 $f$ 满足 $f'(x)=f^2(x)$，且 $f(0)=-1$，则 $f'''(0)=$（　）。",
+    "answer": "**D**，$6$。",
+    "explanation": "不必先解微分方程。直接对关系逐次求导：\n$$f''=2ff'=2f^3,\\qquad f'''=6f^2f'=6f^4.$$\n代入 $f(0)=-1$，得 $f'''(0)=6$。右端由可导函数 $f$ 组成，上述关系也逐步保证所需高阶导数存在。"
+  },
+  {
+    "id": "math2-2024-q14-d10",
+    "year": 2024,
+    "number": "14-10",
+    "examNumber": "14",
+    "kind": "exercise",
+    "exerciseIndex": 10,
+    "source": "1000题 · 强化篇P68题5",
+    "sourceCategory": "book",
+    "topic": "高等数学 / 一元微分 / 高阶导数 / 反函数二阶导数",
+    "type": "solution",
+    "stem": "设 $y=2x+\\sin x$，求反函数 $x=x(y)$ 的二阶导数 $\\displaystyle\\frac{d^2x}{dy^2}$。",
+    "answer": "$\\displaystyle\\frac{d^2x}{dy^2}=\\frac{\\sin x}{(2+\\cos x)^3}$，其中 $x=x(y)$。",
+    "explanation": "由 $\\frac{dy}{dx}=2+\\cos x\\ge1$，反函数存在，且\n$$\\frac{dx}{dy}=\\frac1{2+\\cos x}.$$\n再对 $y$ 求导，要把对 $x$ 的导数乘 $\\frac{dx}{dy}$：\n$$\\frac{d^2x}{dy^2}=\\frac{\\sin x}{(2+\\cos x)^2}\\cdot\\frac1{2+\\cos x}=\\frac{\\sin x}{(2+\\cos x)^3}.$$"
+  },
+  {
+    "id": "math2-2024-q14-d11",
+    "year": 2024,
+    "number": "14-11",
+    "examNumber": "14",
+    "kind": "exercise",
+    "exerciseIndex": 11,
+    "source": "1000题 · 强化篇P68题7",
+    "sourceCategory": "book",
+    "topic": "高等数学 / 一元微分 / 高阶导数 / 隐函数连续求两次导数",
+    "type": "solution",
+    "stem": "设 $y=y(x)$ 由 $x^2-xy+y^2=1$ 确定，求 $\\displaystyle\\frac{d^2y}{dx^2}$。",
+    "answer": "$\\displaystyle\\frac{d^2y}{dx^2}=-\\frac6{(2y-x)^3}$，$2y-x\\ne0$。",
+    "explanation": "对原式求导，得\n$$2x-y-xy'+2yy'=0,\\qquad (2y-x)y'=y-2x.$$\n再次求导，得\n$$2-2y'+2(y')^2+(2y-x)y''=0.$$\n所以\n$$y''=-\\frac{2[1-y'+(y')^2]}{2y-x}.$$\n代入 $y'=\\frac{y-2x}{2y-x}$，利用 $x^2-xy+y^2=1$，化简得 $y''=-\\frac6{(2y-x)^3}$。该式用于 $2y-x\\ne0$、局部可将 $y$ 写成 $x$ 的可导函数的点。"
+  },
+  {
+    "id": "math2-2024-q14-d12",
+    "year": 2024,
+    "number": "14-12",
+    "examNumber": "14",
+    "kind": "exercise",
+    "exerciseIndex": 12,
+    "source": "1000题 · 强化篇P68题4",
+    "sourceCategory": "book",
+    "topic": "高等数学 / 一元微分 / 高阶导数 / 隐函数先求微分再求二阶",
+    "type": "solution",
+    "stem": "设 $y=y(x)$ 由 $\\displaystyle\\arctan\\frac xy=\\ln\\sqrt{x^2+y^2}$ 确定，求 $\\displaystyle\\frac{dy}{dx}$ 与 $\\displaystyle\\frac{d^2y}{dx^2}$。",
+    "answer": "$\\displaystyle\\frac{dy}{dx}=\\frac{y-x}{x+y}$，$\\displaystyle\\frac{d^2y}{dx^2}=-\\frac{2(x^2+y^2)}{(x+y)^3}$。",
+    "explanation": "对原式两边取微分：\n$$\\frac{y\\,dx-x\\,dy}{x^2+y^2}=\\frac{x\\,dx+y\\,dy}{x^2+y^2}.$$\n整理得 $(y-x)\\,dx=(x+y)\\,dy$，所以 $y'=\\frac{y-x}{x+y}$。\n\n记 $p=y'$，再次求导：\n$$y''=\\frac{(p-1)(x+y)-(y-x)(1+p)}{(x+y)^2}.$$\n用 $y-x=p(x+y)$ 化简，得\n$$y''=-\\frac{1+p^2}{x+y}=-\\frac{2(x^2+y^2)}{(x+y)^3}.$$\n原关系须有定义，以上导数表示还要求 $x+y\\ne0$。"
+  },
+  {
+    "id": "math2-2024-q14-d13",
+    "year": 2024,
+    "number": "14-13",
+    "examNumber": "14",
+    "kind": "exercise",
+    "exerciseIndex": 13,
+    "source": "1000题 · 强化篇P68题8",
+    "sourceCategory": "book",
+    "topic": "高等数学 / 一元微分 / 高阶导数 / 变上限积分隐式求二阶",
+    "type": "solution",
+    "stem": "设 $y=y(x)$ 由 $\\displaystyle x=\\int_1^{y-x}\\sin^2\\frac{\\pi t}{4}\\,dt$ 确定，求 $\\displaystyle\\left.\\frac{d^2y}{dx^2}\\right|_{x=0}$。",
+    "answer": "$-2\\pi$。",
+    "explanation": "$x=0$ 时积分为 $0$。被积函数非负，且在任何非退化区间上不恒为 $0$，故只有 $y-x=1$，得到 $y(0)=1$。\n\n记 $h(u)=\\sin^2\\frac{\\pi u}{4}$。对 $x$ 求导，得\n$$1=h(y-x)(y'-1).$$\n由 $h(1)=\\frac12$ 得 $y'(0)=3$。再求导，得\n$$0=h'(y-x)(y'-1)^2+h(y-x)y''.$$\n因 $h'(1)=\\frac\\pi4$，代入 $x=0$ 得 $0=\\frac\\pi4\\cdot4+\\frac12y''(0)$，所以 $y''(0)=-2\\pi$。"
+  },
+  {
+    "id": "math2-2024-q14-d14",
+    "year": 2024,
+    "number": "14-14",
+    "examNumber": "14",
+    "kind": "exercise",
+    "exerciseIndex": 14,
+    "source": "27押题王六套 · 卷四 · ID 11449",
+    "sourceCategory": "mock",
+    "sourceUrl": "https://cxyonly.fans/math/practice?listId=mock&categoryId=2502&q=%E9%AB%98%E9%98%B6&questionId=11449",
+    "topic": "高等数学 / 一元微分 / 高阶导数 / 对数和差归纳通式",
+    "type": "solution",
+    "stem": "设 $\\displaystyle f(x)=\\ln\\sqrt{\\frac{1-x}{1+x}}$，求 $f^{(2n+1)}(0)$，其中整数 $n\\ge0$。",
+    "answer": "$-(2n)!$。",
+    "explanation": "在 $|x|<1$ 内，\n$$f(x)=\\frac12[\\ln(1-x)-\\ln(1+x)]=-x-\\frac{x^3}{3}-\\frac{x^5}{5}-\\cdots.$$\n$x^{2n+1}$ 的系数为 $-\\frac1{2n+1}$，所以\n$$f^{(2n+1)}(0)=(2n+1)!\\left(-\\frac1{2n+1}\\right)=-(2n)!.$$\n也可先求 $f'(x)=-\\frac1{1-x^2}$，再求它在 $0$ 处的 $2n$ 阶导数。"
+  },
+  {
+    "id": "math2-2024-q14-d15",
+    "year": 2024,
+    "number": "14-15",
+    "examNumber": "14",
+    "kind": "exercise",
+    "exerciseIndex": 15,
+    "source": "27线代王六套 · 卷三 · ID 12165",
+    "sourceCategory": "mock",
+    "sourceUrl": "https://cxyonly.fans/math/practice?listId=mock&categoryId=2502&q=f%5E%7B&questionId=12165",
+    "topic": "高等数学 / 一元微分 / 高阶导数 / 补点函数的极高阶导数",
+    "type": "choice",
+    "options": [
+      {
+        "key": "A",
+        "text": "$\\frac{2024!}{1013!}$"
+      },
+      {
+        "key": "B",
+        "text": "$-\\frac{2024!}{1013!}$"
+      },
+      {
+        "key": "C",
+        "text": "$\\frac{2028!}{1015!}$"
+      },
+      {
+        "key": "D",
+        "text": "$-\\frac{2028!}{1015!}$"
+      }
+    ],
+    "correctOption": "D",
+    "stem": "设\n$$f(x)=\\begin{cases}\\dfrac{\\sin(x^2)}{x^2},&x\\ne0,\\\\1,&x=0,\\end{cases}$$\n则 $f^{(2028)}(0)=$（　）。",
+    "answer": "**D**，$-\\frac{2028!}{1015!}$。",
+    "explanation": "连续补点后的展开为\n$$f(x)=\\sum_{k=0}^{\\infty}\\frac{(-1)^kx^{4k}}{(2k+1)!}.$$\n令 $4k=2028$，得 $k=507$，目标系数为 $-\\frac1{1015!}$，故\n$$f^{(2028)}(0)=-\\frac{2028!}{1015!}.$$\n补点后的函数由收敛幂级数表示，在 $0$ 处具有各阶导数。"
+  },
+  {
+    "id": "math2-2024-q14-d16",
+    "year": 2024,
+    "number": "14-16",
+    "examNumber": "14",
+    "kind": "exercise",
+    "exerciseIndex": 16,
+    "source": "26押题王六套 · 卷四 · ID 12272",
+    "sourceCategory": "mock",
+    "sourceUrl": "https://cxyonly.fans/math/practice?listId=mock&categoryId=2502&q=f%5E%7B&questionId=12272",
+    "topic": "高等数学 / 一元微分 / 高阶导数 / 在非零点提取移位系数",
+    "type": "solution",
+    "stem": "设 $f(x)=(x^2-4x+3)^n$，求 $f^{(n)}(1)$，其中 $n$ 为正整数。",
+    "answer": "$(-2)^n n!$。",
+    "explanation": "因式分解后令 $h=x-1$，得\n$$f(1+h)=h^n(h-2)^n.$$\n$h^n$ 的系数只来自 $(h-2)^n$ 的常数项 $(-2)^n$，所以 $f^{(n)}(1)=(-2)^n n!$。\n\n用莱布尼茨公式也可看出，只有 $(x-1)^n$ 恰好求 $n$ 阶导的一项在 $x=1$ 时不为零。"
+  },
+  {
+    "id": "math2-2024-q14-d17",
+    "year": 2024,
+    "number": "14-17",
+    "examNumber": "14",
+    "kind": "exercise",
+    "exerciseIndex": 17,
+    "source": "张宇八套 · 27 · 卷三 · ID 11185",
+    "sourceCategory": "mock",
+    "sourceUrl": "https://cxyonly.fans/math/practice?listId=mock&categoryId=2502&q=f%5E%7B&questionId=11185",
+    "topic": "高等数学 / 一元微分 / 高阶导数 / 变上限积分先求一次导数",
+    "type": "solution",
+    "stem": "设 $\\displaystyle f(x)=\\int_1^{2x}\\ln(t^2-1)\\,dt$，$x>\\frac12$。整数 $n>1$ 时，求 $f^{(n)}(x)$。",
+    "answer": "$\\displaystyle f^{(n)}(x)=(-1)^{n-2}2^n(n-2)!\\left[\\frac1{(2x-1)^{n-1}}+\\frac1{(2x+1)^{n-1}}\\right]$。",
+    "explanation": "下限 $1$ 虽是对数奇点，但积分收敛；上限处可用变上限积分求导：\n$$f'(x)=2\\ln(4x^2-1)=2\\ln(2x-1)+2\\ln(2x+1).$$\n对 $f'$ 再求 $n-1$ 阶导，利用\n$$\\frac{d^k}{dx^k}\\ln(2x\\pm1)=\\frac{(-1)^{k-1}(k-1)!2^k}{(2x\\pm1)^k},\\qquad k\\ge1,$$\n得到\n$$f^{(n)}(x)=(-1)^{n-2}2^n(n-2)!\\left[\\frac1{(2x-1)^{n-1}}+\\frac1{(2x+1)^{n-1}}\\right].$$\n注意先求一阶以后还须求 $n-1$ 次，且上限 $2x$ 求导会产生因子 $2$。"
+  },
+  {
+    "id": "math2-2024-q14-d18",
+    "year": 2024,
+    "number": "14-18",
+    "examNumber": "14",
+    "kind": "exercise",
+    "exerciseIndex": 18,
+    "source": "27线代王六套 · 卷二 · ID 12052",
+    "sourceCategory": "mock",
+    "sourceUrl": "https://cxyonly.fans/math/practice?listId=mock&categoryId=2502&q=f%5E%7B&questionId=12052",
+    "topic": "高等数学 / 一元微分 / 高阶导数 / 指数复合函数的稀疏次数",
+    "type": "solution",
+    "stem": "设 $f(x)=x^3e^{x^4}$，求 $f^{(2027)}(0)$。",
+    "answer": "$\\frac{2027!}{506!}$。",
+    "explanation": "展开得\n$$x^3e^{x^4}=\\sum_{k=0}^{\\infty}\\frac{x^{4k+3}}{k!}.$$\n由 $4k+3=2027$ 得 $k=506$，系数为 $\\frac1{506!}$，所以 $f^{(2027)}(0)=\\frac{2027!}{506!}$。"
+  },
+  {
+    "id": "math2-2024-q14-d19",
+    "year": 2024,
+    "number": "14-19",
+    "examNumber": "14",
+    "kind": "exercise",
+    "exerciseIndex": 19,
+    "source": "27线代王六套 · 卷四 · ID 12182",
+    "sourceCategory": "mock",
+    "sourceUrl": "https://cxyonly.fans/math/practice?listId=mock&categoryId=2502&q=f%5E%7B&questionId=12182",
+    "topic": "高等数学 / 一元微分 / 高阶导数 / 多项式、指数与商式的组合",
+    "type": "solution",
+    "stem": "设 $\\displaystyle f(x)=\\frac{e^{x^{2024}(1+2x)}-1}{1-x-x^2}$，求 $f^{(2026)}(0)$。",
+    "answer": "$4\\cdot2026!$。",
+    "explanation": "只需定位 $x^{2026}$ 的系数。记 $h=x^{2024}+2x^{2025}$，则\n$$e^h-1=h+O(x^{4048}),\\qquad \\frac1{1-x-x^2}=1+x+2x^2+O(x^3).$$\n目标系数来自 $x^{2024}$ 乘 $2x^2$，以及 $2x^{2025}$ 乘 $x$，合计 $4$。因此\n$$f(x)=x^{2024}+3x^{2025}+4x^{2026}+O(x^{2027}),\\qquad f^{(2026)}(0)=4\\cdot2026!.$$"
+  },
+  {
+    "id": "math2-2024-q14-d20",
+    "year": 2024,
+    "number": "14-20",
+    "examNumber": "14",
+    "kind": "exercise",
+    "exerciseIndex": 20,
+    "source": "26押题王六套 · 卷六 · ID 12303",
+    "sourceCategory": "mock",
+    "sourceUrl": "https://cxyonly.fans/math/practice?listId=mock&categoryId=2502&q=%E5%8F%82%E6%95%B0%E6%96%B9%E7%A8%8B&questionId=12303",
+    "topic": "高等数学 / 一元微分 / 高阶导数 / 参数分段点的二阶导是否存在",
+    "type": "choice",
+    "options": [
+      {
+        "key": "A",
+        "text": "连续但不可导"
+      },
+      {
+        "key": "B",
+        "text": "可导但导函数不连续"
+      },
+      {
+        "key": "C",
+        "text": "可导且导函数连续"
+      },
+      {
+        "key": "D",
+        "text": "二阶可导"
+      }
+    ],
+    "correctOption": "C",
+    "stem": "设 $y=f(x)$ 由 $x=2t+|t|$、$y=|t|(e^{|t|}-1)$ 确定，则 $f$ 在 $x=0$ 处（　）。",
+    "answer": "**C**，可导且导函数连续，二阶导数不存在。",
+    "explanation": "先消去参数，得到\n$$f(x)=\\begin{cases}-x(e^{-x}-1),&x<0,\\\\\\dfrac x3(e^{x/3}-1),&x\\ge0.\\end{cases}$$\n两侧分别为 $x^2+O(x^3)$ 与 $\\frac{x^2}{9}+O(x^3)$，故 $f'(0)=0$。分别对两段求导，有\n$$f'(x)=\\begin{cases}1-e^{-x}+xe^{-x},&x<0,\\\\\\dfrac13(e^{x/3}-1)+\\dfrac x9e^{x/3},&x>0.\\end{cases}$$\n两侧均趋于 $0=f'(0)$，故导函数连续。但 $\\frac{f'(x)-f'(0)}x$ 的左、右极限分别为 $2$、$\\frac29$，所以二阶导数不存在。"
+  },
+  {
+    "id": "math2-2024-q14-d21",
+    "year": 2024,
+    "number": "14-21",
+    "examNumber": "14",
+    "kind": "exercise",
+    "exerciseIndex": 21,
+    "source": "27押题王六套 · 卷二 · ID 11396",
+    "sourceCategory": "mock",
+    "sourceUrl": "https://cxyonly.fans/math/practice?listId=mock&categoryId=2502&q=%E5%8F%82%E6%95%B0%E6%96%B9%E7%A8%8B&questionId=11396",
+    "topic": "高等数学 / 一元微分 / 高阶导数 / 绝对值与参数分段的复测",
+    "type": "choice",
+    "options": [
+      {
+        "key": "A",
+        "text": "$f'$ 不存在"
+      },
+      {
+        "key": "B",
+        "text": "$f'$ 存在但不连续"
+      },
+      {
+        "key": "C",
+        "text": "$f'$ 连续但不可导"
+      },
+      {
+        "key": "D",
+        "text": "$f''$ 存在"
+      }
+    ],
+    "correctOption": "C",
+    "stem": "设 $y=f(x)$ 由 $x=2t-|t|$、$y=t|e^t-1|$ 确定，则在 $x=0$ 处（　）。",
+    "answer": "**C**，$f'$ 连续但在 $0$ 处不可导。",
+    "explanation": "消去参数，得\n$$f(x)=\\begin{cases}\\dfrac x3(1-e^{x/3}),&x<0,\\\\x(e^x-1),&x\\ge0.\\end{cases}$$\n左侧为 $-\\frac{x^2}{9}+O(x^3)$，右侧为 $x^2+O(x^3)$，故 $f'(0)=0$。分别求导，得\n$$f'(x)=\\begin{cases}\\dfrac13(1-e^{x/3})-\\dfrac x9e^{x/3},&x<0,\\\\e^x-1+xe^x,&x>0.\\end{cases}$$\n两侧均趋于 $0$，故 $f'$ 连续。但 $\\frac{f'(x)-f'(0)}x$ 的左、右极限分别为 $-\\frac29$、$2$，所以 $f''(0)$ 不存在，即 $f'$ 在 $0$ 处不可导。"
+  },
+  {
+    "id": "math2-2024-q15-original",
+    "year": 2024,
+    "number": "15",
+    "examNumber": "15",
+    "kind": "original",
+    "source": "2024年数学二真题 · 第 15 题",
+    "topic": "高等数学 / 一元积分 / 平均速度",
+    "type": "fill",
+    "stem": "某物体以速度 $v(t)=t+k\\sin\\pi t$ 作直线运动，若它从 $t=0$ 到 $t=3$ 的时间段内平均速度为 $\\frac52$，则 $k=\\underline{\\qquad}$。",
+    "answer": "$\\frac{3\\pi}{2}$。",
+    "explanation": "平均速度是位移除以时间，故\n$$\\frac13\\int_0^3(t+k\\sin\\pi t)\\,dt=\\frac52.$$\n计算得\n$$\\frac92+\\left[-\\frac k\\pi\\cos\\pi t\\right]_0^3=\\frac92+\\frac{2k}\\pi=\\frac{15}{2},$$\n解得 $k=\\frac{3\\pi}{2}$。这里求的是平均速度，积分中不用对速度取绝对值。"
+  },
+  {
+    "id": "math2-2024-q16-original",
+    "year": 2024,
+    "number": "16",
+    "examNumber": "16",
+    "kind": "original",
+    "source": "2024年数学二真题 · 第 16 题",
+    "topic": "线性代数 / 向量 / 线性相关性",
+    "type": "fill",
+    "stem": "设向量\n$$\\alpha_1=(a,1,-1,1)^{\\mathsf T},\\quad\\alpha_2=(1,1,b,a)^{\\mathsf T},\\quad\\alpha_3=(1,a,-1,1)^{\\mathsf T}.$$\n若三个向量线性相关，且其中任意两个均线性无关，则 $ab=\\underline{\\qquad}$。",
+    "answer": "$-4$，其中 $a=-2$、$b=2$。",
+    "explanation": "若 $a=1$，则 $\\alpha_1=\\alpha_3$，不合题意，故 $a\\ne1$。由 $\\alpha_1,\\alpha_3$ 线性无关、三者线性相关，可设 $\\alpha_2=p\\alpha_1+q\\alpha_3$。\n\n比较分量，得\n$$ap+q=1,\\quad p+aq=1,\\quad -p-q=b,\\quad p+q=a.$$\n第二式减第四式，得 $(a-1)q=1-a$，所以 $q=-1$、$p=a+1$。代入第一式：\n$$a(a+1)-1=1,\\qquad (a-1)(a+2)=0.$$\n排除 $a=1$，得 $a=-2$、$b=-a=2$，故 $ab=-4$。此时 $\\alpha_2=-\\alpha_1-\\alpha_3$，任意两个均线性无关，满足全部条件。"
+  },
+  {
+    "id": "math2-2024-q17-original",
+    "year": 2024,
+    "number": "17",
+    "examNumber": "17",
+    "kind": "original",
+    "source": "2024年数学二真题 · 第 17 题",
+    "topic": "高等数学 / 多元积分 / 二重积分换元与对称性",
+    "type": "solution",
+    "stem": "平面有界区域 $D$ 位于第一象限，由曲线 $xy=\\frac13$、$xy=3$ 与直线 $y=\\frac x3$、$y=3x$ 围成，计算 $\\displaystyle\\iint_D(1+x-y)\\,dx\\,dy$。",
+    "answer": "$\\frac83\\ln3$。",
+    "explanation": "交换 $x,y$ 后区域不变，故 $D$ 关于 $y=x$ 对称，有 $\\iint_D x\\,dx\\,dy=\\iint_D y\\,dx\\,dy$，原积分等于 $D$ 的面积。\n\n令 $u=xy$、$v=\\frac yx$，则第一象限内变换一一对应，区域化为 $\\frac13\\le u\\le3$、$\\frac13\\le v\\le3$。雅可比为\n$$\\frac{\\partial(u,v)}{\\partial(x,y)}=\\begin{vmatrix}y&x\\\\-\\frac y{x^2}&\\frac1x\\end{vmatrix}=\\frac{2y}{x}=2v,$$\n所以 $dx\\,dy=\\frac1{2v}\\,du\\,dv$。于是\n$$I=\\int_{1/3}^{3}\\!du\\int_{1/3}^{3}\\frac1{2v}\\,dv=\\frac83\\cdot\\frac12\\ln9=\\frac83\\ln3.$$"
+  },
+  {
+    "id": "math2-2024-q18-original",
+    "year": 2024,
+    "number": "18",
+    "examNumber": "18",
+    "kind": "original",
+    "source": "2024年数学二真题 · 第 18 题",
+    "topic": "高等数学 / 微分方程 / 自变量换元",
+    "type": "solution",
+    "stem": "设 $y(x)$ 为微分方程 $x^2y''+xy'-9y=0$ 满足条件 $y(1)=2$、$y'(1)=6$ 的解。\n\n（1）利用变换 $x=e^t$，将上述方程化为常系数线性方程，并求 $y(x)$；\n\n（2）计算 $\\displaystyle\\int_1^2 y(x)\\sqrt{4-x^2}\\,dx$。",
+    "answer": "（1）$y(x)=2x^3$（$x>0$）；（2）$\\frac{22\\sqrt3}{5}$。",
+    "explanation": "（1）记 $Y(t)=y(e^t)$。由链式法则，\n$$\\frac{dY}{dt}=x\\frac{dy}{dx},\\qquad \\frac{d^2Y}{dt^2}=x\\frac{dy}{dx}+x^2\\frac{d^2y}{dx^2}.$$\n故原方程化为 $Y''-9Y=0$，通解为 $Y=C_1e^{3t}+C_2e^{-3t}$，还原得\n$$y=C_1x^3+C_2x^{-3}.$$\n初值给出 $C_1+C_2=2$、$3C_1-3C_2=6$，得 $C_1=2$、$C_2=0$，所以 $y=2x^3$。\n\n（2）积分为 $2\\int_1^2x^3\\sqrt{4-x^2}\\,dx$。令 $u=4-x^2$，$du=-2x\\,dx$，得到\n$$\\begin{aligned}I&=\\int_0^3(4-u)\\sqrt u\\,du\\\\&=\\left[\\frac83u^{3/2}-\\frac25u^{5/2}\\right]_0^3=\\frac{22\\sqrt3}{5}.\\end{aligned}$$"
+  },
+  {
+    "id": "math2-2024-q18-e1",
+    "year": 2024,
+    "number": "18-1",
+    "examNumber": "18",
+    "kind": "exercise",
+    "exerciseIndex": 1,
+    "source": "880题 · 第六章基础解答7，原书P54三(7)",
+    "sourceCategory": "book",
+    "topic": "高等数学 / 微分方程 / 自变量换元",
+    "type": "solution",
+    "stem": "利用变换 $u=e^x$，求微分方程 $y''-(2e^x+1)y'+e^{2x}y=e^{3x}$ 的通解。",
+    "answer": "$y=(C_1+C_2e^x)e^{e^x}+e^x+2$。",
+    "explanation": "记 $Y(u)=y(x)$，$u=e^x$，由链式法则得\n$$\\frac{dy}{dx}=u\\frac{dY}{du},\\qquad \\frac{d^2y}{dx^2}=u^2\\frac{d^2Y}{du^2}+u\\frac{dY}{du}.$$\n代入并约去 $u^2$，得 $Y''-2Y'+Y=u$，这里导数均对 $u$ 而言。\n\n特征根 $1$ 为二重根，齐次解为 $(C_1+C_2u)e^u$。设特解为 $au+b$，代入得 $au+b-2a=u$，故 $a=1$、$b=2$。还原得\n$$y=(C_1+C_2e^x)e^{e^x}+e^x+2.$$"
+  },
+  {
+    "id": "math2-2024-q18-e2",
+    "year": 2024,
+    "number": "18-2",
+    "examNumber": "18",
+    "kind": "exercise",
+    "exerciseIndex": 2,
+    "source": "880题 · 第六章综合解答3，原书P56三(3)",
+    "sourceCategory": "book",
+    "topic": "高等数学 / 微分方程 / 自变量换元",
+    "type": "solution",
+    "stem": "利用变量替换 $x=\\sin t$、$Y(t)=y(\\sin t)$（$0<t<\\frac\\pi2$），化简方程 $(1-x^2)y''-xy'+y=0$，并求通解。",
+    "answer": "$Y''+Y=0$；$y=C_1\\sqrt{1-x^2}+C_2x$，$0<x<1$。",
+    "explanation": "由链式法则，\n$$\\frac{dY}{dt}=\\cos t\\frac{dy}{dx},\\qquad \\frac{d^2Y}{dt^2}=\\cos^2t\\frac{d^2y}{dx^2}-\\sin t\\frac{dy}{dx}.$$\n因此原式前两项恰为 $Y''$，方程变成 $Y''+Y=0$，通解为 $Y=C_1\\cos t+C_2\\sin t$。\n\n由于 $0<t<\\frac\\pi2$，有 $\\cos t=\\sqrt{1-x^2}$，故 $y=C_1\\sqrt{1-x^2}+C_2x$，$0<x<1$。"
+  },
+  {
+    "id": "math2-2024-q18-e3",
+    "year": 2024,
+    "number": "18-3",
+    "examNumber": "18",
+    "kind": "exercise",
+    "exerciseIndex": 3,
+    "source": "880题 · 第六章综合解答4，原书P56三(4)",
+    "sourceCategory": "book",
+    "topic": "高等数学 / 微分方程 / 自变量换元",
+    "type": "solution",
+    "stem": "设微分方程 $y''+y'+e^{-2x}y=e^{-3x}$。\n\n（1）利用变换 $t=e^{-x}$，将方程化为 $y$ 关于 $t$ 的方程，并求原方程通解；\n\n（2）若解满足 $\\displaystyle\\lim_{x\\to+\\infty}y(x)=1$、$y(0)=1$，求 $y(x)$。",
+    "answer": "（1）$y=C_1\\cos(e^{-x})+C_2\\sin(e^{-x})+e^{-x}$；（2）$y=\\cos(e^{-x})-\\cot1\\sin(e^{-x})+e^{-x}$。",
+    "explanation": "记 $Y(t)=y(x)$、$t=e^{-x}$，则\n$$\\frac{dy}{dx}=-t\\frac{dY}{dt},\\qquad \\frac{d^2y}{dx^2}=t^2\\frac{d^2Y}{dt^2}+t\\frac{dY}{dt}.$$\n代入得 $Y''+Y=t$，所以 $Y=C_1\\cos t+C_2\\sin t+t$，还原即得通解。\n\n$x\\to+\\infty$ 对应 $t\\to0^+$，极限条件给出 $C_1=1$。$x=0$ 对应 $t=1$，由 $y(0)=1$ 得 $\\cos1+C_2\\sin1=0$，所以 $C_2=-\\cot1$，得到所求特解。"
+  },
+  {
+    "id": "math2-2024-q18-e4",
+    "year": 2024,
+    "number": "18-4",
+    "examNumber": "18",
+    "kind": "exercise",
+    "exerciseIndex": 4,
+    "source": "张宇八套 · 27 · 卷三 · 同题见1000题强化篇P99题32 · ID 7680",
+    "sourceCategory": "mock",
+    "sourceUrl": "https://cxyonly.fans/math/practice?listId=mock&categoryId=2502&q=%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B&page=2&questionId=7680",
+    "topic": "高等数学 / 微分方程 / 自变量换元",
+    "type": "solution",
+    "stem": "设 $f'(x)=f(\\frac2x)$，$x>0$。\n\n（1）证明 $x^2f''(x)+2f(x)=0$；\n\n（2）令 $x=e^t$，将（1）中的方程化为常系数线性方程，并求 $f(x)$。",
+    "answer": "令 $b=\\frac{\\sqrt7}{2}$、$s=\\ln\\frac{x}{\\sqrt2}$，则 $\\displaystyle f(x)=C\\sqrt x\\left[\\cos(bs)+\\frac{2\\sqrt2-1}{\\sqrt7}\\sin(bs)\\right]$，$x>0$。",
+    "explanation": "（1）对原关系求导：\n$$f''(x)=-\\frac2{x^2}f'\\left(\\frac2x\\right).$$\n再将原关系中的 $x$ 换为 $\\frac2x$，得 $f'(\\frac2x)=f(x)$，所以 $x^2f''+2f=0$。\n\n（2）记 $F(t)=f(e^t)$，则 $x^2f''=F''-F'$，方程变为 $F''-F'+2F=0$。特征根为 $\\frac{1\\pm i\\sqrt7}{2}$，故二阶方程的通解为\n$$f(x)=\\sqrt x[A\\cos(b\\ln x)+B\\sin(b\\ln x)],\\qquad b=\\frac{\\sqrt7}{2}.$$\n还须满足最初的函数关系。令 $s=\\ln\\frac{x}{\\sqrt2}$，改写为 $f(x)=\\sqrt x[C\\cos(bs)+D\\sin(bs)]$。在 $x=\\sqrt2$ 处由 $f'(\\sqrt2)=f(\\sqrt2)$ 得\n$$\\frac C2+bD=\\sqrt2C,\\qquad D=\\frac{2\\sqrt2-1}{\\sqrt7}C.$$\n这也是充分条件：由 $\\frac14+b^2=2$，代入上述 $D$ 后，有 $\\frac D2-bC=-\\sqrt2D$，于是\n$$f'(x)=\\frac{\\sqrt2}{\\sqrt x}[C\\cos(bs)-D\\sin(bs)]=f\\left(\\frac2x\\right).$$\n故原函数为答案所示的一参数函数族；只写任意两个常数的二阶方程通解，会多出不满足原关系的函数。"
+  },
+  {
+    "id": "math2-2024-q18-e5",
+    "year": 2024,
+    "number": "18-5",
+    "examNumber": "18",
+    "kind": "exercise",
+    "exerciseIndex": 5,
+    "source": "27押题王六套 · 卷五 · ID 11480",
+    "sourceCategory": "mock",
+    "sourceUrl": "https://cxyonly.fans/math/practice?listId=mock&categoryId=2502&q=%E9%AB%98%E9%98%B6&questionId=11480",
+    "topic": "高等数学 / 微分方程 / 自变量换元",
+    "type": "solution",
+    "stem": "已知二阶线性微分方程\n$$(1-x^2)y''+(2\\sqrt{1-x^2}-x)y'+y=2x.$$\n（1）作变换 $x=\\sin t$，$-\\frac\\pi2\\le t\\le\\frac\\pi2$，将原方程化为 $y$ 关于 $t$ 的方程；\n\n（2）求原方程通解。",
+    "answer": "（1）$Y''+2Y'+Y=2\\sin t$；（2）$y=(C_1+C_2\\arcsin x)e^{-\\arcsin x}-\\sqrt{1-x^2}$，$-1<x<1$。",
+    "explanation": "在区间内部记 $Y(t)=y(\\sin t)$，则\n$$\\frac{dY}{dt}=\\cos t\\frac{dy}{dx},\\qquad \\frac{d^2Y}{dt^2}=\\cos^2t\\frac{d^2y}{dx^2}-\\sin t\\frac{dy}{dx}.$$\n因 $\\cos t>0$，$\\sqrt{1-x^2}=\\cos t$，原方程化为 $Y''+2Y'+Y=2\\sin t$。\n\n齐次解为 $(C_1+C_2t)e^{-t}$。设特解 $a\\sin t+b\\cos t$，代入得 $2a\\cos t-2b\\sin t=2\\sin t$，所以 $a=0$、$b=-1$。故\n$$Y=(C_1+C_2t)e^{-t}-\\cos t.$$\n还原得 $y=(C_1+C_2\\arcsin x)e^{-\\arcsin x}-\\sqrt{1-x^2}$，$-1<x<1$。端点处原方程退化，以上通解在区间内部成立。"
+  },
+  {
+    "id": "math2-2024-q19-original",
+    "year": 2024,
+    "number": "19",
+    "examNumber": "19",
+    "kind": "original",
+    "source": "2024年数学二真题 · 第 19 题",
+    "topic": "高等数学 / 积分应用 / 旋转体体积与最值",
+    "type": "solution",
+    "stem": "设 $t>0$，平面有界区域 $D$ 由曲线 $y=\\sqrt x e^{-x}$、直线 $x=t$、$x=2t$ 及 $x$ 轴围成。$D$ 绕 $x$ 轴旋转一周所得旋转体的体积为 $V(t)$，求 $V(t)$ 的最大值。",
+    "answer": "$\\displaystyle\\max V(t)=\\frac{\\pi(4\\ln2+3)}{64}$，在 $t=\\ln2$ 时取得。",
+    "explanation": "由圆盘法，\n$$V(t)=\\pi\\int_t^{2t}xe^{-2x}\\,dx.$$\n上下限均含 $t$，求导得\n$$V'(t)=\\pi[4te^{-4t}-te^{-2t}]=\\pi te^{-4t}(4-e^{2t}).$$\n因 $t>0$，导数在 $t=\\ln2$ 前为正、之后为负，故此处取得最大值。\n\n又 $\\int xe^{-2x}\\,dx=-\\frac14(2x+1)e^{-2x}+C$，所以\n$$V(t)=\\frac\\pi4[(2t+1)e^{-2t}-(4t+1)e^{-4t}].$$\n代入 $t=\\ln2$，得 $V_{\\max}=\\frac{\\pi(4\\ln2+3)}{64}$。"
+  },
+  {
+    "id": "math2-2024-q20-original",
+    "year": 2024,
+    "number": "20",
+    "examNumber": "20",
+    "kind": "original",
+    "source": "2024年数学二真题 · 第 20 题",
+    "topic": "高等数学 / 多元微分 / 复合函数偏导数",
+    "type": "solution",
+    "stem": "已知函数 $f(u,v)$ 具有二阶连续偏导数，且函数 $g(x,y)=f(2x+y,3x-y)$ 满足\n$$\\frac{\\partial^2g}{\\partial x^2}+\\frac{\\partial^2g}{\\partial x\\partial y}-6\\frac{\\partial^2g}{\\partial y^2}=1.$$\n（1）求 $\\displaystyle\\frac{\\partial^2f}{\\partial u\\partial v}$；\n\n（2）若 $\\displaystyle\\frac{\\partial f}{\\partial u}(u,0)=ue^{-u}$、$f(0,v)=\\frac{v^2}{50}-1$，求 $f(u,v)$ 的表达式。",
+    "answer": "（1）$\\displaystyle\\frac{\\partial^2f}{\\partial u\\partial v}=\\frac1{25}$；（2）$\\displaystyle f(u,v)=-(u+1)e^{-u}+\\frac{uv}{25}+\\frac{v^2}{50}$。",
+    "explanation": "（1）设 $u=2x+y$、$v=3x-y$。由链式法则，\n$$\\frac{\\partial g}{\\partial x}=2\\frac{\\partial f}{\\partial u}+3\\frac{\\partial f}{\\partial v},\\qquad \\frac{\\partial g}{\\partial y}=\\frac{\\partial f}{\\partial u}-\\frac{\\partial f}{\\partial v}.$$\n继续求导，利用混合偏导相等，得\n$$\\begin{aligned}\n\\frac{\\partial^2g}{\\partial x^2}&=4\\frac{\\partial^2f}{\\partial u^2}+12\\frac{\\partial^2f}{\\partial u\\partial v}+9\\frac{\\partial^2f}{\\partial v^2},\\\\\n\\frac{\\partial^2g}{\\partial x\\partial y}&=2\\frac{\\partial^2f}{\\partial u^2}+\\frac{\\partial^2f}{\\partial u\\partial v}-3\\frac{\\partial^2f}{\\partial v^2},\\\\\n\\frac{\\partial^2g}{\\partial y^2}&=\\frac{\\partial^2f}{\\partial u^2}-2\\frac{\\partial^2f}{\\partial u\\partial v}+\\frac{\\partial^2f}{\\partial v^2}.\n\\end{aligned}$$\n代入题设，纯二阶偏导的系数抵消，剩 $25\\frac{\\partial^2f}{\\partial u\\partial v}=1$，故 $\\frac{\\partial^2f}{\\partial u\\partial v}=\\frac1{25}$。\n\n（2）先对 $v$ 积分，得\n$$\\frac{\\partial f}{\\partial u}=\\frac v{25}+A(u).$$\n令 $v=0$，由边界条件得 $A(u)=ue^{-u}$。再对 $u$ 积分，得\n$$f(u,v)=\\frac{uv}{25}-(u+1)e^{-u}+B(v).$$\n令 $u=0$，得 $-1+B(v)=\\frac{v^2}{50}-1$，所以 $B(v)=\\frac{v^2}{50}$，得到所求表达式。对一个变量积分时，积分“常数”可以依赖另一个变量。"
   }
 ]
