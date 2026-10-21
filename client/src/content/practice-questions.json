@@ -7386,5 +7386,915 @@
     "stem": "已知函数 $f(u,v)$ 具有二阶连续偏导数，且函数 $g(x,y)=f(2x+y,3x-y)$ 满足\n$$\\frac{\\partial^2g}{\\partial x^2}+\\frac{\\partial^2g}{\\partial x\\partial y}-6\\frac{\\partial^2g}{\\partial y^2}=1.$$\n（1）求 $\\displaystyle\\frac{\\partial^2f}{\\partial u\\partial v}$；\n\n（2）若 $\\displaystyle\\frac{\\partial f}{\\partial u}(u,0)=ue^{-u}$、$f(0,v)=\\frac{v^2}{50}-1$，求 $f(u,v)$ 的表达式。",
     "answer": "（1）$\\displaystyle\\frac{\\partial^2f}{\\partial u\\partial v}=\\frac1{25}$；（2）$\\displaystyle f(u,v)=-(u+1)e^{-u}+\\frac{uv}{25}+\\frac{v^2}{50}$。",
     "explanation": "（1）设 $u=2x+y$、$v=3x-y$。由链式法则，\n$$\\frac{\\partial g}{\\partial x}=2\\frac{\\partial f}{\\partial u}+3\\frac{\\partial f}{\\partial v},\\qquad \\frac{\\partial g}{\\partial y}=\\frac{\\partial f}{\\partial u}-\\frac{\\partial f}{\\partial v}.$$\n继续求导，利用混合偏导相等，得\n$$\\begin{aligned}\n\\frac{\\partial^2g}{\\partial x^2}&=4\\frac{\\partial^2f}{\\partial u^2}+12\\frac{\\partial^2f}{\\partial u\\partial v}+9\\frac{\\partial^2f}{\\partial v^2},\\\\\n\\frac{\\partial^2g}{\\partial x\\partial y}&=2\\frac{\\partial^2f}{\\partial u^2}+\\frac{\\partial^2f}{\\partial u\\partial v}-3\\frac{\\partial^2f}{\\partial v^2},\\\\\n\\frac{\\partial^2g}{\\partial y^2}&=\\frac{\\partial^2f}{\\partial u^2}-2\\frac{\\partial^2f}{\\partial u\\partial v}+\\frac{\\partial^2f}{\\partial v^2}.\n\\end{aligned}$$\n代入题设，纯二阶偏导的系数抵消，剩 $25\\frac{\\partial^2f}{\\partial u\\partial v}=1$，故 $\\frac{\\partial^2f}{\\partial u\\partial v}=\\frac1{25}$。\n\n（2）先对 $v$ 积分，得\n$$\\frac{\\partial f}{\\partial u}=\\frac v{25}+A(u).$$\n令 $v=0$，由边界条件得 $A(u)=ue^{-u}$。再对 $u$ 积分，得\n$$f(u,v)=\\frac{uv}{25}-(u+1)e^{-u}+B(v).$$\n令 $u=0$，得 $-1+B(v)=\\frac{v^2}{50}-1$，所以 $B(v)=\\frac{v^2}{50}$，得到所求表达式。对一个变量积分时，积分“常数”可以依赖另一个变量。"
+  },
+  {
+    "id": "math2-zy2026-set2-q2-exercise2",
+    "year": 2026,
+    "paperId": "zy2026-set2",
+    "paperTitle": "2026 张宇四套卷 · 第二套",
+    "number": "2-2",
+    "examNumber": "2",
+    "exerciseIndex": 2,
+    "kind": "exercise",
+    "source": "900题 · 数二 · 第一章 · B类 · 第8题",
+    "sourceCategory": "book",
+    "sourceUrl": "https://cxyonly.fans/math/questions/3963",
+    "topic": "高等数学 / 极限 / 复合数列与反例",
+    "type": "choice",
+    "options": [
+      {
+        "key": "A",
+        "text": "当 $\\lim_{n\\to\\infty}\\arctan f(x_n)$ 存在时，$\\lim_{n\\to\\infty}x_n$ 存在"
+      },
+      {
+        "key": "B",
+        "text": "当 $\\lim_{n\\to\\infty}f(\\arctan x_n)$ 存在时，$\\lim_{n\\to\\infty}x_n$ 存在"
+      },
+      {
+        "key": "C",
+        "text": "当 $\\lim_{n\\to\\infty}\\arctan f(x_n)$ 存在时，$\\lim_{n\\to\\infty}f(x_n)$ 存在，但 $\\lim_{n\\to\\infty}x_n$ 不一定存在"
+      },
+      {
+        "key": "D",
+        "text": "当 $\\lim_{n\\to\\infty}f(\\arctan x_n)$ 存在时，$\\lim_{n\\to\\infty}\\arctan x_n$ 存在，但 $\\lim_{n\\to\\infty}x_n$ 不一定存在"
+      }
+    ],
+    "correctOption": "C",
+    "stem": "已知数列 $\\{x_n\\}$，其中 $-\\infty < x_n < +\\infty$，函数 $f(x) = e^{-|x|}$，则（）",
+    "answer": "**C**。",
+    "explanation": "注意到 $f(x)$ 是有界函数，故 $\\{f(x_n)\\}$ 是有界数列。若 $\\lim_{n\\to\\infty}\\arctan f(x_n)$ 存在，记为 $a$，则由于 $\\arctan x$ 在 $(-\\infty, +\\infty)$ 上单调增加，值域为 $(-\\frac{\\pi}{2}, \\frac{\\pi}{2})$，其存在反函数 $\\tan x$，从而 $\\lim_{n\\to\\infty}f(x_n) = \\tan a$。但 $\\lim_{n\\to\\infty}f(x_n)$ 存在并不能保证 $\\lim_{n\\to\\infty}x_n$ 存在，例如取 $x_n = (-1)^n$，则 $\\lim_{n\\to\\infty}f(x_n) = e^{-1}$，但 $\\lim_{n\\to\\infty}x_n$ 不存在。选项 A 不正确，选项 C 正确。由于 $f(x)$ 在 $(-\\infty, +\\infty)$ 上并不单调，故由 $\\lim_{n\\to\\infty}f(\\arctan x_n)$ 存在并不能保证 $\\lim_{n\\to\\infty}\\arctan x_n$ 存在。同样取 $x_n = (-1)^n$，则 $\\lim_{n\\to\\infty}f(\\arctan x_n) = e^{-\\frac{\\pi}{4}}$，但 $\\lim_{n\\to\\infty}\\arctan x_n$ 和 $\\lim_{n\\to\\infty}x_n$ 均不存在。选项 B、D 不正确。"
+  },
+  {
+    "id": "math2-zy2026-set2-q2-exercise3",
+    "year": 2026,
+    "paperId": "zy2026-set2",
+    "paperTitle": "2026 张宇四套卷 · 第二套",
+    "number": "2-3",
+    "examNumber": "2",
+    "exerciseIndex": 3,
+    "kind": "exercise",
+    "source": "900题 · 数二 · 第一章 · B类 · 第2题",
+    "sourceCategory": "book",
+    "sourceUrl": "https://cxyonly.fans/math/questions/3974",
+    "topic": "高等数学 / 极限 / 复合数列与反例",
+    "type": "choice",
+    "options": [
+      {
+        "key": "A",
+        "text": "0"
+      },
+      {
+        "key": "B",
+        "text": "1"
+      },
+      {
+        "key": "C",
+        "text": "2"
+      },
+      {
+        "key": "D",
+        "text": "3"
+      }
+    ],
+    "correctOption": "A",
+    "stem": "已知数列 $\\{a_{n}\\}$ 和连续函数 $f(x)$。若 $b_{n}=f(a_{n})$，且 $\\displaystyle\\lim_{n\\to\\infty}b_{n}=1$，则下列条件中，可以推出“数列 $\\{a_{n}\\}$ 收敛”的条件个数是\n① $f(x)$ 是单调函数。 ② $f(x)$ 是偶函数。 ③ $f(x)$ 是有界函数。 ④ $f(x)$ 是周期函数。",
+    "answer": "**A**。",
+    "explanation": "四个条件都不能保证原数列收敛。对①，取 $f(x)=\\frac2\\pi\\arctan x$、$a_n=n$，则 $f$ 连续且严格递增，$f(a_n)\\to1$，而 $a_n$ 不收敛；这里1恰好是值域未取到的边界。对②③④，取 $f(x)=\\cos x$、$a_n=2n\\pi$，即可同时满足偶函数、有界、周期条件，且 $f(a_n)=1$，原数列却不收敛。故正确条件个数为0，选A。"
+  },
+  {
+    "id": "math2-zy2026-set2-q3-exercise1",
+    "year": 2026,
+    "paperId": "zy2026-set2",
+    "paperTitle": "2026 张宇四套卷 · 第二套",
+    "number": "3-1",
+    "examNumber": "3",
+    "exerciseIndex": 1,
+    "kind": "exercise",
+    "source": "姜晓千真题同源150",
+    "sourceCategory": "book",
+    "sourceUrl": "https://cxyonly.fans/math/questions/1439",
+    "topic": "高等数学 / 一元微分 / 参数方程与导数定义",
+    "type": "fill",
+    "stem": "设 $ y=f(x) $ 由参数方程 $ \\left\\{\\begin{aligned} x=2t+|t| \\\\ y=5t^{2}+4t|t| \\end{aligned}\\right. $ 确定，则 $ \\left.\\frac{dy}{dx}\\right|_{t=0}= $ $\\underline{\\qquad}$.",
+    "answer": "$0$。",
+    "explanation": "当 $t=0$ 时，$x=0,y=0$。要求的是曲线在该点处的导数，应计算\n$$\n\\left.\\frac{\\mathrm{d}y}{\\mathrm{d}x}\\right|_{t=0}=\\lim_{t\\to0}\\frac{y(t)-y(0)}{x(t)-x(0)}.\n$$\n若 $t\\ge0$，则\n$$\nx=3t,\\;y=9t^2,\n$$\n故\n$$\n\\frac{y(t)-y(0)}{x(t)-x(0)}=\\frac{9t^2}{3t}=3t\\to0.\n$$\n若 $t\\lt0$，则\n$$\nx=t,\\;y=t^2,\n$$\n故\n$$\n\\frac{y(t)-y(0)}{x(t)-x(0)}=\\frac{t^2}{t}=t\\to0.\n$$\n左右极限相同，所以\n$$\n\\left.\\frac{\\mathrm{d}y}{\\mathrm{d}x}\\right|_{t=0}=0.\n$$"
+  },
+  {
+    "id": "math2-zy2026-set2-q3-exercise3",
+    "year": 2026,
+    "paperId": "zy2026-set2",
+    "paperTitle": "2026 张宇四套卷 · 第二套",
+    "number": "3-3",
+    "examNumber": "3",
+    "exerciseIndex": 3,
+    "kind": "exercise",
+    "source": "900题 · 第二章 · 数二 · A类 · 第29题",
+    "sourceCategory": "book",
+    "sourceUrl": "https://cxyonly.fans/math/questions/1441",
+    "topic": "高等数学 / 一元微分 / 参数方程与导数定义",
+    "type": "choice",
+    "options": [
+      {
+        "key": "A",
+        "text": "$ f(x) $ 连续， $ f'(0) $ 不存在"
+      },
+      {
+        "key": "B",
+        "text": "$ f'(0) $ 存在， $ f'(x) $ 在 $x = 0$ 处不连续"
+      },
+      {
+        "key": "C",
+        "text": "$ f'(x) $ 连续， $ f''(0) $ 不存在"
+      },
+      {
+        "key": "D",
+        "text": "$ f''(0) $ 存在， $ f''(x) $ 在 $x = 0$ 处不连续"
+      }
+    ],
+    "correctOption": "C",
+    "stem": "设函数 $ y = f(x) $ 由 $ \\left\\{\\begin{aligned} x &= t | t |, \\\\ y &= | t | \\sin t^{2} \\end{aligned}\\right. $ 确定，则()",
+    "answer": "**C**。",
+    "explanation": "消去参数，得到\n$$f(x)=\\begin{cases}\\sqrt{x}\\sin x,&x\\ge0,\\\\-\\sqrt{-x}\\sin x,&x<0.\\end{cases}$$\n由定义 $f'(0)=\\lim_{x\\to0}\\frac{f(x)}x=0$。对两段分别求导，得\n$$f'(x)=\\begin{cases}\\sqrt{x}\\cos x+\\frac{\\sin x}{2\\sqrt{x}},&x>0,\\\\-\\sqrt{-x}\\cos x+\\frac{\\sin x}{2\\sqrt{-x}},&x<0.\\end{cases}$$\n两侧均趋于 $0=f'(0)$，所以导函数连续。但 $\\frac{f'(x)-f'(0)}x$ 在两侧均趋于 $+\\infty$，不存在有限二阶导数，故选 C。"
+  },
+  {
+    "id": "math2-zy2026-set2-q5-exercise1",
+    "year": 2026,
+    "paperId": "zy2026-set2",
+    "paperTitle": "2026 张宇四套卷 · 第二套",
+    "number": "5-1",
+    "examNumber": "5",
+    "exerciseIndex": 1,
+    "kind": "exercise",
+    "source": "张宇30讲 · 例12.2",
+    "sourceCategory": "book",
+    "sourceUrl": "https://cxyonly.fans/math/questions/10666",
+    "topic": "高等数学 / 积分应用 / 微元法与抽水做功",
+    "type": "fill",
+    "stem": "有一倒圆锥形容器，高为 $a$，上底半径为 $b$，内部装满水。水的密度为 $\\rho$，重力加速度为 $g$，将水全部从容器顶部抽出所做的功为 $\\underline{\\qquad}$。",
+    "answer": "$\\displaystyle\\frac{\\pi\\rho g a^2b^2}{12}$",
+    "explanation": "取锥尖为 $y=0$、顶部为 $y=a$。高度 $y$ 处水片半径为 $by/a$，体积为 $\\pi b^2y^2/a^2\\,dy$，需提升 $a-y$。故 $W=\\rho g\\int_0^a\\frac{\\pi b^2y^2}{a^2}(a-y)\\,dy=\\frac{\\pi\\rho ga^2b^2}{12}$。",
+    "figures": [
+      {
+        "src": "practice-figures/zy2026-set2-cone-full.svg",
+        "alt": "倒圆锥容器，高 a，口半径 b，底部为原点 O。",
+        "caption": "补充示意图",
+        "width": 560,
+        "height": 320
+      }
+    ]
+  },
+  {
+    "id": "math2-zy2026-set2-q5-exercise2",
+    "year": 2026,
+    "paperId": "zy2026-set2",
+    "paperTitle": "2026 张宇四套卷 · 第二套",
+    "number": "5-2",
+    "examNumber": "5",
+    "exerciseIndex": 2,
+    "kind": "exercise",
+    "source": "900题 · 第三章 · 数二 · B类 · 第39题",
+    "sourceCategory": "book",
+    "sourceUrl": "https://cxyonly.fans/math/questions/2431",
+    "topic": "高等数学 / 积分应用 / 微元法与抽水做功",
+    "type": "solution",
+    "stem": "设有一底面半径为 $r$、高为 $h$ 的圆锥形容器，顶点朝下放置。将容器中的水全部提升至容器口抽出：满水时需克服重力做功 $W_1$；初始水深为 $h/3$（从下方顶点起算）时需克服重力做功 $W_2$。求\n$$\n\\frac{W_1}{W_2}.\n$$",
+    "answer": "$9$",
+    "explanation": "以圆锥顶点 $O$ 为原点，竖直向上取高度坐标 $z$。容器口的高度为 $h$，设初始水深为 $H$。\n\n在高度 $z$ 处取厚度为 $\\mathrm{d}z$ 的薄水层。由相似三角形，其半径为\n$$\nr_z=\\frac rhz.\n$$\n设水的密度为 $\\rho$，重力加速度为 $g$，则薄水层的重量为\n$$\n\\rho g\\pi r_z^2\\,\\mathrm{d}z\n=\\frac{\\rho g\\pi r^2}{h^2}z^2\\,\\mathrm{d}z.\n$$\n这层水须提升至容器口，提升距离为 $h-z$。因此\n$$\n\\mathrm{d}W\n=\\frac{\\rho g\\pi r^2}{h^2}z^2(h-z)\\,\\mathrm{d}z.\n$$\n从 $z=0$ 积分至 $z=H$，得\n$$\n\\begin{aligned}\nW(H)\n&=\\frac{\\rho g\\pi r^2}{h^2}\n\\int_0^H z^2(h-z)\\,\\mathrm{d}z\\\\\n&=\\frac{\\rho g\\pi r^2}{h^2}\n\\left(\\frac{hH^3}{3}-\\frac{H^4}{4}\\right).\n\\end{aligned}\n$$\n满水时 $H=h$，故\n$$\nW_1=\\frac{\\rho g\\pi r^2h^2}{12}.\n$$\n水深为 $h/3$ 时，\n$$\n\\begin{aligned}\nW_2\n&=\\frac{\\rho g\\pi r^2}{h^2}\n\\left(\\frac{h^4}{81}-\\frac{h^4}{324}\\right)\\\\\n&=\\frac{\\rho g\\pi r^2h^2}{108}.\n\\end{aligned}\n$$\n因此\n$$\n\\boxed{\\frac{W_1}{W_2}=9}.\n$$\n两种情形均抽至同一容器口，所以提升距离都应取 $h-z$。",
+    "figures": [
+      {
+        "src": "practice-figures/zy2026-set2-cone-partial.svg",
+        "alt": "倒圆锥容器，高 h，口半径 r，初始水深为 h/3。",
+        "caption": "补充示意图",
+        "width": 560,
+        "height": 320
+      }
+    ]
+  },
+  {
+    "id": "math2-zy2026-set2-q7-exercise1",
+    "year": 2026,
+    "paperId": "zy2026-set2",
+    "paperTitle": "2026 张宇四套卷 · 第二套",
+    "number": "7-1",
+    "examNumber": "7",
+    "exerciseIndex": 1,
+    "kind": "exercise",
+    "source": "2016年 · 数一 · 第1题",
+    "sourceCategory": "book",
+    "sourceUrl": "https://cxyonly.fans/math/questions/1245",
+    "topic": "高等数学 / 一元积分 / 反常积分",
+    "type": "choice",
+    "options": [
+      {
+        "key": "A",
+        "text": "$a<1$ 且 $b>1$"
+      },
+      {
+        "key": "B",
+        "text": "$a>1$ 且 $b>1$"
+      },
+      {
+        "key": "C",
+        "text": "$a<1$ 且 $a+b>1$"
+      },
+      {
+        "key": "D",
+        "text": "$a>1$ 且 $a+b>1$"
+      }
+    ],
+    "correctOption": "C",
+    "stem": "若反常积分  $ \\int_{0}^{+\\infty}\\frac{1}{x^{a}(1+x)^{b}}dx $ 收敛，则",
+    "answer": "**C**。",
+    "explanation": "将积分拆为 $\\int_0^1$ 与 $\\int_1^{+\\infty}$。在 $x\\to0^+$ 时，被积函数与 $x^{-a}$ 等价，收敛要求 $a<1$；在 $x\\to+\\infty$ 时，被积函数与 $x^{-a-b}$ 等价，收敛要求 $a+b>1$。两者同时满足，故选 C。"
+  },
+  {
+    "id": "math2-zy2026-set2-q7-exercise2",
+    "year": 2026,
+    "paperId": "zy2026-set2",
+    "paperTitle": "2026 张宇四套卷 · 第二套",
+    "number": "7-2",
+    "examNumber": "7",
+    "exerciseIndex": 2,
+    "kind": "exercise",
+    "source": "880题 · 第三章 · 综合 · 选择第16题",
+    "sourceCategory": "book",
+    "sourceUrl": "https://cxyonly.fans/math/questions/2157",
+    "topic": "高等数学 / 一元积分 / 反常积分",
+    "type": "choice",
+    "options": [
+      {
+        "key": "A",
+        "text": "$0\\lt p\\lt2$"
+      },
+      {
+        "key": "B",
+        "text": "$1\\lt p\\lt2$"
+      },
+      {
+        "key": "C",
+        "text": "$0\\lt p\\leqslant1$"
+      },
+      {
+        "key": "D",
+        "text": "$p\\gt1$"
+      }
+    ],
+    "correctOption": "B",
+    "stem": "设反常积分 $\\int_{0}^{+\\infty}\\frac{\\ln(1+x)}{x^{p}}dx$ 收敛，则（）.",
+    "answer": "**B**。",
+    "explanation": "将积分拆为 $\\int_0^1$ 与 $\\int_1^{+\\infty}$。当 $x\\to0^+$ 时，$\\ln(1+x)\\sim x$，故被积函数与 $x^{1-p}$ 同敛散，需 $1-p\\gt-1$，即 $p\\lt2$。当 $x\\to+\\infty$ 时，若 $p\\leqslant1$，则 $\\int_1^{+\\infty}\\frac{\\ln(1+x)}{x^p}\\,\\mathrm{d}x$ 发散；若 $p\\gt1$，由 $\\ln(1+x)=o(x^\\delta)$（取 $0\\lt\\delta\\lt p-1$）可知该部分收敛。综上，原积分收敛当且仅当 $1\\lt p\\lt2$，故选 B。"
+  },
+  {
+    "id": "math2-zy2026-set2-q7-exercise3",
+    "year": 2026,
+    "paperId": "zy2026-set2",
+    "paperTitle": "2026 张宇四套卷 · 第二套",
+    "number": "7-3",
+    "examNumber": "7",
+    "exerciseIndex": 3,
+    "kind": "exercise",
+    "source": "900题 · 第三章 · 数二 · A类 · 第25题",
+    "sourceCategory": "book",
+    "sourceUrl": "https://cxyonly.fans/math/questions/2152",
+    "topic": "高等数学 / 一元积分 / 反常积分",
+    "type": "choice",
+    "options": [
+      {
+        "key": "A",
+        "text": "$-2\\lt\\alpha\\lt0$"
+      },
+      {
+        "key": "B",
+        "text": "$-2\\lt\\alpha\\lt2$"
+      },
+      {
+        "key": "C",
+        "text": "$0\\lt\\alpha\\lt2$"
+      },
+      {
+        "key": "D",
+        "text": "$-2\\lt\\alpha\\lt0$ 或 $0\\lt\\alpha\\lt2$"
+      }
+    ],
+    "correctOption": "B",
+    "stem": "设函数 \n$$\nf(x)=\\begin{cases}\\dfrac{\\ln^{\\alpha+1}(1+x)}{1+x}, & 0\\lt x\\lt\\dfrac{1}{2},\\\\ \\dfrac{x}{(1-x^{2})^{\\alpha/2}}, & \\dfrac{1}{2}\\leq x\\lt1.\\end{cases}\n$$\n 若积分 $\\int_{0}^{1}f(x)\\,\\mathrm{d}x$ 收敛，则（）",
+    "answer": "**B**。",
+    "explanation": "将积分按分段点拆开。在 $x\\to0^+$ 时，第一段被积函数与 $x^{\\alpha+1}$ 等价，所以收敛要求 $\\alpha+1>-1$，即 $\\alpha>-2$。\n\n在 $x\\to1^-$ 时，第二段被积函数与 $2^{-\\alpha/2}(1-x)^{-\\alpha/2}$ 等价，所以收敛要求 $\\frac\\alpha2<1$，即 $\\alpha<2$。综合得 $-2<\\alpha<2$；两个端点取等号时均出现对数发散。"
+  },
+  {
+    "id": "math2-zy2026-set2-q7-exercise4",
+    "year": 2026,
+    "paperId": "zy2026-set2",
+    "paperTitle": "2026 张宇四套卷 · 第二套",
+    "number": "7-4",
+    "examNumber": "7",
+    "exerciseIndex": 4,
+    "kind": "exercise",
+    "source": "880题 · 第三章 · 综合 · 选择第18题",
+    "sourceCategory": "book",
+    "sourceUrl": "https://cxyonly.fans/math/questions/2168",
+    "topic": "高等数学 / 一元积分 / 反常积分",
+    "type": "choice",
+    "options": [
+      {
+        "key": "A",
+        "text": "$1\\lt p\\lt3$"
+      },
+      {
+        "key": "B",
+        "text": "$2\\lt p\\lt3$"
+      },
+      {
+        "key": "C",
+        "text": "$1\\leqslant p\\lt2$"
+      },
+      {
+        "key": "D",
+        "text": "$0\\lt p\\lt3$"
+      }
+    ],
+    "correctOption": "A",
+    "stem": "设积分 $\\int_{0}^{+\\infty}\\frac{x^{1-p}\\arctan x}{2+x^{p}}\\,\\mathrm{d}x$（$p\\gt0$）收敛，则 $p$ 的取值范围为（）",
+    "answer": "**A**。",
+    "explanation": "将积分拆为 $\\int_0^1$ 与 $\\int_1^{+\\infty}$。当 $x\\to0^+$ 时，$\\arctan x\\sim x$，且 $2+x^p\\to2$，故被积函数与 $\\frac{1}{2}x^{2-p}$ 同敛散，需 $2-p\\gt-1$，即 $p\\lt3$。当 $x\\to+\\infty$ 时，$\\arctan x\\to\\frac{\\pi}{2}$，且 $2+x^p\\sim x^p$，故被积函数与 $\\frac{\\pi}{2}x^{1-2p}$ 同敛散，需 $1-2p\\lt-1$，即 $p\\gt1$。综上，收敛条件为 $1\\lt p\\lt3$，故选 A。"
+  },
+  {
+    "id": "math2-zy2026-set2-q8-exercise1",
+    "year": 2026,
+    "paperId": "zy2026-set2",
+    "paperTitle": "2026 张宇四套卷 · 第二套",
+    "number": "8-1",
+    "examNumber": "8",
+    "exerciseIndex": 1,
+    "kind": "exercise",
+    "source": "姜晓千真题同源150",
+    "sourceCategory": "book",
+    "sourceUrl": "https://cxyonly.fans/math/questions/867",
+    "topic": "线性代数 / 二次型 / 正定性",
+    "type": "solution",
+    "stem": "设二次型\n$$\nf(x_1,x_2,x_3)=\\boldsymbol{x}^{\\mathrm T}A\\boldsymbol{x}=x_1^2+2x_2^2+6x_3^2-2x_1x_2+2x_1x_3-6x_2x_3.\n$$\n（I）求可逆线性变换 $\\boldsymbol{x}=C\\boldsymbol{y}$，将二次型化为规范形，并判定 $A$ 是否正定；（II）求可逆矩阵 $D$，使得 $A=D^{\\mathrm T}D$。",
+    "answer": "$A$ 正定，规范形为 $y_1^2+y_2^2+y_3^2$。可取\n$$\nD=\\begin{pmatrix}1&-1&1\\\\0&1&-2\\\\0&0&1\\end{pmatrix},\\ C=D^{-1}=\\begin{pmatrix}1&1&1\\\\0&1&2\\\\0&0&1\\end{pmatrix}.\n$$",
+    "explanation": "第一步，配方：\n$$\nf=(x_1-x_2+x_3)^2+(x_2-2x_3)^2+x_3^2.\n$$\n三个括号同时为零时，先由 $x_3=0$ 得 $x_2=0$，再得 $x_1=0$，所以对任何非零向量都有 $f>0$，故正定。\n\n第二步，令 $y_1=x_1-x_2+x_3$、$y_2=x_2-2x_3$、$y_3=x_3$，逐个回代得到\n$$\nx_3=y_3,\\quad x_2=y_2+2y_3,\\quad x_1=y_1+y_2+y_3.\n$$\n因此\n$$\nC=\\begin{pmatrix}1&1&1\\\\0&1&2\\\\0&0&1\\end{pmatrix},\\qquad D=C^{-1}=\\begin{pmatrix}1&-1&1\\\\0&1&-2\\\\0&0&1\\end{pmatrix}.\n$$\n由 $f=(Dx)^{\\mathrm T}(Dx)$ 得 $A=D^{\\mathrm T}D$。"
+  },
+  {
+    "id": "math2-zy2026-set2-q8-exercise2",
+    "year": 2026,
+    "paperId": "zy2026-set2",
+    "paperTitle": "2026 张宇四套卷 · 第二套",
+    "number": "8-2",
+    "examNumber": "8",
+    "exerciseIndex": 2,
+    "kind": "exercise",
+    "source": "2000年 · 数三；880题 · 25版 · 二次型 · 综合 · 选择第3题",
+    "sourceCategory": "book",
+    "sourceUrl": "https://cxyonly.fans/math/questions/917",
+    "topic": "线性代数 / 二次型 / 正定性",
+    "type": "solution",
+    "stem": "设有 $n$ 元实二次型 $f(x_1, x_2, \\dots, x_n) = (x_1 + a_1 x_2)^2 + (x_2 + a_2 x_3)^2 + \\dots + (x_{n-1} + a_{n-1} x_n)^2 + (x_n + a_n x_1)^2$，其中 $a_i(i=1,2,\\dots, n)$ 为实数。试问：当 $a_1, a_2, \\dots, a_n$ 满足何种条件时，二次型 $f(x_1, x_2, \\dots, x_n)$ 为正定二次型。",
+    "answer": "当且仅当\n$$\na_1a_2\\cdots a_n\\ne(-1)^n\n$$\n时，$f$ 为正定二次型。",
+    "explanation": "该二次型是若干平方和，故必为半正定。它正定当且仅当方程组\n$$\nx_1+a_1x_2=0,\\ x_2+a_2x_3=0,\\ \\ldots,\\ x_n+a_nx_1=0\n$$\n只有零解。由这些方程递推得\n$$\nx_1=(-1)^n(a_1a_2\\cdots a_n)x_1.\n$$\n若 $a_1a_2\\cdots a_n=(-1)^n$，则存在非零解，二次型不正定；反之只能有零解，故二次型正定。"
+  },
+  {
+    "id": "math2-zy2026-set2-q8-exercise3",
+    "year": 2026,
+    "paperId": "zy2026-set2",
+    "paperTitle": "2026 张宇四套卷 · 第二套",
+    "number": "8-3",
+    "examNumber": "8",
+    "exerciseIndex": 3,
+    "kind": "exercise",
+    "source": "1999年 · 数一",
+    "sourceCategory": "book",
+    "sourceUrl": "https://cxyonly.fans/math/questions/915",
+    "topic": "线性代数 / 二次型 / 正定性",
+    "type": "solution",
+    "stem": "设  $ \\mathbf{A} $  为  $ m $  阶实对称矩阵且正定， $ \\mathbf{B} $  为  $ m \\times n $  实矩阵， $ \\mathbf{B}^T $  为  $ \\mathbf{B} $  的转置矩阵，试证： $ \\mathbf{B}^T \\mathbf{A} \\mathbf{B} $  为正定矩阵的充分必要条件是  $ \\mathbf{B} $  的秩  $ r(\\mathbf{B}) = n $ 。",
+    "answer": "$B^TAB$ 正定的充分必要条件是 $r(B)=n$。",
+    "explanation": "对任意 $x\\ne0$，有\n$$\nx^TB^TABx=(Bx)^TA(Bx).\n$$\n若 $r(B)=n$，则 $Bx\\ne0$，又 $A$ 正定，所以 $(Bx)^TA(Bx)\\gt0$，故 $B^TAB$ 正定。反之，若 $r(B)\\lt n$，则存在 $x\\ne0$ 使 $Bx=0$，于是 $x^TB^TABx=0$，与正定矛盾。因此充要条件为 $r(B)=n$。"
+  },
+  {
+    "id": "math2-zy2026-set2-q10-exercise2",
+    "year": 2026,
+    "paperId": "zy2026-set2",
+    "paperTitle": "2026 张宇四套卷 · 第二套",
+    "number": "10-2",
+    "examNumber": "10",
+    "exerciseIndex": 2,
+    "kind": "exercise",
+    "source": "880题 · 25版 · 相似 · 综合 · 填空第1题",
+    "sourceCategory": "book",
+    "sourceUrl": "https://cxyonly.fans/math/questions/5620",
+    "topic": "线性代数 / 特征值 / 矩阵按列展开",
+    "type": "solution",
+    "stem": "设 $A$ 是 $3$ 阶方阵，$\\alpha$ 为 $3$ 维列向量，\n$$\nP=(\\alpha,A\\alpha,A^2\\alpha)\n$$\n可逆，$B=P^{-1}AP$，且\n$$\nA^3\\alpha+2A^2\\alpha=3A\\alpha,\n$$\n求 $|A+E|$。",
+    "answer": "$-4$",
+    "explanation": "在基 $(\\alpha,A\\alpha,A^2\\alpha)$ 下，\n$$\nB=\\begin{pmatrix}0&0&0\\\\1&0&3\\\\0&1&-2\\end{pmatrix}.\n$$\n故\n$$\n|A+E|=|B+E|=-4.\n$$"
+  },
+  {
+    "id": "math2-zy2026-set2-q11-exercise2",
+    "year": 2026,
+    "paperId": "zy2026-set2",
+    "paperTitle": "2026 张宇四套卷 · 第二套",
+    "number": "11-2",
+    "examNumber": "11",
+    "exerciseIndex": 2,
+    "kind": "exercise",
+    "source": "2001年 · 数三 · 第12题；880题 · 第二章 · 综合 · 填空第5题",
+    "sourceCategory": "book",
+    "sourceUrl": "https://cxyonly.fans/math/questions/3998",
+    "topic": "高等数学 / 一元微分 / 中值定理与对数求导",
+    "type": "solution",
+    "stem": "已知 $f(x)$ 在 $(-\\infty,+\\infty)$ 内可导，且\n$$\n\\lim_{x\\to\\infty}f'(x)=\\mathrm{e},\n$$\n$$\n\\lim_{x\\to\\infty}\\left(\\frac{x+c}{x-c}\\right)^x\n=\n\\lim_{x\\to\\infty}\\left[f(x)-f(x-1)\\right].\n$$\n求 $c$ 的值。",
+    "answer": "$c=\\dfrac12$。",
+    "explanation": "先计算左端极限：\n$$\n\\begin{aligned}\n\\lim_{x\\to\\infty}\\left(\\frac{x+c}{x-c}\\right)^x\n&=\\exp\\left\\{\\lim_{x\\to\\infty}x\\ln\\left(1+\\frac{2c}{x-c}\\right)\\right\\}\\\\\n&=\\mathrm{e}^{2c}.\n\\end{aligned}\n$$\n由拉格朗日中值定理，存在 $\\xi_x\\in(x-1,x)$，使\n$$\nf(x)-f(x-1)=f'(\\xi_x).\n$$\n当 $x\\to\\infty$ 时，$\\xi_x\\to\\infty$，故\n$$\n\\lim_{x\\to\\infty}[f(x)-f(x-1)]\n=\\lim_{x\\to\\infty}f'(\\xi_x)\n=\\mathrm{e}.\n$$\n因此 $\\mathrm{e}^{2c}=\\mathrm{e}$，从而\n$$\nc=\\frac12.\n$$"
+  },
+  {
+    "id": "math2-zy2026-set2-q11-exercise3",
+    "year": 2026,
+    "paperId": "zy2026-set2",
+    "paperTitle": "2026 张宇四套卷 · 第二套",
+    "number": "11-3",
+    "examNumber": "11",
+    "exerciseIndex": 3,
+    "kind": "exercise",
+    "source": "660题 · 26版 · 数二 · 第587题",
+    "sourceCategory": "book",
+    "sourceUrl": "https://cxyonly.fans/math/questions/3514",
+    "topic": "高等数学 / 一元微分 / 中值定理与对数求导",
+    "type": "solution",
+    "stem": "$$\n\\displaystyle\\lim_{x\\to1}\\frac{x^{x+1}(\\ln x+1)-x}{1-x}\n$$",
+    "answer": "$-2$",
+    "explanation": "设 \n$$\ng(x)=x^{x+1}(\\ln x+1)-x,\n$$\n 则 $g(1)=0$，原式为 \n$$\n\\lim_{x\\to1}\\frac{g(x)-g(1)}{1-x}=-g'(1).\n$$\n 因为 \n$$\n\\frac{d}{dx}x^{x+1}=x^{x+1}\\left(\\ln x+1+\\frac1x\\right),\n$$\n 所以 \n$$\n\\begin{aligned}g'(x)&=x^{x+1}\\left(\\ln x+1+\\frac1x\\right)(\\ln x+1)+x^{x+1}\\cdot\\frac1x-1\\\\&=x^{x+1}(\\ln x+1)^2+x^x(\\ln x+2)-1.\n\\end{aligned}\n$$\n 因而 $g'(1)=2$，故原极限为 $-2$。"
+  },
+  {
+    "id": "math2-zy2026-set2-q12-exercise2",
+    "year": 2026,
+    "paperId": "zy2026-set2",
+    "paperTitle": "2026 张宇四套卷 · 第二套",
+    "number": "12-2",
+    "examNumber": "12",
+    "exerciseIndex": 2,
+    "kind": "exercise",
+    "source": "姜晓千真题同源150",
+    "sourceCategory": "book",
+    "sourceUrl": "https://cxyonly.fans/math/questions/4447",
+    "topic": "高等数学 / 微分方程 / 整体换元",
+    "type": "solution",
+    "stem": "求微分方程 $y' = (2x + y - 1)^2$ 的通解。",
+    "answer": "$y=\\sqrt2\\tan(\\sqrt2x+C)-2x+1$",
+    "explanation": "令 $2x + y - 1 = u$，则 $\\frac{du}{dx} = 2 + \\frac{dy}{dx} = 2 + u^2$。分离变量得 $\\int \\frac{du}{2 + u^2} = \\int dx$，即 $\\frac{1}{\\sqrt{2}} \\arctan \\frac{u}{\\sqrt{2}} = x + C$。代入 $u = 2x + y - 1$，得 $\\frac{1}{\\sqrt{2}} \\arctan \\frac{2x + y - 1}{\\sqrt{2}} = x + C$，故方程的通解为 $y = \\sqrt{2} \\tan \\sqrt{2}(x + C) - 2x + 1$，其中 $C$ 为任意常数。"
+  },
+  {
+    "id": "math2-zy2026-set2-q13-exercise1",
+    "year": 2026,
+    "paperId": "zy2026-set2",
+    "paperTitle": "2026 张宇四套卷 · 第二套",
+    "number": "13-1",
+    "examNumber": "13",
+    "exerciseIndex": 1,
+    "kind": "exercise",
+    "source": "张宇1000题 · 第九章 · 基础 · 第32题",
+    "sourceCategory": "book",
+    "sourceUrl": "https://cxyonly.fans/math/questions/7088",
+    "topic": "高等数学 / 一元积分 / 换元与分部积分",
+    "type": "fill",
+    "stem": "计算积分：\n$$\n\\int_0^{1/2}\\frac{x\\arcsin x}{\\sqrt{1-x^2}}\\,\\mathrm{d}x=\\underline{\\qquad}.\n$$",
+    "answer": "$\\frac12-\\frac{\\sqrt3\\pi}{12}$",
+    "explanation": "取 $u=\\arcsin x$，$dv=\\frac{x}{\\sqrt{1-x^2}}dx$，则 $du=\\frac{dx}{\\sqrt{1-x^2}}$，$v=-\\sqrt{1-x^2}$。分部积分得\n$$\nI=\\left[-\\sqrt{1-x^2}\\arcsin x\\right]_0^{1/2}+\\int_0^{1/2}1\\,dx\n=-\\frac{\\sqrt3\\pi}{12}+\\frac12.\n$$"
+  },
+  {
+    "id": "math2-zy2026-set2-q13-exercise4",
+    "year": 2026,
+    "paperId": "zy2026-set2",
+    "paperTitle": "2026 张宇四套卷 · 第二套",
+    "number": "13-4",
+    "examNumber": "13",
+    "exerciseIndex": 4,
+    "kind": "exercise",
+    "source": "900题 · 第三章 · 数二 · A类 · 第28题",
+    "sourceCategory": "book",
+    "sourceUrl": "https://cxyonly.fans/math/questions/997",
+    "topic": "高等数学 / 一元积分 / 换元与分部积分",
+    "type": "solution",
+    "stem": "求 $\\int\\sqrt{\\frac{1+x}{1-x}}\\arcsin x~dx$",
+    "answer": "$$\n \\frac{1}{2}(\\arcsin x)^2 - \\sqrt{1-x^2}\\arcsin x + x + C \n$$",
+    "explanation": "第一步，令 $x=\\sin t$，其中 $-\\pi/2<t<\\pi/2$，则 $dx=\\cos t\\,dt$，且\n$$\n\\sqrt{\\frac{1+x}{1-x}}=\\frac{1+\\sin t}{\\cos t}.\n$$\n所以原积分为 $\\int t(1+\\sin t)dt$。\n\n第二步，取 $u=t$、$dv=\\sin t\\,dt$，则 $du=dt$、$v=-\\cos t$，因此\n$$\n\\int t\\sin t\\,dt=-t\\cos t+\\sin t.\n$$\n两部分相加再代回，得\n$$\nI=\\frac12(\\arcsin x)^2-\\sqrt{1-x^2}\\arcsin x+x+C.\n$$"
+  },
+  {
+    "id": "math2-zy2026-set2-q15-exercise1",
+    "year": 2026,
+    "paperId": "zy2026-set2",
+    "paperTitle": "2026 张宇四套卷 · 第二套",
+    "number": "15-1",
+    "examNumber": "15",
+    "exerciseIndex": 1,
+    "kind": "exercise",
+    "source": "880题 · 综合 · 解答第11题",
+    "sourceCategory": "book",
+    "sourceUrl": "https://cxyonly.fans/math/questions/3001",
+    "topic": "高等数学 / 积分应用 / 形心与参数积分",
+    "type": "solution",
+    "stem": "设 D 为由摆线 $ \\left\\{\\begin{aligned} x &= t - \\sin t, \\\\ y &= 1 - \\cos t \\end{aligned}\\right. $ $ (0 \\leqslant t \\leqslant 2\\pi) $ 及 x 轴所围的平面区域, 求 D 的质心坐标.",
+    "answer": "$\\left(\\pi,\\frac56\\right)$。",
+    "explanation": "区域关于 $x=\\pi$ 对称，故 $\\bar x=\\pi$。参数微分为 $dx=(1-\\cos t)\\,dt$，面积为\n$$S=\\int_0^{2\\pi}(1-\\cos t)^2\\,dt=3\\pi.$$\n由参数方程的形心公式，\n$$\\bar y=\\frac{\\int_0^{2\\pi}(1-\\cos t)^3\\,dt}{2S}=\\frac{5\\pi}{6\\pi}=\\frac56.$$\n这里 $dx$ 中还含一个 $1-\\cos t$，不能把分子误写成二次方。",
+    "figures": [
+      {
+        "src": "practice-figures/zy2026-set2-cycloid-centroid.svg",
+        "alt": "一拱摆线及其下方区域，关于 x=π 对称，G 表示形心。",
+        "caption": "补充示意图",
+        "width": 560,
+        "height": 320
+      }
+    ]
+  },
+  {
+    "id": "math2-zy2026-set2-q15-exercise2",
+    "year": 2026,
+    "paperId": "zy2026-set2",
+    "paperTitle": "2026 张宇四套卷 · 第二套",
+    "number": "15-2",
+    "examNumber": "15",
+    "exerciseIndex": 2,
+    "kind": "exercise",
+    "source": "1000题 · 第十二章 · 强化 · 第5题",
+    "sourceCategory": "book",
+    "sourceUrl": "https://cxyonly.fans/math/questions/7773",
+    "topic": "高等数学 / 积分应用 / 形心与参数积分",
+    "type": "fill",
+    "stem": "曲线 $y=e^x$ 与直线 $x=1,x=-1$ 及 $x$ 轴所围平面有界区域 $D$ 的形心为 $\\underline{\\qquad}$。",
+    "answer": "$\\left(\\frac{2}{e^2-1},\\frac{e+e^{-1}}{4}\\right)$",
+    "explanation": "面积 $A=\\int_{-1}^1e^x\\,\\mathrm{d}x=e-e^{-1}$。于是\n$$\n\\bar{x}=\\frac{\\int_{-1}^1xe^x\\,\\mathrm{d}x}{A}=\\frac{2}{e^2-1},\\quad \\bar{y}=\\frac{\\frac12\\int_{-1}^1e^{2x}\\,\\mathrm{d}x}{A}=\\frac{e+e^{-1}}{4}.\n$$"
+  },
+  {
+    "id": "math2-zy2026-set2-q15-exercise3",
+    "year": 2026,
+    "paperId": "zy2026-set2",
+    "paperTitle": "2026 张宇四套卷 · 第二套",
+    "number": "15-3",
+    "examNumber": "15",
+    "exerciseIndex": 3,
+    "kind": "exercise",
+    "source": "660题 · 数二 · 第375题",
+    "sourceCategory": "book",
+    "sourceUrl": "https://cxyonly.fans/math/questions/7774",
+    "topic": "高等数学 / 积分应用 / 形心与参数积分",
+    "type": "choice",
+    "options": [
+      {
+        "key": "A",
+        "text": "$\\left(\\frac{3a}{2\\pi},\\frac{4b}{3\\pi}\\right)$"
+      },
+      {
+        "key": "B",
+        "text": "$\\left(\\frac{4a}{3\\pi},\\frac{4b}{3\\pi}\\right)$"
+      },
+      {
+        "key": "C",
+        "text": "$\\left(\\frac{4a}{3\\pi},\\frac{3b}{2\\pi}\\right)$"
+      },
+      {
+        "key": "D",
+        "text": "$\\left(\\frac{3a}{2\\pi},\\frac{3b}{2\\pi}\\right)$"
+      }
+    ],
+    "correctOption": "B",
+    "stem": "设 $a,b>0$，椭圆 $\\frac{x^2}{a^2}+\\frac{y^2}{b^2}=1$ 所围位于第一象限部分的平面图形的形心是（ ）。",
+    "answer": "**B**。",
+    "explanation": "设 $a,b>0$，区域面积为 $S=\\frac{\\pi ab}{4}$。采用直角坐标积分，有\n$$\\iint_D x\\,dx\\,dy=b\\int_0^a x\\sqrt{1-\\frac{x^2}{a^2}}\\,dx=\\frac{a^2b}{3}.$$\n同理 $\\iint_D y\\,dx\\,dy=\\frac{ab^2}{3}$。分别除以面积，得\n$$\\bar x=\\frac{4a}{3\\pi},\\qquad\\bar y=\\frac{4b}{3\\pi}.$$"
+  },
+  {
+    "id": "math2-zy2026-set2-q16-exercise1",
+    "year": 2026,
+    "paperId": "zy2026-set2",
+    "paperTitle": "2026 张宇四套卷 · 第二套",
+    "number": "16-1",
+    "examNumber": "16",
+    "exerciseIndex": 1,
+    "kind": "exercise",
+    "source": "1989年 · 数一",
+    "sourceCategory": "book",
+    "sourceUrl": "https://cxyonly.fans/math/questions/494",
+    "topic": "线性代数 / 线性方程组 / 非齐次通解",
+    "type": "solution",
+    "stem": "问 $\\lambda$ 为何值时，线性方程组\n$$\n\\begin{cases}\nx_1+x_3=\\lambda,\\\\\n4x_1+x_2+2x_3=\\lambda+2,\\\\\n6x_1+x_2+4x_3=2\\lambda+3\n\\end{cases}\n$$\n有解，并求解的一般形式。",
+    "answer": "当且仅当 $\\lambda=1$ 时有解。通解为\n$$\n\\begin{pmatrix}x_1\\\\x_2\\\\x_3\\end{pmatrix}\n=\n\\begin{pmatrix}1\\\\-1\\\\0\\end{pmatrix}\n+k\\begin{pmatrix}-1\\\\2\\\\1\\end{pmatrix}.\n$$\n其中 $k\\in\\mathbb R$。\n等价地，可写为\n$$\n(x_1,x_2,x_3)^{\\mathrm T}\n=(t,1-2t,1-t)^{\\mathrm T},\n$$\n其中 $t\\in\\mathbb R$。",
+    "explanation": "1. 求方程组有解的条件\n\n第三个方程减去第二个方程，得\n$$\n2x_1+2x_3=\\lambda+1.\n$$\n而第一个方程的两倍为\n$$\n2x_1+2x_3=2\\lambda.\n$$\n两式相容必须满足\n$$\n2\\lambda=\\lambda+1,\n$$\n故 $\\lambda=1$。\n\n2. 求通解\n\n当 $\\lambda=1$ 时，第一、二个方程化为\n$$\nx_1+x_3=1,\n$$\n$$\n4x_1+x_2+2x_3=3.\n$$\n令自由变量 $x_3=k$，则\n$$\nx_1=1-k,\n$$\n$$\nx_2=3-4(1-k)-2k=-1+2k.\n$$\n故\n$$\n\\begin{pmatrix}x_1\\\\x_2\\\\x_3\\end{pmatrix}\n=\n\\begin{pmatrix}1\\\\-1\\\\0\\end{pmatrix}\n+k\\begin{pmatrix}-1\\\\2\\\\1\\end{pmatrix}.\n$$\n代入第三个方程，左端为\n$$\n6(1-k)+(-1+2k)+4k=5,\n$$\n等于右端 $2\\lambda+3=5$。因此 $\\lambda=1$ 也充分。\n\n3. 说明参数写法的等价性\n\n若改令 $x_1=t$，则 $k=1-t$，同一通解可写为\n$$\n(x_1,x_2,x_3)^{\\mathrm T}\n=(t,1-2t,1-t)^{\\mathrm T}.\n$$\n两种写法只使用了不同的自由参数，表示完全相同的解集。"
+  },
+  {
+    "id": "math2-zy2026-set2-q16-exercise2",
+    "year": 2026,
+    "paperId": "zy2026-set2",
+    "paperTitle": "2026 张宇四套卷 · 第二套",
+    "number": "16-2",
+    "examNumber": "16",
+    "exerciseIndex": 2,
+    "kind": "exercise",
+    "source": "900题 · 数二 · 第四章 · A类 · 第15题",
+    "sourceCategory": "book",
+    "sourceUrl": "https://cxyonly.fans/math/questions/503",
+    "topic": "线性代数 / 线性方程组 / 非齐次通解",
+    "type": "solution",
+    "stem": "设矩阵 $A = \\begin{pmatrix}2&-1&1\\\\1&a&1\\\\0&a+2&a\\end{pmatrix}$，$\\mathbf b=\\begin{pmatrix}1\\\\1\\\\1\\end{pmatrix}$。\n\n（I）当 $a$ 为何值时，方程组 $A\\mathbf x=\\mathbf b$ 无解、有唯一解、有无穷多解？\n\n（II）当方程组有无穷多解时，求其通解。",
+    "answer": "无解：$a=-1$；唯一解：$a\\ne\\pm1$；无穷多解：$a=1$，此时通解为 $\\mathbf x=(2t,t,1-3t)^T$（$t\\in\\mathbb R$）。",
+    "explanation": "系数行列式为\n$$\n|A|=2(a^2-1).\n$$\n故当 $a\\ne\\pm1$ 时有唯一解。\n\n当 $a=1$ 时，方程组化为 $x_1=2x_2$、$x_3=1-3x_2$，故有无穷多解，令 $x_2=t$ 得 $\\mathbf x=(2t,t,1-3t)^T$。\n\n当 $a=-1$ 时，消元后出现矛盾式，故无解。"
+  },
+  {
+    "id": "math2-zy2026-set2-q18-exercise2",
+    "year": 2026,
+    "paperId": "zy2026-set2",
+    "paperTitle": "2026 张宇四套卷 · 第二套",
+    "number": "18-2",
+    "examNumber": "18",
+    "exerciseIndex": 2,
+    "kind": "exercise",
+    "source": "880题 · 第二章 · 基础 · 解答第13题",
+    "sourceCategory": "book",
+    "sourceUrl": "https://cxyonly.fans/math/questions/1324",
+    "topic": "高等数学 / 极限与导数 / 幂指式与导数定义",
+    "type": "solution",
+    "stem": "设函数 $f(x)$ 在 $x=0$ 处连续，且 $\\displaystyle \\lim_{x\\to0}\\frac{xf(x)-(1+x)^{2x}+1}{x^{2}}=1$。证明 $f(x)$ 在 $x=0$ 处可导，并求 $f'(0)$",
+    "answer": "$3$",
+    "explanation": "由 $(1+x)^{2x}=\\exp(2x\\ln(1+x))=1+2x^2+o(x^2)$。代入题设得 \n\n$$\n\\lim_{x\\to0}\\frac{xf(x)-2x^2+o(x^2)}{x^2}=1,\n$$\n\n 即 \n\n$$\n\\lim_{x\\to0}\\left(\\frac{f(x)}{x}-2+o(1)\\right)=1.\n$$\n\n 因此 $\\displaystyle \\lim_{x\\to0}\\frac{f(x)}{x}=3$。又 $f$ 在 $0$ 处连续，故 $f(0)=0$，于是 $f'(0)=3$。"
+  },
+  {
+    "id": "math2-zy2026-set2-q18-exercise3",
+    "year": 2026,
+    "paperId": "zy2026-set2",
+    "paperTitle": "2026 张宇四套卷 · 第二套",
+    "number": "18-3",
+    "examNumber": "18",
+    "exerciseIndex": 3,
+    "kind": "exercise",
+    "source": "660题 · 26版 · 数一二三 · 第153题",
+    "sourceCategory": "book",
+    "sourceUrl": "https://cxyonly.fans/math/questions/1329",
+    "topic": "高等数学 / 极限与导数 / 幂指式与导数定义",
+    "type": "choice",
+    "options": [
+      {
+        "key": "A",
+        "text": "$1$"
+      },
+      {
+        "key": "B",
+        "text": "$-1$"
+      },
+      {
+        "key": "C",
+        "text": "$0$"
+      },
+      {
+        "key": "D",
+        "text": "不存在"
+      }
+    ],
+    "correctOption": "B",
+    "stem": "设 $f(x)$ 在 $x = 0$ 处连续，且 $\\displaystyle \\lim_{x \\to 0} \\frac{e^{f(x)} - \\cos x + \\sin x}{x} = 0$，则 $f'(0)=$（　）。",
+    "answer": "**B**。",
+    "explanation": "由题设可知\n\n$$\n\\mathrm{e}^{f(x)}-\\cos x+\\sin x=x\\varepsilon(x),\\;\\varepsilon(x)\\to0.\n$$\n\n令 $x\\to0$，并利用 $f$ 在 $0$ 处连续，得\n\n$$\n\\mathrm{e}^{f(0)}-1=0,\n$$\n\n故 $f(0)=0$。于是\n\n$$\n\\begin{aligned}\n\\mathrm{e}^{f(x)}\n&=\\cos x-\\sin x+x\\varepsilon(x)\\\\\n&=1+\\left(\\cos x-1\\right)-\\sin x+x\\varepsilon(x).\n\\end{aligned}\n$$\n\n两边取对数，得\n\n$$\nf(x)=\\ln\\left[1+\\left(\\cos x-1\\right)-\\sin x+x\\varepsilon(x)\\right].\n$$\n\n因此\n\n$$\n\\begin{aligned}f'(0)&=\\lim_{x\\to0}\\frac{f(x)-f(0)}x\\\\&=\\lim_{x\\to0}\\frac{\\left(\\cos x-1\\right)-\\sin x+x\\varepsilon(x)}x\\\\&=0-1+0=-1.\\end{aligned}\n$$\n\n故选 B。"
+  },
+  {
+    "id": "math2-zy2026-set2-q19-exercise1",
+    "year": 2026,
+    "paperId": "zy2026-set2",
+    "paperTitle": "2026 张宇四套卷 · 第二套",
+    "number": "19-1",
+    "examNumber": "19",
+    "exerciseIndex": 1,
+    "kind": "exercise",
+    "source": "1000题 · 26版 · 第二章 · 基础 · 第4题",
+    "sourceCategory": "book",
+    "sourceUrl": "https://cxyonly.fans/math/questions/3930",
+    "topic": "高等数学 / 函数与数列 / 零点与单调有界",
+    "type": "solution",
+    "stem": "设 $ x_{0} > 0, x_{n+1} = \\frac{1}{2} \\left( x_{n} + \\frac{a}{x_{n}} \\right) (n = 0, 1, 2, \\cdots)  $，且 $a>0$，证明 $ \\displaystyle\\lim_{n \\to \\infty} x_{n} $ 存在，并求此极限.",
+    "answer": "$\\sqrt a$",
+    "explanation": "由 $x_0\\gt0$ 及算术-几何平均值不等式，有 $x_{n+1}=\\frac{1}{2}\\left(x_n+\\frac{a}{x_n}\\right)\\ge\\sqrt a$，故从 $n\\ge1$ 起数列有下界 $\\sqrt a$。又当 $n\\ge1$ 时，$x_n\\ge\\sqrt a$，于是 \n$$\n\\frac{x_{n+1}}{x_n}=\\frac{1}{2}\\left(1+\\frac{a}{x_n^2}\\right)\\le1,\n$$\n 故数列从 $n\\ge1$ 起单调不增。由单调有界准则知极限存在。记 $A=\\lim_{n\\to\\infty}x_n$，对递推式两边取极限得 $A=\\frac{1}{2}\\left(A+\\frac{a}{A}\\right)$，解得 $A=\\sqrt a$，即 $\\lim_{n\\to\\infty}x_n=\\sqrt a$。"
+  },
+  {
+    "id": "math2-zy2026-set2-q19-exercise3",
+    "year": 2026,
+    "paperId": "zy2026-set2",
+    "paperTitle": "2026 张宇四套卷 · 第二套",
+    "number": "19-3",
+    "examNumber": "19",
+    "exerciseIndex": 3,
+    "kind": "exercise",
+    "source": "880题 · 第一章 · 综合 · 解答第7题",
+    "sourceCategory": "book",
+    "sourceUrl": "https://cxyonly.fans/math/questions/3947",
+    "topic": "高等数学 / 函数与数列 / 零点与单调有界",
+    "type": "solution",
+    "stem": "(I) 证明：方程 $x = 1 + 2 \\ln x$ 在 $(\\mathrm{e}, +\\infty)$ 内有唯一实根 $\\xi$；\n(II) 取 $x_{0} \\in (\\mathrm{e}, \\xi)$，令 $x_{n} = 1 + 2 \\ln x_{n-1} (n = 1, 2, \\cdots)$，证明：$\\displaystyle\\lim_{n \\to \\infty} x_{n} = \\xi$。",
+    "answer": "（I）见解析；（II）$\\displaystyle\\lim_{n\\to\\infty}x_n=\\xi$",
+    "explanation": "(I) 令 $f(x) = x - 1 - 2\\ln x$，则 $f(e) = e - 3 < 0$，且 $\\lim_{x\\to+\\infty}f(x)=\\lim_{x\\to+\\infty}(x-1-2\\ln x)=\\lim_{x\\to+\\infty}x\\left(1-\\frac{1}{x}-\\frac{2\\ln x}{x}\\right)=+\\infty$。由零点定理，知 $f(x)=0$ 在 $(\\mathrm{e},+\\infty)$ 内至少有一个实根。又由于 $f'(x)=1-\\frac{2}{x}>0,\\;x\\in(e,+\\infty)$，故 $f(x)=0$ 在 $(\\mathrm{e},+\\infty)$ 内有唯一实根，记为 $\\xi$。\n(II) 由（Ⅰ）知，当 $x \\in (e, \\xi)$ 时，$f(x) < 0$，即 $1 + 2\\ln x > x$，故当 $e < x_{0} < \\xi$ 时，$x_{1}=1+2\\ln x_{0}>x_{0}$，$x_{1}=1+2\\ln x_{0}<1+2\\ln\\xi=\\xi$。假设 $x_{n}>x_{n-1}$，且 $x_{n}<\\xi$，则 $x_{n+1}=1+2\\ln x_{n}>x_{n}$，$x_{n+1}=1+2\\ln x_{n}<1+2\\ln\\xi=\\xi$。由数学归纳法，知 $\\{x_{n}\\}$单调增加有上界，故 $\\lim x_{n}$存在，记 $\\lim x_{n}=A$。对 $x_{n}=1+2\\ln x_{n-1}$ 左右两端同时取极限，有 $A=1+2\\ln A$，即 A 为方程 $x=1+2\\ln x$ 的实根。由（Ⅰ）知 $A=\\xi$。"
+  },
+  {
+    "id": "math2-zy2026-set2-q20-exercise1",
+    "year": 2026,
+    "paperId": "zy2026-set2",
+    "paperTitle": "2026 张宇四套卷 · 第二套",
+    "number": "20-1",
+    "examNumber": "20",
+    "exerciseIndex": 1,
+    "kind": "exercise",
+    "source": "1000题 · 25版 · 强化第16题",
+    "sourceCategory": "book",
+    "sourceUrl": "https://cxyonly.fans/math/questions/2916",
+    "topic": "高等数学 / 二重积分 / 对称性与绝对值",
+    "type": "solution",
+    "stem": "计算二重积分 $ \\iint_{D}|x-|y||d\\sigma $，其中 $ D=\\left\\{(x,y)|x^{2}+y^{2}\\leqslant2x,x\\leqslant1\\right\\} $。",
+    "answer": "$2-\\frac{\\pi}{2}$",
+    "explanation": "先用关于 $x$ 轴的对称性，注意被积函数是 $|x-|y||$：\n$$\nI=2\\int_0^1dx\\int_0^{\\sqrt{2x-x^2}}|x-y|dy.\n$$\n当 $0\\le x\\le1$ 时，$\\sqrt{2x-x^2}\\ge x$，故按 $y=x$ 分开。记 $h=\\sqrt{2x-x^2}$，内层积分为\n$$\n\\int_0^x(x-y)dy+\\int_x^h(y-x)dy\n=x^2+\\frac{h^2}{2}-xh.\n$$\n所以\n$$\nI=\\frac43-2\\int_0^1x\\sqrt{2x-x^2}\\,dx.\n$$\n最后一个积分令 $u=x-1$，则\n$$\n\\int_0^1x\\sqrt{2x-x^2}\\,dx\n=\\int_{-1}^0(u+1)\\sqrt{1-u^2}\\,du\n=-\\frac13+\\frac\\pi4.\n$$\n因此 $I=2-\\pi/2$。两部分去掉绝对值后的积分都为非负，应当相加。"
+  },
+  {
+    "id": "math2-zy2026-set2-q20-exercise2",
+    "year": 2026,
+    "paperId": "zy2026-set2",
+    "paperTitle": "2026 张宇四套卷 · 第二套",
+    "number": "20-2",
+    "examNumber": "20",
+    "exerciseIndex": 2,
+    "kind": "exercise",
+    "source": "2023年 · 数三 · 第19题",
+    "sourceCategory": "book",
+    "sourceUrl": "https://cxyonly.fans/math/questions/2907",
+    "topic": "高等数学 / 二重积分 / 对称性与绝对值",
+    "type": "solution",
+    "stem": "已知平面区域\n$$\nD=\\{(x,y):(x-1)^2+y^2\\le1\\}.\n$$\n计算下列含绝对值的二重积分：\n$$\nI=\\iint_D\\left|\\sqrt{x^2+y^2}-1\\right|\n\\,\\mathrm dx\\,\\mathrm dy.\n$$",
+    "answer": "$$\n3\\sqrt3-\\frac{\\pi+32}{9}.\n$$",
+    "explanation": "被积函数中的绝对值作用于整个差 $\\sqrt{x^2+y^2}-1$。转为极坐标后，应按 $|r-1|$ 分段计算。\n\n第一步：确定极坐标积分区域。\n\n令 $x=r\\cos\\theta$、$y=r\\sin\\theta$。由\n$$\n(x-1)^2+y^2\\le1\n$$\n得\n$$\nr^2\\le2r\\cos\\theta.\n$$\n所以区域可表示为\n$$\n-\\frac\\pi2\\le\\theta\\le\\frac\\pi2,\n\\qquad 0\\le r\\le2\\cos\\theta.\n$$\n\n利用关于 $x$ 轴的对称性，原积分为\n$$\nI=2\\int_0^{\\pi/2}\n\\left[\\int_0^{2\\cos\\theta}r|r-1|\\,\\mathrm dr\\right]\n\\mathrm d\\theta.\n$$\n其中因子 $r$ 来自极坐标面积元。\n\n第二步：在 $r=1$ 处去掉绝对值。\n\n记\n$$\nH(\\theta)=\\int_0^{2\\cos\\theta}r|r-1|\\,\\mathrm dr.\n$$\n\n当 $0\\le\\theta\\le\\pi/3$ 时，$2\\cos\\theta\\ge1$，故\n$$\n\\begin{aligned}\nH(\\theta)\n&=\\int_0^1r(1-r)\\,\\mathrm dr\\\\\n&\\quad+\\int_1^{2\\cos\\theta}r(r-1)\\,\\mathrm dr\\\\\n&=\\frac83\\cos^3\\theta-2\\cos^2\\theta+\\frac13.\n\\end{aligned}\n$$\n\n当 $\\pi/3\\le\\theta\\le\\pi/2$ 时，$2\\cos\\theta\\le1$，故\n$$\n\\begin{aligned}\nH(\\theta)\n&=\\int_0^{2\\cos\\theta}r(1-r)\\,\\mathrm dr\\\\\n&=2\\cos^2\\theta-\\frac83\\cos^3\\theta.\n\\end{aligned}\n$$\n\n第三步：计算角度积分。\n\n令\n$$\nB(\\theta)=\\frac83\\cos^3\\theta-2\\cos^2\\theta.\n$$\n它的一个原函数为\n$$\n\\begin{aligned}\nF(\\theta)\n&=\\frac83\\sin\\theta-\\frac89\\sin^3\\theta\\\\\n&\\quad-\\theta-\\frac12\\sin2\\theta.\n\\end{aligned}\n$$\n因此\n$$\n\\begin{aligned}\nI&=2\\int_0^{\\pi/3}\n\\left[B(\\theta)+\\frac13\\right]\\mathrm d\\theta\\\\\n&\\quad-2\\int_{\\pi/3}^{\\pi/2}B(\\theta)\\,\\mathrm d\\theta\\\\\n&=4F\\left(\\frac\\pi3\\right)\n-2F\\left(\\frac\\pi2\\right)+\\frac{2\\pi}{9}.\n\\end{aligned}\n$$\n\n由\n$$\nF(0)=0,\n$$\n$$\nF\\left(\\frac\\pi3\\right)=\\frac{3\\sqrt3}{4}-\\frac\\pi3,\n$$\n$$\nF\\left(\\frac\\pi2\\right)=\\frac{16}{9}-\\frac\\pi2,\n$$\n得到\n$$\n\\boxed{I=3\\sqrt3-\\frac{\\pi+32}{9}}.\n$$"
+  },
+  {
+    "id": "math2-zy2026-set2-q20-exercise3",
+    "year": 2026,
+    "paperId": "zy2026-set2",
+    "paperTitle": "2026 张宇四套卷 · 第二套",
+    "number": "20-3",
+    "examNumber": "20",
+    "exerciseIndex": 3,
+    "kind": "exercise",
+    "source": "1000题 · 25版 · 强化 · 第17题",
+    "sourceCategory": "book",
+    "sourceUrl": "https://cxyonly.fans/math/questions/2917",
+    "topic": "高等数学 / 二重积分 / 对称性与绝对值",
+    "type": "solution",
+    "stem": "计算二重积分 $ \\iint_{D}\\left|x^{2}+y^{2}-\\sqrt{2}(x+y)\\right|\\mathrm{d}x\\mathrm{d}y $，其中 $ D=\\left\\{(x,y)\\mid x^{2}+y^{2}\\leqslant4\\right\\} $。",
+    "answer": "$9\\pi$",
+    "explanation": "记 $g=x^2+y^2-\\sqrt2(x+y)$。它小于0的区域为\n$$\nD_0:\\left(x-\\frac1{\\sqrt2}\\right)^2+\\left(y-\\frac1{\\sqrt2}\\right)^2<1.\n$$\n该圆盘包含在 $D:x^2+y^2\\le4$ 内。因而\n$$\n\\iint_D|g|\\,dxdy=\\iint_Dg\\,dxdy-2\\iint_{D_0}g\\,dxdy.\n$$\n在整个圆盘 $D$ 上，线性项的积分为0，所以\n$$\n\\iint_Dg\\,dxdy=\\int_0^{2\\pi}d\\theta\\int_0^2r^3dr=8\\pi.\n$$\n对 $D_0$，先确定角度和半径：\n$$\n-\\frac\\pi4\\le\\theta\\le\\frac{3\\pi}4,\n\\qquad 0\\le r\\le\\sqrt2(\\cos\\theta+\\sin\\theta).\n$$\n由 $dxdy=r\\,drd\\theta$，得\n$$\n\\begin{aligned}\n\\iint_{D_0}g\\,dxdy\n&=\\int_{-\\pi/4}^{3\\pi/4}\\!d\\theta\\int_0^{\\sqrt2(\\cos\\theta+\\sin\\theta)}\n[r^3-\\sqrt2(\\cos\\theta+\\sin\\theta)r^2]dr\\\\\n&=-\\frac13\\int_{-\\pi/4}^{3\\pi/4}(\\cos\\theta+\\sin\\theta)^4d\\theta\n=-\\frac\\pi2.\n\\end{aligned}\n$$\n于是原积分为 $8\\pi-2(-\\pi/2)=9\\pi$。"
+  },
+  {
+    "id": "math2-zy2026-set2-q20-exercise4",
+    "year": 2026,
+    "paperId": "zy2026-set2",
+    "paperTitle": "2026 张宇四套卷 · 第二套",
+    "number": "20-4",
+    "examNumber": "20",
+    "exerciseIndex": 4,
+    "kind": "exercise",
+    "source": "1000题 · 25版 · 强化 · 第2题",
+    "sourceCategory": "book",
+    "sourceUrl": "https://cxyonly.fans/math/questions/2961",
+    "topic": "高等数学 / 二重积分 / 对称性与绝对值",
+    "type": "choice",
+    "options": [
+      {
+        "key": "A",
+        "text": "$ I_{1}\\gt0 $"
+      },
+      {
+        "key": "B",
+        "text": "$ I_{2}\\gt0 $"
+      },
+      {
+        "key": "C",
+        "text": "$ I_{3}\\gt0 $"
+      },
+      {
+        "key": "D",
+        "text": "$ I_{4}\\gt0 $"
+      }
+    ],
+    "correctOption": "D",
+    "stem": "设 $ D=\\left\\{(x,y)\\mid|x|+|y|\\leqslant3\\right\\} $， $ D_{k}(k=1,2,3,4) $ 是 D 的第 k 象限部分， $ I_{k}=\\iint_{D_{k}}\\sin(x-y)\\mathrm{d}x\\mathrm{d}y $，则（）。",
+    "answer": "**D**。",
+    "explanation": "由轮换对称性知，$I_{1}=I_{3}=0$。在 $D_{2}$ 上，$-\\pi\\lt -3\\leqslant x-y\\lt0$；在 $D_{4}$ 上，$0\\lt x-y\\leqslant3\\lt\\pi$。故 $I_{2}\\lt0,I_{4}\\gt0$。应选 (D)。"
+  },
+  {
+    "id": "math2-zy2026-set2-q21-exercise1",
+    "year": 2026,
+    "paperId": "zy2026-set2",
+    "paperTitle": "2026 张宇四套卷 · 第二套",
+    "number": "21-1",
+    "examNumber": "21",
+    "exerciseIndex": 1,
+    "kind": "exercise",
+    "source": "660题 · 26版 · 数一二三 · 第71题",
+    "sourceCategory": "book",
+    "sourceUrl": "https://cxyonly.fans/math/questions/4670",
+    "topic": "高等数学 / 微分方程 / 齐次方程与几何建模",
+    "type": "fill",
+    "stem": "若通过点 $ (1,0) $ 的曲线 $ y=y(x) $ 上每一点 $ (x,y) $ 处切线的斜率等于 $ 1+\\frac{y}{x}+\\left(\\frac{y}{x}\\right)^{2} $，则此曲线的方程是 $\\underline{\\qquad}$.",
+    "answer": "$y=x\\tan(\\ln x)$",
+    "explanation": "令 $u=y/x$，则 $y=xu$、$y'=u+xu'$。代入得\n$$\nu+xu'=1+u+u^2,\\qquad xu'=1+u^2.\n$$\n分离变量积分：\n$$\n\\frac{du}{1+u^2}=\\frac{dx}{x},\\qquad \\arctan u=\\ln x+C.\n$$\n由 $y(1)=0$ 得 $C=0$，故 $y=x\\tan(\\ln x)$，取包含 $x=1$ 的相应局部区间。"
+  },
+  {
+    "id": "math2-zy2026-set2-q21-exercise2",
+    "year": 2026,
+    "paperId": "zy2026-set2",
+    "paperTitle": "2026 张宇四套卷 · 第二套",
+    "number": "21-2",
+    "examNumber": "21",
+    "exerciseIndex": 2,
+    "kind": "exercise",
+    "source": "660题 · 26版 · 数二 · 第496题",
+    "sourceCategory": "book",
+    "sourceUrl": "https://cxyonly.fans/math/questions/4493",
+    "topic": "高等数学 / 微分方程 / 齐次方程与几何建模",
+    "type": "fill",
+    "stem": "微分方程 $ \\frac{dy}{dx}=\\frac{2xy-y^{2}}{x^{2}-2xy} $ 满足 $ y(1)=-2 $ 的特解是$\\underline{\\qquad}$。",
+    "answer": "$xy=2(x+y)^3$，取经过 $(1,-2)$ 的解支。",
+    "explanation": "令 $y=xu$，则 $y'=u+xu'$，原方程化为\n$$xu'=\\frac{u(1+u)}{1-2u}.$$\n在初值附近 $u=-2$，可以分离变量：\n$$\\left(\\frac1u-\\frac3{1+u}\\right)du=\\frac{dx}{x}.$$\n积分得 $\\ln|u|-3\\ln|1+u|=\\ln|x|+C_0$，故 $\\frac{u}{(1+u)^3}=Cx$。代回 $u=\\frac yx$，得 $\\frac{xy}{(x+y)^3}=C$。由初值确定 $C=2$，得到所求解。"
+  },
+  {
+    "id": "math2-zy2026-set2-q21-exercise4",
+    "year": 2026,
+    "paperId": "zy2026-set2",
+    "paperTitle": "2026 张宇四套卷 · 第二套",
+    "number": "21-4",
+    "examNumber": "21",
+    "exerciseIndex": 4,
+    "kind": "exercise",
+    "source": "姜晓千真题同源150 · 例4.10",
+    "sourceCategory": "book",
+    "sourceUrl": "https://cxyonly.fans/math/questions/4667",
+    "topic": "高等数学 / 微分方程 / 齐次方程与几何建模",
+    "type": "solution",
+    "stem": "设曲线 $ y=f(x) $ 位于第一象限，经过点 $ (1,\\sqrt{3}) $，在点 $ P(x,y) $ 处的切线与 x 轴正半轴的交点为 A，且 $ \\angle OPA=\\frac{\\pi}{4} $，求 $ f(x) $.",
+    "answer": "$\\arctan\\frac yx-\\frac12\\ln(1+\\frac{y^2}{x^2})=\\ln x+\\frac\\pi3-\\ln2$",
+    "explanation": "设切线与 x 轴正方向的夹角为 $ \\alpha, \\angle POA = \\theta $，则 $ \\alpha = \\theta + \\frac{\\pi}{4} $，得 $ y^{\\prime}=\\tan\\alpha=\\tan\\left(\\theta+\\frac{\\pi}{4}\\right)=\\frac{1+\\tan\\theta}{1-\\tan\\theta}=\\frac{1+\\frac{y}{x}}{1-\\frac{y}{x}} $。令 $ \\frac{y}{x}=u $，则 $ y=xu $，得 $ \\frac{dy}{dx}=u+x\\frac{du}{dx}=\\frac{1+u}{1-u} $，从而 $ \\int\\frac{1-u}{1+u^{2}}du=\\int\\frac{dx}{x} $，故 $ \\arctan u-\\frac{1}{2}\\ln(1+u^{2})=\\ln x+C $，即 $ \\arctan\\frac{y}{x}-\\frac{1}{2}\\ln\\left(1+\\frac{y^{2}}{x^{2}}\\right)=\\ln x+C $。由 $ y(1)=\\sqrt{3} $，得 $ C=\\frac{\\pi}{3}-\\ln 2 $，故曲线方程为 $ \\arctan\\frac{y}{x}-\\frac{1}{2}\\ln\\left(1+\\frac{y^{2}}{x^{2}}\\right)=\\ln x+\\frac{\\pi}{3}-\\ln 2 $。",
+    "figures": [
+      {
+        "src": "practice-figures/zy2026-set2-tangent-angle.svg",
+        "alt": "第一象限中点 P 的切线与 x 轴交于 A，角 OPA 为 π/4。",
+        "caption": "补充示意图",
+        "width": 560,
+        "height": 320
+      }
+    ]
+  },
+  {
+    "id": "math2-zy2026-set2-q22-exercise2",
+    "year": 2026,
+    "paperId": "zy2026-set2",
+    "paperTitle": "2026 张宇四套卷 · 第二套",
+    "number": "22-2",
+    "examNumber": "22",
+    "exerciseIndex": 2,
+    "kind": "exercise",
+    "source": "900题 · 数二 · 第三章 · B类 · 第11题",
+    "sourceCategory": "book",
+    "sourceUrl": "https://cxyonly.fans/math/questions/393",
+    "topic": "线性代数 / 向量组 / 线性无关与相似",
+    "type": "solution",
+    "stem": "设 $A$ 为 $3$ 阶矩阵，$\\boldsymbol\\alpha_1,\\boldsymbol\\alpha_2$ 分别为 $A$ 属于特征值 $1,2$ 的特征向量，向量 $\\boldsymbol\\alpha_3$ 满足\n$$\nA\\boldsymbol\\alpha_3\n=2\\boldsymbol\\alpha_1+\\boldsymbol\\alpha_2\n+3\\boldsymbol\\alpha_3,\n$$\n且 $\\boldsymbol\\alpha_1+\\boldsymbol\\alpha_2+\\boldsymbol\\alpha_3\\ne\\boldsymbol0$。\n\n（I）证明 $\\boldsymbol\\alpha_1,\\boldsymbol\\alpha_2,\\boldsymbol\\alpha_3$ 线性无关；\n\n（II）令 $P=(\\boldsymbol\\alpha_1,\\boldsymbol\\alpha_2,\\boldsymbol\\alpha_3)$，求 $P^{-1}AP$。",
+    "answer": "(I) 证明见解析。(II)\n$$\nP^{-1}AP=\\begin{pmatrix}1&0&2\\\\0&2&1\\\\0&0&3\\end{pmatrix}.\n$$",
+    "explanation": "（I）设\n$$\nk_1\\boldsymbol\\alpha_1+k_2\\boldsymbol\\alpha_2\n+k_3\\boldsymbol\\alpha_3=\\boldsymbol0.\n$$\n两边左乘 $A-3E$，其中 $E$ 为 $3$ 阶单位矩阵。由题设，\n$$\n(A-3E)\\boldsymbol\\alpha_1=-2\\boldsymbol\\alpha_1,\n$$\n$$\n(A-3E)\\boldsymbol\\alpha_2=-\\boldsymbol\\alpha_2,\n$$\n$$\n(A-3E)\\boldsymbol\\alpha_3\n=2\\boldsymbol\\alpha_1+\\boldsymbol\\alpha_2.\n$$\n因此\n$$\n(-2k_1+2k_3)\\boldsymbol\\alpha_1\n+(-k_2+k_3)\\boldsymbol\\alpha_2\n=\\boldsymbol0.\n$$\n$\\boldsymbol\\alpha_1,\\boldsymbol\\alpha_2$ 属于不同特征值，故线性无关，于是\n$$\n-2k_1+2k_3=0,\\qquad -k_2+k_3=0,\n$$\n即 $k_1=k_2=k_3$。代回原等式，得\n$$\nk_3(\\boldsymbol\\alpha_1+\\boldsymbol\\alpha_2+\\boldsymbol\\alpha_3)\n=\\boldsymbol0.\n$$\n根据题设括号内向量非零，故 $k_3=0$，从而 $k_1=k_2=k_3=0$。所以三个向量线性无关。\n\n（II）由（I）知 $P$ 可逆。将 $A\\boldsymbol\\alpha_i$ 的表示式按列合并，得\n$$\nAP=P\\begin{pmatrix}\n1&0&2\\\\\n0&2&1\\\\\n0&0&3\n\\end{pmatrix}.\n$$\n两边左乘 $P^{-1}$，得\n$$\nP^{-1}AP=\\begin{pmatrix}\n1&0&2\\\\\n0&2&1\\\\\n0&0&3\n\\end{pmatrix}.\n$$"
+  },
+  {
+    "id": "math2-zy2026-set2-q22-exercise3",
+    "year": 2026,
+    "paperId": "zy2026-set2",
+    "paperTitle": "2026 张宇四套卷 · 第二套",
+    "number": "22-3",
+    "examNumber": "22",
+    "exerciseIndex": 3,
+    "kind": "exercise",
+    "source": "姜晓千真题同源150",
+    "sourceCategory": "book",
+    "sourceUrl": "https://cxyonly.fans/math/questions/396",
+    "topic": "线性代数 / 向量组 / 线性无关与相似",
+    "type": "solution",
+    "stem": "设齐次线性方程组\n$$\\begin{cases}a_{11}x_1+a_{12}x_2+a_{13}x_3+a_{14}x_4=0,\\\\a_{21}x_1+a_{22}x_2+a_{23}x_3+a_{24}x_4=0\\end{cases}$$\n的一个基础解系为 $\\beta_1=(b_{11},b_{12},b_{13},b_{14})^{\\mathsf T}$、$\\beta_2=(b_{21},b_{22},b_{23},b_{24})^{\\mathsf T}$。记 $\\alpha_1=(a_{11},a_{12},a_{13},a_{14})^{\\mathsf T}$、$\\alpha_2=(a_{21},a_{22},a_{23},a_{24})^{\\mathsf T}$，证明 $\\alpha_1,\\alpha_2,\\beta_1,\\beta_2$ 线性无关。",
+    "answer": "证明见解析",
+    "explanation": "第一步：证明 $\\alpha_1,\\alpha_2$ 线性无关。\n\n记方程组的系数矩阵为 $A$。方程组有 $4$ 个未知数，基础解系含 $2$ 个向量，由\n$$\n4-r(A)=2,\n$$\n得 $r(A)=2$。\n\n矩阵 $A$ 只有两行，因此这两个行向量线性无关，也就是 $\\alpha_1,\\alpha_2$ 线性无关。\n\n同时，由基础解系的定义，$\\beta_1,\\beta_2$ 线性无关。\n\n第二步：说明两组向量之间相互正交。\n\n因为 $\\beta_1,\\beta_2$ 都是方程组的解，\n$$\nA\\beta_j=0,\\qquad j=1,2.\n$$\n而 $A$ 的两行为 $\\alpha_1^{\\mathsf T}$、$\\alpha_2^{\\mathsf T}$，所以\n$$\n\\alpha_i^{\\mathsf T}\\beta_j=0,\n\\qquad i,j=1,2.\n$$\n也就是说，每个 $\\alpha_i$ 都与每个 $\\beta_j$ 正交。\n\n第三步：从线性无关的定义出发完成证明。\n\n设\n$$\nc_1\\alpha_1+c_2\\alpha_2\n+d_1\\beta_1+d_2\\beta_2=0.\n$$\n记\n$$\nu=c_1\\alpha_1+c_2\\alpha_2,\n$$\n$$\nv=d_1\\beta_1+d_2\\beta_2.\n$$\n则 $u+v=0$。由第二步，$u^{\\mathsf T}v=0$。\n\n在 $u+v=0$ 两边左乘 $u^{\\mathsf T}$，得\n$$\nu^{\\mathsf T}u+u^{\\mathsf T}v=0,\n$$\n因此\n$$\nu^{\\mathsf T}u=0,\n$$\n从而 $u=0$，再由 $u+v=0$ 得 $v=0$。\n\n由于 $\\alpha_1,\\alpha_2$ 线性无关，$u=0$ 推出 $c_1=c_2=0$；由于 $\\beta_1,\\beta_2$ 线性无关，$v=0$ 推出 $d_1=d_2=0$。\n\n所以只有全部系数为零时，四个向量的线性组合才等于零。故\n$$\n\\boxed{\\alpha_1,\\alpha_2,\\beta_1,\\beta_2\n\\text{ 线性无关}}.\n$$"
+  },
+  {
+    "id": "math2-zy2026-set2-q22-exercise4",
+    "year": 2026,
+    "paperId": "zy2026-set2",
+    "paperTitle": "2026 张宇四套卷 · 第二套",
+    "number": "22-4",
+    "examNumber": "22",
+    "exerciseIndex": 4,
+    "kind": "exercise",
+    "source": "1998年 · 数一",
+    "sourceCategory": "book",
+    "sourceUrl": "https://cxyonly.fans/math/questions/391",
+    "topic": "线性代数 / 向量组 / 线性无关与相似",
+    "type": "solution",
+    "stem": "设 $A$ 为 $n$ 阶矩阵，$\\alpha$ 为 $n$ 维列向量。若 $A^{m-1} \\alpha \\ne 0$，$A^m \\alpha = 0$，证明向量组 $\\alpha, A\\alpha, \\dots, A^{m-1} \\alpha$ 线性无关。",
+    "answer": "证明见解析",
+    "explanation": "设 $c_0\\alpha+c_1A\\alpha+\\cdots+c_{m-1}A^{m-1}\\alpha=0$。左乘 $A^{m-1}$ 得 $c_0A^{m-1}\\alpha=0$，故 $c_0=0$。再依次左乘 $A^{m-2},A^{m-3},\\ldots,E$，可得 $c_1=\\cdots=c_{m-1}=0$。因此 $\\alpha,A\\alpha,\\ldots,A^{m-1}\\alpha$ 线性无关。"
   }
 ]
