@@ -76,7 +76,10 @@ const statuses: { value: Mastery; label: string }[] = [
     </header>
     <h3 :id="`title-${question.id}`" class="visually-hidden">{{ question.year }} 年 {{ question.source }} {{ question.number }}题</h3>
     <p class="question-topic">{{ question.topic }}</p>
-    <MathMarkdown class="question-stem" :source="question.stem" compact />
+    <div v-if="question.bookId" class="book-tags"><span class="level-badge">{{ question.level }}</span><span>{{ question.type === 'choice' ? '选择题' : question.type === 'fill' ? '填空题' : '解答题' }}</span></div>
+    <div v-if="question.questionTypes?.length" class="question-type-tags"><span v-for="item in question.questionTypes" :key="item.id">{{ item.title }}<small v-if="question.questionTypes.length > 1"> · {{ item.references.join('、') }}</small></span></div>
+    <div v-if="question.questionImages?.length" class="source-images question-source-images"><a v-for="picture in question.questionImages" :key="picture.src" :href="figureUrl(picture.src)" target="_blank" rel="noopener" :aria-label="`${picture.alt}，打开原图放大`"><img :src="figureUrl(picture.src)" :alt="picture.alt" :width="picture.width" :height="picture.height" loading="lazy" decoding="async" /></a></div>
+    <MathMarkdown v-else class="question-stem" :source="question.stem" compact />
     <div v-if="question.figures?.length" class="question-figures"><figure v-for="figure in question.figures" :key="figure.src"><img :src="figureUrl(figure.src)" :alt="figure.alt" :width="figure.width" :height="figure.height" loading="lazy" decoding="async" /><figcaption v-if="figure.caption">{{ figure.caption }}</figcaption></figure></div>
     <fieldset v-if="question.options?.length" class="options">
       <legend class="visually-hidden">第 {{ index }} 题，选择你的答案</legend>
@@ -92,8 +95,8 @@ const statuses: { value: Mastery; label: string }[] = [
       <button class="note-toggle" :class="{ 'has-note': progress?.note }" :aria-label="progress?.note ? '查看错因笔记' : '记录错因笔记'" :aria-expanded="noteOpen" :aria-controls="`note-${question.id}`" @click="noteOpen = !noteOpen"><PracticeIcon name="note" /><span class="visually-hidden">错因笔记</span></button>
     </div>
     <section v-if="question.answerAvailable !== false && (answerOpen || printMode)" :class="{ 'print-only': !answerOpen }" ref="answerPanel" :id="`answer-${question.id}`" class="answer-panel" aria-label="答案与解析">
-      <h4>答案</h4><MathMarkdown :source="question.answer" compact />
-      <h4>解析</h4><MathMarkdown :source="question.explanation" compact />
+      <template v-if="question.answerImages?.length"><h4>原书答案与解析</h4><div class="source-images"><a v-for="picture in question.answerImages" :key="picture.src" :href="figureUrl(picture.src)" target="_blank" rel="noopener" :aria-label="`${picture.alt}，打开原图放大`"><img :src="figureUrl(picture.src)" :alt="picture.alt" :width="picture.width" :height="picture.height" loading="lazy" decoding="async" /></a></div></template>
+      <template v-else><h4>答案</h4><MathMarkdown :source="question.answer" compact /><h4>解析</h4><MathMarkdown :source="question.explanation" compact /></template>
     </section>
     <section v-if="printMode && progress?.note?.trim()" class="print-note print-only"><h4>错因笔记</h4><p>{{ progress.note }}</p></section>
     <label v-if="noteOpen" :id="`note-${question.id}`" class="note-area"><span>错因笔记</span><textarea :aria-label="`${question.source}的错因笔记`" :value="progress?.note ?? ''" maxlength="10000" @blur="emit('noteBlur')" placeholder="记录错因或易忘的步骤" rows="2" @input="emit('note', question.id, ($event.target as HTMLTextAreaElement).value)" /><small>{{ storageFailed ? '保存失败，请导出备份' : '自动保存' }}</small></label>
@@ -102,6 +105,14 @@ const statuses: { value: Mastery; label: string }[] = [
 
 <style scoped>
 .print-only { display: none; }
+.book-tags, .question-type-tags { display: flex; flex-wrap: wrap; gap: 6px 10px; margin-top: 12px; color: var(--ink-soft); font-size: 12px; line-height: 1.7; }
+.book-tags span, .question-type-tags > span { border-radius: 5px; padding: 3px 8px; background: var(--surface-soft); }
+.book-tags .level-badge { color: var(--accent-dark); background: var(--accent-tint); font-weight: 600; }
+.question-type-tags small { font-size: inherit; color: var(--muted); }
+.source-images { display: grid; gap: 12px; margin: 18px 0; }
+.source-images a { display: block; min-width: 0; background: white; border-radius: 6px; padding: 8px; }
+.source-images img { display: block; max-width: 100%; width: 100%; height: auto; margin: 0 auto; }
+.source-images a:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
 .question-card { scroll-margin-top: 22px; min-width: 0; border: 1px solid var(--line); border-radius: 14px; padding: 22px 26px 16px; background: var(--paper); box-shadow: 0 3px 12px #24314a03; }
 .question-card:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
 svg { width: 17px; height: 17px; flex-shrink: 0; }

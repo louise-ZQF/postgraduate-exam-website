@@ -1,4 +1,5 @@
 export type Mastery = 'unfamiliar' | 'unknown' | 'mastered'
+export type QuestionImage = { src: string; alt: string; width: number; height: number }
 export type PracticeQuestion = {
   id: string
   year: number
@@ -20,6 +21,14 @@ export type PracticeQuestion = {
   answer: string
   explanation: string
   answerAvailable?: boolean
+  bookId?: 'll880'
+  chapterNumber?: number
+  level?: '基础题' | '综合题' | '拓展题'
+  questionTypes?: { id: string; title: string; references: string[] }[]
+  questionImages?: QuestionImage[]
+  answerImages?: QuestionImage[]
+  searchText?: string
+  sourceOrder?: number
 }
 export type QuestionProgress = { mastery?: Mastery; removed?: boolean; note: string; updatedAt: number; reviews: number }
 export type PracticeProgress = Record<string, QuestionProgress>

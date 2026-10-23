@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { readFileSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import ts from 'typescript'
 
@@ -9,6 +9,8 @@ async function loadModule(file) {
   if (file.endsWith('practiceQuestions.ts')) {
     const questions = readFileSync(resolve(root, 'client/src/content/practice-questions.json'), 'utf8')
     source = source.replace("import questions from '@/content/practice-questions.json'", `const questions = ${questions}`)
+    const ll880Questions = readFileSync(resolve(root, 'client/src/content/ll880-questions.json'), 'utf8')
+    source = source.replace("import ll880Questions from '@/content/ll880-questions.json'", `const ll880Questions = ${ll880Questions}`)
   }
   const compiled = ts.transpileModule(source, { compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ESNext } }).outputText
   return import(`data:text/javascript;base64,${Buffer.from(compiled).toString('base64')}`)
@@ -30,13 +32,40 @@ for (const q of practiceQuestions) {
     for (const field of ['answer', 'explanation']) assert.ok(typeof q[field] === 'string' && q[field].trim(), `${q.id} 缺少 ${field}`)
   }
   assert.ok(['choice', 'fill', 'solution'].includes(q.type))
-  if (q.type === 'choice') {
+  if (q.type === 'choice' && !q.questionImages?.length) {
     assert.ok(q.options?.length >= 2)
     assert.equal(new Set(q.options.map(o => o.key)).size, q.options.length)
     assert.ok(q.options.every(o => typeof o.text === 'string' && o.text.trim()))
     assert.ok(q.options.some(o => o.key === q.correctOption))
   }
 }
+const ll880 = practiceQuestions.filter(q => q.bookId === 'll880')
+const chapters = JSON.parse(readFileSync(resolve(root, 'client/src/content/ll880-classification.json'), 'utf8'))
+assert.equal(ll880.length, 649, '仅导入已有分类的八章 649 道题')
+assert.deepEqual(chapters.map(chapter => [chapter.number, chapter.count]), [[2, 145], [3, 167], [4, 75], [6, 76], [7, 39], [8, 56], [9, 37], [10, 54]])
+assert.equal(chapters.reduce((sum, chapter) => sum + chapter.types.length, 0), 192)
+for (const chapter of chapters) {
+  const group = ll880.filter(q => q.paperId === chapter.id)
+  assert.equal(group.length, chapter.count)
+  assert.ok(existsSync(resolve(root, 'client/public', chapter.sourceFile)), `${chapter.id} 缺少原分类总结`)
+  const typeIds = new Set(chapter.types.map(type => type.id))
+  assert.equal(typeIds.size, chapter.types.length)
+  for (const q of group) {
+    assert.ok(['基础题', '综合题', '拓展题'].includes(q.level))
+    assert.ok(q.questionTypes.length > 0)
+    assert.ok(q.questionTypes.every(type => typeIds.has(type.id) && type.references.length > 0))
+    assert.ok(q.questionImages.length > 0 && q.answerImages.length > 0)
+    assert.ok(!q.options, '原图题的选项随原图呈现，不生成未核对的交互选项')
+    for (const picture of [...q.questionImages, ...q.answerImages]) {
+      assert.match(picture.src, /^ll880\/[a-z0-9-]+\.webp$/)
+      assert.ok(existsSync(resolve(root, 'client/public', picture.src)), `${q.id} 缺少 ${picture.src}`)
+      assert.ok(picture.width > 0 && picture.height > 0 && picture.alt.trim())
+    }
+  }
+  assert.equal(new Set(group.filter(q => !q.questionTypes?.[0]?.id).map(q => q.id)).size, 0, '默认题型分组不得漏题')
+}
+const integralSubparts = ll880.find(q => q.id === 'll880-c03-b-s01')
+assert.ok(integralSubparts.questionTypes.length > 1, '保留原分类按小问划分的多个题型')
 assert.ok(!ids.has(demoQuestion.id), '预览题不得混入正式题库')
 assert.equal(demoQuestion.correctOption, 'C')
 const storage = new Map()
