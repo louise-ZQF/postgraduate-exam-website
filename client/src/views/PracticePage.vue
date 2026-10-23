@@ -3,14 +3,18 @@ import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import MathHeader from '@/components/MathHeader.vue'
 import PracticeQuestionCard from '@/components/PracticeQuestionCard.vue'
+import PracticeImagePreview from '@/components/PracticeImagePreview.vue'
 import PracticeIcon from '@/components/PracticeIcon.vue'
 import ll880Chapters from '@/content/ll880-classification.json'
 import { demoQuestion, practiceQuestions } from '@/math/practiceQuestions'
-import { hasNote, isPending, mergeProgress, normalizeProgress, PRACTICE_STORAGE_KEY, readPracticeProgress, savePracticeProgress, type Mastery, type PracticeProgress } from '@/math/practice'
+import { hasNote, isPending, mergeProgress, normalizeProgress, PRACTICE_STORAGE_KEY, readPracticeProgress, savePracticeProgress, type Mastery, type QuestionImage, type PracticeProgress } from '@/math/practice'
 
 const route = useRoute()
 const router = useRouter()
 const baseUrl = import.meta.env.BASE_URL
+const imagePreview = ref<InstanceType<typeof PracticeImagePreview>>()
+function openImage(image: QuestionImage, trigger: HTMLElement) { imagePreview.value?.open(image, trigger) }
+watch(() => route.fullPath, () => imagePreview.value?.close())
 const questions = [...practiceQuestions].sort((a, b) =>
   Number(Boolean(a.bookId)) - Number(Boolean(b.bookId))
   || (a.bookId && b.bookId ? (a.chapterNumber ?? 0) - (b.chapterNumber ?? 0) || (a.sourceOrder ?? 0) - (b.sourceOrder ?? 0) : b.year - a.year)
@@ -233,6 +237,7 @@ onBeforeUnmount(() => {
 <template>
   <div class="practice-page" :class="{ 'pdf-export': exportingPdf }">
     <MathHeader hide-search />
+    <PracticeImagePreview ref="imagePreview" />
     <div class="practice-layout">
       <aside class="directory" aria-label="错题分类">
         <button class="mobile-directory" :aria-expanded="directoryOpen" aria-controls="directory-content" @click="directoryOpen = !directoryOpen"><PracticeIcon name="book" />题库、试卷与复习目录<span>{{ directoryOpen ? '收起' : '展开' }}</span></button>
@@ -264,10 +269,10 @@ onBeforeUnmount(() => {
         <section v-if="selectedChapter && mode !== 'review'" class="chapter-filters" aria-label="880题型筛选"><div class="chapter-intro"><p>沿用已有分类 · {{ selectedChapter.count }} 道题 · {{ selectedChapter.types.length }} 个题型</p><a :href="`${baseUrl}${selectedChapter.sourceFile}`" target="_blank" rel="noopener">查看原分类总结</a></div><div class="chapter-filter-controls"><label>具体题型<select v-model="typeFilter" aria-label="按具体题型筛选"><option value="all">全部题型</option><option v-for="item in chapterTypes" :key="item.id" :value="item.id">{{ item.order }}. {{ item.title }}</option></select></label><label>原书分层<select v-model="levelFilter" aria-label="按原书基础综合拓展筛选"><option value="all">基础、综合与拓展</option><option v-for="level in ['基础题', '综合题', '拓展题']" :key="level" :value="level">{{ level }}</option></select></label></div><p class="chapter-hint">同一道题的不同小问可对应多个题型，筛选时会一并收录。</p></section>
         <div class="toolbar"><div class="scope-label">{{ demoMode ? '交互示例' : mode === 'review' ? '全部年份错题' : mode === 'removed' ? (selectedYear ? `${paperScope} · 已移除题目` : '全部已移除题目') : mode === 'notes' ? (selectedYear ? `${paperScope} · 笔记题目` : '全部笔记题目') : paperScope }}<span>{{ queue.length }} 题 · 已标记 {{ markedInQueue }}</span></div><div class="toolbar-filters"><button class="pdf-button" :disabled="!queue.length || exportingPdf" @click="exportPdf"><PracticeIcon name="download" />{{ exportingPdf ? '准备导出…' : '导出 PDF' }}</button><label class="question-search"><PracticeIcon name="search" /><input v-model="keyword" maxlength="80" aria-label="搜索错题" :placeholder="mode === 'notes' ? '搜索题目、笔记内容' : '搜索题目、知识点'" /></label><select v-model="statusFilter" aria-label="按掌握程度筛选"><option value="all">全部状态</option><option value="unmarked">未标记</option><option v-for="status in statuses" :key="status.value" :value="status.value">{{ status.label }}</option></select></div></div>
         <div v-if="queue.length" class="question-list">
-          <div v-if="mode === 'review'" class="year-questions review-questions"><PracticeQuestionCard v-for="(question, index) in queue" :key="`${round}-${question.id}`" :question="question" :index="index + 1" :progress="activeProgress[question.id]" :storage-failed="storageFailed" :print-mode="exportingPdf" :manageable="!demoMode" @remove="removeQuestion" @restore="restoreQuestion" @note-blur="refreshNotesQueue" @mark="mark" @note="saveNote" /></div>
+          <div v-if="mode === 'review'" class="year-questions review-questions"><PracticeQuestionCard v-for="(question, index) in queue" :key="`${round}-${question.id}`" :question="question" :index="index + 1" :progress="activeProgress[question.id]" :storage-failed="storageFailed" :print-mode="exportingPdf" :manageable="!demoMode" @remove="removeQuestion" @restore="restoreQuestion" @note-blur="refreshNotesQueue" @mark="mark" @note="saveNote" @preview="openImage" /></div>
           <section v-for="group in mode === 'review' ? [] : yearGroups" :id="`practice-year-${group.id}`" :key="group.id" class="year-section" :aria-labelledby="`year-title-${group.id}`">
             <header class="paper-heading"><div><span class="paper-label">{{ mode === 'removed' ? '已移除题目' : mode === 'notes' ? '有笔记的题目' : group.book ? '2027 版 · 原分类题型' : group.mock ? '模拟卷与配套练习' : '真题与配套练习' }}</span><h2 :id="`year-title-${group.id}`">{{ group.title }}{{ mode === 'removed' ? ' · 已移除题目' : mode === 'notes' ? ' · 笔记题目' : '' }}</h2></div><span>{{ group.questions.length }} 题</span></header>
-            <section v-for="section in group.sections" :key="section.id" class="type-section" :aria-label="section.title || group.title"><h3 v-if="section.title" class="type-heading">{{ section.title }}<small>{{ section.questions.length }} 题</small></h3><div class="year-questions"><PracticeQuestionCard v-for="(question, index) in section.questions" :key="`${round}-${question.id}`" :question="question" :index="index + 1" :progress="activeProgress[question.id]" :storage-failed="storageFailed" :print-mode="exportingPdf" :show-note="mode === 'notes' || mode === 'removed'" :manageable="!demoMode" :removed="mode === 'removed'" @remove="removeQuestion" @restore="restoreQuestion" @note-blur="refreshNotesQueue" @mark="mark" @note="saveNote" /></div></section>
+            <section v-for="section in group.sections" :key="section.id" class="type-section" :aria-label="section.title || group.title"><h3 v-if="section.title" class="type-heading">{{ section.title }}<small>{{ section.questions.length }} 题</small></h3><div class="year-questions"><PracticeQuestionCard v-for="(question, index) in section.questions" :key="`${round}-${question.id}`" :question="question" :index="index + 1" :progress="activeProgress[question.id]" :storage-failed="storageFailed" :print-mode="exportingPdf" :show-note="mode === 'notes' || mode === 'removed'" :manageable="!demoMode" :removed="mode === 'removed'" @remove="removeQuestion" @restore="restoreQuestion" @note-blur="refreshNotesQueue" @mark="mark" @note="saveNote" @preview="openImage" /></div></section>
           </section>
           <footer class="paper-end"><strong>{{ mode === 'review' ? '错题再练 · 本轮结束' : mode === 'removed' ? '已移除题目 · 本页结束' : mode === 'notes' ? '笔记汇总 · 本页结束' : `${paperScope} · 本卷结束` }}</strong></footer>
         </div>
@@ -332,7 +337,7 @@ main { min-width: 0; }.workspace-heading { display: flex; justify-content: space
   .pdf-export .year-questions { display: block; }
   .pdf-export .question-card { border: 0; border-bottom: 1px solid #ccc; border-radius: 0; padding: 12pt 0; margin: 0; break-inside: avoid; }
   .pdf-export .question-card:has(.question-source-images) { break-inside: auto; }
-  .pdf-export .source-images a { break-inside: avoid; padding: 0; }
+  .pdf-export .source-images .image-preview-trigger { break-inside: avoid; padding: 0; }
   .pdf-export .question-card h3, .pdf-export .options legend { display: none; }
   .pdf-export .question-actions, .pdf-export .question-meta-actions, .pdf-export .choice-feedback,
   .pdf-export .note-area, .pdf-export .option input, .pdf-export .option-result { display: none !important; }

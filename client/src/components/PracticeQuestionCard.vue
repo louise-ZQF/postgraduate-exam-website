@@ -3,12 +3,15 @@ import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import MathMarkdown from '@/components/MathMarkdown.vue'
 import PracticeIcon from '@/components/PracticeIcon.vue'
 import arcDiagram from '@/assets/practice-figures/zy2026-set1-q5.svg?raw'
-import type { Mastery, PracticeQuestion, QuestionProgress } from '@/math/practice'
+import type { Mastery, PracticeQuestion, QuestionImage, QuestionProgress } from '@/math/practice'
 
 const props = defineProps<{ question: PracticeQuestion; index: number; progress?: QuestionProgress; storageFailed: boolean; showNote?: boolean; removed?: boolean; manageable?: boolean; printMode?: boolean }>()
-const emit = defineEmits<{ mark: [id: string, mastery: Mastery]; note: [id: string, note: string]; noteBlur: []; remove: [id: string]; restore: [id: string] }>()
+const emit = defineEmits<{ mark: [id: string, mastery: Mastery]; note: [id: string, note: string]; noteBlur: []; remove: [id: string]; restore: [id: string]; preview: [image: QuestionImage, trigger: HTMLElement] }>()
 const arcDiagramUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(arcDiagram)}`
 const figureUrl = (src: string) => src === 'practice-figures/zy2026-set1-q5.svg' ? arcDiagramUrl : `${import.meta.env.BASE_URL}${src}`
+function previewImage(picture: QuestionImage, event: MouseEvent) {
+  emit('preview', { ...picture, src: figureUrl(picture.src) }, event.currentTarget as HTMLElement)
+}
 const answerOpen = ref(false)
 const answerPanel = ref<HTMLElement>()
 let answerObserver: IntersectionObserver | undefined
@@ -78,9 +81,9 @@ const statuses: { value: Mastery; label: string }[] = [
     <p class="question-topic">{{ question.topic }}</p>
     <div v-if="question.bookId" class="book-tags"><span class="level-badge">{{ question.level }}</span><span>{{ question.type === 'choice' ? '选择题' : question.type === 'fill' ? '填空题' : '解答题' }}</span></div>
     <div v-if="question.questionTypes?.length" class="question-type-tags"><span v-for="item in question.questionTypes" :key="item.id">{{ item.title }}<small v-if="question.questionTypes.length > 1"> · {{ item.references.join('、') }}</small></span></div>
-    <div v-if="question.questionImages?.length" class="source-images question-source-images"><a v-for="picture in question.questionImages" :key="picture.src" :href="figureUrl(picture.src)" target="_blank" rel="noopener" :aria-label="`${picture.alt}，打开原图放大`"><img :src="figureUrl(picture.src)" :alt="picture.alt" :width="picture.width" :height="picture.height" loading="lazy" decoding="async" /></a></div>
+    <div v-if="question.questionImages?.length" class="source-images question-source-images"><button v-for="picture in question.questionImages" :key="picture.src" type="button" class="image-preview-trigger" :aria-label="`${picture.alt}，放大预览`" @click="previewImage(picture, $event)"><img :src="figureUrl(picture.src)" :alt="picture.alt" :width="picture.width" :height="picture.height" loading="lazy" decoding="async" /></button></div>
     <MathMarkdown v-else class="question-stem" :source="question.stem" compact />
-    <div v-if="question.figures?.length" class="question-figures"><figure v-for="figure in question.figures" :key="figure.src"><img :src="figureUrl(figure.src)" :alt="figure.alt" :width="figure.width" :height="figure.height" loading="lazy" decoding="async" /><figcaption v-if="figure.caption">{{ figure.caption }}</figcaption></figure></div>
+    <div v-if="question.figures?.length" class="question-figures"><figure v-for="figure in question.figures" :key="figure.src"><button type="button" class="image-preview-trigger" :aria-label="`${figure.alt}，放大预览`" @click="previewImage(figure, $event)"><img :src="figureUrl(figure.src)" :alt="figure.alt" :width="figure.width" :height="figure.height" loading="lazy" decoding="async" /></button><figcaption v-if="figure.caption">{{ figure.caption }}</figcaption></figure></div>
     <fieldset v-if="question.options?.length" class="options">
       <legend class="visually-hidden">第 {{ index }} 题，选择你的答案</legend>
       <label v-for="option in question.options" :key="option.key" class="option" :class="{ selected: selectedOption === option.key, correct: showResult && question.correctOption === option.key, wrong: showResult && selectedOption === option.key && question.correctOption !== option.key }">
@@ -95,7 +98,7 @@ const statuses: { value: Mastery; label: string }[] = [
       <button class="note-toggle" :class="{ 'has-note': progress?.note }" :aria-label="progress?.note ? '查看错因笔记' : '记录错因笔记'" :aria-expanded="noteOpen" :aria-controls="`note-${question.id}`" @click="noteOpen = !noteOpen"><PracticeIcon name="note" /><span class="visually-hidden">错因笔记</span></button>
     </div>
     <section v-if="question.answerAvailable !== false && (answerOpen || printMode)" :class="{ 'print-only': !answerOpen }" ref="answerPanel" :id="`answer-${question.id}`" class="answer-panel" aria-label="答案与解析">
-      <template v-if="question.answerImages?.length"><h4>原书答案与解析</h4><div class="source-images"><a v-for="picture in question.answerImages" :key="picture.src" :href="figureUrl(picture.src)" target="_blank" rel="noopener" :aria-label="`${picture.alt}，打开原图放大`"><img :src="figureUrl(picture.src)" :alt="picture.alt" :width="picture.width" :height="picture.height" loading="lazy" decoding="async" /></a></div></template>
+      <template v-if="question.answerImages?.length"><h4>原书答案与解析</h4><div class="source-images"><button v-for="picture in question.answerImages" :key="picture.src" type="button" class="image-preview-trigger" :aria-label="`${picture.alt}，放大预览`" @click="previewImage(picture, $event)"><img :src="figureUrl(picture.src)" :alt="picture.alt" :width="picture.width" :height="picture.height" loading="lazy" decoding="async" /></button></div></template>
       <template v-else><h4>答案</h4><MathMarkdown :source="question.answer" compact /><h4>解析</h4><MathMarkdown :source="question.explanation" compact /></template>
     </section>
     <section v-if="printMode && progress?.note?.trim()" class="print-note print-only"><h4>错因笔记</h4><p>{{ progress.note }}</p></section>
@@ -109,10 +112,11 @@ const statuses: { value: Mastery; label: string }[] = [
 .book-tags span, .question-type-tags > span { border-radius: 5px; padding: 3px 8px; background: var(--surface-soft); }
 .book-tags .level-badge { color: var(--accent-dark); background: var(--accent-tint); font-weight: 600; }
 .question-type-tags small { font-size: inherit; color: var(--muted); }
+.image-preview-trigger { display: block; width: 100%; border: 0; padding: 0; background: transparent; cursor: zoom-in; }
 .source-images { display: grid; gap: 12px; margin: 18px 0; }
-.source-images a { display: block; min-width: 0; background: white; border-radius: 6px; padding: 8px; }
+.source-images .image-preview-trigger { display: block; min-width: 0; background: white; border-radius: 6px; padding: 8px; }
 .source-images img { display: block; max-width: 100%; width: 100%; height: auto; margin: 0 auto; }
-.source-images a:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.image-preview-trigger:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
 .question-card { scroll-margin-top: 22px; min-width: 0; border: 1px solid var(--line); border-radius: 14px; padding: 22px 26px 16px; background: var(--paper); box-shadow: 0 3px 12px #24314a03; }
 .question-card:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
 svg { width: 17px; height: 17px; flex-shrink: 0; }
