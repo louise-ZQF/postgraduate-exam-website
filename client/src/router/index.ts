@@ -42,6 +42,11 @@ const router = createRouter({
       component: () => import("@/views/PracticePage.vue"),
     },
     {
+      path: "/880",
+      name: "ll880",
+      component: () => import("@/views/Ll880Page.vue"),
+    },
+    {
       path: "/proofs",
       name: "proofs",
       component: () => import("@/views/ProofsPage.vue"),
@@ -60,7 +65,11 @@ const router = createRouter({
   ],
 });
 
-router.beforeEach(() => {
+router.beforeEach((to) => {
+  // 已分享的 880 旧链接继续定位到原题，统一进入独立题库。
+  if (to.name === 'practice' && [to.query.paper, to.query.question].some(value => typeof value === 'string' && value.startsWith('ll880-'))) {
+    return { name: 'll880', query: to.query, hash: to.hash, replace: true }
+  }
   isNavigating.value = true
 })
 router.afterEach(() => {

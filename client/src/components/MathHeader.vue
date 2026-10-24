@@ -74,6 +74,7 @@ onBeforeUnmount(() => {
         <RouterLink to="/">搜索</RouterLink>
         <RouterLink to="/favorites">待背收藏<span v-if="favoriteCount" class="favorite-count">{{ favoriteCount }}</span></RouterLink>
         <RouterLink to="/practice">错题本</RouterLink>
+        <RouterLink to="/880">李林 880</RouterLink>
         <RouterLink to="/graphs">常见图像</RouterLink>
         <RouterLink to="/proofs">证明题专场</RouterLink>
       </nav>

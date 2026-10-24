@@ -9,13 +9,16 @@ import ll880Chapters from '@/content/ll880-classification.json'
 import { demoQuestion, practiceQuestions } from '@/math/practiceQuestions'
 import { hasNote, isPending, mergeProgress, normalizeProgress, PRACTICE_STORAGE_KEY, readPracticeProgress, savePracticeProgress, type Mastery, type QuestionImage, type PracticeProgress } from '@/math/practice'
 
+const props = withDefaults(defineProps<{ collection?: 'exams' | 'll880' }>(), { collection: 'exams' })
+const isBook = props.collection === 'll880'
+const routeName = isBook ? 'll880' : 'practice'
 const route = useRoute()
 const router = useRouter()
 const baseUrl = import.meta.env.BASE_URL
 const imagePreview = ref<InstanceType<typeof PracticeImagePreview>>()
 function openImage(image: QuestionImage, trigger: HTMLElement) { imagePreview.value?.open(image, trigger) }
 watch(() => route.fullPath, () => imagePreview.value?.close())
-const questions = [...practiceQuestions].sort((a, b) =>
+const questions = practiceQuestions.filter(q => isBook ? q.bookId === 'll880' : !q.bookId).sort((a, b) =>
   Number(Boolean(a.bookId)) - Number(Boolean(b.bookId))
   || (a.bookId && b.bookId ? (a.chapterNumber ?? 0) - (b.chapterNumber ?? 0) || (a.sourceOrder ?? 0) - (b.sourceOrder ?? 0) : b.year - a.year)
   || Number(a.examNumber ?? a.number) - Number(b.examNumber ?? b.number)
@@ -75,11 +78,24 @@ const masteredCount = computed(() => visibleQuestions.value.filter(q => progress
 const papers = computed(() => [...new Set(questions.map(paperKey))].map(id => {
   const all = questions.filter(q => paperKey(q) === id)
   const group = all.filter(q => !progress.value[q.id]?.removed)
-  return { id, year: all[0].year, book: Boolean(all[0].bookId), title: all[0].paperTitle ?? `${all[0].year} 年`, count: group.length, notes: group.filter(q => hasNote(progress.value[q.id])).length, removed: all.length - group.length }
+  return { id, year: all[0].year, book: Boolean(all[0].bookId), series: id.startsWith('zy2026-') ? 'zy2026' : 'real', title: all[0].paperTitle ?? `${all[0].year} 年`, count: group.length, notes: group.filter(q => hasNote(progress.value[q.id])).length, removed: all.length - group.length }
 }))
 const directoryPapers = computed(() => mode.value === 'removed' ? papers.value.filter(item => item.removed > 0) : mode.value === 'notes' ? papers.value.filter(item => item.notes > 0) : papers.value)
 const bookDirectory = computed(() => directoryPapers.value.filter(item => item.book))
 const examDirectory = computed(() => directoryPapers.value.filter(item => !item.book))
+const examGroups = computed(() => [
+  { id: 'real', title: '真题', papers: examDirectory.value.filter(item => item.series === 'real') },
+  { id: 'zy2026', title: '2026 版张宇四套卷', papers: examDirectory.value.filter(item => item.series === 'zy2026') },
+].filter(group => group.papers.length))
+const expandedGroups = ref<string[]>([])
+watch(selectedPaper, id => {
+  const group = examGroups.value.find(group => group.papers.some(paper => paper.id === id))
+  if (group && !expandedGroups.value.includes(group.id)) expandedGroups.value.push(group.id)
+}, { immediate: true })
+function toggleGroup(id: string, event: Event) {
+  const open = (event.target as HTMLDetailsElement).open
+  expandedGroups.value = open ? [...new Set([...expandedGroups.value, id])] : expandedGroups.value.filter(value => value !== id)
+}
 const filtered = computed(() => sourceQuestions.value.filter(q => {
   const item = activeProgress.value[q.id]
   return (mode.value === 'review' || demoMode.value || (['notes', 'removed'].includes(mode.value) && !selectedYear.value) || paperKey(q) === selectedPaper.value)
@@ -92,11 +108,11 @@ const filtered = computed(() => sourceQuestions.value.filter(q => {
     && (!keyword.value.trim() || `${q.year} ${q.number} ${q.source} ${q.topic} ${q.stem} ${q.searchText ?? ''} ${q.level ?? ''} ${q.questionTypes?.map(type => type.title).join(' ') ?? ''} ${mode.value === 'notes' ? item?.note ?? '' : ''}`.toLowerCase().includes(keyword.value.trim().toLowerCase()))
 }))
 const queue = computed(() => queueIds.value.map(id => questionById.get(id)).filter(q => q !== undefined))
-const heading = computed(() => demoMode.value ? '错题示例' : mode.value === 'removed' ? '已移除题目' : mode.value === 'notes' ? '有笔记的题目' : mode.value === 'review' ? '数学二错题再练' : selectedChapter.value ? '李林 880 · 按题型练习' : '数学二错题本')
+const heading = computed(() => demoMode.value ? '错题示例' : mode.value === 'removed' ? '已移除题目' : mode.value === 'notes' ? '有笔记的题目' : mode.value === 'review' ? (isBook ? '李林 880 · 错题再练' : '数学二错题再练') : isBook ? '李林 880 · 按题型练习' : '数学二错题本')
 const markedInQueue = computed(() => queue.value.filter(q => activeProgress.value[q.id]?.mastery).length)
 const paperScope = computed(() => {
   const selected = papers.value.find(item => item.id === selectedPaper.value)
-  return selected ? `${selected.title}${selected.book ? '' : ' · 错题卷'}` : '错题卷'
+  return selected ? `${selected.title}${selected.book ? '' : ' · 错题卷'}` : isBook ? '李林 880' : '错题卷'
 })
 const yearGroups = computed(() => [...new Set(queue.value.map(q => q.paperId ?? String(q.year)))].map(id => {
   const group = queue.value.filter(q => (q.paperId ?? String(q.year)) === id)
@@ -135,7 +151,7 @@ async function selectView(view: 'all' | 'review' | 'notes' | 'removed', targetYe
   statusFilter.value = 'all'
   typeFilter.value = 'all'
   levelFilter.value = 'all'
-  await router.push({ name: 'practice', query: { ...(view !== 'all' ? { view } : {}), ...(targetYear && view !== 'review' ? { year: targetYear } : {}), ...(targetPaper && targetYear && targetPaper !== targetYear && view !== 'review' ? { paper: targetPaper } : {}) } })
+  await router.push({ name: routeName, query: { ...(view !== 'all' ? { view } : {}), ...(targetYear && view !== 'review' ? { year: targetYear } : {}), ...(targetPaper && targetYear && targetPaper !== targetYear && view !== 'review' ? { paper: targetPaper } : {}) } })
   await jumpToRoute()
 }
 function persist(id: string, patch: { mastery?: Mastery; removed?: boolean; note?: string; reviews?: number }) {
@@ -239,22 +255,29 @@ onBeforeUnmount(() => {
     <MathHeader hide-search />
     <PracticeImagePreview ref="imagePreview" />
     <div class="practice-layout">
-      <aside class="directory" aria-label="错题分类">
-        <button class="mobile-directory" :aria-expanded="directoryOpen" aria-controls="directory-content" @click="directoryOpen = !directoryOpen"><PracticeIcon name="book" />题库、试卷与复习目录<span>{{ directoryOpen ? '收起' : '展开' }}</span></button>
+      <aside class="directory" :aria-label="isBook ? '880章节与复习目录' : '试卷与复习目录'">
+        <button class="mobile-directory" :aria-expanded="directoryOpen" aria-controls="directory-content" @click="directoryOpen = !directoryOpen"><PracticeIcon name="book" />{{ isBook ? '880 章节与复习目录' : '试卷与复习目录' }}<span>{{ directoryOpen ? '收起' : '展开' }}</span></button>
         <div id="directory-content" class="directory-content" :class="{ open: directoryOpen }">
-          <div class="directory-brand"><PracticeIcon name="book" /><div><strong>错题工作台</strong></div></div>
+          <div class="directory-brand"><PracticeIcon name="book" /><div><strong>{{ isBook ? '李林 880 题库' : '错题工作台' }}</strong></div></div>
           <nav class="collection-nav" aria-label="错题集合">
-            <button :aria-pressed="mode === 'all'" :class="{ active: mode === 'all' }" @click="selectView('all')"><PracticeIcon name="book" />题库与试卷<span>{{ visibleQuestions.length }}</span></button>
+            <button :aria-pressed="mode === 'all'" :class="{ active: mode === 'all' }" @click="selectView('all')"><PracticeIcon name="book" />{{ isBook ? '全部章节' : '全部试卷' }}<span>{{ visibleQuestions.length }}</span></button>
             <button :aria-pressed="mode === 'review'" :class="{ active: mode === 'review' }" @click="selectView('review')"><PracticeIcon name="repeat" />错题再练<span>{{ pendingCount }}</span></button>
             <button :aria-pressed="mode === 'notes'" :class="{ active: mode === 'notes' }" @click="selectView('notes')"><PracticeIcon name="note" />有笔记的题目<span>{{ notedCount }}</span></button>
             <button :aria-pressed="mode === 'removed'" :class="{ active: mode === 'removed' }" @click="selectView('removed')"><PracticeIcon name="trash" />已移除题目<span>{{ removedCount }}</span></button>
           </nav>
-          <template v-if="mode !== 'review' && bookDirectory.length"><div class="directory-heading">李林 880 · 按章节<span>{{ bookDirectory.length }} 章</span></div><nav class="year-nav book-nav" aria-label="李林880章节"><button v-for="item in bookDirectory" :key="item.id" :aria-pressed="selectedPaper === item.id" :class="{ active: selectedPaper === item.id }" @click="selectView(mode, String(item.year), item.id)"><span>{{ item.title.replace('李林880 · ', '') }}</span><span>{{ mode === 'removed' ? item.removed : mode === 'notes' ? item.notes : item.count }}</span></button></nav></template>
-          <div v-if="mode !== 'review'" class="directory-heading">{{ mode === 'removed' ? '移除试卷' : mode === 'notes' ? '笔记试卷' : '试卷目录' }}<span>{{ examDirectory.length }} 张试卷</span></div>
-          <nav v-if="mode !== 'review'" class="year-nav" aria-label="试卷分类">
-            <button v-if="mode === 'notes' || mode === 'removed'" :aria-pressed="!selectedYear" :class="{ active: !selectedYear }" @click="selectView(mode)"><span>全部题目</span><span>{{ mode === 'removed' ? removedCount : notedCount }}</span></button>
-            <button v-for="item in examDirectory" :aria-pressed="selectedPaper === item.id" :key="item.id" :class="{ active: selectedPaper === item.id }" @click="selectView(mode, String(item.year), item.id)"><span>{{ item.title }}</span><span>{{ mode === 'removed' ? item.removed : mode === 'notes' ? item.notes : item.count }}</span></button>
+          <nav v-if="mode === 'notes' || mode === 'removed'" class="year-nav all-notes" aria-label="汇总题目">
+            <button :aria-pressed="!selectedYear" :class="{ active: !selectedYear }" @click="selectView(mode)"><span>全部题目</span><span>{{ mode === 'removed' ? removedCount : notedCount }}</span></button>
           </nav>
+          <template v-if="mode !== 'review' && isBook"><div class="directory-heading">章节目录<span>{{ bookDirectory.length }} 章</span></div><nav class="year-nav book-nav" aria-label="李林880章节"><button v-for="item in bookDirectory" :key="item.id" :aria-pressed="selectedPaper === item.id" :class="{ active: selectedPaper === item.id }" @click="selectView(mode, String(item.year), item.id)"><span>{{ item.title.replace('李林880 · ', '') }}</span><span>{{ mode === 'removed' ? item.removed : mode === 'notes' ? item.notes : item.count }}</span></button></nav></template>
+          <template v-if="mode !== 'review' && !isBook">
+            <div class="directory-heading">{{ mode === 'removed' ? '移除试卷' : mode === 'notes' ? '笔记试卷' : '试卷目录' }}<span>{{ examDirectory.length }} 张试卷</span></div>
+            <details v-for="group in examGroups" :key="group.id" class="exam-folder" :open="expandedGroups.includes(group.id)" @toggle="toggleGroup(group.id, $event)">
+              <summary><span class="folder-chevron" aria-hidden="true"></span><span>{{ group.title }}</span><small>{{ group.papers.length }} {{ group.id === 'real' ? '年' : '套' }}</small></summary>
+              <nav class="year-nav" :aria-label="`${group.title}试卷目录`">
+                <button v-for="item in group.papers" :key="item.id" :aria-pressed="selectedPaper === item.id" :class="{ active: selectedPaper === item.id }" @click="selectView(mode, String(item.year), item.id)"><span>{{ group.id === 'zy2026' ? item.title.split(' · ').at(-1) : item.title }}</span><span>{{ mode === 'removed' ? item.removed : mode === 'notes' ? item.notes : item.count }}</span></button>
+              </nav>
+            </details>
+          </template>
           <p v-if="!papers.length" class="directory-empty">题目上传后，这里会按真题年份和模拟卷套数生成目录。</p>
           <div class="progress-card"><div><span>已掌握</span><strong>{{ masteredCount }} <small>/ {{ visibleQuestions.length }}</small></strong></div><progress :value="masteredCount" :max="visibleQuestions.length || 1" aria-label="正式错题掌握进度" /><p>不熟练和不会的题，会自动收集到错题再练。</p></div>
           <div class="backup-actions"><button @click="exportBackup"><PracticeIcon name="download" />导出进度</button><button @click="importInput?.click()"><PracticeIcon name="upload" />恢复进度</button><input ref="importInput" class="visually-hidden" type="file" accept=".json,application/json" aria-label="选择进度备份" @change="importBackup" /></div>
@@ -262,21 +285,21 @@ onBeforeUnmount(() => {
         </div>
       </aside>
       <main id="practice-main">
-        <header class="workspace-heading"><div><h1>{{ heading }}</h1><p v-if="mode === 'removed'">移除的题目可以随时恢复</p><p v-else-if="mode === 'notes'">写过笔记的题目，按试卷汇总</p><p v-else-if="mode === 'review'">所有年份的不熟练和不会题目</p></div><button v-if="mode === 'all' || mode === 'review'" class="primary-button" @click="mode === 'review' ? restartQueue() : selectView('review')"><PracticeIcon name="repeat" />{{ mode === 'review' ? '重新开始本轮' : '全部错题再练' }}<span v-if="mode !== 'review'">{{ pendingCount }}</span></button></header>
+        <header class="workspace-heading"><div><h1>{{ heading }}</h1><p v-if="mode === 'removed'">移除的题目可以随时恢复</p><p v-else-if="mode === 'notes'">{{ isBook ? '写过笔记的 880 题目，按章节汇总' : '写过笔记的题目，按试卷汇总' }}</p><p v-else-if="mode === 'review'">{{ isBook ? '880 各章节的不熟练和不会题目' : '真题与张宇四套卷的不熟练和不会题目' }}</p></div><button v-if="mode === 'all' || mode === 'review'" class="primary-button" @click="mode === 'review' ? restartQueue() : selectView('review')"><PracticeIcon name="repeat" />{{ mode === 'review' ? '重新开始本轮' : '全部错题再练' }}<span v-if="mode !== 'review'">{{ pendingCount }}</span></button></header>
         <section v-if="!questions.length" class="preview-banner"><PracticeIcon name="book" /><div><strong>错题本已就绪，等待录入你的题目</strong><p>下方使用你提供的截图演示操作，年份尚未确认，不计入正式题库和复习统计。</p></div><button @click="demoMode = !demoMode">{{ demoMode ? '收起示例' : '体验示例' }}</button></section>
         <p v-if="storageFailed" role="alert" class="storage-error">浏览器暂时无法保存进度，请立即导出备份以保留本次标记和笔记。</p>
         <p class="print-summary print-only">{{ pdfTitle }} · 含答案解析与笔记</p>
         <section v-if="selectedChapter && mode !== 'review'" class="chapter-filters" aria-label="880题型筛选"><div class="chapter-intro"><p>沿用已有分类 · {{ selectedChapter.count }} 道题 · {{ selectedChapter.types.length }} 个题型</p><a :href="`${baseUrl}${selectedChapter.sourceFile}`" target="_blank" rel="noopener">查看原分类总结</a></div><div class="chapter-filter-controls"><label>具体题型<select v-model="typeFilter" aria-label="按具体题型筛选"><option value="all">全部题型</option><option v-for="item in chapterTypes" :key="item.id" :value="item.id">{{ item.order }}. {{ item.title }}</option></select></label><label>原书分层<select v-model="levelFilter" aria-label="按原书基础综合拓展筛选"><option value="all">基础、综合与拓展</option><option v-for="level in ['基础题', '综合题', '拓展题']" :key="level" :value="level">{{ level }}</option></select></label></div><p class="chapter-hint">同一道题的不同小问可对应多个题型，筛选时会一并收录。</p></section>
-        <div class="toolbar"><div class="scope-label">{{ demoMode ? '交互示例' : mode === 'review' ? '全部年份错题' : mode === 'removed' ? (selectedYear ? `${paperScope} · 已移除题目` : '全部已移除题目') : mode === 'notes' ? (selectedYear ? `${paperScope} · 笔记题目` : '全部笔记题目') : paperScope }}<span>{{ queue.length }} 题 · 已标记 {{ markedInQueue }}</span></div><div class="toolbar-filters"><button class="pdf-button" :disabled="!queue.length || exportingPdf" @click="exportPdf"><PracticeIcon name="download" />{{ exportingPdf ? '准备导出…' : '导出 PDF' }}</button><label class="question-search"><PracticeIcon name="search" /><input v-model="keyword" maxlength="80" aria-label="搜索错题" :placeholder="mode === 'notes' ? '搜索题目、笔记内容' : '搜索题目、知识点'" /></label><select v-model="statusFilter" aria-label="按掌握程度筛选"><option value="all">全部状态</option><option value="unmarked">未标记</option><option v-for="status in statuses" :key="status.value" :value="status.value">{{ status.label }}</option></select></div></div>
+        <div class="toolbar"><div class="scope-label">{{ demoMode ? '交互示例' : mode === 'review' ? (isBook ? '880 全部章节错题' : '全部试卷错题') : mode === 'removed' ? (selectedYear ? `${paperScope} · 已移除题目` : '全部已移除题目') : mode === 'notes' ? (selectedYear ? `${paperScope} · 笔记题目` : '全部笔记题目') : paperScope }}<span>{{ queue.length }} 题 · 已标记 {{ markedInQueue }}</span></div><div class="toolbar-filters"><button class="pdf-button" :disabled="!queue.length || exportingPdf" @click="exportPdf"><PracticeIcon name="download" />{{ exportingPdf ? '准备导出…' : '导出 PDF' }}</button><label class="question-search"><PracticeIcon name="search" /><input v-model="keyword" maxlength="80" aria-label="搜索错题" :placeholder="mode === 'notes' ? '搜索题目、笔记内容' : '搜索题目、知识点'" /></label><select v-model="statusFilter" aria-label="按掌握程度筛选"><option value="all">全部状态</option><option value="unmarked">未标记</option><option v-for="status in statuses" :key="status.value" :value="status.value">{{ status.label }}</option></select></div></div>
         <div v-if="queue.length" class="question-list">
           <div v-if="mode === 'review'" class="year-questions review-questions"><PracticeQuestionCard v-for="(question, index) in queue" :key="`${round}-${question.id}`" :question="question" :index="index + 1" :progress="activeProgress[question.id]" :storage-failed="storageFailed" :print-mode="exportingPdf" :manageable="!demoMode" @remove="removeQuestion" @restore="restoreQuestion" @note-blur="refreshNotesQueue" @mark="mark" @note="saveNote" @preview="openImage" /></div>
           <section v-for="group in mode === 'review' ? [] : yearGroups" :id="`practice-year-${group.id}`" :key="group.id" class="year-section" :aria-labelledby="`year-title-${group.id}`">
             <header class="paper-heading"><div><span class="paper-label">{{ mode === 'removed' ? '已移除题目' : mode === 'notes' ? '有笔记的题目' : group.book ? '2027 版 · 原分类题型' : group.mock ? '模拟卷与配套练习' : '真题与配套练习' }}</span><h2 :id="`year-title-${group.id}`">{{ group.title }}{{ mode === 'removed' ? ' · 已移除题目' : mode === 'notes' ? ' · 笔记题目' : '' }}</h2></div><span>{{ group.questions.length }} 题</span></header>
             <section v-for="section in group.sections" :key="section.id" class="type-section" :aria-label="section.title || group.title"><h3 v-if="section.title" class="type-heading">{{ section.title }}<small>{{ section.questions.length }} 题</small></h3><div class="year-questions"><PracticeQuestionCard v-for="(question, index) in section.questions" :key="`${round}-${question.id}`" :question="question" :index="index + 1" :progress="activeProgress[question.id]" :storage-failed="storageFailed" :print-mode="exportingPdf" :show-note="mode === 'notes' || mode === 'removed'" :manageable="!demoMode" :removed="mode === 'removed'" @remove="removeQuestion" @restore="restoreQuestion" @note-blur="refreshNotesQueue" @mark="mark" @note="saveNote" @preview="openImage" /></div></section>
           </section>
-          <footer class="paper-end"><strong>{{ mode === 'review' ? '错题再练 · 本轮结束' : mode === 'removed' ? '已移除题目 · 本页结束' : mode === 'notes' ? '笔记汇总 · 本页结束' : `${paperScope} · 本卷结束` }}</strong></footer>
+          <footer class="paper-end"><strong>{{ mode === 'review' ? '错题再练 · 本轮结束' : mode === 'removed' ? '已移除题目 · 本页结束' : mode === 'notes' ? '笔记汇总 · 本页结束' : `${paperScope} · ${isBook ? '本章' : '本卷'}结束` }}</strong></footer>
         </div>
-        <section v-else class="empty-state"><PracticeIcon :name="mode === 'review' ? 'check' : 'book'" /><h2>{{ mode === 'removed' ? '暂无符合条件的已移除题目' : mode === 'notes' ? '暂无符合条件的笔记题目' : mode === 'review' ? '这里暂时没有需要再练的题' : questions.length ? '没有符合筛选条件的题目' : '准备好收集你的第一道错题' }}</h2><p>{{ mode === 'removed' ? '点击题目上的“移除题目”后，会收集到这里，笔记和熟练度保留。' : mode === 'notes' ? '在题目下方写下笔记后，会自动收集到这里；也可以调整年份、状态或搜索条件。' : mode === 'review' ? '将题目标为“不熟练”或“不会”后，它们会自动出现在这里。' : questions.length ? '试试其他年份、状态，或清空搜索关键词。' : '上传题目时附上年份，我会把题干、答案和解析一起录入。' }}</p><button v-if="mode !== 'all'" class="primary-button" @click="selectView('all')">返回错题本</button></section>
+        <section v-else class="empty-state"><PracticeIcon :name="mode === 'review' ? 'check' : 'book'" /><h2>{{ mode === 'removed' ? '暂无符合条件的已移除题目' : mode === 'notes' ? '暂无符合条件的笔记题目' : mode === 'review' ? '这里暂时没有需要再练的题' : questions.length ? '没有符合筛选条件的题目' : '准备好收集你的第一道错题' }}</h2><p>{{ mode === 'removed' ? '点击题目上的“移除题目”后，会收集到这里，笔记和熟练度保留。' : mode === 'notes' ? '在题目下方写下笔记后，会自动收集到这里；也可以调整目录、状态或搜索条件。' : mode === 'review' ? '将题目标为“不熟练”或“不会”后，它们会自动出现在这里。' : questions.length ? '试试其他目录、状态，或清空搜索关键词。' : '上传题目时附上年份，我会把题干、答案和解析一起录入。' }}</p><button v-if="mode !== 'all'" class="primary-button" @click="selectView('all')">{{ isBook ? '返回 880 章节' : '返回错题本' }}</button></section>
         <p v-if="notice" class="notice" role="status" aria-live="polite">{{ notice }}<button v-if="undoRemovalId && notice.startsWith('已移除')" @click="restoreQuestion(undoRemovalId)">撤销</button></p>
       </main>
     </div>
@@ -300,6 +323,18 @@ button { transition: background .16s, border-color .16s, color .16s; }
 .collection-nav, .year-nav { display: grid; gap: 5px; }.collection-nav button, .year-nav button { display: flex; gap: 10px; align-items: center; width: 100%; min-height: 46px; border: 1px solid transparent; border-radius: 9px; padding: 10px 13px; background: transparent; color: var(--ink-soft); text-align: left; font-size: 14px; }.collection-nav button > span:last-child, .year-nav button > span:last-child { margin-left: auto; font-size: 12px; font-variant-numeric: tabular-nums; }.collection-nav button.active, .year-nav button.active { background: var(--accent-tint); color: var(--accent-dark); font-weight: 700; border-color: #dbe5fc; }.collection-nav button:hover, .year-nav button:not(:disabled):hover { border-color: var(--line-strong); background: var(--surface-soft); }
 .year-nav button:disabled { opacity: .45; cursor: default; }
 .directory-heading { display: flex; justify-content: space-between; margin: 18px 13px 10px; font-size: 12px; font-weight: 650; color: var(--ink-soft); }.directory-heading span { color: var(--muted); font-weight: 400; }.year-nav { gap: 3px; }.year-nav button { min-height: 40px; padding: 8px 13px; }.directory-empty { margin: 0 13px; font-size: 13px; color: var(--muted); line-height: 1.8; }
+.all-notes { margin-top: 12px; }
+.exam-folder + .exam-folder { margin-top: 6px; }
+.exam-folder summary { display: flex; align-items: center; gap: 8px; min-height: 46px; border-radius: 9px; padding: 9px 10px; color: var(--ink); font-size: 13px; font-weight: 650; line-height: 1.6; list-style: none; cursor: pointer; }
+.exam-folder summary::-webkit-details-marker { display: none; }
+.exam-folder summary:hover { background: var(--surface-soft); }
+.exam-folder summary:focus-visible { outline: 3px solid var(--focus-ring); }
+.exam-folder summary > span:nth-child(2) { flex: 1; }
+.exam-folder summary small { flex-shrink: 0; color: var(--muted); font-size: 11px; font-weight: 400; }
+.folder-chevron { width: 7px; height: 7px; flex-shrink: 0; margin-right: 3px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(-45deg); }
+.exam-folder[open] .folder-chevron { transform: rotate(45deg); }
+.exam-folder .year-nav { margin: 2px 0 8px 9px; padding-left: 7px; border-left: 1px solid var(--line); }
+.exam-folder .year-nav button { min-height: 44px; }
 .progress-card { margin-top: 20px; border: 1px solid var(--line); border-radius: 10px; padding: 14px; background: var(--surface-soft); }.progress-card > div { display: flex; align-items: center; justify-content: space-between; font-size: 13px; }.progress-card strong { font-size: 21px; color: var(--accent-dark); }.progress-card small { font-size: 13px; color: var(--muted); font-weight: 400; }
 progress { width: 100%; height: 5px; display: block; margin-top: 12px; border: 0; border-radius: 9px; overflow: hidden; background: var(--line); accent-color: var(--success); }progress::-webkit-progress-bar { background: var(--line); }progress::-webkit-progress-value { background: var(--success); }.progress-card p { margin: 12px 0 0; color: var(--muted); font-size: 12px; line-height: 1.8; }
 .backup-actions { display: flex; gap: 6px; margin-top: 16px; }.backup-actions button { display: flex; align-items: center; gap: 7px; min-height: 44px; border: 0; background: transparent; color: var(--ink-soft); padding: 0 9px; font-size: 12px; }.backup-actions svg { width: 15px; }.backup-actions button:hover { color: var(--accent); }.storage-hint { margin: 6px 10px 0; color: var(--muted); font-size: 12px; line-height: 1.8; }
