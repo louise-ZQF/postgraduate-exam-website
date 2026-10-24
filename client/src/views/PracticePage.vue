@@ -108,7 +108,7 @@ const filtered = computed(() => sourceQuestions.value.filter(q => {
     && (!keyword.value.trim() || `${q.year} ${q.number} ${q.source} ${q.topic} ${q.stem} ${q.searchText ?? ''} ${q.level ?? ''} ${q.questionTypes?.map(type => type.title).join(' ') ?? ''} ${mode.value === 'notes' ? item?.note ?? '' : ''}`.toLowerCase().includes(keyword.value.trim().toLowerCase()))
 }))
 const queue = computed(() => queueIds.value.map(id => questionById.get(id)).filter(q => q !== undefined))
-const heading = computed(() => demoMode.value ? '错题示例' : mode.value === 'removed' ? '已移除题目' : mode.value === 'notes' ? '有笔记的题目' : mode.value === 'review' ? (isBook ? '李林 880 · 错题再练' : '数学二错题再练') : isBook ? '李林 880 · 按题型练习' : '数学二错题本')
+const heading = computed(() => demoMode.value ? '错题示例' : mode.value === 'removed' ? (isBook ? '880 · 已移除题目' : '试卷 · 已移除题目') : mode.value === 'notes' ? (isBook ? '880 · 题目笔记' : '试卷 · 题目笔记') : mode.value === 'review' ? (isBook ? '李林 880 · 错题再练' : '试卷 · 错题再练') : isBook ? '李林 880 · 按题型练习' : '数学二试卷错题本')
 const markedInQueue = computed(() => queue.value.filter(q => activeProgress.value[q.id]?.mastery).length)
 const paperScope = computed(() => {
   const selected = papers.value.find(item => item.id === selectedPaper.value)
@@ -165,7 +165,7 @@ function persist(id: string, patch: { mastery?: Mastery; removed?: boolean; note
 }
 function mark(id: string, mastery: Mastery) {
   persist(id, { mastery, reviews: (activeProgress.value[id]?.reviews ?? 0) + (mode.value === 'review' ? 1 : 0) })
-  notice.value = demoMode.value ? '示例状态已更新' : mastery === 'mastered' ? '已掌握，已移出待复习集合' : '已加入错题再练'
+  notice.value = demoMode.value ? '示例状态已更新' : mastery === 'mastered' ? '已掌握，已移出待复习集合' : isBook ? '已加入 880 错题再练' : '已加入试卷错题再练'
 }
 function saveNote(id: string, note: string) { persist(id, { note }) }
 function refreshNotesQueue() {
@@ -258,10 +258,10 @@ onBeforeUnmount(() => {
       <aside class="directory" :aria-label="isBook ? '880章节与复习目录' : '试卷与复习目录'">
         <button class="mobile-directory" :aria-expanded="directoryOpen" aria-controls="directory-content" @click="directoryOpen = !directoryOpen"><PracticeIcon name="book" />{{ isBook ? '880 章节与复习目录' : '试卷与复习目录' }}<span>{{ directoryOpen ? '收起' : '展开' }}</span></button>
         <div id="directory-content" class="directory-content" :class="{ open: directoryOpen }">
-          <div class="directory-brand"><PracticeIcon name="book" /><div><strong>{{ isBook ? '李林 880 题库' : '错题工作台' }}</strong></div></div>
+          <div class="directory-brand"><PracticeIcon name="book" /><div><strong>{{ isBook ? '李林 880 题库' : '试卷错题本' }}</strong></div></div>
           <nav class="collection-nav" aria-label="错题集合">
             <button :aria-pressed="mode === 'all'" :class="{ active: mode === 'all' }" @click="selectView('all')"><PracticeIcon name="book" />{{ isBook ? '全部章节' : '全部试卷' }}<span>{{ visibleQuestions.length }}</span></button>
-            <button :aria-pressed="mode === 'review'" :class="{ active: mode === 'review' }" @click="selectView('review')"><PracticeIcon name="repeat" />错题再练<span>{{ pendingCount }}</span></button>
+            <button :aria-pressed="mode === 'review'" :class="{ active: mode === 'review' }" @click="selectView('review')"><PracticeIcon name="repeat" />{{ isBook ? '880 错题再练' : '试卷错题再练' }}<span>{{ pendingCount }}</span></button>
             <button :aria-pressed="mode === 'notes'" :class="{ active: mode === 'notes' }" @click="selectView('notes')"><PracticeIcon name="note" />有笔记的题目<span>{{ notedCount }}</span></button>
             <button :aria-pressed="mode === 'removed'" :class="{ active: mode === 'removed' }" @click="selectView('removed')"><PracticeIcon name="trash" />已移除题目<span>{{ removedCount }}</span></button>
           </nav>
@@ -279,13 +279,13 @@ onBeforeUnmount(() => {
             </details>
           </template>
           <p v-if="!papers.length" class="directory-empty">题目上传后，这里会按真题年份和模拟卷套数生成目录。</p>
-          <div class="progress-card"><div><span>已掌握</span><strong>{{ masteredCount }} <small>/ {{ visibleQuestions.length }}</small></strong></div><progress :value="masteredCount" :max="visibleQuestions.length || 1" aria-label="正式错题掌握进度" /><p>不熟练和不会的题，会自动收集到错题再练。</p></div>
+          <div class="progress-card"><div><span>已掌握</span><strong>{{ masteredCount }} <small>/ {{ visibleQuestions.length }}</small></strong></div><progress :value="masteredCount" :max="visibleQuestions.length || 1" :aria-label="isBook ? '880掌握进度' : '试卷错题掌握进度'" /><p>{{ isBook ? '880 的不熟练和不会题目，只收集到 880 错题再练。' : '试卷的不熟练和不会题目，只收集到试卷错题再练。' }}</p></div>
           <div class="backup-actions"><button @click="exportBackup"><PracticeIcon name="download" />导出进度</button><button @click="importInput?.click()"><PracticeIcon name="upload" />恢复进度</button><input ref="importInput" class="visually-hidden" type="file" accept=".json,application/json" aria-label="选择进度备份" @change="importBackup" /></div>
           <p class="storage-hint">进度保存在当前浏览器；换设备时可导出备份再恢复。</p>
         </div>
       </aside>
       <main id="practice-main">
-        <header class="workspace-heading"><div><h1>{{ heading }}</h1><p v-if="mode === 'removed'">移除的题目可以随时恢复</p><p v-else-if="mode === 'notes'">{{ isBook ? '写过笔记的 880 题目，按章节汇总' : '写过笔记的题目，按试卷汇总' }}</p><p v-else-if="mode === 'review'">{{ isBook ? '880 各章节的不熟练和不会题目' : '真题与张宇四套卷的不熟练和不会题目' }}</p></div><button v-if="mode === 'all' || mode === 'review'" class="primary-button" @click="mode === 'review' ? restartQueue() : selectView('review')"><PracticeIcon name="repeat" />{{ mode === 'review' ? '重新开始本轮' : '全部错题再练' }}<span v-if="mode !== 'review'">{{ pendingCount }}</span></button></header>
+        <header class="workspace-heading"><div><h1>{{ heading }}</h1><p v-if="mode === 'removed'">移除的题目可以随时恢复</p><p v-else-if="mode === 'notes'">{{ isBook ? '写过笔记的 880 题目，按章节汇总' : '写过笔记的题目，按试卷汇总' }}</p><p v-else-if="mode === 'review'">{{ isBook ? '880 各章节的不熟练和不会题目' : '真题与张宇四套卷的不熟练和不会题目' }}</p></div><button v-if="mode === 'all' || mode === 'review'" class="primary-button" @click="mode === 'review' ? restartQueue() : selectView('review')"><PracticeIcon name="repeat" />{{ mode === 'review' ? '重新开始本轮' : isBook ? '880 错题再练' : '试卷错题再练' }}<span v-if="mode !== 'review'">{{ pendingCount }}</span></button></header>
         <section v-if="!questions.length" class="preview-banner"><PracticeIcon name="book" /><div><strong>错题本已就绪，等待录入你的题目</strong><p>下方使用你提供的截图演示操作，年份尚未确认，不计入正式题库和复习统计。</p></div><button @click="demoMode = !demoMode">{{ demoMode ? '收起示例' : '体验示例' }}</button></section>
         <p v-if="storageFailed" role="alert" class="storage-error">浏览器暂时无法保存进度，请立即导出备份以保留本次标记和笔记。</p>
         <p class="print-summary print-only">{{ pdfTitle }} · 含答案解析与笔记</p>
