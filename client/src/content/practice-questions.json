@@ -8296,5 +8296,2043 @@
     "stem": "设 $A$ 为 $n$ 阶矩阵，$\\alpha$ 为 $n$ 维列向量。若 $A^{m-1} \\alpha \\ne 0$，$A^m \\alpha = 0$，证明向量组 $\\alpha, A\\alpha, \\dots, A^{m-1} \\alpha$ 线性无关。",
     "answer": "证明见解析",
     "explanation": "设 $c_0\\alpha+c_1A\\alpha+\\cdots+c_{m-1}A^{m-1}\\alpha=0$。左乘 $A^{m-1}$ 得 $c_0A^{m-1}\\alpha=0$，故 $c_0=0$。再依次左乘 $A^{m-2},A^{m-3},\\ldots,E$，可得 $c_1=\\cdots=c_{m-1}=0$。因此 $\\alpha,A\\alpha,\\ldots,A^{m-1}\\alpha$ 线性无关。"
+  },
+  {
+    "id": "math2-2025-q4-weak01",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "1",
+    "examNumber": "4",
+    "exerciseIndex": 1,
+    "kind": "exercise",
+    "source": "非真题练习 · 26版 1000第一章强化24",
+    "sourceCategory": "book",
+    "topic": "小 o 与等价无穷小 / 等价不等于相等；等价无穷小相减的阶数",
+    "type": "choice",
+    "stem": "当 $x \\to 0$ 时，$a(x)$ 与 $\\beta(x)$ 是非零且不相等的等价无穷小量，以下 4 个结论：\n① $a(x) + \\beta(x) = 2a(x)$; ② $a(x) + \\beta(x) = 2\\beta(x)$;\n③ $a(x) - \\beta(x) = o(a(x))$; ④ $a(x) - \\beta(x) = o(\\beta(x))$.\n所有正确结论的序号是（）.",
+    "answer": "**B**。",
+    "explanation": "答案 B，正确的是③④。由 $a/\\beta\\to1$ 可得\n$$\n\\frac{a-\\beta}{a}=1-\\frac\\beta a\\to0,\\qquad\n\\frac{a-\\beta}{\\beta}=\\frac a\\beta-1\\to0.\n$$\n所以相减后的量同时是 $a$ 和 $\\beta$ 的高阶无穷小。①②写的是严格相等，而不是等价关系；实际上只能推出 $a+\\beta\\sim2a\\sim2\\beta$。\n\n[原题来源，题库编号4168](https://cxyonly.fans/math/questions/4168)",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g01",
+        "title": "一、小 o 与等价无穷小 · 对应第4题",
+        "references": [
+          "2025数二第4题"
+        ]
+      }
+    ],
+    "sourceOrder": 1,
+    "options": [
+      {
+        "key": "A",
+        "text": "①③"
+      },
+      {
+        "key": "B",
+        "text": "③④"
+      },
+      {
+        "key": "C",
+        "text": "①②③④"
+      },
+      {
+        "key": "D",
+        "text": "②④"
+      }
+    ],
+    "correctOption": "B",
+    "sourceUrl": "https://cxyonly.fans/math/questions/4168"
+  },
+  {
+    "id": "math2-2025-q4-weak02",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "2",
+    "examNumber": "4",
+    "exerciseIndex": 2,
+    "kind": "exercise",
+    "source": "非真题练习 · 900数二第一章A类16",
+    "sourceCategory": "book",
+    "topic": "小 o 与等价无穷小 / 等价替换在减法中失效的反例",
+    "type": "choice",
+    "stem": "当 $x \\rightarrow 0$ 时，若 $\\alpha_{1}(x), \\alpha_{2}(x), \\beta_{1}(x), \\beta_{2}(x)$ 都是非零无穷小量，且 $\\alpha_{1}(x) \\sim \\alpha_{2}(x)$，$\\beta_{1}(x) \\sim \\beta_{2}(x)$，则下列命题中，错误的是（）",
+    "answer": "**C**。",
+    "explanation": "答案 C。A、B 都是 $\\alpha\\sim\\beta$ 与 $\\alpha-\\beta=o(\\alpha)$ 的相互转化。D 中 $\\alpha_1=o(\\beta_1)$，所以两边的差都与 $-\\beta_1$ 等价。\n\n相减后不能直接分别替换等价无穷小。对 C，取 $\\alpha_1=x,\\ \\beta_1=x+x^2,\\ \\alpha_2=x,\\ \\beta_2=x+x^3$，各自满足题设，但\n$$\n\\alpha_1-\\beta_1=-x^2,\\qquad \\alpha_2-\\beta_2=-x^3,\n$$\n两者并不等价。\n\n[原题来源，题库编号4169](https://cxyonly.fans/math/questions/4169)",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g01",
+        "title": "一、小 o 与等价无穷小 · 对应第4题",
+        "references": [
+          "2025数二第4题"
+        ]
+      }
+    ],
+    "sourceOrder": 2,
+    "options": [
+      {
+        "key": "A",
+        "text": "若 $\\alpha_{1}(x) \\sim \\beta_{1}(x)$，则 $\\alpha_{2}(x) - \\beta_{2}(x) = o(\\alpha_{2}(x))$."
+      },
+      {
+        "key": "B",
+        "text": "若 $\\alpha_{1}(x)-\\beta_{1}(x)=o(\\alpha_{1}(x))$，则 $\\alpha_{2}(x)\\sim\\beta_{2}(x)$."
+      },
+      {
+        "key": "C",
+        "text": "若 $\\alpha_{1}(x) \\sim \\beta_{1}(x)$，则 $\\alpha_{1}(x) - \\beta_{1}(x) \\sim \\alpha_{2}(x) - \\beta_{2}(x)$."
+      },
+      {
+        "key": "D",
+        "text": "若 $\\alpha_{1}(x)=o(\\beta_{1}(x))$，则 $\\alpha_{1}(x)-\\beta_{1}(x) \\sim \\alpha_{2}(x)-\\beta_{2}(x)$."
+      }
+    ],
+    "correctOption": "C",
+    "sourceUrl": "https://cxyonly.fans/math/questions/4169"
+  },
+  {
+    "id": "math2-2025-q4-weak03",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "3",
+    "examNumber": "4",
+    "exerciseIndex": 3,
+    "kind": "exercise",
+    "source": "非真题练习 · 26版660数二第515题",
+    "sourceCategory": "book",
+    "topic": "小 o 与等价无穷小 / 无穷小、无穷大、有界与无界的区别",
+    "type": "choice",
+    "stem": "下列命题正确的是（）",
+    "answer": "**C**。",
+    "explanation": "答案 C。C 中\n$$\n\\beta(x)=[\\alpha(x)\\beta(x)]\\frac1{\\alpha(x)}\\to a\\cdot0=0.\n$$\nA 取 $x_0=0,\\ \\alpha(x)=x,\\ \\beta(x)=1$ 即可反驳；B 的条件实际推出 $\\beta\\to0$。D 必须特别区分“无界”与“无穷大”：取去心邻域内 $\\alpha(x)=1/x$（$x$ 为有理数），$\\alpha(x)=0$（$x$ 为无理数），并令 $\\beta(x)$ 分别为 0 和 1，则 $\\alpha\\beta\\equiv0$，$\\alpha$ 无界，但 $\\beta$ 没有极限。\n\n[原题来源，题库编号4171](https://cxyonly.fans/math/questions/4171)",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g01",
+        "title": "一、小 o 与等价无穷小 · 对应第4题",
+        "references": [
+          "2025数二第4题"
+        ]
+      }
+    ],
+    "sourceOrder": 3,
+    "options": [
+      {
+        "key": "A",
+        "text": "设在 $x = x_{0}$ 空心邻域 $\\alpha(x)$ 为有界函数，且 $\\lim_{x \\to x_{0}} \\alpha(x) \\beta(x) = 0$，则 $\\lim_{x \\to x_{0}} \\beta(x) = 0$."
+      },
+      {
+        "key": "B",
+        "text": "设 $x \\to x_{0}$ 时 $\\alpha(x)$ 为无穷小，且 $\\lim_{x \\to x_{0}} \\frac{\\alpha(x)}{\\beta(x)} = a \\neq 0$，则 $\\lim_{x \\to x_{0}} \\beta(x) = \\infty$."
+      },
+      {
+        "key": "C",
+        "text": "设 $x \\rightarrow x_{0}$ 时 $\\alpha(x)$ 为无穷大，且 $\\lim_{x \\to x_{0}} \\alpha(x) \\beta(x) = a$，则 $\\lim_{x \\to x_{0}} \\beta(x) = 0$."
+      },
+      {
+        "key": "D",
+        "text": "设在 $x = x_{0}$ 空心邻域 $\\alpha(x)$ 为无界函数，且 $\\lim_{x \\to x_{0}} \\alpha(x) \\beta(x) = 0$，则 $\\lim_{x \\to x_{0}} \\beta(x) = 0$."
+      }
+    ],
+    "correctOption": "C",
+    "sourceUrl": "https://cxyonly.fans/math/questions/4171"
+  },
+  {
+    "id": "math2-2025-q4-weak04",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "4",
+    "examNumber": "4",
+    "exerciseIndex": 4,
+    "kind": "exercise",
+    "source": "非真题练习 · 900 数二第一章 B 类 17",
+    "sourceCategory": "book",
+    "topic": "小 o 与等价无穷小 / 小 o 与原函数、变上限积分的联系",
+    "type": "choice",
+    "stem": "设函数 $f(x)$ 连续，$F(x)$ 为 $f(x)$ 的原函数，则下列命题中，错误的是()",
+    "answer": "**A**。",
+    "explanation": "答案 A。A 漏了原函数的常数项：取 $f\\equiv0,\\ F\\equiv1$，就有 $f=o(1)$，但 $F$ 不是 $o(x)$。\n\nB 中 $F=o(x)$ 先推出 $F(0)=0$，再由 $F'(0)=\\lim_{x\\to0}F(x)/x=0$ 得 $f(0)=0$，结合 $f$ 连续可得 $f=o(1)$。C 由积分中值定理成立；D 将 $\\int_0^x f(t)\\,dt$ 除以 $x$ 再令 $x\\to0$，得到 $f(0)=0$。\n\n[原题来源，题库编号4175](https://cxyonly.fans/math/questions/4175)",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g01",
+        "title": "一、小 o 与等价无穷小 · 对应第4题",
+        "references": [
+          "2025数二第4题"
+        ]
+      }
+    ],
+    "sourceOrder": 4,
+    "options": [
+      {
+        "key": "A",
+        "text": "当 $x \\to 0$ 时，若 $f(x) = o(1)$，则 $F(x) = o(x)$."
+      },
+      {
+        "key": "B",
+        "text": "当 $x \\to 0$ 时，若 $F(x) = o(x)$，则 $f(x) = o(1)$."
+      },
+      {
+        "key": "C",
+        "text": "当 $x \\to 0$ 时，若 $f(x) = o(1)$，则 $\\int_{0}^{x} f(t) \\, dt = o(x)$."
+      },
+      {
+        "key": "D",
+        "text": "当 $x \\to 0$ 时，若 $\\int_{0}^{x} f(t) \\, dt = o(x)$，则 $f(x) = o(1)$."
+      }
+    ],
+    "correctOption": "A",
+    "sourceUrl": "https://cxyonly.fans/math/questions/4175"
+  },
+  {
+    "id": "math2-2025-q4-weak05",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "5",
+    "examNumber": "4",
+    "exerciseIndex": 5,
+    "kind": "exercise",
+    "source": "非真题练习 · 900 数二第一章 B 类 16",
+    "sourceCategory": "book",
+    "topic": "小 o 与等价无穷小 / 由高阶无穷小判断原点可导；同阶条件的陷阱",
+    "type": "choice",
+    "stem": "设函数 $f(x)$ 在 R 上处处有定义，且 $f(0) = 0$，则下列命题中，错误的是()",
+    "answer": "**C**。",
+    "explanation": "答案 C。A、B 都可推出 $f(x)/x\\to0$，而 $f(0)=0$，因此 $f'(0)=0$。D 由导数定义直接得到 $f(x)/x\\to f'(0)\\ne0$。\n\nC 取 $g(x)=x,\\ h(x)=2x$，$f(x)=x[\\frac32+\\frac12\\sin(1/x)]$（$x\\ne0$），$f(0)=0$。题设的正、负半轴不等式均成立，但 $f(x)/x$ 不收敛，所以不能推出与 $x$ 同阶。\n\n[原题来源，题库编号4176](https://cxyonly.fans/math/questions/4176)",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g01",
+        "title": "一、小 o 与等价无穷小 · 对应第4题",
+        "references": [
+          "2025数二第4题"
+        ]
+      }
+    ],
+    "sourceOrder": 5,
+    "options": [
+      {
+        "key": "A",
+        "text": "当 $x \\to 0$ 时，若 $f(x) \\sim \\sin^{2}x$，则 $f'(0)$ 存在."
+      },
+      {
+        "key": "B",
+        "text": "若 $0 \\leqslant f(x) \\leqslant \\sin^{2}x$ 恒成立，则 $f'(0)$ 存在."
+      },
+      {
+        "key": "C",
+        "text": "若在 $[0, +\\infty)$ 上 $g(x) \\leqslant f(x) \\leqslant h(x)$，在 $(-\\infty, 0)$ 上 $h(x) \\leqslant f(x) \\leqslant g(x)$，且当 $x \\to 0$ 时，函数 $g(x)$ 和 $h(x)$ 都是 x 的同阶无穷小，则 $f(x)$ 也是 x 的同阶无穷小."
+      },
+      {
+        "key": "D",
+        "text": "当 $x \\rightarrow 0$ 时，若 $f'(0)$ 存在且不为 0，则 $f(x)$ 是 x 的同阶无穷小."
+      }
+    ],
+    "correctOption": "C",
+    "sourceUrl": "https://cxyonly.fans/math/questions/4176"
+  },
+  {
+    "id": "math2-2025-q4-weak06",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "6",
+    "examNumber": "4",
+    "exerciseIndex": 6,
+    "kind": "exercise",
+    "source": "非真题练习 · 25 版 660 数一二三第 139 题",
+    "sourceCategory": "book",
+    "topic": "小 o 与等价无穷小 / 乘、除、加、积分的阶数规则",
+    "type": "choice",
+    "stem": "设 $x \\rightarrow a$ 时 $f(x)$ 与 $g(x)$ 分别是 $x - a$ 的 $n$ 阶与 $m$ 阶无穷小，则下列命题：\n① $f(x)g(x)$ 是 $x-a$ 的 $n+m$ 阶无穷小。\n② 若 $n>m$，则 $\\frac{f(x)}{g(x)}$ 是 $x-a$ 的 $n-m$ 阶无穷小。\n③ 若 $n\\leqslant m$，则 $f(x)+g(x)$ 是 $x-a$ 的 $n$ 阶无穷小。\n④ 若 $f(x)$ 连续，则 $\\int_{a}^{x} f(t) dt$ 是 $x - a$ 的 $n + 1$ 阶无穷小。\n正确的个数是",
+    "answer": "**C**。",
+    "explanation": "答案 C，正确的有①②④三项。若\n$$\n\\frac{f(x)}{(x-a)^n}\\to c\\ne0,\\qquad\n\\frac{g(x)}{(x-a)^m}\\to d\\ne0,\n$$\n则乘积与商的首项分别为 $cd(x-a)^{n+m}$ 与 $(c/d)(x-a)^{n-m}$，故①②成立。③在 $n=m$ 时可能抵消，例如 $f=x-a,\\ g=-(x-a)$，和为 0，不是题设所说的一阶无穷小。④用洛必达法则得\n$$\n\\lim_{x\\to a}\\frac{\\int_a^x f(t)\\,dt}{(x-a)^{n+1}}\n=\\lim_{x\\to a}\\frac{f(x)}{(n+1)(x-a)^n}=\\frac c{n+1}\\ne0.\n$$\n\n[原题来源，题库编号4244](https://cxyonly.fans/math/questions/4244)",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g01",
+        "title": "一、小 o 与等价无穷小 · 对应第4题",
+        "references": [
+          "2025数二第4题"
+        ]
+      }
+    ],
+    "sourceOrder": 6,
+    "options": [
+      {
+        "key": "A",
+        "text": "1"
+      },
+      {
+        "key": "B",
+        "text": "2"
+      },
+      {
+        "key": "C",
+        "text": "3"
+      },
+      {
+        "key": "D",
+        "text": "4"
+      }
+    ],
+    "correctOption": "C",
+    "sourceUrl": "https://cxyonly.fans/math/questions/4244"
+  },
+  {
+    "id": "math2-2025-q4-weak07",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "7",
+    "examNumber": "4",
+    "exerciseIndex": 7,
+    "kind": "exercise",
+    "source": "非真题练习 · 上传资料《27张宇1000题数二—试题册》，基础篇·高数第1章第5题，书内第5页，PDF第11页；网站另标2026版同题",
+    "sourceCategory": "book",
+    "topic": "小 o 与等价无穷小 / 分别求两个无穷小的首项，再求比值",
+    "type": "choice",
+    "stem": "当  $ x \\to 0 $ 时， $ e - e^{\\cos x} $ 是  $ \\sqrt[3]{1 + x^{2}} - 1 $ 的（ ）。",
+    "answer": "**C**。",
+    "explanation": "答案 C。分别求首项：\n$$\ne-e^{\\cos x}=e[1-e^{\\cos x-1}]\\sim e(1-\\cos x)\\sim\\frac e2x^2,\n\\qquad \\sqrt[3]{1+x^2}-1\\sim\\frac13x^2.\n$$\n两者比值趋于 $3e/2$，是有限非零常数，但不是 1，所以同阶而非等价。\n\n[原题来源，题库编号10528](https://cxyonly.fans/math/questions/10528)",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g01",
+        "title": "一、小 o 与等价无穷小 · 对应第4题",
+        "references": [
+          "2025数二第4题"
+        ]
+      }
+    ],
+    "sourceOrder": 7,
+    "options": [
+      {
+        "key": "A",
+        "text": "高阶无穷小"
+      },
+      {
+        "key": "B",
+        "text": "低阶无穷小"
+      },
+      {
+        "key": "C",
+        "text": "同阶但非等价无穷小"
+      },
+      {
+        "key": "D",
+        "text": "等价无穷小"
+      }
+    ],
+    "correctOption": "C",
+    "sourceUrl": "https://cxyonly.fans/math/questions/10528"
+  },
+  {
+    "id": "math2-2025-q4-weak08",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "8",
+    "examNumber": "4",
+    "exerciseIndex": 8,
+    "kind": "exercise",
+    "source": "非真题练习 · 26 版 1000 第一章强化 8",
+    "sourceCategory": "book",
+    "topic": "小 o 与等价无穷小 / 先消去低阶项，再比较首项系数",
+    "type": "choice",
+    "stem": "当 $x \\to 0$ 时，$a \\int_{0}^{x^{2}} \\cos t^{2} \\, dt$ 与 $\\sin x - b \\ln(1 + x)$ 是等价无穷小，则 $(a, b) = (\\quad)$.",
+    "answer": "**C**。",
+    "explanation": "答案 C。左边的积分与 $x^2$ 等价；右边展开为\n$$\n\\sin x-b\\ln(1+x)=(1-b)x+\\frac b2x^2+o(x^2).\n$$\n要与左边同为二阶，必须先令 $b=1$ 消掉一次项；再比较二次项系数得 $a=1/2$。\n\n[原题来源，题库编号4193](https://cxyonly.fans/math/questions/4193)",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g01",
+        "title": "一、小 o 与等价无穷小 · 对应第4题",
+        "references": [
+          "2025数二第4题"
+        ]
+      }
+    ],
+    "sourceOrder": 8,
+    "options": [
+      {
+        "key": "A",
+        "text": "$(1,2)$"
+      },
+      {
+        "key": "B",
+        "text": "$(-1,2)$"
+      },
+      {
+        "key": "C",
+        "text": "$\\left(\\frac{1}{2},1\\right)$"
+      },
+      {
+        "key": "D",
+        "text": "$\\left(-\\frac{1}{2},1\\right)$"
+      }
+    ],
+    "correctOption": "C",
+    "sourceUrl": "https://cxyonly.fans/math/questions/4193"
+  },
+  {
+    "id": "math2-2025-q4-weak09",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "9",
+    "examNumber": "4",
+    "exerciseIndex": 9,
+    "kind": "exercise",
+    "source": "非真题练习 · 26 版 660 数二第 516 题",
+    "sourceCategory": "book",
+    "topic": "小 o 与等价无穷小 / 用中值定理确定数列无穷小的阶数",
+    "type": "choice",
+    "stem": "设 $ 0 < \\alpha < \\beta $，则当 $ n \\to \\infty $ 时， $ \\frac{(n+1)^{\\alpha} - n^{\\alpha}}{n^{\\beta}} $ 是 $ \\frac{1}{n} $ 的 m 阶无穷小， $ m = $",
+    "answer": "**B**。",
+    "explanation": "答案 B。对 $t^\\alpha$ 在 $[n,n+1]$ 用拉格朗日中值定理，存在 $\\xi_n\\in(n,n+1)$，使\n$$\n(n+1)^\\alpha-n^\\alpha=\\alpha\\xi_n^{\\alpha-1}.\n$$\n因为 $\\xi_n/n\\to1$，故题中无穷小与 $\\alpha/n^{\\beta-\\alpha+1}$ 等价，因此阶数为 $\\beta-\\alpha+1$。\n\n[原题来源，题库编号4238](https://cxyonly.fans/math/questions/4238)",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g01",
+        "title": "一、小 o 与等价无穷小 · 对应第4题",
+        "references": [
+          "2025数二第4题"
+        ]
+      }
+    ],
+    "sourceOrder": 9,
+    "options": [
+      {
+        "key": "A",
+        "text": "$\\beta - \\alpha$"
+      },
+      {
+        "key": "B",
+        "text": "$\\beta - \\alpha + 1$"
+      },
+      {
+        "key": "C",
+        "text": "$\\beta - \\alpha + 2$"
+      },
+      {
+        "key": "D",
+        "text": "$\\beta + \\alpha$"
+      }
+    ],
+    "correctOption": "B",
+    "sourceUrl": "https://cxyonly.fans/math/questions/4238"
+  },
+  {
+    "id": "math2-2025-q4-weak10",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "10",
+    "examNumber": "4",
+    "exerciseIndex": 10,
+    "kind": "exercise",
+    "source": "非真题练习 · 26 版 1000 第一章强化 21",
+    "sourceCategory": "book",
+    "topic": "小 o 与等价无穷小 / 提高题：由小 o 条件推出比值极限",
+    "type": "choice",
+    "stem": "设 $a(x)$ 是 $x \\to 0$ 时的非零无穷小量，且 $a(2x) - a(x) = o(x)$，则 $\\displaystyle\\lim_{x \\to 0} \\frac{a(x)}{x}$ 的值是（）.",
+    "answer": "**A**。",
+    "explanation": "答案 A。这道是提高题，不应先假设所求极限存在后才解方程。由 $a(2x)-a(x)=o(x)$，对任意 $\\varepsilon>0$，在足够小的去心邻域内，有\n$$\n|a(x)-a(x/2)|\\le\\varepsilon|x|/2.\n$$\n依次把 $x$ 换为 $x/2,x/4,\\ldots$，将前 $N$ 个差相加，得到\n$$\n|a(x)-a(x/2^N)|\\le\\varepsilon|x|\\sum_{j=1}^N2^{-j}\\le\\varepsilon|x|.\n$$\n固定这个足够小的 $x$，令 $N\\to\\infty$；因 $a(t)\\to0$，得到 $|a(x)|\\le\\varepsilon|x|$。故 $a(x)/x\\to0$。\n\n[原题来源，题库编号4177](https://cxyonly.fans/math/questions/4177)",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g01",
+        "title": "一、小 o 与等价无穷小 · 对应第4题",
+        "references": [
+          "2025数二第4题"
+        ]
+      }
+    ],
+    "sourceOrder": 10,
+    "options": [
+      {
+        "key": "A",
+        "text": "0"
+      },
+      {
+        "key": "B",
+        "text": "1"
+      },
+      {
+        "key": "C",
+        "text": "$\\infty$"
+      },
+      {
+        "key": "D",
+        "text": "0 或 $\\infty$"
+      }
+    ],
+    "correctOption": "A",
+    "sourceUrl": "https://cxyonly.fans/math/questions/4177"
+  },
+  {
+    "id": "math2-2025-q7-weak01",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "11",
+    "examNumber": "7",
+    "exerciseIndex": 1,
+    "kind": "exercise",
+    "source": "非真题练习 · 26 版 660 数一二三第 162 题",
+    "sourceCategory": "book",
+    "topic": "绝对值与可导性 / 最基本的 |x-a|g(x) 型，分别写左右导数",
+    "type": "choice",
+    "stem": "设函数 $ g(x) $ 在 x = a 点处连续， $ f(x) = |x - a| g(x) $ 在 x = a 点处可导，则 $ g(a) $ 满足",
+    "answer": "**C**。",
+    "explanation": "答案 C。$f(a)=0$，由左右导数定义得\n$$\nf'_+(a)=\\lim_{h\\to0^+}\\frac{|h|g(a+h)}h=g(a),\\qquad\nf'_-(a)=-g(a).\n$$\n可导要求二者相等，所以 $g(a)=0$。这时导数也等于 0。\n\n[原题来源，题库编号1389](https://cxyonly.fans/math/questions/1389)",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g02",
+        "title": "二、绝对值与可导性 · 对应第7题",
+        "references": [
+          "2025数二第7题"
+        ]
+      }
+    ],
+    "sourceOrder": 11,
+    "options": [
+      {
+        "key": "A",
+        "text": "$ g(a)=a. $"
+      },
+      {
+        "key": "B",
+        "text": "$ g(a)\\neq a. $"
+      },
+      {
+        "key": "C",
+        "text": "$ g(a)=0. $"
+      },
+      {
+        "key": "D",
+        "text": "$ g(a)\\neq0. $"
+      }
+    ],
+    "correctOption": "C",
+    "sourceUrl": "https://cxyonly.fans/math/questions/1389"
+  },
+  {
+    "id": "math2-2025-q7-weak02",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "12",
+    "examNumber": "7",
+    "exerciseIndex": 2,
+    "kind": "exercise",
+    "source": "非真题练习 · 上传资料《基础过关660》高数篇，2027版，第283题，书内第94页，PDF第109页；网站旧标2026版第528题",
+    "sourceCategory": "book",
+    "topic": "绝对值与可导性 / 把 |x³-1| 化成 |x-1| 乘连续因子",
+    "type": "choice",
+    "stem": "设函数 $ f(x)=|x^{3}-1|\\varphi(x) $，其中 $ \\varphi(x) $ 在 x=1 点处连续，则 $ \\varphi(1)=0 $ 是 $ f(x) $ 在 x=1 点处可导的",
+    "answer": "**A**。",
+    "explanation": "答案 A。$f(1)=0$，并且 $x^3-1=(x-1)(x^2+x+1)$。因此\n$$\nf'_+(1)=3\\varphi(1),\\qquad f'_-(1)=-3\\varphi(1).\n$$\n左右导数相等当且仅当 $\\varphi(1)=0$。这里仅要求 $\\varphi$ 连续，不能另外假定 $\\varphi$ 可导。\n\n[原题来源，题库编号1390](https://cxyonly.fans/math/questions/1390)",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g02",
+        "title": "二、绝对值与可导性 · 对应第7题",
+        "references": [
+          "2025数二第7题"
+        ]
+      }
+    ],
+    "sourceOrder": 12,
+    "options": [
+      {
+        "key": "A",
+        "text": "充分必要条件。"
+      },
+      {
+        "key": "B",
+        "text": "必要但非充分条件。"
+      },
+      {
+        "key": "C",
+        "text": "充分但非必要条件。"
+      },
+      {
+        "key": "D",
+        "text": "既非充分条件也非必要条件。"
+      }
+    ],
+    "correctOption": "A",
+    "sourceUrl": "https://cxyonly.fans/math/questions/1390"
+  },
+  {
+    "id": "math2-2025-q7-weak03",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "13",
+    "examNumber": "7",
+    "exerciseIndex": 3,
+    "kind": "exercise",
+    "source": "非真题练习 · 26 版 660 数二第 526 题（重点）",
+    "sourceCategory": "book",
+    "topic": "绝对值与可导性 / 两个因子共同消除尖点的充要条件",
+    "type": "choice",
+    "stem": "设 $ f(x) $, $ g(x) $ 在 $ x = x_{0} $ 可导, $ F(x) = g(x) \\mid f(x) \\mid $, 又 $ f(x_{0}) = 0 $, 则 $ F'(x_{0}) $ 存在的充要条件是：",
+    "answer": "**C**。",
+    "explanation": "答案 C。因为 $f(x_0)=0$，右差商的极限为 $g(x_0)|f'(x_0)|$，左差商的极限为 $-g(x_0)|f'(x_0)|$。\n\n若 $f'(x_0)=0$，则 $f(x)=o(x-x_0)$，直接得到两侧导数都是 0；若 $g(x_0)=0$，则 $g(x)\\to0$，而 $|f(x)|/|x-x_0|$ 有界，也得到导数为 0。反之，两者都不为零时左右导数不相等。因此充要条件是 $g(x_0)f'(x_0)=0$。\n\n[原题来源，题库编号1391](https://cxyonly.fans/math/questions/1391)",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g02",
+        "title": "二、绝对值与可导性 · 对应第7题",
+        "references": [
+          "2025数二第7题"
+        ]
+      }
+    ],
+    "sourceOrder": 13,
+    "options": [
+      {
+        "key": "A",
+        "text": "$ f'(x_{0})=0. $"
+      },
+      {
+        "key": "B",
+        "text": "$ g(x_{0})=0. $"
+      },
+      {
+        "key": "C",
+        "text": "$ g(x_{0})f'(x_{0})=0. $"
+      },
+      {
+        "key": "D",
+        "text": "以上均不对。"
+      }
+    ],
+    "correctOption": "C",
+    "sourceUrl": "https://cxyonly.fans/math/questions/1391"
+  },
+  {
+    "id": "math2-2025-q7-weak04",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "14",
+    "examNumber": "7",
+    "exerciseIndex": 4,
+    "kind": "exercise",
+    "source": "非真题练习 · 上传资料《27张宇1000题数二—试题册》，基础篇·高数第3章第11题，书内第9页，PDF第15页；网站另标2026版同题",
+    "sourceCategory": "book",
+    "topic": "绝对值与可导性 / 含 |ln(1+x)| 的乘积，左右导数比较",
+    "type": "choice",
+    "stem": "设 $ \\varphi(x) $ 具有一阶连续导数， $ f(x)=\\varphi(x)\\left[1+\\left|\\ln(1+x)\\right|\\right] $，则 $ \\varphi(0)=0 $ 是 $ f(x) $ 在 x=0 处可导的（）。",
+    "answer": "**A**。",
+    "explanation": "答案 A。$f(0)=\\varphi(0)$。右侧 $|\\ln(1+x)|=\\ln(1+x)$，左侧 $|\\ln(1+x)|=-\\ln(1+x)$，从而\n$$\nf'_+(0)=\\varphi'(0)+\\varphi(0),\\qquad\nf'_-(0)=\\varphi'(0)-\\varphi(0).\n$$\n二者相等当且仅当 $\\varphi(0)=0$。\n\n[原题来源，题库编号1387](https://cxyonly.fans/math/questions/1387)",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g02",
+        "title": "二、绝对值与可导性 · 对应第7题",
+        "references": [
+          "2025数二第7题"
+        ]
+      }
+    ],
+    "sourceOrder": 14,
+    "options": [
+      {
+        "key": "A",
+        "text": "充分必要条件"
+      },
+      {
+        "key": "B",
+        "text": "充分非必要条件"
+      },
+      {
+        "key": "C",
+        "text": "必要非充分条件"
+      },
+      {
+        "key": "D",
+        "text": "既非充分又非必要条件"
+      }
+    ],
+    "correctOption": "A",
+    "sourceUrl": "https://cxyonly.fans/math/questions/1387"
+  },
+  {
+    "id": "math2-2025-q7-weak05",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "15",
+    "examNumber": "7",
+    "exerciseIndex": 5,
+    "kind": "exercise",
+    "source": "非真题练习 · 上传资料《基础过关660》高数篇，2027版，第285题，书内第95页，PDF第110页；网站旧标2026版第533题",
+    "sourceCategory": "book",
+    "topic": "绝对值与可导性 / 函数与 |x| 等价时，左右导数的符号",
+    "type": "choice",
+    "stem": "设 $ f(x) $ 在 x = 0 连续，又 $ \\lim_{x \\to 0} \\frac{f(x)}{|x|} = 1 $，则",
+    "answer": "**C**。",
+    "explanation": "答案 C。由连续性与 $f(x)/|x|\\to1$ 得 $f(0)=0$。于是\n$$\nf'_+(0)=\\lim_{x\\to0^+}\\frac{f(x)}{|x|}\\frac{|x|}x=1,\n\\qquad f'_-(0)=-1.\n$$\n左右导数都存在，但不相等。这里分母是 $|x|$，不能直接把已知极限当作导数。\n\n[原题来源，题库编号1367](https://cxyonly.fans/math/questions/1367)",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g02",
+        "title": "二、绝对值与可导性 · 对应第7题",
+        "references": [
+          "2025数二第7题"
+        ]
+      }
+    ],
+    "sourceOrder": 15,
+    "options": [
+      {
+        "key": "A",
+        "text": "$ f(x) $ 在 x=0 可导， $ f^{\\prime}(0)=0 $."
+      },
+      {
+        "key": "B",
+        "text": "$ f(x) $ 在 x=0 可导， $ f^{\\prime}(0)\\neq0 $."
+      },
+      {
+        "key": "C",
+        "text": "$ f_{+}^{\\prime}(0) $， $ f_{-}^{\\prime}(0) $ 均存在但 $ f_{+}^{\\prime}(0)\\neq f_{-}^{\\prime}(0) $."
+      },
+      {
+        "key": "D",
+        "text": "$ f_{+}^{\\prime}(0) $ 与 $ f_{-}^{\\prime}(0) $ 不存在."
+      }
+    ],
+    "correctOption": "C",
+    "sourceUrl": "https://cxyonly.fans/math/questions/1367"
+  },
+  {
+    "id": "math2-2025-q7-weak06",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "16",
+    "examNumber": "7",
+    "exerciseIndex": 6,
+    "kind": "exercise",
+    "source": "非真题练习 · 上传资料《基础过关660》高数篇，2027版，第284题，书内第94页，PDF第109页",
+    "sourceCategory": "book",
+    "topic": "绝对值与可导性 / 具体函数差商的判断，练从连续到可导",
+    "type": "choice",
+    "stem": "下列四个函数中，在 $x=0$ 处可导的函数是（ ）。",
+    "answer": "**C**。",
+    "explanation": "参考答案：C\n\nA、B 两项在原点左右导数不相等；D 的差商绝对值趋于无穷。C 中先用夹逼得到连续，再按定义计算\n$$\nf'(0)=\\lim_{x\\to0}x^{1/3}\\sin\\frac1x=0.\n$$\n所以选 C。判断可导只需要差商收敛，不要求去心邻域内的导函数先有极限。",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g02",
+        "title": "二、绝对值与可导性 · 对应第7题",
+        "references": [
+          "2025数二第7题"
+        ]
+      }
+    ],
+    "sourceOrder": 16,
+    "options": [
+      {
+        "key": "A",
+        "text": "$f(x)=e^{|x|}$"
+      },
+      {
+        "key": "B",
+        "text": "$f(x)=\\arctan|x|$"
+      },
+      {
+        "key": "C",
+        "text": "$f(x)=\\begin{cases}x^{4/3}\\sin(1/x),&x\\ne0,\\\\0,&x=0,\\end{cases}$"
+      },
+      {
+        "key": "D",
+        "text": "$f(x)=\\arcsin\\sqrt{|x|}$"
+      }
+    ],
+    "correctOption": "C"
+  },
+  {
+    "id": "math2-2025-q7-weak07",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "17",
+    "examNumber": "7",
+    "exerciseIndex": 7,
+    "kind": "exercise",
+    "source": "非真题练习 · 26 版 660 数二第 547 题",
+    "sourceCategory": "book",
+    "topic": "绝对值与可导性 / 绝对值内不同重数零点的区别",
+    "type": "choice",
+    "stem": "设 $ f(x)=\\left|(x-1)(x-2)^{2}(x-3)^{3}\\right| $，则 $ f'(x) $ 不存在的点个数是",
+    "answer": "**B**。",
+    "explanation": "答案 B，不可导点只有 $x=1$。可疑点为 $1,2,3$。在 1 附近，函数含非零连续因子乘 $|x-1|$，左右导数不同；在 2 附近，因子为 $(x-2)^2$，差商趋于 0；在 3 附近，因子为 $|x-3|^3$，差商也趋于 0。不能把绝对值内部每个零点都判成不可导点。\n\n[原题来源，题库编号1380](https://cxyonly.fans/math/questions/1380)",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g02",
+        "title": "二、绝对值与可导性 · 对应第7题",
+        "references": [
+          "2025数二第7题"
+        ]
+      }
+    ],
+    "sourceOrder": 17,
+    "options": [
+      {
+        "key": "A",
+        "text": "0"
+      },
+      {
+        "key": "B",
+        "text": "1"
+      },
+      {
+        "key": "C",
+        "text": "2"
+      },
+      {
+        "key": "D",
+        "text": "3"
+      }
+    ],
+    "correctOption": "B",
+    "sourceUrl": "https://cxyonly.fans/math/questions/1380"
+  },
+  {
+    "id": "math2-2025-q7-weak08",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "18",
+    "examNumber": "7",
+    "exerciseIndex": 8,
+    "kind": "exercise",
+    "source": "非真题练习 · 26 版 660 数二第 548 题",
+    "sourceCategory": "book",
+    "topic": "绝对值与可导性 / 外部因子能否消掉三角函数绝对值的尖点",
+    "type": "choice",
+    "stem": "函数 $ f(x)=(x^{2}+x-2)\\left|\\sin2\\pi x\\right| $ 在 $ \\left(-\\frac{1}{2},\\frac{3}{2}\\right) $ 区间上不可导点的个数是",
+    "answer": "**B**。",
+    "explanation": "答案 B。区间内 $\\sin2\\pi x$ 的零点为 $0,1/2,1$。在前两个点，$x^2+x-2$ 非零，所以绝对值的尖点保留；在 $x=1$，外部因子含 $x-1$，乘积局部含 $(x-1)|x-1|$，导数为 0。因此只有 $0,1/2$ 两个不可导点。\n\n[原题来源，题库编号1381](https://cxyonly.fans/math/questions/1381)",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g02",
+        "title": "二、绝对值与可导性 · 对应第7题",
+        "references": [
+          "2025数二第7题"
+        ]
+      }
+    ],
+    "sourceOrder": 18,
+    "options": [
+      {
+        "key": "A",
+        "text": "3"
+      },
+      {
+        "key": "B",
+        "text": "2"
+      },
+      {
+        "key": "C",
+        "text": "1"
+      },
+      {
+        "key": "D",
+        "text": "0"
+      }
+    ],
+    "correctOption": "B",
+    "sourceUrl": "https://cxyonly.fans/math/questions/1381"
+  },
+  {
+    "id": "math2-2025-q7-weak09",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "19",
+    "examNumber": "7",
+    "exerciseIndex": 9,
+    "kind": "exercise",
+    "source": "非真题练习 · 上传资料《基础过关660》高数篇，2027版，第289题，书内第96页，PDF第111页；网站旧标2026版第546题",
+    "sourceCategory": "book",
+    "topic": "绝对值与可导性 / 绝对值与立方根叠加，逐一检查可疑点",
+    "type": "choice",
+    "stem": "设 $ f(x)=\\left|x^{3}-4x\\right|\\sqrt[3]{x^{2}-2x-8} $，则 $ f(x) $ 的不可导的点的个数",
+    "answer": "**D**。",
+    "explanation": "答案 D，共三个，分别是 $0,2,4$。先分解\n$$\nx^3-4x=x(x-2)(x+2),\\qquad x^2-2x-8=(x-4)(x+2).\n$$\n可疑点有 $-2,0,2,4$。在 0、2 附近，是非零连续因子乘一次绝对值，左右导数不相等。在 $-2$ 附近，差商中关键部分为\n$$\n\\frac{|x+2|\\sqrt[3]{x+2}}{x+2},\n$$\n其绝对值为 $|x+2|^{1/3}\\to0$，所以该点可导。在 4 附近，差商含 $1/|x-4|^{2/3}$，没有有限极限，故不可导。\n\n[原题来源，题库编号1379](https://cxyonly.fans/math/questions/1379)",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g02",
+        "title": "二、绝对值与可导性 · 对应第7题",
+        "references": [
+          "2025数二第7题"
+        ]
+      }
+    ],
+    "sourceOrder": 19,
+    "options": [
+      {
+        "key": "A",
+        "text": "0 个"
+      },
+      {
+        "key": "B",
+        "text": "1 个"
+      },
+      {
+        "key": "C",
+        "text": "2 个"
+      },
+      {
+        "key": "D",
+        "text": "3 个"
+      }
+    ],
+    "correctOption": "D",
+    "sourceUrl": "https://cxyonly.fans/math/questions/1379"
+  },
+  {
+    "id": "math2-2025-q7-weak10",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "20",
+    "examNumber": "7",
+    "exerciseIndex": 10,
+    "kind": "exercise",
+    "source": "非真题练习 · 26 版 1000 第三章强化 4",
+    "sourceCategory": "book",
+    "topic": "绝对值与可导性 / 补基础：已知比值极限能否推出可导",
+    "type": "choice",
+    "stem": "设函数 $ f(x) $ 在区间 $ (-1,1) $ 内有定义，且在点 $ x=0 $ 处连续，则以下结论：\n①当 $ \\displaystyle\\lim_{x\\to0}\\frac{f(x)}{\\sqrt[3]{x}}=0 $ 时， $ f(x) $ 在点 $ x=0 $ 处可导；\n②当 $ \\displaystyle\\lim_{x\\to0}\\frac{f(x)}{x^{2}}=0 $ 时， $ f(x) $ 在点 $ x=0 $ 处可导；\n③当 $ f(x) $ 在点 $ x=0 $ 处可导时， $ \\displaystyle\\lim_{x\\to0}\\frac{f(x)}{\\sqrt[3]{x}}=0 $。\n所有正确结论的序号为（）",
+    "answer": "**B**。",
+    "explanation": "答案 B，只有②正确。①取 $f(x)=|x|^{2/3}$，则 $f(x)/\\sqrt[3]x\\to0$，但原点不可导。\n\n②先由连续性得到 $f(0)=0$，再算\n$$\nf'(0)=\\lim_{x\\to0}\\frac{f(x)}x\n=\\lim_{x\\to0}\\frac{f(x)}{x^2}\\,x=0.\n$$\n③取 $f(x)\\equiv1$，在原点可导，但所列比值不趋于 0。漏掉 $f(0)=0$ 是这类题常见的陷阱。\n\n[原题来源，题库编号4137](https://cxyonly.fans/math/questions/4137)",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g02",
+        "title": "二、绝对值与可导性 · 对应第7题",
+        "references": [
+          "2025数二第7题"
+        ]
+      }
+    ],
+    "sourceOrder": 20,
+    "options": [
+      {
+        "key": "A",
+        "text": "①"
+      },
+      {
+        "key": "B",
+        "text": "②"
+      },
+      {
+        "key": "C",
+        "text": "②③"
+      },
+      {
+        "key": "D",
+        "text": "①②"
+      }
+    ],
+    "correctOption": "B",
+    "sourceUrl": "https://cxyonly.fans/math/questions/4137"
+  },
+  {
+    "id": "math2-2025-q16-weak01",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "21",
+    "examNumber": "16",
+    "exerciseIndex": 1,
+    "kind": "exercise",
+    "source": "非真题练习 · 25 版 880 方程组综合填空 1",
+    "sourceCategory": "book",
+    "topic": "列向量关系与通解 / 直接比较列向量系数，写出一个特解",
+    "type": "fill",
+    "stem": "设 $\\alpha_1,\\alpha_2,\\alpha_3,\\beta$ 均为三维列向量，$A=(\\beta-\\alpha_1-2\\alpha_2-3\\alpha_3,\\alpha_1,\\alpha_2,\\alpha_3)$，则方程组 $Ax=\\beta$ 的一个特解为______。",
+    "answer": "$(1,1,2,3)^T$。",
+    "explanation": "答案 $(1,1,2,3)^T$。按列相乘，得到\n$$\nA\\begin{pmatrix}1\\\\1\\\\2\\\\3\\end{pmatrix}\n=(\\beta-\\alpha_1-2\\alpha_2-3\\alpha_3)+\\alpha_1+2\\alpha_2+3\\alpha_3=\\beta.\n$$\n题目只要求一个特解，不要求在未知秩的条件下继续猜测通解。\n\n[原题来源，题库编号545](https://cxyonly.fans/math/questions/545)",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g03",
+        "title": "三、列向量关系与通解 · 对应第16题",
+        "references": [
+          "2025数二第16题"
+        ]
+      }
+    ],
+    "sourceOrder": 21,
+    "sourceUrl": "https://cxyonly.fans/math/questions/545"
+  },
+  {
+    "id": "math2-2025-q16-weak02",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "22",
+    "examNumber": "16",
+    "exerciseIndex": 2,
+    "kind": "exercise",
+    "source": "非真题练习 · 900 题数二第四章 A类 10",
+    "sourceCategory": "book",
+    "topic": "列向量关系与通解 / 列关系给出齐次方向；行满秩给出自由参数个数",
+    "type": "fill",
+    "stem": "已知矩阵 $A=(\\alpha_1,\\alpha_2,\\alpha_3,\\alpha_4)$ 是一个 $3\\times4$ 的行满秩矩阵，且 $\\alpha_3+\\alpha_4=0$，$\\beta=\\alpha_1+\\alpha_2$，则方程组 $Ax=\\beta$ 的通解为______。",
+    "answer": "$$\nx=(1,1,0,0)^T+c(0,0,1,1)^T.\n$$",
+    "explanation": "答案\n$$\nx=(1,1,0,0)^T+c(0,0,1,1)^T.\n$$\n$\\beta=\\alpha_1+\\alpha_2$ 给出特解；$\\alpha_3+\\alpha_4=0$ 给出非零齐次解。又因为 $A$ 行满秩，$r(A)=3$，四个未知数恰有一个自由参数，所以该齐次方向已经齐全。\n\n[原题来源，题库编号522](https://cxyonly.fans/math/questions/522)",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g03",
+        "title": "三、列向量关系与通解 · 对应第16题",
+        "references": [
+          "2025数二第16题"
+        ]
+      }
+    ],
+    "sourceOrder": 22,
+    "sourceUrl": "https://cxyonly.fans/math/questions/522"
+  },
+  {
+    "id": "math2-2025-q16-weak03",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "23",
+    "examNumber": "16",
+    "exerciseIndex": 3,
+    "kind": "exercise",
+    "source": "非真题练习 · 上传资料《27张宇1000题数二—试题册》，基础篇·线性代数第4章第5题，书内第46页，PDF第52页",
+    "sourceCategory": "book",
+    "topic": "列向量关系与通解 / 上传1000题中的直接配套题：特解加齐次解",
+    "type": "solution",
+    "stem": "设\n$$\n\\alpha_1=\\begin{pmatrix}4\\\\1\\\\2\\end{pmatrix},\\quad\n\\alpha_2=\\begin{pmatrix}1\\\\1\\\\-1\\end{pmatrix},\\quad\n\\alpha_3=\\begin{pmatrix}-2\\\\0\\\\4\\end{pmatrix},\\quad\n\\alpha_4=\\begin{pmatrix}7\\\\2\\\\-3\\end{pmatrix},\\qquad A=(\\alpha_1,\\alpha_2,\\alpha_3,\\alpha_4).\n$$\n求 $Ax=\\alpha_2+3\\alpha_4$ 的通解。",
+    "answer": "$x=(0,1,0,3)^T+k(-1,-1,1,1)^T$，$k\\in\\mathbb R$。",
+    "explanation": "参考答案：$x=(0,1,0,3)^T+k(-1,-1,1,1)^T$，$k\\in\\mathbb R$。\n\n右端直接给出特解 $\\eta=(0,1,0,3)^T$。对系数矩阵消元得\n$$\nA\\ \\longrightarrow\\ \n\\begin{pmatrix}1&0&0&1\\\\0&1&0&1\\\\0&0&1&-1\\end{pmatrix}.\n$$\n因此齐次解满足 $x_1=-x_4,\\ x_2=-x_4,\\ x_3=x_4$，基础解系可取 $(-1,-1,1,1)^T$。最后将特解与齐次通解相加。检验方向时，应计算 $-\\alpha_1-\\alpha_2+\\alpha_3+\\alpha_4=0$。",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g03",
+        "title": "三、列向量关系与通解 · 对应第16题",
+        "references": [
+          "2025数二第16题"
+        ]
+      }
+    ],
+    "sourceOrder": 23
+  },
+  {
+    "id": "math2-2025-q16-weak04",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "24",
+    "examNumber": "16",
+    "exerciseIndex": 4,
+    "kind": "exercise",
+    "source": "非真题练习 · 上传资料《基础过关660》线代篇，2027版，第513题，书内第18页，PDF第21页",
+    "sourceCategory": "book",
+    "topic": "列向量关系与通解 / 把矩阵方程按列拆成齐次方程组",
+    "type": "solution",
+    "stem": "设\n$$\nA=\\begin{pmatrix}1&-2&0\\\\2&1&5\\\\0&1&1\\end{pmatrix},\n$$\n$B$ 是三阶矩阵，求满足 $AB=O$ 的所有矩阵 $B$。",
+    "answer": "$B=\\begin{pmatrix}-2c_1&-2c_2&-2c_3\\\\-c_1&-c_2&-c_3\\\\c_1&c_2&c_3\\end{pmatrix}$，$c_1,c_2,c_3\\in\\mathbb R$。",
+    "explanation": "参考答案：$B=\\begin{pmatrix}-2c_1&-2c_2&-2c_3\\\\-c_1&-c_2&-c_3\\\\c_1&c_2&c_3\\end{pmatrix}$，$c_1,c_2,c_3\\in\\mathbb R$。\n\n把 $B$ 按列写成 $B=(\\beta_1,\\beta_2,\\beta_3)$，则 $AB=O$ 等价于 $A\\beta_i=0$。将 $A$ 行化简得\n$$\n\\begin{pmatrix}1&0&2\\\\0&1&1\\\\0&0&0\\end{pmatrix},\n$$\n故每一列均为 $c_i(-2,-1,1)^T$。三个列系数分别任意，不能误写成所有列必须相同。",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g03",
+        "title": "三、列向量关系与通解 · 对应第16题",
+        "references": [
+          "2025数二第16题"
+        ]
+      }
+    ],
+    "sourceOrder": 24
+  },
+  {
+    "id": "math2-2025-q16-weak05",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "25",
+    "examNumber": "16",
+    "exerciseIndex": 5,
+    "kind": "exercise",
+    "source": "非真题练习 · 900题数二第四章 B类 13",
+    "sourceCategory": "book",
+    "topic": "列向量关系与通解 / 从 Aα 的关系同时构造特解和齐次方向",
+    "type": "fill",
+    "stem": "设 $3$ 阶矩阵 $\\mathbf A=(\\mathbf a_1,\\mathbf a_2,\\mathbf a_3)$ 满足 $\\mathbf A\\mathbf a_1=(1,0,1)^{\\mathrm T}$，$\\mathbf A\\mathbf a_2=(0,1,0)^{\\mathrm T}$，$\\mathbf A\\mathbf a_3=(0,0,0)^{\\mathrm T}$，且 $\\mathbf a_3\\neq\\mathbf0$，则线性方程组 $\\mathbf A\\mathbf x=(1,1,1)^{\\mathrm T}$ 的通解为______。",
+    "answer": "$x=\\alpha_1+\\alpha_2+t\\alpha_3$。",
+    "explanation": "答案 $x=\\alpha_1+\\alpha_2+t\\alpha_3$。题设给出 $A(\\alpha_1+\\alpha_2)=(1,1,1)^T$，所以 $\\alpha_1+\\alpha_2$ 是特解；$A\\alpha_3=0$ 且 $\\alpha_3\\ne0$，给出非零齐次解。\n\n还必须补维数检查：$A\\alpha_1=(1,0,1)^T$ 与 $A\\alpha_2=(0,1,0)^T$ 线性无关，故 $r(A)\\ge2$；又有非零齐次解，故 $r(A)<3$。因此 $r(A)=2$，只有一个齐次方向。\n\n[原题来源，题库编号544](https://cxyonly.fans/math/questions/544)",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g03",
+        "title": "三、列向量关系与通解 · 对应第16题",
+        "references": [
+          "2025数二第16题"
+        ]
+      }
+    ],
+    "sourceOrder": 25,
+    "sourceUrl": "https://cxyonly.fans/math/questions/544"
+  },
+  {
+    "id": "math2-2025-q16-weak06",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "26",
+    "examNumber": "16",
+    "exerciseIndex": 6,
+    "kind": "exercise",
+    "source": "非真题练习 · 上传资料《基础过关660》线代篇，2027版，第629题，书内第58页，PDF第61页",
+    "sourceCategory": "book",
+    "topic": "列向量关系与通解 / 正交列向量给出齐次基础解系与特解",
+    "type": "choice",
+    "stem": "设 $A=(\\alpha_1,\\alpha_2,\\alpha_3,\\alpha_4)$ 为正交矩阵，\n$$\nB=\\begin{pmatrix}\\alpha_1^T\\\\\\alpha_2^T\\end{pmatrix},\\qquad\n\\beta=\\begin{pmatrix}1\\\\1\\end{pmatrix}.\n$$\n$k_1,k_2$ 为任意常数，则 $Bx=\\beta$ 的通解为（ ）。",
+    "answer": "**B**。",
+    "explanation": "参考答案：B\n\n正交矩阵的列向量两两正交且长度为 1，因此\n$$\nB\\alpha_1=\\begin{pmatrix}1\\\\0\\end{pmatrix},\\quad\nB\\alpha_2=\\begin{pmatrix}0\\\\1\\end{pmatrix},\\quad B\\alpha_3=B\\alpha_4=0.\n$$\n特解为 $\\alpha_1+\\alpha_2$；$r(B)=2$，四个未知数有两个自由参数，所以齐次基础解系为 $\\alpha_3,\\alpha_4$，选 B。",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g03",
+        "title": "三、列向量关系与通解 · 对应第16题",
+        "references": [
+          "2025数二第16题"
+        ]
+      }
+    ],
+    "sourceOrder": 26,
+    "options": [
+      {
+        "key": "A",
+        "text": "$k_1\\alpha_1+k_2\\alpha_2+\\alpha_3+\\alpha_4$"
+      },
+      {
+        "key": "B",
+        "text": "$k_1\\alpha_3+k_2\\alpha_4+\\alpha_1+\\alpha_2$"
+      },
+      {
+        "key": "C",
+        "text": "$k_1\\alpha_1+k_2\\alpha_2+\\alpha_3$"
+      },
+      {
+        "key": "D",
+        "text": "$k_1\\alpha_3+k_2\\alpha_4+\\alpha_1$"
+      }
+    ],
+    "correctOption": "B"
+  },
+  {
+    "id": "math2-2025-q16-weak07",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "27",
+    "examNumber": "16",
+    "exerciseIndex": 7,
+    "kind": "exercise",
+    "source": "非真题练习 · 上传资料《27张宇1000题数二—试题册》，基础篇·线性代数第4章第4题，书内第46页，PDF第52页",
+    "sourceCategory": "book",
+    "topic": "列向量关系与通解 / 两个特解之差是齐次解；伴随矩阵秩确定维数",
+    "type": "choice",
+    "stem": "设 $A$ 为 $n$ 阶矩阵，$n>2$，且 $r(A^*)=1$。$\\alpha_1,\\alpha_2$ 是非齐次线性方程组 $Ax=b$ 的两个不同解，$k$ 为任意常数，则 $Ax=b$ 的通解为（ ）。",
+    "answer": "**D**。",
+    "explanation": "参考答案：D\n\n由 $r(A^*)=1$ 得 $r(A)=n-1$，所以齐次解空间只有一个自由参数。两个不同特解之差 $\\alpha_1-\\alpha_2$ 是非零齐次解，因而通解为\n$$\nx=\\alpha_1+k(\\alpha_1-\\alpha_2)=(k+1)\\alpha_1-k\\alpha_2.\n$$\n选 D。非齐次解的线性组合中，系数之和必须等于 1。",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g03",
+        "title": "三、列向量关系与通解 · 对应第16题",
+        "references": [
+          "2025数二第16题"
+        ]
+      }
+    ],
+    "sourceOrder": 27,
+    "options": [
+      {
+        "key": "A",
+        "text": "$(k-1)\\alpha_1+k\\alpha_2$"
+      },
+      {
+        "key": "B",
+        "text": "$(k-1)\\alpha_1-k\\alpha_2$"
+      },
+      {
+        "key": "C",
+        "text": "$(k+1)\\alpha_1+k\\alpha_2$"
+      },
+      {
+        "key": "D",
+        "text": "$(k+1)\\alpha_1-k\\alpha_2$"
+      }
+    ],
+    "correctOption": "D"
+  },
+  {
+    "id": "math2-2025-q16-weak08",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "28",
+    "examNumber": "16",
+    "exerciseIndex": 8,
+    "kind": "exercise",
+    "source": "非真题练习 · 900 题数二第四章 A类 19",
+    "sourceCategory": "book",
+    "topic": "列向量关系与通解 / 两特解作差，再补上另一个独立齐次解",
+    "type": "solution",
+    "stem": "已知 $\\alpha_1 = (1,2,3,4)^T$， $\\alpha_2 = (2,3,4,1)^T$ 都是方程组 $Ax=b$ 的解， $\\beta = (3,4,1,2)^T$ 是方程组 $Ax=0$ 的解，且 $r(A)=2$。求 $Ax=b$ 的通解。",
+    "answer": "$$\nx=(1,2,3,4)^T+c_1(1,1,1,-3)^T+c_2(3,4,1,2)^T.\n$$",
+    "explanation": "两个特解之差\n$$\n\\alpha_2-\\alpha_1=(1,1,1,-3)^T\n$$\n是齐次解，与已知齐次解 $\\beta=(3,4,1,2)^T$ 不成比例，故二者线性无关。$A$ 有四列且秩为 2，基础解系应有两个向量，所以\n$$\nx=(1,2,3,4)^T+c_1(1,1,1,-3)^T+c_2(3,4,1,2)^T.\n$$\n\n[原题来源，题库编号519](https://cxyonly.fans/math/questions/519)",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g03",
+        "title": "三、列向量关系与通解 · 对应第16题",
+        "references": [
+          "2025数二第16题"
+        ]
+      }
+    ],
+    "sourceOrder": 28,
+    "sourceUrl": "https://cxyonly.fans/math/questions/519"
+  },
+  {
+    "id": "math2-2025-q16-weak09",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "29",
+    "examNumber": "16",
+    "exerciseIndex": 9,
+    "kind": "exercise",
+    "source": "非真题练习 · 900 题数二第四章 A类 11",
+    "sourceCategory": "book",
+    "topic": "列向量关系与通解 / 线性组合的系数和决定是特解还是齐次解",
+    "type": "fill",
+    "stem": "设四元非齐次线性方程组 $Ax=b$ 的系数矩阵的秩 $r(A)=3$，且它的三个解向量 $\\alpha_1,\\alpha_2,\\alpha_3$ 满足 $\\alpha_1+2\\alpha_2=(2,4,6,-2)^T$，$\\alpha_1+2\\alpha_3=(0,2,-2,0)^T$，则 $Ax=b$ 的通解为______。",
+    "answer": "$$\nx=(2/3,4/3,2,-2/3)^T+c(-1,-1,-4,1)^T.\n$$",
+    "explanation": "因为 $\\alpha_1+2\\alpha_2$ 的系数和为 3，所以\n$$\n\\eta=\\frac13(\\alpha_1+2\\alpha_2)=(2/3,4/3,2,-2/3)^T\n$$\n是特解。两组已知向量相减，得到 $2(\\alpha_3-\\alpha_2)=(-2,-2,-8,2)^T$，故 $(-1,-1,-4,1)^T$ 是非零齐次解。四个未知数、秩为 3，只有一个齐次方向，通解为\n$$\nx=(2/3,4/3,2,-2/3)^T+c(-1,-1,-4,1)^T.\n$$\n\n[原题来源，题库编号529](https://cxyonly.fans/math/questions/529)",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g03",
+        "title": "三、列向量关系与通解 · 对应第16题",
+        "references": [
+          "2025数二第16题"
+        ]
+      }
+    ],
+    "sourceOrder": 29,
+    "sourceUrl": "https://cxyonly.fans/math/questions/529"
+  },
+  {
+    "id": "math2-2025-q16-weak10",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "30",
+    "examNumber": "16",
+    "exerciseIndex": 10,
+    "kind": "exercise",
+    "source": "非真题练习 · 25 版 880 方程组基础解答 7",
+    "sourceCategory": "book",
+    "topic": "列向量关系与通解 / 提高题：先从旧通解提取列关系，再求新通解",
+    "type": "solution",
+    "stem": "已知 $4\\times3$ 矩阵 $A=(\\alpha_1,\\alpha_2,\\alpha_3)$，非齐次线性方程组 $Ax=\\beta$ 的通解为 $(1,2,-1)^T+k(1,-2,3)^T$，$k$ 为任意常数，令 $B=(\\alpha_1,\\alpha_2,\\alpha_3,\\beta+\\alpha_3)$，求方程组 $By=\\alpha_1-\\alpha_2$ 的通解。",
+    "answer": "$$\ny=(1,-1,0,0)^T+s(1,-2,3,0)^T+t(-1,-2,0,1)^T.\n$$",
+    "explanation": "从给出的通解分别读出\n$$\n\\alpha_1+2\\alpha_2-\\alpha_3=\\beta,\\qquad\n\\alpha_1-2\\alpha_2+3\\alpha_3=0.\n$$\n所以 $\\beta+\\alpha_3=\\alpha_1+2\\alpha_2$。设 $y=(y_1,y_2,y_3,y_4)^T$，则新方程要求\n$$\nA\\begin{pmatrix}y_1+y_4\\\\y_2+2y_4\\\\y_3\\end{pmatrix}\n=\\alpha_1-\\alpha_2=A\\begin{pmatrix}1\\\\-1\\\\0\\end{pmatrix}.\n$$\n因此两边系数之差必须是 $Ax=0$ 的解，即\n$$\n\\begin{pmatrix}y_1+y_4\\\\y_2+2y_4\\\\y_3\\end{pmatrix}\n=\\begin{pmatrix}1\\\\-1\\\\0\\end{pmatrix}+s\\begin{pmatrix}1\\\\-2\\\\3\\end{pmatrix}.\n$$\n令 $y_4=t$，解出\n$$\ny=(1,-1,0,0)^T+s(1,-2,3,0)^T+t(-1,-2,0,1)^T.\n$$\n不能把 $\\alpha_1,\\alpha_2,\\alpha_3$ 当作线性无关后逐个强行比较系数。\n\n[原题来源，题库编号535](https://cxyonly.fans/math/questions/535)",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g03",
+        "title": "三、列向量关系与通解 · 对应第16题",
+        "references": [
+          "2025数二第16题"
+        ]
+      }
+    ],
+    "sourceOrder": 30,
+    "sourceUrl": "https://cxyonly.fans/math/questions/535"
+  },
+  {
+    "id": "math2-2025-q10-weak01",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "31",
+    "examNumber": "10",
+    "exerciseIndex": 1,
+    "kind": "exercise",
+    "source": "非真题练习 · 上传资料《基础过关660》线代篇，2027版，第630题，书内第58页，PDF第61页",
+    "sourceCategory": "book",
+    "topic": "秩与公共非零解 / 非零解的最基本秩判据，区分行相关与列相关",
+    "type": "choice",
+    "stem": "齐次线性方程组 $Ax=0$ 有非零解的充分必要条件是（ ）。",
+    "answer": "**C**。",
+    "explanation": "参考答案：C\n\n设 $A$ 有 $n$ 列，则 $Ax=0$ 有非零解等价于 $r(A)<n$，也等价于 $A$ 的列向量组线性相关。行向量的个数与未知数个数不同，不能把“列向量相关”直接换成“行向量相关”。选 C。",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g04",
+        "title": "四、秩与公共非零解 · 对应第10题",
+        "references": [
+          "2025数二第10题"
+        ]
+      }
+    ],
+    "sourceOrder": 31,
+    "options": [
+      {
+        "key": "A",
+        "text": "A 的行向量组线性相关"
+      },
+      {
+        "key": "B",
+        "text": "A 的行向量组线性无关"
+      },
+      {
+        "key": "C",
+        "text": "A 的列向量组线性相关"
+      },
+      {
+        "key": "D",
+        "text": "A 的列向量组线性无关"
+      }
+    ],
+    "correctOption": "C"
+  },
+  {
+    "id": "math2-2025-q10-weak02",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "32",
+    "examNumber": "10",
+    "exerciseIndex": 2,
+    "kind": "exercise",
+    "source": "非真题练习 · 上传资料《27张宇1000题数二—试题册》，基础篇·线性代数第4章第2题，书内第46页，PDF第52页",
+    "sourceCategory": "book",
+    "topic": "秩与公共非零解 / 由列向量系数矩阵的行列式判断非零解",
+    "type": "choice",
+    "stem": "设三维列向量组 $\\alpha_1,\\alpha_2,\\alpha_3$ 线性无关，$k,l$ 均为非零常数，\n$$\n\\beta_1=k\\alpha_1+l\\alpha_2,\\quad\n\\beta_2=k\\alpha_2+l\\alpha_3,\\quad\n\\beta_3=k\\alpha_3+l\\alpha_1.\n$$\n记 $B=(\\beta_1,\\beta_2,\\beta_3)$，则 $Bx=0$ 有非零解的充分必要条件为（ ）。",
+    "answer": "**B**。",
+    "explanation": "参考答案：B\n\n按列关系写成\n$$\nB=(\\alpha_1,\\alpha_2,\\alpha_3)\n\\begin{pmatrix}k&0&l\\\\l&k&0\\\\0&l&k\\end{pmatrix}.\n$$\n左边的向量组矩阵可逆，所以 $B$ 奇异等价于右边系数矩阵行列式为 0，即\n$$\nk^3+l^3=(k+l)(k^2-kl+l^2)=0.\n$$\n因为 $k,l$ 非零且为实数，第二个因子大于 0，故条件是 $k+l=0$，选 B。",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g04",
+        "title": "四、秩与公共非零解 · 对应第10题",
+        "references": [
+          "2025数二第10题"
+        ]
+      }
+    ],
+    "sourceOrder": 32,
+    "options": [
+      {
+        "key": "A",
+        "text": "$k-l=0$"
+      },
+      {
+        "key": "B",
+        "text": "$k+l=0$"
+      },
+      {
+        "key": "C",
+        "text": "$k-l\\ne0$"
+      },
+      {
+        "key": "D",
+        "text": "$k+l\\ne0$"
+      }
+    ],
+    "correctOption": "B"
+  },
+  {
+    "id": "math2-2025-q10-weak03",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "33",
+    "examNumber": "10",
+    "exerciseIndex": 3,
+    "kind": "exercise",
+    "source": "非真题练习 · 25版 880方程组基础解答3",
+    "sourceCategory": "book",
+    "topic": "秩与公共非零解 / 两个具体齐次方程组上下联立",
+    "type": "solution",
+    "stem": "设有方程组 ① \n$$\n\\begin{cases}x_1+x_2=0,\\\\x_2-x_4=0\\end{cases}\n$$\n与 ② \n$$\n\\begin{cases}x_1-x_2+x_3=0,\\\\x_2-x_3+x_4=0.\\end{cases}\n$$\n(I) 求方程组 ① 与 ② 的基础解系；(II) 求方程组 ① 与 ② 的非零公共解。",
+    "answer": "① 的基础解系可取 $(0,0,1,0)^T,(-1,1,0,1)^T$；② 的基础解系可取 $(1,1,0,-1)^T,(-1,0,1,1)^T$。\n\n非零公共解：\n$$\nx=k(-1,1,2,1)^T,\\qquad k\\ne0.\n$$",
+    "explanation": "① 的基础解系可取 $(0,0,1,0)^T,(-1,1,0,1)^T$；② 的基础解系可取 $(1,1,0,-1)^T,(-1,0,1,1)^T$。\n\n求公共解时将四个方程同时列出。由①先得 $x_1=-x_2,\\ x_4=x_2$，代入②得 $x_3=2x_2$，故所有非零公共解为\n$$\nx=k(-1,1,2,1)^T,\\qquad k\\ne0.\n$$\n最终要求非零公共解，参数不能把零向量算进去。\n\n[原题来源，题库编号553](https://cxyonly.fans/math/questions/553)",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g04",
+        "title": "四、秩与公共非零解 · 对应第10题",
+        "references": [
+          "2025数二第10题"
+        ]
+      }
+    ],
+    "sourceOrder": 33,
+    "sourceUrl": "https://cxyonly.fans/math/questions/553"
+  },
+  {
+    "id": "math2-2025-q10-weak04",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "34",
+    "examNumber": "10",
+    "exerciseIndex": 4,
+    "kind": "exercise",
+    "source": "非真题练习 · 900题数二第四章 A类 22",
+    "sourceCategory": "book",
+    "topic": "秩与公共非零解 / 两组各有非零解，不代表有公共非零解",
+    "type": "solution",
+    "stem": "设四元齐次线性方程组 (i) \n$$\n\\begin{cases}x_1-x_2=0,\\\\x_2+x_4=0,\\end{cases}\n$$\n (ii) \n$$\n\\begin{cases}-x_1+x_2+x_4=0,\\\\x_1-x_3+x_4=0.\\end{cases}\n$$\n(I) 求方程组 (i) 与 (ii) 的基础解系；(II) 求方程组 (i) 与 (ii) 的公共解。",
+    "answer": "(i) 的基础解系可取 $(0,0,1,0)^T,(1,1,0,-1)^T$；(ii) 的基础解系可取 $(1,1,1,0)^T,(1,0,2,1)^T$。\n\n公共解只有零解。",
+    "explanation": "(i) 的基础解系可取 $(0,0,1,0)^T,(1,1,0,-1)^T$；(ii) 的基础解系可取 $(1,1,1,0)^T,(1,0,2,1)^T$。\n\n联立时，(i) 给出 $x_1=x_2,\\ x_4=-x_2$。代入(ii)第一式，得到 $x_4=0$，于是 $x_1=x_2=0$；再由第二式得 $x_3=0$。所以公共解只有零解。两组单独都有非零解，不能推出它们有非零公共解。\n\n[原题来源，题库编号554](https://cxyonly.fans/math/questions/554)",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g04",
+        "title": "四、秩与公共非零解 · 对应第10题",
+        "references": [
+          "2025数二第10题"
+        ]
+      }
+    ],
+    "sourceOrder": 34,
+    "sourceUrl": "https://cxyonly.fans/math/questions/554"
+  },
+  {
+    "id": "math2-2025-q10-weak05",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "35",
+    "examNumber": "10",
+    "exerciseIndex": 5,
+    "kind": "exercise",
+    "source": "非真题练习 · 25版 880方程组基础解答4",
+    "sourceCategory": "book",
+    "topic": "秩与公共非零解 / 把一组的通解代入另一组，求公共非零解",
+    "type": "solution",
+    "stem": "设有方程组 (I) \n$$\n\\begin{cases}x_1+x_2=0,\\\\x_2-x_4=0,\\end{cases}\n$$\n(II) $A\\mathbf{x}=\\mathbf{0}$，其中 (II) 的基础解系为 $\\boldsymbol{\\alpha}_1=(0,-1,-1,0)^T$，$\\boldsymbol{\\alpha}_2=(-1,2,2,1)^T$，求方程组 (I) 与 (II) 的非零公共解。",
+    "answer": "$$\nx=t(-1,1,1,1)^T,\\qquad t\\ne0.\n$$",
+    "explanation": "(II) 的任意解写成\n$$\nx=s(0,-1,-1,0)^T+t(-1,2,2,1)^T\n=(-t,-s+2t,-s+2t,t)^T.\n$$\n代入(I)，两式均给出 $s=t$，从而\n$$\nx=t(-1,1,1,1)^T,\\qquad t\\ne0.\n$$\n这与把两组系数矩阵上下联立等价；在已经给出基础解系时，先代入往往更省计算。\n\n[原题来源，题库编号556](https://cxyonly.fans/math/questions/556)",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g04",
+        "title": "四、秩与公共非零解 · 对应第10题",
+        "references": [
+          "2025数二第10题"
+        ]
+      }
+    ],
+    "sourceOrder": 35,
+    "sourceUrl": "https://cxyonly.fans/math/questions/556"
+  },
+  {
+    "id": "math2-2025-q10-weak06",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "36",
+    "examNumber": "10",
+    "exerciseIndex": 6,
+    "kind": "exercise",
+    "source": "非真题练习 · 上传资料《27张宇1000题数二—试题册》，基础篇·线性代数第4章第13题，书内第47页，PDF第53页",
+    "sourceCategory": "book",
+    "topic": "秩与公共非零解 / 附加方程是否真正增加限制",
+    "type": "choice",
+    "stem": "设 $A$ 为 $m\\times n$ 矩阵，$e=(1,1,\\ldots,1)^T$ 为 $m$ 维向量，若 $Ay=e$ 有解，则对于\n$$\n\\text{(I)}\\ A^Tx=0,\\qquad\n\\text{(II)}\\ \\begin{cases}A^Tx=0,\\\\e^Tx=0,\\end{cases}\n$$\n下列说法正确的是（ ）。",
+    "answer": "**D**。",
+    "explanation": "参考答案：D\n\n取 $y_0$ 满足 $Ay_0=e$。对任意满足 $A^Tx=0$ 的向量 $x$，有\n$$\ne^Tx=(Ay_0)^Tx=y_0^TA^Tx=0.\n$$\n因此第二个方程没有增加限制，(I) 与 (II) 同解。选 D。这里练的是：先利用“某向量可以由列向量表示”，再判断附加方程是否改变公共解。",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g04",
+        "title": "四、秩与公共非零解 · 对应第10题",
+        "references": [
+          "2025数二第10题"
+        ]
+      }
+    ],
+    "sourceOrder": 36,
+    "options": [
+      {
+        "key": "A",
+        "text": "(I) 的解都是 (II) 的解，但 (II) 的解未必是 (I) 的解"
+      },
+      {
+        "key": "B",
+        "text": "(II) 的解都是 (I) 的解，但 (I) 的解未必是 (II) 的解"
+      },
+      {
+        "key": "C",
+        "text": "(I) 的解都不是 (II) 的解，且 (II) 的解都不是 (I) 的解"
+      },
+      {
+        "key": "D",
+        "text": "(I) 的解都是 (II) 的解，且 (II) 的解都是 (I) 的解"
+      }
+    ],
+    "correctOption": "D"
+  },
+  {
+    "id": "math2-2025-q10-weak07",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "37",
+    "examNumber": "10",
+    "exerciseIndex": 7,
+    "kind": "exercise",
+    "source": "非真题练习 · 24 余丙森五套数一二 第三套",
+    "sourceCategory": "mock",
+    "topic": "秩与公共非零解 / 用秩的上界保证公共非零解存在",
+    "type": "choice",
+    "stem": "设 $n$ 阶矩阵 $A,B$ 满足 $r(A)+r(B)\\lt n$，则下列不正确的是（ ）。",
+    "answer": "**C**。",
+    "explanation": "答案 C。由秩的上界，\n$$\nr\\begin{pmatrix}A\\\\B\\end{pmatrix}\\le r(A)+r(B)<n,\n$$\n所以两个齐次方程组有非零公共解，B 正确。同理 $r(A+B)<n$，D 正确；$A,B$ 均奇异，故都以 0 为特征值，A 正确。\n\nC 不一定成立。例如取 $n=3$，$A=\\operatorname{diag}(1,0,0)$，$B$ 只有第 $(1,2)$ 个元素为 1、其他为 0，则 $r(A)+r(B)=2<3$，但 $AB=B\\ne O,\\ BA=O$，二者秩不同，不相似。\n\n[原题来源，题库编号212](https://cxyonly.fans/math/questions/212)",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g04",
+        "title": "四、秩与公共非零解 · 对应第10题",
+        "references": [
+          "2025数二第10题"
+        ]
+      }
+    ],
+    "sourceOrder": 37,
+    "options": [
+      {
+        "key": "A",
+        "text": "$A$ 与 $B$ 有公共的特征值"
+      },
+      {
+        "key": "B",
+        "text": "方程组 $\\begin{pmatrix}A\\\\B\\end{pmatrix}x=0$ 有非零解"
+      },
+      {
+        "key": "C",
+        "text": "$AB$ 与 $BA$ 相似"
+      },
+      {
+        "key": "D",
+        "text": "$A+B$ 的列向量组线性相关"
+      }
+    ],
+    "correctOption": "C",
+    "sourceUrl": "https://cxyonly.fans/math/questions/212"
+  },
+  {
+    "id": "math2-2025-q10-weak08",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "38",
+    "examNumber": "10",
+    "exerciseIndex": 8,
+    "kind": "exercise",
+    "source": "非真题练习 · 23 张宇八套数二、三 第一套",
+    "sourceCategory": "mock",
+    "topic": "秩与公共非零解 / 由 A+B 满秩反推上下分块矩阵的秩",
+    "type": "choice",
+    "stem": "设 $A,B$ 都是 $n$ 阶矩阵，$r(A+B)=n$，则（ ）。",
+    "answer": "**D**。",
+    "explanation": "答案 D。上下分块矩阵的列数为 $n$，横向分块矩阵的行数为 $n$，所以它们的秩都不超过 $n$。另一方面，\n$$\nA+B=(E\\ E)\\begin{pmatrix}A\\\\B\\end{pmatrix},\\qquad\nA+B=(A\\ B)\\begin{pmatrix}E\\\\E\\end{pmatrix}.\n$$\n乘积的秩不超过任一因子的秩，所以二者的秩都不小于 $r(A+B)=n$，从而均等于 $n$。特别地，$Ax=0,Bx=0$ 联立后只有零解。\n\n[原题来源，题库编号214](https://cxyonly.fans/math/questions/214)",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g04",
+        "title": "四、秩与公共非零解 · 对应第10题",
+        "references": [
+          "2025数二第10题"
+        ]
+      }
+    ],
+    "sourceOrder": 38,
+    "options": [
+      {
+        "key": "A",
+        "text": "$r\\left(\\begin{pmatrix} A \\\\ B \\end{pmatrix}\\right)=n,\\ r(A\\mid B)\\lt n$"
+      },
+      {
+        "key": "B",
+        "text": "$r\\left(\\begin{pmatrix} A \\\\ B \\end{pmatrix}\\right)\\lt n,\\ r(A\\mid B)=n$"
+      },
+      {
+        "key": "C",
+        "text": "$r\\left(\\begin{pmatrix} A \\\\ B \\end{pmatrix}\\right)\\lt n,\\ r(A\\mid B)\\lt n$"
+      },
+      {
+        "key": "D",
+        "text": "$r\\left(\\begin{pmatrix} A \\\\ B \\end{pmatrix}\\right)=n,\\ r(A\\mid B)=n$"
+      }
+    ],
+    "correctOption": "D",
+    "sourceUrl": "https://cxyonly.fans/math/questions/214"
+  },
+  {
+    "id": "math2-2025-q10-weak09",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "39",
+    "examNumber": "10",
+    "exerciseIndex": 9,
+    "kind": "exercise",
+    "source": "非真题练习 · 上传资料《基础过关660》线代篇，2027版，第514题，书内第18页，PDF第21页",
+    "sourceCategory": "book",
+    "topic": "秩与公共非零解 / 提高题：同解、正交与解空间维数联用",
+    "type": "fill",
+    "stem": "设 $A$ 为三阶非零矩阵，$\\alpha,\\beta$ 为三维非零列向量，满足\n$$\nr(A)=r(A^2),\\qquad A^2\\alpha=0,\\qquad\n\\begin{pmatrix}A\\\\\\alpha^T\\end{pmatrix}\\beta=0.\n$$\n求 $r(A)$。",
+    "answer": "$1$。",
+    "explanation": "参考答案：$1$\n\n$Ax=0$ 的解一定满足 $A^2x=0$，而两者秩相同、未知数个数相同，所以两者同解。因此 $A\\alpha=0$。分块方程又给出 $A\\beta=0$ 和 $\\alpha^T\\beta=0$。两个非零正交向量 $\\alpha,\\beta$ 线性无关，都是 $Ax=0$ 的解，因此 $3-r(A)\\ge2$，即 $r(A)\\le1$。$A\\ne O$，所以 $r(A)=1$。注意分块矩阵的下半部分是 $\\alpha^T$，不是 $A^T$。",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g04",
+        "title": "四、秩与公共非零解 · 对应第10题",
+        "references": [
+          "2025数二第10题"
+        ]
+      }
+    ],
+    "sourceOrder": 39
+  },
+  {
+    "id": "math2-2025-q10-weak10",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "40",
+    "examNumber": "10",
+    "exerciseIndex": 10,
+    "kind": "exercise",
+    "source": "非真题练习 · 900题数二第四章C类 2（重点）",
+    "sourceCategory": "book",
+    "topic": "秩与公共非零解 / 提高题：竖排联立、横排分块、伴随矩阵的区别",
+    "type": "choice",
+    "stem": "设 $A$ 为 $3$ 阶非零矩阵，则下列条件中，不是 $A\\mathbf{x}=\\mathbf{0}$ 与 $A^*\\mathbf{x}=\\mathbf{0}$ 有非零公共解的充分条件的个数是（ ）：① $r\\left(\\begin{pmatrix}A\\\\A^*\\end{pmatrix}\\right)\\lt3$；② $r(A,A^*)\\lt3$；③ $r(A)=2$，且 $A^*$ 是对称矩阵；④ $r(A)=2$，且 $A^*$ 不是对称矩阵。",
+    "answer": "**B**。",
+    "explanation": "答案 B，不是充分条件的有两个，即③④。\n\n①就是把两个方程组上下联立后用秩判别，当然充分。②若 $r(A)=1$，则 $A^*=O$，结论成立；若 $r(A)=2$，由 $AA^*=A^*A=O$ 知 $A^*$ 的一维列空间恰为 $Ax=0$ 的解空间。$r(A,A^*)<3$ 表示该列空间包含在 $A$ 的列空间内，所以取 $A^*$ 的一个非零列 $u$，便有 $Au=0$，且 $u=Av$，于是 $A^*u=A^*Av=0$。故②也充分。\n\n③取 $A=\\operatorname{diag}(1,1,0)$，则 $A^*=\\operatorname{diag}(0,0,1)$，两者没有公共非零解。④取\n$$\nA=\\begin{pmatrix}0&1&0\\\\0&-1&0\\\\0&0&1\\end{pmatrix},\\quad\nA^*=\\begin{pmatrix}-1&-1&0\\\\0&0&0\\\\0&0&0\\end{pmatrix}.\n$$\n$Ax=0$ 的解为 $(t,0,0)^T$，代入 $A^*x=0$ 只能得 $t=0$，所以④也不充分。\n\n[原题来源，题库编号559](https://cxyonly.fans/math/questions/559)",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g04",
+        "title": "四、秩与公共非零解 · 对应第10题",
+        "references": [
+          "2025数二第10题"
+        ]
+      }
+    ],
+    "sourceOrder": 40,
+    "options": [
+      {
+        "key": "A",
+        "text": "$1$"
+      },
+      {
+        "key": "B",
+        "text": "$2$"
+      },
+      {
+        "key": "C",
+        "text": "$3$"
+      },
+      {
+        "key": "D",
+        "text": "$4$"
+      }
+    ],
+    "correctOption": "B",
+    "sourceUrl": "https://cxyonly.fans/math/questions/559"
+  },
+  {
+    "id": "math2-2025-q5-weak01",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "41",
+    "examNumber": "5",
+    "exerciseIndex": 1,
+    "kind": "exercise",
+    "source": "非真题练习 · 900 第五章数二 A 类 7",
+    "sourceCategory": "book",
+    "topic": "积分次序与对称性 / 中心对称不能直接替代关于坐标轴分别对称",
+    "type": "choice",
+    "stem": "设区域 $ D = \\{(x, y) \\mid x^{2} + y^{2} \\leqslant 1\\} $，函数 $ f(x, y) $ 在 D 上连续， $ D_{1} $ 是 D 在第一象限的部分，则下列说法中，错误的是（）",
+    "answer": "**C**。",
+    "explanation": "参考答案：C\n\n将 D 在第一、二、三、四象限中的部分分别记为 $ D_{1}, D_{2}, D_{3}, D_{4} $。区域D既关于x轴对称，又关于y轴对称。记D位于x轴上方的部分为 $ D_{u} $，位于x轴下方的部分为 $ D_{d} $，则 $ D_{u},D_{d} $均关于y轴对称。\n当选项 A 的条件成立时， $ \\iint_{D_{3}}f(x,y)\\,\\mathrm{d}x\\,\\mathrm{d}y=-\\iint_{D_{1}}f(x,y)\\,\\mathrm{d}x\\,\\mathrm{d}y,\\iint_{D_{4}}f(x,y)\\,\\mathrm{d}x\\,\\mathrm{d}y=-\\iint_{D_{2}}f(x,y)\\,\\mathrm{d}x\\,\\mathrm{d}y. $ 从而 $ \\iint_{D}f(x,y)\\,\\mathrm{d}x\\,\\mathrm{d}y=0. $ 选项 A 正确。\n当选项 B 的条件成立时， $ f(x,y) $ 既是关于 x 的奇函数，又是关于 y 的奇函数， $ \\iint_{D}f(x,y)dxdy=0. $ 选项 B 正确。\n当选项 C 的条件成立时， $ \\iint_{D_{1}}f(x,y)dxdy=\\iint_{D_{3}}f(x,y)dxdy,\\iint_{D_{2}}f(x,y)dxdy=\\iint_{D_{4}}f(x,y)dxdy. $ 从而 $ \\iint\\limits_{D}f(x,y)\\mathrm{d}x\\mathrm{d}y=2\\iint\\limits_{D_{1}}f(x,y)\\mathrm{d}x\\mathrm{d}y+2\\iint\\limits_{D_{2}}f(x,y)\\mathrm{d}x\\mathrm{d}y. $ 但并不一定有 $ \\iint_{D_{1}}f(x,y)dxdy=\\iint_{D_{2}}f(x,y)dxdy. $例如取 $ f(x,y)=xy. $选项C错误。\n当选项 D 的条件成立时， $ f(x,y) $ 既是关于 y 的偶函数，又是关于 x 的偶函数， $ \\iint\\limits_{D}f(x,y)\\mathrm{d}x\\mathrm{d}y=2\\iint\\limits_{D_{u}}f(x,y)\\mathrm{d}x\\mathrm{d}y=4\\iint\\limits_{D_{1}}f(x,y)\\mathrm{d}x\\mathrm{d}y. $ 选项D正确。\n综上所述，应选C。\n\n[原题来源，题库编号2984](https://cxyonly.fans/math/questions/2984)",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g05",
+        "title": "五、积分次序与对称性 · 对应第5题",
+        "references": [
+          "2025数二第5题"
+        ]
+      }
+    ],
+    "sourceOrder": 41,
+    "options": [
+      {
+        "key": "A",
+        "text": "若 $ f(-x, -y) = -f(x, y) $，则 $ \\iint_{D} f(x, y) \\, dx \\, dy = 0. $"
+      },
+      {
+        "key": "B",
+        "text": "若 $ f(-x, y) = f(x, -y) = -f(x, y) $，则 $ \\iint_{D} f(x, y) \\, \\mathrm{d}x \\, \\mathrm{d}y = 0. $"
+      },
+      {
+        "key": "C",
+        "text": "若 $ f(-x, -y) = f(x, y) $，则 $ \\iint_{D} f(x, y) \\, \\mathrm{d}x \\, \\mathrm{d}y = 4 \\iint_{D_1} f(x, y) \\, \\mathrm{d}x \\, \\mathrm{d}y. $"
+      },
+      {
+        "key": "D",
+        "text": "若 $ f(-x, y) = f(x, -y) = f(x, y) $，则 $ \\iint_{D} f(x, y) \\, \\mathrm{d}x \\, \\mathrm{d}y = 4 \\iint_{D_1} f(x, y) \\, \\mathrm{d}x \\, \\mathrm{d}y. $"
+      }
+    ],
+    "correctOption": "C",
+    "sourceUrl": "https://cxyonly.fans/math/questions/2984"
+  },
+  {
+    "id": "math2-2025-q5-weak02",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "42",
+    "examNumber": "5",
+    "exerciseIndex": 2,
+    "kind": "exercise",
+    "source": "非真题练习 · 25 版 660 数一二三第 107",
+    "sourceCategory": "book",
+    "topic": "积分次序与对称性 / 先合并区域，再交换积分次序",
+    "type": "fill",
+    "stem": "交换积分次序 $ \\int_{0}^{1}\\mathrm{d}x\\int_{0}^{x^{2}}f(x,y)\\mathrm{d}y+\\int_{1}^{3}\\mathrm{d}x\\int_{0}^{\\frac{1}{2}(3-x)}f(x,y)\\mathrm{d}y= $ ___.",
+    "answer": "$$\n\\boxed{\\int_0^1\\mathrm dy\\int_{\\sqrt y}^{3-2y}f(x,y)\\,\\mathrm dx}.\n$$",
+    "explanation": "横向切片时，整个区域的纵坐标范围为 $0\\le y\\le1$。第一部分 $0\\le x\\le1,\\ 0\\le y\\le x^2$ 给出 $\\sqrt y\\le x\\le1$；第二部分 $1\\le x\\le3,\\ 0\\le y\\le(3-x)/2$ 给出 $1\\le x\\le3-2y$。两部分在 $x=1$ 处相接，故合起来为\n$$\n\\boxed{\\int_0^1\\mathrm dy\\int_{\\sqrt y}^{3-2y}f(x,y)\\,\\mathrm dx}.\n$$\n先合并区域再交换次序，不把原来的两个积分上下限机械互换。\n\n[原题来源，题库编号2934](https://cxyonly.fans/math/questions/2934)",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g05",
+        "title": "五、积分次序与对称性 · 对应第5题",
+        "references": [
+          "2025数二第5题"
+        ]
+      }
+    ],
+    "sourceOrder": 42,
+    "sourceUrl": "https://cxyonly.fans/math/questions/2934"
+  },
+  {
+    "id": "math2-2025-q12-weak01",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "43",
+    "examNumber": "12",
+    "exerciseIndex": 1,
+    "kind": "exercise",
+    "source": "非真题练习 · 880 第二章基础选择 18",
+    "sourceCategory": "book",
+    "topic": "斜渐近线与根式有理化 / 先确定参数，再用平方差公式求截距",
+    "type": "fill",
+    "stem": "设 $ \\lim_{x\\to+\\infty}\\left(\\sqrt{ax^{2}-x+3}-2x\\right)=b $ ，其中 a,b 为常数， a>0 ，则曲线 $ y=\\sqrt{ax^{2}-x+3} $ 在 $ (0,+\\infty) $ 内的斜渐近线方程为",
+    "answer": "$y=2x-\\dfrac{1}{4}$。",
+    "explanation": "参考答案：$y=2x-\\dfrac{1}{4}$\n\n由已知，有 \n$$\n \\lim_{x\\to+\\infty}\\left(\\sqrt{ax^{2}-x+3}-2x\\right)=\\lim_{x\\to+\\infty}x\\left(\\sqrt{a-\\frac{1}{x}+\\frac{3}{x^{2}}}-2\\right)=b \n$$\n 故 $ \\lim_{x\\to+\\infty}\\left(\\sqrt{a-\\frac{1}{x}+\\frac{3}{x^{2}}}-2\\right)=0 $ ，即有 $ \\sqrt{a}=2, a=4 $。将 a = 4 代入原式，并有理化，得 \n$$\n \\begin{aligned}b&=\\lim_{x\\rightarrow+\\infty}(\\sqrt{4x^{2}-x+3}-2x)=\\lim_{x\\rightarrow+\\infty}\\frac{-x+3}{\\sqrt{4x^{2}-x+3}+2x}\\\\&=\\lim_{x\\rightarrow+\\infty}\\frac{-1+\\frac{3}{x}}{\\sqrt{4-\\frac{1}{x}+\\frac{3}{x^{2}}}+2}=-\\frac{1}{4},\\end{aligned} \n$$\n 所以 \n$$\n \\lim_{x\\to+\\infty}\\left(\\sqrt{4x^{2}-x+3}-2x+\\frac{1}{4}\\right)=\\lim_{x\\to+\\infty}\\left[\\sqrt{4x^{2}-x+3}-\\left(2x-\\frac{1}{4}\\right)\\right]=0. \n$$\n $ y = \\sqrt{4x^{2} - x + 3} $ 在 $ (0, +\\infty) $ 内有斜渐近线，为 $ y = 2x - \\frac{1}{4} $。求出 a = 4 后，也可以用求斜渐近线方程的公式求解。\n\n[原题来源，题库编号1661](https://cxyonly.fans/math/questions/1661)",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g06",
+        "title": "六、斜渐近线与根式有理化 · 对应第12题",
+        "references": [
+          "2025数二第12题"
+        ]
+      }
+    ],
+    "sourceOrder": 43,
+    "sourceUrl": "https://cxyonly.fans/math/questions/1661"
+  },
+  {
+    "id": "math2-2025-q12-weak02",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "44",
+    "examNumber": "12",
+    "exerciseIndex": 2,
+    "kind": "exercise",
+    "source": "非真题练习 · 900 第二章数二 B 类 34（重点）",
+    "sourceCategory": "book",
+    "topic": "斜渐近线与根式有理化 / 用立方和公式求斜渐近线截距",
+    "type": "fill",
+    "stem": "曲线 $ x^{3} + y^{3} = y^{2} $ 的斜渐近线方程为 ___。",
+    "answer": "$y=-x+\\dfrac{1}{3}$。",
+    "explanation": "参考答案：$y=-x+\\dfrac{1}{3}$\n\n假设斜渐近线存在，设 $ y = kx + b $。方程两端除以 $ x^{3} $ 得 $ 1 + \\left(\\frac{y}{x}\\right)^{3} = \\left(\\frac{y}{x}\\right)^{2} \\cdot \\frac{1}{x} $。令 $ x \\to \\infty $，得 $ 1 + k^{3} = 0 $，解得 $ k = -1 $。再求截距 $ b = \\lim_{x\\to\\infty}(y - kx) = \\lim_{x\\to\\infty}(y + x) $。由原方程 $ x^{3} + y^{3} = y^{2} $，可得 $ x + y = \\frac{y^{2}}{x^{2} - xy + y^{2}} = \\frac{(y/x)^{2}}{1 - (y/x) + (y/x)^{2}} $。代入 $ \\lim_{x\\to\\infty}\\frac{y}{x} = k = -1 $，得 $ b = \\lim_{x\\to\\infty}(x+y) = \\frac{(-1)^{2}}{1 - (-1) + (-1)^{2}} = \\frac{1}{3} $。因此，斜渐近线方程为 $ y = -x + \\frac{1}{3} $。\n\n[原题来源，题库编号4304](https://cxyonly.fans/math/questions/4304)",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g06",
+        "title": "六、斜渐近线与根式有理化 · 对应第12题",
+        "references": [
+          "2025数二第12题"
+        ]
+      }
+    ],
+    "sourceOrder": 44,
+    "sourceUrl": "https://cxyonly.fans/math/questions/4304"
+  },
+  {
+    "id": "math2-2025-q14-weak01",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "45",
+    "examNumber": "14",
+    "exerciseIndex": 1,
+    "kind": "exercise",
+    "source": "非真题练习 · 900 第二章数二 A 类 46",
+    "sourceCategory": "book",
+    "topic": "参数方程与变限积分求导 / 参数方程链式求导，先练导数比值",
+    "type": "fill",
+    "stem": "设函数 $ y = y(x) $ 由参数方程 $ \\left\\{\\begin{aligned} x &= f(\\arcsin 2t) + 1, \\\\ y &= f(\\sin t + \\cos t - 1) \\end{aligned}\\right. $ 确定，其中 $ f(u) $ 可微，且 $ f'(0) \\neq 0 $，则 $ \\left.\\frac{dy}{dx}\\right|_{t=0} = $ ___。",
+    "answer": "$\\dfrac{1}{2}$。",
+    "explanation": "参考答案：$\\dfrac{1}{2}$\n\n根据由参数方程确定的函数的求导公式，\n$$\n \\frac{\\mathrm{d}y}{\\mathrm{d}x}=\\frac{\\mathrm{d}y}{\\mathrm{d}t}\\bigg/\\frac{\\mathrm{d}x}{\\mathrm{d}t}=\\frac{f^{\\prime}(\\sin t+\\cos t-1)\\cdot(\\cos t-\\sin t)}{\\frac{2f^{\\prime}(\\arcsin2t)}{\\sqrt{1-4t^{2}}}}. \n$$\n当 $t = 0$ 时，\n$$\n \\left.\\frac{\\mathrm{d}y}{\\mathrm{d}x}\\right|_{t=0}=\\frac{f^{\\prime}(0)}{2f^{\\prime}(0)}=\\frac{1}{2}. \n$$\n\n[原题来源，题库编号1543](https://cxyonly.fans/math/questions/1543)",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g07",
+        "title": "七、参数方程与变限积分求导 · 对应第14题",
+        "references": [
+          "2025数二第14题"
+        ]
+      }
+    ],
+    "sourceOrder": 45,
+    "sourceUrl": "https://cxyonly.fans/math/questions/1543"
+  },
+  {
+    "id": "math2-2025-q14-weak02",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "46",
+    "examNumber": "14",
+    "exerciseIndex": 2,
+    "kind": "exercise",
+    "source": "非真题练习 · 900 第二章数二 B 类 25",
+    "sourceCategory": "book",
+    "topic": "参数方程与变限积分求导 / 变限积分隐含 y(t)，补全链式法则",
+    "type": "fill",
+    "stem": "设函数 $ y = y(x) $ 由方程组 $ \\left\\{\\begin{aligned} x &= \\arctan t, \\\\ \\int_{0}^{2y} e^{u} \\, du + \\int_{t}^{0} \\frac{\\cos u}{1 + u^{2}} \\, du &= 0 \\end{aligned}\\right. $ 确定，则 $ y'(0) = $ ___。",
+    "answer": "$\\dfrac{1}{2}$。",
+    "explanation": "参考答案：$\\dfrac{1}{2}$\n\n由 $ x = \\arctan t $ 可得， $ \\frac{dx}{dt} = \\frac{1}{1 + t^{2}} $。\n对方程 $ \\int_{0}^{2y}e^{u}du+\\int_{t}^{0}\\frac{\\cos u}{1+u^{2}}du=0 $ 两端关于 $t$ 求导可得， $ 2e^{2y}\\frac{dy}{dt}-\\frac{\\cos t}{1+t^{2}}=0 $，解得 $ \\frac{dy}{dt}=\\frac{1}{2}e^{-2y}\\frac{\\cos t}{1+t^{2}} $。\n根据由参数方程确定的函数的求导公式，\n$$\n \\frac{\\mathrm{d}y}{\\mathrm{d}x}=\\frac{\\mathrm{d}y}{\\mathrm{d}t}\\bigg/\\frac{\\mathrm{d}x}{\\mathrm{d}t}=\\frac{1}{2}\\mathrm{e}^{-2y}\\frac{\\cos t}{1+t^{2}}\\cdot\\left(1+t^{2}\\right)=\\frac{1}{2}\\mathrm{e}^{-2y}\\cos t\\xlongequal{t=\\tan x}\\frac{1}{2}\\mathrm{e}^{-2y}\\cos\\left(\\tan x\\right). \n$$\n当 $x = 0$ 时，由 $ x = \\arctan t $ 解得 $t = 0$。代入 $ \\int_{0}^{2y} e^{u} du + \\int_{t}^{0} \\frac{\\cos u}{1 + u^{2}} du = 0 $ 可得 $ \\int_{0}^{2y} e^{u} du = 0 $。由于 $ e^{u} > 0 $ ，故由 $ \\int_{0}^{2y} e^{u} du = 0 $ 可得 $2y = 0$ ，即 $y = 0$。\n因此， $ y'(0)=\\frac{1}{2}. $\n\n[原题来源，题库编号1542](https://cxyonly.fans/math/questions/1542)",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g07",
+        "title": "七、参数方程与变限积分求导 · 对应第14题",
+        "references": [
+          "2025数二第14题"
+        ]
+      }
+    ],
+    "sourceOrder": 46,
+    "sourceUrl": "https://cxyonly.fans/math/questions/1542"
+  },
+  {
+    "id": "math2-2025-q15-weak01",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "47",
+    "examNumber": "15",
+    "exerciseIndex": 1,
+    "kind": "exercise",
+    "source": "非真题练习 · 26 版 660 数一二三第 71 题",
+    "sourceCategory": "book",
+    "topic": "一阶齐次微分方程 / 从切线斜率直接识别 y/x 型",
+    "type": "fill",
+    "stem": "若通过点 $ (1,0) $ 的曲线 $ y=y(x) $ 上每一点 $ (x,y) $ 处切线的斜率等于 $ 1+\\frac{y}{x}+\\left(\\frac{y}{x}\\right)^{2} $，则此曲线的方程是 ___.",
+    "answer": "$y=x\\tan(\\ln x)$，取包含初始点 $x=1$ 的解支。",
+    "explanation": "答案 $y=x\\tan(\\ln x)$，取包含初始点 $x=1$ 的解支。由斜率条件得\n$$\ny'=1+\\frac yx+\\left(\\frac yx\\right)^2.\n$$\n令 $y=xu$，必须同时写出 $y'=u+xu'$，代入并减去两边的 $u$，得到\n$$\nxu'=1+u^2,\\qquad \\frac{\\mathrm du}{1+u^2}=\\frac{\\mathrm dx}{x}.\n$$\n初始点附近 $x>0$，积分得 $\\arctan u=\\ln x+C$。由 $y(1)=0$ 知 $u(1)=0$，所以 $C=0$。代回 $u=y/x$ 即得答案。\n\n[原题来源，题库编号4670](https://cxyonly.fans/math/questions/4670)",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g08",
+        "title": "八、一阶齐次微分方程 · 对应第15题",
+        "references": [
+          "2025数二第15题"
+        ]
+      }
+    ],
+    "sourceOrder": 47,
+    "sourceUrl": "https://cxyonly.fans/math/questions/4670"
+  },
+  {
+    "id": "math2-2025-q15-weak02",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "48",
+    "examNumber": "15",
+    "exerciseIndex": 2,
+    "kind": "exercise",
+    "source": "非真题练习 · 26 版 660 数二第 496 题",
+    "sourceCategory": "book",
+    "topic": "一阶齐次微分方程 / 分子分母同除 x²，再正确分离变量",
+    "type": "fill",
+    "stem": "微分方程 $ \\frac{dy}{dx}=\\frac{2xy-y^{2}}{x^{2}-2xy} $ 满足 $ y(1)=-2 $ 的特解是___。",
+    "answer": "$xy=2(x+y)^3$，取经过 $(1,-2)$ 的解支。",
+    "explanation": "答案 $xy=2(x+y)^3$，取经过 $(1,-2)$ 的解支。先将分子分母同除 $x^2$，再令 $y=xu$，得到\n$$\nu+xu'=\\frac{2u-u^2}{1-2u}.\n$$\n这一步先通分，再分离变量：\n$$\nxu'=\\frac{2u-u^2-u(1-2u)}{1-2u}\n=\\frac{u+u^2}{1-2u},\\qquad\n\\frac{1-2u}{u(1+u)}\\,\\mathrm du=\\frac{\\mathrm dx}{x}.\n$$\n初始点处 $u=-2$，可在其附近进行上述除法。分式拆成 $1/u-3/(1+u)$，积分得\n$$\n\\ln|u|-3\\ln|1+u|=\\ln|x|+C,\n\\qquad \\frac{u}{(1+u)^3}=C_1x.\n$$\n代回 $u=y/x$ 得 $xy/(x+y)^3=C_1$；代入 $(1,-2)$ 得 $C_1=2$，从而 $xy=2(x+y)^3$。\n\n[原题来源，题库编号4493](https://cxyonly.fans/math/questions/4493)",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g08",
+        "title": "八、一阶齐次微分方程 · 对应第15题",
+        "references": [
+          "2025数二第15题"
+        ]
+      }
+    ],
+    "sourceOrder": 48,
+    "sourceUrl": "https://cxyonly.fans/math/questions/4493"
+  },
+  {
+    "id": "math2-2025-q18-weak01",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "49",
+    "examNumber": "18",
+    "exerciseIndex": 1,
+    "kind": "exercise",
+    "source": "非真题练习 · 880 第二章基础解答 13",
+    "sourceCategory": "book",
+    "topic": "由极限证明可导 / 幂指式展开后保留整体，整理差商",
+    "type": "solution",
+    "stem": "设函数 $ f(x) $ 在 x=0 处连续，且 $ \\lim_{x\\to0}\\frac{xf(x)-(1+x)^{2x}+1}{x^{2}}=1 $。证明 $ f(x) $ 在 x=0 处可导，并求 $ f'(0) $",
+    "answer": "$f'(0)=3$。",
+    "explanation": "答案 $f'(0)=3$。先展开幂指式：\n$$\n(1+x)^{2x}=e^{2x\\ln(1+x)}=1+2x^2+o(x^2).\n$$\n把这一整体代入已知极限，得到\n$$\n\\lim_{x\\to0}\\left[\\frac{f(x)}x-2+o(1)\\right]=1,\n\\qquad \\lim_{x\\to0}\\frac{f(x)}x=3.\n$$\n接着由 $f(x)=x\\,[f(x)/x]\\to0$，再结合连续性得到 $f(0)=0$。最后才写\n$$\nf'(0)=\\lim_{x\\to0}\\frac{f(x)-f(0)}x=3.\n$$\n不是一开始就凭感觉把 $f(0)$ 设成 0。\n\n[原题来源，题库编号1324](https://cxyonly.fans/math/questions/1324)",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g09",
+        "title": "九、由极限证明可导 · 对应第18题",
+        "references": [
+          "2025数二第18题"
+        ]
+      }
+    ],
+    "sourceOrder": 49,
+    "sourceUrl": "https://cxyonly.fans/math/questions/1324"
+  },
+  {
+    "id": "math2-2025-q18-weak02",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "50",
+    "examNumber": "18",
+    "exerciseIndex": 2,
+    "kind": "exercise",
+    "source": "非真题练习 · 26 版 660 数一二三第 153 题",
+    "sourceCategory": "book",
+    "topic": "由极限证明可导 / 先求 f(0)，再用对数或等价关系求导数",
+    "type": "choice",
+    "stem": "设 $ f(x) $ 在 $ x = 0 $ 处连续，且 $ \\lim_{x \\to 0} \\frac{e^{f(x)} - \\cos x + \\sin x}{x} = 0 $，则 $ f'(0) $",
+    "answer": "**B**。",
+    "explanation": "参考答案：B\n\n由题设可知\n$$\n\\mathrm{e}^{f(x)}-\\cos x+\\sin x=x\\varepsilon(x),\\;\\varepsilon(x)\\to0.\n$$\n令 $x\\to0$，并利用 $f$ 在 $0$ 处连续，得\n$$\n\\mathrm{e}^{f(0)}-1=0,\n$$\n故 $f(0)=0$。于是\n$$\n\\mathrm{e}^{f(x)}=\\cos x-\\sin x+x\\varepsilon(x)=1+\\left(\\cos x-1\\right)-\\sin x+x\\varepsilon(x).\n$$\n两边取对数，得\n$$\nf(x)=\\ln\\left[1+\\left(\\cos x-1\\right)-\\sin x+x\\varepsilon(x)\\right].\n$$\n因此\n$$\n\\begin{aligned}f'(0)&=\\lim_{x\\to0}\\frac{f(x)-f(0)}x\\\\&=\\lim_{x\\to0}\\frac{\\left(\\cos x-1\\right)-\\sin x+x\\varepsilon(x)}x\\\\&=0-1+0=-1.\\end{aligned}\n$$\n故选 B。\n\n[原题来源，题库编号1329](https://cxyonly.fans/math/questions/1329)",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g09",
+        "title": "九、由极限证明可导 · 对应第18题",
+        "references": [
+          "2025数二第18题"
+        ]
+      }
+    ],
+    "sourceOrder": 50,
+    "options": [
+      {
+        "key": "A",
+        "text": "= 1."
+      },
+      {
+        "key": "B",
+        "text": "= -1."
+      },
+      {
+        "key": "C",
+        "text": "= 0."
+      },
+      {
+        "key": "D",
+        "text": "不存在."
+      }
+    ],
+    "correctOption": "B",
+    "sourceUrl": "https://cxyonly.fans/math/questions/1329"
+  },
+  {
+    "id": "math2-2025-q20-weak01",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "51",
+    "examNumber": "20",
+    "exerciseIndex": 1,
+    "kind": "exercise",
+    "source": "非真题练习 · 25 版 660 数一二三第 119",
+    "sourceCategory": "book",
+    "topic": "轮换对称与极坐标计算 / 轮换对称后出现 1/2，随后用极坐标和分部积分",
+    "type": "fill",
+    "stem": "设积分区域 $D = \\{(x, y) \\mid 1 \\leqslant x^{2} + y^{2} \\leqslant e^{2}\\}$，则 $\\iint_{D} x^{2} \\ln(x^{2} + y^{2}) \\, \\mathrm{d}\\sigma = $ ___。",
+    "answer": " $\\dfrac{3\\pi e^4+\\pi}{8}$。",
+    "explanation": "答案为 $\\dfrac{3\\pi e^4+\\pi}{8}$。区域关于 $y=x$ 对称，轮换 $x,y$ 可得\n$$\nI=\\iint_D y^2\\ln(x^2+y^2)\\,\\mathrm d\\sigma,\n\\qquad 2I=\\iint_D(x^2+y^2)\\ln(x^2+y^2)\\,\\mathrm d\\sigma.\n$$\n极坐标下先确定 $0\\le\\theta\\le2\\pi$，再确定 $1\\le r\\le e$。保留面积元中的 $r$，有\n$$\nI=\\frac12\\int_0^{2\\pi}\\mathrm d\\theta\\int_1^e r^3\\ln r^2\\,\\mathrm dr\n=2\\pi\\int_1^e r^3\\ln r\\,\\mathrm dr.\n$$\n分部积分取 $u=\\ln r,\\ \\mathrm dv=r^3\\mathrm dr$，则 $\\mathrm du=\\mathrm dr/r,\\ v=r^4/4$，所以\n$$\nI=2\\pi\\left[\\frac{r^4}{4}\\ln r-\\frac{r^4}{16}\\right]_1^e\n=\\frac{3\\pi e^4+\\pi}{8}.\n$$\n\n[原题来源，题库编号2832](https://cxyonly.fans/math/questions/2832)",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g10",
+        "title": "十、轮换对称与极坐标计算 · 对应第20题",
+        "references": [
+          "2025数二第20题"
+        ]
+      }
+    ],
+    "sourceOrder": 51,
+    "sourceUrl": "https://cxyonly.fans/math/questions/2832"
+  },
+  {
+    "id": "math2-2025-q20-weak02",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "52",
+    "examNumber": "20",
+    "exerciseIndex": 2,
+    "kind": "exercise",
+    "source": "非真题练习 · 25 版 660 数一二三第 115",
+    "sourceCategory": "book",
+    "topic": "轮换对称与极坐标计算 / 方形区域按极角分段；核对 r 是否已经约掉",
+    "type": "fill",
+    "stem": "设 $ D=\\left\\{(x,y)\\mid0\\leqslant x\\leqslant1,0\\leqslant y\\leqslant1\\right\\} $，则 $ \\iint_{D}\\frac{\\mathrm{d}x\\mathrm{d}y}{\\sqrt{x^{2}+y^{2}}}= $ ___.",
+    "answer": "$2\\ln(1+\\sqrt{2})$。",
+    "explanation": "参考答案：$2\\ln(1+\\sqrt{2})$\n\n在第一象限单位正方形内使用极坐标。区域可分为\n$$\n0\\leqslant\\theta\\leqslant\\frac{\\pi}{4},\\ 0\\leqslant r\\leqslant\\sec\\theta,\n$$\n与\n$$\n\\frac{\\pi}{4}\\leqslant\\theta\\leqslant\\frac{\\pi}{2},\\ 0\\leqslant r\\leqslant\\csc\\theta.\n$$\n因此\n$$\n\\iint_D\\frac{\\mathrm{d}x\\mathrm{d}y}{\\sqrt{x^2+y^2}}=\\int_0^{\\pi/4}\\sec\\theta\\,\\mathrm{d}\\theta+\\int_{\\pi/4}^{\\pi/2}\\csc\\theta\\,\\mathrm{d}\\theta=2\\ln(1+\\sqrt{2}).\n$$\n\n[原题来源，题库编号2864](https://cxyonly.fans/math/questions/2864)",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g10",
+        "title": "十、轮换对称与极坐标计算 · 对应第20题",
+        "references": [
+          "2025数二第20题"
+        ]
+      }
+    ],
+    "sourceOrder": 52,
+    "sourceUrl": "https://cxyonly.fans/math/questions/2864"
+  },
+  {
+    "id": "math2-2025-q21-weak01",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "53",
+    "examNumber": "21",
+    "exerciseIndex": 1,
+    "kind": "exercise",
+    "source": "非真题练习 · 880 第二章综合选择 20",
+    "sourceCategory": "book",
+    "topic": "中值定理与弦斜率 / 在相邻区间分别用中值定理，比较弦斜率",
+    "type": "choice",
+    "stem": "设 $f(x)$ 在 $[0,1]$ 上二阶可导，且 $f''(x) \\gt 0, f(0) = f(1)$。当 $x \\in (0,1)$ 时，下列结论正确的是（） (1) $(1-x)[f(x)-f(0)]\\lt x[f(1)-f(x)]$; (2) $(1-x)[f(x)-f(0)]\\gt x[f(1)-f(x)]$; (3) $x[f(x)-f(0)]\\lt (1-x)[f(1)-f(x)]$; (4) $x[f(x)-f(0)]\\gt (1-x)[f(1)-f(x)]$。",
+    "answer": "**D**。",
+    "explanation": "答案 D，正确的是(1)、(3)。先在相邻区间 $[0,x]$ 和 $[x,1]$ 分别用拉格朗日中值定理，得到 $\\xi_1\\in(0,x)$、$\\xi_2\\in(x,1)$，使\n$$\n\\frac{f(x)-f(0)}x=f'(\\xi_1),\\qquad\n\\frac{f(1)-f(x)}{1-x}=f'(\\xi_2).\n$$\n由 $f''>0$ 知 $f'$ 严格递增，故左边第一条弦斜率小于第二条，交叉相乘得到(1)。再结合 $f(0)=f(1)$ 可知 $f(x)<f(0)$，于是 $f(x)-f(0)<0$、$f(1)-f(x)>0$，从符号直接得到(3)。\n\n[原题来源，题库编号1911](https://cxyonly.fans/math/questions/1911)",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g11",
+        "title": "十一、中值定理与弦斜率 · 对应第21题",
+        "references": [
+          "2025数二第21题"
+        ]
+      }
+    ],
+    "sourceOrder": 53,
+    "options": [
+      {
+        "key": "A",
+        "text": "(1) (4)"
+      },
+      {
+        "key": "B",
+        "text": "(2) (3)"
+      },
+      {
+        "key": "C",
+        "text": "(2) (4)"
+      },
+      {
+        "key": "D",
+        "text": "(1) (3)"
+      }
+    ],
+    "correctOption": "D",
+    "sourceUrl": "https://cxyonly.fans/math/questions/1911"
+  },
+  {
+    "id": "math2-2025-q21-weak02",
+    "year": 2025,
+    "paperTitle": "2025 年 · 非真题补弱",
+    "number": "54",
+    "examNumber": "21",
+    "exerciseIndex": 2,
+    "kind": "exercise",
+    "source": "非真题练习 · 900 第二章数二 B 类 45",
+    "sourceCategory": "book",
+    "topic": "中值定理与弦斜率 / 先证导数严格递增，再用切线、弦线证明积分不等式",
+    "type": "solution",
+    "stem": "已知函数 $f(x)$ 在 $[0,\\pi/2]$ 上连续，在 $(0,\\pi/2)$ 内二阶可导。当 $x\\in(0,\\pi/2)$ 时，$f'(x)=\\dfrac{x}{\\sin x}+\\dfrac{\\sin x}{x}$，且 $f(0)=0$。证明：对任意 $a\\in(0,\\pi/2)$，\n$$\naf\\left(\\frac a2\\right)\\lt\\int_0^af(x)\\,dx\\lt\\frac a2f(a).\n$$",
+    "answer": "所证不等式成立：\n$$\naf\\left(\\frac a2\\right)\\lt\\int_0^af(x)\\,dx\\lt\\frac a2f(a).\n$$",
+    "explanation": "先求导，得到\n$$\nf''(x)=(\\sin x-x\\cos x)\\left(\\frac1{\\sin^2x}-\\frac1{x^2}\\right)>0.\n$$\n这里 $\\sin x-x\\cos x>0$，因为该函数在 0 处为 0，导数是 $x\\sin x>0$；另外 $0<\\sin x<x$。因此 $f'$ 严格递增。\n\n对 $0<x<a$，分别在 $[0,x]$、$[x,a]$ 用中值定理，比较两条弦斜率，得到\n$$\n\\frac{f(x)-f(0)}x<\\frac{f(a)-f(x)}{a-x}.\n$$\n利用 $f(0)=0$，整理得 $f(x)<xf(a)/a$，积分即得右侧不等式。\n\n记 $m=a/2$。对任意 $x\\ne m$，在 $x,m$ 之间用中值定理，结合 $f'$ 严格递增，可得\n$$\nf(x)>f(m)+f'(m)(x-m).\n$$\n从 0 到 $a$ 积分，线性项的积分为 0，便有 $\\int_0^a f(x)\\,dx>a f(a/2)$。两边合并即得所证。这里使用的都是中值定理与积分，不需要另外记新的不等式名称。\n\n[原题来源，题库编号1969](https://cxyonly.fans/math/questions/1969)",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g11",
+        "title": "十一、中值定理与弦斜率 · 对应第21题",
+        "references": [
+          "2025数二第21题"
+        ]
+      }
+    ],
+    "sourceOrder": 54,
+    "sourceUrl": "https://cxyonly.fans/math/questions/1969"
   }
 ]
