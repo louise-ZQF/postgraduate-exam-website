@@ -69,7 +69,7 @@ const integralSubparts = ll880.find(q => q.id === 'll880-c03-b-s01')
 assert.ok(integralSubparts.questionTypes.length > 1, '保留原分类按小问划分的多个题型')
 const weak2025 = practiceQuestions.filter(q => /^math2-2025-q\d+-weak\d+$/.test(q.id))
 assert.equal(weak2025.length, 54, '2025 配套补弱不得漏题或混入原真题')
-assert.ok(weak2025.every(q => q.year === 2025 && q.kind === 'exercise' && !q.bookId && q.paperTitle === '2025 年 · 非真题补弱'))
+assert.ok(weak2025.every(q => q.year === 2025 && q.kind === 'exercise' && !q.bookId && q.paperTitle === '2025 年'))
 assert.deepEqual(weak2025.map(q => Number(q.number)).sort((a, b) => a - b), Array.from({ length: 54 }, (_, i) => i + 1))
 const weakGroups = [...new Set(weak2025.map(q => q.questionTypes[0].id))]
 assert.deepEqual(weakGroups.map(id => {
