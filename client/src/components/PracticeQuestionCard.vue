@@ -5,8 +5,8 @@ import PracticeIcon from '@/components/PracticeIcon.vue'
 import arcDiagram from '@/assets/practice-figures/zy2026-set1-q5.svg?raw'
 import type { Mastery, PracticeQuestion, QuestionImage, QuestionProgress } from '@/math/practice'
 
-const props = defineProps<{ question: PracticeQuestion; index: number; progress?: QuestionProgress; storageFailed: boolean; showNote?: boolean; removed?: boolean; manageable?: boolean; printMode?: boolean }>()
-const emit = defineEmits<{ mark: [id: string, mastery: Mastery]; note: [id: string, note: string]; noteBlur: []; remove: [id: string]; restore: [id: string]; preview: [image: QuestionImage, trigger: HTMLElement] }>()
+const props = defineProps<{ question: PracticeQuestion; index: number; progress?: QuestionProgress; storageFailed: boolean; showNote?: boolean; removed?: boolean; manageable?: boolean; printMode?: boolean; autoHidePending?: boolean }>()
+const emit = defineEmits<{ mark: [id: string, mastery: Mastery]; attempt: [id: string, correct: boolean | undefined]; note: [id: string, note: string]; noteBlur: []; remove: [id: string]; restore: [id: string]; preview: [image: QuestionImage, trigger: HTMLElement] }>()
 const arcDiagramUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(arcDiagram)}`
 const figureUrl = (src: string) => src === 'practice-figures/zy2026-set1-q5.svg' ? arcDiagramUrl : `${import.meta.env.BASE_URL}${src}`
 function previewImage(picture: QuestionImage, event: MouseEvent) {
@@ -87,7 +87,7 @@ const statuses: { value: Mastery; label: string }[] = [
     <fieldset v-if="question.options?.length" class="options">
       <legend class="visually-hidden">第 {{ index }} 题，选择你的答案</legend>
       <label v-for="option in question.options" :key="option.key" class="option" :class="{ selected: selectedOption === option.key, correct: showResult && question.correctOption === option.key, wrong: showResult && selectedOption === option.key && question.correctOption !== option.key }">
-        <input v-model="selectedOption" type="radio" :name="question.id" :value="option.key" :aria-label="`选项 ${option.key}`" />
+        <input v-model="selectedOption" type="radio" :name="question.id" :value="option.key" :aria-label="`选项 ${option.key}`" @change="emit('attempt', question.id, question.correctOption ? selectedOption === question.correctOption : undefined)" />
         <span class="option-key">{{ option.key }}.</span><MathMarkdown :source="option.text" inline compact /><PracticeIcon v-if="showResult && question.correctOption === option.key" name="check" class="option-result" /><PracticeIcon v-else-if="selectedOption === option.key && question.correctOption !== option.key" name="unknown" class="option-result incorrect" />
       </label>
     </fieldset>
@@ -101,6 +101,7 @@ const statuses: { value: Mastery; label: string }[] = [
       <template v-if="question.answerImages?.length"><h4>原书答案与解析</h4><div class="source-images"><button v-for="picture in question.answerImages" :key="picture.src" type="button" class="image-preview-trigger" :aria-label="`${picture.alt}，放大预览`" @click="previewImage(picture, $event)"><img :src="figureUrl(picture.src)" :alt="picture.alt" :width="picture.width" :height="picture.height" loading="lazy" decoding="async" /></button></div></template>
       <template v-else><h4>答案</h4><MathMarkdown :source="question.answer" compact /><h4>解析</h4><MathMarkdown :source="question.explanation" compact /></template>
     </section>
+    <p v-if="autoHidePending && !printMode" class="auto-hide-hint" role="status">已掌握，稍后自动隐藏；改为「不会」或「不熟练」可取消。</p>
     <section v-if="printMode && progress?.note?.trim()" class="print-note print-only"><h4>错因笔记</h4><p>{{ progress.note }}</p></section>
     <label v-if="noteOpen" :id="`note-${question.id}`" class="note-area"><span>错因笔记</span><textarea :aria-label="`${question.source}的错因笔记`" :value="progress?.note ?? ''" maxlength="10000" @blur="emit('noteBlur')" placeholder="记录错因或易忘的步骤" rows="2" @input="emit('note', question.id, ($event.target as HTMLTextAreaElement).value)" /><small>{{ storageFailed ? '保存失败，请导出备份' : '自动保存' }}</small></label>
   </article>
@@ -108,6 +109,7 @@ const statuses: { value: Mastery; label: string }[] = [
 
 <style scoped>
 .print-only { display: none; }
+.auto-hide-hint { margin: 10px 0 0; color: var(--accent-dark); font-size: 12px; line-height: 1.7; }
 .book-tags, .question-type-tags { display: flex; flex-wrap: wrap; gap: 6px 10px; margin-top: 12px; color: var(--ink-soft); font-size: 12px; line-height: 1.7; }
 .book-tags span, .question-type-tags > span { border-radius: 5px; padding: 3px 8px; background: var(--surface-soft); }
 .book-tags .level-badge { color: var(--accent-dark); background: var(--accent-tint); font-weight: 600; }

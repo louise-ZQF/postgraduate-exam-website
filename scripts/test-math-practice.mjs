@@ -16,7 +16,7 @@ async function loadModule(file) {
   const compiled = ts.transpileModule(source, { compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ESNext } }).outputText
   return import(`data:text/javascript;base64,${Buffer.from(compiled).toString('base64')}`)
 }
-const { normalizeProgress, mergeProgress, isPending, hasNote, readPracticeProgress, savePracticeProgress, PRACTICE_STORAGE_KEY } = await loadModule('client/src/math/practice.ts')
+const { normalizeProgress, mergeProgress, isPending, isUnattempted, hasNote, readPracticeProgress, savePracticeProgress, PRACTICE_STORAGE_KEY } = await loadModule('client/src/math/practice.ts')
 const { practiceQuestions, demoQuestion } = await loadModule('client/src/math/practiceQuestions.ts')
 const ids = new Set()
 for (const q of practiceQuestions) {
@@ -98,6 +98,17 @@ const mastered = { q2025: { ...marked.q2025, mastery: 'mastered', updatedAt: 200
 assert.equal(isPending(mastered.q2025), false)
 assert.equal(isPending({ mastery: 'unfamiliar' }), true)
 assert.equal(isPending(undefined), false)
+assert.equal(isUnattempted(undefined), true)
+assert.equal(isUnattempted({ note: '只记了提醒' }), true)
+assert.equal(isUnattempted({ mastery: 'mastered' }), false, '旧的熟练度记录也表示做过')
+assert.equal(isUnattempted({ mastery: 'unknown' }), false)
+assert.equal(isUnattempted({ attemptedAt: 100 }), false, '已选择过答案的题不再属于未做过')
+assert.equal(isUnattempted({ reviews: 1 }), false, '旧的复习次数记录也表示做过')
+const attempted = normalizeProgress({ q: { attemptedAt: 100, note: '', updatedAt: 200, reviews: 0 } })
+assert.equal(attempted.q.attemptedAt, 100)
+assert.equal(mergeProgress({}, attempted).q.attemptedAt, 100, '导入导出、合并不能丢失作答记录')
+assert.equal(normalizeProgress({ q: { attemptedAt: Infinity } }).q.attemptedAt, undefined)
+assert.equal(normalizeProgress({ q: { attemptedAt: -1 } }).q.attemptedAt, undefined)
 assert.equal(hasNote(undefined), false)
 assert.equal(hasNote({ note: ' \n\t' }), false, '空白不算笔记')
 assert.equal(hasNote({ note: '先判断导数奇偶性', mastery: 'mastered' }), true, '已掌握的笔记也应收录')
