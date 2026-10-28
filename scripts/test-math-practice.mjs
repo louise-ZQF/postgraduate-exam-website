@@ -16,7 +16,7 @@ async function loadModule(file) {
   const compiled = ts.transpileModule(source, { compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ESNext } }).outputText
   return import(`data:text/javascript;base64,${Buffer.from(compiled).toString('base64')}`)
 }
-const { normalizeProgress, mergeProgress, isPending, isUnattempted, hasNote, readPracticeProgress, savePracticeProgress, PRACTICE_STORAGE_KEY } = await loadModule('client/src/math/practice.ts')
+const { normalizeProgress, mergeProgress, isPending, isUnattempted, matchesPracticeStatus, hasNote, readPracticeProgress, savePracticeProgress, PRACTICE_STORAGE_KEY } = await loadModule('client/src/math/practice.ts')
 const { practiceQuestions, demoQuestion } = await loadModule('client/src/math/practiceQuestions.ts')
 const ids = new Set()
 for (const q of practiceQuestions) {
@@ -98,6 +98,17 @@ const mastered = { q2025: { ...marked.q2025, mastery: 'mastered', updatedAt: 200
 assert.equal(isPending(mastered.q2025), false)
 assert.equal(isPending({ mastery: 'unfamiliar' }), true)
 assert.equal(isPending(undefined), false)
+for (const status of ['all', 'pending', 'unmarked', 'mastered', 'unknown', 'unfamiliar', 'favorites']) {
+  assert.equal(matchesPracticeStatus({ favorite: true, mastery: 'mastered' }, status), true, '收藏题必须保留在各显示模式')
+}
+assert.equal(matchesPracticeStatus({ mastery: 'mastered' }, 'unmarked'), false)
+assert.equal(matchesPracticeStatus({ mastery: 'unknown' }, 'pending'), true)
+assert.equal(matchesPracticeStatus(undefined, 'unmarked'), true)
+assert.equal(matchesPracticeStatus(undefined, 'favorites'), false)
+const favorite = normalizeProgress({ q: { favorite: true, note: '收藏笔记', updatedAt: 200, reviews: 0 } })
+assert.equal(mergeProgress({}, favorite).q.favorite, true, '备份合并保留收藏')
+assert.equal(mergeProgress(favorite, { q: { ...favorite.q, favorite: false, updatedAt: 300 } }).q.favorite, false, '取消收藏可以保存')
+assert.equal(normalizeProgress({ q: { favorite: 'true' } }).q.favorite, undefined)
 assert.equal(isUnattempted(undefined), true)
 assert.equal(isUnattempted({ note: '只记了提醒' }), true)
 assert.equal(isUnattempted({ mastery: 'mastered' }), false, '旧的熟练度记录也表示做过')

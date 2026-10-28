@@ -1,6 +1,7 @@
 <script setup lang="ts">
-defineProps<{ name: 'book' | 'repeat' | 'eye' | 'check' | 'unknown' | 'unfamiliar' | 'arrow' | 'note' | 'search' | 'download' | 'upload' | 'trash' }>()
+defineProps<{ name: 'book' | 'repeat' | 'eye' | 'check' | 'unknown' | 'unfamiliar' | 'arrow' | 'note' | 'search' | 'download' | 'upload' | 'trash' | 'star' }>()
 const paths = {
+  star: 'm12 3 2.8 5.7 6.3.9-4.5 4.4 1.1 6.2-5.7-3-5.7 3 1.1-6.2L3.2 9.6l6-.9L12 3Z',
   trash: 'M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7m4-7v7',
   book: 'M4 4h6a3 3 0 0 1 3 3v14a4 4 0 0 0-4-3H4V4Zm16 0h-4a3 3 0 0 0-3 3v14a4 4 0 0 1 4-3h3V4Z',
   repeat: 'M20 7v5h-5M4 17v-5h5M6 7a7 7 0 0 1 12-1l2 3M4 15l2 3a7 7 0 0 0 12-1',

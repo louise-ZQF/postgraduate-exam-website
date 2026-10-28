@@ -30,7 +30,7 @@ export type PracticeQuestion = {
   searchText?: string
   sourceOrder?: number
 }
-export type QuestionProgress = { mastery?: Mastery; attemptedAt?: number; removed?: boolean; note: string; updatedAt: number; reviews: number }
+export type QuestionProgress = { mastery?: Mastery; attemptedAt?: number; favorite?: boolean; removed?: boolean; note: string; updatedAt: number; reviews: number }
 export type PracticeProgress = Record<string, QuestionProgress>
 export const PRACTICE_STORAGE_KEY = 'math2-practice-progress-v1'
 
@@ -43,6 +43,7 @@ export function normalizeProgress(value: unknown): PracticeProgress {
     const mastery = ['unfamiliar', 'unknown', 'mastered'].includes(item.mastery ?? '') ? item.mastery : undefined
     result[id] = {
       mastery,
+      ...(typeof item.favorite === 'boolean' ? { favorite: item.favorite } : {}),
       ...(typeof item.attemptedAt === 'number' && Number.isFinite(item.attemptedAt) && item.attemptedAt > 0 ? { attemptedAt: item.attemptedAt } : {}),
       ...(typeof item.removed === 'boolean' ? { removed: item.removed } : {}),
       note: typeof item.note === 'string' ? item.note.slice(0, 10000) : '',
@@ -63,6 +64,14 @@ export function hasNote(item?: QuestionProgress): boolean {
 
 export function isUnattempted(item?: QuestionProgress): boolean {
   return !item?.mastery && !item?.attemptedAt && !item?.reviews
+}
+
+export function matchesPracticeStatus(item: QuestionProgress | undefined, status: string): boolean {
+  if (item?.favorite) return true
+  if (status === 'all') return true
+  if (status === 'pending') return isPending(item)
+  if (status === 'unmarked') return isUnattempted(item)
+  return item?.mastery === status
 }
 
 export function mergeProgress(current: PracticeProgress, incoming: PracticeProgress): PracticeProgress {

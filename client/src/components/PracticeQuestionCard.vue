@@ -6,7 +6,7 @@ import arcDiagram from '@/assets/practice-figures/zy2026-set1-q5.svg?raw'
 import type { Mastery, PracticeQuestion, QuestionImage, QuestionProgress } from '@/math/practice'
 
 const props = defineProps<{ question: PracticeQuestion; index: number; progress?: QuestionProgress; storageFailed: boolean; showNote?: boolean; removed?: boolean; manageable?: boolean; printMode?: boolean; autoHidePending?: boolean }>()
-const emit = defineEmits<{ mark: [id: string, mastery: Mastery]; attempt: [id: string, correct: boolean | undefined]; note: [id: string, note: string]; noteBlur: []; remove: [id: string]; restore: [id: string]; preview: [image: QuestionImage, trigger: HTMLElement] }>()
+const emit = defineEmits<{ mark: [id: string, mastery: Mastery]; favorite: [id: string]; attempt: [id: string, correct: boolean | undefined]; note: [id: string, note: string]; noteBlur: []; remove: [id: string]; restore: [id: string]; preview: [image: QuestionImage, trigger: HTMLElement] }>()
 const arcDiagramUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(arcDiagram)}`
 const figureUrl = (src: string) => src === 'practice-figures/zy2026-set1-q5.svg' ? arcDiagramUrl : `${import.meta.env.BASE_URL}${src}`
 function previewImage(picture: QuestionImage, event: MouseEvent) {
@@ -93,6 +93,7 @@ const statuses: { value: Mastery; label: string }[] = [
     </fieldset>
     <p v-if="selectedOption && question.correctOption" class="choice-feedback" :class="selectedOption === question.correctOption ? 'correct' : 'incorrect'" role="status" aria-live="polite"><PracticeIcon :name="selectedOption === question.correctOption ? 'check' : 'unknown'" />{{ selectedOption === question.correctOption ? `回答正确，答案是 ${question.correctOption}` : `回答错误，你选了 ${selectedOption}，正确答案是 ${question.correctOption}` }}</p>
     <div class="question-actions">
+      <button v-if="manageable" class="favorite-toggle" :class="{ saved: progress?.favorite }" :aria-pressed="Boolean(progress?.favorite)" :aria-label="progress?.favorite ? '取消收藏题目' : '收藏题目'" @click="emit('favorite', question.id)"><PracticeIcon name="star" />{{ progress?.favorite ? '已收藏' : '收藏' }}</button>
       <button v-if="question.answerAvailable !== false" class="answer-toggle" :aria-expanded="answerOpen" :aria-controls="`answer-${question.id}`" @click="answerOpen = !answerOpen"><PracticeIcon name="eye" />{{ answerOpen ? '收起答案与解析' : '查看答案与解析' }}</button>
       <div class="mastery-controls" role="group" :aria-label="`第 ${index} 题掌握程度`"><button v-for="status in statuses" :key="status.value" :class="[status.value, { marked: progress?.mastery === status.value }]" :aria-pressed="progress?.mastery === status.value" @click="emit('mark', question.id, status.value)"><PracticeIcon :name="status.value === 'mastered' ? 'check' : status.value" />{{ status.label }}</button></div>
       <button class="note-toggle" :class="{ 'has-note': progress?.note }" :aria-label="progress?.note ? '查看错因笔记' : '记录错因笔记'" :aria-expanded="noteOpen" :aria-controls="`note-${question.id}`" @click="noteOpen = !noteOpen"><PracticeIcon name="note" /><span class="visually-hidden">错因笔记</span></button>
@@ -110,6 +111,9 @@ const statuses: { value: Mastery; label: string }[] = [
 <style scoped>
 .print-only { display: none; }
 .auto-hide-hint { margin: 10px 0 0; color: var(--accent-dark); font-size: 12px; line-height: 1.7; }
+.favorite-toggle { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; border: 1px solid var(--line); border-radius: 8px; padding: 7px 10px; background: var(--paper); color: var(--ink-soft); font-size: 13px; }
+.favorite-toggle.saved { border-color: var(--accent); background: var(--accent-tint); color: var(--accent-dark); }
+.favorite-toggle.saved svg { fill: currentColor; }
 .book-tags, .question-type-tags { display: flex; flex-wrap: wrap; gap: 6px 10px; margin-top: 12px; color: var(--ink-soft); font-size: 12px; line-height: 1.7; }
 .book-tags span, .question-type-tags > span { border-radius: 5px; padding: 3px 8px; background: var(--surface-soft); }
 .book-tags .level-badge { color: var(--accent-dark); background: var(--accent-tint); font-weight: 600; }
