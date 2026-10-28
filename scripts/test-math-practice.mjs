@@ -77,9 +77,18 @@ assert.deepEqual(weakGroups.map(id => {
   return [group[0].examNumber, group.length]
 }), [['4', 10], ['7', 10], ['16', 10], ['10', 10], ['5', 2], ['12', 2], ['14', 2], ['15', 2], ['18', 2], ['20', 2], ['21', 2]])
 const katex = createRequire(resolve(root, 'client/package.json'))('katex')
+const originals2025 = practiceQuestions.filter(q => q.year === 2025 && q.kind === 'original')
+assert.deepEqual(originals2025.map(q => Number(q.number)).sort((a, b) => a - b), [4, 5, 7, 10, 12, 14, 15, 16, 18, 20, 21])
+assert.equal(practiceQuestions.filter(q => q.year === 2025).length, 65)
+for (const q of originals2025) {
+  assert.ok(q.explanation.includes('原错因记录'), `${q.id} 保留原错因`)
+  assert.ok(weak2025.some(exercise => exercise.questionTypes[0].id === q.questionTypes[0].id), `${q.id} 与已有补充练习对应`)
+}
 for (const q of weak2025) {
   assert.equal(q.sourceOrder, Number(q.number), '保留原文练习顺序')
   assert.ok(q.source.startsWith('非真题练习 · '))
+}
+for (const q of [...weak2025, ...originals2025]) {
   for (const value of [q.stem, q.answer, q.explanation, ...(q.options ?? []).map(option => option.text)]) {
     for (const token of value.matchAll(/\$\$([\s\S]*?)\$\$|\$([^$\n]+?)\$/g)) {
       assert.doesNotThrow(() => katex.renderToString(token[1] ?? token[2], { displayMode: Boolean(token[1]), throwOnError: true, strict: 'ignore' }), `${q.id} 公式必须可渲染`)

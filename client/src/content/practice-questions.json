@@ -10334,5 +10334,345 @@
     ],
     "sourceOrder": 54,
     "sourceUrl": "https://cxyonly.fans/math/questions/1969"
+  },
+  {
+    "id": "math2-2025-q4-original",
+    "year": 2025,
+    "paperTitle": "2025 年",
+    "number": "4",
+    "examNumber": "4",
+    "kind": "original",
+    "source": "2025 年数学二真题 · 第 4 题",
+    "topic": "小 o 与等价无穷小",
+    "type": "choice",
+    "stem": "设函数 $f(x),g(x)$ 在 $x=0$ 的某去心邻域内有定义且恒不为零。若当 $x\\to0$ 时，$f(x)$ 是 $g(x)$ 的高阶无穷小，则当 $x\\to0$ 时，（ ）。",
+    "answer": "**C**。",
+    "explanation": "选 C。“$f$ 是 $g$ 的高阶无穷小”表示 $f/g\\to0$，题目中的 $g$ 也是无穷小。由 $g(x)\\to0$，可使用\n$$\ne^{g(x)}-1\\sim g(x).\n$$\n所以\n$$\n\\frac{f(x)}{e^{g(x)}-1}\n=\\frac{f(x)}{g(x)}\\frac{g(x)}{e^{g(x)}-1}\\to0\\cdot1=0.\n$$\nA 中 $(f+g)/g=f/g+1\\to1$，不是 0。B 中 $fg/f^2=g/f$，不能推出趋于 0。D 也不成立，例如取 $f=x^2,g=x$，则 $f/g\\to0$，但 $f/g^2=1$。\n\n**原错因记录**\n\n按你补充纳入错题。需要把小 o 翻译成比值极限；使用指数函数的等价无穷小时，先检查指数是否趋于 0。\n\n对应补充练习：补充第1—10题。\n\n**来源说明：** 你此前上传的《A4数二2025真题_1023-.pdf》，原题第2页。",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g01",
+        "title": "一、小 o 与等价无穷小 · 对应第4题",
+        "references": [
+          "2025数二第4题"
+        ]
+      }
+    ],
+    "sourceOrder": 1,
+    "options": [
+      {
+        "key": "A",
+        "text": "$f(x)+g(x)=o(g(x))$。"
+      },
+      {
+        "key": "B",
+        "text": "$f(x)g(x)=o(f^2(x))$。"
+      },
+      {
+        "key": "C",
+        "text": "$f(x)=o(e^{g(x)}-1)$。"
+      },
+      {
+        "key": "D",
+        "text": "$f(x)=o(g^2(x))$。"
+      }
+    ],
+    "correctOption": "C"
+  },
+  {
+    "id": "math2-2025-q5-original",
+    "year": 2025,
+    "paperTitle": "2025 年",
+    "number": "5",
+    "examNumber": "5",
+    "kind": "original",
+    "source": "2025 年数学二真题 · 第 5 题",
+    "topic": "积分次序与对称性",
+    "type": "choice",
+    "stem": "设函数 $f(x,y)$ 连续，则\n$$\n\\int_{-2}^{2}\\mathrm dx\\int_{4-x^2}^{4}f(x,y)\\,\\mathrm dy=(\\quad).\n$$",
+    "answer": "**A**。",
+    "explanation": "选 A。原区域满足 $-2\\le x\\le2$，$4-x^2\\le y\\le4$。固定 $y$，先确定 $0\\le y\\le4$，再将下边界不等式改写为\n$$\nx^2\\ge4-y.\n$$\n结合 $-2\\le x\\le2$，横向截线分成两段：\n$$\n-2\\le x\\le-\\sqrt{4-y},\\qquad \\sqrt{4-y}\\le x\\le2.\n$$\n所以必须把左右两段积分相加，得到 A。区域关于 $y$ 轴对称，但题目没有给出 $f(-x,y)=f(x,y)$，因此不能直接把右半部分乘 2。\n\n**原错因记录**\n\n右半部分的范围找对了，但没有检查被积函数，就把右半部分积分乘 2。区域对称本身不足以保证两侧积分相等。\n\n对应补充练习：补充第41—42题。\n\n**来源说明：** 你此前上传的《A4数二2025真题_1023-.pdf》，原题第2页。",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g05",
+        "title": "五、积分次序与对称性 · 对应第5题",
+        "references": [
+          "2025数二第5题"
+        ]
+      }
+    ],
+    "sourceOrder": 41,
+    "options": [
+      {
+        "key": "A",
+        "text": "$\\displaystyle\\int_0^4\\left[\\int_{-2}^{-\\sqrt{4-y}}f(x,y)\\,\\mathrm dx+\\int_{\\sqrt{4-y}}^2f(x,y)\\,\\mathrm dx\\right]\\mathrm dy$。"
+      },
+      {
+        "key": "B",
+        "text": "$\\displaystyle\\int_0^4\\left[\\int_{-2}^{\\sqrt{4-y}}f(x,y)\\,\\mathrm dx+\\int_{\\sqrt{4-y}}^2f(x,y)\\,\\mathrm dx\\right]\\mathrm dy$。"
+      },
+      {
+        "key": "C",
+        "text": "$\\displaystyle\\int_0^4\\left[\\int_{-2}^{-\\sqrt{4-y}}f(x,y)\\,\\mathrm dx+\\int_2^{\\sqrt{4-y}}f(x,y)\\,\\mathrm dx\\right]\\mathrm dy$。"
+      },
+      {
+        "key": "D",
+        "text": "$\\displaystyle2\\int_0^4\\mathrm dy\\int_{\\sqrt{4-y}}^2f(x,y)\\,\\mathrm dx$。"
+      }
+    ],
+    "correctOption": "A"
+  },
+  {
+    "id": "math2-2025-q7-original",
+    "year": 2025,
+    "paperTitle": "2025 年",
+    "number": "7",
+    "examNumber": "7",
+    "kind": "original",
+    "source": "2025 年数学二真题 · 第 7 题",
+    "topic": "绝对值与可导性",
+    "type": "choice",
+    "stem": "设函数 $f(x)$ 连续，给出下列四个条件：\n$$\n\\text{①}\\quad\\lim_{x\\to0}\\frac{|f(x)|-f(0)}x\\text{ 存在};\\qquad\n\\text{②}\\quad\\lim_{x\\to0}\\frac{f(x)-|f(0)|}x\\text{ 存在};\n$$\n$$\n\\text{③}\\quad\\lim_{x\\to0}\\frac{|f(x)|}x\\text{ 存在};\\qquad\n\\text{④}\\quad\\lim_{x\\to0}\\frac{|f(x)|-|f(0)|}x\\text{ 存在}.\n$$\n其中能得到“$f(x)$ 在 $x=0$ 处可导”的条件个数是（ ）。",
+    "answer": "**D**。",
+    "explanation": "选 D，四个条件均可推出可导。先掌握一个共同的基础判断：若 $\\lim_{x\\to0}|f(x)|/x$ 存在，记为 $L$，则右侧比值非负、左侧比值非正，所以 $L$ 只能为 0。再由\n$$\n\\left|\\frac{f(x)}x\\right|=\\frac{|f(x)|}{|x|}\\to0\n$$\n得到 $f(x)/x\\to0$。结合连续性得到 $f(0)=0$，所以 $f'(0)=0$。这已经证明③。\n\n第一步，检查①。比值有有限极限、分母趋于 0，所以分子趋于 0。结合连续性得 $|f(0)|-f(0)=0$，即 $f(0)\\ge0$。若 $f(0)>0$，由连续保号性可在原点附近去掉绝对值，①就是导数定义；若 $f(0)=0$，①化为③。\n\n第二步，检查②。同样先推出 $f(0)=|f(0)|$，再直接将分母上方的 $|f(0)|$ 换成 $f(0)$，得到导数定义。\n\n第三步，检查④。若 $f(0)>0$，在邻域内 $|f(x)|=f(x)$；若 $f(0)<0$，在邻域内 $|f(x)|=-f(x)$，因此④分别是原函数导数的定义或其相反数。若 $f(0)=0$，④又化为③。因此四项都成立。\n\n**原错因记录**\n\n按你后续补充保留为错题。重点补绝对值、连续保号性，以及“先确定原点函数值，再使用导数定义”；本次没有据此新增对你手写步骤的判断。\n\n对应补充练习：补充第11—20题。\n\n**来源说明：** 你此前上传的《A4数二2025真题_1023-.pdf》，原题第3页。",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g02",
+        "title": "二、绝对值与可导性 · 对应第7题",
+        "references": [
+          "2025数二第7题"
+        ]
+      }
+    ],
+    "sourceOrder": 11,
+    "options": [
+      {
+        "key": "A",
+        "text": "1。"
+      },
+      {
+        "key": "B",
+        "text": "2。"
+      },
+      {
+        "key": "C",
+        "text": "3。"
+      },
+      {
+        "key": "D",
+        "text": "4。"
+      }
+    ],
+    "correctOption": "D"
+  },
+  {
+    "id": "math2-2025-q10-original",
+    "year": 2025,
+    "paperTitle": "2025 年",
+    "number": "10",
+    "examNumber": "10",
+    "kind": "original",
+    "source": "2025 年数学二真题 · 第 10 题",
+    "topic": "秩与公共非零解",
+    "type": "choice",
+    "stem": "设三阶矩阵 $A,B$ 满足 $r(AB)=r(BA)+1$，则（ ）。",
+    "answer": "**D**。",
+    "explanation": "选 D。先利用秩不同排除可逆情形：若 $A$ 可逆，则 $r(AB)=r(B)=r(BA)$，矛盾；若 $B$ 可逆，同样矛盾。因此 $A,B$ 都不可逆，$r(A),r(B)\\le2$。于是\n$$\nr(AB)\\le2,\\qquad r(BA)=r(AB)-1\\le1.\n$$\n再利用乘积的秩不超过因子的秩：\n$$\nr(ABA)=r[A(BA)]\\le1,\\qquad\nr(BAB)=r[(BA)B]\\le1.\n$$\n将 D 中两个方程组上下联立，得到六个方程、三个未知数，其系数矩阵满足\n$$\nr\\begin{pmatrix}ABA\\\\BAB\\end{pmatrix}\n\\le r(ABA)+r(BAB)\\le2<3.\n$$\n未知数个数大于秩，所以联立方程组有非零解，即两组有公共非零解。\n\nA、B、C 均不能保证。例如取 $A=\\operatorname{diag}(1,0,0)$，$B$ 只有第 $(1,2)$ 个元素为 1，其余为 0，则 $AB=B,BA=O$，满足题设；但 $A+B$ 不可逆，且 $Ax=0,Bx=0$ 有公共非零解 $(0,0,1)^T$。\n\n**原错因记录**\n\n按你补充记错。卷面没有足够展开过程，不能进一步认定是哪一步不会；练习重点是非零解的秩判据，以及将两个齐次方程组上下联立。\n\n对应补充练习：补充第31—40题。\n\n**来源说明：** 你此前上传的《A4数二2025真题_1023-.pdf》，原题第4页。",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g04",
+        "title": "四、秩与公共非零解 · 对应第10题",
+        "references": [
+          "2025数二第10题"
+        ]
+      }
+    ],
+    "sourceOrder": 31,
+    "options": [
+      {
+        "key": "A",
+        "text": "方程组 $(A+B)x=0$ 只有零解。"
+      },
+      {
+        "key": "B",
+        "text": "方程组 $Ax=0$ 与方程组 $Bx=0$ 均只有零解。"
+      },
+      {
+        "key": "C",
+        "text": "方程组 $Ax=0$ 与方程组 $Bx=0$ 没有公共非零解。"
+      },
+      {
+        "key": "D",
+        "text": "方程组 $ABAx=0$ 与方程组 $BABx=0$ 有公共非零解。"
+      }
+    ],
+    "correctOption": "D"
+  },
+  {
+    "id": "math2-2025-q12-original",
+    "year": 2025,
+    "paperTitle": "2025 年",
+    "number": "12",
+    "examNumber": "12",
+    "kind": "original",
+    "source": "2025 年数学二真题 · 第 12 题",
+    "topic": "斜渐近线与根式有理化",
+    "type": "fill",
+    "stem": "曲线\n$$\ny=\\sqrt[3]{x^3-3x^2+1}\n$$\n的渐近线方程为________。",
+    "answer": "$y=x-1$。",
+    "explanation": "答案 $y=x-1$。先求斜率：\n$$\n\\lim_{x\\to\\pm\\infty}\\frac yx\n=\\lim_{x\\to\\pm\\infty}\\sqrt[3]{1-\\frac3x+\\frac1{x^3}}=1.\n$$\n再求截距。由 $y^3-x^3=-3x^2+1$，使用立方差公式：\n$$\ny-x=\\frac{y^3-x^3}{y^2+xy+x^2}\n=\\frac{-3x^2+1}{y^2+xy+x^2}.\n$$\n分子分母同时除以 $x^2$，得\n$$\n\\lim_{x\\to\\pm\\infty}(y-x)\n=\\lim_{x\\to\\pm\\infty}\\frac{-3+1/x^2}{(y/x)^2+y/x+1}=-1.\n$$\n因此斜渐近线是 $y=x-1$。函数在每个有限点都有有限值，没有铅直渐近线；斜率为 1，也没有水平渐近线。\n\n**原错因记录**\n\n求斜率、求截距的方向正确，但三次根式有理化公式用错。应使用 $(y-x)(y^2+xy+x^2)=y^3-x^3$，不是平方差形式。\n\n对应补充练习：补充第43—44题。\n\n**来源说明：** 你此前上传的《A4数二2025真题_1023-.pdf》，原题第4页。",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g06",
+        "title": "六、斜渐近线与根式有理化 · 对应第12题",
+        "references": [
+          "2025数二第12题"
+        ]
+      }
+    ],
+    "sourceOrder": 43
+  },
+  {
+    "id": "math2-2025-q14-original",
+    "year": 2025,
+    "paperTitle": "2025 年",
+    "number": "14",
+    "examNumber": "14",
+    "kind": "original",
+    "source": "2025 年数学二真题 · 第 14 题",
+    "topic": "参数方程与变限积分求导",
+    "type": "fill",
+    "stem": "已知函数 $y=y(x)$ 由\n$$\n\\begin{cases}\nx=\\ln(1+2t),\\\\\n2t-\\displaystyle\\int_1^{y+t^2}e^{-u^2}\\,\\mathrm du=0\n\\end{cases}\n$$\n确定，求 $\\left.\\dfrac{\\mathrm dy}{\\mathrm dx}\\right|_{t=0}$。",
+    "answer": "$e$。",
+    "explanation": "答案 $e$。分别对参数 $t$ 求导：\n$$\n\\frac{\\mathrm dx}{\\mathrm dt}=\\frac2{1+2t},\n\\qquad\n2-e^{-(y+t^2)^2}\\left(\\frac{\\mathrm dy}{\\mathrm dt}+2t\\right)=0.\n$$\n当 $t=0$ 时，原方程给出 $\\int_1^y e^{-u^2}\\,\\mathrm du=0$。被积函数恒正，所以 $y=1$。代入导数式，得到\n$$\n\\left.\\frac{\\mathrm dx}{\\mathrm dt}\\right|_{t=0}=2,\\qquad\n\\left.\\frac{\\mathrm dy}{\\mathrm dt}\\right|_{t=0}=2e.\n$$\n最后按参数方程公式相除：\n$$\n\\left.\\frac{\\mathrm dy}{\\mathrm dx}\\right|_{t=0}\n=\\frac{2e}{2}=e.\n$$\n\n**原错因记录**\n\n前面 $\\mathrm dx/\\mathrm dt=2$、$\\mathrm dy/\\mathrm dt=2e$ 已算对，最后导数的比值颠倒，填成了 $1/e$。\n\n对应补充练习：补充第45—46题。\n\n**来源说明：** 你此前上传的《A4数二2025真题_1023-.pdf》，原题第5页。",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g07",
+        "title": "七、参数方程与变限积分求导 · 对应第14题",
+        "references": [
+          "2025数二第14题"
+        ]
+      }
+    ],
+    "sourceOrder": 45
+  },
+  {
+    "id": "math2-2025-q15-original",
+    "year": 2025,
+    "paperTitle": "2025 年",
+    "number": "15",
+    "examNumber": "15",
+    "kind": "original",
+    "source": "2025 年数学二真题 · 第 15 题",
+    "topic": "一阶齐次微分方程",
+    "type": "fill",
+    "stem": "微分方程\n$$\n(2y-3x)\\,\\mathrm dx+(2x-5y)\\,\\mathrm dy=0\n$$\n满足条件 $y(1)=1$ 的解为________。",
+    "answer": "$3x^2-4xy+5y^2=4$，取经过 $(1,1)$ 的解支。",
+    "explanation": "答案 $3x^2-4xy+5y^2=4$，取经过 $(1,1)$ 的解支。按你需要补的齐次方程方法，先写\n$$\ny'=\\frac{3x-2y}{2x-5y}=\\frac{3-2(y/x)}{2-5(y/x)}.\n$$\n令 $y=xu$，则 $y'=u+xu'$，因此\n$$\nu+xu'=\\frac{3-2u}{2-5u},\\qquad\nxu'=\\frac{3-4u+5u^2}{2-5u}.\n$$\n先通分得到右边整体分式，再分离变量：\n$$\n\\frac{2-5u}{5u^2-4u+3}\\,\\mathrm du=\\frac{\\mathrm dx}{x}.\n$$\n分子恰是分母导数的 $-1/2$，积分得\n$$\n-\\frac12\\ln(5u^2-4u+3)=\\ln|x|+C.\n$$\n整理为 $x^2(5u^2-4u+3)=C_1$，代回 $u=y/x$，得到 $5y^2-4xy+3x^2=C_1$。由 $(1,1)$ 得 $C_1=4$。\n\n**原错因记录**\n\n分母 $2x-5y$ 同除以 $x$ 应是 $2-5y/x$，你写反了；后续分离变量又将“差的倒数”错误拆开。必须先通分，再对整体分式取倒数。\n\n对应补充练习：补充第47—48题。\n\n**来源说明：** 你此前上传的《A4数二2025真题_1023-.pdf》，原题第5页。",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g08",
+        "title": "八、一阶齐次微分方程 · 对应第15题",
+        "references": [
+          "2025数二第15题"
+        ]
+      }
+    ],
+    "sourceOrder": 47
+  },
+  {
+    "id": "math2-2025-q16-original",
+    "year": 2025,
+    "paperTitle": "2025 年",
+    "number": "16",
+    "examNumber": "16",
+    "kind": "original",
+    "source": "2025 年数学二真题 · 第 16 题",
+    "topic": "列向量关系与通解",
+    "type": "fill",
+    "stem": "设矩阵 $A=(\\alpha_1,\\alpha_2,\\alpha_3,\\alpha_4)$，若 $\\alpha_1,\\alpha_2,\\alpha_3$ 线性无关，且\n$$\n\\alpha_1+\\alpha_2=\\alpha_3+\\alpha_4,\n$$\n则方程组 $Ax=\\alpha_1+4\\alpha_4$ 的通解为________。",
+    "answer": "$$\nx=(5,4,-4,0)^T+k(1,1,-1,-1)^T,\\qquad k\\in\\mathbb R.\n$$",
+    "explanation": "答案可以写为\n$$\nx=(5,4,-4,0)^T+k(1,1,-1,-1)^T,\\qquad k\\in\\mathbb R.\n$$\n先将列关系移到一边：\n$$\n\\alpha_1+\\alpha_2-\\alpha_3-\\alpha_4=0,\n$$\n所以 $(1,1,-1,-1)^T$ 是齐次方程 $Ax=0$ 的非零解。前三列线性无关，故 $r(A)=3$；四个未知数只有一个自由参数，因此该向量就是一个基础解系。\n\n右端直接给出特解 $(1,0,0,4)^T$。你写出的 $(5,4,-4,0)^T$ 也正确，因为\n$$\n5\\alpha_1+4\\alpha_2-4\\alpha_3\n=\\alpha_1+4(\\alpha_1+\\alpha_2-\\alpha_3)\n=\\alpha_1+4\\alpha_4.\n$$\n将这个特解与齐次通解相加即可。\n\n**原错因记录**\n\n你原来的特解 $(5,4,-4,0)^T$ 保留，它是正确的；错误在齐次解方向，不能写成 $(0,0,0,1)^T$。该方向乘以 $A$ 得到的是 $\\alpha_4$，题目没有说它为零。\n\n对应补充练习：补充第21—30题。\n\n**来源说明：** 你此前上传的《A4数二2025真题_1023-.pdf》，原题第6页。",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g03",
+        "title": "三、列向量关系与通解 · 对应第16题",
+        "references": [
+          "2025数二第16题"
+        ]
+      }
+    ],
+    "sourceOrder": 21
+  },
+  {
+    "id": "math2-2025-q18-original",
+    "year": 2025,
+    "paperTitle": "2025 年",
+    "number": "18",
+    "examNumber": "18",
+    "kind": "original",
+    "source": "2025 年数学二真题 · 第 18 题",
+    "topic": "由极限证明可导",
+    "type": "solution",
+    "stem": "设函数 $f(x)$ 在 $x=0$ 处连续，且\n$$\n\\lim_{x\\to0}\\frac{xf(x)-e^{2\\sin x}+1}{\\ln(1+x)+\\ln(1-x)}=-3.\n$$\n证明 $f(x)$ 在 $x=0$ 处可导，并求 $f'(0)$。",
+    "answer": "$f(0)=2$，$f'(0)=5$。",
+    "explanation": "结论是 $f(0)=2$，$f'(0)=5$。先把分母合并，得到 $\\ln(1-x^2)\\sim-x^2$。再展开指数函数：\n$$\ne^{2\\sin x}=1+2x+2x^2+o(x^2).\n$$\n由已知整体极限，先得到\n$$\n\\lim_{x\\to0}\\frac{xf(x)-e^{2\\sin x}+1}{x^2}\n=(-3)(-1)=3.\n$$\n代入展开式，整理为\n$$\n\\lim_{x\\to0}\\left[\\frac{f(x)-2}{x}-2+o(1)\\right]=3,\n\\qquad\n\\lim_{x\\to0}\\frac{f(x)-2}{x}=5.\n$$\n这时先说明函数值：由 $f(x)-2=x[(f(x)-2)/x]\\to0$，得到 $f(x)\\to2$；又因原点连续，才有 $f(0)=2$。最后用定义：\n$$\nf'(0)=\\lim_{x\\to0}\\frac{f(x)-f(0)}x=5.\n$$\n整个过程保留分子整体，不先把 $xf(x)$、指数项各自拆成可能发散的极限。\n\n**原错因记录**\n\n最终答案虽然正确，证明过程仍保留为错题：整体极限拆分不合法，展开中的常数项有误，且没有依据就写了 $f(0)=0$。应先整理出 $(f(x)-2)/x$ 的极限，再由连续性确定原点值。\n\n对应补充练习：补充第49—50题。\n\n**来源说明：** 你此前上传的《A4数二2025真题_1023-.pdf》，原题第7页。",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g09",
+        "title": "九、由极限证明可导 · 对应第18题",
+        "references": [
+          "2025数二第18题"
+        ]
+      }
+    ],
+    "sourceOrder": 49
+  },
+  {
+    "id": "math2-2025-q20-original",
+    "year": 2025,
+    "paperTitle": "2025 年",
+    "number": "20",
+    "examNumber": "20",
+    "kind": "original",
+    "source": "2025 年数学二真题 · 第 20 题",
+    "topic": "轮换对称与极坐标计算",
+    "type": "solution",
+    "stem": "已知平面有界区域\n$$\nD=\\{(x,y)\\mid x^2+y^2\\le4x,\\ x^2+y^2\\le4y\\},\n$$\n计算\n$$\nI=\\iint_D(x-y)^2\\,\\mathrm dx\\mathrm dy.\n$$",
+    "answer": "$12\\pi-112/3$。",
+    "explanation": "答案 $12\\pi-112/3$。区域关于 $y=x$ 对称，被积函数轮换 $x,y$ 后不变，所以取 $x\\ge y$ 的半区积分再乘 2。极坐标下，先确定\n$$\n0\\le\\theta\\le\\frac\\pi4,\n$$\n再由两个圆的限制 $r\\le4\\cos\\theta$、$r\\le4\\sin\\theta$ 取较小者，得到 $0\\le r\\le4\\sin\\theta$。因此\n$$\n\\begin{aligned}\nI&=2\\int_0^{\\pi/4}\\mathrm d\\theta\\int_0^{4\\sin\\theta}\nr^3(\\cos\\theta-\\sin\\theta)^2\\,\\mathrm dr\\\\\n&=128\\int_0^{\\pi/4}\\sin^4\\theta\\,\\mathrm d\\theta\n-256\\int_0^{\\pi/4}\\sin^5\\theta\\cos\\theta\\,\\mathrm d\\theta.\n\\end{aligned}\n$$\n第一项用降幂公式，特别注意平方项为正：\n$$\n(1-\\cos2\\theta)^2=1-2\\cos2\\theta+\\cos^22\\theta,\n$$\n从而\n$$\n\\int_0^{\\pi/4}\\sin^4\\theta\\,\\mathrm d\\theta\n=\\left[\\frac{3\\theta}{8}-\\frac{\\sin2\\theta}{4}+\\frac{\\sin4\\theta}{32}\\right]_0^{\\pi/4}\n=\\frac{3\\pi}{32}-\\frac14.\n$$\n第二项直接凑微分：\n$$\n\\int_0^{\\pi/4}\\sin^5\\theta\\cos\\theta\\,\\mathrm d\\theta\n=\\left[\\frac{\\sin^6\\theta}{6}\\right]_0^{\\pi/4}=\\frac1{48}.\n$$\n合并得 $I=128(3\\pi/32-1/4)-256/48=12\\pi-112/3$。\n\n**原错因记录**\n\n区域、极角范围与极坐标积分式原本正确，保留这一判断。主要错误在 $(1-\\cos2\\theta)^2$ 展开的符号及后续系数；你右侧算出的 $-16/3$ 是正确的。\n\n对应补充练习：补充第51—52题。\n\n**来源说明：** 你此前上传的《A4数二2025真题_1023-.pdf》，原题第9页。",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g10",
+        "title": "十、轮换对称与极坐标计算 · 对应第20题",
+        "references": [
+          "2025数二第20题"
+        ]
+      }
+    ],
+    "sourceOrder": 51
+  },
+  {
+    "id": "math2-2025-q21-original",
+    "year": 2025,
+    "paperTitle": "2025 年",
+    "number": "21",
+    "examNumber": "21",
+    "kind": "original",
+    "source": "2025 年数学二真题 · 第 21 题",
+    "topic": "中值定理与弦斜率",
+    "type": "solution",
+    "stem": "设函数 $f(x)$ 在区间 $(a,b)$ 内可导，证明：导函数 $f'$ 在 $(a,b)$ 内严格单调增加的充分必要条件是，对 $(a,b)$ 内任意的 $x_1,x_2,x_3$，当 $x_1<x_2<x_3$ 时，\n$$\n\\frac{f(x_2)-f(x_1)}{x_2-x_1}\n<\\frac{f(x_3)-f(x_2)}{x_3-x_2}.\n$$",
+    "answer": "充要条件成立，必要性与充分性的完整证明见解析。",
+    "explanation": "第一步，证明必要性。设 $f'$ 严格递增。分别在 $[x_1,x_2]$、$[x_2,x_3]$ 使用拉格朗日中值定理，存在 $\\xi_1\\in(x_1,x_2)$、$\\xi_2\\in(x_2,x_3)$，使\n$$\n\\frac{f(x_2)-f(x_1)}{x_2-x_1}=f'(\\xi_1),\\qquad\n\\frac{f(x_3)-f(x_2)}{x_3-x_2}=f'(\\xi_2).\n$$\n因为 $\\xi_1<\\xi_2$，所以 $f'(\\xi_1)<f'(\\xi_2)$，即得所需弦斜率不等式。\n\n第二步，证明充分性。任取 $p<q$，并在两者之间取 $z$，使 $p<z<q$。题设首先给出\n$$\n\\frac{f(z)-f(p)}{z-p}<\\frac{f(q)-f(z)}{q-z}.\\tag{1}\n$$\n再取 $u\\in(p,z)$，对三点 $p,u,z$ 使用题设不等式：\n$$\n\\frac{f(u)-f(p)}{u-p}<\\frac{f(z)-f(u)}{z-u}.\n$$\n令 $u\\to p^+$，由可导和连续性得到\n$$\nf'(p)\\le\\frac{f(z)-f(p)}{z-p}.\\tag{2}\n$$\n同理，取 $v\\in(z,q)$，对三点 $z,v,q$ 使用题设不等式，再令 $v\\to q^-$，得到\n$$\n\\frac{f(q)-f(z)}{q-z}\\le f'(q).\\tag{3}\n$$\n将(2)、(1)、(3)按顺序连接：\n$$\nf'(p)\\le\\frac{f(z)-f(p)}{z-p}\n<\\frac{f(q)-f(z)}{q-z}\\le f'(q).\n$$\n所以 $f'(p)<f'(q)$。由于 $p<q$ 任意，$f'$ 严格递增，充分性得证。取极限后的两侧只保留了非严格不等号；中间那条未取极限的严格不等式负责保证最终严格。\n\n**原错因记录**\n\n原题未作答，需要补“充分性、必要性分开证明”的完整方法；尤其不能把严格不等式取极限后，直接断言严格不等式仍成立。\n\n对应补充练习：补充第53—54题。\n\n**来源说明：** 你此前上传的《A4数二2025真题_1023-.pdf》，原题第10页。",
+    "questionTypes": [
+      {
+        "id": "math2-2025-weak-g11",
+        "title": "十一、中值定理与弦斜率 · 对应第21题",
+        "references": [
+          "2025数二第21题"
+        ]
+      }
+    ],
+    "sourceOrder": 53
   }
 ]
