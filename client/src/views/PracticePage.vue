@@ -385,7 +385,9 @@ function trackQuestionInteraction(event: Event) {
   if (trackingLocation) rememberQuestion(card.id)
 }
 function trackLocationKey(event: KeyboardEvent) {
-  if (['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' ', 'Tab'].includes(event.key)) enableLocationTracking()
+  if (event.key === 'Tab') { trackingLocation = true; return }
+  if ((event.target as HTMLElement).closest?.('input, textarea, select')) return
+  if (['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '].includes(event.key)) enableLocationTracking()
 }
 function finishLocationTracking() {
   if (resuming.value) return
