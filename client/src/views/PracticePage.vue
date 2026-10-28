@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { onBeforeRouteLeave, onBeforeRouteUpdate, useRoute, useRouter } from 'vue-router'
 import MathHeader from '@/components/MathHeader.vue'
 import PracticeQuestionCard from '@/components/PracticeQuestionCard.vue'
 import PracticeImagePreview from '@/components/PracticeImagePreview.vue'
@@ -8,6 +8,7 @@ import PracticeIcon from '@/components/PracticeIcon.vue'
 import ll880Chapters from '@/content/ll880-classification.json'
 import { demoQuestion, practiceQuestions } from '@/math/practiceQuestions'
 import { hasNote, isPending, matchesPracticeStatus, mergeProgress, normalizeProgress, PRACTICE_STORAGE_KEY, readPracticeProgress, savePracticeProgress, type Mastery, type QuestionImage, type QuestionProgress, type PracticeProgress } from '@/math/practice'
+import { readPracticeLocation, savePracticeLocation, type PracticeLocation } from '@/math/practiceLocation'
 
 const props = withDefaults(defineProps<{ collection?: 'exams' | 'll880' }>(), { collection: 'exams' })
 const isBook = props.collection === 'll880'
@@ -28,6 +29,22 @@ const questions = practiceQuestions.filter(q => isBook ? q.bookId === 'll880' : 
 const paperKey = (question: (typeof questions)[number]) => question.paperId ?? String(question.year)
 const questionById = new Map([...questions, demoQuestion].map(q => [q.id, q]))
 const progress = ref<PracticeProgress>(readPracticeProgress())
+const storedLocation = readPracticeLocation(props.collection)
+const lastInteractedQuestion = questions.filter(q => !progress.value[q.id]?.removed && progress.value[q.id]?.updatedAt > 0).sort((a, b) => progress.value[b.id].updatedAt - progress.value[a.id].updatedAt)[0]
+const lastLocation = ref<PracticeLocation | undefined>(storedLocation && questions.some(q => q.id === storedLocation.questionId) ? storedLocation : lastInteractedQuestion ? {
+  questionId: lastInteractedQuestion.id, view: 'all', year: String(lastInteractedQuestion.year), paper: paperKey(lastInteractedQuestion), status: 'all', type: 'all', level: 'all', keyword: '', offset: 0, updatedAt: progress.value[lastInteractedQuestion.id].updatedAt,
+} : undefined)
+const lastLocationLabel = computed(() => {
+  const q = questionById.get(lastLocation.value?.questionId ?? '')
+  if (!q) return ''
+  const title = q.paperTitle ?? `${q.year} 年`
+  return q.bookId ? `${title} · ${q.source.replace('李林880 · ', '')}` : `${title} · ${q.kind === 'exercise' ? '补充练习' : '第'} ${q.number} 题`
+})
+const resuming = ref(false)
+let trackingLocation = false
+let locationPageActive = true
+let locationTimer: number | undefined
+let scrollTrackingUntil = 0
 const demoProgress = ref<PracticeProgress>({})
 const demoMode = ref(questions.length === 0)
 const mode = computed(() => route.query.view === 'removed' ? 'removed' : route.query.view === 'notes' ? 'notes' : route.query.view === 'review' ? 'review' : 'all')
@@ -190,6 +207,7 @@ watch(notice, () => {
 })
 
 async function jumpToRoute() {
+  if (resuming.value) return
   await nextTick()
   const requested = String(route.query.question ?? '')
   const questionElement = queueIds.value.includes(requested) ? document.getElementById(requested) : null
@@ -202,6 +220,7 @@ async function jumpToRoute() {
 }
 watch(() => [route.query.year, route.query.paper, route.query.question, route.query.view], jumpToRoute)
 async function selectView(view: 'all' | 'review' | 'notes' | 'removed', targetYear = ['notes', 'removed'].includes(view) ? '' : selectedYear.value, targetPaper = view === 'all' ? selectedPaper.value : '') {
+  finishLocationTracking()
   directoryOpen.value = false
   if (view === 'review') statusFilter.value = 'pending'
   else if (view !== mode.value) statusFilter.value = 'all'
@@ -217,6 +236,8 @@ function persist(id: string, patch: { mastery?: Mastery; attemptedAt?: number; f
   if (!demoMode.value) {
     progress.value = mergeProgress(readPracticeProgress(), progress.value)
     storageFailed.value = !savePracticeProgress(progress.value)
+    trackingLocation = true
+    rememberQuestion(id)
   }
 }
 function mark(id: string, mastery: Mastery) {
@@ -319,13 +340,141 @@ function syncProgress(event: StorageEvent) {
     updateQueue()
   }
 }
+function rememberQuestion(id: string) {
+  if (resuming.value || demoMode.value || mode.value === 'removed' || !queueIds.value.includes(id) || progress.value[id]?.removed) return
+  const element = document.getElementById(id)
+  if (!element) return
+  const location: PracticeLocation = {
+    questionId: id, view: mode.value, year: selectedYear.value, paper: selectedPaper.value,
+    status: statusFilter.value, type: typeFilter.value, level: levelFilter.value, keyword: keyword.value,
+    offset: Math.round(-element.getBoundingClientRect().top), updatedAt: Date.now(),
+  }
+  if (!savePracticeLocation(props.collection, location)) notice.value = '浏览器暂时无法保存上次做题位置。'
+}
+function rememberViewport() {
+  if (!trackingLocation || resuming.value || exportingPdf.value) return
+  const anchor = Math.min(120, window.innerHeight / 5)
+  const card = Array.from(document.querySelectorAll<HTMLElement>('#practice-main .question-card')).find(element => {
+    const rect = element.getBoundingClientRect()
+    return rect.bottom > anchor && rect.top < window.innerHeight
+  })
+  if (card) rememberQuestion(card.id)
+}
+function scheduleLocationSave(event?: Event) {
+  if (!trackingLocation || resuming.value) return
+  if (event?.type === 'scroll' && performance.now() > scrollTrackingUntil) return
+  if (locationTimer) window.clearTimeout(locationTimer)
+  locationTimer = window.setTimeout(() => { locationTimer = undefined; rememberViewport(); scrollTrackingUntil = 0 }, 250)
+}
+function enableLocationTracking() {
+  trackingLocation = true
+  rememberViewport()
+  scrollTrackingUntil = performance.now() + 800
+}
+function pauseLocationForNavigation(event: PointerEvent) {
+  if (!(event.target as HTMLElement).closest?.('a, .directory button')) return
+  if (locationTimer) window.clearTimeout(locationTimer)
+  locationTimer = undefined
+  scrollTrackingUntil = 0
+  trackingLocation = false
+}
+function trackQuestionInteraction(event: Event) {
+  const card = (event.target as HTMLElement).closest?.('.question-card') as HTMLElement | null
+  if (!card || resuming.value) return
+  if (event.type === 'pointerdown') trackingLocation = true
+  if (trackingLocation) rememberQuestion(card.id)
+}
+function trackLocationKey(event: KeyboardEvent) {
+  if (['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' ', 'Tab'].includes(event.key)) enableLocationTracking()
+}
+function finishLocationTracking() {
+  if (resuming.value) return
+  if (locationTimer) { window.clearTimeout(locationTimer); rememberViewport() }
+  locationTimer = undefined
+  scrollTrackingUntil = 0
+  trackingLocation = false
+  lastLocation.value = readPracticeLocation(props.collection) ?? lastLocation.value
+}
+async function resumeLastLocation() {
+  const saved = lastLocation.value
+  const original = questionById.get(saved?.questionId ?? '')
+  if (!saved || !original || resuming.value) return
+  resuming.value = true
+  let resumedId = ''
+  try {
+    directoryOpen.value = false
+    await router.push({ name: routeName, query: {
+      ...(saved.view !== 'all' ? { view: saved.view } : {}),
+      ...(saved.year ? { year: saved.year } : {}),
+      ...(saved.paper && saved.paper !== saved.year ? { paper: saved.paper } : {}),
+    } })
+    await nextTick()
+    if (!locationPageActive) return
+    statusFilter.value = saved.status
+    typeFilter.value = chapterTypes.value.some(type => type.id === saved.type) ? saved.type : 'all'
+    levelFilter.value = saved.level
+    keyword.value = saved.keyword
+    hiddenMastered.value.clear()
+    await nextTick()
+    restartQueue()
+    await nextTick()
+    let target = queue.value.find(q => q.id === saved.questionId)
+    if (!target) {
+      const available = new Set(queueIds.value)
+      const index = questions.findIndex(q => q.id === saved.questionId)
+      target = questions.slice(index + 1).find(q => available.has(q.id)) ?? questions.slice(0, index).reverse().find(q => available.has(q.id))
+    }
+    if (!target) {
+      await router.replace({ name: routeName, query: { year: String(original.year), ...(original.paperId ? { paper: original.paperId } : {}), ...(progress.value[original.id]?.removed ? { view: 'removed' } : {}) } })
+      await nextTick()
+      statusFilter.value = 'all'; typeFilter.value = 'all'; levelFilter.value = 'all'; keyword.value = ''
+      await nextTick()
+      restartQueue()
+      await nextTick()
+      target = queue.value.find(q => q.id === saved.questionId) ?? queue.value[0]
+    }
+    const element = target ? document.getElementById(target.id) : null
+    if (element && target) {
+      element.scrollIntoView({ block: 'start' })
+      await Promise.all([document.fonts.ready, ...Array.from(element.querySelectorAll('img')).map(img => { img.loading = 'eager'; return img.decode().catch(() => undefined) })])
+      if (!locationPageActive) return
+      const offset = target.id === saved.questionId ? Math.max(-Math.min(160, window.innerHeight / 4), Math.min(saved.offset, element.getBoundingClientRect().height - 80)) : 0
+      window.scrollTo({ top: Math.max(0, window.scrollY + element.getBoundingClientRect().top + offset), behavior: 'instant' })
+      element.focus({ preventScroll: true })
+      resumedId = target.id
+      notice.value = target.id === saved.questionId ? '已回到上次做题位置。' : '上次题目已不在当前筛选中，已定位到附近的题目。'
+    }
+  } finally {
+    resuming.value = false
+    trackingLocation = locationPageActive
+    if (locationPageActive && resumedId) rememberQuestion(resumedId)
+  }
+}
+onBeforeRouteLeave(finishLocationTracking)
+onBeforeRouteUpdate(finishLocationTracking)
+watch([keyword, statusFilter, typeFilter, levelFilter], () => { nextTick(scheduleLocationSave) })
 onMounted(() => {
   window.addEventListener('storage', syncProgress)
   window.addEventListener('afterprint', finishPdfExport)
   document.addEventListener('visibilitychange', flushAutoHides)
+  window.addEventListener('scroll', scheduleLocationSave, { passive: true })
+  window.addEventListener('wheel', enableLocationTracking, { passive: true })
+  window.addEventListener('touchmove', enableLocationTracking, { passive: true })
+  window.addEventListener('keydown', trackLocationKey)
+  window.addEventListener('pointerdown', pauseLocationForNavigation, true)
+  window.addEventListener('pagehide', rememberViewport)
   jumpToRoute()
 })
 onBeforeUnmount(() => {
+  finishLocationTracking()
+  locationPageActive = false
+  if (locationTimer) window.clearTimeout(locationTimer)
+  window.removeEventListener('scroll', scheduleLocationSave)
+  window.removeEventListener('wheel', enableLocationTracking)
+  window.removeEventListener('touchmove', enableLocationTracking)
+  window.removeEventListener('keydown', trackLocationKey)
+  window.removeEventListener('pointerdown', pauseLocationForNavigation, true)
+  window.removeEventListener('pagehide', rememberViewport)
   window.removeEventListener('storage', syncProgress)
   window.removeEventListener('afterprint', finishPdfExport)
   document.removeEventListener('visibilitychange', flushAutoHides)
@@ -366,11 +515,12 @@ onBeforeUnmount(() => {
           <p v-if="!papers.length" class="directory-empty">题目上传后，这里会按真题年份和模拟卷套数生成目录。</p>
           <div class="progress-card"><div><span>已掌握</span><strong>{{ masteredCount }} <small>/ {{ visibleQuestions.length }}</small></strong></div><progress :value="masteredCount" :max="visibleQuestions.length || 1" :aria-label="isBook ? '880掌握进度' : '试卷错题掌握进度'" /><p>{{ isBook ? '880 的不熟练和不会题目，只收集到 880 错题再练。' : '试卷的不熟练和不会题目，只收集到试卷错题再练。' }}</p></div>
           <div class="backup-actions"><button @click="exportBackup"><PracticeIcon name="download" />导出进度</button><button @click="importInput?.click()"><PracticeIcon name="upload" />恢复进度</button><input ref="importInput" class="visually-hidden" type="file" accept=".json,application/json" aria-label="选择进度备份" @change="importBackup" /></div>
-          <p class="storage-hint">进度保存在当前浏览器；换设备时可导出备份再恢复。</p>
+          <p class="storage-hint">进度保存在当前浏览器，自动记住上次做题位置；换设备时可导出做题进度备份再恢复。</p>
         </div>
       </aside>
-      <main id="practice-main" tabindex="-1">
+      <main id="practice-main" tabindex="-1" @pointerdown="trackQuestionInteraction" @focusin="trackQuestionInteraction">
         <header class="workspace-heading"><div><h1>{{ heading }}</h1><p v-if="mode === 'removed'">移除的题目可以随时恢复</p><p v-else-if="mode === 'notes'">{{ isBook ? '写过笔记的 880 题目，按章节汇总' : '写过笔记的题目，按试卷汇总' }}</p><p v-else-if="mode === 'review'">当前范围：{{ isBook ? '880 全部章节' : '全部试卷' }}</p></div><button v-if="mode === 'all' || mode === 'review'" class="primary-button" @click="mode === 'review' ? restartQueue() : selectView('review')"><PracticeIcon name="repeat" />{{ mode === 'review' ? '重新开始本轮' : isBook ? '880 错题再练' : '试卷错题再练' }}<span v-if="mode !== 'review'">{{ pendingCount }}</span></button></header>
+        <section v-if="lastLocationLabel" class="resume-card" aria-label="上次做题位置"><div><strong>上次做到这里</strong><p>{{ lastLocationLabel }}</p></div><button class="primary-button" :disabled="resuming" @click="resumeLastLocation"><PracticeIcon name="arrow" />{{ resuming ? '正在定位…' : '继续上次做题' }}</button></section>
         <section v-if="!questions.length" class="preview-banner"><PracticeIcon name="book" /><div><strong>错题本已就绪，等待录入你的题目</strong><p>下方使用你提供的截图演示操作，年份尚未确认，不计入正式题库和复习统计。</p></div><button @click="demoMode = !demoMode">{{ demoMode ? '收起示例' : '体验示例' }}</button></section>
         <p v-if="storageFailed" role="alert" class="storage-error">浏览器暂时无法保存进度，请立即导出备份以保留本次标记和笔记。</p>
         <p class="print-summary print-only">{{ pdfTitle }} · 含答案解析与笔记</p>
@@ -394,6 +544,12 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .print-only { display: none; }
+.resume-card { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 18px; border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px; background: var(--paper); }
+.resume-card > div { min-width: 0; }
+.resume-card strong { color: var(--accent-dark); font-size: 13px; }
+.resume-card p { margin: 5px 0 0; color: var(--ink-soft); font-size: 13px; line-height: 1.7; overflow-wrap: anywhere; }
+.resume-card button:disabled { opacity: .6; cursor: wait; }
+@media (max-width: 600px) { .resume-card { flex-wrap: wrap; gap: 10px; padding: 14px; }.resume-card button { width: 100%; } }
 .display-filter { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--ink-soft); white-space: nowrap; }
 .display-filter select { max-width: none; }
 .toolbar-filters { flex-wrap: wrap; align-items: center; min-width: 0; }
@@ -456,6 +612,7 @@ main { min-width: 0; }.workspace-heading { display: flex; justify-content: space
   .pdf-export ~ .app-footer, .pdf-export .site-header, .pdf-export .directory,
   .pdf-export .toolbar, .pdf-export .chapter-filters, .pdf-export .workspace-heading, .pdf-export .notice,
   .pdf-export .display-hint,
+  .pdf-export .resume-card,
   .pdf-export .storage-error, .pdf-export .paper-end, .route-loading-overlay { display: none !important; }
   .pdf-export .practice-layout { display: block; width: 100%; margin: 0; padding: 0; }
   .pdf-export .print-only { display: block !important; }

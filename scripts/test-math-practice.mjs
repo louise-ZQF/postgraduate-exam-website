@@ -18,6 +18,7 @@ async function loadModule(file) {
 }
 const { normalizeProgress, mergeProgress, isPending, isUnattempted, matchesPracticeStatus, hasNote, readPracticeProgress, savePracticeProgress, PRACTICE_STORAGE_KEY } = await loadModule('client/src/math/practice.ts')
 const { practiceQuestions, demoQuestion } = await loadModule('client/src/math/practiceQuestions.ts')
+const { normalizePracticeLocation, readPracticeLocation, savePracticeLocation } = await loadModule('client/src/math/practiceLocation.ts')
 const ids = new Set()
 for (const q of practiceQuestions) {
   assert.match(q.id, /^[a-zA-Z0-9_-]{1,120}$/)
@@ -99,6 +100,16 @@ assert.ok(!ids.has(demoQuestion.id), '预览题不得混入正式题库')
 assert.equal(demoQuestion.correctOption, 'C')
 const storage = new Map()
 globalThis.localStorage = { getItem: key => storage.get(key) ?? null, setItem: (key, value) => storage.set(key, value) }
+assert.equal(readPracticeLocation('exams'), undefined)
+const checkpoint = { questionId: 'math2-2025-q4-original', view: 'all', year: '2025', paper: '2025', status: 'unmarked', type: 'all', level: 'all', keyword: '极限', offset: 180, updatedAt: 100 }
+assert.equal(savePracticeLocation('exams', checkpoint), true)
+assert.deepEqual(readPracticeLocation('exams'), checkpoint)
+assert.equal(readPracticeLocation('ll880'), undefined, '试卷和880分别保存做题位置')
+assert.equal(normalizePracticeLocation({ questionId: '../bad' }), undefined)
+assert.equal(normalizePracticeLocation({ questionId: 'valid', status: 'bad', offset: Infinity }).status, 'all')
+assert.equal(normalizePracticeLocation({ questionId: 'valid', offset: Infinity }).offset, 0)
+storage.set('math2-practice-location-v1-ll880', '{broken')
+assert.equal(readPracticeLocation('ll880'), undefined)
 assert.deepEqual(readPracticeProgress(), Object.create(null))
 const marked = { q2025: { mastery: 'unknown', note: '先判断导数奇偶性', updatedAt: 100, reviews: 0 } }
 assert.equal(savePracticeProgress(marked), true)
@@ -153,5 +164,6 @@ assert.equal(mergeProgress(removed, { question: { ...removed.question, removed: 
 assert.equal(mergeProgress(removed, { question: { ...removed.question, removed: false, updatedAt: 200 } }).question.removed, true, '旧备份不能撤销较新的移除')
 assert.equal(normalizeProgress({ q: { removed: 'true' } }).q.removed, undefined)
 globalThis.localStorage.setItem = () => { throw new Error('QuotaExceededError') }
+assert.equal(savePracticeLocation('exams', checkpoint), false)
 assert.equal(savePracticeProgress(marked), false)
 console.log(`错题回归通过：${practiceQuestions.length} 道正式题数据校验、示例隔离、状态收集与移出、保存与恢复、旧备份合并、损坏数据及保存失败处理`)
