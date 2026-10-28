@@ -120,10 +120,11 @@ h1 em { color: var(--brand-600); font-style: normal; }
 .atlas-heading span { color: var(--amber-700); font-family: ui-monospace, monospace; font-size: 10px; font-weight: 800; letter-spacing: .16em; }
 .atlas-heading h2 { margin: 6px 0 0; font-family: ui-serif, "Songti SC", STSong, serif; font-size: 32px; }
 .atlas-heading p { margin: 0; color: var(--ink-400); font-size: 12px; }
-.graph-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
-.graph-card { min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 10px; padding: 22px; background: var(--paper); }
+.graph-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.graph-card { min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 10px; padding: 16px; background: var(--paper); }
+.graph-card :deep(.function-plot) { max-width: 340px; margin: 0 auto; }
 .graph-card:hover { border-color: var(--line-strong); }
-.graph-card header { display: grid; grid-template-columns: 36px 1fr auto; align-items: center; gap: 10px; margin-bottom: 10px; }
+.graph-card header { display: grid; grid-template-columns: 24px minmax(0, 1fr) auto; align-items: center; gap: 8px; margin-bottom: 8px; }
 .graph-index { color: var(--accent-dark); font-family: ui-monospace, monospace; font-size: 11px; font-weight: 800; }
 .graph-card header small { color: var(--ink-400); font-size: 10px; letter-spacing: .1em; }
 .graph-card h3 { margin: 2px 0 0; color: var(--ink-800); font-size: 17px; }
@@ -134,10 +135,12 @@ h1 em { color: var(--brand-600); font-style: normal; }
 .graph-card dd { margin: 0; color: var(--ink-800); font-family: Georgia, "Times New Roman", serif; font-size: 12px; }
 .conclusion { min-height: 48px; margin: 12px 0 0; border-left: 3px solid var(--accent); padding: 5px 0 5px 12px; color: var(--ink-soft); font-size: 13px; line-height: 1.7; }
 .integral-region { margin-top: 12px; padding: 10px 12px; border-radius: 6px; background: var(--surface-soft); color: var(--ink-800); font-size: 13px; }
-.graph-card header strong { max-width: 100%; overflow-x: auto; }
+.graph-card header strong { max-width: min(160px, 100%); overflow-x: auto; }
 .graph-card dd { min-width: 0; overflow-x: auto; }
 .empty-state { border: 1px dashed #c8d7cf; border-radius: 18px; padding: 70px 20px; background: rgba(255,255,255,.65); text-align: center; }
 .empty-state strong { color: var(--ink-800); font-size: 20px; }.empty-state p { color: var(--ink-400); }.empty-state button { border: 0; border-radius: 10px; padding: 10px 16px; background: var(--brand-700); color: white; }
-@media (max-width: 980px) { .graphs-hero { grid-template-columns: 1fr; gap: 28px; }.hero-summary { width: fit-content; }.graph-grid { grid-template-columns: 1fr; } }
+@media (max-width: 1100px) { .graph-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 980px) { .graphs-hero { grid-template-columns: 1fr; gap: 28px; }.hero-summary { width: fit-content; } }
+@media (max-width: 720px) { .graph-grid { grid-template-columns: 1fr; } }
 @media (max-width: 600px) { .graphs-hero { width: calc(100% - 36px); padding: 42px 0 34px; }.graphs-hero h1 { font-size: 39px; }.hero-copy p { font-size: 14px; }.hero-summary strong { font-size: 42px; }.graph-tools { position: relative; top: auto; padding: 14px 18px; }.atlas { width: calc(100% - 28px); padding: 44px 0 64px; }.graph-card { padding: 16px 12px; }.graph-card header { grid-template-columns: 28px 1fr; }.graph-card header strong { grid-column: 2; justify-self: start; }.graph-card dl { grid-template-columns: 1fr; }.atlas-heading h2 { font-size: 27px; } }
 </style>
