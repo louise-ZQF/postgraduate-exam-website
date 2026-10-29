@@ -28,7 +28,7 @@ export function protectMarkdownMath(source: string, automatic = false) {
       const line = rest.split('\n', 1)[0]
       const mathLine = line.replace(/\\(?:text|operatorname)\{[^}]*\}/g, '')
       if (automatic && line.trim() && !/[\u3400-\u9fff`$]/.test(mathLine) && !/\\[([]|\\begin\{/.test(line)
-        && (/\\(?:frac|dfrac|tfrac|int|sum|prod|lim|sqrt|partial|infty)\b/.test(line) || /[a-zA-Z][_^].*(?:=|<|>|\\)/.test(line))) {
+        && (/\\(?:frac|dfrac|tfrac|int|sum|prod|lim|sqrt|partial|infty)(?![a-zA-Z])/.test(line) || /[a-zA-Z][_^].*(?:=|<|>|\\)/.test(line) || /[a-zA-Z]'*\([^\n)]*\)\s*=/.test(line))) {
         text += add(line, true); i += line.length; continue
       }
     }

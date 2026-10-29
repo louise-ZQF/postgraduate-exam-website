@@ -91,6 +91,8 @@ const noteCases = [
   [noteExample, 4],
   [String.raw`$f'(x)$、$$\int_0^x f(t)\,dt$$、\(x^2\)、\[\frac{a}{b}\]`, 4],
   [String.raw`F(x)=\int_0^x f(t)\,dt`, 1],
+  [String.raw`\int_0^x f(t)dt`, 1],
+  [String.raw`f'(x)=f(x)`, 1],
   [String.raw`\begin{aligned} F(x)&=\int_0^x f(t)\,dt\\ F'(x)&=f(x)\end{aligned}`, 1],
   [String.raw`\begin{pmatrix}1&2\\3&4\end{pmatrix}`, 1],
   ['```latex\n\\frac{a}{b}\n```', 1],
