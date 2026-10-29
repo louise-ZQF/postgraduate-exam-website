@@ -7,7 +7,7 @@ import PracticeImagePreview from '@/components/PracticeImagePreview.vue'
 import PracticeIcon from '@/components/PracticeIcon.vue'
 import ll880Chapters from '@/content/ll880-classification.json'
 import { demoQuestion, practiceQuestions } from '@/math/practiceQuestions'
-import { hasNote, isPending, matchesPracticeStatus, mergeProgress, normalizeProgress, PRACTICE_STORAGE_KEY, readPracticeProgress, savePracticeProgress, type Mastery, type QuestionImage, type QuestionProgress, type PracticeProgress } from '@/math/practice'
+import { hasNote, isPending, matchesPracticeStatus, mergeProgress, normalizeProgress, PRACTICE_STORAGE_KEY, practiceAutoHideKey, readPracticeAutoHides, savePracticeAutoHides, readPracticeProgress, savePracticeProgress, type Mastery, type QuestionImage, type QuestionProgress, type PracticeProgress, type PracticeAutoHides } from '@/math/practice'
 import { readPracticeLocation, savePracticeLocation, type PracticeLocation } from '@/math/practiceLocation'
 
 const props = withDefaults(defineProps<{ collection?: 'exams' | 'll880' }>(), { collection: 'exams' })
@@ -168,6 +168,26 @@ function cancelAutoHide(id: string) {
   autoHidePriorProgress.delete(id)
   delete autoHideDeadlines.value[id]
 }
+function saveAutoHides() {
+  if (demoMode.value) return
+  const state: PracticeAutoHides = Object.fromEntries([...hiddenMastered.value].map(id => [id, { deadline: 0 }]))
+  for (const [id, deadline] of Object.entries(autoHideDeadlines.value)) state[id] = { deadline, previous: autoHidePriorProgress.get(id) }
+  if (!savePracticeAutoHides(props.collection, state)) storageFailed.value = true
+}
+function restoreAutoHides() {
+  for (const id of autoHideTimers.keys()) cancelAutoHide(id)
+  hiddenMastered.value.clear()
+  for (const [id, item] of Object.entries(readPracticeAutoHides(props.collection))) {
+    const current = activeProgress.value[id]
+    if (!questionById.has(id) || current?.mastery !== 'mastered' || current.removed || current.favorite) continue
+    if (item.deadline <= Date.now()) hiddenMastered.value.add(id)
+    else {
+      autoHidePriorProgress.set(id, item.previous)
+      autoHideDeadlines.value[id] = item.deadline
+      autoHideTimers.set(id, window.setTimeout(() => hideMastered(id), item.deadline - Date.now()))
+    }
+  }
+}
 function hideMastered(id: string) {
   if (exportingPdf.value) return
   cancelAutoHide(id)
@@ -179,14 +199,16 @@ function hideMastered(id: string) {
   const focusTarget = cards[index + 1] ?? cards[index - 1]
   hiddenMastered.value.add(id)
   queueIds.value = queueIds.value.filter(value => value !== id)
+  saveAutoHides()
   if (hadFocus) nextTick(() => { if (focusTarget?.isConnected) focusTarget.focus({ preventScroll: true }); else document.getElementById('practice-main')?.focus({ preventScroll: true }) })
 }
 function scheduleAutoHide(id: string, previous: QuestionProgress | undefined) {
   cancelAutoHide(id)
-  if (mode.value === 'removed' || activeProgress.value[id]?.favorite) return
+  if (mode.value === 'removed' || activeProgress.value[id]?.favorite) { saveAutoHides(); return }
   autoHidePriorProgress.set(id, previous)
   autoHideDeadlines.value[id] = Date.now() + 30_000
   autoHideTimers.set(id, window.setTimeout(() => hideMastered(id), 30_000))
+  saveAutoHides()
 }
 function flushAutoHides() {
   if (document.hidden || exportingPdf.value) return
@@ -194,10 +216,12 @@ function flushAutoHides() {
 }
 function showHiddenMastered() {
   hiddenMastered.value.clear()
+  saveAutoHides()
   statusFilter.value = 'all'
   restartQueue()
 }
-watch(statusFilter, value => { if (value === 'all' || value === 'mastered') hiddenMastered.value.clear() }, { flush: 'sync' })
+restoreAutoHides()
+watch(statusFilter, value => { if (!resuming.value && (value === 'all' || value === 'mastered')) { hiddenMastered.value.clear(); saveAutoHides() } }, { flush: 'sync' })
 watch(mode, value => { statusFilter.value = value === 'review' ? 'pending' : 'all' })
 watch([mode, selectedYear, selectedPaper, keyword, statusFilter, typeFilter, levelFilter, demoMode], restartQueue, { immediate: true })
 watch(selectedPaper, () => { typeFilter.value = 'all'; levelFilter.value = 'all' })
@@ -246,6 +270,7 @@ function mark(id: string, mastery: Mastery) {
   hiddenMastered.value.delete(id)
   persist(id, { mastery, attemptedAt: Date.now(), reviews: (activeProgress.value[id]?.reviews ?? 0) + (mode.value === 'review' ? 1 : 0) })
   if (mastery === 'mastered') scheduleAutoHide(id, previous)
+  else saveAutoHides()
   notice.value = demoMode.value ? '示例状态已更新' : mastery === 'mastered' ? (activeProgress.value[id]?.favorite ? '已掌握，收藏题将继续保留。' : mode.value === 'removed' ? '已标记为掌握' : '已掌握，30 秒后自动隐藏；改标其他状态可取消。') : isBook ? '已加入 880 错题再练' : '已加入试卷错题再练'
 }
 function toggleFavorite(id: string) {
@@ -254,6 +279,7 @@ function toggleFavorite(id: string) {
   hiddenMastered.value.delete(id)
   persist(id, { favorite })
   if (!favorite && activeProgress.value[id]?.mastery === 'mastered') scheduleAutoHide(id, activeProgress.value[id])
+  else saveAutoHides()
   updateQueue()
   notice.value = favorite ? '已收藏，当前试卷或章节中各显示模式都会保留，也不会自动隐藏。' : '已取消收藏，恢复当前筛选规则。'
 }
@@ -268,6 +294,8 @@ function refreshNotesQueue() {
 }
 function removeQuestion(id: string) {
   cancelAutoHide(id)
+  hiddenMastered.value.delete(id)
+  saveAutoHides()
   persist(id, { removed: true })
   queueIds.value = queueIds.value.filter(item => item !== id)
   undoRemovalId.value = id
@@ -322,6 +350,7 @@ async function importBackup(event: Event) {
     if (data.version !== 1 || !data.progress || typeof data.progress !== 'object' || Array.isArray(data.progress)) throw new Error('备份格式不正确')
     progress.value = mergeProgress(progress.value, normalizeProgress(data.progress))
     reconcileAutoHides()
+    saveAutoHides()
     storageFailed.value = !savePracticeProgress(progress.value)
     restartQueue()
     notice.value = '进度已恢复，同一道题保留较新的记录。'
@@ -334,9 +363,9 @@ function reconcileAutoHides() {
   }
 }
 function syncProgress(event: StorageEvent) {
-  if (event.key === PRACTICE_STORAGE_KEY || event.key === null) {
+  if (event.key === PRACTICE_STORAGE_KEY || event.key === practiceAutoHideKey(props.collection) || event.key === null) {
     progress.value = readPracticeProgress()
-    reconcileAutoHides()
+    restoreAutoHides()
     updateQueue()
   }
 }
@@ -416,7 +445,6 @@ async function resumeLastLocation() {
     typeFilter.value = chapterTypes.value.some(type => type.id === saved.type) ? saved.type : 'all'
     levelFilter.value = saved.level
     keyword.value = saved.keyword
-    hiddenMastered.value.clear()
     await nextTick()
     restartQueue()
     await nextTick()
@@ -445,7 +473,7 @@ async function resumeLastLocation() {
       element.focus({ preventScroll: true })
       resumedId = target.id
       notice.value = target.id === saved.questionId ? '已回到上次做题位置。' : '上次题目已不在当前筛选中，已定位到附近的题目。'
-    }
+    } else notice.value = '上次题目已隐藏，当前筛选下暂无待做题目；可重新显示已隐藏题目。'
   } finally {
     resuming.value = false
     trackingLocation = locationPageActive

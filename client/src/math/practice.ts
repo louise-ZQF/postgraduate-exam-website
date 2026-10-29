@@ -33,6 +33,27 @@ export type PracticeQuestion = {
 export type QuestionProgress = { mastery?: Mastery; attemptedAt?: number; favorite?: boolean; removed?: boolean; note: string; updatedAt: number; reviews: number }
 export type PracticeProgress = Record<string, QuestionProgress>
 export const PRACTICE_STORAGE_KEY = 'math2-practice-progress-v1'
+export type PracticeAutoHides = Record<string, { deadline: number; previous?: QuestionProgress }>
+export const practiceAutoHideKey = (collection: 'exams' | 'll880') => `math2-practice-auto-hide-v1-${collection}`
+
+export function readPracticeAutoHides(collection: 'exams' | 'll880'): PracticeAutoHides {
+  try {
+    const raw = JSON.parse(localStorage.getItem(practiceAutoHideKey(collection)) ?? '{}')
+    const result: PracticeAutoHides = Object.create(null)
+    if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return result
+    for (const [id, value] of Object.entries(raw)) {
+      const item = value as Partial<PracticeAutoHides[string]> | null
+      if (!/^[a-zA-Z0-9_-]{1,120}$/.test(id) || !item || typeof item.deadline !== 'number' || !Number.isFinite(item.deadline) || item.deadline < 0) continue
+      result[id] = { deadline: item.deadline, ...(item.previous ? { previous: normalizeProgress({ [id]: item.previous })[id] } : {}) }
+    }
+    return result
+  } catch { return Object.create(null) }
+}
+
+export function savePracticeAutoHides(collection: 'exams' | 'll880', state: PracticeAutoHides): boolean {
+  try { localStorage.setItem(practiceAutoHideKey(collection), JSON.stringify(state)); return true }
+  catch { return false }
+}
 
 export function normalizeProgress(value: unknown): PracticeProgress {
   if (!value || typeof value !== 'object' || Array.isArray(value)) return {}

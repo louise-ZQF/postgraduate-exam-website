@@ -16,7 +16,7 @@ async function loadModule(file) {
   const compiled = ts.transpileModule(source, { compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ESNext } }).outputText
   return import(`data:text/javascript;base64,${Buffer.from(compiled).toString('base64')}`)
 }
-const { normalizeProgress, mergeProgress, isPending, isUnattempted, matchesPracticeStatus, hasNote, readPracticeProgress, savePracticeProgress, PRACTICE_STORAGE_KEY } = await loadModule('client/src/math/practice.ts')
+const { normalizeProgress, mergeProgress, isPending, isUnattempted, matchesPracticeStatus, hasNote, readPracticeProgress, savePracticeProgress, PRACTICE_STORAGE_KEY, practiceAutoHideKey, readPracticeAutoHides, savePracticeAutoHides } = await loadModule('client/src/math/practice.ts')
 const { practiceQuestions, demoQuestion } = await loadModule('client/src/math/practiceQuestions.ts')
 const { normalizePracticeLocation, readPracticeLocation, savePracticeLocation } = await loadModule('client/src/math/practiceLocation.ts')
 const ids = new Set()
@@ -112,6 +112,14 @@ storage.set('math2-practice-location-v1-ll880', '{broken')
 assert.equal(readPracticeLocation('ll880'), undefined)
 assert.deepEqual(readPracticeProgress(), Object.create(null))
 const marked = { q2025: { mastery: 'unknown', note: '先判断导数奇偶性', updatedAt: 100, reviews: 0 } }
+const hideState = { q2025: { deadline: 30000, previous: marked.q2025 }, hidden: { deadline: 0 } }
+assert.equal(savePracticeAutoHides('exams', hideState), true)
+assert.deepEqual({ ...readPracticeAutoHides('exams') }, hideState, '刷新后保留隐藏记录、截止时间和标记前状态')
+assert.deepEqual(Object.keys(readPracticeAutoHides('ll880')), [], '880 和试卷的隐藏记录隔离')
+storage.set(practiceAutoHideKey('ll880'), JSON.stringify({ '../bad': { deadline: 1 }, negative: { deadline: -1 }, invalid: null, valid: { deadline: 0 } }))
+assert.deepEqual(Object.keys(readPracticeAutoHides('ll880')), ['valid'])
+storage.set(practiceAutoHideKey('ll880'), '{broken')
+assert.deepEqual(Object.keys(readPracticeAutoHides('ll880')), [])
 assert.equal(savePracticeProgress(marked), true)
 assert.equal(isPending(readPracticeProgress().q2025), true)
 const mastered = { q2025: { ...marked.q2025, mastery: 'mastered', updatedAt: 200, reviews: 1 } }
