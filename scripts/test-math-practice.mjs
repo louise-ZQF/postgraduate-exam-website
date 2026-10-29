@@ -10,7 +10,7 @@ async function loadModule(file) {
   const compiled = ts.transpileModule(source, { compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ESNext } }).outputText
   return import(`data:text/javascript;base64,${Buffer.from(compiled).toString('base64')}`)
 }
-const { normalizeProgress, mergeProgress, isPending, isUnattempted, matchesPracticeStatus, hasNote, readPracticeProgress, savePracticeProgress, PRACTICE_STORAGE_KEY, practiceAutoHideKey, readPracticeAutoHides, savePracticeAutoHides } = await loadModule('client/src/math/practice.ts')
+const { normalizeProgress, mergeProgress, isPending, isUnattempted, matchesPracticeStatus, hasNote, readPracticeProgress, savePracticeProgress, PRACTICE_STORAGE_KEY, practiceAutoHideKey, readPracticeAutoHides, savePracticeAutoHides, cleanExpiredRemovals, REMOVED_RETENTION_MS } = await loadModule('client/src/math/practice.ts')
 const practiceQuestions = ['practice-questions.json', 'll880-questions.json'].flatMap(file => JSON.parse(readFileSync(resolve(root, 'client/src/content', file), 'utf8')))
 const { demoQuestion } = await loadModule('client/src/math/practiceDemo.ts')
 const { createPracticeCatalog } = await loadModule('client/src/math/practiceCatalog.ts')
@@ -230,6 +230,34 @@ assert.equal(removed.question.removed, true)
 assert.equal(mergeProgress(removed, { question: { ...removed.question, removed: false, updatedAt: 400 } }).question.removed, false)
 assert.equal(mergeProgress(removed, { question: { ...removed.question, removed: false, updatedAt: 200 } }).question.removed, true, '旧备份不能撤销较新的移除')
 assert.equal(normalizeProgress({ q: { removed: 'true' } }).q.removed, undefined)
+assert.equal(normalizeProgress({ q: { removed: 'true', removedAt: 1 } }).q.removedAt, undefined, '无效的移除标记不能产生清理时间')
+const removalStart = 1_000_000
+const scheduledRemoval = { q: { note: '移除时保留的笔记', mastery: 'unknown', favorite: true, removed: true, removedAt: removalStart, updatedAt: removalStart, reviews: 2 } }
+const beforeCleanup = cleanExpiredRemovals(scheduledRemoval, removalStart + REMOVED_RETENTION_MS - 1)
+assert.equal(beforeCleanup.changed, false, '满5小时前不得清理')
+assert.equal(beforeCleanup.nextDeadline, removalStart + REMOVED_RETENTION_MS)
+const afterCleanup = cleanExpiredRemovals(scheduledRemoval, removalStart + REMOVED_RETENTION_MS)
+assert.deepEqual(afterCleanup.deletedIds, ['q'])
+assert.equal(afterCleanup.progress.q.deletedAt, removalStart + REMOVED_RETENTION_MS)
+assert.equal(afterCleanup.progress.q.note, '', '到期清理笔记和复习状态')
+assert.equal(afterCleanup.progress.q.mastery, undefined)
+assert.equal(afterCleanup.progress.q.favorite, undefined)
+assert.equal(afterCleanup.nextDeadline, undefined)
+assert.equal(cleanExpiredRemovals(afterCleanup.progress, removalStart + 2 * REMOVED_RETENTION_MS).changed, false, '清理只执行一次')
+const migratedRemoval = cleanExpiredRemovals({ q: { note: '旧笔记', removed: true, updatedAt: 1, reviews: 0 } }, removalStart)
+assert.equal(migratedRemoval.progress.q.removedAt, removalStart, '旧记录从首次迁移开始计时')
+assert.equal(migratedRemoval.nextDeadline, removalStart + REMOVED_RETENTION_MS)
+assert.equal(cleanExpiredRemovals(migratedRemoval.progress, removalStart + 1).changed, false, '刷新不重新计时')
+const editedRemoval = { q: { ...scheduledRemoval.q, note: '移除后补充的笔记', updatedAt: removalStart + REMOVED_RETENTION_MS - 1 } }
+assert.equal(cleanExpiredRemovals(editedRemoval, removalStart + REMOVED_RETENTION_MS).deletedIds.length, 1, '编辑笔记不延长清理时间')
+const cancelledRemoval = normalizeProgress({ q: { ...scheduledRemoval.q, removed: false } })
+assert.equal(cancelledRemoval.q.removedAt, undefined, '恢复题目取消原来的清理时间')
+assert.equal(cleanExpiredRemovals(cancelledRemoval, removalStart + REMOVED_RETENTION_MS).nextDeadline, undefined)
+const staleRestore = { q: { note: '旧副本', removed: false, updatedAt: removalStart + 3 * REMOVED_RETENTION_MS, reviews: 0 } }
+assert.equal(mergeProgress(afterCleanup.progress, staleRestore).q.deletedAt, afterCleanup.progress.q.deletedAt, '旧副本不能使已清理的题复活')
+assert.equal(mergeProgress(staleRestore, afterCleanup.progress).q.deletedAt, afterCleanup.progress.q.deletedAt, '合并顺序不影响清理记录')
+const removalWithoutTime = { q: { ...scheduledRemoval.q, removedAt: undefined, updatedAt: removalStart + 1 } }
+assert.equal(mergeProgress(scheduledRemoval, removalWithoutTime).q.removedAt, removalStart, '导入旧格式不能延长现有清理时间')
 globalThis.localStorage.setItem = () => { throw new Error('QuotaExceededError') }
 assert.equal(savePracticeLocation('exams', checkpoint), false)
 assert.equal(savePracticeProgress(marked), false)

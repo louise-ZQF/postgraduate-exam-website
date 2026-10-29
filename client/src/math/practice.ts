@@ -30,9 +30,12 @@ export type PracticeQuestion = {
   searchText?: string
   sourceOrder?: number
 }
-export type QuestionProgress = { mastery?: Mastery; attemptedAt?: number; favorite?: boolean; removed?: boolean; note: string; updatedAt: number; reviews: number }
+export type QuestionProgress = { mastery?: Mastery; attemptedAt?: number; favorite?: boolean; removed?: boolean; removedAt?: number; deletedAt?: number; note: string; updatedAt: number; reviews: number }
 export type PracticeProgress = Record<string, QuestionProgress>
 export const PRACTICE_STORAGE_KEY = 'math2-practice-progress-v1'
+export const PRACTICE_PROGRESS_SAVED_EVENT = 'math2-practice-progress-saved'
+export const PRACTICE_REMOVALS_CHANGED_EVENT = 'math2-practice-removals-changed'
+export const REMOVED_RETENTION_MS = 5 * 60 * 60 * 1000
 export type PracticeAutoHides = Record<string, { deadline: number; previous?: QuestionProgress }>
 export const practiceAutoHideKey = (collection: 'exams' | 'll880') => `math2-practice-auto-hide-v1-${collection}`
 
@@ -61,12 +64,17 @@ export function normalizeProgress(value: unknown): PracticeProgress {
   for (const [id, raw] of Object.entries(value)) {
     if (!/^[a-zA-Z0-9_-]{1,120}$/.test(id) || !raw || typeof raw !== 'object') continue
     const item = raw as Partial<QuestionProgress>
+    if (typeof item.deletedAt === 'number' && Number.isFinite(item.deletedAt) && item.deletedAt > 0) {
+      result[id] = { removed: true, deletedAt: item.deletedAt, note: '', reviews: 0, updatedAt: Math.max(item.deletedAt, typeof item.updatedAt === 'number' && Number.isFinite(item.updatedAt) ? item.updatedAt : 0) }
+      continue
+    }
     const mastery = ['unfamiliar', 'unknown', 'mastered'].includes(item.mastery ?? '') ? item.mastery : undefined
     result[id] = {
       mastery,
       ...(typeof item.favorite === 'boolean' ? { favorite: item.favorite } : {}),
       ...(typeof item.attemptedAt === 'number' && Number.isFinite(item.attemptedAt) && item.attemptedAt > 0 ? { attemptedAt: item.attemptedAt } : {}),
       ...(typeof item.removed === 'boolean' ? { removed: item.removed } : {}),
+      ...(item.removed === true && typeof item.removedAt === 'number' && Number.isFinite(item.removedAt) && item.removedAt > 0 ? { removedAt: item.removedAt } : {}),
       note: typeof item.note === 'string' ? item.note.slice(0, 10000) : '',
       updatedAt: typeof item.updatedAt === 'number' && Number.isFinite(item.updatedAt) ? item.updatedAt : 0,
       reviews: typeof item.reviews === 'number' && Number.isFinite(item.reviews) ? Math.max(0, Math.floor(item.reviews)) : 0,
@@ -98,9 +106,36 @@ export function matchesPracticeStatus(item: QuestionProgress | undefined, status
 export function mergeProgress(current: PracticeProgress, incoming: PracticeProgress): PracticeProgress {
   const result = normalizeProgress(current)
   for (const [id, item] of Object.entries(normalizeProgress(incoming))) {
-    if (!result[id] || item.updatedAt >= result[id].updatedAt) result[id] = item
+    if (result[id]?.deletedAt) {
+      if (item.deletedAt && item.deletedAt > result[id].deletedAt!) result[id] = item
+    } else if (item.deletedAt || !result[id] || item.updatedAt >= result[id].updatedAt) {
+      result[id] = item.removed && !item.removedAt && result[id]?.removedAt ? { ...item, removedAt: result[id].removedAt } : item
+    }
   }
   return result
+}
+
+export function cleanExpiredRemovals(value: PracticeProgress, now = Date.now()) {
+  const progress = normalizeProgress(value)
+  let changed = false
+  let nextDeadline: number | undefined
+  const deletedIds: string[] = []
+  for (const [id, item] of Object.entries(progress)) {
+    if (!item.removed || item.deletedAt) continue
+    if (!item.removedAt) {
+      // 旧记录没有移除时间，首次迁移时给予完整的 5 小时恢复期。
+      item.removedAt = now
+      item.updatedAt = Math.max(now, item.updatedAt)
+      changed = true
+    }
+    const deadline = item.removedAt + REMOVED_RETENTION_MS
+    if (now >= deadline) {
+      progress[id] = { removed: true, deletedAt: deadline, note: '', reviews: 0, updatedAt: Math.max(now, item.updatedAt) }
+      deletedIds.push(id)
+      changed = true
+    } else nextDeadline = nextDeadline === undefined ? deadline : Math.min(nextDeadline, deadline)
+  }
+  return { progress, changed, nextDeadline, deletedIds }
 }
 
 export function readPracticeProgress(): PracticeProgress {
@@ -109,6 +144,10 @@ export function readPracticeProgress(): PracticeProgress {
 }
 
 export function savePracticeProgress(progress: PracticeProgress): boolean {
-  try { localStorage.setItem(PRACTICE_STORAGE_KEY, JSON.stringify(progress)); return true }
+  try {
+    localStorage.setItem(PRACTICE_STORAGE_KEY, JSON.stringify(progress))
+    if (typeof window !== 'undefined') window.dispatchEvent(new Event(PRACTICE_PROGRESS_SAVED_EVENT))
+    return true
+  }
   catch { return false }
 }

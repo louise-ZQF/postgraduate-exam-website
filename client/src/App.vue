@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import AppFooter from '@/components/AppFooter.vue'
 import { isNavigating } from '@/router'
+import { usePracticeRemovalCleanup } from '@/composables/usePracticeRemovalCleanup'
+
+usePracticeRemovalCleanup()
 </script>
 
 <template>

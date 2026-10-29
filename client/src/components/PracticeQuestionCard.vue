@@ -4,7 +4,7 @@ import MathMarkdown from '@/components/MathMarkdown.vue'
 import PracticeIcon from '@/components/PracticeIcon.vue'
 import PracticeNoteEditor from '@/components/PracticeNoteEditor.vue'
 import arcDiagram from '@/assets/practice-figures/zy2026-set1-q5.svg?raw'
-import type { Mastery, PracticeQuestion, QuestionImage, QuestionProgress } from '@/math/practice'
+import { REMOVED_RETENTION_MS, type Mastery, type PracticeQuestion, type QuestionImage, type QuestionProgress } from '@/math/practice'
 
 const props = defineProps<{ question: PracticeQuestion; index: number; progress?: QuestionProgress; storageFailed: boolean; showNote?: boolean; removed?: boolean; manageable?: boolean; printMode?: boolean; autoHidePending?: boolean }>()
 const emit = defineEmits<{ mark: [id: string, mastery: Mastery]; favorite: [id: string]; attempt: [id: string, correct: boolean | undefined]; note: [id: string, note: string]; noteBlur: []; remove: [id: string]; restore: [id: string]; preview: [image: QuestionImage, trigger: HTMLElement] }>()
@@ -62,6 +62,7 @@ onBeforeUnmount(() => {
 })
 const noteOpen = ref(props.showNote ?? false)
 const selectedOption = ref('')
+const removalDeadlineLabel = computed(() => props.removed && props.progress?.removedAt ? new Date(props.progress.removedAt + REMOVED_RETENTION_MS).toLocaleString('zh-CN', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false }) : '')
 const showResult = computed(() => answerOpen.value || Boolean(selectedOption.value))
 const statuses: { value: Mastery; label: string }[] = [
   { value: 'unfamiliar', label: '不熟练' }, { value: 'unknown', label: '不会' }, { value: 'mastered', label: '掌握' },
@@ -81,6 +82,7 @@ const statuses: { value: Mastery; label: string }[] = [
     </header>
     <h3 :id="`title-${question.id}`" class="visually-hidden">{{ question.year }} 年 {{ question.source }} {{ question.number }}题</h3>
     <p class="question-topic">{{ question.topic }}</p>
+    <p v-if="removalDeadlineLabel" class="removal-deadline">将于 {{ removalDeadlineLabel }} 自动清理</p>
     <div v-if="question.bookId" class="book-tags"><span class="level-badge">{{ question.level }}</span><span>{{ question.type === 'choice' ? '选择题' : question.type === 'fill' ? '填空题' : '解答题' }}</span></div>
     <div v-if="question.questionTypes?.length" class="question-type-tags"><span v-for="item in question.questionTypes" :key="item.id">{{ item.title }}<small v-if="question.questionTypes.length > 1"> · {{ item.references.join('、') }}</small></span></div>
     <div v-if="question.questionImages?.length" class="source-images question-source-images"><button v-for="picture in question.questionImages" :key="picture.src" type="button" class="image-preview-trigger" :aria-label="`${picture.alt}，放大预览`" @click="previewImage(picture, $event)"><img :src="figureUrl(picture.src)" :alt="picture.alt" :width="picture.width" :height="picture.height" loading="lazy" decoding="async" /></button></div>
@@ -111,6 +113,7 @@ const statuses: { value: Mastery; label: string }[] = [
 
 <style scoped>
 .print-only { display: none; }
+.removal-deadline { margin: 8px 0 0 38px; color: var(--muted); font-size: 11px; line-height: 1.7; }
 .question-card { scroll-margin-top: 22px; min-width: 0; border: 1px solid var(--line); border-radius: 12px; padding: 22px 26px 16px; background: var(--paper); box-shadow: 0 2px 6px #24314a02; }
 .question-card:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
 svg { width: 17px; height: 17px; flex-shrink: 0; }button { cursor: pointer; transition: background .16s, border-color .16s, color .16s; }
