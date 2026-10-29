@@ -14,7 +14,7 @@ const { normalizeProgress, mergeProgress, isPending, isUnattempted, matchesPract
 const practiceQuestions = ['practice-questions.json', 'll880-questions.json'].flatMap(file => JSON.parse(readFileSync(resolve(root, 'client/src/content', file), 'utf8')))
 const { demoQuestion } = await loadModule('client/src/math/practiceDemo.ts')
 const { createPracticeCatalog } = await loadModule('client/src/math/practiceCatalog.ts')
-const { protectMarkdownMath, escapeMathHtml } = await loadModule('client/src/math/markdownMath.ts')
+const { protectMarkdownMath, escapeMathHtml, normalizeNoteMath, repairFragmentedMath } = await loadModule('client/src/math/markdownMath.ts')
 const examsCatalog = createPracticeCatalog(practiceQuestions, 'exams')
 const bookCatalog = createPracticeCatalog(practiceQuestions, 'll880')
 assert.equal(examsCatalog.questions.length, 462)
@@ -98,6 +98,9 @@ const noteCases = [
   ['```latex\n\\frac{a}{b}\n```', 1],
   ['```js\nconst x = "$a$"\n```\n`$b$` 和 $c$', 1],
   [String.raw`价格 \$10，不完整的 \(f(x)`, 0],
+  ['因为 `αTx` 是一个数，转置以后不变，所以\n```math\nαTx=(αTx)T=xTα.\n```\n\n于是把平方拆成两个相同的因子，只将第一个因子改写：\n```math\n(αTx)2=(αTx)(αTx)=(xTα)(αTx)=xT(ααT)x.\n```', 3],
+  ['转置与平方：\n```math\n(αᵀx)²=xᵀ(ααᵀ)x\n```', 1],
+  ['转置以后不变：\n(\nα\nT\nx\n)\nT\n=\nx\nT\nα', 1],
 ]
 for (const [source, count] of noteCases) {
   const protectedMath = protectMarkdownMath(source, true)
@@ -105,6 +108,11 @@ for (const [source, count] of noteCases) {
   for (const token of protectedMath.tokens) assert.doesNotThrow(() => katex.renderToString(token.latex, { displayMode: token.display, throwOnError: true, strict: 'ignore' }), token.latex)
 }
 assert.equal(escapeMathHtml('<img src=x onerror="alert(1)">'), '&lt;img src=x onerror=&quot;alert(1)&quot;&gt;')
+assert.equal(normalizeNoteMath('αTx=(αTx)T=xTα.', '转置'), 'α^{T}x=(α^{T}x)^{T}=x^{T}α.')
+assert.equal(normalizeNoteMath('(αTx)2=xT(ααT)x', '转置，平方'), '(α^{T}x)^{2}=x^{T}(αα^{T})x')
+assert.equal(normalizeNoteMath('ATx=xTα'), 'ATx=xTα', '没有上下文时，不擅自推断普通字母 T 是转置')
+assert.equal(normalizeNoteMath('x²+y₂'), 'x^{2}+y_{2}')
+assert.equal(repairFragmentedMath('α\nT\nx\n=\nx\nT\nα\n\nαTx=xTα'), 'αTx=xTα')
 for (const file of ['高等数学.md', '线性代数.md']) {
   const source = readFileSync(resolve(root, 'content/approved', file), 'utf8').replace(/<!--\s*formula\s+[^\n]*?-->/g, '')
   const legacy = [...source.matchAll(/\$\$[\s\S]*?\$\$|\\\[[\s\S]*?\\\]|\$[^$\n]+?\$|\\\([^\n]*?\\\)/g)].map(([token]) => (token.startsWith('$$') || token.startsWith('\\[') || token.startsWith('\\(') ? token.slice(2, -2) : token.slice(1, -1)).trim())

@@ -2,6 +2,7 @@
 import { computed, nextTick, ref } from 'vue'
 import MathMarkdown from './MathMarkdown.vue'
 import { noteFromClipboard } from '@/math/notePaste'
+import { repairFragmentedMath } from '@/math/markdownMath'
 
 const props = defineProps<{ modelValue: string; inputId: string; label: string; storageFailed: boolean }>()
 const emit = defineEmits<{ 'update:modelValue': [value: string]; blur: [] }>()
@@ -29,6 +30,7 @@ const commands = [
   { id: 'mathblock', title: '插入公式块', label: '公式块', prefix: '$$\n', suffix: '\n$$', placeholder: '\\int_0^x f(t)\\,dt', block: true },
 ]
 const savedLabel = computed(() => props.storageFailed ? '保存失败，请导出备份' : '自动保存')
+const repairedSource = computed(() => repairFragmentedMath(props.modelValue, true))
 
 function update(value: string) { feedback.value = ''; emit('update:modelValue', value) }
 async function insert(value: string, selectStart = 0, selectEnd = value.length) {
@@ -71,8 +73,10 @@ function keydown(event: KeyboardEvent) {
 function paste(event: ClipboardEvent) {
   const data = event.clipboardData
   if (!data) return
-  const converted = noteFromClipboard(data.getData('text/html'), data.getData('text/plain'))
-  if (converted) { event.preventDefault(); void insert(converted, converted.length, converted.length) }
+  const plain = data.getData('text/plain')
+  const converted = noteFromClipboard(data.getData('text/html'), plain)
+  const cleaned = repairFragmentedMath(converted ?? plain, true)
+  if (converted !== undefined || cleaned !== plain) { event.preventDefault(); void insert(cleaned, cleaned.length, cleaned.length) }
 }
 async function copy() {
   try { await navigator.clipboard.writeText(props.modelValue); feedback.value = 'Markdown 已复制' }
@@ -95,17 +99,17 @@ function blur(event: FocusEvent) {
     <div class="note-heading"><strong>错因笔记</strong><span :class="{ failed: storageFailed }"><i aria-hidden="true"></i>{{ savedLabel }}</span></div>
     <div class="editor-topbar">
       <div class="editor-modes" role="group" aria-label="笔记编辑布局"><button v-for="item in modes" :key="item.id" :aria-pressed="mode === item.id" :class="{ active: mode === item.id }" @click="mode = item.id">{{ item.title }}</button></div>
-      <button class="copy-button" :disabled="!modelValue" @click="copy">复制 Markdown</button>
+      <div><button v-if="repairedSource !== modelValue" class="copy-button" @click="update(repairedSource)">整理粘贴格式</button><button class="copy-button" :disabled="!modelValue" @click="copy">复制 Markdown</button></div>
     </div>
     <div class="editor-frame">
       <div v-if="mode !== 'preview'" class="editor-tools" role="toolbar" aria-label="笔记格式工具"><button v-for="command in commands" :key="command.id" :class="command.id" :title="command.title" :aria-label="command.title" @mousedown.prevent @click="format(command)">{{ command.label }}</button><button aria-label="插入图片链接" :aria-expanded="imageOpen" @click="imageOpen = !imageOpen">图片</button></div>
       <form v-if="imageOpen" class="image-form" @submit.prevent="addImage"><label :for="`${inputId}-image`">图片地址</label><input :id="`${inputId}-image`" v-model="imageUrl" type="url" placeholder="https://…" /><button type="submit">插入</button><button type="button" @click="imageOpen = false">取消</button></form>
       <div class="editor-panes" :class="mode">
         <div v-if="mode !== 'edit'" class="note-preview" role="region" aria-label="笔记实时预览"><div class="pane-label">实时预览<span>Markdown + LaTeX</span></div><MathMarkdown v-if="modelValue.trim()" :source="modelValue" automatic breaks /><p v-else class="preview-empty">输入内容后，这里会实时显示公式和排版。</p></div>
-        <div v-if="mode !== 'preview'" class="note-source"><label class="pane-label" :for="inputId">编辑原文<span>{{ modelValue.length }} / 10000</span></label><textarea :id="inputId" ref="input" :aria-label="label" :value="modelValue" :maxlength="limit" spellcheck="false" placeholder="记录思路、推导或易错点，也可以直接粘贴 Markdown 和 LaTeX。" @input="update(($event.target as HTMLTextAreaElement).value)" @keydown="keydown" @paste="paste" /></div>
+        <div v-if="mode !== 'preview'" class="note-source"><label class="pane-label" :for="inputId">编辑原文<span>{{ modelValue.length }} / 10000</span></label><textarea :id="inputId" ref="input" :aria-label="label" :value="modelValue" :maxlength="limit" spellcheck="false" placeholder="直接粘贴 GPT 的回答，或记录你的思路、推导和易错点。" @input="update(($event.target as HTMLTextAreaElement).value)" @keydown="keydown" @paste="paste" /></div>
       </div>
     </div>
-    <div class="editor-footer"><details><summary>公式写法</summary><p>支持 $…$、$$…$$、\(…\)、\[…\]，以及单独一行的 LaTeX 和矩阵、对齐环境；代码块内的普通代码保持原样。</p></details><span v-if="feedback" role="status">{{ feedback }}</span></div>
+    <div class="editor-footer"><details><summary>粘贴与公式</summary><p>可直接粘贴 GPT 的 Markdown 或网页内容。支持常见公式、上下标和矩阵；复制带来的逐字换行会自动整理，普通代码块保持原样。</p></details><span v-if="feedback" role="status">{{ feedback }}</span></div>
   </section>
 </template>
 
