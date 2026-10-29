@@ -7,17 +7,24 @@ import ts from 'typescript'
 const root = resolve(import.meta.dirname, '..')
 async function loadModule(file) {
   let source = readFileSync(resolve(root, file), 'utf8')
-  if (file.endsWith('practiceQuestions.ts')) {
-    const questions = readFileSync(resolve(root, 'client/src/content/practice-questions.json'), 'utf8')
-    source = source.replace("import questions from '@/content/practice-questions.json'", `const questions = ${questions}`)
-    const ll880Questions = readFileSync(resolve(root, 'client/src/content/ll880-questions.json'), 'utf8')
-    source = source.replace("import ll880Questions from '@/content/ll880-questions.json'", `const ll880Questions = ${ll880Questions}`)
-  }
   const compiled = ts.transpileModule(source, { compilerOptions: { target: ts.ScriptTarget.ES2022, module: ts.ModuleKind.ESNext } }).outputText
   return import(`data:text/javascript;base64,${Buffer.from(compiled).toString('base64')}`)
 }
 const { normalizeProgress, mergeProgress, isPending, isUnattempted, matchesPracticeStatus, hasNote, readPracticeProgress, savePracticeProgress, PRACTICE_STORAGE_KEY, practiceAutoHideKey, readPracticeAutoHides, savePracticeAutoHides } = await loadModule('client/src/math/practice.ts')
-const { practiceQuestions, demoQuestion } = await loadModule('client/src/math/practiceQuestions.ts')
+const practiceQuestions = ['practice-questions.json', 'll880-questions.json'].flatMap(file => JSON.parse(readFileSync(resolve(root, 'client/src/content', file), 'utf8')))
+const { demoQuestion } = await loadModule('client/src/math/practiceDemo.ts')
+const { createPracticeCatalog } = await loadModule('client/src/math/practiceCatalog.ts')
+const examsCatalog = createPracticeCatalog(practiceQuestions, 'exams')
+const bookCatalog = createPracticeCatalog(practiceQuestions, 'll880')
+assert.equal(examsCatalog.questions.length, 462)
+assert.equal(bookCatalog.questions.length, 649)
+assert.equal(examsCatalog.papers.length, 16)
+assert.equal(bookCatalog.papers.length, 8)
+assert.equal(new Set([...examsCatalog.questions, ...bookCatalog.questions].map(q => q.id)).size, practiceQuestions.length)
+assert.equal(examsCatalog.papers.reduce((sum, paper) => sum + paper.questions.length, 0), 462)
+const group2025 = examsCatalog.papers.find(paper => paper.year === 2025).questions
+assert.equal(group2025[0].id, 'math2-2025-q4-original')
+assert.ok(examsCatalog.searchText.get('math2-2025-q4-original').includes('2025'))
 const { normalizePracticeLocation, readPracticeLocation, savePracticeLocation } = await loadModule('client/src/math/practiceLocation.ts')
 const ids = new Set()
 for (const q of practiceQuestions) {

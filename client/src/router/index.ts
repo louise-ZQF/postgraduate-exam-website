@@ -39,7 +39,7 @@ const router = createRouter({
     {
       path: "/practice",
       name: "practice",
-      component: () => import("@/views/PracticePage.vue"),
+      component: () => import("@/views/ExamPracticePage.vue"),
     },
     {
       path: "/880",

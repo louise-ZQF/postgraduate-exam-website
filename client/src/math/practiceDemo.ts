@@ -1,9 +1,4 @@
 import type { PracticeQuestion } from './practice'
-import questions from '@/content/practice-questions.json'
-import ll880Questions from '@/content/ll880-questions.json'
-
-// 正式错题按原题年份录入，稳定 ID 保证更新题目后仍保留复习进度。
-export const practiceQuestions: PracticeQuestion[] = [...questions, ...ll880Questions] as PracticeQuestion[]
 
 // 用户提供的界面截图，仅用于交互预览，不混入正式题库或复习统计。
 export const demoQuestion: PracticeQuestion = {

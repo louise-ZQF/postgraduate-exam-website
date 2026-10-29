@@ -1,7 +1,7 @@
 <template>
-  <RouterLink to="/" aria-label="返回数学二公式知识库搜索首页" class="brand">
+  <RouterLink to="/" aria-label="返回数学二学习空间首页" class="brand">
     <span class="brand-rule" aria-hidden="true"></span>
-    <span><b>数学二公式知识库</b><small>公式 · 结论 · 待背</small></span>
+    <span><b>数学二学习空间</b><small>公式 · 题库 · 复习</small></span>
   </RouterLink>
 </template>
 
