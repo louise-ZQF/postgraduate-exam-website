@@ -2,6 +2,7 @@
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import MathMarkdown from '@/components/MathMarkdown.vue'
 import PracticeIcon from '@/components/PracticeIcon.vue'
+import PracticeNoteEditor from '@/components/PracticeNoteEditor.vue'
 import arcDiagram from '@/assets/practice-figures/zy2026-set1-q5.svg?raw'
 import type { Mastery, PracticeQuestion, QuestionImage, QuestionProgress } from '@/math/practice'
 
@@ -103,8 +104,8 @@ const statuses: { value: Mastery; label: string }[] = [
       <template v-else><h4>答案</h4><MathMarkdown :source="question.answer" compact /><h4>解析</h4><MathMarkdown :source="question.explanation" compact /></template>
     </section>
     <p v-if="autoHidePending && !printMode" class="auto-hide-hint" role="status">已掌握，稍后自动隐藏；改为「不会」或「不熟练」可取消。</p>
-    <section v-if="printMode && progress?.note?.trim()" class="print-note print-only"><h4>错因笔记</h4><p>{{ progress.note }}</p></section>
-    <label v-if="noteOpen" :id="`note-${question.id}`" class="note-area"><span>错因笔记</span><textarea :aria-label="`${question.source}的错因笔记`" :value="progress?.note ?? ''" maxlength="10000" @blur="emit('noteBlur')" placeholder="记录错因或易忘的步骤" rows="2" @input="emit('note', question.id, ($event.target as HTMLTextAreaElement).value)" /><small>{{ storageFailed ? '保存失败，请导出备份' : '自动保存' }}</small></label>
+    <section v-if="printMode && progress?.note?.trim()" class="print-note print-only"><h4>错因笔记</h4><MathMarkdown :source="progress.note" automatic breaks /></section>
+    <PracticeNoteEditor v-if="noteOpen" :id="`note-${question.id}`" :input-id="`note-input-${question.id}`" :label="`${question.source}的错因笔记`" :model-value="progress?.note ?? ''" :storage-failed="storageFailed" @update:model-value="emit('note', question.id, $event)" @blur="emit('noteBlur')" />
   </article>
 </template>
 
@@ -124,7 +125,7 @@ svg { width: 17px; height: 17px; flex-shrink: 0; }button { cursor: pointer; tran
 .mastery-controls { display: flex; gap: 5px; margin-left: auto; }.mastery-controls button { display: flex; align-items: center; justify-content: center; gap: 5px; min-height: 44px; border: 1px solid transparent; border-radius: 6px; padding: 7px 10px; background: var(--surface-soft); color: var(--ink-soft); font-size: 12px; white-space: nowrap; }.mastery-controls button:hover { border-color: var(--line-strong); }.mastery-controls .unfamiliar.marked, .mastery-badge.unfamiliar { background: var(--warning-tint); color: var(--warning); }.mastery-controls .unknown.marked, .mastery-badge.unknown { background: var(--danger-tint); color: var(--danger); }.mastery-controls .mastered.marked, .mastery-badge.mastered { background: var(--success-tint); color: var(--success); }
 .note-toggle { display: grid; place-items: center; width: 44px; height: 44px; border: 0; border-radius: 6px; background: transparent; color: var(--muted); }.note-toggle:hover, .note-toggle.has-note { background: var(--accent-tint); color: var(--accent-dark); }
 .answer-panel { margin: 10px 0; border-top: 1px solid var(--line); padding: 18px 0 8px; font-size: 16px; line-height: 1.75; }.answer-panel h4 { margin: 0 0 6px; color: var(--accent-dark); font-size: 14px; }.answer-panel h4:not(:first-child) { margin-top: 16px; }.choice-feedback { display: flex; align-items: center; gap: 8px; margin: 0 0 14px; border-radius: 6px; padding: 10px 12px; font-size: 14px; line-height: 1.6; }.choice-feedback.correct { background: var(--success-tint); color: var(--success); }.choice-feedback.incorrect { background: var(--danger-tint); color: var(--danger); }
-.auto-hide-hint { margin: 5px 0 0; color: var(--muted); font-size: 11px; line-height: 1.7; }.note-area { display: grid; gap: 6px; margin: 12px 0 6px; font-size: 13px; }.note-area textarea { width: 100%; border: 1px solid var(--line-strong); border-radius: 9px; padding: 12px 14px; background: var(--surface-soft); color: var(--ink); font: inherit; line-height: 1.7; resize: vertical; }.note-area small { color: var(--muted); }.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+.auto-hide-hint { margin: 5px 0 0; color: var(--muted); font-size: 11px; line-height: 1.7; }.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 @media (max-width: 1000px) { .mastery-controls { margin-left: 0; }.note-toggle { margin-left: auto; } }
 @media (max-width: 600px) { .question-card { padding: 14px 16px 10px; border-radius: 10px; }.question-meta { align-items: flex-start; }.question-source { font-size: 10px; padding-top: 5px; }.question-topic { margin-left: 0; margin-top: 8px; font-size: 10px; }.question-meta-actions { gap: 0; margin-top: -7px; }.mastery-badge { display: none; }.question-stem { font-size: 16px; margin: 18px 0; }.question-actions { gap: 4px 8px; }.answer-toggle { order: 0; }.note-toggle { order: 1; }.mastery-controls { order: 2; width: 100%; gap: 6px; }.mastery-controls button { flex: 1; font-size: 11px; }.options { grid-template-columns: 1fr; }.option { padding: 10px 12px; } }
 </style>

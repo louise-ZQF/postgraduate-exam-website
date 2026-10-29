@@ -4,38 +4,28 @@ import DOMPurify from 'dompurify'
 import katex from 'katex'
 import { marked } from 'marked'
 import type { MathFormula } from '@/math/types'
+import { escapeMathHtml, protectMarkdownMath } from '@/math/markdownMath'
 
-const props = withDefaults(defineProps<{ source: string; inline?: boolean; compact?: boolean; formulas?: MathFormula[] }>(), {
+const props = withDefaults(defineProps<{ source: string; inline?: boolean; compact?: boolean; formulas?: MathFormula[]; automatic?: boolean; breaks?: boolean }>(), {
   inline: false,
   compact: false,
   formulas: () => [],
 })
 
 const html = computed(() => {
-  const formulas: string[] = []
-  const protectedSource = props.source.replace(/<!--\s*formula\s+[^\n]*?-->/g, '').replace(
-    /\$\$[\s\S]*?\$\$|\\\[[\s\S]*?\\\]|\$[^$\n]+?\$|\\\([^\n]*?\\\)/g,
-    (match) => {
-      const index = formulas.push(match) - 1
-      return `MATHPLACEHOLDER${index}X`
-    },
-  )
+  const { text: protectedSource, tokens, prefix } = protectMarkdownMath(props.source.replace(/<!--\s*formula\s+[^\n]*?-->/g, ''), props.automatic)
   const rendered = props.inline
     ? marked.parseInline(protectedSource, { async: false, gfm: true }) as string
-    : marked.parse(protectedSource, { async: false, breaks: false, gfm: true }) as string
+    : marked.parse(protectedSource, { async: false, breaks: props.breaks, gfm: true }) as string
   const sanitized = DOMPurify.sanitize(rendered, {
     FORBID_ATTR: ['id', 'style'],
     FORBID_TAGS: ['button', 'embed', 'form', 'iframe', 'input', 'object', 'script', 'style'],
     USE_PROFILES: { html: true },
   })
-  return sanitized.replace(/MATHPLACEHOLDER(\d+)X/g, (_, rawIndex: string) => {
-    const token = formulas[Number(rawIndex)] ?? ''
-    const displayMode = token.startsWith('$$') || token.startsWith('\\[')
-    const formula = token.startsWith('$$')
-      ? token.slice(2, -2)
-      : token.startsWith('\\[') || token.startsWith('\\(')
-        ? token.slice(2, -2)
-        : token.slice(1, -1)
+  return sanitized.replace(new RegExp(`${prefix}(\\d+)END`, 'g'), (match, rawIndex: string) => {
+    const token = tokens[Number(rawIndex)]
+    if (!token) return match
+    const { latex: formula, display: displayMode } = token
     try {
       const readingFormula = props.compact && !displayMode ? `\\displaystyle ${formula.trim()}` : formula.trim()
       const renderedFormula = katex.renderToString(readingFormula, { displayMode, throwOnError: false, trust: false, strict: 'ignore' })
@@ -47,7 +37,7 @@ const html = computed(() => {
         return `<span id="${item.id}" class="formula-unit${displayMode ? '' : ' inline-formula'}"><span class="formula-unit-math">${itemMath}</span><button class="formula-favorite-button" type="button" data-formula-id="${item.id}" aria-label="收藏此公式：${safeTitle}">☆ 收藏此公式</button></span>`
       }).join('')
     } catch {
-      return `<code>${formula}</code>`
+      return `<code>${escapeMathHtml(formula)}</code>`
     }
   })
 })
@@ -59,6 +49,8 @@ const html = computed(() => {
 .math-markdown { color: var(--ink); font-size: 16.5px; line-height: 1.9; overflow-wrap: anywhere; }
 .math-markdown.inline { display: inline; color: inherit; font: inherit; line-height: inherit; }
 .math-markdown :deep(h3) { margin: 32px 0 12px; font-family: var(--serif); font-size: 22px; line-height: 1.5; }
+.math-markdown :deep(h1) { margin: 20px 0 12px; font-size: 25px; line-height: 1.5; font-weight: 700; }
+.math-markdown :deep(h2) { margin: 18px 0 10px; font-size: 21px; line-height: 1.5; font-weight: 650; }
 .math-markdown :deep(h5) { margin: 36px 0 13px; color: var(--ink); font-family: var(--serif); font-size: 21px; line-height: 1.5; font-weight: 700; }
 .math-markdown :deep(h5:first-child) { margin-top: 2px; }
 .math-markdown :deep(p) { margin: 12px 0; }
@@ -82,6 +74,11 @@ const html = computed(() => {
 .math-markdown :deep(.katex) { color: var(--ink); }
 .math-markdown :deep(strong) { color: var(--ink); font-weight: 750; }
 .math-markdown :deep(code) { border: 1px solid var(--line); border-radius: 4px; padding: 2px 5px; background: var(--surface-soft); color: var(--accent-dark); }
+.math-markdown :deep(pre) { overflow-x: auto; border: 1px solid var(--line); border-radius: 7px; padding: 12px 14px; background: var(--surface-soft); font-size: 13px; line-height: 1.7; }
+.math-markdown :deep(pre code) { border: 0; padding: 0; color: var(--ink); }
+.math-markdown :deep(img) { max-width: 100%; height: auto; border-radius: 6px; }
+.math-markdown :deep(a) { color: var(--accent-dark); text-decoration: underline; }
+.math-markdown :deep(mark) { padding: 1px 3px; background: var(--warning-tint); color: var(--ink); }
 @media (max-width: 700px) { .math-markdown { font-size: 16px; line-height: 1.85; }.math-markdown :deep(h5) { font-size: 19px; }.math-markdown :deep(.katex-display) { margin-right: -5px; margin-left: -5px; padding: 11px 7px; }.math-markdown :deep(table) { display: block; overflow-x: auto; white-space: nowrap; } }
 .math-markdown.compact { font: inherit; line-height: inherit; }
 .math-markdown.compact :deep(p) { margin: 6px 0; }

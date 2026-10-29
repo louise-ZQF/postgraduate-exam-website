@@ -14,6 +14,7 @@ const { normalizeProgress, mergeProgress, isPending, isUnattempted, matchesPract
 const practiceQuestions = ['practice-questions.json', 'll880-questions.json'].flatMap(file => JSON.parse(readFileSync(resolve(root, 'client/src/content', file), 'utf8')))
 const { demoQuestion } = await loadModule('client/src/math/practiceDemo.ts')
 const { createPracticeCatalog } = await loadModule('client/src/math/practiceCatalog.ts')
+const { protectMarkdownMath, escapeMathHtml } = await loadModule('client/src/math/markdownMath.ts')
 const examsCatalog = createPracticeCatalog(practiceQuestions, 'exams')
 const bookCatalog = createPracticeCatalog(practiceQuestions, 'll880')
 assert.equal(examsCatalog.questions.length, 462)
@@ -85,6 +86,29 @@ assert.deepEqual(weakGroups.map(id => {
   return [group[0].examNumber, group.length]
 }), [['4', 10], ['7', 10], ['16', 10], ['10', 10], ['5', 2], ['12', 2], ['14', 2], ['15', 2], ['18', 2], ['20', 2], ['21', 2]])
 const katex = createRequire(resolve(root, 'client/package.json'))('katex')
+const noteExample = String.raw`这个题目最难的点是求积分的时候，注意 F(x) 的下限是从0开始的。\(f(x)\) 可积，则 \(F(x)=\int_0^x f(t)\,dt\) 连续；在 \(f(x)\) 连续的点，才可以直接用 \(F'(x)=f(x)\)。`
+const noteCases = [
+  [noteExample, 4],
+  [String.raw`$f'(x)$、$$\int_0^x f(t)\,dt$$、\(x^2\)、\[\frac{a}{b}\]`, 4],
+  [String.raw`F(x)=\int_0^x f(t)\,dt`, 1],
+  [String.raw`\begin{aligned} F(x)&=\int_0^x f(t)\,dt\\ F'(x)&=f(x)\end{aligned}`, 1],
+  [String.raw`\begin{pmatrix}1&2\\3&4\end{pmatrix}`, 1],
+  ['```latex\n\\frac{a}{b}\n```', 1],
+  ['```js\nconst x = "$a$"\n```\n`$b$` 和 $c$', 1],
+  [String.raw`价格 \$10，不完整的 \(f(x)`, 0],
+]
+for (const [source, count] of noteCases) {
+  const protectedMath = protectMarkdownMath(source, true)
+  assert.equal(protectedMath.tokens.length, count, source)
+  for (const token of protectedMath.tokens) assert.doesNotThrow(() => katex.renderToString(token.latex, { displayMode: token.display, throwOnError: true, strict: 'ignore' }), token.latex)
+}
+assert.equal(escapeMathHtml('<img src=x onerror="alert(1)">'), '&lt;img src=x onerror=&quot;alert(1)&quot;&gt;')
+for (const file of ['高等数学.md', '线性代数.md']) {
+  const source = readFileSync(resolve(root, 'content/approved', file), 'utf8').replace(/<!--\s*formula\s+[^\n]*?-->/g, '')
+  const legacy = [...source.matchAll(/\$\$[\s\S]*?\$\$|\\\[[\s\S]*?\\\]|\$[^$\n]+?\$|\\\([^\n]*?\\\)/g)].map(([token]) => (token.startsWith('$$') || token.startsWith('\\[') || token.startsWith('\\(') ? token.slice(2, -2) : token.slice(1, -1)).trim())
+  assert.deepEqual(protectMarkdownMath(source).tokens.map(token => token.latex), legacy, '已有公式顺序与收藏锚点保持一致')
+}
+
 const originals2025 = practiceQuestions.filter(q => q.year === 2025 && q.kind === 'original')
 assert.deepEqual(originals2025.map(q => Number(q.number)).sort((a, b) => a - b), [4, 5, 7, 10, 12, 14, 15, 16, 18, 20, 21])
 assert.equal(practiceQuestions.filter(q => q.year === 2025).length, 65)
