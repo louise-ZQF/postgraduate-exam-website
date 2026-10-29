@@ -26,7 +26,7 @@ assert.equal(examsCatalog.papers.reduce((sum, paper) => sum + paper.questions.le
 const group2025 = examsCatalog.papers.find(paper => paper.year === 2025).questions
 assert.equal(group2025[0].id, 'math2-2025-q4-original')
 assert.ok(examsCatalog.searchText.get('math2-2025-q4-original').includes('2025'))
-const { normalizePracticeLocation, readPracticeLocation, savePracticeLocation } = await loadModule('client/src/math/practiceLocation.ts')
+const { normalizePracticeLocation, readPracticeLocation, readPracticeLocations, savePracticeLocation } = await loadModule('client/src/math/practiceLocation.ts')
 const ids = new Set()
 for (const q of practiceQuestions) {
   assert.match(q.id, /^[a-zA-Z0-9_-]{1,120}$/)
@@ -151,6 +151,24 @@ assert.equal(normalizePracticeLocation({ questionId: 'valid', status: 'bad', off
 assert.equal(normalizePracticeLocation({ questionId: 'valid', offset: Infinity }).offset, 0)
 storage.set('math2-practice-location-v1-ll880', '{broken')
 assert.equal(readPracticeLocation('ll880'), undefined)
+const notesCheckpoint = { ...checkpoint, questionId: 'math2-2010-q5-original', view: 'notes', year: '', paper: '', status: 'all', keyword: '', updatedAt: 200 }
+assert.equal(savePracticeLocation('exams', notesCheckpoint), true)
+assert.deepEqual(readPracticeLocations('exams'), [notesCheckpoint, checkpoint], '看笔记后仍保留之前的练习位置')
+const laterNotes = { ...notesCheckpoint, questionId: 'math2-2024-q2-original', year: '2024', paper: '2024', offset: 90, updatedAt: 300 }
+assert.equal(savePracticeLocation('exams', laterNotes), true)
+assert.deepEqual(readPracticeLocations('exams'), [laterNotes, checkpoint], '连续浏览笔记只更新当前记录，不能挤掉之前的做题位置')
+const resumed = { ...checkpoint, offset: 220, updatedAt: 400 }
+assert.equal(savePracticeLocation('exams', resumed), true)
+assert.deepEqual(readPracticeLocations('exams'), [resumed, laterNotes], '跳回较早位置后，两条记录都保留')
+const anotherPaper = { ...checkpoint, questionId: 'math2-2022-q1-original', paper: '2022', year: '2022', updatedAt: 500 }
+assert.equal(savePracticeLocation('exams', anotherPaper), true)
+assert.deepEqual(readPracticeLocations('exams'), [anotherPaper, resumed], '只保留最近两处练习记录')
+storage.set('math2-practice-location-v1-ll880', JSON.stringify(checkpoint))
+assert.deepEqual(readPracticeLocations('ll880'), [checkpoint], '自动兼容旧版的单条记录')
+storage.set('math2-practice-location-history-v1-ll880', '{broken')
+assert.deepEqual(readPracticeLocations('ll880'), [checkpoint], '历史损坏时仍恢复旧记录')
+assert.equal(savePracticeLocation('ll880', notesCheckpoint), true)
+assert.deepEqual(readPracticeLocations('exams'), [anotherPaper, resumed], '试卷和880的两条历史相互隔离')
 assert.deepEqual(readPracticeProgress(), Object.create(null))
 const marked = { q2025: { mastery: 'unknown', note: '先判断导数奇偶性', updatedAt: 100, reviews: 0 } }
 const hideState = { q2025: { deadline: 30000, previous: marked.q2025 }, hidden: { deadline: 0 } }

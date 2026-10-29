@@ -12,7 +12,7 @@ import { createPracticeCatalog, paperKey } from '@/math/practiceCatalog'
 import ll880Chapters from '@/content/ll880-classification.json'
 import { demoQuestion } from '@/math/practiceDemo'
 import { hasNote, isPending, matchesPracticeStatus, mergeProgress, normalizeProgress, PRACTICE_STORAGE_KEY, practiceAutoHideKey, readPracticeProgress, savePracticeProgress, type Mastery, type QuestionImage, type PracticeQuestion, type PracticeProgress } from '@/math/practice'
-import { readPracticeLocation, type PracticeLocation } from '@/math/practiceLocation'
+import { readPracticeLocations, practiceLocationContext, type PracticeLocation } from '@/math/practiceLocation'
 
 const props = withDefaults(defineProps<{ collection?: 'exams' | 'll880'; source: PracticeQuestion[] }>(), { collection: 'exams' })
 const isBook = props.collection === 'll880'
@@ -27,17 +27,29 @@ const catalog = createPracticeCatalog(props.source, props.collection)
 const questions = catalog.questions
 const questionById = new Map([...questions, demoQuestion].map(q => [q.id, q]))
 const progress = ref<PracticeProgress>(readPracticeProgress())
-const storedLocation = readPracticeLocation(props.collection)
+const storedLocations = readPracticeLocations(props.collection).filter(location => questions.some(q => q.id === location.questionId))
 const lastInteractedQuestion = questions.filter(q => !progress.value[q.id]?.removed && progress.value[q.id]?.updatedAt > 0).sort((a, b) => progress.value[b.id].updatedAt - progress.value[a.id].updatedAt)[0]
-const lastLocation = ref<PracticeLocation | undefined>(storedLocation && questions.some(q => q.id === storedLocation.questionId) ? storedLocation : lastInteractedQuestion ? {
+const fallbackLocation: PracticeLocation | undefined = lastInteractedQuestion ? {
   questionId: lastInteractedQuestion.id, view: 'all', year: String(lastInteractedQuestion.year), paper: paperKey(lastInteractedQuestion), status: 'all', type: 'all', level: 'all', keyword: '', offset: 0, updatedAt: progress.value[lastInteractedQuestion.id].updatedAt,
-} : undefined)
-const lastLocationLabel = computed(() => {
-  const q = questionById.get(lastLocation.value?.questionId ?? '')
-  if (!q) return ''
-  const title = q.paperTitle ?? `${q.year} 年`
-  return q.bookId ? `${title} · ${q.source.replace('李林880 · ', '')}` : `${title} · ${q.kind === 'exercise' ? '补充练习' : '第'} ${q.number} 题`
-})
+} : undefined
+const lastLocations = ref<PracticeLocation[]>(storedLocations.length ? storedLocations : fallbackLocation ? [fallbackLocation] : [])
+const selectedLocationContext = ref(lastLocations.value[0] ? practiceLocationContext(lastLocations.value[0]) : '')
+const lastLocation = computed(() => lastLocations.value.find(location => practiceLocationContext(location) === selectedLocationContext.value) ?? lastLocations.value[0])
+const resumeOptions = computed(() => lastLocations.value.map((location, index) => {
+  const q = questionById.get(location.questionId)!
+  const title = q.bookId ? `${q.paperTitle} · ${q.source.replace('李林880 · ', '')}` : `${q.paperTitle ?? `${q.year} 年`} · ${q.kind === 'exercise' ? '补充练习' : '第'} ${q.number} 题`
+  const view = practiceLocationContext(location) === 'favorites' ? '收藏' : { all: '练习', review: '错题再练', notes: '笔记', removed: '已移除' }[location.view]
+  const date = new Date(location.updatedAt)
+  const time = Number.isNaN(date.getTime()) ? '' : date.toLocaleString('zh-CN', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false })
+  return { key: practiceLocationContext(location), label: `${index ? '上一次' : '最近一次'} · ${view} · ${title}${time ? ` · ${time}` : ''}` }
+}))
+function refreshResumeLocations(selectNew = false) {
+  const history = readPracticeLocations(props.collection).filter(location => questions.some(q => q.id === location.questionId))
+  if (!history.length) return
+  const previousContext = lastLocations.value[0] ? practiceLocationContext(lastLocations.value[0]) : ''
+  lastLocations.value = history
+  if ((selectNew && previousContext !== practiceLocationContext(history[0])) || !history.some(location => practiceLocationContext(location) === selectedLocationContext.value)) selectedLocationContext.value = practiceLocationContext(history[0])
+}
 const resuming = ref(false)
 const demoProgress = ref<PracticeProgress>({})
 const demoMode = ref(questions.length === 0)
@@ -91,7 +103,7 @@ const { interaction: trackQuestionInteraction, schedule: scheduleLocationSave, f
     if (demoMode.value || mode.value === 'removed' || !queueIdSet.value.has(id) || progress.value[id]?.removed) return
     return { questionId: id, view: mode.value, year: selectedYear.value, paper: selectedPaper.value, status: statusFilter.value, type: typeFilter.value, level: levelFilter.value, keyword: keyword.value, offset: Math.round(-element.getBoundingClientRect().top), updatedAt: Date.now() }
   },
-  onFinish: () => { lastLocation.value = readPracticeLocation(props.collection) ?? lastLocation.value },
+  onFinish: () => refreshResumeLocations(), onSaved: () => refreshResumeLocations(true),
   onFailure: () => { notice.value = '浏览器暂时无法保存上次做题位置。' },
 })
 const visibleQuestions = computed(() => questions.filter(q => !progress.value[q.id]?.removed))
@@ -316,6 +328,7 @@ async function importBackup(event: Event) {
   input.value = ''
 }
 function syncProgress(event: StorageEvent) {
+  if (!event.key || event.key.startsWith('math2-practice-location-')) refreshResumeLocations()
   if (event.key === PRACTICE_STORAGE_KEY || event.key === practiceAutoHideKey(props.collection) || event.key === null) {
     progress.value = readPracticeProgress()
     restoreAutoHides()
@@ -429,7 +442,7 @@ onBeforeUnmount(() => {
           <div><p class="workspace-path">数学二<span>/</span>{{ isBook ? '880 题库' : '试卷题库' }}</p><h1>{{ workspaceTitle }}</h1><p class="workspace-subtitle">{{ workspaceSubtitle }}</p></div>
           <div class="workspace-actions"><button v-if="mode === 'review'" class="text-button" @click="restartQueue"><PracticeIcon name="repeat" />重新开始本轮</button><button class="pdf-button" :disabled="!queue.length || exportingPdf" @click="exportPdf"><PracticeIcon name="download" />{{ exportingPdf ? '准备导出…' : '导出 PDF' }}</button></div>
         </header>
-        <section v-if="lastLocationLabel" class="resume-card" aria-label="上次做题位置"><PracticeIcon name="clock" /><p><span>上次做到</span>{{ lastLocationLabel }}</p><button :disabled="resuming" @click="resumeLastLocation">{{ resuming ? '正在定位…' : '继续上次做题' }}<PracticeIcon name="arrow" /></button></section>
+        <section v-if="resumeOptions.length" class="resume-card" aria-label="最近做题位置" @pointerdown.capture="finishLocationTracking" @focusin="finishLocationTracking"><PracticeIcon name="clock" /><span class="resume-caption">继续做题</span><label class="visually-hidden" for="resume-location">最近两次做题记录</label><select id="resume-location" v-model="selectedLocationContext" :disabled="resuming"><option v-for="option in resumeOptions" :key="option.key" :value="option.key">{{ option.label }}</option></select><button :disabled="resuming" @click="resumeLastLocation">{{ resuming ? '正在定位…' : '跳转' }}<PracticeIcon name="arrow" /></button></section>
         <section v-if="!questions.length" class="preview-banner"><PracticeIcon name="book" /><div><strong>错题本已就绪，等待录入你的题目</strong><p>下方使用你提供的截图演示操作，年份尚未确认，不计入正式题库和复习统计。</p></div><button @click="demoMode = !demoMode">{{ demoMode ? '收起示例' : '体验示例' }}</button></section>
         <p v-if="storageFailed" role="alert" class="storage-error">浏览器暂时无法保存进度，请立即导出备份以保留本次标记和笔记。</p>
         <p class="print-summary print-only">{{ pdfTitle }} · 含答案解析与笔记</p>

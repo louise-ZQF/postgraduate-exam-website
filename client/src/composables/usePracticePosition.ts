@@ -7,6 +7,7 @@ export function usePracticePosition(options: {
   paused: Readonly<Ref<boolean>>
   capture: (id: string, element: HTMLElement) => PracticeLocation | undefined
   onFinish: () => void
+  onSaved?: () => void
   onFailure: () => void
 }) {
   let tracking = false
@@ -18,7 +19,10 @@ export function usePracticePosition(options: {
     if (!active || options.paused.value) return
     const element = document.getElementById(id)
     const location = element ? options.capture(id, element) : undefined
-    if (location && !savePracticeLocation(options.collection, location)) options.onFailure()
+    if (location) {
+      if (savePracticeLocation(options.collection, location)) options.onSaved?.()
+      else options.onFailure()
+    }
   }
   function rememberViewport() {
     if (!tracking || options.paused.value) return
