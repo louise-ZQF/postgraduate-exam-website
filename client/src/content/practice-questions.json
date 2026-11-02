@@ -10852,56 +10852,6 @@
     "correctOption": "C"
   },
   {
-    "id": "math2-2023-q11-original",
-    "year": 2023,
-    "paperTitle": "2023 年",
-    "number": "11",
-    "examNumber": "11",
-    "kind": "original",
-    "source": "2023 年数学二真题 · 第 11 题",
-    "topic": "等价无穷小与待定系数",
-    "type": "fill",
-    "stem": "当 $x\\to0$ 时，函数\n$$\nf(x)=ax+bx^2+\\ln(1+x),\\qquad g(x)=e^{x^2}-\\cos x\n$$\n是等价无穷小，则 $ab=$________。",
-    "answer": "$-2$。",
-    "explanation": "答案 $-2$。展开到二阶：\n$$\nf(x)=(a+1)x+\\left(b-\\frac12\\right)x^2+o(x^2),\\qquad\ng(x)=\\frac32x^2+o(x^2).\n$$\n要等价，先令一次项消失，得到 $a=-1$；再比较二次项，$b-1/2=3/2$，得到 $b=2$。所以 $ab=-2$。\n\n**原错因记录**\n\n你填了2。二次项比较得到 $b=2$ 没问题，但一次项消去条件应为 $a+1=0$，所以 $a=-1$。\n\n**资料来源**\n\n上传文档《2023数二_按复盘指路提取错题.md》，原题来源在文档中注明为《A4数二2023真题_1102 2(1).pdf》，错因来源为《math2023_review.pdf》及确认清单。",
-    "questionTypes": [
-      {
-        "id": "math2-2023-q11-type",
-        "title": "等价无穷小与待定系数 · 第11题与配套练习",
-        "references": [
-          "2023数二第11题"
-        ]
-      }
-    ],
-    "sourceOrder": 11
-  },
-  {
-    "id": "math2-2023-q11-ex1",
-    "year": 2023,
-    "paperTitle": "2023 年",
-    "number": "11-1",
-    "examNumber": "11",
-    "exerciseIndex": 1,
-    "kind": "exercise",
-    "source": "配套练习 · 2027张宇1000题 · 强化篇第1章第27题",
-    "sourceCategory": "book",
-    "topic": "等价无穷小与待定系数",
-    "type": "fill",
-    "stem": "当 $x\\to0$ 时，函数\n$$\nf(x)=ax+bx^2+\\ln(1+x),\\qquad g(x)=1-\\cos x\n$$\n是等价无穷小，则 $ab=$________。",
-    "answer": "$-1$。",
-    "explanation": "答案 $-1$。展开得\n$$\nf(x)=(a+1)x+\\left(b-\\frac12\\right)x^2+o(x^2),\\qquad\ng(x)=\\frac{x^2}{2}+o(x^2).\n$$\n先消一次项得到 $a=-1$，再比较二次项得到 $b=1$，所以 $ab=-1$。不要将原错题里的 $b=2$ 直接照搬到这道。\n\n**来源与对应关系**\n\n来源：2027张宇1000题数二试题册，强化篇第1章第27题，书内P61，PDF第65页。\n\n对应 2023 年数学二第 11 题。题干与参考解析按上传文档《2023数二_按复盘指路提取错题.md》收录。",
-    "questionTypes": [
-      {
-        "id": "math2-2023-q11-type",
-        "title": "等价无穷小与待定系数 · 第11题与配套练习",
-        "references": [
-          "2023数二第11题"
-        ]
-      }
-    ],
-    "sourceOrder": 11
-  },
-  {
     "id": "math2-2023-q12-original",
     "year": 2023,
     "paperTitle": "2023 年",
