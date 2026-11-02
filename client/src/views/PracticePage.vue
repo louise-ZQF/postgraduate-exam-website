@@ -490,6 +490,7 @@ onBeforeUnmount(() => {
   body { background: white !important; }
   .pdf-export ~ .app-footer, .pdf-export .site-header, .pdf-export .directory,
   .pdf-export .toolbar, .pdf-export .chapter-filters, .pdf-export .workspace-heading, .pdf-export .notice,
+  .pdf-export .question-management, .pdf-export .question-knowledge,
   .pdf-export .display-hint,
   .pdf-export .resume-card,
   .pdf-export .storage-error, .pdf-export .paper-end, .route-loading-overlay { display: none !important; }
