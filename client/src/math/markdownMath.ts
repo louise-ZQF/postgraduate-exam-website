@@ -5,7 +5,11 @@ export function repairFragmentedMath(source: string, includeMathFences = false):
   const result: string[] = []
   let fence = ''
   let mathFence = false
-  const glyph = (line: string) => Array.from(line.trim()).length === 1 && !/[`\\#]/.test(line.trim())
+  const fragment = (line: string) => {
+    const value = line.trim()
+    return /^[A-Za-z0-9α-ωΑ-Ω\u{1d400}-\u{1d7ff}⁰¹²³⁴⁵⁶⁷⁸⁹ᵀ₀-₉()[\]{}|∣‖=+−×÷<>≤≥≠^_.,;:/-]{1,6}$/u.test(value) && !/\S\s*[=<>≤≥≠]\s*\S/.test(value)
+  }
+  const comparable = (text: string) => text.normalize('NFKC').replace(/\s/g, '')
   for (let i = 0; i < lines.length;) {
     const marker = lines[i].match(/^\s*(`{3,}|~{3,})/)
     if (marker) {
@@ -13,23 +17,35 @@ export function repairFragmentedMath(source: string, includeMathFences = false):
       else if (marker[1][0] === fence[0] && marker[1].length >= fence.length && lines[i].trim() === marker[1]) { fence = ''; mathFence = false }
       result.push(lines[i++]); continue
     }
-    if ((!fence || mathFence) && glyph(lines[i])) {
+    if ((!fence || mathFence) && fragment(lines[i])) {
       let end = i + 1
       while (end < lines.length) {
-        if (glyph(lines[end])) { end++; continue }
+        if (fragment(lines[end])) { end++; continue }
         if (lines[end].trim()) break
         let next = end + 1
         while (next < lines.length && !lines[next].trim()) next++
-        if (next >= lines.length || !glyph(lines[next])) break
+        if (next >= lines.length || !fragment(lines[next])) break
         end = next
       }
       const run = lines.slice(i, end).map(line => line.trim()).filter(Boolean)
       const joined = run.join('')
-      if (run.length >= 6 && /[=+^_α-ωΑ-Ω]/.test(joined) && /[=()\d]/.test(joined)) {
+      if (run.length >= 3 && /[=+^_α-ωΑ-Ω]/.test(joined) && /[=()\d]/.test(joined) && /[A-Za-zα-ωΑ-Ω\u{1d400}-\u{1d7ff}]/u.test(joined)) {
         let next = end
         while (next < lines.length && !lines[next].trim()) next++
-        const comparable = (text: string) => text.normalize('NFKC').replace(/\s/g, '')
-        if (next < lines.length && comparable(lines[next]) === comparable(joined)) end = next + 1
+        if (next < lines.length) {
+          // 复制网页常同时包含 MathML 的逐字版本和展示层的整行版本，后者还可能紧接中文。
+          let length = 0
+          const target = comparable(joined)
+          for (const char of lines[next]) {
+            length += char.length
+            const prefix = comparable(lines[next].slice(0, length))
+            if (prefix === target && !/^[A-Za-z0-9α-ωΑ-Ω]/.test(lines[next].slice(length))) {
+              result.push(joined + lines[next].slice(length)); i = next + 1; break
+            }
+            if (prefix.length > target.length) break
+          }
+          if (i === next + 1) continue
+        }
         result.push(joined); i = end; continue
       }
       result.push(...lines.slice(i, end)); i = end; continue
@@ -84,7 +100,7 @@ export function protectMarkdownMath(source: string, automatic = false) {
       const line = rest.split('\n', 1)[0]
       const mathLine = line.replace(/\\(?:text|operatorname)\{[^}]*\}/g, '')
       if (automatic && line.trim() && !/[\u3400-\u9fff`$]/.test(mathLine) && !/\\[([]|\\begin\{/.test(line)
-        && (/\\(?:frac|dfrac|tfrac|int|sum|prod|lim|sqrt|partial|infty)(?![a-zA-Z])/.test(line) || /[a-zA-Z][_^].*(?:=|<|>|\\)/.test(line) || /[a-zA-Z]'*\([^\n)]*\)\s*=/.test(line) || (/[α-ωΑ-Ω]/.test(line) && /[=^_²ᵀ]/.test(line)))) {
+        && (/\\(?:frac|dfrac|tfrac|int|sum|prod|lim|sqrt|partial|infty)(?![a-zA-Z])/.test(line) || /[a-zA-Z][_^].*(?:=|<|>|\\)/.test(line) || /^\s*[A-Za-zα-ωΑ-Ω]\s*[=<>≤≥≠]\s*[-+\dA-Za-zα-ωΑ-Ω]/.test(line) || /[a-zA-Z]'*\([^\n)]*\)\s*=/.test(line) || (/[α-ωΑ-Ω]/.test(line) && /[=^_²ᵀ]/.test(line)))) {
         text += add(line, true); i += line.length; continue
       }
     }

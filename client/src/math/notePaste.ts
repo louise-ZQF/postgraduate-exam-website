@@ -1,3 +1,5 @@
+import { katexHtmlToLatex } from './katexClipboard'
+
 export function mathStructureToLatex(node: Node): string {
   if (node.nodeType === Node.TEXT_NODE) return node.textContent?.trim() ?? ''
   if (!(node instanceof Element)) return ''
@@ -35,18 +37,21 @@ export function mathStructureToLatex(node: Node): string {
 
 export function noteFromClipboard(html: string, plain: string): string | undefined {
   // GPT 的“复制”提供完整 Markdown 时，避免再从展示层反推，损坏原有公式和代码块。
-  if (/^\s*```(?:math|latex|tex)?\s*$|\\\(|\\\[|\$\$|^#{1,6} /m.test(plain)) return
+  if (/^\s*```(?:math|latex|tex)\s*$|\\\([^]*?\\\)|\\\[[^]*?\\\]|\$\$[^]*?\$\$/m.test(plain)) return
   if (!html) return
   const doc = new DOMParser().parseFromString(html, 'text/html')
-  const mathNodes = [...doc.querySelectorAll('.katex-display, .katex, math, mjx-container, .MathJax, [data-latex], [data-tex], script[type^="math/tex"]')]
+  const mathNodes = [...doc.querySelectorAll('.katex-display, .katex, .katex-mathml, .katex-html, math, mjx-container, mjx-assistive-mml, .MathJax, [data-latex], [data-tex], script[type^="math/tex"]')]
   let recoveredMath = false
   for (const node of mathNodes) {
-    if (!node.isConnected) continue
+    if (!node.isConnected || node.closest('pre, code')) continue
     const annotation = node.querySelector('annotation[encoding="application/x-tex"], annotation[encoding="application/tex"], annotation[encoding="text/x-tex"]')
     const structure = node.localName === 'math' ? node : node.querySelector('math, mjx-math')
-    const latex = (annotation?.textContent ?? node.getAttribute('data-latex') ?? node.getAttribute('data-tex') ?? (node.localName === 'script' ? node.textContent : structure ? mathStructureToLatex(structure) : ''))?.trim()
-    if (!latex) continue
+    const visual = node.matches('.katex-html') ? node : node.querySelector('.katex-html')
+    const latex = (annotation?.textContent ?? node.getAttribute('data-latex') ?? node.getAttribute('data-tex') ?? (node.localName === 'script' ? node.textContent : structure ? mathStructureToLatex(structure) : visual ? katexHtmlToLatex(visual) : ''))?.trim()
+    if (!latex) { if (plain.trim()) return; continue }
     const display = node.classList.contains('katex-display') || node.getAttribute('display') === 'block' || node.getAttribute('display') === 'true' || structure?.getAttribute('display') === 'block' || node.getAttribute('type')?.includes('mode=display')
+    // 选区可能没有最外层 .katex；仍只保留辅助公式与展示公式中的一份。
+    if (node.matches('.katex-mathml, math, mjx-assistive-mml') && node.nextElementSibling?.matches('.katex-html')) node.nextElementSibling.remove()
     node.replaceWith(doc.createTextNode(display ? `\n\n$$\n${latex}\n$$\n\n` : `\\(${latex}\\)`))
     recoveredMath = true
   }
@@ -55,7 +60,7 @@ export function noteFromClipboard(html: string, plain: string): string | undefin
   function children(node: Node): string { return [...node.childNodes].map(render).join('') }
   function render(node: Node): string {
     if (node.nodeType === Node.TEXT_NODE) return node.textContent ?? ''
-    if (!(node instanceof Element) || ['SCRIPT', 'STYLE', 'BUTTON'].includes(node.tagName) || node.getAttribute('aria-hidden') === 'true') return ''
+    if (!(node instanceof Element) || ['script', 'style', 'button'].includes(node.localName) || node.getAttribute('aria-hidden') === 'true') return ''
     const tag = node.tagName.toLowerCase()
     if (tag === 'pre') {
       const code = node.querySelector('code') ?? node

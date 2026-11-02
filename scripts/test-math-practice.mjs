@@ -113,6 +113,12 @@ assert.equal(normalizeNoteMath('(αTx)2=xT(ααT)x', '转置，平方'), '(α^{T
 assert.equal(normalizeNoteMath('ATx=xTα'), 'ATx=xTα', '没有上下文时，不擅自推断普通字母 T 是转置')
 assert.equal(normalizeNoteMath('x²+y₂'), 'x^{2}+y_{2}')
 assert.equal(repairFragmentedMath('α\nT\nx\n=\nx\nT\nα\n\nαTx=xTα'), 'αTx=xTα')
+assert.equal(repairFragmentedMath('在上限\ny\n=\n1\ny=1 处得到'), '在上限\ny=1 处得到', '短公式与紧接中文的重复展示层也要整理')
+assert.equal(repairFragmentedMath('(x\n^2\n)\n^{3/2}\n=\n|x\n|^3'), '(x^2)^{3/2}=|x|^3', '数学片段不一定每行只有一个字符')
+assert.equal(repairFragmentedMath('y\n=\n1\n\ny=10'), 'y=1\n\ny=10', '不能误删只有相同前缀的另一个公式')
+assert.equal(repairFragmentedMath('```js\ny\n=\n1\n```', true), '```js\ny\n=\n1\n```', '普通代码的换行保持原样')
+assert.equal(repairFragmentedMath('第一步\n第二步\nA\nB\nC'), '第一步\n第二步\nA\nB\nC', '不拼接普通分行文字')
+assert.equal(protectMarkdownMath('y\n=\n1', true).tokens[0].latex, 'y=1')
 for (const file of ['高等数学.md', '线性代数.md']) {
   const source = readFileSync(resolve(root, 'content/approved', file), 'utf8').replace(/<!--\s*formula\s+[^\n]*?-->/g, '')
   const legacy = [...source.matchAll(/\$\$[\s\S]*?\$\$|\\\[[\s\S]*?\\\]|\$[^$\n]+?\$|\\\([^\n]*?\\\)/g)].map(([token]) => (token.startsWith('$$') || token.startsWith('\\[') || token.startsWith('\\(') ? token.slice(2, -2) : token.slice(1, -1)).trim())
