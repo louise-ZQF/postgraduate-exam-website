@@ -5,18 +5,18 @@
 
 @layer base {
   :root {
-    --canvas: #f6f8fc;
+    --canvas: #f5f6f9;
     --paper: #ffffff;
-    --ink: #24314a;
-    --ink-soft: #53627a;
-    --muted: #637086;
-    --line: #e4eaf3;
-    --line-strong: #d4deed;
-    --accent: #456bd8;
-    --accent-dark: #3154b4;
-    --accent-tint: #eef3ff;
-    --focus-ring: rgba(66, 104, 213, .2);
-    --surface-soft: #f7f9fd;
+    --ink: #222833;
+    --ink-soft: #505b6b;
+    --muted: #697382;
+    --line: #e6e8ed;
+    --line-strong: #d9dde5;
+    --accent: #3268df;
+    --accent-dark: #2454be;
+    --accent-tint: #eaf0fc;
+    --focus-ring: rgba(50, 104, 223, .18);
+    --surface-soft: #f7f8fa;
     --success: #087855;
     --success-tint: #d4ede2;
     --warning: #916109;
@@ -32,7 +32,7 @@
     --brand-600: var(--accent);
     --amber-700: var(--accent-dark);
     --amber-100: var(--accent-tint);
-    --shadow-card: none;
+    --shadow-card: 0 2px 8px #1f293706, 0 1px 2px #1f293704;
     --serif: "Songti SC", "STSong", "Noto Serif CJK SC", "Source Han Serif SC", serif;
     font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
     color: var(--ink);

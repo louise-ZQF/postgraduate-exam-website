@@ -34,22 +34,22 @@ const filters = [{ value: 'all', label: '全部题目' }, { value: 'unmarked', l
 </template>
 
 <style scoped>
-.practice-toolbar { margin-top: 24px; }
-.filter-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; border-bottom: 1px solid var(--line-strong); }
-.status-tabs { display: flex; gap: 22px; align-self: stretch; }
-.status-tabs button { position: relative; min-height: 52px; border: 0; padding: 0 2px; background: transparent; color: var(--ink-soft); font-size: 14px; white-space: nowrap; }
+.practice-toolbar { margin-top: 16px; border: 1px solid var(--line); border-radius: 12px; padding: 0 16px; background: var(--paper); box-shadow: var(--shadow-card); }
+.filter-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 60px; border-bottom: 1px solid var(--line); }
+.status-tabs { display: flex; align-items: center; gap: 2px; padding: 3px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface-soft); }
+.status-tabs button { position: relative; min-height: 36px; border: 0; border-radius: 5px; padding: 0 12px; background: transparent; color: var(--ink-soft); font-size: 12px; white-space: nowrap; }
 .status-tabs button:hover { color: var(--accent-dark); }
-.status-tabs button.selected { color: var(--accent-dark); font-weight: 650; }
-.status-tabs button.selected::after { content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 2px; border-radius: 2px; background: var(--accent); }
-.filter-tools { display: flex; align-items: center; gap: 8px; padding-bottom: 9px; min-width: 0; }
-.question-search { display: flex; align-items: center; gap: 8px; min-width: 0; width: 228px; height: 44px; border: 1px solid var(--line); border-radius: 8px; padding: 0 11px; background: var(--paper); color: var(--muted); }
+.status-tabs button.selected { color: var(--ink); background: var(--paper); box-shadow: 0 1px 3px #1f293715; font-weight: 600; }
+.status-tabs button.selected::after { display: none; }
+.filter-tools { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.question-search { display: flex; align-items: center; gap: 8px; min-width: 0; width: 220px; height: 40px; border: 1px solid var(--line); border-radius: 7px; padding: 0 11px; background: var(--paper); color: var(--muted); }
 .question-search:focus-within { border-color: var(--accent); outline: 3px solid var(--focus-ring); }
 svg { width: 16px; height: 16px; flex-shrink: 0; }
 .question-search input { width: 100%; min-width: 0; border: 0; outline: 0; background: transparent; font-size: 13px; color: var(--ink); }
 .question-search input::placeholder { color: var(--muted); }
 .question-search button { display: grid; place-items: center; flex-shrink: 0; width: 32px; height: 44px; border: 0; background: transparent; color: var(--muted); }
-.detail-filter { min-height: 44px; width: 108px; border: 1px solid var(--line); border-radius: 8px; padding: 0 8px; background: var(--paper); color: var(--ink-soft); font-size: 12px; }
-.results-row { position: relative; display: flex; align-items: center; flex-wrap: wrap; gap: 4px 16px; min-height: 54px; }
+.detail-filter { min-height: 40px; width: 108px; border: 1px solid var(--line); border-radius: 7px; padding: 0 8px; background: var(--paper); color: var(--ink-soft); font-size: 12px; }
+.results-row { position: relative; display: flex; align-items: center; flex-wrap: wrap; gap: 4px 16px; min-height: 42px; }
 .result-count { margin: 0; color: var(--ink-soft); font-size: 12px; font-variant-numeric: tabular-nums; }
 .result-count strong { color: var(--ink); font-size: 14px; font-weight: 650; }
 .result-count > span { margin-left: 14px; color: var(--muted); }

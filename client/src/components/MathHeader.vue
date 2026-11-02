@@ -4,8 +4,9 @@ import { useRouter } from 'vue-router'
 import { FAVORITES_CHANGED_EVENT, readFavorites } from '@/math/favorites'
 import { clearRecentSearches, readRecentSearches, rememberSearch } from '@/math/recentSearches'
 import BrandLogo from './BrandLogo.vue'
+import PracticeIcon from './PracticeIcon.vue'
 
-const props = defineProps<{ initialQuery?: string; hideSearch?: boolean }>()
+const props = defineProps<{ initialQuery?: string; hideSearch?: boolean; sidebar?: boolean }>()
 const router = useRouter()
 const query = ref(props.initialQuery ?? '')
 const historyOpen = ref(false)
@@ -55,7 +56,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <header class="site-header">
+  <header class="site-header" :class="{ 'sidebar-header': sidebar }">
     <div class="header-inner" :class="{ 'without-search': props.hideSearch }">
       <BrandLogo />
       <div v-if="!props.hideSearch" class="header-search-wrap">
@@ -71,12 +72,12 @@ onBeforeUnmount(() => {
         </section>
       </div>
       <nav aria-label="主导航">
-        <RouterLink to="/">公式检索</RouterLink>
-        <RouterLink to="/favorites">待背公式<span v-if="favoriteCount" class="favorite-count">{{ favoriteCount }}</span></RouterLink>
-        <RouterLink to="/practice">试卷练习</RouterLink>
-        <RouterLink to="/880">李林 880</RouterLink>
-        <RouterLink to="/graphs">常见图像</RouterLink>
-        <RouterLink to="/proofs">证明题专场</RouterLink>
+        <RouterLink to="/"><PracticeIcon v-if="sidebar" name="search" />公式检索</RouterLink>
+        <RouterLink to="/favorites"><PracticeIcon v-if="sidebar" name="star" />待背公式<span v-if="favoriteCount" class="favorite-count">{{ favoriteCount }}</span></RouterLink>
+        <RouterLink to="/practice"><PracticeIcon v-if="sidebar" name="book" />试卷练习</RouterLink>
+        <RouterLink to="/880"><PracticeIcon v-if="sidebar" name="note" />李林 880</RouterLink>
+        <RouterLink to="/graphs"><PracticeIcon v-if="sidebar" name="graph" />常见图像</RouterLink>
+        <RouterLink to="/proofs"><PracticeIcon v-if="sidebar" name="proof" />证明题专场</RouterLink>
       </nav>
     </div>
   </header>
@@ -84,7 +85,7 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .site-header { position: relative; z-index: 20; border-bottom: 1px solid var(--line); background: var(--paper); }
-.header-inner { display: grid; grid-template-columns: auto minmax(160px, 300px) 1fr; align-items: center; gap: 20px; width: min(1380px, calc(100% - 64px)); min-height: 72px; margin: auto; }
+.header-inner { display: grid; grid-template-columns: auto minmax(160px, 300px) 1fr; align-items: center; gap: 20px; width: min(1380px, calc(100% - 64px)); min-height: 68px; margin: auto; }
 .header-inner.without-search { grid-template-columns: auto 1fr; }
 .header-search-wrap { position: relative; min-width: 0; }
 .header-search { display: flex; align-items: center; gap: 9px; height: 44px; border: 1px solid var(--line-strong); border-radius: 10px; padding: 0 14px; background: var(--surface-soft); }
@@ -96,6 +97,13 @@ nav { display: flex; justify-self: end; align-items: center; gap: 6px; }
 nav a { position: relative; display: inline-flex; align-items: center; min-height: 44px; border-radius: 6px; padding: 0 12px; color: var(--ink-soft); font-size: 13px; font-weight: 500; white-space: nowrap; transition: background .16s, color .16s; }
 nav a:hover { background: var(--surface-soft); color: var(--ink); }
 nav a.router-link-active { color: var(--accent-dark); background: var(--accent-tint); font-weight: 650; }
+.sidebar-header { flex-shrink: 0; margin: 0 0 14px; padding: 3px 0 14px; border-bottom: 1px solid var(--line); background: transparent; }
+.sidebar-header .header-inner { display: flex; flex-direction: column; align-items: stretch; width: 100%; min-height: 0; gap: 16px; padding: 0; }
+.sidebar-header :deep(.brand) { margin: 0 4px; }
+.sidebar-header nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; justify-self: stretch; padding: 0; overflow: visible; }
+.sidebar-header nav a { gap: 7px; min-height: 38px; padding: 0 8px; border-radius: 7px; font-size: 12px; }
+.sidebar-header nav svg { width: 15px; height: 15px; flex-shrink: 0; }
+.sidebar-header .favorite-count { min-width: 16px; height: 16px; margin-left: 0; font-size: 9px; }
 .favorite-count { display: inline-grid; min-width: 19px; height: 19px; margin-left: 6px; place-items: center; border-radius: 50%; background: var(--accent); color: white; font-size: 11px; }
 .search-history { position: absolute; top: calc(100% + 7px); left: 0; z-index: 30; width: 100%; border: 1px solid var(--line-strong); border-radius: 8px; padding: 7px; background: var(--paper); box-shadow: 0 8px 24px rgba(44, 35, 26, .1); }
 .history-heading { display: flex; justify-content: space-between; padding: 5px 8px 7px; color: var(--muted); font-size: 12px; }

@@ -420,13 +420,13 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="practice-page" :class="{ 'pdf-export': exportingPdf }">
-    <MathHeader hide-search />
     <PracticeImagePreview ref="imagePreview" />
     <div class="practice-layout">
       <aside class="directory" :aria-label="isBook ? '880章节与复习目录' : '试卷与复习目录'">
+        <MathHeader hide-search sidebar />
         <button class="mobile-directory" :aria-expanded="directoryOpen" aria-controls="directory-content" @click="directoryOpen = !directoryOpen"><PracticeIcon name="book" />{{ isBook ? '880 章节与复习目录' : '试卷与复习目录' }}<span>{{ directoryOpen ? '收起' : '展开' }}</span></button>
         <div id="directory-content" class="directory-content" :class="{ open: directoryOpen }">
-          <div class="directory-brand"><span class="directory-symbol"><PracticeIcon name="book" /></span><div><strong>{{ isBook ? '李林 880' : '试卷题库' }}</strong><span>{{ retainedCount }} 道题 · {{ isBook ? '按章节与题型' : '按年份与套卷' }}</span></div></div>
+          <div class="directory-brand"><div><strong>{{ isBook ? '李林 880' : '试卷题库' }}</strong><span>{{ retainedCount }} 道题 · {{ isBook ? '按章节与题型' : '按年份与套卷' }}</span></div></div>
           <nav class="collection-nav" aria-label="错题集合">
             <button :aria-pressed="mode === 'all'" :class="{ active: mode === 'all' }" @click="selectView('all')"><PracticeIcon name="book" />{{ isBook ? '章节练习' : '试卷练习' }}<span>{{ allDisplayCount }}</span></button>
             <button :aria-pressed="mode === 'review' && statusFilter !== 'favorites'" :class="{ active: mode === 'review' && statusFilter !== 'favorites' }" @click="selectView('review')"><PracticeIcon name="repeat" />错题再练<span>{{ pendingCount }}</span></button>
@@ -458,7 +458,7 @@ onBeforeUnmount(() => {
           <div><p class="workspace-path">数学二<span>/</span>{{ isBook ? '880 题库' : '试卷题库' }}</p><h1>{{ workspaceTitle }}</h1><p class="workspace-subtitle">{{ workspaceSubtitle }}</p></div>
           <div class="workspace-actions"><button v-if="mode === 'review'" class="text-button" @click="restartQueue"><PracticeIcon name="repeat" />重新开始本轮</button><button class="pdf-button" :disabled="!queue.length || exportingPdf" @click="exportPdf"><PracticeIcon name="download" />{{ exportingPdf ? '准备导出…' : '导出 PDF' }}</button></div>
         </header>
-        <section v-if="resumeOptions.length" class="resume-card" aria-label="最近做题位置" @pointerdown.capture="finishLocationTracking" @focusin="finishLocationTracking"><PracticeIcon name="clock" /><span class="resume-caption">继续做题</span><label class="visually-hidden" for="resume-location">最近两次做题记录</label><select id="resume-location" v-model="selectedLocationContext" :disabled="resuming"><option v-for="option in resumeOptions" :key="option.key" :value="option.key">{{ option.label }}</option></select><button :disabled="resuming" @click="resumeLastLocation">{{ resuming ? '正在定位…' : '跳转' }}<PracticeIcon name="arrow" /></button></section>
+        <section class="resume-card" aria-label="最近做题位置" @pointerdown.capture="finishLocationTracking" @focusin="finishLocationTracking"><PracticeIcon name="clock" /><span class="resume-caption">继续做题</span><template v-if="resumeOptions.length"><label class="visually-hidden" for="resume-location">最近两次做题记录</label><select id="resume-location" v-model="selectedLocationContext" :disabled="resuming"><option v-for="option in resumeOptions" :key="option.key" :value="option.key">{{ option.label }}</option></select><button :disabled="resuming" @click="resumeLastLocation">{{ resuming ? '正在定位…' : '跳转' }}<PracticeIcon name="arrow" /></button></template><p v-else class="resume-empty">开始练习后，这里会保留最近两次做题位置。</p></section>
         <section v-if="!questions.length" class="preview-banner"><PracticeIcon name="book" /><div><strong>错题本已就绪，等待录入你的题目</strong><p>下方使用你提供的截图演示操作，年份尚未确认，不计入正式题库和复习统计。</p></div><button @click="demoMode = !demoMode">{{ demoMode ? '收起示例' : '体验示例' }}</button></section>
         <p v-if="storageFailed" role="alert" class="storage-error">浏览器暂时无法保存进度，请立即导出备份以保留本次标记和笔记。</p>
         <p class="print-summary print-only">{{ pdfTitle }} · 含答案解析与笔记</p>

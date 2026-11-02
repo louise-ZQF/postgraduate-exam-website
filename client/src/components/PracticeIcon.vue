@@ -1,6 +1,8 @@
 <script setup lang="ts">
-defineProps<{ name: 'book' | 'repeat' | 'eye' | 'check' | 'unknown' | 'unfamiliar' | 'arrow' | 'note' | 'search' | 'download' | 'upload' | 'trash' | 'star' | 'info' | 'close' | 'clock' }>()
+defineProps<{ name: 'book' | 'repeat' | 'eye' | 'check' | 'unknown' | 'unfamiliar' | 'arrow' | 'note' | 'search' | 'download' | 'upload' | 'trash' | 'star' | 'info' | 'close' | 'clock' | 'graph' | 'proof' }>()
 const paths = {
+  graph: 'M4 3v17h17M6 16c4 0 3-10 7-10s3 7 7 7',
+  proof: 'M18 4H6l7 8-7 8h12',
   info: 'M12 11v6m0-10v.1M22 12a10 10 0 1 1-20 0 10 10 0 0 1 20 0Z',
   close: 'M6 6l12 12M6 18 18 6',
   clock: 'M12 6v6l4 2M22 12a10 10 0 1 1-20 0 10 10 0 0 1 20 0Z',
