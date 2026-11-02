@@ -10674,5 +10674,451 @@
       }
     ],
     "sourceOrder": 53
+  },
+  {
+    "id": "math2-2023-q1-original",
+    "year": 2023,
+    "paperTitle": "2023 年",
+    "number": "1",
+    "examNumber": "1",
+    "kind": "original",
+    "source": "2023 年数学二真题 · 第 1 题",
+    "topic": "斜渐近线与截距",
+    "type": "choice",
+    "stem": "曲线 $y=x\\ln\\left(e+\\dfrac1{x-1}\\right)$ 的斜渐近线方程为（ ）。",
+    "answer": "**B**。斜渐近线为 $y=x+1/e$。",
+    "explanation": "选B。先求斜率 $k=\\lim_{x\\to\\pm\\infty}y/x=1$，再单独求截距：\n$$\n\\begin{aligned}\nb&=\\lim_{x\\to\\pm\\infty}[y-x]\n=\\lim_{x\\to\\pm\\infty}x\\ln\\left(1+\\frac1{e(x-1)}\\right)\\\\\n&=\\lim_{x\\to\\pm\\infty}\\frac{x}{e(x-1)}=\\frac1e.\n\\end{aligned}\n$$\n因此为 $y=x+1/e$。\n\n**原错因记录**\n\n你的答案为C。原卷写出了斜率为1，但还需要计算截距，不能据此直接填 $y=x$。\n\n**资料来源**\n\n上传文档《2023数二_按复盘指路提取错题.md》，原题来源在文档中注明为《A4数二2023真题_1102 2(1).pdf》，错因来源为《math2023_review.pdf》及确认清单。",
+    "questionTypes": [
+      {
+        "id": "math2-2023-q1-type",
+        "title": "斜渐近线与截距 · 第1题与配套练习",
+        "references": [
+          "2023数二第1题"
+        ]
+      }
+    ],
+    "sourceOrder": 1,
+    "options": [
+      {
+        "key": "A",
+        "text": "$y=x+e$。"
+      },
+      {
+        "key": "B",
+        "text": "$y=x+1/e$。"
+      },
+      {
+        "key": "C",
+        "text": "$y=x$。"
+      },
+      {
+        "key": "D",
+        "text": "$y=x-1/e$。"
+      }
+    ],
+    "correctOption": "B"
+  },
+  {
+    "id": "math2-2023-q1-ex1",
+    "year": 2023,
+    "paperTitle": "2023 年",
+    "number": "1-1",
+    "examNumber": "1",
+    "exerciseIndex": 1,
+    "kind": "exercise",
+    "source": "配套练习 · 2027张宇1000题 · 强化篇第5章第28题",
+    "sourceCategory": "book",
+    "topic": "斜渐近线与截距",
+    "type": "choice",
+    "stem": "曲线 $y=x\\ln\\left(2+\\dfrac1{x-1}\\right)$ 的斜渐近线方程为（ ）。",
+    "answer": "**B**。$y=x\\ln2+1/2$。",
+    "explanation": "选B。斜率 $k=\\lim y/x=\\ln2$，截距为\n$$\nb=\\lim_{x\\to\\pm\\infty}x\\ln\\left(1+\\frac1{2(x-1)}\\right)\n=\\lim_{x\\to\\pm\\infty}\\frac{x}{2(x-1)}=\\frac12.\n$$\n因此斜渐近线是 $y=x\\ln2+1/2$。这道直接练原错题中漏掉的截距。\n\n**来源与对应关系**\n\n来源：2027张宇1000题数二试题册，强化篇第5章第28题，书内P73，PDF第77页。\n\n对应 2023 年数学二第 1 题。题干与参考解析按上传文档《2023数二_按复盘指路提取错题.md》收录。",
+    "questionTypes": [
+      {
+        "id": "math2-2023-q1-type",
+        "title": "斜渐近线与截距 · 第1题与配套练习",
+        "references": [
+          "2023数二第1题"
+        ]
+      }
+    ],
+    "sourceOrder": 1,
+    "options": [
+      {
+        "key": "A",
+        "text": "$y=x\\ln2+1$。"
+      },
+      {
+        "key": "B",
+        "text": "$y=x\\ln2+1/2$。"
+      },
+      {
+        "key": "C",
+        "text": "$y=x\\ln2-1$。"
+      },
+      {
+        "key": "D",
+        "text": "$y=x\\ln2-1/2$。"
+      }
+    ],
+    "correctOption": "B"
+  },
+  {
+    "id": "math2-2023-q5-original",
+    "year": 2023,
+    "paperTitle": "2023 年",
+    "number": "5",
+    "examNumber": "5",
+    "kind": "original",
+    "source": "2023 年数学二真题 · 第 5 题",
+    "topic": "分段参数方程与二阶可导性",
+    "type": "choice",
+    "stem": "已知 $y=f(x)$ 由\n$$\n\\begin{cases}x=2t+|t|,\\\\y=|t|\\sin t\\end{cases}\n$$\n确定，则（ ）。",
+    "answer": "**C**。$f'(x)$ 连续，$f''(0)$ 不存在。",
+    "explanation": "选C。先按参数正负分别消去参数：\n$$\nf(x)=\\begin{cases}\\dfrac x3\\sin\\dfrac x3,&x\\ge0,\\\\-x\\sin x,&x<0.\\end{cases}\n$$\n两侧函数值都趋于0，且 $f(0)=0$。用定义得 $f'(0)=\\lim_{x\\to0}f(x)/x=0$。对非零的 $x$，\n$$\nf'(x)=\\begin{cases}\\dfrac13\\sin\\dfrac x3+\\dfrac x9\\cos\\dfrac x3,&x>0,\\\\-\\sin x-x\\cos x,&x<0.\\end{cases}\n$$\n左右都趋于0，所以 $f'$ 在原点连续。再检查二阶导数定义：\n$$\n\\lim_{x\\to0^+}\\frac{f'(x)-f'(0)}x=\\frac29,\\qquad\n\\lim_{x\\to0^-}\\frac{f'(x)-f'(0)}x=-2.\n$$\n两侧不相等，故 $f''(0)$ 不存在。\n\n**原错因记录**\n\n你的答案为D。参数分段后，需要继续用二阶导数定义检查左右极限；不能只看一侧的求导结果。\n\n**资料来源**\n\n上传文档《2023数二_按复盘指路提取错题.md》，原题来源在文档中注明为《A4数二2023真题_1102 2(1).pdf》，错因来源为《math2023_review.pdf》及确认清单。",
+    "questionTypes": [
+      {
+        "id": "math2-2023-q5-type",
+        "title": "分段参数方程与二阶可导性 · 第5题与配套练习",
+        "references": [
+          "2023数二第5题"
+        ]
+      }
+    ],
+    "sourceOrder": 5,
+    "options": [
+      {
+        "key": "A",
+        "text": "$f(x)$ 连续，$f'(0)$ 不存在。"
+      },
+      {
+        "key": "B",
+        "text": "$f'(0)$ 存在，$f'(x)$ 在 $x=0$ 处不连续。"
+      },
+      {
+        "key": "C",
+        "text": "$f'(x)$ 连续，$f''(0)$ 不存在。"
+      },
+      {
+        "key": "D",
+        "text": "$f''(0)$ 存在，$f''(x)$ 在 $x=0$ 处不连续。"
+      }
+    ],
+    "correctOption": "C"
+  },
+  {
+    "id": "math2-2023-q5-ex1",
+    "year": 2023,
+    "paperTitle": "2023 年",
+    "number": "5-1",
+    "examNumber": "5",
+    "exerciseIndex": 1,
+    "kind": "exercise",
+    "source": "配套练习 · 2027张宇1000题 · 基础篇第4章第8题",
+    "sourceCategory": "book",
+    "topic": "分段参数方程与二阶可导性",
+    "type": "choice",
+    "stem": "设函数 $y=f(x)$ 由\n$$\n\\begin{cases}x=2t+|t|,\\\\y=|t|\\tan t\\end{cases}\n$$\n所确定，则在 $(-\\pi/2,\\pi/2)$ 内（ ）。",
+    "answer": "**C**。$f'(x)$ 连续，$f''(0)$ 不存在。",
+    "explanation": "选C。按 $t$ 的正负去绝对值并消去参数，得\n$$\nf(x)=\\begin{cases}\\dfrac x3\\tan\\dfrac x3,&x\\ge0,\\\\-x\\tan x,&x<0.\\end{cases}\n$$\n原点连续，且 $f'(0)=\\lim f(x)/x=0$。非零处的一阶导数为\n$$\nf'(x)=\\begin{cases}\\dfrac13\\tan\\dfrac x3+\\dfrac x9\\sec^2\\dfrac x3,&x>0,\\\\-\\tan x-x\\sec^2x,&x<0.\\end{cases}\n$$\n两侧均趋于0，所以 $f'$ 连续。但二阶导数定义中的右、左极限分别为 $2/9$ 与 $-2$，不相等，所以 $f''(0)$ 不存在。\n\n**来源与对应关系**\n\n来源：2027张宇1000题数二试题册，基础篇第4章第8题，书内P10，PDF第16页。\n\n对应 2023 年数学二第 5 题。题干与参考解析按上传文档《2023数二_按复盘指路提取错题.md》收录。",
+    "questionTypes": [
+      {
+        "id": "math2-2023-q5-type",
+        "title": "分段参数方程与二阶可导性 · 第5题与配套练习",
+        "references": [
+          "2023数二第5题"
+        ]
+      }
+    ],
+    "sourceOrder": 5,
+    "options": [
+      {
+        "key": "A",
+        "text": "$f(x)$ 连续，$f'(0)$ 不存在。"
+      },
+      {
+        "key": "B",
+        "text": "$f'(0)$ 存在，$f'(x)$ 在 $x=0$ 处不连续。"
+      },
+      {
+        "key": "C",
+        "text": "$f'(x)$ 连续，$f''(0)$ 不存在。"
+      },
+      {
+        "key": "D",
+        "text": "$f''(0)$ 存在，$f''(x)$ 在 $x=0$ 处不连续。"
+      }
+    ],
+    "correctOption": "C"
+  },
+  {
+    "id": "math2-2023-q11-original",
+    "year": 2023,
+    "paperTitle": "2023 年",
+    "number": "11",
+    "examNumber": "11",
+    "kind": "original",
+    "source": "2023 年数学二真题 · 第 11 题",
+    "topic": "等价无穷小与待定系数",
+    "type": "fill",
+    "stem": "当 $x\\to0$ 时，函数\n$$\nf(x)=ax+bx^2+\\ln(1+x),\\qquad g(x)=e^{x^2}-\\cos x\n$$\n是等价无穷小，则 $ab=$________。",
+    "answer": "$-2$。",
+    "explanation": "答案 $-2$。展开到二阶：\n$$\nf(x)=(a+1)x+\\left(b-\\frac12\\right)x^2+o(x^2),\\qquad\ng(x)=\\frac32x^2+o(x^2).\n$$\n要等价，先令一次项消失，得到 $a=-1$；再比较二次项，$b-1/2=3/2$，得到 $b=2$。所以 $ab=-2$。\n\n**原错因记录**\n\n你填了2。二次项比较得到 $b=2$ 没问题，但一次项消去条件应为 $a+1=0$，所以 $a=-1$。\n\n**资料来源**\n\n上传文档《2023数二_按复盘指路提取错题.md》，原题来源在文档中注明为《A4数二2023真题_1102 2(1).pdf》，错因来源为《math2023_review.pdf》及确认清单。",
+    "questionTypes": [
+      {
+        "id": "math2-2023-q11-type",
+        "title": "等价无穷小与待定系数 · 第11题与配套练习",
+        "references": [
+          "2023数二第11题"
+        ]
+      }
+    ],
+    "sourceOrder": 11
+  },
+  {
+    "id": "math2-2023-q11-ex1",
+    "year": 2023,
+    "paperTitle": "2023 年",
+    "number": "11-1",
+    "examNumber": "11",
+    "exerciseIndex": 1,
+    "kind": "exercise",
+    "source": "配套练习 · 2027张宇1000题 · 强化篇第1章第27题",
+    "sourceCategory": "book",
+    "topic": "等价无穷小与待定系数",
+    "type": "fill",
+    "stem": "当 $x\\to0$ 时，函数\n$$\nf(x)=ax+bx^2+\\ln(1+x),\\qquad g(x)=1-\\cos x\n$$\n是等价无穷小，则 $ab=$________。",
+    "answer": "$-1$。",
+    "explanation": "答案 $-1$。展开得\n$$\nf(x)=(a+1)x+\\left(b-\\frac12\\right)x^2+o(x^2),\\qquad\ng(x)=\\frac{x^2}{2}+o(x^2).\n$$\n先消一次项得到 $a=-1$，再比较二次项得到 $b=1$，所以 $ab=-1$。不要将原错题里的 $b=2$ 直接照搬到这道。\n\n**来源与对应关系**\n\n来源：2027张宇1000题数二试题册，强化篇第1章第27题，书内P61，PDF第65页。\n\n对应 2023 年数学二第 11 题。题干与参考解析按上传文档《2023数二_按复盘指路提取错题.md》收录。",
+    "questionTypes": [
+      {
+        "id": "math2-2023-q11-type",
+        "title": "等价无穷小与待定系数 · 第11题与配套练习",
+        "references": [
+          "2023数二第11题"
+        ]
+      }
+    ],
+    "sourceOrder": 11
+  },
+  {
+    "id": "math2-2023-q12-original",
+    "year": 2023,
+    "paperTitle": "2023 年",
+    "number": "12",
+    "examNumber": "12",
+    "kind": "original",
+    "source": "2023 年数学二真题 · 第 12 题",
+    "topic": "曲线弧长",
+    "type": "fill",
+    "stem": "曲线\n$$\ny=\\int_{-\\sqrt3}^{x}\\sqrt{3-t^2}\\,\\mathrm dt\n$$\n的弧长为________。",
+    "answer": "$\\sqrt3+\\dfrac{4\\pi}{3}$。",
+    "explanation": "答案 $\\sqrt3+4\\pi/3$。由被积函数的定义域，曲线对应 $-\\sqrt3\\le x\\le\\sqrt3$。先求导数 $y'=\\sqrt{3-x^2}$，再用弧长公式：\n$$\nL=\\int_{-\\sqrt3}^{\\sqrt3}\\sqrt{1+(y')^2}\\,\\mathrm dx\n=\\int_{-\\sqrt3}^{\\sqrt3}\\sqrt{4-x^2}\\,\\mathrm dx.\n$$\n由偶函数性质和根式积分，\n$$\nL=2\\left[\\frac x2\\sqrt{4-x^2}+2\\arcsin\\frac x2\\right]_0^{\\sqrt3}\n=\\sqrt3+\\frac{4\\pi}{3}.\n$$\n\n**原错因记录**\n\n你填了 $\\sqrt3/2$。需要先完整确定曲线的 $x$ 范围，再计算弧长积分；原卷在三角换元后没有正确保留积分上下限和积分项。\n\n**资料来源**\n\n上传文档《2023数二_按复盘指路提取错题.md》，原题来源在文档中注明为《A4数二2023真题_1102 2(1).pdf》，错因来源为《math2023_review.pdf》及确认清单。",
+    "questionTypes": [
+      {
+        "id": "math2-2023-q12-type",
+        "title": "曲线弧长 · 第12题",
+        "references": [
+          "2023数二第12题"
+        ]
+      }
+    ],
+    "sourceOrder": 12
+  },
+  {
+    "id": "math2-2023-q15-original",
+    "year": 2023,
+    "paperTitle": "2023 年",
+    "number": "15",
+    "examNumber": "15",
+    "kind": "original",
+    "source": "2023 年数学二真题 · 第 15 题",
+    "topic": "积分平移与区间拼接",
+    "type": "fill",
+    "stem": "设连续函数 $f(x)$ 满足\n$$\nf(x+2)-f(x)=x,\\qquad \\int_0^2f(x)\\,\\mathrm dx=0,\n$$\n则 $\\displaystyle\\int_1^3f(x)\\,\\mathrm dx=$________。",
+    "answer": "$\\dfrac12$。",
+    "explanation": "答案 $1/2$。只对等式从0到1积分：\n$$\n\\int_0^1f(x+2)\\,\\mathrm dx-\\int_0^1f(x)\\,\\mathrm dx\n=\\int_0^1x\\,\\mathrm dx=\\frac12.\n$$\n第一项的积分区间相应变成 $[2,3]$，于是\n$$\n\\begin{aligned}\n\\int_1^3f(x)\\,\\mathrm dx\n&=\\int_0^2f(x)\\,\\mathrm dx-\\int_0^1f(x)\\,\\mathrm dx+\\int_2^3f(x)\\,\\mathrm dx\\\\\n&=0+\\frac12=\\frac12.\n\\end{aligned}\n$$\n\n**原错因记录**\n\n你填了1。积分平移时必须同步改变上下限，再按目标区间拼接；从0到2积分得到的区间不是这题直接要求的区间。\n\n**资料来源**\n\n上传文档《2023数二_按复盘指路提取错题.md》，原题来源在文档中注明为《A4数二2023真题_1102 2(1).pdf》，错因来源为《math2023_review.pdf》及确认清单。",
+    "questionTypes": [
+      {
+        "id": "math2-2023-q15-type",
+        "title": "积分平移与区间拼接 · 第15题与配套练习",
+        "references": [
+          "2023数二第15题"
+        ]
+      }
+    ],
+    "sourceOrder": 15
+  },
+  {
+    "id": "math2-2023-q15-ex1",
+    "year": 2023,
+    "paperTitle": "2023 年",
+    "number": "15-1",
+    "examNumber": "15",
+    "exerciseIndex": 1,
+    "kind": "exercise",
+    "source": "配套练习 · 2027张宇1000题 · 强化篇第9章第7题",
+    "sourceCategory": "book",
+    "topic": "积分平移与区间拼接",
+    "type": "fill",
+    "stem": "已知 $f(x)$ 连续，\n$$\nf(x^2+1)-f(x^2)=x\\quad(x>0),\\qquad \\int_0^1f(x)\\,\\mathrm dx=1,\n$$\n则 $\\displaystyle\\int_1^2f(x)\\,\\mathrm dx=$________。",
+    "answer": "$\\dfrac53$。",
+    "explanation": "答案 $5/3$。先令 $t=x^2$，把已知关系改写成\n$$\nf(t+1)-f(t)=\\sqrt t,\\qquad t>0.\n$$\n从0到1积分，注意第一项平移后的积分区间：\n$$\n\\int_1^2f(t)\\,\\mathrm dt-\\int_0^1f(t)\\,\\mathrm dt\n=\\int_0^1\\sqrt t\\,\\mathrm dt=\\frac23.\n$$\n已知第二项为1，故所求为 $1+2/3=5/3$。\n\n**来源与对应关系**\n\n来源：2027张宇1000题数二试题册，强化篇第9章第7题，书内P81，PDF第85页。\n\n对应 2023 年数学二第 15 题。题干与参考解析按上传文档《2023数二_按复盘指路提取错题.md》收录。",
+    "questionTypes": [
+      {
+        "id": "math2-2023-q15-type",
+        "title": "积分平移与区间拼接 · 第15题与配套练习",
+        "references": [
+          "2023数二第15题"
+        ]
+      }
+    ],
+    "sourceOrder": 15
+  },
+  {
+    "id": "math2-2023-q18-original",
+    "year": 2023,
+    "paperTitle": "2023 年",
+    "number": "18",
+    "examNumber": "18",
+    "kind": "original",
+    "source": "2023 年数学二真题 · 第 18 题",
+    "topic": "多元函数的驻点与极值",
+    "type": "solution",
+    "stem": "求函数\n$$\nf(x,y)=xe^{\\cos y}+\\frac{x^2}{2}\n$$\n的极值。",
+    "answer": "极小值为 $-e^2/2$，在 $(-e,2k\\pi)$ 处取得；$(-e^{-1},(2k+1)\\pi)$ 为鞍点，$k\\in\\mathbb Z$。没有极大值。",
+    "explanation": "第一步，求全部驻点。由\n$$\nf_x=e^{\\cos y}+x=0,\\qquad f_y=-xe^{\\cos y}\\sin y=0\n$$\n得到 $x=-e^{\\cos y}\\ne0$，因此 $\\sin y=0$，即 $y=k\\pi$。全部驻点分成\n$$\n(-e,2k\\pi),\\qquad (-e^{-1},(2k+1)\\pi),\\qquad k\\in\\mathbb Z.\n$$\n第二步，分类。在这些点处 $f_{xx}=1,\\ f_{xy}=0$，且 $f_{yy}=e^{2\\cos y}\\cos y$。第一类点有 $f_{yy}=e^2>0$，所以是极小值点，极小值为 $-e^2/2$；第二类点有 $f_{yy}=-e^{-2}<0$，二阶判别式为负，是鞍点。函数没有极大值。\n\n**原错因记录**\n\n你写出的极小值 $-e^2/2$ 是正确的。错误在将 $\\sin y=0$ 的解写成了 $\\pi/2$，并遗漏周期性解；驻点的 $x$ 也必须同时满足 $x=-e^{\\cos y}$。\n\n**资料来源**\n\n上传文档《2023数二_按复盘指路提取错题.md》，原题来源在文档中注明为《A4数二2023真题_1102 2(1).pdf》，错因来源为《math2023_review.pdf》及确认清单。",
+    "questionTypes": [
+      {
+        "id": "math2-2023-q18-type",
+        "title": "多元函数的驻点与极值 · 第18题",
+        "references": [
+          "2023数二第18题"
+        ]
+      }
+    ],
+    "sourceOrder": 18
+  },
+  {
+    "id": "math2-2023-q19-original",
+    "year": 2023,
+    "paperTitle": "2023 年",
+    "number": "19",
+    "examNumber": "19",
+    "kind": "original",
+    "source": "2023 年数学二真题 · 第 19 题（仅第一问）",
+    "topic": "无界区域的面积",
+    "type": "solution",
+    "stem": "已知平面区域\n$$\nD=\\left\\{(x,y)\\mid0\\le y\\le\\frac1{x\\sqrt{1+x^2}},\\ x\\ge1\\right\\}.\n$$\n仅提取第一问：求 $D$ 的面积。",
+    "answer": "$\\ln(1+\\sqrt2)$。",
+    "explanation": "答案 $\\ln(1+\\sqrt2)$。列式为\n$$\nS=\\int_1^{+\\infty}\\frac{\\mathrm dx}{x\\sqrt{1+x^2}}.\n$$\n沿用你的换元 $x=\\tan t$，则 $t$ 从 $\\pi/4$ 到 $\\pi/2$，得到\n$$\nS=\\int_{\\pi/4}^{\\pi/2}\\frac{\\mathrm dt}{\\sin t}.\n$$\n这里要使用正确的原函数：\n$$\n\\int\\frac{\\mathrm dt}{\\sin t}\n=\\ln|\\csc t-\\cot t|+C.\n$$\n因此\n$$\nS=\\left[\\ln|\\csc t-\\cot t|\\right]_{\\pi/4}^{\\pi/2}\n=-\\ln(\\sqrt2-1)=\\ln(1+\\sqrt2).\n$$\n也可直接核验原函数：$(\\csc t-\\cot t)'=\\csc t(\\csc t-\\cot t)$，故其对数的导数为 $\\csc t$。\n\n**原错因记录**\n\n换元到 $\\int\\csc t\\,\\mathrm dt$ 之前基本正确；你把原函数写成了 $-\\csc t$，但它的导数是 $\\csc t\\cot t$。第二问旋转体体积正确，按你的要求不提取、不配题。\n\n**资料来源**\n\n上传文档《2023数二_按复盘指路提取错题.md》，原题来源在文档中注明为《A4数二2023真题_1102 2(1).pdf》，错因来源为《math2023_review.pdf》及确认清单。",
+    "questionTypes": [
+      {
+        "id": "math2-2023-q19-type",
+        "title": "无界区域的面积 · 第19题与配套练习",
+        "references": [
+          "2023数二第19题（第一问）"
+        ]
+      }
+    ],
+    "sourceOrder": 19
+  },
+  {
+    "id": "math2-2023-q19-ex1",
+    "year": 2023,
+    "paperTitle": "2023 年",
+    "number": "19-1",
+    "examNumber": "19",
+    "exerciseIndex": 1,
+    "kind": "exercise",
+    "source": "配套练习 · 2027张宇1000题 · 基础篇第10章第19题（仅第一问）",
+    "sourceCategory": "book",
+    "topic": "无界区域的面积",
+    "type": "solution",
+    "stem": "设平面区域\n$$\nD=\\left\\{(x,y)\\mid0\\le y\\le\\frac{\\sqrt{x^2-1}}{x^2},\\quad \\sqrt2\\le x\\le2\\right\\}.\n$$\n求 $D$ 的面积。",
+    "answer": "$\\displaystyle\\ln\\frac{2+\\sqrt3}{1+\\sqrt2}-\\frac{\\sqrt3-\\sqrt2}{2}$。",
+    "explanation": "答案\n$$\n\\ln\\frac{2+\\sqrt3}{1+\\sqrt2}-\\frac{\\sqrt3-\\sqrt2}{2}.\n$$\n先列面积积分 $S=\\int_{\\sqrt2}^2\\sqrt{x^2-1}/x^2\\,\\mathrm dx$。令 $x=\\sec t$，则 $t$ 从 $\\pi/4$ 到 $\\pi/3$，且\n$$\n\\frac{\\sqrt{x^2-1}}{x^2}\\,\\mathrm dx\n=\\frac{\\tan t}{\\sec^2t}\\sec t\\tan t\\,\\mathrm dt\n=(\\sec t-\\cos t)\\,\\mathrm dt.\n$$\n因此\n$$\nS=\\left[\\ln(\\sec t+\\tan t)-\\sin t\\right]_{\\pi/4}^{\\pi/3}\n=\\ln\\frac{2+\\sqrt3}{1+\\sqrt2}-\\frac{\\sqrt3-\\sqrt2}{2}.\n$$\n原练习的第（2）问旋转体体积不在本次提取范围内。\n\n**来源与对应关系**\n\n来源：2027张宇1000题数二试题册，基础篇第10章第19题，书内P26，PDF第32页；只提第（1）问。\n\n对应 2023 年数学二第 19 题的第一问。题干与参考解析按上传文档《2023数二_按复盘指路提取错题.md》收录。",
+    "questionTypes": [
+      {
+        "id": "math2-2023-q19-type",
+        "title": "无界区域的面积 · 第19题与配套练习",
+        "references": [
+          "2023数二第19题（第一问）"
+        ]
+      }
+    ],
+    "sourceOrder": 19
+  },
+  {
+    "id": "math2-2023-q20-original",
+    "year": 2023,
+    "paperTitle": "2023 年",
+    "number": "20",
+    "examNumber": "20",
+    "kind": "original",
+    "source": "2023 年数学二真题 · 第 20 题",
+    "topic": "二重积分与极坐标换元",
+    "type": "solution",
+    "stem": "设平面有界区域 $D$ 位于第一象限，由\n$$\nx^2+y^2-xy=1,\\qquad x^2+y^2-xy=2,\\qquad y=\\sqrt3x,\\qquad y=0\n$$\n围成，计算\n$$\nI=\\iint_D\\frac{\\mathrm dx\\mathrm dy}{3x^2+y^2}.\n$$",
+    "answer": "$\\dfrac{\\pi\\ln2}{8\\sqrt3}$。",
+    "explanation": "答案 $\\pi\\ln2/(8\\sqrt3)$。先确定极角 $0\\le\\theta\\le\\pi/3$；再由两条曲线确定\n$$\n\\frac1{\\sqrt{1-\\sin\\theta\\cos\\theta}}\\le r\\le\n\\sqrt{\\frac2{1-\\sin\\theta\\cos\\theta}}.\n$$\n代入后\n$$\nI=\\int_0^{\\pi/3}\\frac{\\mathrm d\\theta}{1+2\\cos^2\\theta}\n\\int_{1/\\sqrt{1-\\sin\\theta\\cos\\theta}}^{\\sqrt{2/(1-\\sin\\theta\\cos\\theta)}}\\frac{\\mathrm dr}{r}\n=\\frac{\\ln2}{2}\\int_0^{\\pi/3}\\frac{\\mathrm d\\theta}{1+2\\cos^2\\theta}.\n$$\n分母不能翻到分子。令 $t=\\tan\\theta$，则\n$$\n\\int_0^{\\pi/3}\\frac{\\mathrm d\\theta}{1+2\\cos^2\\theta}\n=\\int_0^{\\sqrt3}\\frac{\\mathrm dt}{t^2+3}\n=\\frac1{\\sqrt3}\\left[\\arctan\\frac t{\\sqrt3}\\right]_0^{\\sqrt3}\n=\\frac\\pi{4\\sqrt3}.\n$$\n乘回 $\\ln2/2$ 即得答案。\n\n**原错因记录**\n\n极坐标区域和初始列式正确。径向积分之后应保留分母 $2(1+2\\cos^2\\theta)$；后面降幂也有误，正确关系是 $2\\cos^2\\theta+1=\\cos2\\theta+2$。\n\n**资料来源**\n\n上传文档《2023数二_按复盘指路提取错题.md》，原题来源在文档中注明为《A4数二2023真题_1102 2(1).pdf》，错因来源为《math2023_review.pdf》及确认清单。",
+    "questionTypes": [
+      {
+        "id": "math2-2023-q20-type",
+        "title": "二重积分与极坐标换元 · 第20题",
+        "references": [
+          "2023数二第20题"
+        ]
+      }
+    ],
+    "sourceOrder": 20
+  },
+  {
+    "id": "math2-2023-q21-original",
+    "year": 2023,
+    "paperTitle": "2023 年",
+    "number": "21",
+    "examNumber": "21",
+    "kind": "original",
+    "source": "2023 年数学二真题 · 第 21 题",
+    "topic": "泰勒公式与中值定理证明",
+    "type": "solution",
+    "stem": "设函数 $f(x)$ 在 $[-a,a]$ 上具有二阶连续导数，其中 $a>0$。证明：\n\n（Ⅰ）若 $f(0)=0$，则存在 $\\xi\\in(-a,a)$，使\n$$\nf''(\\xi)=\\frac{f(a)+f(-a)}{a^2}.\n$$\n（Ⅱ）若 $f(x)$ 在 $(-a,a)$ 内取得极值，则存在 $\\eta\\in(-a,a)$，使\n$$\n|f''(\\eta)|\\ge\\frac{|f(a)-f(-a)|}{2a^2}.\n$$",
+    "answer": "两个命题均成立，完整证明见解析。",
+    "explanation": "（Ⅰ）在0处对两个端点分别用带拉格朗日余项的泰勒公式，存在 $\\xi_1\\in(0,a)$、$\\xi_2\\in(-a,0)$，使\n$$\nf(a)=af'(0)+\\frac{a^2}{2}f''(\\xi_1),\\qquad\nf(-a)=-af'(0)+\\frac{a^2}{2}f''(\\xi_2).\n$$\n相加后得到\n$$\n\\frac{f(a)+f(-a)}{a^2}=\\frac{f''(\\xi_1)+f''(\\xi_2)}2.\n$$\n由 $f''$ 连续及介值定理，存在位于 $\\xi_1,\\xi_2$ 之间的 $\\xi$ 取到这个平均值，结论成立。\n\n（Ⅱ）设极值点为 $c\\in(-a,a)$，则 $f'(c)=0$。在 $c$ 处对两个端点使用同样的泰勒公式：\n$$\nf(a)=f(c)+\\frac{(a-c)^2}{2}f''(\\eta_1),\\qquad\nf(-a)=f(c)+\\frac{(a+c)^2}{2}f''(\\eta_2),\n$$\n其中 $\\eta_1,\\eta_2\\in(-a,a)$。记两者二阶导数绝对值中较大者为 $M$，并取相应的点为 $\\eta$。两式相减、取绝对值后有\n$$\n|f(a)-f(-a)|\\le\\frac{(a-c)^2+(a+c)^2}{2}M\n=(a^2+c^2)M\\le2a^2M.\n$$\n所以 $|f''(\\eta)|=M\\ge |f(a)-f(-a)|/(2a^2)$，结论成立。\n\n**原错因记录**\n\n未作答，两个小问均保留。按指路表本题只对应880，本次不额外配其他练习。\n\n**资料来源**\n\n上传文档《2023数二_按复盘指路提取错题.md》，原题来源在文档中注明为《A4数二2023真题_1102 2(1).pdf》，错因来源为《math2023_review.pdf》及确认清单。",
+    "questionTypes": [
+      {
+        "id": "math2-2023-q21-type",
+        "title": "泰勒公式与中值定理证明 · 第21题",
+        "references": [
+          "2023数二第21题"
+        ]
+      }
+    ],
+    "sourceOrder": 21
+  },
+  {
+    "id": "math2-2023-q22-original",
+    "year": 2023,
+    "paperTitle": "2023 年",
+    "number": "22",
+    "examNumber": "22",
+    "kind": "original",
+    "source": "2023 年数学二真题 · 第 22 题",
+    "topic": "特征值、特征向量与相似对角化",
+    "type": "solution",
+    "stem": "设矩阵 $A$ 满足：对任意 $x_1,x_2,x_3$，均有\n$$\nA\\begin{pmatrix}x_1\\\\x_2\\\\x_3\\end{pmatrix}\n=\\begin{pmatrix}x_1+x_2+x_3\\\\2x_1-x_2+x_3\\\\x_2-x_3\\end{pmatrix}.\n$$\n（Ⅰ）求 $A$；（Ⅱ）求可逆矩阵 $P$ 与对角矩阵 $\\Lambda$，使 $P^{-1}AP=\\Lambda$。",
+    "answer": "$A=\\begin{pmatrix}1&1&1\\\\2&-1&1\\\\0&1&-1\\end{pmatrix}$；可取 $P=\\begin{pmatrix}4&-1&0\\\\3&0&-1\\\\1&2&1\\end{pmatrix}$，$\\Lambda=\\operatorname{diag}(2,-1,-2)$。",
+    "explanation": "矩阵为\n$$\nA=\\begin{pmatrix}1&1&1\\\\2&-1&1\\\\0&1&-1\\end{pmatrix}.\n$$\n特征多项式为\n$$\n|\\lambda E-A|=(\\lambda-2)(\\lambda+1)(\\lambda+2),\n$$\n所以特征值为 $2,-1,-2$。解对应的齐次方程组，分别可取特征向量\n$$\nv_1=(4,3,1)^T,\\qquad v_2=(-1,0,2)^T,\\qquad v_3=(0,-1,1)^T.\n$$\n其中 $\\lambda=-1$ 时，$(A+E)v=0$ 给出 $x_2=0,\\ x_3=-2x_1$；$\\lambda=-2$ 时，$(A+2E)v=0$ 给出 $x_1=0,\\ x_3=-x_2$。因此可取\n$$\nP=\\begin{pmatrix}4&-1&0\\\\3&0&-1\\\\1&2&1\\end{pmatrix},\\qquad\n\\Lambda=\\operatorname{diag}(2,-1,-2).\n$$\n三个特征值不同，对应向量线性无关，故 $P$ 可逆。最后逐列验证 $Av_i=\\lambda_iv_i$。\n\n**原错因记录**\n\n矩阵 $A$、特征多项式和特征值已求对。后两组特征向量求错，你写出的向量不能满足 $Av=\\lambda v$；最后应代回这一等式检查。\n\n**资料来源**\n\n上传文档《2023数二_按复盘指路提取错题.md》，原题来源在文档中注明为《A4数二2023真题_1102 2(1).pdf》，错因来源为《math2023_review.pdf》及确认清单。",
+    "questionTypes": [
+      {
+        "id": "math2-2023-q22-type",
+        "title": "特征值、特征向量与相似对角化 · 第22题",
+        "references": [
+          "2023数二第22题"
+        ]
+      }
+    ],
+    "sourceOrder": 22
   }
 ]

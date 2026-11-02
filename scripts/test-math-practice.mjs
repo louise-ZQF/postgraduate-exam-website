@@ -17,12 +17,12 @@ const { createPracticeCatalog } = await loadModule('client/src/math/practiceCata
 const { protectMarkdownMath, escapeMathHtml, normalizeNoteMath, repairFragmentedMath } = await loadModule('client/src/math/markdownMath.ts')
 const examsCatalog = createPracticeCatalog(practiceQuestions, 'exams')
 const bookCatalog = createPracticeCatalog(practiceQuestions, 'll880')
-assert.equal(examsCatalog.questions.length, 462)
+assert.equal(examsCatalog.questions.length, 477)
 assert.equal(bookCatalog.questions.length, 649)
-assert.equal(examsCatalog.papers.length, 16)
+assert.equal(examsCatalog.papers.length, 17)
 assert.equal(bookCatalog.papers.length, 8)
 assert.equal(new Set([...examsCatalog.questions, ...bookCatalog.questions].map(q => q.id)).size, practiceQuestions.length)
-assert.equal(examsCatalog.papers.reduce((sum, paper) => sum + paper.questions.length, 0), 462)
+assert.equal(examsCatalog.papers.reduce((sum, paper) => sum + paper.questions.length, 0), 477)
 const group2025 = examsCatalog.papers.find(paper => paper.year === 2025).questions
 assert.equal(group2025[0].id, 'math2-2025-q4-original')
 assert.ok(examsCatalog.searchText.get('math2-2025-q4-original').includes('2025'))
@@ -136,7 +136,16 @@ for (const q of weak2025) {
   assert.equal(q.sourceOrder, Number(q.number), '保留原文练习顺序')
   assert.ok(q.source.startsWith('非真题练习 · '))
 }
-for (const q of [...weak2025, ...originals2025]) {
+const imported2023 = practiceQuestions.filter(q => q.year === 2023)
+assert.equal(examsCatalog.papers.find(paper => paper.id === '2023').questions.length, 15)
+assert.deepEqual(imported2023.filter(q => q.kind === 'original').map(q => Number(q.number)), [1, 5, 11, 12, 15, 18, 19, 20, 21, 22])
+const exercises2023 = imported2023.filter(q => q.kind === 'exercise')
+assert.deepEqual(exercises2023.map(q => Number(q.examNumber)), [1, 5, 11, 15, 19])
+assert.ok(imported2023.every(q => !q.bookId && q.paperTitle === '2023 年'))
+for (const q of imported2023.filter(q => q.kind === 'original')) assert.ok(q.explanation.includes('原错因记录'))
+for (const q of exercises2023) assert.ok(imported2023.some(original => original.kind === 'original' && original.questionTypes[0].id === q.questionTypes[0].id))
+assert.ok(imported2023.filter(q => q.examNumber === '19').every(q => q.source.includes('仅第一问') && !q.stem.includes('体积')), '第19题及其配套练习只导入第一问面积')
+for (const q of [...weak2025, ...originals2025, ...imported2023]) {
   for (const value of [q.stem, q.answer, q.explanation, ...(q.options ?? []).map(option => option.text)]) {
     for (const token of value.matchAll(/\$\$([\s\S]*?)\$\$|\$([^$\n]+?)\$/g)) {
       assert.doesNotThrow(() => katex.renderToString(token[1] ?? token[2], { displayMode: Boolean(token[1]), throwOnError: true, strict: 'ignore' }), `${q.id} 公式必须可渲染`)
