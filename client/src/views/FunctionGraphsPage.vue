@@ -66,19 +66,25 @@ function categoryCount(category: GraphCategory) {
         </div>
 
         <div v-if="filteredGraphs.length" class="graph-grid">
-          <article v-for="(graph, index) in filteredGraphs" :id="graph.id" :key="graph.id" class="graph-card">
+          <article v-for="(graph, index) in filteredGraphs" :id="graph.id" :key="graph.id" class="graph-card" :class="{ 'integral-card': graph.diagram }">
             <header>
               <span class="graph-index">{{ String(index + 1).padStart(2, '0') }}</span>
               <div><small>{{ graph.category }}</small><h3>{{ graph.title }}</h3></div>
-              <strong><MathMarkdown :source="graph.formula" inline /></strong>
+              <strong v-if="!graph.diagram"><MathMarkdown :source="graph.formula" inline /></strong>
             </header>
-            <FunctionPlot :graph="graph" />
-            <dl>
-              <div><dt>{{ graph.category === '二重积分曲线' ? '参数范围' : '定义域' }}</dt><dd><MathMarkdown :source="graph.domain" inline /></dd></div>
-              <div><dt>{{ graph.category === '二重积分曲线' ? '围成面积' : '值域' }}</dt><dd><MathMarkdown :source="graph.range" inline /></dd></div>
-            </dl>
-            <p class="conclusion"><MathMarkdown :source="graph.conclusion" inline /></p>
-            <div v-if="graph.region" class="integral-region"><MathMarkdown :source="graph.region" /></div>
+            <div class="graph-body">
+              <FunctionPlot :graph="graph" />
+              <div class="graph-facts">
+                <MathMarkdown v-if="graph.diagram" class="integral-formulas" :source="graph.formula" compact />
+                <dl>
+                  <div class="graph-domain"><dt>{{ graph.diagram ? '参数范围' : '定义域' }}</dt><dd><MathMarkdown :source="graph.domain" inline /></dd></div>
+                  <div v-if="graph.diagram?.arcLength"><dt>弧长</dt><dd><MathMarkdown :source="graph.diagram.arcLength" inline /></dd></div>
+                  <div><dt>{{ graph.diagram ? '围成面积' : '值域' }}</dt><dd><MathMarkdown :source="graph.range" inline /></dd></div>
+                </dl>
+                <p class="conclusion"><MathMarkdown :source="graph.conclusion" inline /></p>
+                <div v-if="graph.region" class="integral-region"><MathMarkdown :source="graph.region" compact /></div>
+              </div>
+            </div>
           </article>
         </div>
 
@@ -131,16 +137,30 @@ h1 em { color: var(--brand-600); font-style: normal; }
 .graph-card header strong { border-radius: 9px; padding: 7px 10px; background: var(--amber-100); color: var(--accent-dark); font-family: Georgia, "Times New Roman", serif; font-size: 17px; white-space: nowrap; }
 .graph-card dl { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 8px 0; }
 .graph-card dl div { display: flex; justify-content: space-between; gap: 10px; border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; background: var(--surface-soft); }
-.graph-card dt { color: var(--ink-400); font-size: 11px; }
+.graph-card dt { flex: 0 0 auto; color: var(--ink-400); font-size: 11px; white-space: nowrap; }
 .graph-card dd { margin: 0; color: var(--ink-800); font-family: Georgia, "Times New Roman", serif; font-size: 12px; }
 .conclusion { min-height: 48px; margin: 12px 0 0; border-left: 3px solid var(--accent); padding: 5px 0 5px 12px; color: var(--ink-soft); font-size: 13px; line-height: 1.7; }
 .integral-region { margin-top: 12px; padding: 10px 12px; border-radius: 6px; background: var(--surface-soft); color: var(--ink-800); font-size: 13px; }
 .graph-card header strong { max-width: min(160px, 100%); overflow-x: auto; }
 .graph-card dd { min-width: 0; overflow-x: auto; }
+.integral-card { grid-column: 1 / -1; padding: 18px 22px; }
+.integral-card header { grid-template-columns: 24px minmax(0, 1fr); margin-bottom: 4px; }
+.integral-card .graph-body { display: grid; grid-template-columns: minmax(0, 440px) minmax(0, 1fr); gap: 16px; align-items: center; }
+.integral-card :deep(.function-plot) { max-width: 440px; }
+.graph-facts { min-width: 0; }
+.integral-formulas { font-size: 17px; line-height: 1.8; }
+.integral-card dl { grid-template-columns: repeat(2, minmax(0, max-content)); gap: 4px 24px; margin: 12px 0 0; }
+.integral-card dl div { align-items: baseline; justify-content: start; border: 0; padding: 0; background: none; }
+.integral-card .graph-domain { grid-column: 1 / -1; }
+.integral-card dt, .integral-card dd { font-size: 14px; }
+.integral-card dl div:not(.graph-domain) dt, .integral-card dl div:not(.graph-domain) :deep(.katex) { color: #a0352e; font-weight: 650; }
+.integral-card .conclusion { min-height: 0; margin: 12px 0 0; border: 0; padding: 0; }
+.integral-card .integral-region { margin-top: 8px; overflow-x: auto; }
 .empty-state { border: 1px dashed #c8d7cf; border-radius: 18px; padding: 70px 20px; background: rgba(255,255,255,.65); text-align: center; }
 .empty-state strong { color: var(--ink-800); font-size: 20px; }.empty-state p { color: var(--ink-400); }.empty-state button { border: 0; border-radius: 10px; padding: 10px 16px; background: var(--brand-700); color: white; }
 @media (max-width: 1100px) { .graph-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 980px) { .graphs-hero { grid-template-columns: 1fr; gap: 28px; }.hero-summary { width: fit-content; } }
 @media (max-width: 720px) { .graph-grid { grid-template-columns: 1fr; } }
+@media (max-width: 840px) { .integral-card .graph-body { grid-template-columns: 1fr; gap: 0; } }
 @media (max-width: 600px) { .graphs-hero { width: calc(100% - 36px); padding: 42px 0 34px; }.graphs-hero h1 { font-size: 39px; }.hero-copy p { font-size: 14px; }.hero-summary strong { font-size: 42px; }.graph-tools { position: relative; top: auto; padding: 14px 18px; }.atlas { width: calc(100% - 28px); padding: 44px 0 64px; }.graph-card { padding: 16px 12px; }.graph-card header { grid-template-columns: 28px 1fr; }.graph-card header strong { grid-column: 2; justify-self: start; }.graph-card dl { grid-template-columns: 1fr; }.atlas-heading h2 { font-size: 27px; } }
 </style>

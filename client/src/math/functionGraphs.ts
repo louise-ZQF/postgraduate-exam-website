@@ -20,6 +20,14 @@ export interface GraphPoint {
   x: number
   y: number
   label?: string
+  labelPosition?: 'left' | 'right' | 'above' | 'below'
+  marker?: boolean
+}
+
+export interface IntegralDiagram {
+  area: string
+  arcLength?: string
+  guides?: [x1: number, y1: number, x2: number, y2: number][]
 }
 
 export interface FunctionGraph {
@@ -37,6 +45,7 @@ export interface FunctionGraph {
   parametricSegments?: ParametricSegment[]
   equalScale?: boolean
   region?: string
+  diagram?: IntegralDiagram
   verticalAsymptotes?: number[]
   horizontalAsymptotes?: number[]
   points?: GraphPoint[]

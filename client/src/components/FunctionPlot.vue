@@ -50,10 +50,29 @@ const parametricPaths = computed(() => (props.graph.parametricSegments ?? []).ma
 }))
 const xAxis = computed(() => props.graph.yRange[0] <= 0 && props.graph.yRange[1] >= 0 ? sy(0) : null)
 const yAxis = computed(() => props.graph.xRange[0] <= 0 && props.graph.xRange[1] >= 0 ? sx(0) : null)
+
+const pointLabels = {
+  left: { dx: -10, dy: 5, anchor: 'end' },
+  right: { dx: 9, dy: -8, anchor: 'start' },
+  above: { dx: 0, dy: -12, anchor: 'middle' },
+  below: { dx: 0, dy: 22, anchor: 'middle' },
+} as const
+const plotPoints = computed(() => (props.graph.points ?? []).map((point) => ({
+  ...point,
+  cx: sx(point.x),
+  cy: sy(point.y),
+  ...pointLabels[point.labelPosition ?? 'right'],
+})))
+const description = computed(() => {
+  const { title, diagram, points } = props.graph
+  if (!diagram) return `${title}的函数图像`
+  const labels = points?.flatMap(({ label }) => label ? [label] : []).join('、')
+  return `${title}的图像。围成面积为 ${diagram.area}。图中标注 ${labels}。`
+})
 </script>
 
 <template>
-  <svg class="function-plot" :viewBox="`0 0 ${width} ${height}`" role="img" :aria-label="`${graph.title}的函数图像`">
+  <svg class="function-plot" :class="{ 'integral-plot': graph.diagram }" :viewBox="`0 0 ${width} ${height}`" role="img" :aria-label="description">
     <defs>
       <linearGradient :id="`curve-${graph.id}`" x1="0" y1="0" x2="1" y2="1">
         <stop offset="0" stop-color="#b9792f" />
@@ -62,13 +81,15 @@ const yAxis = computed(() => props.graph.xRange[0] <= 0 && props.graph.xRange[1]
     </defs>
 
     <rect class="plot-paper" :x="padding" :y="padding" :width="plotWidth" :height="plotHeight" rx="12" />
-    <line v-for="value in verticalGrid" :key="`vx-${value}`" class="grid-line" :x1="value" :x2="value" :y1="padding" :y2="height-padding" />
-    <line v-for="value in horizontalGrid" :key="`hy-${value}`" class="grid-line" :x1="padding" :x2="width-padding" :y1="value" :y2="value" />
+    <template v-if="!graph.diagram">
+      <line v-for="value in verticalGrid" :key="`vx-${value}`" class="grid-line" :x1="value" :x2="value" :y1="padding" :y2="height-padding" />
+      <line v-for="value in horizontalGrid" :key="`hy-${value}`" class="grid-line" :x1="padding" :x2="width-padding" :y1="value" :y2="value" />
+    </template>
 
     <line v-if="xAxis !== null" class="axis-line" :x1="padding" :x2="width-padding" :y1="xAxis" :y2="xAxis" />
     <line v-if="yAxis !== null" class="axis-line" :x1="yAxis" :x2="yAxis" :y1="padding" :y2="height-padding" />
     <text v-if="xAxis !== null" class="axis-label" :x="width-padding-10" :y="Math.max(padding+15, xAxis-8)">x</text>
-    <text v-if="yAxis !== null" class="axis-label" :x="Math.min(width-padding-12, yAxis+9)" :y="padding+15">y</text>
+    <text v-if="yAxis !== null" class="axis-label" :x="graph.diagram ? yAxis-9 : Math.min(width-padding-12, yAxis+9)" :text-anchor="graph.diagram ? 'end' : 'start'" :y="padding+15">y</text>
 
     <line
       v-for="value in graph.verticalAsymptotes ?? []"
@@ -95,7 +116,7 @@ const yAxis = computed(() => props.graph.xRange[0] <= 0 && props.graph.xRange[1]
       class="curve"
       :class="{ 'closed-region': item.closed }"
       :d="item.path"
-      :stroke="`url(#curve-${graph.id})`"
+      :stroke="graph.diagram ? 'currentColor' : `url(#curve-${graph.id})`"
     />
 
     <path
@@ -106,10 +127,20 @@ const yAxis = computed(() => props.graph.xRange[0] <= 0 && props.graph.xRange[1]
       :stroke="`url(#curve-${graph.id})`"
     />
 
-    <g v-for="point in graph.points ?? []" :key="`${point.x}-${point.y}`">
-      <circle class="key-point" :cx="sx(point.x)" :cy="sy(point.y)" r="4.5" />
-      <text v-if="point.label" class="point-label" :x="sx(point.x)+8" :y="sy(point.y)-8">{{ point.label }}</text>
+    <line
+      v-for="([x1, y1, x2, y2], index) in graph.diagram?.guides ?? []"
+      :key="`guide-${index}`"
+      class="plot-guide"
+      :x1="sx(x1)"
+      :y1="sy(y1)"
+      :x2="sx(x2)"
+      :y2="sy(y2)"
+    />
+    <g v-for="point in plotPoints" :key="`${point.x}-${point.y}`">
+      <circle v-if="point.marker !== false" class="key-point" :cx="point.cx" :cy="point.cy" :r="graph.diagram ? 3.5 : 4.5" />
+      <text v-if="point.label" class="point-label" :x="point.cx + point.dx" :y="point.cy + point.dy" :text-anchor="point.anchor">{{ point.label }}</text>
     </g>
+    <text v-if="graph.diagram" class="area-label" :x="width-padding-14" :y="padding+25" text-anchor="end">S = {{ graph.diagram.area }}</text>
   </svg>
 </template>
 
@@ -124,4 +155,13 @@ const yAxis = computed(() => props.graph.xRange[0] <= 0 && props.graph.xRange[1]
 .curve.closed-region { fill: rgba(31,104,74,.08); fill-rule: evenodd; }
 .key-point { fill: #fff; stroke: #1f684a; stroke-width: 2; vector-effect: non-scaling-stroke; }
 .point-label { fill: #5a6e63; font-size: 11px; paint-order: stroke; stroke: #f8fbf9; stroke-width: 4px; stroke-linejoin: round; }
+.integral-plot { color: var(--ink-800); }
+.integral-plot .plot-paper { fill: var(--paper); stroke: var(--line); }
+.integral-plot .axis-line { stroke: var(--ink-600); }
+.integral-plot .axis-label { fill: var(--ink-800); font-size: 17px; }
+.integral-plot .curve { stroke-width: 2; }
+.integral-plot .closed-region { fill: var(--accent-tint); }
+.plot-guide { stroke: var(--ink-400); stroke-width: 1.35; stroke-dasharray: 5 5; }
+.integral-plot .key-point { stroke: #a0352e; fill: var(--paper); stroke-width: 1.5; }
+.integral-plot .point-label, .area-label { fill: #a0352e; font-family: Georgia, serif; font-size: 18px; font-weight: 600; paint-order: stroke; stroke: var(--paper); stroke-width: 3px; stroke-linejoin: round; }
 </style>
