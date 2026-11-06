@@ -5643,108 +5643,161 @@ export const mathChapters: MathChapter[] = [
       {
         "id": "calculus-03-003",
         "title": "反常积分",
-        "body": "##### 无穷积分、瑕积分、比较判别与参数范围\n\n无穷区间或被积函数在端点无界时，必须写成极限。基本比较对象：\n\n<!-- formula {\"id\":\"calculus-4ddaqh\",\"title\":\"无穷积分、瑕积分、比较判别与参数范围：∫_1^∞(dx)/(x^p)\",\"aliases\":[],\"context\":\"无穷区间或被积函数在端点无界时，必须写成极限。基本比较对象：\"} -->\n\\[\n\\int_1^{\\infty}\\frac{dx}{x^p}\n\\begin{cases}\n\\text{收敛},&p>1,\\\\\n\\text{发散},&p\\le1,\n\\end{cases}\n\\]\n\n<!-- formula {\"id\":\"calculus-1w723j4\",\"title\":\"无穷积分、瑕积分、比较判别与参数范围：∫_0^1(dx)/(x^p)\",\"aliases\":[],\"context\":\"所属知识点：无穷积分、瑕积分、比较判别与参数范围。\"} -->\n\\[\n\\int_0^1\\frac{dx}{x^p}\n\\begin{cases}\n\\text{收敛},&p<1,\\\\\n\\text{发散},&p\\ge1.\n\\end{cases}\n\\]\n\n若 \\(f,g\\ge0\\) 且 \\(\\frac fg\\to c\\in(0,\\infty)\\)，二者同敛散。含对数时常用\n\n<!-- formula {\"id\":\"calculus-1r7ghdn\",\"title\":\"无穷积分、瑕积分、比较判别与参数范围：∫^∞(dx)/(x(ln x)^q)\",\"aliases\":[],\"context\":\"若 f,g\\\\ge0 且 \\\\(\\\\frac fg\\\\to c\\\\in(0,\\\\infty)\\\\)，二者同敛散。含对数时常用\"} -->\n\\[\n\\int^{\\infty}\\frac{dx}{x(\\ln x)^q}\n\\]\n\n在 \\(q>1\\) 时收敛。存在多个问题点时必须分别判断，全部收敛才收敛。\n\n更完整的对数判别式：\n\n<!-- formula {\"id\":\"calculus-mnvhm3\",\"title\":\"无穷积分、瑕积分、比较判别与参数范围：∫_e^∞(dx)/(x^p(ln x)^q)\",\"aliases\":[],\"context\":\"更完整的对数判别式：\"} -->\n\\[\n\\int_e^\\infty\\frac{dx}{x^p(\\ln x)^q}\n\\begin{cases}\n\\text{收敛},&p>1,\\text{ 或 }p=1,q>1,\\\\\n\\text{发散},&p<1,\\text{ 或 }p=1,q\\le1,\n\\end{cases}\n\\]\n\n<!-- formula {\"id\":\"calculus-17ywwi3\",\"title\":\"无穷积分、瑕积分、比较判别与参数范围：∫_0^frac1e(dx)/(x^p|ln x|^q)\",\"aliases\":[],\"context\":\"所属知识点：无穷积分、瑕积分、比较判别与参数范围。\"} -->\n\\[\n\\int_0^{\\frac1e}\\frac{dx}{x^p|\\ln x|^q}\n\\begin{cases}\n\\text{收敛},&p<1,\\text{ 或 }p=1,q>1,\\\\\n\\text{发散},&p>1,\\text{ 或 }p=1,q\\le1.\n\\end{cases}\n\\]\n\n##### 反常积分绝对收敛与极限比较判别\n\n若 \\(\\int |f(x)|\\,dx\\) 收敛，则 \\(\\int f(x)\\,dx\\) 收敛。对非负函数，若\n\n<!-- formula {\"id\":\"calculus-z3e4cx-1\",\"title\":\"反常积分绝对收敛与极限比较判别：lim_xto a(f(x))/(g(x))\",\"aliases\":[],\"context\":\"若 \\\\(\\\\int |f(x)|\\\\,dx\\\\) 收敛，则 \\\\(\\\\int f(x)\\\\,dx\\\\) 收敛。对非负函数，若\"} -->\n\\[\n\\lim_{x\\to a}\\frac{f(x)}{g(x)}=c,\n\\qquad 0<c<+\\infty,\n\\]\n\n则 \\(f,g\\) 在 \\(a\\) 附近的反常积分同敛散。若极限为 \\(0\\) 且 \\(\\int g\\) 收敛，则 \\(\\int f\\) 收敛；若极限为 \\(+\\infty\\) 且 \\(\\int g\\) 发散，则 \\(\\int f\\) 发散。",
-        "searchText": "反常积分 反常积分 反常积分 无穷积分、瑕积分、比较判别与参数范围 无穷区间或被积函数在端点无界时，必须写成极限。基本比较对象： 1^ dx x^p cases 收敛,&p 1,\\\\ 发散,&p≤1, cases 0^1 dx x^p cases 收敛,&p<1,\\\\ 发散,&p≥1. cases 若 f,g≥0 且 fg c (0, )，二者同敛散。含对数时常用 ^ dx x( x)^q 在 q 1 时收敛。存在多个问题点时必须分别判断，全部收敛才收敛。 更完整的对数判别式： e^ dx x^p( x)^q cases 收敛,&p 1, 或 p=1,q 1,\\\\ 发散,&p<1, 或 p=1,q≤1, cases 0^ 1e dx x^p x ^q cases 收敛,&p<1, 或 p=1,q 1,\\\\ 发散,&p 1, 或 p=1,q≤1. cases 反常积分绝对收敛与极限比较判别 若 f(x) \\,dx 收敛，则 f(x)\\,dx 收敛。对非负函数，若 x a f(x) g(x) =c, 0<c<+ , 则 f,g 在 a 附近的反常积分同敛散。若极限为 0 且 g 收敛，则 f 收敛；若极限为 + 且 g 发散，则 f 发散。",
-        "summary": "无穷积分、瑕积分、比较判别与参数范围 无穷区间或被积函数在端点无界时，必须写成极限。基本比较对象： 1^ dx x^p cases 收敛,&p 1,\\\\ 发散,&p≤1, cases 0^1 dx x^p cases 收敛,&p<1,\\\\ 发散,&p≥1.…",
+        "body": "##### 两类反常积分与基本比较对象\n\n反常积分有两种常见情形：积分区间无界，或被积函数在有限点附近无界。下图左边的 \\(\\int_a^{+\\infty} f(x)\\,dx\\) 要看无穷远处的尾部，右边的 \\(\\int_a^b f(x)\\,dx\\) 要看 \\(a\\) 的右邻域。右图过 \\(x\\) 轴后的有限一段按有向面积计，它不影响 \\(a\\) 处的敛散性。\n\n![无穷区间与有限端点瑕积分。左图阴影沿正 x 轴延伸，右图在 a 处无界并在 b 处截断。](knowledge-figures/improper-integral-types.svg)\n\n**无穷区间：** 对 \\(a>0\\)，被积函数 \\(1/x^p\\) 在无穷远处衰减得越快，越容易收敛。\n\n<!-- formula {\"id\":\"calculus-4ddaqh\",\"title\":\"无穷区间 p 积分的敛散性\",\"aliases\":[\"p积分\",\"无穷积分\",\"幂函数判敛散\"],\"context\":\"a>0，考查 x 趋于正无穷时的尾部。\"} -->\n\\[\n\\int_a^{+\\infty}\\frac{dx}{x^p}\n\\begin{cases}\n\\text{收敛}, & p>1,\\\\\n\\text{发散}, & p\\le 1.\n\\end{cases}\n\\]\n\n**有限端点：** 要看的是到瑕点的距离。对 \\(a<b\\)，\\(x-a\\) 或 \\(b-x\\) 趋于 \\(0^+\\) 时，幂指数越小，增长越慢，越容易收敛。\n\n<!-- formula {\"id\":\"calculus-1w723j4\",\"title\":\"有限端点 q 积分的敛散性\",\"aliases\":[\"q积分\",\"瑕积分\",\"有限瑕点\"],\"context\":\"分别用到左端点或右端点的距离作比较。\"} -->\n\\[\n\\begin{gathered}\n\\int_a^b\\frac{dx}{(x-a)^q},\\qquad \\int_a^b\\frac{dx}{(b-x)^q}\\\\\n\\text{均在 }q<1\\text{ 时收敛，在 }q\\ge 1\\text{ 时发散。}\n\\end{gathered}\n\\]\n\n##### 判别步骤：先拆瑕点，再比较\n\n1. **找齐所有问题点。** 包括 \\(\\pm\\infty\\)、无界端点和区间内的无穷间断点。双侧无穷用一个普通点拆开，内部瑕点要分别检查左、右两侧。每段只处理一个问题点，所有段都收敛，原积分才收敛。\n2. **选比较对象。** 在当前问题点附近比较阶数。非负函数小于一个可积函数，则收敛；非负函数大于一个发散的比较对象，则发散。对局部定号的负函数，可先取相反数。乘非零常数不改变敛散性。\n3. **根据题目选方法。** 只问敛散，优先比较。容易找到原函数，或题目要求积分值，就用定义把反常积分写成极限再计算。\n\n对在当前问题点附近非负的 \\(f,g\\)，若比值有正的有限极限，就可以用等价量或同阶量代替。例如 \\(1/\\sin x\\sim 1/x\\)（\\(x\\to0^+\\)），所以 \\(\\int_0^1 dx/\\sin x\\) 与 \\(\\int_0^1 dx/x\\) 同为发散。\n\n<!-- formula {\"id\":\"calculus-z3e4cx-1\",\"title\":\"反常积分的极限比较判别\",\"aliases\":[\"极限比较法\",\"等价替换\",\"同敛散\"],\"context\":\"f、g 在所考查的问题点附近非负，且 g 为正。\"} -->\n\\[\n\\lim_{x\\to c}\\frac{f(x)}{g(x)}=L,\\qquad 0<L<+\\infty\n\\quad\\Longrightarrow\\quad\nf,\\ g\\text{ 在该处的反常积分同敛散。}\n\\]\n\n比值趋于 \\(0\\) 且比较对象收敛时，原积分收敛；比值趋于 \\(+\\infty\\) 且比较对象发散时，原积分发散。对变号函数，\\(\\int |f(x)|\\,dx\\) 收敛可推出原积分收敛；若绝对值积分发散，还需另判。不能把内部瑕点两侧或正、负无穷两侧的发散项相消。\n\n##### 类型一：幂函数型\n\n**例 1**　\\(\\displaystyle\\int_0^{+\\infty}\\frac{dx}{\\sqrt{x+x^3}}\\)。在 \\(1\\) 处分段。\\(x\\to0^+\\) 时，被积函数等价于 \\(x^{-1/2}\\)；\\(x\\to+\\infty\\) 时等价于 \\(x^{-3/2}\\)。两段都收敛，原积分**收敛**。\n\n**例 2**　\\(\\displaystyle\\int_1^{+\\infty}\\frac{dx}{x\\sqrt{x^2-1}}\\)。在 \\(2\\) 处分段。\\(x\\to1^+\\) 时，由 \\(x^2-1=(x+1)(x-1)\\)，被积函数等价于 \\(1/\\sqrt{2(x-1)}\\)；在 \\(+\\infty\\) 处等价于 \\(x^{-2}\\)。两段都收敛，原积分**收敛**。\n\n**例 3**　\\(\\displaystyle\\int_0^2\\frac{dx}{\\sqrt{x}(1-\\sqrt{x})}\\)。分别检查 \\(0^+\\)、\\(1^-\\)、\\(1^+\\)。在 \\(0^+\\) 处等价于 \\(x^{-1/2}\\)，收敛；在 \\(1\\) 两侧等价于 \\(-2/(x-1)\\)，两侧各自发散，因此原积分**发散**。\n\n**例 4**　\\(\\displaystyle\\int_{-\\infty}^{+\\infty}\\frac{x}{1+x^2}\\,dx\\)。在 \\(0\\) 处拆开，右侧在 \\(+\\infty\\) 处等价于 \\(1/x\\)，已经足以判定原积分**发散**。奇函数的对称主值为 \\(0\\)，不能当作原反常积分的值。\n\n**例 5**　\\(\\displaystyle\\int_0^{+\\infty}\\frac{\\arctan x}{x^2}\\,dx\\)。在 \\(+\\infty\\) 处等价于 \\(\\pi/(2x^2)\\)，收敛；在 \\(0^+\\) 处由 \\(\\arctan x\\sim x\\)，等价于 \\(1/x\\)，发散。所以原积分**发散**。\n\n##### 类型二：含指数函数\n\n设 \\(\\alpha,\\beta>0\\)、\\(A>1\\)。当 \\(x\\to+\\infty\\) 时，\\((\\ln x)^\\alpha\\ll x^\\beta\\ll A^x\\)，这里 \\(u\\ll v\\) 表示 \\(u/v\\to0\\)。对应的数列增长顺序为 \\((\\ln n)^\\alpha\\ll n^\\beta\\ll A^n\\ll n!\\ll n^n\\)。指数的倒数相应衰减得更快。\n\n**例 1**　\\(\\displaystyle\\int_0^{+\\infty}\\frac{dx}{e^x-1}\\)。在 \\(+\\infty\\) 处等价于 \\(e^{-x}\\)，收敛；在 \\(0^+\\) 处由 \\(e^x-1\\sim x\\)，等价于 \\(1/x\\)，发散。原积分**发散**。\n\n**例 2**　\\(\\displaystyle\\int_{-\\infty}^{+\\infty}x^2e^{-x^2}\\,dx\\)。被积函数是偶函数且在 \\(0\\) 附近连续。由于 \\(x^2e^{-x^2}=o(x^{-2})\\)（\\(x\\to+\\infty\\)），正、负两端都收敛，原积分**收敛**。\n\n**例 3**　\\(\\displaystyle\\int_{-\\infty}^{+\\infty}\\frac{e^{1/x}}{x^2}\\,dx\\)。在 \\(\\pm\\infty\\) 处等价于 \\(x^{-2}\\)，两端收敛。在 \\(0^-\\) 处，令 \\(t=-1/x\\)，则 \\(e^{1/x}/x^2=t^2e^{-t}\\to0\\)，左侧收敛。在 \\(0^+\\) 处，\\(e^{1/x}\\ge1\\)，故被积函数不小于 \\(1/x^2\\)，右侧发散。原积分**发散**。\n\n##### 类型三：含对数函数\n\n先看 \\(\\ln x\\) 在该处是无穷小还是无穷大。在 \\(x=1\\) 附近有 \\(\\ln x\\sim x-1\\)，在 \\(x=0\\) 附近有 \\(\\ln(1+x)\\sim x\\)。当 \\(x\\to0^+\\) 或 \\(x\\to+\\infty\\)，\\(|\\ln x|\\to+\\infty\\)，但慢于对应的任何正幂发散。例如在 \\(0^+\\) 处，\\(|\\ln x|^\\alpha=o(x^{-\\varepsilon})\\) 对任意 \\(\\alpha,\\varepsilon>0\\) 成立。\n\n![对数与幂函数比较：ln x 在 x=1 时为零，x 的负二分之一次幂在 x=1 时为 1，两者在零点右侧的行为不同。橙色虚线表示零到一之间的对数绝对值。](knowledge-figures/improper-log-comparison.svg)\n\n图中橙色虚线是 \\(|\\ln x|\\) 在 \\(0<x<1\\) 时的图像，它在 \\(0^+\\) 附近低于 \\(x^{-1/2}\\)。\n\n**① 单独的对数因子。** 对任意 \\(\\alpha>0\\)，\\(\\int_2^{+\\infty}(\\ln x)^{-\\alpha}\\,dx\\) 发散，因为尾部的被积函数最终大于 \\(x^{-1/2}\\)。\\(\\int_0^{1/2}|\\ln x|^\\alpha\\,dx\\) 收敛，因为被积函数在 \\(0^+\\) 附近小于 \\(x^{-1/2}\\)。\n\n**② 对数在分子。** 对 \\(\\alpha>0\\)，\\(\\int_2^{+\\infty}(\\ln x)^\\alpha x^{-p}\\,dx\\) 在 \\(p>1\\) 时收敛，\\(\\int_0^{1/2}|\\ln x|^\\alpha x^{-p}\\,dx\\) 在 \\(p<1\\) 时收敛，其余情形发散。对数因子能被任意小的额外幂次压住，但和去掉对数后的被积函数并不等价。\n\n**③ 对数在分母。** 当 \\(p\\ne1\\)，看幂次即可；当 \\(p=1\\)，必须看对数的幂次 \\(q\\)。无穷远处换元 \\(t=\\ln x\\)，\\(0^+\\) 处换元 \\(t=-\\ln x\\)，都化为无穷区间的 \\(t^{-q}\\) 积分。\n\n<!-- formula {\"id\":\"calculus-mnvhm3\",\"title\":\"无穷区间的幂与对数积分\",\"aliases\":[\"对数反常积分\",\"对数判敛散\"],\"context\":\"p 不等于 1 时由幂次决定，p 等于 1 时由对数幂次决定。\"} -->\n\\[\n\\int_2^{+\\infty}\\frac{dx}{x^p(\\ln x)^q}\n\\begin{cases}\n\\text{收敛}, & p>1\\ \\text{或}\\ p=1,\\ q>1,\\\\\n\\text{发散}, & p<1\\ \\text{或}\\ p=1,\\ q\\le1.\n\\end{cases}\n\\]\n\n<!-- formula {\"id\":\"calculus-17ywwi3\",\"title\":\"零点附近的幂与对数积分\",\"aliases\":[\"对数瑕积分\",\"零点对数判敛散\"],\"context\":\"0<x<1 时要用 |ln x|；在 p=1 时令 t=-ln x。\"} -->\n\\[\n\\int_0^{1/2}\\frac{dx}{x^p|\\ln x|^q}\n\\begin{cases}\n\\text{收敛}, & p<1\\ \\text{或}\\ p=1,\\ q>1,\\\\\n\\text{发散}, & p>1\\ \\text{或}\\ p=1,\\ q\\le1.\n\\end{cases}\n\\]\n\n<!-- formula {\"id\":\"calculus-1r7ghdn\",\"title\":\"无穷区间的临界对数积分\",\"aliases\":[\"1/x ln x\",\"临界对数积分\"],\"context\":\"令 t=ln x。积分在 q>1 时收敛，在 q≤1 时发散。\"} -->\n\\[\n\\int_2^{+\\infty}\\frac{dx}{x(\\ln x)^q}\n=\\int_{\\ln 2}^{+\\infty}\\frac{dt}{t^q}.\n\\]\n\n**例 1**　\\(\\displaystyle\\int_0^{+\\infty}\\frac{\\ln^2 x}{1+x^2}\\,dx\\)。在 \\(+\\infty\\) 处等价于 \\((\\ln x)^2/x^2\\)，在 \\(0^+\\) 处等价于 \\((\\ln x)^2\\)。两段都收敛，原积分**收敛**。\n\n**例 2**　\\(\\displaystyle\\int_0^{+\\infty}\\frac{\\ln(1+x)}{x^{3/2}}\\,dx\\)。在 \\(+\\infty\\) 处等价于 \\((\\ln x)/x^{3/2}\\)，在 \\(0^+\\) 处等价于 \\(x^{-1/2}\\)。两段都收敛，原积分**收敛**。\n\n**例 3**　\\(\\displaystyle\\int_0^{+\\infty}\\frac{\\sqrt{|\\ln x|}}{x\\sqrt{x}-1}\\,dx\\)。分别检查 \\(0^+\\)、\\(1\\) 的两侧、\\(+\\infty\\)。绝对值在三处分别等价于 \\(|\\ln x|^{1/2}\\)、\\(\\tfrac23|x-1|^{-1/2}\\)、\\((\\ln x)^{1/2}/x^{3/2}\\)，均可积，所以原积分**绝对收敛**。\n\n**例 4**　\\(\\displaystyle\\int_0^{+\\infty}\\frac{\\ln x}{\\sqrt{x+x^3}}\\,dx\\)。绝对值在 \\(0^+\\) 处等价于 \\(|\\ln x|/x^{1/2}\\)，在 \\(+\\infty\\) 处等价于 \\((\\ln x)/x^{3/2}\\)。两段都可积，原积分**绝对收敛**。\n\n**例 5**　\\(\\displaystyle\\int_0^{+\\infty}\\frac{dx}{(x+x^2)\\sqrt[3]{\\ln x}}\\)。在 \\(+\\infty\\) 处，与 \\(1/[x^2(\\ln x)^{1/3}]\\) 等价，收敛。在 \\(x=1\\) 两侧，绝对值与 \\(1/(2|x-1|^{1/3})\\) 等价，均收敛。在 \\(0^+\\) 处，绝对值与 \\(1/[x|\\ln x|^{1/3}]\\) 等价，且被积函数在这一侧为负，故该段发散。原积分**发散**。\n\n##### 真题：带正整数参数的两端瑕积分\n\n设 \\(m,n\\) 为正整数，讨论下式的敛散性与 \\(m,n\\) 的关系。\n\n\\[\nI=\\int_0^1\\frac{\\sqrt[m]{\\ln^2(1-x)}}{\\sqrt[n]{x}}\\,dx\n=\\int_0^1\\frac{|\\ln(1-x)|^{2/m}}{x^{1/n}}\\,dx.\n\\]\n\n- **\\(x\\to0^+\\)**：由 \\(|\\ln(1-x)|\\sim x\\)，被积函数等价于 \\(x^{-(1/n-2/m)}\\)。由于 \\(1/n\\le1\\)、\\(2/m>0\\)，必有 \\(1/n-2/m<1\\)，所以此端收敛。\n- **\\(x\\to1^-\\)**：\\(x^{-1/n}\\to1\\)，只需比较 \\(|\\ln(1-x)|^{2/m}\\)。令 \\(t=1-x\\)，化为 \\(t=0^+\\) 附近的 \\(|\\ln t|^{2/m}\\) 积分，收敛。\n\n因此，**任意正整数 \\(m,n\\) 下，原积分都收敛**。\n\n*资料来源：用户提供的《反常积分》手写笔记，共 4 页。正文、公式与图示按原笔记整理。*",
+        "searchText": "反常积分 反常积分 反常积分 两类反常积分与基本比较对象 反常积分有两种常见情形：积分区间无界，或被积函数在有限点附近无界。下图左边的 a^ + f(x)\\,dx 要看无穷远处的尾部，右边的 a^b f(x)\\,dx 要看 a 的右邻域。右图过 x 轴后的有限一段按有向面积计，它不影响 a 处的敛散性。 ![无穷区间与有限端点瑕积分。左图阴影沿正 x 轴延伸，右图在 a 处无界并在 b 处截断。](knowledge-figures/improper-integral-types.svg) 无穷区间： 对 a 0，被积函数 1/x^p 在无穷远处衰减得越快，越容易收敛。 a^ + dx x^p cases 收敛, & p 1,\\\\ 发散, & p≤ 1. cases 有限端点： 要看的是到瑕点的距离。对 a<b，x-a 或 b-x 趋于 0^+ 时，幂指数越小，增长越慢，越容易收敛。 gathered a^b dx (x-a)^q , a^b dx (b-x)^q \\\\ 均在 q<1 时收敛，在 q≥ 1 时发散。 gathered 判别步骤：先拆瑕点，再比较 找齐所有问题点。 包括 、无界端点和区间内的无穷间断点。双侧无穷用一个普通点拆开，内部瑕点要分别检查左、右两侧。每段只处理一个问题点，所有段都收敛，原积分才收敛。 选比较对象。 在当前问题点附近比较阶数。非负函数小于一个可积函数，则收敛；非负函数大于一个发散的比较对象，则发散。对局部定号的负函数，可先取相反数。乘非零常数不改变敛散性。 根据题目选方法。 只问敛散，优先比较。容易找到原函数，或题目要求积分值，就用定义把反常积分写成极限再计算。 对在当前问题点附近非负的 f,g，若比值有正的有限极限，就可以用等价量或同阶量代替。例如 1/ x 1/x（x 0^+），所以 0^1 dx/ x 与 0^1 dx/x 同为发散。 x c f(x) g(x) =L, 0<L<+ ⇒ f,\\ g 在该处的反常积分同敛散。 比值趋于 0 且比较对象收敛时，原积分收敛；比值趋于 + 且比较对象发散时，原积分发散。对变号函数， f(x) \\,dx 收敛可推出原积分收敛；若绝对值积分发散，还需另判。不能把内部瑕点两侧或正、负无穷两侧的发散项相消。 类型一：幂函数型 例 1 0^ + dx x+x^3 。在 1 处分段。x 0^+ 时，被积函数等价于 x^ -1/2 ；x + 时等价于 x^ -3/2 。两段都收敛，原积分 收敛 。 例 2 1^ + dx x x^2-1 。在 2 处分段。x 1^+ 时，由 x^2-1=(x+1)(x-1)，被积函数等价于 1/ 2(x-1) ；在 + 处等价于 x^ -2 。两段都收敛，原积分 收敛 。 例 3 0^2 dx x (1- x ) 。分别检查 0^+、1^-、1^+。在 0^+ 处等价于 x^ -1/2 ，收敛；在 1 两侧等价于 -2/(x-1)，两侧各自发散，因此原积分 发散 。 例 4 - ^ + x 1+x^2 \\,dx。在 0 处拆开，右侧在 + 处等价于 1/x，已经足以判定原积分 发散 。奇函数的对称主值为 0，不能当作原反常积分的值。 例 5 0^ + x x^2 \\,dx。在 + 处等价于 /(2x^2)，收敛；在 0^+ 处由 x x，等价于 1/x，发散。所以原积分 发散 。 类型二：含指数函数 设 , 0、A 1。当 x + 时，( x)^ x^ A^x，这里 u v 表示 u/v 0。对应的数列增长顺序为 ( n)^ n^ A^n n! n^n。指数的倒数相应衰减得更快。 例 1 0^ + dx e^x-1 。在 + 处等价于 e^ -x ，收敛；在 0^+ 处由 e^x-1 x，等价于 1/x，发散。原积分 发散 。 例 2 - ^ + x^2e^ -x^2 \\,dx。被积函数是偶函数且在 0 附近连续。由于 x^2e^ -x^2 =o(x^ -2 )（x + ），正、负两端都收敛，原积分 收敛 。 例 3 - ^ + e^ 1/x x^2 \\,dx。在 处等价于 x^ -2 ，两端收敛。在 0^- 处，令 t=-1/x，则 e^ 1/x /x^2=t^2e^ -t 0，左侧收敛。在 0^+ 处，e^ 1/x ≥1，故被积函数不小于 1/x^2，右侧发散。原积分 发散 。 类型三：含对数函数 先看 x 在该处是无穷小还是无穷大。在 x=1 附近有 x x-1，在 x=0 附近有 (1+x) x。当 x 0^+ 或 x + ， x + ，但慢于对应的任何正幂发散。例如在 0^+ 处， x ^ =o(x^ - ) 对任意 , 0 成立。 ![对数与幂函数比较：ln x 在 x=1 时为零，x 的负二分之一次幂在 x=1 时为 1，两者在零点右侧的行为不同。橙色虚线表示零到一之间的对数绝对值。](knowledge-figures/improper-log-comparison.svg) 图中橙色虚线是 x 在 0<x<1 时的图像，它在 0^+ 附近低于 x^ -1/2 。 ① 单独的对数因子。 对任意 0， 2^ + ( x)^ - \\,dx 发散，因为尾部的被积函数最终大于 x^ -1/2 。 0^ 1/2 x ^ \\,dx 收敛，因为被积函数在 0^+ 附近小于 x^ -1/2 。 ② 对数在分子。 对 0， 2^ + ( x)^ x^ -p \\,dx 在 p 1 时收敛， 0^ 1/2 x ^ x^ -p \\,dx 在 p<1 时收敛，其余情形发散。对数因子能被任意小的额外幂次压住，但和去掉对数后的被积函数并不等价。 ③ 对数在分母。 当 p≠1，看幂次即可；当 p=1，必须看对数的幂次 q。无穷远处换元 t= x，0^+ 处换元 t=- x，都化为无穷区间的 t^ -q 积分。 2^ + dx x^p( x)^q cases 收敛, & p 1\\ 或\\ p=1,\\ q 1,\\\\ 发散, & p<1\\ 或\\ p=1,\\ q≤1. cases 0^ 1/2 dx x^p x ^q cases 收敛, & p<1\\ 或\\ p=1,\\ q 1,\\\\ 发散, & p 1\\ 或\\ p=1,\\ q≤1. cases 2^ + dx x( x)^q = 2 ^ + dt t^q . 例 1 0^ + ^2 x 1+x^2 \\,dx。在 + 处等价于 ( x)^2/x^2，在 0^+ 处等价于 ( x)^2。两段都收敛，原积分 收敛 。 例 2 0^ + (1+x) x^ 3/2 \\,dx。在 + 处等价于 ( x)/x^ 3/2 ，在 0^+ 处等价于 x^ -1/2 。两段都收敛，原积分 收敛 。 例 3 0^ + x x x -1 \\,dx。分别检查 0^+、1 的两侧、+ 。绝对值在三处分别等价于 x ^ 1/2 、 23 x-1 ^ -1/2 、( x)^ 1/2 /x^ 3/2 ，均可积，所以原积分 绝对收敛 。 例 4 0^ + x x+x^3 \\,dx。绝对值在 0^+ 处等价于 x /x^ 1/2 ，在 + 处等价于 ( x)/x^ 3/2 。两段都可积，原积分 绝对收敛 。 例 5 0^ + dx (x+x^2) [3] x 。在 + 处，与 1/[x^2( x)^ 1/3 ] 等价，收敛。在 x=1 两侧，绝对值与 1/(2 x-1 ^ 1/3 ) 等价，均收敛。在 0^+ 处，绝对值与 1/[x x ^ 1/3 ] 等价，且被积函数在这一侧为负，故该段发散。原积分 发散 。 真题：带正整数参数的两端瑕积分 设 m,n 为正整数，讨论下式的敛散性与 m,n 的关系。 I= 0^1 [m] ^2(1-x) [n] x \\,dx = 0^1 (1-x) ^ 2/m x^ 1/n \\,dx. x 0^+ ：由 (1-x) x，被积函数等价于 x^ -(1/n-2/m) 。由于 1/n≤1、2/m 0，必有 1/n-2/m<1，所以此端收敛。 x 1^- ：x^ -1/n 1，只需比较 (1-x) ^ 2/m 。令 t=1-x，化为 t=0^+ 附近的 t ^ 2/m 积分，收敛。 因此， 任意正整数 m,n 下，原积分都收敛 。 资料来源：用户提供的《反常积分》手写笔记，共 4 页。正文、公式与图示按原笔记整理。",
+        "summary": "两类反常积分与基本比较对象 反常积分有两种常见情形：积分区间无界，或被积函数在有限点附近无界。下图左边的 a^ + f(x)\\,dx 要看无穷远处的尾部，右边的 a^b f(x)\\,dx 要看 a 的右邻域。右图过 x 轴后的有限一段按有向面积计，它不影响…",
         "anchors": [
           {
-            "id": "anchor-10742oa",
+            "id": "anchor-2h3vah",
             "legacyId": "calculus-03-003-anchor-001",
-            "title": "无穷积分、瑕积分、比较判别与参数范围",
-            "searchText": "无穷积分、瑕积分、比较判别与参数范围 无穷区间或被积函数在端点无界时，必须写成极限。基本比较对象： 1^ dx x^p cases 收敛,&p 1,\\\\ 发散,&p≤1, cases 0^1 dx x^p cases 收敛,&p<1,\\\\ 发散,&p≥1. cases 若 f,g≥0 且 fg c (0, )，二者同敛散。含对数时常用 ^ dx x( x)^q 在 q 1 时收敛。存在多个问题点时必须分别判断，全部收敛才收敛。 更完整的对数判别式： e^ dx x^p( x)^q cases 收敛,&p 1, 或 p=1,q 1,\\\\ 发散,&p<1, 或 p=1,q≤1, cases 0^ 1e dx x^p x ^q cases 收敛,&p<1, 或 p=1,q 1,\\\\ 发散,&p 1, 或 p=1,q≤1. cases",
-            "summary": "无穷区间或被积函数在端点无界时，必须写成极限。基本比较对象： 1^ dx x^p cases 收敛,&p 1,\\\\ 发散,&p≤1, cases 0^1 dx x^p cases 收敛,&p<1,\\\\ 发散,&p≥1. cases 若 f,g≥0 且 fg…",
-            "displaySummary": "无穷区间或被积函数在端点无界时，必须写成极限。基本比较对象："
+            "title": "两类反常积分与基本比较对象",
+            "searchText": "两类反常积分与基本比较对象 反常积分有两种常见情形：积分区间无界，或被积函数在有限点附近无界。下图左边的 a^ + f(x)\\,dx 要看无穷远处的尾部，右边的 a^b f(x)\\,dx 要看 a 的右邻域。右图过 x 轴后的有限一段按有向面积计，它不影响 a 处的敛散性。 ![无穷区间与有限端点瑕积分。左图阴影沿正 x 轴延伸，右图在 a 处无界并在 b 处截断。](knowledge-figures/improper-integral-types.svg) 无穷区间： 对 a 0，被积函数 1/x^p 在无穷远处衰减得越快，越容易收敛。 a^ + dx x^p cases 收敛, & p 1,\\\\ 发散, & p≤ 1. cases 有限端点： 要看的是到瑕点的距离。对 a<b，x-a 或 b-x 趋于 0^+ 时，幂指数越小，增长越慢，越容易收敛。 gathered a^b dx (x-a)^q , a^b dx (b-x)^q \\\\ 均在 q<1 时收敛，在 q≥ 1 时发散。 gathered",
+            "summary": "反常积分有两种常见情形：积分区间无界，或被积函数在有限点附近无界。下图左边的 a^ + f(x)\\,dx 要看无穷远处的尾部，右边的 a^b f(x)\\,dx 要看 a 的右邻域。右图过 x 轴后的有限一段按有向面积计，它不影响 a 处的敛散性。 ![无穷…",
+            "displaySummary": "反常积分有两种常见情形：积分区间无界，或被积函数在有限点附近无界。下图左边的 \\(\\int_a^{+\\infty} f(x)\\,dx\\) 要看无穷远处的尾部，右边的 \\(\\int_a^b f(x)\\,dx\\) 要看 \\(a\\) 的右邻域。右图过 \\(x\\) 轴后的有限一段按有向面积计，它不影响 \\(a\\) 处的敛散性。"
           },
           {
-            "id": "anchor-11l6bhp",
+            "id": "anchor-10znqn5",
             "legacyId": "calculus-03-003-anchor-002",
-            "title": "反常积分绝对收敛与极限比较判别",
-            "searchText": "反常积分绝对收敛与极限比较判别 若 f(x) \\,dx 收敛，则 f(x)\\,dx 收敛。对非负函数，若 x a f(x) g(x) =c, 0<c<+ , 则 f,g 在 a 附近的反常积分同敛散。若极限为 0 且 g 收敛，则 f 收敛；若极限为 + 且 g 发散，则 f 发散。",
-            "summary": "若 f(x) \\,dx 收敛，则 f(x)\\,dx 收敛。对非负函数，若 x a f(x) g(x) =c, 0<c<+ , 则 f,g 在 a 附近的反常积分同敛散。若极限为 0 且 g 收敛，则 f 收敛；若极限为 + 且 g 发散，则 f 发散。",
-            "displaySummary": "若 \\(\\int |f(x)|\\,dx\\) 收敛，则 \\(\\int f(x)\\,dx\\) 收敛。对非负函数，若"
+            "title": "判别步骤：先拆瑕点，再比较",
+            "searchText": "判别步骤：先拆瑕点，再比较 找齐所有问题点。 包括 、无界端点和区间内的无穷间断点。双侧无穷用一个普通点拆开，内部瑕点要分别检查左、右两侧。每段只处理一个问题点，所有段都收敛，原积分才收敛。 选比较对象。 在当前问题点附近比较阶数。非负函数小于一个可积函数，则收敛；非负函数大于一个发散的比较对象，则发散。对局部定号的负函数，可先取相反数。乘非零常数不改变敛散性。 根据题目选方法。 只问敛散，优先比较。容易找到原函数，或题目要求积分值，就用定义把反常积分写成极限再计算。 对在当前问题点附近非负的 f,g，若比值有正的有限极限，就可以用等价量或同阶量代替。例如 1/ x 1/x（x 0^+），所以 0^1 dx/ x 与 0^1 dx/x 同为发散。 x c f(x) g(x) =L, 0<L<+ ⇒ f,\\ g 在该处的反常积分同敛散。 比值趋于 0 且比较对象收敛时，原积分收敛；比值趋于 + 且比较对象发散时，原积分发散。对变号函数， f(x) \\,dx 收敛可推出原积分收敛；若绝对值积分发散，还需另判。不能把内部瑕点两侧或正、负无穷两侧的发散项相消。",
+            "summary": "找齐所有问题点。 包括 、无界端点和区间内的无穷间断点。双侧无穷用一个普通点拆开，内部瑕点要分别检查左、右两侧。每段只处理一个问题点，所有段都收敛，原积分才收敛。 选比较对象。 在当前问题点附近比较阶数。非负函数小于一个可积函数，则收敛；非负函数大于一个发…",
+            "displaySummary": "1. **找齐所有问题点。** 包括 \\(\\pm\\infty\\)、无界端点和区间内的无穷间断点。双侧无穷用一个普通点拆开，内部瑕点要分别检查左、右两侧。每段只处理一个问题点，所有段都收敛，原积分才收敛。\n2. **选比较对象。** 在当前问题点附近比较阶数。非负函数小于一个可积函数，则收敛；非负函数大于一个发散的比较对象，则发散。对局部定号的负函数，可先取相反数。乘非零常数不改变敛散性。\n3. **根据题目选方法。** 只问敛散，优先比较。容易找到原函数，或题目要求积分值，就用定义把反常积分写成极限再计算。"
+          },
+          {
+            "id": "anchor-1pdzjq3",
+            "legacyId": "calculus-03-003-anchor-003",
+            "title": "类型一：幂函数型",
+            "searchText": "类型一：幂函数型 例 1 0^ + dx x+x^3 。在 1 处分段。x 0^+ 时，被积函数等价于 x^ -1/2 ；x + 时等价于 x^ -3/2 。两段都收敛，原积分 收敛 。 例 2 1^ + dx x x^2-1 。在 2 处分段。x 1^+ 时，由 x^2-1=(x+1)(x-1)，被积函数等价于 1/ 2(x-1) ；在 + 处等价于 x^ -2 。两段都收敛，原积分 收敛 。 例 3 0^2 dx x (1- x ) 。分别检查 0^+、1^-、1^+。在 0^+ 处等价于 x^ -1/2 ，收敛；在 1 两侧等价于 -2/(x-1)，两侧各自发散，因此原积分 发散 。 例 4 - ^ + x 1+x^2 \\,dx。在 0 处拆开，右侧在 + 处等价于 1/x，已经足以判定原积分 发散 。奇函数的对称主值为 0，不能当作原反常积分的值。 例 5 0^ + x x^2 \\,dx。在 + 处等价于 /(2x^2)，收敛；在 0^+ 处由 x x，等价于 1/x，发散。所以原积分 发散 。",
+            "summary": "例 1 0^ + dx x+x^3 。在 1 处分段。x 0^+ 时，被积函数等价于 x^ -1/2 ；x + 时等价于 x^ -3/2 。两段都收敛，原积分 收敛 。 例 2 1^ + dx x x^2-1 。在 2 处分段。x 1^+ 时，由 x^2-…",
+            "displaySummary": "**例 1**　\\(\\displaystyle\\int_0^{+\\infty}\\frac{dx}{\\sqrt{x+x^3}}\\)。在 \\(1\\) 处分段。\\(x\\to0^+\\) 时，被积函数等价于 \\(x^{-1/2}\\)；\\(x\\to+\\infty\\) 时等价于 \\(x^{-3/2}\\)。两段都收敛，原积分**收敛**。"
+          },
+          {
+            "id": "anchor-17hjiya",
+            "legacyId": "calculus-03-003-anchor-004",
+            "title": "类型二：含指数函数",
+            "searchText": "类型二：含指数函数 设 , 0、A 1。当 x + 时，( x)^ x^ A^x，这里 u v 表示 u/v 0。对应的数列增长顺序为 ( n)^ n^ A^n n! n^n。指数的倒数相应衰减得更快。 例 1 0^ + dx e^x-1 。在 + 处等价于 e^ -x ，收敛；在 0^+ 处由 e^x-1 x，等价于 1/x，发散。原积分 发散 。 例 2 - ^ + x^2e^ -x^2 \\,dx。被积函数是偶函数且在 0 附近连续。由于 x^2e^ -x^2 =o(x^ -2 )（x + ），正、负两端都收敛，原积分 收敛 。 例 3 - ^ + e^ 1/x x^2 \\,dx。在 处等价于 x^ -2 ，两端收敛。在 0^- 处，令 t=-1/x，则 e^ 1/x /x^2=t^2e^ -t 0，左侧收敛。在 0^+ 处，e^ 1/x ≥1，故被积函数不小于 1/x^2，右侧发散。原积分 发散 。",
+            "summary": "设 , 0、A 1。当 x + 时，( x)^ x^ A^x，这里 u v 表示 u/v 0。对应的数列增长顺序为 ( n)^ n^ A^n n! n^n。指数的倒数相应衰减得更快。 例 1 0^ + dx e^x-1 。在 + 处等价于 e^ -x ，收…",
+            "displaySummary": "设 \\(\\alpha,\\beta>0\\)、\\(A>1\\)。当 \\(x\\to+\\infty\\) 时，\\((\\ln x)^\\alpha\\ll x^\\beta\\ll A^x\\)，这里 \\(u\\ll v\\) 表示 \\(u/v\\to0\\)。对应的数列增长顺序为 \\((\\ln n)^\\alpha\\ll n^\\beta\\ll A^n\\ll n!\\ll n^n\\)。指数的倒数相应衰减得更快。"
+          },
+          {
+            "id": "anchor-1bmpaaf",
+            "legacyId": "calculus-03-003-anchor-005",
+            "title": "类型三：含对数函数",
+            "searchText": "类型三：含对数函数 先看 x 在该处是无穷小还是无穷大。在 x=1 附近有 x x-1，在 x=0 附近有 (1+x) x。当 x 0^+ 或 x + ， x + ，但慢于对应的任何正幂发散。例如在 0^+ 处， x ^ =o(x^ - ) 对任意 , 0 成立。 ![对数与幂函数比较：ln x 在 x=1 时为零，x 的负二分之一次幂在 x=1 时为 1，两者在零点右侧的行为不同。橙色虚线表示零到一之间的对数绝对值。](knowledge-figures/improper-log-comparison.svg) 图中橙色虚线是 x 在 0<x<1 时的图像，它在 0^+ 附近低于 x^ -1/2 。 ① 单独的对数因子。 对任意 0， 2^ + ( x)^ - \\,dx 发散，因为尾部的被积函数最终大于 x^ -1/2 。 0^ 1/2 x ^ \\,dx 收敛，因为被积函数在 0^+ 附近小于 x^ -1/2 。 ② 对数在分子。 对 0， 2^ + ( x)^ x^ -p \\,dx 在 p 1 时收敛， 0^ 1/2 x ^ x^ -p \\,dx 在 p<1 时收敛，其余情形发散。对数因子能被任意小的额外幂次压住，但和去掉对数后的被积函数并不等价。 ③ 对数在分母。 当 p≠1，看幂次即可；当 p=1，必须看对数的幂次 q。无穷远处换元 t= x，0^+ 处换元 t=- x，都化为无穷区间的 t^ -q 积分。 2^ + dx x^p( x)^q cases 收敛, & p 1\\ 或\\ p=1,\\ q 1,\\\\ 发散, & p<1\\ 或\\ p=1,\\ q≤1. cases 0^ 1/2 dx x^p x ^q cases 收敛, & p<1\\ 或\\ p=1,\\ q 1,\\\\ 发散, & p 1\\ 或\\ p=1,\\ q≤1. cases 2^ + dx x( x)^q = 2 ^ + dt t^q . 例 1 0^ + ^2 x 1+x^2 \\,dx。在 + 处等价于 ( x)^2/x^2，在 0^+ 处等价于 ( x)^2。两段都收敛，原积分 收敛 。 例 2 0^ + (1+x) x^ 3/2 \\,dx。在 + 处等价于 ( x)/x^ 3/2 ，在 0^+ 处等价于 x^ -1/2 。两段都收敛，原积分 收敛 。 例 3 0^ + x x x -1 \\,dx。分别检查 0^+、1 的两侧、+ 。绝对值在三处分别等价于 x ^ 1/2 、 23 x-1 ^ -1/2 、( x)^ 1/2 /x^ 3/2 ，均可积，所以原积分 绝对收敛 。 例 4 0^ + x x+x^3 \\,dx。绝对值在 0^+ 处等价于 x /x^ 1/2 ，在 + 处等价于 ( x)/x^ 3/2 。两段都可积，原积分 绝对收敛 。 例 5 0^ + dx (x+x^2) [3] x 。在 + 处，与 1/[x^2( x)^ 1/3 ] 等价，收敛。在 x=1 两侧，绝对值与 1/(2 x-1 ^ 1/3 ) 等价，均收敛。在 0^+ 处，绝对值与 1/[x x ^ 1/3 ] 等价，且被积函数在这一侧为负，故该段发散。原积分 发散 。",
+            "summary": "先看 x 在该处是无穷小还是无穷大。在 x=1 附近有 x x-1，在 x=0 附近有 (1+x) x。当 x 0^+ 或 x + ， x + ，但慢于对应的任何正幂发散。例如在 0^+ 处， x ^ =o(x^ - ) 对任意 , 0 成立。 ![对数与…",
+            "displaySummary": "先看 \\(\\ln x\\) 在该处是无穷小还是无穷大。在 \\(x=1\\) 附近有 \\(\\ln x\\sim x-1\\)，在 \\(x=0\\) 附近有 \\(\\ln(1+x)\\sim x\\)。当 \\(x\\to0^+\\) 或 \\(x\\to+\\infty\\)，\\(|\\ln x|\\to+\\infty\\)，但慢于对应的任何正幂发散。例如在 \\(0^+\\) 处，\\(|\\ln x|^\\alpha=o(x^{-\\varepsilon})\\) 对任意 \\(\\alpha,\\varepsilon>0\\) 成立。"
+          },
+          {
+            "id": "anchor-4u1w22",
+            "legacyId": "calculus-03-003-anchor-006",
+            "title": "真题：带正整数参数的两端瑕积分",
+            "searchText": "真题：带正整数参数的两端瑕积分 设 m,n 为正整数，讨论下式的敛散性与 m,n 的关系。 I= 0^1 [m] ^2(1-x) [n] x \\,dx = 0^1 (1-x) ^ 2/m x^ 1/n \\,dx. x 0^+ ：由 (1-x) x，被积函数等价于 x^ -(1/n-2/m) 。由于 1/n≤1、2/m 0，必有 1/n-2/m<1，所以此端收敛。 x 1^- ：x^ -1/n 1，只需比较 (1-x) ^ 2/m 。令 t=1-x，化为 t=0^+ 附近的 t ^ 2/m 积分，收敛。 因此， 任意正整数 m,n 下，原积分都收敛 。 资料来源：用户提供的《反常积分》手写笔记，共 4 页。正文、公式与图示按原笔记整理。",
+            "summary": "设 m,n 为正整数，讨论下式的敛散性与 m,n 的关系。 I= 0^1 [m] ^2(1-x) [n] x \\,dx = 0^1 (1-x) ^ 2/m x^ 1/n \\,dx. x 0^+ ：由 (1-x) x，被积函数等价于 x^ -(1/n-2/m…",
+            "displaySummary": "设 \\(m,n\\) 为正整数，讨论下式的敛散性与 \\(m,n\\) 的关系。"
           }
         ],
         "formulas": [
           {
             "id": "calculus-4ddaqh",
-            "parentAnchorId": "anchor-10742oa",
+            "parentAnchorId": "anchor-2h3vah",
             "legacyParentAnchorId": "calculus-03-003-anchor-001",
-            "title": "无穷积分、瑕积分、比较判别与参数范围：∫_1^∞(dx)/(x^p)",
-            "latex": "\\int_1^{\\infty}\\frac{dx}{x^p}\n\\begin{cases}\n\\text{收敛},&p>1,\\\\\n\\text{发散},&p\\le1,\n\\end{cases}",
-            "sourceBlockIndex": 0,
-            "searchAliases": [],
-            "context": "无穷区间或被积函数在端点无界时，必须写成极限。基本比较对象：",
-            "displayContext": "无穷区间或被积函数在端点无界时，必须写成极限。基本比较对象：",
+            "title": "无穷区间 p 积分的敛散性",
+            "latex": "\\int_a^{+\\infty}\\frac{dx}{x^p}\n\\begin{cases}\n\\text{收敛}, & p>1,\\\\\n\\text{发散}, & p\\le 1.\n\\end{cases}",
+            "sourceBlockIndex": 7,
+            "searchAliases": [
+              "p积分",
+              "无穷积分",
+              "幂函数判敛散"
+            ],
+            "context": "a>0，考查 x 趋于正无穷时的尾部。",
+            "displayContext": "**无穷区间：** 对 \\(a>0\\)，被积函数 \\(1/x^p\\) 在无穷远处衰减得越快，越容易收敛。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-003",
             "order": 0
           },
           {
             "id": "calculus-1w723j4",
-            "parentAnchorId": "anchor-10742oa",
+            "parentAnchorId": "anchor-2h3vah",
             "legacyParentAnchorId": "calculus-03-003-anchor-001",
-            "title": "无穷积分、瑕积分、比较判别与参数范围：∫_0^1(dx)/(x^p)",
-            "latex": "\\int_0^1\\frac{dx}{x^p}\n\\begin{cases}\n\\text{收敛},&p<1,\\\\\n\\text{发散},&p\\ge1.\n\\end{cases}",
-            "sourceBlockIndex": 1,
-            "searchAliases": [],
-            "context": "所属知识点：无穷积分、瑕积分、比较判别与参数范围。",
-            "displayContext": "无穷区间或被积函数在端点无界时，必须写成极限。基本比较对象：",
+            "title": "有限端点 q 积分的敛散性",
+            "latex": "\\begin{gathered}\n\\int_a^b\\frac{dx}{(x-a)^q},\\qquad \\int_a^b\\frac{dx}{(b-x)^q}\\\\\n\\text{均在 }q<1\\text{ 时收敛，在 }q\\ge 1\\text{ 时发散。}\n\\end{gathered}",
+            "sourceBlockIndex": 12,
+            "searchAliases": [
+              "q积分",
+              "瑕积分",
+              "有限瑕点"
+            ],
+            "context": "分别用到左端点或右端点的距离作比较。",
+            "displayContext": "**有限端点：** 要看的是到瑕点的距离。对 \\(a<b\\)，\\(x-a\\) 或 \\(b-x\\) 趋于 \\(0^+\\) 时，幂指数越小，增长越慢，越容易收敛。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-003",
             "order": 1
           },
           {
-            "id": "calculus-1r7ghdn",
-            "parentAnchorId": "anchor-10742oa",
-            "legacyParentAnchorId": "calculus-03-003-anchor-001",
-            "title": "无穷积分、瑕积分、比较判别与参数范围：∫^∞(dx)/(x(ln x)^q)",
-            "latex": "\\int^{\\infty}\\frac{dx}{x(\\ln x)^q}",
-            "sourceBlockIndex": 4,
-            "searchAliases": [],
-            "context": "若 f,g\\ge0 且 \\(\\frac fg\\to c\\in(0,\\infty)\\)，二者同敛散。含对数时常用",
-            "displayContext": "若 \\(f,g\\ge0\\) 且 \\(\\frac fg\\to c\\in(0,\\infty)\\)，二者同敛散。含对数时常用",
+            "id": "calculus-z3e4cx-1",
+            "parentAnchorId": "anchor-10znqn5",
+            "legacyParentAnchorId": "calculus-03-003-anchor-002",
+            "title": "反常积分的极限比较判别",
+            "latex": "\\lim_{x\\to c}\\frac{f(x)}{g(x)}=L,\\qquad 0<L<+\\infty\n\\quad\\Longrightarrow\\quad\nf,\\ g\\text{ 在该处的反常积分同敛散。}",
+            "sourceBlockIndex": 19,
+            "searchAliases": [
+              "极限比较法",
+              "等价替换",
+              "同敛散"
+            ],
+            "context": "f、g 在所考查的问题点附近非负，且 g 为正。",
+            "displayContext": "对在当前问题点附近非负的 \\(f,g\\)，若比值有正的有限极限，就可以用等价量或同阶量代替。例如 \\(1/\\sin x\\sim 1/x\\)（\\(x\\to0^+\\)），所以 \\(\\int_0^1 dx/\\sin x\\) 与 \\(\\int_0^1 dx/x\\) 同为发散。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-003",
             "order": 2
           },
           {
             "id": "calculus-mnvhm3",
-            "parentAnchorId": "anchor-10742oa",
-            "legacyParentAnchorId": "calculus-03-003-anchor-001",
-            "title": "无穷积分、瑕积分、比较判别与参数范围：∫_e^∞(dx)/(x^p(ln x)^q)",
-            "latex": "\\int_e^\\infty\\frac{dx}{x^p(\\ln x)^q}\n\\begin{cases}\n\\text{收敛},&p>1,\\text{ 或 }p=1,q>1,\\\\\n\\text{发散},&p<1,\\text{ 或 }p=1,q\\le1,\n\\end{cases}",
-            "sourceBlockIndex": 6,
-            "searchAliases": [],
-            "context": "更完整的对数判别式：",
-            "displayContext": "更完整的对数判别式：",
+            "parentAnchorId": "anchor-1bmpaaf",
+            "legacyParentAnchorId": "calculus-03-003-anchor-005",
+            "title": "无穷区间的幂与对数积分",
+            "latex": "\\int_2^{+\\infty}\\frac{dx}{x^p(\\ln x)^q}\n\\begin{cases}\n\\text{收敛}, & p>1\\ \\text{或}\\ p=1,\\ q>1,\\\\\n\\text{发散}, & p<1\\ \\text{或}\\ p=1,\\ q\\le1.\n\\end{cases}",
+            "sourceBlockIndex": 114,
+            "searchAliases": [
+              "对数反常积分",
+              "对数判敛散"
+            ],
+            "context": "p 不等于 1 时由幂次决定，p 等于 1 时由对数幂次决定。",
+            "displayContext": "**③ 对数在分母。** 当 \\(p\\ne1\\)，看幂次即可；当 \\(p=1\\)，必须看对数的幂次 \\(q\\)。无穷远处换元 \\(t=\\ln x\\)，\\(0^+\\) 处换元 \\(t=-\\ln x\\)，都化为无穷区间的 \\(t^{-q}\\) 积分。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-003",
             "order": 3
           },
           {
             "id": "calculus-17ywwi3",
-            "parentAnchorId": "anchor-10742oa",
-            "legacyParentAnchorId": "calculus-03-003-anchor-001",
-            "title": "无穷积分、瑕积分、比较判别与参数范围：∫_0^frac1e(dx)/(x^p|ln x|^q)",
-            "latex": "\\int_0^{\\frac1e}\\frac{dx}{x^p|\\ln x|^q}\n\\begin{cases}\n\\text{收敛},&p<1,\\text{ 或 }p=1,q>1,\\\\\n\\text{发散},&p>1,\\text{ 或 }p=1,q\\le1.\n\\end{cases}",
-            "sourceBlockIndex": 7,
-            "searchAliases": [],
-            "context": "所属知识点：无穷积分、瑕积分、比较判别与参数范围。",
-            "displayContext": "更完整的对数判别式：",
+            "parentAnchorId": "anchor-1bmpaaf",
+            "legacyParentAnchorId": "calculus-03-003-anchor-005",
+            "title": "零点附近的幂与对数积分",
+            "latex": "\\int_0^{1/2}\\frac{dx}{x^p|\\ln x|^q}\n\\begin{cases}\n\\text{收敛}, & p<1\\ \\text{或}\\ p=1,\\ q>1,\\\\\n\\text{发散}, & p>1\\ \\text{或}\\ p=1,\\ q\\le1.\n\\end{cases}",
+            "sourceBlockIndex": 115,
+            "searchAliases": [
+              "对数瑕积分",
+              "零点对数判敛散"
+            ],
+            "context": "0<x<1 时要用 |ln x|；在 p=1 时令 t=-ln x。",
+            "displayContext": "**③ 对数在分母。** 当 \\(p\\ne1\\)，看幂次即可；当 \\(p=1\\)，必须看对数的幂次 \\(q\\)。无穷远处换元 \\(t=\\ln x\\)，\\(0^+\\) 处换元 \\(t=-\\ln x\\)，都化为无穷区间的 \\(t^{-q}\\) 积分。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-003",
             "order": 4
           },
           {
-            "id": "calculus-z3e4cx-1",
-            "parentAnchorId": "anchor-11l6bhp",
-            "legacyParentAnchorId": "calculus-03-003-anchor-002",
-            "title": "反常积分绝对收敛与极限比较判别：lim_xto a(f(x))/(g(x))",
-            "latex": "\\lim_{x\\to a}\\frac{f(x)}{g(x)}=c,\n\\qquad 0<c<+\\infty,",
-            "sourceBlockIndex": 10,
-            "searchAliases": [],
-            "context": "若 \\(\\int |f(x)|\\,dx\\) 收敛，则 \\(\\int f(x)\\,dx\\) 收敛。对非负函数，若",
-            "displayContext": "若 \\(\\int |f(x)|\\,dx\\) 收敛，则 \\(\\int f(x)\\,dx\\) 收敛。对非负函数，若",
+            "id": "calculus-1r7ghdn",
+            "parentAnchorId": "anchor-1bmpaaf",
+            "legacyParentAnchorId": "calculus-03-003-anchor-005",
+            "title": "无穷区间的临界对数积分",
+            "latex": "\\int_2^{+\\infty}\\frac{dx}{x(\\ln x)^q}\n=\\int_{\\ln 2}^{+\\infty}\\frac{dt}{t^q}.",
+            "sourceBlockIndex": 116,
+            "searchAliases": [
+              "1/x ln x",
+              "临界对数积分"
+            ],
+            "context": "令 t=ln x。积分在 q>1 时收敛，在 q≤1 时发散。",
+            "displayContext": "**③ 对数在分母。** 当 \\(p\\ne1\\)，看幂次即可；当 \\(p=1\\)，必须看对数的幂次 \\(q\\)。无穷远处换元 \\(t=\\ln x\\)，\\(0^+\\) 处换元 \\(t=-\\ln x\\)，都化为无穷区间的 \\(t^{-q}\\) 积分。",
             "chapterId": "calculus-03",
             "topicId": "calculus-03-003",
             "order": 5
@@ -11544,4 +11597,4 @@ export const mathFormulas = mathTopics.flatMap((topic) => topic.formulas.map((fo
 
 export const legacyAnchorIds: Record<string, string> = { ...Object.fromEntries(mathTopics.flatMap((topic) => topic.anchors.map((anchor) => [anchor.legacyId, anchor.id]))), ...{"calculus-01-001-anchor-001":"anchor-lbvq5s","calculus-01-001-anchor-002":"anchor-j518hz","calculus-01-001-anchor-003":"anchor-t7xlog","calculus-01-001-anchor-004":"anchor-4ye243","calculus-01-001-anchor-005":"anchor-1d76xhd","calculus-01-001-anchor-006":"anchor-1bazviw","calculus-01-001-anchor-007":"anchor-2z340d","calculus-01-001-anchor-008":"anchor-8ea5i0","calculus-01-001-anchor-009":"anchor-aj5441","calculus-01-001-anchor-010":"anchor-j2hham","calculus-01-001-anchor-011":"anchor-3hexw1","calculus-01-002-anchor-001":"anchor-w8b1zu","calculus-01-002-anchor-002":"anchor-t8lpq4","calculus-01-002-anchor-003":"anchor-5x1cm7","calculus-01-002-anchor-004":"anchor-wcsi6k","calculus-01-002-anchor-005":"anchor-1lndnrm","calculus-01-002-anchor-006":"anchor-128640p","calculus-01-002-anchor-007":"anchor-15sbt8p","calculus-01-002-anchor-008":"anchor-bvlpa4","calculus-01-002-anchor-009":"anchor-1ohmc4u","calculus-01-003-anchor-001":"anchor-wg2dg","calculus-01-003-anchor-002":"anchor-1hhdk3","calculus-02-001-anchor-001":"anchor-1reuj12","calculus-02-001-anchor-002":"anchor-11rqxyq","calculus-02-001-anchor-003":"anchor-8c1dh1","calculus-02-001-anchor-004":"anchor-115q6i","calculus-02-001-anchor-005":"anchor-15hqnun","calculus-02-001-anchor-006":"anchor-17lpmco","calculus-02-002-anchor-001":"anchor-fz2y9u","calculus-02-003-anchor-001":"anchor-1ewqz1p","calculus-02-003-anchor-002":"anchor-kv1rg4","calculus-02-003-anchor-003":"anchor-6zol1r","calculus-02-003-anchor-004":"anchor-1neg0u9","calculus-02-003-anchor-005":"anchor-h2faya","calculus-02-003-anchor-006":"anchor-u4g2km","calculus-02-003-anchor-007":"anchor-1wkdjbx","calculus-02-003-anchor-008":"anchor-1yxg28i","calculus-02-003-anchor-009":"anchor-rvnhse","calculus-02-003-anchor-010":"anchor-1vf3xuc","calculus-02-003-anchor-011":"anchor-soth9i","calculus-02-003-anchor-012":"anchor-1hr3ies","calculus-02-003-anchor-013":"anchor-1rznfp0","calculus-02-003-anchor-014":"anchor-bbkl7e","calculus-02-004-anchor-001":"anchor-1ynitiw","calculus-03-001-anchor-001":"anchor-cisdw4","calculus-03-002-anchor-001":"anchor-175zj2c","calculus-03-002-anchor-002":"anchor-1x4bzwi","calculus-03-002-anchor-003":"anchor-77fovp","calculus-03-002-anchor-004":"anchor-jby4bt","calculus-03-002-anchor-005":"anchor-1ygnrh0","calculus-03-002-anchor-006":"anchor-t2ts4i","calculus-03-002-anchor-007":"anchor-6k9zg2","calculus-03-002-anchor-008":"anchor-1qa371k","calculus-03-002-anchor-009":"anchor-1n801g8","calculus-03-002-anchor-010":"anchor-c6zvhx","calculus-03-002-anchor-011":"anchor-1vm6c8a","calculus-03-003-anchor-001":"anchor-10742oa","calculus-03-003-anchor-002":"anchor-11l6bhp","calculus-03-004-anchor-001":"anchor-rayly0","calculus-03-004-anchor-002":"anchor-1w6iuac","calculus-04-001-anchor-001":"anchor-nx51k3","calculus-04-001-anchor-002":"anchor-1ozvu54","calculus-04-001-anchor-003":"anchor-itds84","calculus-04-002-anchor-001":"anchor-1chjnui","calculus-04-002-anchor-002":"anchor-dfmuvv","calculus-04-002-anchor-003":"anchor-198u1h9","calculus-04-005-anchor-001":"anchor-1l1gmdb","calculus-05-001-anchor-001":"anchor-1waukw5","calculus-05-002-anchor-001":"anchor-1611dtg","calculus-05-003-anchor-001":"anchor-ey2hqb","calculus-05-003-anchor-002":"anchor-1euphqa","calculus-05-003-anchor-003":"anchor-hwjhzo","calculus-05-003-anchor-004":"anchor-mpy8o7","calculus-05-004-anchor-001":"anchor-156v72a","calculus-05-004-anchor-002":"anchor-i8i1m","calculus-05-004-anchor-003":"anchor-1c0bni3","calculus-06-001-anchor-001":"anchor-kw6aq","calculus-06-001-anchor-002":"anchor-a903lx","calculus-06-001-anchor-003":"anchor-1no3ayr","calculus-06-001-anchor-004":"anchor-1p3v1i4","calculus-06-001-anchor-005":"anchor-1w9znj5","calculus-06-002-anchor-001":"anchor-1gpyc81","calculus-06-002-anchor-002":"anchor-128uc8u","calculus-06-002-anchor-003":"anchor-1saj91z","calculus-06-002-anchor-004":"anchor-lfgr2w","linear-algebra-01-001-anchor-001":"anchor-1a5bvic","linear-algebra-01-001-anchor-002":"anchor-111xxjc","linear-algebra-01-001-anchor-003":"anchor-1yn9mi4","linear-algebra-01-001-anchor-004":"anchor-ml8ruf","linear-algebra-01-001-anchor-005":"anchor-zf8f1p","linear-algebra-01-001-anchor-006":"anchor-1ojz8ps","linear-algebra-01-001-anchor-007":"anchor-1uvhxuq","linear-algebra-01-001-anchor-008":"anchor-1pg39ph","linear-algebra-01-001-anchor-009":"anchor-1eqpfuu","linear-algebra-01-001-anchor-010":"anchor-1342a6z","linear-algebra-01-001-anchor-011":"anchor-1ulaybf","linear-algebra-01-001-anchor-012":"anchor-1r4kep3","linear-algebra-01-001-anchor-013":"anchor-1jdggfb","linear-algebra-01-001-anchor-014":"anchor-1jzimhm","linear-algebra-01-001-anchor-015":"anchor-72u727","linear-algebra-01-001-anchor-016":"anchor-4kgzu","linear-algebra-01-001-anchor-017":"anchor-17571s4","linear-algebra-01-001-anchor-018":"anchor-im67ae","linear-algebra-01-001-anchor-019":"anchor-1x76og0","linear-algebra-01-001-anchor-020":"anchor-tkxywz","linear-algebra-01-001-anchor-021":"anchor-uadu3h","linear-algebra-01-001-anchor-022":"anchor-th36ml","linear-algebra-01-001-anchor-023":"anchor-x4fj9u","linear-algebra-01-001-anchor-024":"anchor-11n4d9n","linear-algebra-01-001-anchor-025":"anchor-19ugkjx","linear-algebra-01-001-anchor-026":"anchor-15fx8au","linear-algebra-01-001-anchor-027":"anchor-14miwg4","linear-algebra-01-001-anchor-028":"anchor-oqrdrk","linear-algebra-01-002-anchor-001":"anchor-1k8qs45","linear-algebra-01-003-anchor-001":"anchor-s7ns51","linear-algebra-01-003-anchor-002":"anchor-ypaqr","linear-algebra-01-005-anchor-001":"anchor-danus2","linear-algebra-02-001-anchor-001":"anchor-1tdu4gv","linear-algebra-02-001-anchor-002":"anchor-1mie9hc","linear-algebra-02-002-anchor-001":"anchor-nw0c5e","linear-algebra-02-003-anchor-001":"anchor-6exx6v","linear-algebra-02-003-anchor-002":"anchor-fyvavw","linear-algebra-02-004-anchor-001":"anchor-xqcsjc","linear-algebra-02-004-anchor-002":"anchor-1xtyyy4","linear-algebra-02-004-anchor-003":"anchor-1mtrtso","linear-algebra-02-005-anchor-001":"anchor-18y9zhv","linear-algebra-02-006-anchor-001":"anchor-1w7eg5d","linear-algebra-02-006-anchor-002":"anchor-1fgtxmu","linear-algebra-02-007-anchor-001":"anchor-hn0so9","linear-algebra-02-007-anchor-002":"anchor-175f3w3","linear-algebra-02-007-anchor-003":"anchor-giw2wf","linear-algebra-02-007-anchor-004":"anchor-5mrg4g","linear-algebra-02-008-anchor-001":"anchor-7cc37g","linear-algebra-02-008-anchor-002":"anchor-20es8i","linear-algebra-02-009-anchor-001":"anchor-7tiisf","linear-algebra-02-009-anchor-002":"anchor-1ub8g42","linear-algebra-02-009-anchor-003":"anchor-doq5h6","linear-algebra-03-001-anchor-001":"anchor-1fskpc6","linear-algebra-03-002-anchor-001":"anchor-122cvtk","linear-algebra-03-003-anchor-001":"anchor-126wx4i","linear-algebra-03-004-anchor-001":"anchor-zlkmt1","linear-algebra-03-004-anchor-002":"anchor-7ywz00","linear-algebra-03-004-anchor-003":"anchor-mh2klw","linear-algebra-03-004-anchor-004":"anchor-2bq40v","linear-algebra-03-005-anchor-001":"anchor-10bslxo","linear-algebra-04-001-anchor-001":"anchor-1eupkxq","linear-algebra-04-001-anchor-002":"anchor-75rng7","linear-algebra-04-002-anchor-001":"anchor-gzj65a","linear-algebra-04-002-anchor-002":"anchor-80c63q","linear-algebra-04-002-anchor-003":"anchor-1gj34rp","linear-algebra-04-002-anchor-004":"anchor-z4dd55","linear-algebra-04-002-anchor-005":"anchor-uco91y","linear-algebra-04-003-anchor-001":"anchor-cl5tr5","linear-algebra-04-004-anchor-001":"anchor-1anke8d","linear-algebra-04-004-anchor-002":"anchor-18su3xv","linear-algebra-04-004-anchor-003":"anchor-1c5wkkw","linear-algebra-04-004-anchor-004":"anchor-c38nu6","linear-algebra-04-005-anchor-001":"anchor-1arudjf","linear-algebra-04-005-anchor-002":"anchor-rq628u","linear-algebra-05-001-anchor-001":"anchor-1uq8hih","linear-algebra-05-001-anchor-002":"anchor-1t3tr3e","linear-algebra-05-001-anchor-003":"anchor-4j6of9","linear-algebra-05-002-anchor-001":"anchor-3href9","linear-algebra-05-002-anchor-002":"anchor-wp404o","linear-algebra-05-003-anchor-001":"anchor-1bg5ylq","linear-algebra-05-003-anchor-002":"anchor-13tlbne","linear-algebra-05-004-anchor-001":"anchor-6ed71h","linear-algebra-05-004-anchor-002":"anchor-1f0w0mb","linear-algebra-06-001-anchor-001":"anchor-18p87o1","linear-algebra-06-002-anchor-001":"anchor-voomvu","linear-algebra-06-002-anchor-002":"anchor-w491mz","linear-algebra-06-003-anchor-001":"anchor-1u32o0e","linear-algebra-06-004-anchor-001":"anchor-1vmfp82","linear-algebra-06-004-anchor-002":"anchor-eb4ki4","linear-algebra-06-005-anchor-001":"anchor-1dr847p","linear-algebra-06-006-anchor-001":"anchor-1peva2f","linear-algebra-06-008-anchor-001":"anchor-1q6o6r2","linear-algebra-06-009-anchor-001":"anchor-sg4ahl","linear-algebra-06-010-anchor-001":"anchor-fj9h9c","linear-algebra-06-010-anchor-002":"anchor-6e3f6t"} }
 
-export const mathContentStats = { chapters: mathChapters.length, topics: mathTopics.length, anchors: 180, formulas: mathFormulas.length }
+export const mathContentStats = { chapters: mathChapters.length, topics: mathTopics.length, anchors: 184, formulas: mathFormulas.length }
