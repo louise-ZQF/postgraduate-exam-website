@@ -3,7 +3,7 @@ import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import MathMarkdown from '@/components/MathMarkdown.vue'
 import PracticeIcon from '@/components/PracticeIcon.vue'
 import PracticeNoteEditor from '@/components/PracticeNoteEditor.vue'
-import { BookText, Calculator, Check, ChevronDown, CircleCheck, CircleX, Ellipsis, ExternalLink, Eye, NotebookText, RotateCcw, Star, Tag, Trash2 } from '@lucide/vue'
+import { BookText, Calculator, CircleCheck, CircleX, Ellipsis, ExternalLink, Eye, NotebookText, RotateCcw, Star, Tag, Trash2 } from '@lucide/vue'
 import arcDiagram from '@/assets/practice-figures/zy2026-set1-q5.svg?raw'
 import { favoriteReasonLabels, hasNote, masteryLabels, REMOVED_RETENTION_MS, type FavoriteReason, type ManualMastery, type PracticeQuestion, type QuestionImage, type QuestionProgress } from '@/math/practice'
 
@@ -18,7 +18,6 @@ const answerOpen = ref(false)
 const explanationOpen = ref(false)
 const knowledgeMenu = ref<HTMLDetailsElement>()
 const managementMenu = ref<HTMLDetailsElement>()
-const favoriteMenu = ref<HTMLDetailsElement>()
 function closeMenu(event: FocusEvent) {
   const menu = event.currentTarget as HTMLDetailsElement
   if (!menu.contains(event.relatedTarget as Node | null)) menu.open = false
@@ -27,15 +26,6 @@ function manageQuestion() {
   if (managementMenu.value) managementMenu.value.open = false
   if (props.removed) emit('restore', props.question.id)
   else emit('remove', props.question.id)
-}
-function closeFavoriteMenu() {
-  if (!favoriteMenu.value?.open) return
-  favoriteMenu.value.open = false
-  favoriteMenu.value.querySelector('summary')?.focus()
-}
-function clearFavorite() {
-  closeFavoriteMenu()
-  emit('favorite', props.question.id)
 }
 const answerPanel = ref<HTMLElement>()
 let answerObserver: IntersectionObserver | undefined
@@ -88,7 +78,6 @@ onBeforeUnmount(() => {
 const noteOpen = ref(props.showNote ?? false)
 const notePresent = computed(() => hasNote(props.progress))
 const reasons = computed(() => props.progress?.favoriteReasons ?? [])
-const favoriteDescription = computed(() => reasons.value.length ? `收藏：${reasons.value.map(reason => favoriteReasonLabels[reason]).join('、')}` : props.progress?.favorite ? '已收藏，未选原因' : '选择收藏原因')
 const selectedOption = ref('')
 const removalDeadlineLabel = computed(() => props.removed && props.progress?.removedAt ? new Date(props.progress.removedAt + REMOVED_RETENTION_MS).toLocaleString('zh-CN', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false }) : '')
 const showResult = computed(() => answerOpen.value || explanationOpen.value || Boolean(selectedOption.value))
@@ -122,18 +111,13 @@ const statuses = ['no-idea', 'calculation-error', 'mastered'] as const satisfies
     <p v-if="selectedOption && question.correctOption" class="choice-feedback" :class="selectedOption === question.correctOption ? 'correct' : 'incorrect'" role="status" aria-live="polite"><PracticeIcon :name="selectedOption === question.correctOption ? 'check' : 'unknown'" />{{ selectedOption === question.correctOption ? `回答正确，答案是 ${question.correctOption}` : `回答错误，你选了 ${selectedOption}，正确答案是 ${question.correctOption}` }}</p>
     <div class="question-actions">
       <div class="reading-controls"><button class="note-toggle" :class="{ 'has-note': notePresent }" :aria-label="notePresent ? '查看错因笔记（已有笔记）' : '记录错因笔记'" :aria-expanded="noteOpen" :aria-controls="`note-${question.id}`" @click="noteOpen = !noteOpen"><NotebookText /><span>笔记</span></button><template v-if="question.answerAvailable !== false"><button class="answer-toggle" :class="{ active: answerOpen }" :aria-label="answerOpen ? '收起答案' : '查看答案'" :aria-expanded="answerOpen" :aria-controls="`answer-${question.id}`" @click="answerOpen = !answerOpen"><Eye />答案</button><button class="explanation-toggle" :class="{ active: explanationOpen }" :aria-label="explanationOpen ? '收起解析' : '查看解析'" :aria-expanded="explanationOpen" :aria-controls="`answer-${question.id}`" @click="explanationOpen = !explanationOpen"><BookText />解析</button></template></div>
-      <div class="study-controls">
-        <details v-if="manageable" ref="favoriteMenu" class="question-favorites" @focusout="closeMenu" @keydown.esc.stop="closeFavoriteMenu">
-          <summary class="favorite-toggle" :class="{ saved: progress?.favorite }" :aria-label="favoriteDescription" :title="favoriteDescription"><Star class="favorite-star" />{{ reasons.length === 1 ? favoriteReasonLabels[reasons[0]] : '收藏' }}<small v-if="reasons.length > 1">{{ reasons.length }}</small><ChevronDown class="favorite-chevron" /></summary>
-          <div class="favorite-panel" role="group" aria-label="收藏原因（可多选）">
-            <p>收藏原因 <span>可多选</span></p>
-            <button v-for="(label, reason) in favoriteReasonLabels" :key="reason" type="button" :aria-pressed="reasons.includes(reason)" @click="emit('favorite', question.id, reason)">{{ label }}<Check v-if="reasons.includes(reason)" aria-hidden="true" /></button>
-            <button v-if="progress?.favorite" type="button" class="clear-favorite" @click="clearFavorite">取消收藏</button>
-          </div>
-        </details>
-        <div class="mastery-controls" role="group" :aria-label="`第 ${index} 题做题状态`">
-          <button v-for="status in statuses" :key="status" :class="[status, { marked: progress?.mastery === status }]" :aria-pressed="progress?.mastery === status" @click="emit('mark', question.id, status)"><CircleCheck v-if="status === 'mastered'" /><Calculator v-else-if="status === 'calculation-error'" /><CircleX v-else />{{ masteryLabels[status] }}</button>
-        </div>
+      <div class="mastery-controls" role="group" :aria-label="`第 ${index} 题做题状态`">
+        <button v-for="status in statuses" :key="status" :class="[status, { marked: progress?.mastery === status }]" :aria-pressed="progress?.mastery === status" @click="emit('mark', question.id, status)"><CircleCheck v-if="status === 'mastered'" /><Calculator v-else-if="status === 'calculation-error'" /><CircleX v-else />{{ masteryLabels[status] }}</button>
+      </div>
+      <div v-if="manageable" class="favorite-controls" role="group" aria-label="收藏原因（可多选）">
+        <span class="favorite-caption"><Star aria-hidden="true" />收藏</span>
+        <button v-for="(label, reason) in favoriteReasonLabels" :key="reason" class="favorite-reason" type="button" :aria-pressed="reasons.includes(reason)" @click="emit('favorite', question.id, reason)">{{ label }}</button>
+        <button v-if="progress?.favorite" class="clear-favorite" type="button" aria-label="取消收藏" @click="emit('favorite', question.id)">{{ reasons.length ? '取消收藏' : '已收藏 · 取消' }}</button>
       </div>
     </div>
     <section v-if="question.answerAvailable !== false && (answerOpen || explanationOpen || printMode)" :class="{ 'print-only': !answerOpen && !explanationOpen }" ref="answerPanel" :id="`answer-${question.id}`" class="answer-panel" aria-label="答案与解析">
@@ -176,21 +160,18 @@ summary::-webkit-details-marker { display: none; }
 .question-figures { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin: 12px 0 20px; }.question-figures figure { margin: 0; width: 340px; max-width: 100%; text-align: center; }.question-figures img { display: block; width: 100%; max-height: 260px; height: auto; object-fit: contain; margin: auto; border-radius: 6px; background: #fff; }.question-figures figcaption { margin-top: 6px; color: var(--muted); font-size: 12px; }
 .options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 16px; min-width: 0; margin: 0 0 20px; padding: 0; border: 0; }.option { position: relative; display: flex; align-items: center; gap: 8px; min-width: 0; min-height: 48px; border: 1px solid #dfe3e9; border-radius: 10px; padding: 8px 12px; color: var(--ink); font-size: 18px; line-height: 1.65; cursor: pointer; }.option input { position: absolute; inset: 0; opacity: 0; width: 100%; height: 100%; cursor: pointer; }.option:focus-within { outline: 3px solid var(--focus-ring); border-color: var(--accent); }.option:hover, .option.selected { border-color: var(--accent); background: var(--accent-tint); }.option-key { flex-shrink: 0; font-weight: 500; }.option :deep(.math-markdown) { min-width: 0; }.question-card .option :deep(.reading-math) { display: inline; overflow: visible; padding: 0; vertical-align: baseline; }.question-card .option :deep(.katex) { font-size: 1.21em; }.option.correct { border-color: #48ad77; background: #e1f8e9; }.option.wrong { border-color: var(--danger); background: var(--danger-tint); }.option-result { margin-left: auto; color: var(--success); }.option-result.incorrect { color: var(--danger); }
 .question-actions { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; border-top: 1px solid #e8eaef; padding-top: 12px; }
-.reading-controls, .study-controls, .mastery-controls { display: flex; align-items: center; }.reading-controls { gap: 14px; }.study-controls { flex-wrap: wrap; gap: 8px 16px; margin-left: auto; }.mastery-controls { flex-wrap: wrap; gap: 8px; }
+.reading-controls, .mastery-controls, .favorite-controls { display: flex; align-items: center; }
+.reading-controls { gap: 14px; }.mastery-controls { flex-wrap: wrap; gap: 8px; margin-left: auto; }
 .reading-controls button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 40px; border: 0; border-radius: 7px; padding: 0 5px; background: transparent; color: var(--ink); font-size: 14px; font-weight: 600; }.reading-controls button:hover { background: #f7f8fb; }.reading-controls button.active { color: var(--accent-dark); }
 .reading-controls .note-toggle.has-note { color: var(--danger); background: var(--danger-tint); }
-.favorite-toggle, .mastery-controls button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 40px; border: 1px solid #dfe3e9; border-radius: 10px; padding: 0 14px; background: #fff; color: var(--ink-soft); font-size: 14px; font-weight: 600; white-space: nowrap; }
-.favorite-toggle:hover, .question-favorites[open] .favorite-toggle, .mastery-controls button:hover { background: #f7f8fb; border-color: #c3cad5; }
-.favorite-toggle.saved { border-color: #d8ae69; color: var(--warning); background: var(--warning-tint); }
-.favorite-toggle.saved .favorite-star { fill: currentColor; }
-.favorite-chevron { width: 13px; height: 13px; }.question-favorites[open] .favorite-chevron { transform: rotate(180deg); }
-.favorite-toggle small { min-width: 16px; font-size: 12px; text-align: center; }
-.question-favorites { position: relative; }
-.favorite-panel { position: absolute; z-index: 6; top: calc(100% + 7px); left: 0; min-width: 184px; border: 1px solid var(--line); border-radius: 10px; padding: 5px; background: #fff; box-shadow: 0 8px 24px #1f29371f; }
-.favorite-panel p { display: flex; justify-content: space-between; gap: 12px; margin: 0; padding: 7px 8px; color: var(--ink-soft); font-size: 12px; }.favorite-panel p span { color: var(--muted); }
-.favorite-panel button { display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%; min-height: 40px; border: 0; border-radius: 6px; padding: 0 8px; background: transparent; color: var(--ink); font-size: 13px; text-align: left; white-space: nowrap; }
-.favorite-panel button:hover { background: #f7f8fb; }.favorite-panel button[aria-pressed="true"] { color: var(--warning); background: var(--warning-tint); }
-.favorite-panel .clear-favorite { margin-top: 4px; border-top: 1px solid var(--line); color: var(--danger); }
+.mastery-controls button, .favorite-reason { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 40px; border: 1px solid #dfe3e9; border-radius: 10px; padding: 0 14px; background: #fff; color: var(--ink-soft); font-size: 14px; font-weight: 600; white-space: nowrap; }
+.mastery-controls button:hover, .favorite-reason:hover { background: #f7f8fb; border-color: #c3cad5; }
+.favorite-controls { flex-basis: 100%; flex-wrap: wrap; gap: 8px; }
+.favorite-caption { display: inline-flex; align-items: center; gap: 6px; margin: 0 4px; color: var(--ink-soft); font-size: 13px; white-space: nowrap; }
+.favorite-reason { min-height: 36px; padding: 0 10px; border-radius: 8px; font-size: 13px; }
+.favorite-reason[aria-pressed="true"] { border-color: #d8ae69; color: var(--warning); background: var(--warning-tint); }
+.clear-favorite { min-height: 36px; border: 0; padding: 0 6px; background: transparent; color: var(--ink-soft); font-size: 12px; white-space: nowrap; }
+.clear-favorite:hover { color: var(--danger); text-decoration: underline; }
 .mastery-controls .marked:not(.mastered) { border-color: #e0959e; background: var(--danger-tint); color: var(--danger); }
 .mastery-controls .mastered.marked { border-color: #45b078; background: #dff9e9; color: #227346; }
 .answer-panel { margin: 16px 0 0; border-top: 1px solid var(--line); padding: 18px 0 4px; font-size: 16px; line-height: 1.8; }.answer-panel h4 { margin: 0 0 8px; color: var(--ink); font-size: 14px; font-weight: 600; }.answer-panel h4:not(:first-child) { margin-top: 18px; }.choice-feedback { display: flex; align-items: center; gap: 8px; margin: 0 0 16px; border-radius: 8px; padding: 10px 12px; font-size: 14px; line-height: 1.6; }.choice-feedback.correct { background: var(--success-tint); color: var(--success); }.choice-feedback.incorrect { background: var(--danger-tint); color: var(--danger); }
