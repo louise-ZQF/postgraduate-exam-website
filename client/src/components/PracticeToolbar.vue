@@ -1,24 +1,28 @@
 <script setup lang="ts">
 import PracticeIcon from './PracticeIcon.vue'
+import { favoriteReasonLabels, isFavoriteFilter, practiceStatusLabels, type PracticeStatus } from '@/math/practice'
 
-const status = defineModel<string>('status', { required: true })
+const status = defineModel<PracticeStatus>('status', { required: true })
 const keyword = defineModel<string>('keyword', { required: true })
 defineProps<{ count: number; marked: number; hidden: number; removed: boolean; notes: boolean }>()
 defineEmits<{ reveal: [] }>()
-const filters = [{ value: 'all', label: '全部题目' }, { value: 'unmarked', label: '未做过' }, { value: 'pending', label: '我的错题' }, { value: 'favorites', label: '收藏' }]
+const filters = ['all', 'unmarked', 'pending', 'favorites'] as const
+const errorFilters = ['no-idea', 'calculation-error', 'wrong'] as const
+const isSelected = (filter: typeof filters[number]) => filter === 'favorites' ? isFavoriteFilter(status.value) : filter === 'pending' ? status.value === 'pending' || errorFilters.some(error => error === status.value) : status.value === filter
 </script>
 
 <template>
   <section class="practice-toolbar toolbar" aria-label="题目筛选">
     <div class="filter-row">
       <div class="status-tabs" role="group" aria-label="显示范围">
-        <button v-for="filter in filters" :key="filter.value" :aria-pressed="status === filter.value" :class="{ selected: status === filter.value }" @click="status = filter.value">{{ filter.label }}</button>
+        <button v-for="filter in filters" :key="filter" :aria-pressed="isSelected(filter)" :class="{ selected: isSelected(filter) }" @click="status = filter">{{ practiceStatusLabels[filter] }}</button>
       </div>
       <div class="filter-tools">
         <label class="question-search"><PracticeIcon name="search" /><input v-model="keyword" maxlength="80" aria-label="搜索错题" :placeholder="notes ? '搜索题目或笔记' : '搜索题目、知识点'" /><button v-if="keyword" aria-label="清空搜索" @click="keyword = ''"><PracticeIcon name="close" /></button></label>
         <select v-model="status" aria-label="显示题目" class="detail-filter">
-          <option value="all">更多状态</option><option value="unmarked">未做过</option><option value="pending">我的错题</option><option value="favorites">只看收藏</option>
-          <optgroup label="按掌握程度"><option value="unfamiliar">不熟练</option><option value="unknown">不会</option><option value="mastered">已掌握</option></optgroup>
+          <option value="all">全部题目</option><option value="unmarked">未做过</option><option value="pending">我的错题</option><option value="mastered">已掌握</option>
+          <optgroup label="按错因"><option v-for="filter in errorFilters" :key="filter" :value="filter">{{ practiceStatusLabels[filter] }}</option></optgroup>
+          <optgroup label="按收藏原因"><option value="favorites">全部收藏</option><option v-for="(label, reason) in favoriteReasonLabels" :key="reason" :value="reason">{{ label }}</option></optgroup>
         </select>
       </div>
     </div>
@@ -27,7 +31,7 @@ const filters = [{ value: 'all', label: '全部题目' }, { value: 'unmarked', l
       <button v-if="hidden" class="reveal-button" aria-label="重新显示已隐藏题目" @click="$emit('reveal')"><PracticeIcon name="eye" />已隐藏 {{ hidden }} 道<span>重新显示</span></button>
       <details v-if="!removed" class="practice-rules">
         <summary><PracticeIcon name="info" />练习规则</summary>
-        <div class="rules-panel"><strong>专注当前这一轮</strong><p>标记「掌握」后 30 秒隐藏，改标可取消。</p><p>收藏题在各状态中保留，不会自动隐藏。</p><p>已作答或标记的题不再算未做过；本轮会保留正在作答的题。</p><p>隐藏状态与上次位置自动保存，可随时重新显示。</p></div>
+        <div class="rules-panel"><p>「没思路」「计算错误」和「错因待标」都计入我的错题。</p><p>收藏可以多选原因，和做题状态分别记录。</p><p>标记「掌握」后 30 秒隐藏，收藏题免于自动隐藏。</p><p>未做过的题在开始作答后仍留在本轮，方便继续做。</p></div>
       </details>
     </div>
   </section>
@@ -48,7 +52,7 @@ svg { width: 16px; height: 16px; flex-shrink: 0; }
 .question-search input { width: 100%; min-width: 0; border: 0; outline: 0; background: transparent; font-size: 13px; color: var(--ink); }
 .question-search input::placeholder { color: var(--muted); }
 .question-search button { display: grid; place-items: center; flex-shrink: 0; width: 32px; height: 44px; border: 0; background: transparent; color: var(--muted); }
-.detail-filter { min-height: 40px; width: 108px; border: 1px solid var(--line); border-radius: 7px; padding: 0 8px; background: var(--paper); color: var(--ink-soft); font-size: 12px; }
+.detail-filter { min-height: 40px; width: 128px; border: 1px solid var(--line); border-radius: 7px; padding: 0 8px; background: var(--paper); color: var(--ink-soft); font-size: 12px; }
 .results-row { position: relative; display: flex; align-items: center; flex-wrap: wrap; gap: 4px 16px; min-height: 42px; }
 .result-count { margin: 0; color: var(--ink-soft); font-size: 12px; font-variant-numeric: tabular-nums; }
 .result-count strong { color: var(--ink); font-size: 14px; font-weight: 650; }

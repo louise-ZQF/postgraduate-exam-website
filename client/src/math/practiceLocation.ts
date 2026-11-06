@@ -1,10 +1,12 @@
+import { isFavoriteFilter, normalizePracticeStatus, type PracticeStatus } from './practice'
+
 export type PracticeCollection = 'exams' | 'll880'
 export type PracticeLocation = {
   questionId: string
   view: 'all' | 'review' | 'notes' | 'removed'
   year: string
   paper: string
-  status: string
+  status: PracticeStatus
   type: string
   level: string
   keyword: string
@@ -17,7 +19,7 @@ const historyKey = (collection: PracticeCollection) => `math2-practice-location-
 const validId = (value: unknown): value is string => typeof value === 'string' && /^[a-zA-Z0-9_-]{1,120}$/.test(value)
 
 export function practiceLocationContext(location: PracticeLocation): string {
-  const view = location.view === 'review' && location.status === 'favorites' ? 'favorites' : location.view
+  const view = location.view === 'review' && isFavoriteFilter(location.status) ? 'favorites' : location.view
   return view === 'all' ? `${view}:${location.paper || location.year}` : view
 }
 
@@ -30,7 +32,7 @@ export function normalizePracticeLocation(value: unknown): PracticeLocation | un
     view: ['review', 'notes', 'removed'].includes(item.view ?? '') ? item.view as PracticeLocation['view'] : 'all',
     year: typeof item.year === 'string' && /^(19|20)\d{2}$/.test(item.year) ? item.year : '',
     paper: validId(item.paper) ? item.paper : '',
-    status: ['all', 'pending', 'unmarked', 'favorites', 'mastered', 'unknown', 'unfamiliar'].includes(item.status ?? '') ? item.status! : 'all',
+    status: normalizePracticeStatus(item.status),
     type: validId(item.type) ? item.type : 'all',
     level: ['基础题', '综合题', '拓展题'].includes(item.level ?? '') ? item.level! : 'all',
     keyword: typeof item.keyword === 'string' ? item.keyword.slice(0, 80) : '',

@@ -1,4 +1,36 @@
-export type Mastery = 'unfamiliar' | 'unknown' | 'mastered'
+export const masteryLabels = { 'no-idea': '没思路', 'calculation-error': '计算错误', wrong: '错因待标', mastered: '掌握' } as const
+export type Mastery = keyof typeof masteryLabels
+export type ManualMastery = Exclude<Mastery, 'wrong'>
+export const favoriteReasonLabels = {
+  'favorite-idea': '思路值得收藏',
+  'favorite-calculation': '新的计算手法',
+  'favorite-hard': '难题多看',
+} as const
+export type FavoriteReason = keyof typeof favoriteReasonLabels
+export const practiceStatusLabels = {
+  all: '全部题目', unmarked: '未做过', pending: '我的错题', favorites: '收藏',
+  ...masteryLabels, mastered: '已掌握', ...favoriteReasonLabels,
+} as const
+export type PracticeStatus = keyof typeof practiceStatusLabels
+
+function normalizeMastery(value: unknown): Mastery | undefined {
+  // 旧版的「不会」也可能来自自动判错，不能还原成某一种具体错因。
+  if (value === 'unknown' || value === 'unfamiliar') return 'wrong'
+  if (typeof value === 'string' && Object.hasOwn(masteryLabels, value)) return value as Mastery
+}
+
+export function isFavoriteReason(value: unknown): value is FavoriteReason {
+  return typeof value === 'string' && Object.hasOwn(favoriteReasonLabels, value)
+}
+
+export function isFavoriteFilter(status: PracticeStatus): boolean {
+  return status === 'favorites' || isFavoriteReason(status)
+}
+
+export function normalizePracticeStatus(value: unknown): PracticeStatus {
+  if (typeof value === 'string' && Object.hasOwn(practiceStatusLabels, value)) return value as PracticeStatus
+  return normalizeMastery(value) ?? 'all'
+}
 export type QuestionImage = { src: string; alt: string; width: number; height: number }
 export type PracticeQuestion = {
   id: string
@@ -30,7 +62,7 @@ export type PracticeQuestion = {
   searchText?: string
   sourceOrder?: number
 }
-export type QuestionProgress = { mastery?: Mastery; attemptedAt?: number; favorite?: boolean; removed?: boolean; removedAt?: number; deletedAt?: number; note: string; updatedAt: number; reviews: number }
+export type QuestionProgress = { mastery?: Mastery; attemptedAt?: number; favorite?: boolean; favoriteReasons?: FavoriteReason[]; removed?: boolean; removedAt?: number; deletedAt?: number; note: string; updatedAt: number; reviews: number }
 export type PracticeProgress = Record<string, QuestionProgress>
 export const PRACTICE_STORAGE_KEY = 'math2-practice-progress-v1'
 export const PRACTICE_PROGRESS_SAVED_EVENT = 'math2-practice-progress-saved'
@@ -68,10 +100,13 @@ export function normalizeProgress(value: unknown): PracticeProgress {
       result[id] = { removed: true, deletedAt: item.deletedAt, note: '', reviews: 0, updatedAt: Math.max(item.deletedAt, typeof item.updatedAt === 'number' && Number.isFinite(item.updatedAt) ? item.updatedAt : 0) }
       continue
     }
-    const mastery = ['unfamiliar', 'unknown', 'mastered'].includes(item.mastery ?? '') ? item.mastery : undefined
+    const mastery = normalizeMastery(item.mastery)
+    const reasons = item.favorite !== false && Array.isArray(item.favoriteReasons) ? [...new Set(item.favoriteReasons.filter(isFavoriteReason))] : []
+    const favorite = reasons.length ? true : typeof item.favorite === 'boolean' ? item.favorite : undefined
     result[id] = {
       mastery,
-      ...(typeof item.favorite === 'boolean' ? { favorite: item.favorite } : {}),
+      ...(favorite !== undefined ? { favorite } : {}),
+      ...(reasons.length ? { favoriteReasons: reasons } : {}),
       ...(typeof item.attemptedAt === 'number' && Number.isFinite(item.attemptedAt) && item.attemptedAt > 0 ? { attemptedAt: item.attemptedAt } : {}),
       ...(typeof item.removed === 'boolean' ? { removed: item.removed } : {}),
       ...(item.removed === true && typeof item.removedAt === 'number' && Number.isFinite(item.removedAt) && item.removedAt > 0 ? { removedAt: item.removedAt } : {}),
@@ -84,7 +119,7 @@ export function normalizeProgress(value: unknown): PracticeProgress {
 }
 
 export function isPending(item?: QuestionProgress): boolean {
-  return item?.mastery === 'unfamiliar' || item?.mastery === 'unknown'
+  return item?.mastery !== undefined && item.mastery !== 'mastered'
 }
 
 export function hasNote(item?: QuestionProgress): boolean {
@@ -95,12 +130,19 @@ export function isUnattempted(item?: QuestionProgress): boolean {
   return !item?.mastery && !item?.attemptedAt && !item?.reviews
 }
 
-export function matchesPracticeStatus(item: QuestionProgress | undefined, status: string): boolean {
-  if (item?.favorite) return true
+export function matchesPracticeStatus(item: QuestionProgress | undefined, status: PracticeStatus): boolean {
   if (status === 'all') return true
   if (status === 'pending') return isPending(item)
   if (status === 'unmarked') return isUnattempted(item)
+  if (status === 'favorites') return item?.favorite === true
+  if (isFavoriteReason(status)) return item?.favorite === true && Boolean(item.favoriteReasons?.includes(status))
   return item?.mastery === status
+}
+
+export function togglePracticeFavorite(item: QuestionProgress, reason?: FavoriteReason): Pick<QuestionProgress, 'favorite' | 'favoriteReasons'> {
+  const previous = item.favoriteReasons ?? []
+  const reasons = reason ? previous.includes(reason) ? previous.filter(value => value !== reason) : [...previous, reason] : []
+  return { favorite: reasons.length > 0, favoriteReasons: reasons.length ? reasons : undefined }
 }
 
 export function mergeProgress(current: PracticeProgress, incoming: PracticeProgress): PracticeProgress {

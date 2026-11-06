@@ -3,12 +3,12 @@ import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import MathMarkdown from '@/components/MathMarkdown.vue'
 import PracticeIcon from '@/components/PracticeIcon.vue'
 import PracticeNoteEditor from '@/components/PracticeNoteEditor.vue'
-import { BookText, CircleCheck, CircleGauge, CircleX, Ellipsis, ExternalLink, Eye, NotebookText, RotateCcw, Star, Tag, Trash2 } from '@lucide/vue'
+import { BookText, Calculator, Check, ChevronDown, CircleCheck, CircleX, Ellipsis, ExternalLink, Eye, NotebookText, RotateCcw, Star, Tag, Trash2 } from '@lucide/vue'
 import arcDiagram from '@/assets/practice-figures/zy2026-set1-q5.svg?raw'
-import { REMOVED_RETENTION_MS, type Mastery, type PracticeQuestion, type QuestionImage, type QuestionProgress } from '@/math/practice'
+import { favoriteReasonLabels, hasNote, masteryLabels, REMOVED_RETENTION_MS, type FavoriteReason, type ManualMastery, type PracticeQuestion, type QuestionImage, type QuestionProgress } from '@/math/practice'
 
 const props = defineProps<{ question: PracticeQuestion; index: number; progress?: QuestionProgress; storageFailed: boolean; showNote?: boolean; removed?: boolean; manageable?: boolean; printMode?: boolean; autoHidePending?: boolean }>()
-const emit = defineEmits<{ mark: [id: string, mastery: Mastery]; favorite: [id: string]; attempt: [id: string, correct: boolean | undefined]; note: [id: string, note: string]; noteBlur: []; remove: [id: string]; restore: [id: string]; preview: [image: QuestionImage, trigger: HTMLElement] }>()
+const emit = defineEmits<{ mark: [id: string, mastery: ManualMastery]; favorite: [id: string, reason?: FavoriteReason]; attempt: [id: string, correct: boolean | undefined]; note: [id: string, note: string]; noteBlur: []; remove: [id: string]; restore: [id: string]; preview: [image: QuestionImage, trigger: HTMLElement] }>()
 const arcDiagramUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(arcDiagram)}`
 const figureUrl = (src: string) => src === 'practice-figures/zy2026-set1-q5.svg' ? arcDiagramUrl : `${import.meta.env.BASE_URL}${src}`
 function previewImage(picture: QuestionImage, event: MouseEvent) {
@@ -18,6 +18,7 @@ const answerOpen = ref(false)
 const explanationOpen = ref(false)
 const knowledgeMenu = ref<HTMLDetailsElement>()
 const managementMenu = ref<HTMLDetailsElement>()
+const favoriteMenu = ref<HTMLDetailsElement>()
 function closeMenu(event: FocusEvent) {
   const menu = event.currentTarget as HTMLDetailsElement
   if (!menu.contains(event.relatedTarget as Node | null)) menu.open = false
@@ -26,6 +27,15 @@ function manageQuestion() {
   if (managementMenu.value) managementMenu.value.open = false
   if (props.removed) emit('restore', props.question.id)
   else emit('remove', props.question.id)
+}
+function closeFavoriteMenu() {
+  if (!favoriteMenu.value?.open) return
+  favoriteMenu.value.open = false
+  favoriteMenu.value.querySelector('summary')?.focus()
+}
+function clearFavorite() {
+  closeFavoriteMenu()
+  emit('favorite', props.question.id)
 }
 const answerPanel = ref<HTMLElement>()
 let answerObserver: IntersectionObserver | undefined
@@ -76,14 +86,15 @@ onBeforeUnmount(() => {
   document.removeEventListener('visibilitychange', updateAutoCollapse)
 })
 const noteOpen = ref(props.showNote ?? false)
+const notePresent = computed(() => hasNote(props.progress))
+const reasons = computed(() => props.progress?.favoriteReasons ?? [])
+const favoriteDescription = computed(() => reasons.value.length ? `收藏：${reasons.value.map(reason => favoriteReasonLabels[reason]).join('、')}` : props.progress?.favorite ? '已收藏，未选原因' : '选择收藏原因')
 const selectedOption = ref('')
 const removalDeadlineLabel = computed(() => props.removed && props.progress?.removedAt ? new Date(props.progress.removedAt + REMOVED_RETENTION_MS).toLocaleString('zh-CN', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false }) : '')
 const showResult = computed(() => answerOpen.value || explanationOpen.value || Boolean(selectedOption.value))
 const knowledgeItems = computed(() => props.question.questionTypes?.length ? props.question.questionTypes.map(item => ({ title: item.title, detail: item.references.join('、') })) : [{ title: props.question.topic, detail: '' }])
 const lastUpdated = computed(() => props.progress?.updatedAt ? new Date(props.progress.updatedAt).toLocaleDateString('zh-CN', { month: '2-digit', day: '2-digit' }).replaceAll('/', '-') : '')
-const statuses: { value: Mastery; label: string }[] = [
-  { value: 'unfamiliar', label: '不熟练' }, { value: 'unknown', label: '不会' }, { value: 'mastered', label: '掌握' },
-]
+const statuses = ['no-idea', 'calculation-error', 'mastered'] as const satisfies readonly ManualMastery[]
 </script>
 
 <template>
@@ -91,7 +102,7 @@ const statuses: { value: Mastery; label: string }[] = [
     <header class="question-meta">
       <span class="question-index">{{ question.number }}</span>
       <div class="question-source"><a v-if="question.sourceUrl" :href="question.sourceUrl" target="_blank" rel="noopener">{{ question.source }}<ExternalLink /></a><span v-else>{{ question.source }}</span><span v-if="question.exerciseIndex" class="exam-number">{{ question.paperId ? '原题' : '真题' }} {{ question.examNumber }} · 练习 {{ question.exerciseIndex }}</span></div>
-      <span v-if="progress?.mastery" class="mastery-record" :title="`最近更新 ${lastUpdated}`">{{ progress.mastery === 'mastered' ? '已掌握' : statuses.find(s => s.value === progress?.mastery)?.label }}<span v-if="lastUpdated"> · {{ lastUpdated }}</span></span>
+      <span v-if="progress?.mastery" class="mastery-record" :class="{ 'error-record': progress.mastery !== 'mastered' }" :title="`最近更新 ${lastUpdated}`">{{ progress.mastery === 'mastered' ? '已掌握' : masteryLabels[progress.mastery] }}<span v-if="lastUpdated"> · {{ lastUpdated }}</span></span>
       <details ref="knowledgeMenu" class="question-knowledge" @focusout="closeMenu" @keydown.esc="knowledgeMenu && (knowledgeMenu.open = false)"><summary><Tag /><span>相关知识点</span><small>{{ knowledgeItems.length }}</small></summary><div class="knowledge-panel"><strong>{{ question.topic }}</strong><p v-if="question.bookId" class="knowledge-level">{{ question.level }} · {{ question.type === 'choice' ? '选择题' : question.type === 'fill' ? '填空题' : '解答题' }}</p><div v-for="item in knowledgeItems" :key="item.title"><span>{{ item.title }}</span><small v-if="item.detail">{{ item.detail }}</small></div></div></details>
       <details v-if="manageable" ref="managementMenu" class="question-management" @focusout="closeMenu" @keydown.esc="managementMenu && (managementMenu.open = false)"><summary aria-label="更多题目操作" title="更多操作"><Ellipsis /></summary><div class="management-panel"><button class="question-manage" :class="{ restore: removed }" @click="manageQuestion"><RotateCcw v-if="removed" /><Trash2 v-else />{{ removed ? '恢复题目' : '移除题目' }}</button></div></details>
     </header>
@@ -110,14 +121,26 @@ const statuses: { value: Mastery; label: string }[] = [
     </fieldset>
     <p v-if="selectedOption && question.correctOption" class="choice-feedback" :class="selectedOption === question.correctOption ? 'correct' : 'incorrect'" role="status" aria-live="polite"><PracticeIcon :name="selectedOption === question.correctOption ? 'check' : 'unknown'" />{{ selectedOption === question.correctOption ? `回答正确，答案是 ${question.correctOption}` : `回答错误，你选了 ${selectedOption}，正确答案是 ${question.correctOption}` }}</p>
     <div class="question-actions">
-      <div class="reading-controls"><button class="note-toggle" :class="{ 'has-note': progress?.note }" :aria-label="progress?.note ? '查看错因笔记' : '记录错因笔记'" :aria-expanded="noteOpen" :aria-controls="`note-${question.id}`" @click="noteOpen = !noteOpen"><NotebookText /><span>笔记</span></button><template v-if="question.answerAvailable !== false"><button class="answer-toggle" :class="{ active: answerOpen }" :aria-label="answerOpen ? '收起答案' : '查看答案'" :aria-expanded="answerOpen" :aria-controls="`answer-${question.id}`" @click="answerOpen = !answerOpen"><Eye />答案</button><button class="explanation-toggle" :class="{ active: explanationOpen }" :aria-label="explanationOpen ? '收起解析' : '查看解析'" :aria-expanded="explanationOpen" :aria-controls="`answer-${question.id}`" @click="explanationOpen = !explanationOpen"><BookText />解析</button></template></div>
-      <div class="study-controls"><button v-if="manageable" class="favorite-toggle" :class="{ saved: progress?.favorite }" :aria-pressed="Boolean(progress?.favorite)" :aria-label="progress?.favorite ? '取消收藏题目' : '收藏题目'" @click="emit('favorite', question.id)"><Star />收藏</button><div class="mastery-controls" role="group" :aria-label="`第 ${index} 题掌握程度`"><button v-for="status in statuses" :key="status.value" :class="[status.value, { marked: progress?.mastery === status.value }]" :aria-pressed="progress?.mastery === status.value" @click="emit('mark', question.id, status.value)"><CircleCheck v-if="status.value === 'mastered'" /><CircleGauge v-else-if="status.value === 'unfamiliar'" /><CircleX v-else />{{ status.label }}</button></div></div>
+      <div class="reading-controls"><button class="note-toggle" :class="{ 'has-note': notePresent }" :aria-label="notePresent ? '查看错因笔记（已有笔记）' : '记录错因笔记'" :aria-expanded="noteOpen" :aria-controls="`note-${question.id}`" @click="noteOpen = !noteOpen"><NotebookText /><span>笔记</span></button><template v-if="question.answerAvailable !== false"><button class="answer-toggle" :class="{ active: answerOpen }" :aria-label="answerOpen ? '收起答案' : '查看答案'" :aria-expanded="answerOpen" :aria-controls="`answer-${question.id}`" @click="answerOpen = !answerOpen"><Eye />答案</button><button class="explanation-toggle" :class="{ active: explanationOpen }" :aria-label="explanationOpen ? '收起解析' : '查看解析'" :aria-expanded="explanationOpen" :aria-controls="`answer-${question.id}`" @click="explanationOpen = !explanationOpen"><BookText />解析</button></template></div>
+      <div class="study-controls">
+        <details v-if="manageable" ref="favoriteMenu" class="question-favorites" @focusout="closeMenu" @keydown.esc.stop="closeFavoriteMenu">
+          <summary class="favorite-toggle" :class="{ saved: progress?.favorite }" :aria-label="favoriteDescription" :title="favoriteDescription"><Star class="favorite-star" />{{ reasons.length === 1 ? favoriteReasonLabels[reasons[0]] : '收藏' }}<small v-if="reasons.length > 1">{{ reasons.length }}</small><ChevronDown class="favorite-chevron" /></summary>
+          <div class="favorite-panel" role="group" aria-label="收藏原因（可多选）">
+            <p>收藏原因 <span>可多选</span></p>
+            <button v-for="(label, reason) in favoriteReasonLabels" :key="reason" type="button" :aria-pressed="reasons.includes(reason)" @click="emit('favorite', question.id, reason)">{{ label }}<Check v-if="reasons.includes(reason)" aria-hidden="true" /></button>
+            <button v-if="progress?.favorite" type="button" class="clear-favorite" @click="clearFavorite">取消收藏</button>
+          </div>
+        </details>
+        <div class="mastery-controls" role="group" :aria-label="`第 ${index} 题做题状态`">
+          <button v-for="status in statuses" :key="status" :class="[status, { marked: progress?.mastery === status }]" :aria-pressed="progress?.mastery === status" @click="emit('mark', question.id, status)"><CircleCheck v-if="status === 'mastered'" /><Calculator v-else-if="status === 'calculation-error'" /><CircleX v-else />{{ masteryLabels[status] }}</button>
+        </div>
+      </div>
     </div>
     <section v-if="question.answerAvailable !== false && (answerOpen || explanationOpen || printMode)" :class="{ 'print-only': !answerOpen && !explanationOpen }" ref="answerPanel" :id="`answer-${question.id}`" class="answer-panel" aria-label="答案与解析">
       <template v-if="question.answerImages?.length"><h4>原书答案与解析</h4><div class="source-images"><button v-for="picture in question.answerImages" :key="picture.src" type="button" class="image-preview-trigger" :aria-label="`${picture.alt}，放大预览`" @click="previewImage(picture, $event)"><img :src="figureUrl(picture.src)" :alt="picture.alt" :width="picture.width" :height="picture.height" loading="lazy" decoding="async" /></button></div></template>
       <template v-else><template v-if="answerOpen || printMode"><h4>答案</h4><MathMarkdown :source="question.answer" compact /></template><template v-if="explanationOpen || printMode"><h4>解析</h4><MathMarkdown :source="question.explanation" compact /></template></template>
     </section>
-    <p v-if="autoHidePending && !printMode" class="auto-hide-hint" role="status">已掌握，稍后自动隐藏；改为「不会」或「不熟练」可取消。</p>
+    <p v-if="autoHidePending && !printMode" class="auto-hide-hint" role="status">已掌握，稍后自动隐藏；改标错因可取消。</p>
     <section v-if="printMode && progress?.note?.trim()" class="print-note print-only"><h4>错因笔记</h4><MathMarkdown :source="progress.note" automatic breaks /></section>
     <PracticeNoteEditor v-if="noteOpen" :id="`note-${question.id}`" :input-id="`note-input-${question.id}`" :label="`${question.source}的错因笔记`" :model-value="progress?.note ?? ''" :storage-failed="storageFailed" @update:model-value="emit('note', question.id, $event)" @blur="emit('noteBlur')" />
   </article>
@@ -135,6 +158,7 @@ button, summary { cursor: pointer; transition: background .15s, border-color .15
 .question-source > a { display: inline-flex; align-items: center; gap: 7px; }.question-source > a:hover { color: var(--accent-dark); }
 .question-source > a svg { width: 14px; height: 14px; }.exam-number { white-space: nowrap; font-size: 12px; }
 .mastery-record { flex-shrink: 0; color: var(--ink-soft); font-size: 14px; white-space: nowrap; }
+.mastery-record.error-record { color: var(--danger); }
 .question-knowledge, .question-management { position: relative; }
 summary { display: flex; align-items: center; justify-content: center; gap: 9px; min-height: 36px; list-style: none; color: var(--ink-soft); }
 summary::-webkit-details-marker { display: none; }
@@ -152,9 +176,23 @@ summary::-webkit-details-marker { display: none; }
 .question-figures { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin: 12px 0 20px; }.question-figures figure { margin: 0; width: 340px; max-width: 100%; text-align: center; }.question-figures img { display: block; width: 100%; max-height: 260px; height: auto; object-fit: contain; margin: auto; border-radius: 6px; background: #fff; }.question-figures figcaption { margin-top: 6px; color: var(--muted); font-size: 12px; }
 .options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 16px; min-width: 0; margin: 0 0 20px; padding: 0; border: 0; }.option { position: relative; display: flex; align-items: center; gap: 8px; min-width: 0; min-height: 48px; border: 1px solid #dfe3e9; border-radius: 10px; padding: 8px 12px; color: var(--ink); font-size: 18px; line-height: 1.65; cursor: pointer; }.option input { position: absolute; inset: 0; opacity: 0; width: 100%; height: 100%; cursor: pointer; }.option:focus-within { outline: 3px solid var(--focus-ring); border-color: var(--accent); }.option:hover, .option.selected { border-color: var(--accent); background: var(--accent-tint); }.option-key { flex-shrink: 0; font-weight: 500; }.option :deep(.math-markdown) { min-width: 0; }.question-card .option :deep(.reading-math) { display: inline; overflow: visible; padding: 0; vertical-align: baseline; }.question-card .option :deep(.katex) { font-size: 1.21em; }.option.correct { border-color: #48ad77; background: #e1f8e9; }.option.wrong { border-color: var(--danger); background: var(--danger-tint); }.option-result { margin-left: auto; color: var(--success); }.option-result.incorrect { color: var(--danger); }
 .question-actions { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; border-top: 1px solid #e8eaef; padding-top: 12px; }
-.reading-controls, .study-controls, .mastery-controls { display: flex; align-items: center; }.reading-controls { gap: 14px; }.study-controls { gap: 16px; margin-left: auto; }.mastery-controls { gap: 8px; }
-.reading-controls button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 40px; border: 0; border-radius: 7px; padding: 0 5px; background: transparent; color: var(--ink); font-size: 14px; font-weight: 600; }.reading-controls button:hover { background: #f7f8fb; }.reading-controls button.active, .reading-controls button.has-note { color: var(--accent-dark); }
-.favorite-toggle, .mastery-controls button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 40px; border: 1px solid #dfe3e9; border-radius: 10px; padding: 0 14px; background: #fff; color: var(--ink-soft); font-size: 14px; font-weight: 600; white-space: nowrap; }.favorite-toggle:hover, .mastery-controls button:hover { background: #f7f8fb; border-color: #c3cad5; }.favorite-toggle.saved { border-color: #d8ae69; color: var(--warning); background: var(--warning-tint); }.favorite-toggle.saved svg { fill: currentColor; }.mastery-controls .unfamiliar.marked { border-color: #d8ae69; background: var(--warning-tint); color: var(--warning); }.mastery-controls .unknown.marked { border-color: #e0959e; background: var(--danger-tint); color: var(--danger); }.mastery-controls .mastered.marked { border-color: #45b078; background: #dff9e9; color: #227346; }
+.reading-controls, .study-controls, .mastery-controls { display: flex; align-items: center; }.reading-controls { gap: 14px; }.study-controls { flex-wrap: wrap; gap: 8px 16px; margin-left: auto; }.mastery-controls { flex-wrap: wrap; gap: 8px; }
+.reading-controls button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 40px; border: 0; border-radius: 7px; padding: 0 5px; background: transparent; color: var(--ink); font-size: 14px; font-weight: 600; }.reading-controls button:hover { background: #f7f8fb; }.reading-controls button.active { color: var(--accent-dark); }
+.reading-controls .note-toggle.has-note { color: var(--danger); background: var(--danger-tint); }
+.favorite-toggle, .mastery-controls button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 40px; border: 1px solid #dfe3e9; border-radius: 10px; padding: 0 14px; background: #fff; color: var(--ink-soft); font-size: 14px; font-weight: 600; white-space: nowrap; }
+.favorite-toggle:hover, .question-favorites[open] .favorite-toggle, .mastery-controls button:hover { background: #f7f8fb; border-color: #c3cad5; }
+.favorite-toggle.saved { border-color: #d8ae69; color: var(--warning); background: var(--warning-tint); }
+.favorite-toggle.saved .favorite-star { fill: currentColor; }
+.favorite-chevron { width: 13px; height: 13px; }.question-favorites[open] .favorite-chevron { transform: rotate(180deg); }
+.favorite-toggle small { min-width: 16px; font-size: 12px; text-align: center; }
+.question-favorites { position: relative; }
+.favorite-panel { position: absolute; z-index: 6; top: calc(100% + 7px); left: 0; min-width: 184px; border: 1px solid var(--line); border-radius: 10px; padding: 5px; background: #fff; box-shadow: 0 8px 24px #1f29371f; }
+.favorite-panel p { display: flex; justify-content: space-between; gap: 12px; margin: 0; padding: 7px 8px; color: var(--ink-soft); font-size: 12px; }.favorite-panel p span { color: var(--muted); }
+.favorite-panel button { display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%; min-height: 40px; border: 0; border-radius: 6px; padding: 0 8px; background: transparent; color: var(--ink); font-size: 13px; text-align: left; white-space: nowrap; }
+.favorite-panel button:hover { background: #f7f8fb; }.favorite-panel button[aria-pressed="true"] { color: var(--warning); background: var(--warning-tint); }
+.favorite-panel .clear-favorite { margin-top: 4px; border-top: 1px solid var(--line); color: var(--danger); }
+.mastery-controls .marked:not(.mastered) { border-color: #e0959e; background: var(--danger-tint); color: var(--danger); }
+.mastery-controls .mastered.marked { border-color: #45b078; background: #dff9e9; color: #227346; }
 .answer-panel { margin: 16px 0 0; border-top: 1px solid var(--line); padding: 18px 0 4px; font-size: 16px; line-height: 1.8; }.answer-panel h4 { margin: 0 0 8px; color: var(--ink); font-size: 14px; font-weight: 600; }.answer-panel h4:not(:first-child) { margin-top: 18px; }.choice-feedback { display: flex; align-items: center; gap: 8px; margin: 0 0 16px; border-radius: 8px; padding: 10px 12px; font-size: 14px; line-height: 1.6; }.choice-feedback.correct { background: var(--success-tint); color: var(--success); }.choice-feedback.incorrect { background: var(--danger-tint); color: var(--danger); }
 .auto-hide-hint { margin: 10px 0 0; color: var(--muted); font-size: 12px; line-height: 1.7; }.print-only { display: none; }.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 </style>
