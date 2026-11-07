@@ -1,10 +1,18 @@
-export const masteryLabels = { 'no-idea': '没思路', 'calculation-error': '计算错误', wrong: '错因待标', mastered: '掌握' } as const
+const missedPointLabel = '之前没有注意的点'
+export const MISSED_POINT_MASTERY = 'missed-point'
+export const MISSED_POINT_FAVORITE = 'favorite-missed-point'
+export const manualErrorReasons = ['no-idea', 'calculation-error', MISSED_POINT_MASTERY] as const
+export const masteryLabels = {
+  'no-idea': '没思路', 'calculation-error': '计算错误', [MISSED_POINT_MASTERY]: missedPointLabel,
+  wrong: '错因待标', mastered: '掌握',
+} as const
 export type Mastery = keyof typeof masteryLabels
 export type ManualMastery = Exclude<Mastery, 'wrong'>
 export const favoriteReasonLabels = {
   'favorite-idea': '思路值得收藏',
   'favorite-calculation': '新的计算手法',
   'favorite-hard': '难题多看',
+  [MISSED_POINT_FAVORITE]: missedPointLabel,
 } as const
 export type FavoriteReason = keyof typeof favoriteReasonLabels
 export const practiceStatusLabels = {
@@ -141,8 +149,20 @@ export function matchesPracticeStatus(item: QuestionProgress | undefined, status
 
 export function togglePracticeFavorite(item: QuestionProgress, reason?: FavoriteReason): Pick<QuestionProgress, 'favorite' | 'favoriteReasons'> {
   const previous = item.favoriteReasons ?? []
-  const reasons = reason ? previous.includes(reason) ? previous.filter(value => value !== reason) : [...previous, reason] : []
+  const reasons: FavoriteReason[] = reason ? previous.includes(reason) ? previous.filter(value => value !== reason) : [...previous, reason] : []
   return { favorite: reasons.length > 0, favoriteReasons: reasons.length ? reasons : undefined }
+}
+
+export function practiceMasteryPatch(item: QuestionProgress, mastery: Mastery): Pick<QuestionProgress, 'mastery' | 'favorite' | 'favoriteReasons'> {
+  if (mastery === MISSED_POINT_MASTERY) {
+    const reasons = item.favoriteReasons ?? []
+    return {
+      mastery,
+      favorite: true,
+      favoriteReasons: reasons.includes(MISSED_POINT_FAVORITE) ? reasons : [...reasons, MISSED_POINT_FAVORITE],
+    }
+  }
+  return { mastery: mastery === 'wrong' && isPending(item) ? item.mastery : mastery }
 }
 
 export function mergeProgress(current: PracticeProgress, incoming: PracticeProgress): PracticeProgress {

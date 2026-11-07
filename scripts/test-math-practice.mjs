@@ -13,7 +13,7 @@ function moduleUrl(file, imports = {}) {
 }
 const loadModule = (file, imports) => import(moduleUrl(file, imports))
 const practiceModuleUrl = moduleUrl('client/src/math/practice.ts')
-const { normalizeProgress, mergeProgress, isPending, isUnattempted, matchesPracticeStatus, hasNote, readPracticeProgress, savePracticeProgress, togglePracticeFavorite, PRACTICE_STORAGE_KEY, practiceAutoHideKey, readPracticeAutoHides, savePracticeAutoHides, cleanExpiredRemovals, REMOVED_RETENTION_MS } = await import(practiceModuleUrl)
+const { normalizeProgress, mergeProgress, isPending, isUnattempted, matchesPracticeStatus, hasNote, readPracticeProgress, savePracticeProgress, togglePracticeFavorite, practiceMasteryPatch, MISSED_POINT_FAVORITE, MISSED_POINT_MASTERY, PRACTICE_STORAGE_KEY, practiceAutoHideKey, readPracticeAutoHides, savePracticeAutoHides, cleanExpiredRemovals, REMOVED_RETENTION_MS } = await import(practiceModuleUrl)
 const practiceQuestions = ['practice-questions.json', 'll880-questions.json'].flatMap(file => JSON.parse(readFileSync(resolve(root, 'client/src/content', file), 'utf8')))
 const { demoQuestion } = await loadModule('client/src/math/practiceDemo.ts')
 const { createPracticeCatalog } = await loadModule('client/src/math/practiceCatalog.ts')
@@ -207,8 +207,8 @@ const mastered = { q2025: { ...marked.q2025, mastery: 'mastered', updatedAt: 200
 assert.equal(isPending(mastered.q2025), false)
 assert.equal(normalizeProgress({ q: { mastery: 'unknown' } }).q.mastery, 'wrong', '旧「不会」可能是自动判错，保留为待标')
 assert.equal(normalizeProgress({ q: { mastery: 'unfamiliar' } }).q.mastery, 'wrong', '旧「不熟练」不猜测具体错因')
-for (const mastery of ['no-idea', 'calculation-error', 'wrong']) {
-  assert.equal(matchesPracticeStatus({ mastery }, 'pending'), true, '两种错因与未分类的作答错误都进入错题')
+for (const mastery of ['no-idea', 'calculation-error', MISSED_POINT_MASTERY, 'wrong']) {
+  assert.equal(matchesPracticeStatus({ mastery }, 'pending'), true, '手动错因与未分类的作答错误都进入错题')
 }
 assert.equal(matchesPracticeStatus({ mastery: 'calculation-error' }, 'no-idea'), false)
 assert.equal(isPending(undefined), false)
@@ -232,6 +232,17 @@ assert.equal(matchesPracticeStatus(favorite.q, 'favorite-hard'), false, '旧收�
 const oneReason = { ...restoredFavorite, ...togglePracticeFavorite(restoredFavorite, 'favorite-hard') }
 assert.equal(oneReason.favorite, true)
 assert.equal(togglePracticeFavorite(oneReason, 'favorite-idea').favorite, false)
+const missedPoint = { ...oneReason, ...practiceMasteryPatch(oneReason, MISSED_POINT_MASTERY) }
+const restoredMissedPoint = mergeProgress({}, { q: missedPoint }).q
+assert.equal(matchesPracticeStatus(restoredMissedPoint, MISSED_POINT_MASTERY), true, '联动标记保留为错因')
+assert.equal(matchesPracticeStatus(restoredMissedPoint, MISSED_POINT_FAVORITE), true, '联动标记也进入收藏')
+assert.equal(matchesPracticeStatus(restoredMissedPoint, 'favorite-idea'), true, '原收藏标签一起保留')
+assert.deepEqual(practiceMasteryPatch(restoredMissedPoint, MISSED_POINT_MASTERY).favoriteReasons, restoredMissedPoint.favoriteReasons, '重标同一错因不会取消收藏或重复添加')
+const removedMissedFavorite = { ...restoredMissedPoint, ...togglePracticeFavorite(restoredMissedPoint, MISSED_POINT_FAVORITE) }
+assert.equal(matchesPracticeStatus(removedMissedFavorite, MISSED_POINT_MASTERY), true, '取消该收藏标签仍保留错因')
+const masteredMissedPoint = { ...restoredMissedPoint, ...practiceMasteryPatch(restoredMissedPoint, 'mastered') }
+assert.equal(matchesPracticeStatus(masteredMissedPoint, 'pending'), false)
+assert.equal(matchesPracticeStatus(masteredMissedPoint, MISSED_POINT_FAVORITE), true, '掌握后仍能按收藏标签找到')
 assert.equal(isUnattempted(undefined), true)
 assert.equal(isUnattempted({ note: '只记了提醒' }), true)
 assert.equal(isUnattempted({ mastery: 'mastered' }), false, '旧的熟练度记录也表示做过')

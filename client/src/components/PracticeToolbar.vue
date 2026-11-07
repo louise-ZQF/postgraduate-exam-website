@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import PracticeIcon from './PracticeIcon.vue'
-import { favoriteReasonLabels, isFavoriteFilter, practiceStatusLabels, type PracticeStatus } from '@/math/practice'
+import { favoriteReasonLabels, isFavoriteFilter, manualErrorReasons, practiceStatusLabels, type PracticeStatus } from '@/math/practice'
 
 const status = defineModel<PracticeStatus>('status', { required: true })
 const keyword = defineModel<string>('keyword', { required: true })
 defineProps<{ count: number; marked: number; hidden: number; removed: boolean; notes: boolean }>()
 defineEmits<{ reveal: [] }>()
 const filters = ['all', 'unmarked', 'pending', 'favorites'] as const
-const errorFilters = ['no-idea', 'calculation-error', 'wrong'] as const
+const errorFilters = [...manualErrorReasons, 'wrong'] as const
 const isSelected = (filter: typeof filters[number]) => filter === 'favorites' ? isFavoriteFilter(status.value) : filter === 'pending' ? status.value === 'pending' || errorFilters.some(error => error === status.value) : status.value === filter
 </script>
 
@@ -31,7 +31,7 @@ const isSelected = (filter: typeof filters[number]) => filter === 'favorites' ? 
       <button v-if="hidden" class="reveal-button" aria-label="重新显示已隐藏题目" @click="$emit('reveal')"><PracticeIcon name="eye" />已隐藏 {{ hidden }} 道<span>重新显示</span></button>
       <details v-if="!removed" class="practice-rules">
         <summary><PracticeIcon name="info" />练习规则</summary>
-        <div class="rules-panel"><p>「没思路」「计算错误」和「错因待标」都计入我的错题。</p><p>收藏可以多选原因，和做题状态分别记录。</p><p>标记「掌握」后 30 秒隐藏，收藏题免于自动隐藏。</p><p>未做过的题在开始作答后仍留在本轮，方便继续做。</p></div>
+        <div class="rules-panel"><p>标记错因或答错选择题后，题目会进入我的错题。</p><p>收藏原因可以多选。点「之前没有注意的点」可同时标记错因和收藏。</p><p>标记「掌握」后 30 秒隐藏，收藏题免于自动隐藏。</p><p>未做过的题在开始作答后仍留在本轮，方便继续做。</p></div>
       </details>
     </div>
   </section>
@@ -52,7 +52,7 @@ svg { width: 16px; height: 16px; flex-shrink: 0; }
 .question-search input { width: 100%; min-width: 0; border: 0; outline: 0; background: transparent; font-size: 13px; color: var(--ink); }
 .question-search input::placeholder { color: var(--muted); }
 .question-search button { display: grid; place-items: center; flex-shrink: 0; width: 32px; height: 44px; border: 0; background: transparent; color: var(--muted); }
-.detail-filter { min-height: 40px; width: 128px; border: 1px solid var(--line); border-radius: 7px; padding: 0 8px; background: var(--paper); color: var(--ink-soft); font-size: 12px; }
+.detail-filter { min-height: 40px; width: 152px; border: 1px solid var(--line); border-radius: 7px; padding: 0 8px; background: var(--paper); color: var(--ink-soft); font-size: 12px; }
 .results-row { position: relative; display: flex; align-items: center; flex-wrap: wrap; gap: 4px 16px; min-height: 42px; }
 .result-count { margin: 0; color: var(--ink-soft); font-size: 12px; font-variant-numeric: tabular-nums; }
 .result-count strong { color: var(--ink); font-size: 14px; font-weight: 650; }

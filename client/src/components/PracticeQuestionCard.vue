@@ -5,7 +5,7 @@ import PracticeIcon from '@/components/PracticeIcon.vue'
 import PracticeNoteEditor from '@/components/PracticeNoteEditor.vue'
 import { BookText, Calculator, CircleCheck, CircleX, Ellipsis, ExternalLink, Eye, NotebookText, RotateCcw, Star, Tag, Trash2 } from '@lucide/vue'
 import arcDiagram from '@/assets/practice-figures/zy2026-set1-q5.svg?raw'
-import { favoriteReasonLabels, hasNote, masteryLabels, REMOVED_RETENTION_MS, type FavoriteReason, type ManualMastery, type PracticeQuestion, type QuestionImage, type QuestionProgress } from '@/math/practice'
+import { favoriteReasonLabels, hasNote, manualErrorReasons, masteryLabels, MISSED_POINT_FAVORITE, MISSED_POINT_MASTERY, REMOVED_RETENTION_MS, type FavoriteReason, type ManualMastery, type PracticeQuestion, type QuestionImage, type QuestionProgress } from '@/math/practice'
 
 const props = defineProps<{ question: PracticeQuestion; index: number; progress?: QuestionProgress; storageFailed: boolean; showNote?: boolean; removed?: boolean; manageable?: boolean; printMode?: boolean; autoHidePending?: boolean }>()
 const emit = defineEmits<{ mark: [id: string, mastery: ManualMastery]; favorite: [id: string, reason?: FavoriteReason]; attempt: [id: string, correct: boolean | undefined]; note: [id: string, note: string]; noteBlur: []; remove: [id: string]; restore: [id: string]; preview: [image: QuestionImage, trigger: HTMLElement] }>()
@@ -83,7 +83,7 @@ const removalDeadlineLabel = computed(() => props.removed && props.progress?.rem
 const showResult = computed(() => answerOpen.value || explanationOpen.value || Boolean(selectedOption.value))
 const knowledgeItems = computed(() => props.question.questionTypes?.length ? props.question.questionTypes.map(item => ({ title: item.title, detail: item.references.join('、') })) : [{ title: props.question.topic, detail: '' }])
 const lastUpdated = computed(() => props.progress?.updatedAt ? new Date(props.progress.updatedAt).toLocaleDateString('zh-CN', { month: '2-digit', day: '2-digit' }).replaceAll('/', '-') : '')
-const statuses = ['no-idea', 'calculation-error', 'mastered'] as const satisfies readonly ManualMastery[]
+const statuses = [...manualErrorReasons, 'mastered'] as const satisfies readonly ManualMastery[]
 </script>
 
 <template>
@@ -112,11 +112,11 @@ const statuses = ['no-idea', 'calculation-error', 'mastered'] as const satisfies
     <div class="question-actions">
       <div class="reading-controls"><button class="note-toggle" :class="{ 'has-note': notePresent }" :aria-label="notePresent ? '查看错因笔记（已有笔记）' : '记录错因笔记'" :aria-expanded="noteOpen" :aria-controls="`note-${question.id}`" @click="noteOpen = !noteOpen"><NotebookText /><span>笔记</span></button><template v-if="question.answerAvailable !== false"><button class="answer-toggle" :class="{ active: answerOpen }" :aria-label="answerOpen ? '收起答案' : '查看答案'" :aria-expanded="answerOpen" :aria-controls="`answer-${question.id}`" @click="answerOpen = !answerOpen"><Eye />答案</button><button class="explanation-toggle" :class="{ active: explanationOpen }" :aria-label="explanationOpen ? '收起解析' : '查看解析'" :aria-expanded="explanationOpen" :aria-controls="`answer-${question.id}`" @click="explanationOpen = !explanationOpen"><BookText />解析</button></template></div>
       <div class="mastery-controls" role="group" :aria-label="`第 ${index} 题做题状态`">
-        <button v-for="status in statuses" :key="status" :class="[status, { marked: progress?.mastery === status }]" :aria-pressed="progress?.mastery === status" @click="emit('mark', question.id, status)"><CircleCheck v-if="status === 'mastered'" /><Calculator v-else-if="status === 'calculation-error'" /><CircleX v-else />{{ masteryLabels[status] }}</button>
+        <button v-for="status in statuses" :key="status" :class="[status, { marked: progress?.mastery === status }]" :aria-pressed="progress?.mastery === status" :title="status === MISSED_POINT_MASTERY ? '同时标为错题并收藏' : undefined" @click="emit('mark', question.id, status)"><CircleCheck v-if="status === 'mastered'" /><Calculator v-else-if="status === 'calculation-error'" /><CircleX v-else />{{ masteryLabels[status] }}</button>
       </div>
       <div v-if="manageable" class="favorite-controls" role="group" aria-label="收藏原因（可多选）">
         <span class="favorite-caption"><Star aria-hidden="true" />收藏</span>
-        <button v-for="(label, reason) in favoriteReasonLabels" :key="reason" class="favorite-reason" type="button" :aria-pressed="reasons.includes(reason)" @click="emit('favorite', question.id, reason)">{{ label }}</button>
+        <button v-for="(label, reason) in favoriteReasonLabels" :key="reason" class="favorite-reason" type="button" :aria-pressed="reasons.includes(reason)" :title="reason === MISSED_POINT_FAVORITE && !reasons.includes(reason) ? '同时标为错题并收藏' : undefined" @click="emit('favorite', question.id, reason)">{{ label }}</button>
         <button v-if="progress?.favorite" class="clear-favorite" type="button" aria-label="取消收藏" @click="emit('favorite', question.id)">{{ reasons.length ? '取消收藏' : '已收藏 · 取消' }}</button>
       </div>
     </div>
