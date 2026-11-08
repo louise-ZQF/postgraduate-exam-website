@@ -8,7 +8,7 @@ import PracticeIcon from '@/components/PracticeIcon.vue'
 import PracticeToolbar from '@/components/PracticeToolbar.vue'
 import { usePracticeAutoHide } from '@/composables/usePracticeAutoHide'
 import { usePracticePosition } from '@/composables/usePracticePosition'
-import { createPracticeCatalog, paperKey } from '@/math/practiceCatalog'
+import { createPracticeCatalog, groupMistakesByChapter, paperKey } from '@/math/practiceCatalog'
 import ll880Chapters from '@/content/ll880-classification.json'
 import { demoQuestion } from '@/math/practiceDemo'
 import { hasNote, isFavoriteFilter, isPending, matchesPracticeStatus, mergeProgress, MISSED_POINT_FAVORITE, MISSED_POINT_MASTERY, normalizeProgress, PRACTICE_STORAGE_KEY, PRACTICE_PROGRESS_SAVED_EVENT, PRACTICE_REMOVALS_CHANGED_EVENT, REMOVED_RETENTION_MS, practiceAutoHideKey, practiceMasteryPatch, practiceStatusLabels, readPracticeProgress, savePracticeProgress, togglePracticeFavorite, type FavoriteReason, type Mastery, type PracticeStatus, type QuestionImage, type QuestionProgress, type PracticeQuestion, type PracticeProgress } from '@/math/practice'
@@ -174,8 +174,15 @@ const yearGroups = computed(() => [...new Set(queue.value.map(q => q.paperId ?? 
   const sections = types.filter(type => typeFilter.value === 'all' || type.id === typeFilter.value).map(type => ({ id: type.id, title: type.title, questions: group.filter(q => typeFilter.value === 'all' ? q.questionTypes?.[0]?.id === type.id : q.questionTypes?.some(item => item.id === type.id)) })).filter(section => section.questions.length)
   const ungrouped = group.filter(q => !q.questionTypes?.length)
   if (ungrouped.length) sections.push({ id, title: '', questions: ungrouped })
-  return { id, title: group[0].paperTitle ?? `${group[0].year} 年数学二`, book: Boolean(chapter), mock: Boolean(group[0].paperId), exerciseOnly: group.every(q => q.kind === 'exercise'), questions: group, sections }
+  const label = mode.value === 'removed' ? '已移除题目' : mode.value === 'notes' ? '有笔记的题目' : chapter ? '2027 版 · 原分类题型' : group.every(q => q.kind === 'exercise') ? '非真题配套练习' : group[0].paperId ? '模拟卷与配套练习' : '真题与配套练习'
+  return { id, title: group[0].paperTitle ?? `${group[0].year} 年数学二`, label, questions: group, sections }
 }))
+const displayGroups = computed(() => {
+  if (viewingMistakes.value) return groupMistakesByChapter(queue.value, ll880Chapters).map(group => ({
+    ...group, sections: [{ id: group.id, title: '', questions: group.questions }],
+  }))
+  return viewingFavorites.value ? [] : yearGroups.value
+})
 let noticeTimer: number | undefined
 
 function restartQueue() {
@@ -499,10 +506,10 @@ onBeforeUnmount(() => {
         </section>
         <PracticeToolbar v-model:status="statusFilter" v-model:keyword="keyword" :count="queue.length" :marked="markedInQueue" :hidden="viewingMistakes ? 0 : hiddenInScope" :removed="mode === 'removed'" :notes="mode === 'notes'" :mistake-book="viewingMistakes" @reveal="showHiddenMastered" />
         <div v-if="queue.length" class="question-list">
-          <div v-if="mode === 'review'" class="year-questions review-questions"><PracticeQuestionCard v-for="(question, index) in queue" :key="`${round}-${question.id}`" :question="question" :index="index + 1" :progress="activeProgress[question.id]" :auto-hide-pending="Boolean(autoHideDeadlines[question.id])" :storage-failed="storageFailed" :print-mode="exportingPdf" :manageable="!demoMode" :mistake-book="viewingMistakes" @remove-mistake="removeMistake" @remove="removeQuestion" @restore="restoreQuestion" @note-blur="refreshNotesQueue" @mark="mark" @favorite="changeFavorite" @attempt="recordAttempt" @note="saveNote" @preview="openImage" /></div>
-          <section v-for="group in mode === 'review' ? [] : yearGroups" :id="`practice-year-${group.id}`" :key="group.id" class="year-section" :class="{ 'single-paper': yearGroups.length === 1 }" :aria-labelledby="`year-title-${group.id}`">
-            <header class="paper-heading"><div><span class="paper-label">{{ mode === 'removed' ? '已移除题目' : mode === 'notes' ? '有笔记的题目' : group.book ? '2027 版 · 原分类题型' : group.exerciseOnly ? '非真题配套练习' : group.mock ? '模拟卷与配套练习' : '真题与配套练习' }}</span><h2 :id="`year-title-${group.id}`">{{ group.title }}{{ mode === 'removed' ? ' · 已移除题目' : mode === 'notes' ? ' · 笔记题目' : '' }}</h2></div><span>{{ group.questions.length }} 题</span></header>
-            <section v-for="section in group.sections" :key="section.id" class="type-section" :aria-label="section.title || group.title"><h3 v-if="section.title" class="type-heading">{{ section.title }}<small>{{ section.questions.length }} 题</small></h3><div class="year-questions"><PracticeQuestionCard v-for="(question, index) in section.questions" :key="`${round}-${question.id}`" :question="question" :index="index + 1" :progress="activeProgress[question.id]" :auto-hide-pending="Boolean(autoHideDeadlines[question.id])" :storage-failed="storageFailed" :print-mode="exportingPdf" :show-note="mode === 'notes' || mode === 'removed'" :manageable="!demoMode" :removed="mode === 'removed'" @remove="removeQuestion" @restore="restoreQuestion" @note-blur="refreshNotesQueue" @mark="mark" @favorite="changeFavorite" @attempt="recordAttempt" @note="saveNote" @preview="openImage" /></div></section>
+          <div v-if="viewingFavorites" class="year-questions review-questions"><PracticeQuestionCard v-for="(question, index) in queue" :key="`${round}-${question.id}`" :question="question" :index="index + 1" :progress="activeProgress[question.id]" :auto-hide-pending="Boolean(autoHideDeadlines[question.id])" :storage-failed="storageFailed" :print-mode="exportingPdf" :manageable="!demoMode" @remove="removeQuestion" @restore="restoreQuestion" @note-blur="refreshNotesQueue" @mark="mark" @favorite="changeFavorite" @attempt="recordAttempt" @note="saveNote" @preview="openImage" /></div>
+          <section v-for="group in displayGroups" :id="`practice-year-${group.id}`" :key="group.id" class="year-section" :class="{ 'single-paper': !viewingMistakes && displayGroups.length === 1 }" :aria-labelledby="`year-title-${group.id}`">
+            <header class="paper-heading"><div><span class="paper-label">{{ group.label }}</span><h2 :id="`year-title-${group.id}`">{{ group.title }}{{ mode === 'removed' ? ' · 已移除题目' : mode === 'notes' ? ' · 笔记题目' : '' }}</h2></div><span>{{ group.questions.length }} 题</span></header>
+            <section v-for="section in group.sections" :key="section.id" class="type-section" :aria-label="section.title || group.title"><h3 v-if="section.title" class="type-heading">{{ section.title }}<small>{{ section.questions.length }} 题</small></h3><div class="year-questions"><PracticeQuestionCard v-for="(question, index) in section.questions" :key="`${round}-${question.id}`" :question="question" :index="index + 1" :progress="activeProgress[question.id]" :auto-hide-pending="!viewingMistakes && Boolean(autoHideDeadlines[question.id])" :storage-failed="storageFailed" :print-mode="exportingPdf" :show-note="mode === 'notes' || mode === 'removed'" :manageable="!demoMode" :mistake-book="viewingMistakes" :removed="mode === 'removed'" @remove-mistake="removeMistake" @remove="removeQuestion" @restore="restoreQuestion" @note-blur="refreshNotesQueue" @mark="mark" @favorite="changeFavorite" @attempt="recordAttempt" @note="saveNote" @preview="openImage" /></div></section>
           </section>
           <footer class="paper-end"><strong>{{ mode === 'review' ? viewingFavorites ? '我的收藏 · 本页结束' : '错题库 · 本页结束' : mode === 'removed' ? '已移除题目 · 本页结束' : mode === 'notes' ? '笔记汇总 · 本页结束' : `${paperScope} · ${isBook ? '本章' : '本卷'}结束` }}</strong></footer>
         </div>
