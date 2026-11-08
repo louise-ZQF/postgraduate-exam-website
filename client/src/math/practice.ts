@@ -7,8 +7,8 @@ export const masteryLabels = {
   wrong: '错因待标', mastered: '掌握',
 } as const
 export type Mastery = keyof typeof masteryLabels
-type ErrorReason = Exclude<Mastery, 'mastered'>
-export type ManualMastery = Exclude<Mastery, 'wrong'> | 'graduate'
+type MistakeReason = Exclude<Mastery, 'mastered'>
+export type ManualMastery = Exclude<Mastery, 'wrong'>
 export const favoriteReasonLabels = {
   'favorite-idea': '思路值得收藏',
   'favorite-calculation': '新的计算手法',
@@ -18,7 +18,6 @@ export const favoriteReasonLabels = {
 export type FavoriteReason = keyof typeof favoriteReasonLabels
 export const practiceStatusLabels = {
   all: '全部题目', unmarked: '未做过', pending: '我的错题', favorites: '收藏',
-  due: '到期复测', bank: '全部错题', graduated: '彻底掌握',
   ...masteryLabels, mastered: '已掌握', ...favoriteReasonLabels,
 } as const
 export type PracticeStatus = keyof typeof practiceStatusLabels
@@ -72,11 +71,8 @@ export type PracticeQuestion = {
   searchText?: string
   sourceOrder?: number
 }
-type MistakeReview = { reason: ErrorReason; step: number; dueAt: number; updatedAt: number; masteredAt?: number }
-export type QuestionProgress = { mastery?: Mastery; mistake?: MistakeReview; attemptedAt?: number; favorite?: boolean; favoriteReasons?: FavoriteReason[]; removed?: boolean; removedAt?: number; deletedAt?: number; note: string; updatedAt: number; reviews: number }
+export type QuestionProgress = { mastery?: Mastery; mistakeReason?: MistakeReason; attemptedAt?: number; favorite?: boolean; favoriteReasons?: FavoriteReason[]; removed?: boolean; removedAt?: number; deletedAt?: number; note: string; updatedAt: number; reviews: number }
 export type PracticeProgress = Record<string, QuestionProgress>
-const day = 24 * 60 * 60 * 1000
-const reviewIntervals = [day, 2 * day, 4 * day, 7 * day, 15 * day, 30 * day]
 export const PRACTICE_STORAGE_KEY = 'math2-practice-progress-v1'
 export const PRACTICE_PROGRESS_SAVED_EVENT = 'math2-practice-progress-saved'
 export const PRACTICE_REMOVALS_CHANGED_EVENT = 'math2-practice-removals-changed'
@@ -103,19 +99,6 @@ export function savePracticeAutoHides(collection: 'exams' | 'll880', state: Prac
   catch { return false }
 }
 
-function normalizeMistake(value?: MistakeReview): MistakeReview | undefined {
-  if (!value || typeof value !== 'object') return
-  const reason = normalizeMastery(value.reason)
-  if (!reason || reason === 'mastered' || !Number.isInteger(value.step) || value.step < 0 || value.step > reviewIntervals.length
-    || !Number.isFinite(value.dueAt) || value.dueAt < 0 || value.dueAt > 8.64e15
-    || !Number.isFinite(value.updatedAt) || value.updatedAt < 0) return
-  const { step, dueAt, updatedAt, masteredAt } = value
-  if (typeof masteredAt === 'number' && Number.isFinite(masteredAt) && masteredAt > 0) return { reason, step, dueAt, updatedAt, masteredAt }
-  // 旧版第 0 轮是 20 分钟复测，改为从原做错时间起算 1 天。
-  if (step === 0) return { reason, step: 1, dueAt: Math.min(updatedAt + day, 8.64e15), updatedAt }
-  return { reason, step, dueAt, updatedAt }
-}
-
 export function normalizeProgress(value: unknown): PracticeProgress {
   if (!value || typeof value !== 'object' || Array.isArray(value)) return {}
   const result: PracticeProgress = Object.create(null)
@@ -126,13 +109,13 @@ export function normalizeProgress(value: unknown): PracticeProgress {
       result[id] = { removed: true, deletedAt: item.deletedAt, note: '', reviews: 0, updatedAt: Math.max(item.deletedAt, typeof item.updatedAt === 'number' && Number.isFinite(item.updatedAt) ? item.updatedAt : 0) }
       continue
     }
-    const mistake = normalizeMistake(item.mistake)
-    const mastery = mistake ? mistake.masteredAt ? 'mastered' : mistake.reason : normalizeMastery(item.mastery)
+    const mastery = normalizeMastery(item.mastery)
+    const mistakeReason = normalizeMastery(item.mistakeReason)
     const reasons = item.favorite !== false && Array.isArray(item.favoriteReasons) ? [...new Set(item.favoriteReasons.filter(isFavoriteReason))] : []
     const favorite = reasons.length ? true : typeof item.favorite === 'boolean' ? item.favorite : undefined
     result[id] = {
       mastery,
-      ...(mistake ? { mistake } : {}),
+      ...(mistakeReason && mistakeReason !== 'mastered' ? { mistakeReason } : {}),
       ...(favorite !== undefined ? { favorite } : {}),
       ...(reasons.length ? { favoriteReasons: reasons } : {}),
       ...(typeof item.attemptedAt === 'number' && Number.isFinite(item.attemptedAt) && item.attemptedAt > 0 ? { attemptedAt: item.attemptedAt } : {}),
@@ -146,21 +129,13 @@ export function normalizeProgress(value: unknown): PracticeProgress {
   return result
 }
 
-export function getMistakeReview(item?: QuestionProgress): MistakeReview | undefined {
-  if (item?.mistake) return item.mistake
-  const reason = item?.mastery
-  // 旧错题尚无复测计划，第一轮可以立即开始。
-  if (reason && reason !== 'mastered') return { reason, step: 0, dueAt: 0, updatedAt: 0 }
+export function getMistakeReason(item?: QuestionProgress): MistakeReason | undefined {
+  if (item?.mistakeReason) return item.mistakeReason
+  if (item?.mastery && item.mastery !== 'mastered') return item.mastery
 }
 
 export function isPending(item?: QuestionProgress): boolean {
-  const mistake = getMistakeReview(item)
-  return Boolean(mistake && !mistake.masteredAt)
-}
-
-export function isReviewDue(item: QuestionProgress | undefined, now: number): boolean {
-  const mistake = getMistakeReview(item)
-  return Boolean(mistake && !mistake.masteredAt && mistake.dueAt <= now)
+  return Boolean(getMistakeReason(item))
 }
 
 export function hasNote(item?: QuestionProgress): boolean {
@@ -171,16 +146,13 @@ export function isUnattempted(item?: QuestionProgress): boolean {
   return !item?.mastery && !item?.attemptedAt && !item?.reviews
 }
 
-export function matchesPracticeStatus(item: QuestionProgress | undefined, status: PracticeStatus, now = Date.now()): boolean {
+export function matchesPracticeStatus(item: QuestionProgress | undefined, status: PracticeStatus): boolean {
   if (status === 'all') return true
   if (status === 'pending') return isPending(item)
-  if (status === 'due') return isReviewDue(item, now)
-  if (status === 'bank') return Boolean(getMistakeReview(item))
-  if (status === 'graduated') return Boolean(item?.mistake?.masteredAt)
   if (status === 'unmarked') return isUnattempted(item)
   if (status === 'favorites') return item?.favorite === true
   if (isFavoriteReason(status)) return item?.favorite === true && Boolean(item.favoriteReasons?.includes(status))
-  return item?.mastery === status
+  return status === 'mastered' ? item?.mastery === 'mastered' : getMistakeReason(item) === status
 }
 
 export function togglePracticeFavorite(item: QuestionProgress, reason?: FavoriteReason): Pick<QuestionProgress, 'favorite' | 'favoriteReasons'> {
@@ -189,46 +161,30 @@ export function togglePracticeFavorite(item: QuestionProgress, reason?: Favorite
   return { favorite: reasons.length > 0, favoriteReasons: reasons.length ? reasons : undefined }
 }
 
-export function practiceMasteryPatch(item: QuestionProgress, mastery: Mastery | 'graduate', now = Date.now()): Partial<Pick<QuestionProgress, 'mastery' | 'mistake' | 'reviews' | 'favorite' | 'favoriteReasons'>> | undefined {
-  const previous = getMistakeReview(item)
-  if (mastery === 'graduate') {
-    if (!previous || previous.masteredAt) return
-    return { mastery: 'mastered', mistake: { ...previous, updatedAt: now, masteredAt: now } }
-  }
-  if (mastery === 'mastered') {
-    if (!previous || previous.masteredAt) return { mastery }
-    if (previous.dueAt > now) return
-    const step = Math.min(previous.step + 1, reviewIntervals.length)
-    return { mistake: { ...previous, step, dueAt: now + reviewIntervals[step - 1], updatedAt: now }, reviews: item.reviews + 1 }
-  }
-  const reason = mastery === 'wrong' && previous && !previous.masteredAt ? previous.reason : mastery
-  const mistake: MistakeReview = { reason, step: 1, dueAt: now + reviewIntervals[0], updatedAt: now }
+export function practiceMasteryPatch(item: QuestionProgress, mastery: Mastery): Pick<QuestionProgress, 'mastery' | 'mistakeReason' | 'favorite' | 'favoriteReasons'> {
+  const previousReason = getMistakeReason(item)
+  if (mastery === 'mastered') return { mastery, mistakeReason: previousReason }
   if (mastery === MISSED_POINT_MASTERY) {
     const reasons = item.favoriteReasons ?? []
     return {
       mastery,
-      mistake,
+      mistakeReason: mastery,
       favorite: true,
       favoriteReasons: reasons.includes(MISSED_POINT_FAVORITE) ? reasons : [...reasons, MISSED_POINT_FAVORITE],
     }
   }
-  return { mastery: reason, mistake }
+  const reason = mastery === 'wrong' ? previousReason ?? mastery : mastery
+  return { mastery: reason, mistakeReason: reason }
 }
 
 export function mergeProgress(current: PracticeProgress, incoming: PracticeProgress): PracticeProgress {
   const result = normalizeProgress(current)
   for (const [id, item] of Object.entries(normalizeProgress(incoming))) {
-    const previous = result[id]
-    if (previous?.deletedAt) {
-      if (item.deletedAt && item.deletedAt > previous.deletedAt) result[id] = item
-      continue
+    if (result[id]?.deletedAt) {
+      if (item.deletedAt && item.deletedAt > result[id].deletedAt!) result[id] = item
+    } else if (item.deletedAt || !result[id] || item.updatedAt >= result[id].updatedAt) {
+      result[id] = item.removed && !item.removedAt && result[id]?.removedAt ? { ...item, removedAt: result[id].removedAt } : item
     }
-    if (item.deletedAt || !previous) { result[id] = item; continue }
-    const newer = item.updatedAt >= previous.updatedAt ? item : previous
-    const mistake = item.mistake && (!previous.mistake || item.mistake.updatedAt >= previous.mistake.updatedAt) ? item.mistake : previous.mistake
-    const merged = newer.removed && !newer.removedAt && previous.removedAt ? { ...newer, removedAt: previous.removedAt } : newer
-    // 笔记、收藏或旧版备份里的较新时间不能覆盖已经保存的复测状态。
-    result[id] = mistake ? { ...merged, mistake, mastery: mistake.masteredAt ? 'mastered' : mistake.reason, reviews: Math.max(previous.reviews, item.reviews) } : merged
   }
   return result
 }
