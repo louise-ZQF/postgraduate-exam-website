@@ -1,5 +1,5 @@
 import { onBeforeUnmount, onMounted, ref, type Ref } from 'vue'
-import { readPracticeAutoHides, savePracticeAutoHides, type PracticeAutoHides, type PracticeProgress, type QuestionProgress } from '@/math/practice'
+import { getMistakeReview, readPracticeAutoHides, savePracticeAutoHides, type PracticeAutoHides, type PracticeProgress, type QuestionProgress } from '@/math/practice'
 import type { PracticeCollection } from '@/math/practiceLocation'
 
 export function usePracticeAutoHide(options: {
@@ -32,7 +32,7 @@ export function usePracticeAutoHide(options: {
   }
   const eligible = (id: string) => {
     const item = options.progress.value[id]
-    return options.isKnown(id) && item?.mastery === 'mastered' && !item.removed && !item.favorite
+    return options.isKnown(id) && item?.mastery === 'mastered' && !item.removed && !item.favorite && !getMistakeReview(item)
   }
   function hide(id: string) {
     if (options.paused.value) return

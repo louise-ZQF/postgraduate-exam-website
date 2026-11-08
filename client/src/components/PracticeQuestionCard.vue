@@ -5,9 +5,9 @@ import PracticeIcon from '@/components/PracticeIcon.vue'
 import PracticeNoteEditor from '@/components/PracticeNoteEditor.vue'
 import { BookText, Calculator, CircleCheck, CircleX, Ellipsis, ExternalLink, Eye, NotebookText, RotateCcw, Star, Tag, Trash2 } from '@lucide/vue'
 import arcDiagram from '@/assets/practice-figures/zy2026-set1-q5.svg?raw'
-import { favoriteReasonLabels, hasNote, manualErrorReasons, masteryLabels, MISSED_POINT_FAVORITE, MISSED_POINT_MASTERY, REMOVED_RETENTION_MS, type FavoriteReason, type ManualMastery, type PracticeQuestion, type QuestionImage, type QuestionProgress } from '@/math/practice'
+import { favoriteReasonLabels, getMistakeReview, hasNote, isReviewDue, manualErrorReasons, masteryLabels, MISSED_POINT_FAVORITE, MISSED_POINT_MASTERY, REMOVED_RETENTION_MS, type FavoriteReason, type ManualMastery, type PracticeQuestion, type QuestionImage, type QuestionProgress } from '@/math/practice'
 
-const props = defineProps<{ question: PracticeQuestion; index: number; progress?: QuestionProgress; storageFailed: boolean; showNote?: boolean; removed?: boolean; manageable?: boolean; printMode?: boolean; autoHidePending?: boolean }>()
+const props = defineProps<{ question: PracticeQuestion; index: number; progress?: QuestionProgress; reviewNow: number; storageFailed: boolean; showNote?: boolean; removed?: boolean; manageable?: boolean; printMode?: boolean; autoHidePending?: boolean }>()
 const emit = defineEmits<{ mark: [id: string, mastery: ManualMastery]; favorite: [id: string, reason?: FavoriteReason]; attempt: [id: string, correct: boolean | undefined]; note: [id: string, note: string]; noteBlur: []; remove: [id: string]; restore: [id: string]; preview: [image: QuestionImage, trigger: HTMLElement] }>()
 const arcDiagramUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(arcDiagram)}`
 const figureUrl = (src: string) => src === 'practice-figures/zy2026-set1-q5.svg' ? arcDiagramUrl : `${import.meta.env.BASE_URL}${src}`
@@ -83,7 +83,14 @@ const removalDeadlineLabel = computed(() => props.removed && props.progress?.rem
 const showResult = computed(() => answerOpen.value || explanationOpen.value || Boolean(selectedOption.value))
 const knowledgeItems = computed(() => props.question.questionTypes?.length ? props.question.questionTypes.map(item => ({ title: item.title, detail: item.references.join('、') })) : [{ title: props.question.topic, detail: '' }])
 const lastUpdated = computed(() => props.progress?.updatedAt ? new Date(props.progress.updatedAt).toLocaleDateString('zh-CN', { month: '2-digit', day: '2-digit' }).replaceAll('/', '-') : '')
-const statuses = [...manualErrorReasons, 'mastered'] as const satisfies readonly ManualMastery[]
+const mistake = computed(() => getMistakeReview(props.progress))
+const due = computed(() => isReviewDue(props.progress, props.reviewNow))
+const reviewLabel = computed(() => {
+  if (!mistake.value) return ''
+  if (mistake.value.masteredAt) return '彻底掌握'
+  if (due.value) return '到期复测'
+  return '下次复测 ' + new Date(mistake.value.dueAt).toLocaleString('zh-CN', { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false })
+})
 </script>
 
 <template>
@@ -91,7 +98,8 @@ const statuses = [...manualErrorReasons, 'mastered'] as const satisfies readonly
     <header class="question-meta">
       <span class="question-index">{{ question.number }}</span>
       <div class="question-source"><a v-if="question.sourceUrl" :href="question.sourceUrl" target="_blank" rel="noopener">{{ question.source }}<ExternalLink /></a><span v-else>{{ question.source }}</span><span v-if="question.exerciseIndex" class="exam-number">{{ question.paperId ? '原题' : '真题' }} {{ question.examNumber }} · 练习 {{ question.exerciseIndex }}</span></div>
-      <span v-if="progress?.mastery" class="mastery-record" :class="{ 'error-record': progress.mastery !== 'mastered' }" :title="`最近更新 ${lastUpdated}`">{{ progress.mastery === 'mastered' ? '已掌握' : masteryLabels[progress.mastery] }}<span v-if="lastUpdated"> · {{ lastUpdated }}</span></span>
+      <span v-if="progress?.mastery && !mistake?.masteredAt" class="mastery-record" :class="{ 'error-record': progress.mastery !== 'mastered' }" :title="`最近更新 ${lastUpdated}`">{{ progress.mastery === 'mastered' ? '已掌握' : masteryLabels[progress.mastery] }}<span v-if="lastUpdated"> · {{ lastUpdated }}</span></span>
+      <span v-if="reviewLabel && !removed" class="review-record" :class="{ 'review-due': due }"><PracticeIcon :name="mistake?.masteredAt ? 'check' : 'clock'" />{{ reviewLabel }}</span>
       <details ref="knowledgeMenu" class="question-knowledge" @focusout="closeMenu" @keydown.esc="knowledgeMenu && (knowledgeMenu.open = false)"><summary><Tag /><span>相关知识点</span><small>{{ knowledgeItems.length }}</small></summary><div class="knowledge-panel"><strong>{{ question.topic }}</strong><p v-if="question.bookId" class="knowledge-level">{{ question.level }} · {{ question.type === 'choice' ? '选择题' : question.type === 'fill' ? '填空题' : '解答题' }}</p><div v-for="item in knowledgeItems" :key="item.title"><span>{{ item.title }}</span><small v-if="item.detail">{{ item.detail }}</small></div></div></details>
       <details v-if="manageable" ref="managementMenu" class="question-management" @focusout="closeMenu" @keydown.esc="managementMenu && (managementMenu.open = false)"><summary aria-label="更多题目操作" title="更多操作"><Ellipsis /></summary><div class="management-panel"><button class="question-manage" :class="{ restore: removed }" @click="manageQuestion"><RotateCcw v-if="removed" /><Trash2 v-else />{{ removed ? '恢复题目' : '移除题目' }}</button></div></details>
     </header>
@@ -112,7 +120,12 @@ const statuses = [...manualErrorReasons, 'mastered'] as const satisfies readonly
     <div class="question-actions">
       <div class="reading-controls"><button class="note-toggle" :class="{ 'has-note': notePresent }" :aria-label="notePresent ? '查看错因笔记（已有笔记）' : '记录错因笔记'" :aria-expanded="noteOpen" :aria-controls="`note-${question.id}`" @click="noteOpen = !noteOpen"><NotebookText /><span>笔记</span></button><template v-if="question.answerAvailable !== false"><button class="answer-toggle" :class="{ active: answerOpen }" :aria-label="answerOpen ? '收起答案' : '查看答案'" :aria-expanded="answerOpen" :aria-controls="`answer-${question.id}`" @click="answerOpen = !answerOpen"><Eye />答案</button><button class="explanation-toggle" :class="{ active: explanationOpen }" :aria-label="explanationOpen ? '收起解析' : '查看解析'" :aria-expanded="explanationOpen" :aria-controls="`answer-${question.id}`" @click="explanationOpen = !explanationOpen"><BookText />解析</button></template></div>
       <div class="mastery-controls" role="group" :aria-label="`第 ${index} 题做题状态`">
-        <button v-for="status in statuses" :key="status" :class="[status, { marked: progress?.mastery === status }]" :aria-pressed="progress?.mastery === status" :title="status === MISSED_POINT_MASTERY ? '同时标为错题并收藏' : undefined" @click="emit('mark', question.id, status)"><CircleCheck v-if="status === 'mastered'" /><Calculator v-else-if="status === 'calculation-error'" /><CircleX v-else />{{ masteryLabels[status] }}</button>
+        <button v-for="status in manualErrorReasons" :key="status" :class="[status, { marked: progress?.mastery === status }]" :aria-pressed="progress?.mastery === status" :title="status === MISSED_POINT_MASTERY ? '同时标为错题并收藏' : undefined" @click="emit('mark', question.id, status)"><Calculator v-if="status === 'calculation-error'" /><CircleX v-else />{{ masteryLabels[status] }}</button>
+        <button v-if="!mistake" class="mastered" :class="{ marked: progress?.mastery === 'mastered' }" :aria-pressed="progress?.mastery === 'mastered'" @click="emit('mark', question.id, 'mastered')"><CircleCheck />掌握</button>
+        <template v-else-if="!mistake.masteredAt && !removed">
+          <button class="review-pass" :disabled="!due" :title="due ? '本次独立做对，安排下一轮' : reviewLabel" @click="emit('mark', question.id, 'mastered')"><CircleCheck />复测通过</button>
+          <button class="review-graduate" title="停止安排复测，保留错题记录" @click="emit('mark', question.id, 'graduate')">彻底掌握</button>
+        </template>
       </div>
       <div v-if="manageable" class="favorite-controls" role="group" aria-label="收藏原因（可多选）">
         <span class="favorite-caption"><Star aria-hidden="true" />收藏</span>
@@ -143,6 +156,8 @@ button, summary { cursor: pointer; transition: background .15s, border-color .15
 .question-source > a svg { width: 14px; height: 14px; }.exam-number { white-space: nowrap; font-size: 12px; }
 .mastery-record { flex-shrink: 0; color: var(--ink-soft); font-size: 14px; white-space: nowrap; }
 .mastery-record.error-record { color: var(--danger); }
+.review-record { display: inline-flex; align-items: center; gap: 5px; border-radius: 6px; padding: 4px 7px; color: var(--ink-soft); background: #f4f6fa; font-size: 12px; white-space: nowrap; }
+.review-record.review-due { color: var(--accent-dark); background: var(--accent-tint); }
 .question-knowledge, .question-management { position: relative; }
 summary { display: flex; align-items: center; justify-content: center; gap: 9px; min-height: 36px; list-style: none; color: var(--ink-soft); }
 summary::-webkit-details-marker { display: none; }
@@ -166,6 +181,9 @@ summary::-webkit-details-marker { display: none; }
 .reading-controls .note-toggle.has-note { color: var(--danger); background: var(--danger-tint); }
 .mastery-controls button, .favorite-reason { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 40px; border: 1px solid #dfe3e9; border-radius: 10px; padding: 0 14px; background: #fff; color: var(--ink-soft); font-size: 14px; font-weight: 600; white-space: nowrap; }
 .mastery-controls button:hover, .favorite-reason:hover { background: #f7f8fb; border-color: #c3cad5; }
+.mastery-controls .review-pass:enabled { color: var(--success); background: var(--success-tint); }
+.mastery-controls .review-pass:disabled { opacity: .5; cursor: default; }
+.mastery-controls .review-graduate { border-color: transparent; font-size: 12px; }
 .favorite-controls { flex-basis: 100%; flex-wrap: wrap; gap: 8px; }
 .favorite-caption { display: inline-flex; align-items: center; gap: 6px; margin: 0 4px; color: var(--ink-soft); font-size: 13px; white-space: nowrap; }
 .favorite-reason { min-height: 36px; padding: 0 10px; border-radius: 8px; font-size: 13px; }

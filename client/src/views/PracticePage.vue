@@ -11,7 +11,7 @@ import { usePracticePosition } from '@/composables/usePracticePosition'
 import { createPracticeCatalog, paperKey } from '@/math/practiceCatalog'
 import ll880Chapters from '@/content/ll880-classification.json'
 import { demoQuestion } from '@/math/practiceDemo'
-import { hasNote, isFavoriteFilter, isPending, matchesPracticeStatus, mergeProgress, MISSED_POINT_FAVORITE, MISSED_POINT_MASTERY, normalizeProgress, PRACTICE_STORAGE_KEY, PRACTICE_PROGRESS_SAVED_EVENT, PRACTICE_REMOVALS_CHANGED_EVENT, REMOVED_RETENTION_MS, practiceAutoHideKey, practiceMasteryPatch, practiceStatusLabels, readPracticeProgress, savePracticeProgress, togglePracticeFavorite, type FavoriteReason, type Mastery, type PracticeStatus, type QuestionImage, type QuestionProgress, type PracticeQuestion, type PracticeProgress } from '@/math/practice'
+import { getMistakeReview, hasNote, isFavoriteFilter, isPending, isReviewDue, matchesPracticeStatus, mergeProgress, MISSED_POINT_FAVORITE, MISSED_POINT_MASTERY, normalizeProgress, PRACTICE_STORAGE_KEY, PRACTICE_PROGRESS_SAVED_EVENT, PRACTICE_REMOVALS_CHANGED_EVENT, REMOVED_RETENTION_MS, practiceAutoHideKey, practiceMasteryPatch, practiceStatusLabels, readPracticeProgress, savePracticeProgress, togglePracticeFavorite, type FavoriteReason, type Mastery, type PracticeStatus, type QuestionImage, type QuestionProgress, type PracticeQuestion, type PracticeProgress } from '@/math/practice'
 import { readPracticeLocations, practiceLocationContext, type PracticeLocation } from '@/math/practiceLocation'
 
 const props = withDefaults(defineProps<{ collection?: 'exams' | 'll880'; source: PracticeQuestion[] }>(), { collection: 'exams' })
@@ -38,7 +38,7 @@ const lastLocation = computed(() => lastLocations.value.find(location => practic
 const resumeOptions = computed(() => lastLocations.value.map((location, index) => {
   const q = questionById.get(location.questionId)!
   const title = q.bookId ? `${q.paperTitle} · ${q.source.replace('李林880 · ', '')}` : `${q.paperTitle ?? `${q.year} 年`} · ${q.kind === 'exercise' ? '补充练习' : '第'} ${q.number} 题`
-  const view = practiceLocationContext(location) === 'favorites' ? '收藏' : { all: '练习', review: '错题再练', notes: '笔记', removed: '已移除' }[location.view]
+  const view = practiceLocationContext(location) === 'favorites' ? '收藏' : { all: '练习', review: '错题库', notes: '笔记', removed: '已移除' }[location.view]
   const date = new Date(location.updatedAt)
   const time = Number.isNaN(date.getTime()) ? '' : date.toLocaleString('zh-CN', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false })
   return { key: practiceLocationContext(location), label: `${index ? '上一次' : '最近一次'} · ${view} · ${title}${time ? ` · ${time}` : ''}` }
@@ -77,7 +77,7 @@ const selectedPaper = computed(() => {
   return group[0] ? paperKey(group[0]) : ''
 })
 const keyword = ref('')
-const statusFilter = ref<PracticeStatus>(route.query.view === 'review' ? 'pending' : 'all')
+const statusFilter = ref<PracticeStatus>(route.query.view === 'review' ? 'bank' : 'all')
 const viewingFavorites = computed(() => mode.value === 'review' && isFavoriteFilter(statusFilter.value))
 const typeFilter = ref('all')
 const levelFilter = ref('all')
@@ -93,6 +93,7 @@ let savedDocumentTitle = ''
 const importInput = ref<HTMLInputElement>()
 const queueIds = ref<string[]>([])
 const round = ref(0)
+const reviewNow = ref(Date.now())
 const activeProgress = computed(() => demoMode.value ? demoProgress.value : progress.value)
 const sourceQuestions = computed(() => demoMode.value ? [demoQuestion] : questions)
 const queueIdSet = computed(() => new Set(queueIds.value))
@@ -113,17 +114,35 @@ const { interaction: trackQuestionInteraction, schedule: scheduleLocationSave, f
 const retainedCount = computed(() => questions.filter(q => !progress.value[q.id]?.deletedAt).length)
 const visibleQuestions = computed(() => questions.filter(q => !progress.value[q.id]?.removed && !progress.value[q.id]?.deletedAt))
 const removedCount = computed(() => questions.filter(q => progress.value[q.id]?.removed && !progress.value[q.id]?.deletedAt).length)
-const pendingCount = computed(() => visibleQuestions.value.filter(q => isPending(progress.value[q.id])).length)
+const bank = computed(() => visibleQuestions.value.flatMap(q => {
+  const mistake = getMistakeReview(progress.value[q.id])
+  return mistake ? [mistake] : []
+}))
+const dueCount = computed(() => bank.value.filter(item => !item.masteredAt && item.dueAt <= reviewNow.value).length)
+const graduatedCount = computed(() => bank.value.filter(item => item.masteredAt).length)
+const nextReviewDeadline = computed(() => {
+  let next = Infinity
+  for (const item of bank.value) {
+    if (!item.masteredAt && item.dueAt > reviewNow.value) next = Math.min(next, item.dueAt)
+  }
+  return next
+})
+function refreshReviewTime() { reviewNow.value = Date.now() }
+watch([reviewNow, nextReviewDeadline], ([, deadline], _, onCleanup) => {
+  if (!Number.isFinite(deadline)) return
+  const timer = window.setTimeout(refreshReviewTime, Math.max(0, Math.min(deadline - Date.now(), 2_147_483_647)))
+  onCleanup(() => window.clearTimeout(timer))
+}, { immediate: true })
 const notedCount = computed(() => visibleQuestions.value.filter(q => hasNote(progress.value[q.id])).length)
 const favoriteCount = computed(() => visibleQuestions.value.filter(q => progress.value[q.id]?.favorite).length)
 const hiddenInScope = computed(() => questions.filter(q => hiddenMastered.value.has(q.id) && isCurrentScope(q)).length)
-const workspaceTitle = computed(() => mode.value === 'all' ? (papers.value.find(paper => paper.id === selectedPaper.value)?.title.replace('李林880 · ', '') ?? heading.value) : mode.value === 'review' ? viewingFavorites.value ? '我的收藏' : '错题再练' : mode.value === 'notes' ? '题目笔记' : '已移除题目')
+const workspaceTitle = computed(() => mode.value === 'all' ? (papers.value.find(paper => paper.id === selectedPaper.value)?.title.replace('李林880 · ', '') ?? heading.value) : mode.value === 'review' ? viewingFavorites.value ? '我的收藏' : '错题库' : mode.value === 'notes' ? '题目笔记' : '已移除题目')
 const workspaceSubtitle = computed(() => mode.value === 'removed' ? '移除满 5 小时后自动清理，到期前可恢复。' : mode.value === 'all' ? isBook ? `2027 版 · ${selectedChapter.value?.types.length ?? 0} 个题型` : selectedPaper.value.startsWith('zy2026-') ? '模拟试卷与配套练习' : '数学二真题与配套练习' : `${isBook ? '李林 880' : '试卷题库'} · ${selectedYear.value ? papers.value.find(paper => paper.id === selectedPaper.value)?.title ?? '' : '全部' + (isBook ? '章节' : '试卷')}`)
 const masteredCount = computed(() => visibleQuestions.value.filter(q => progress.value[q.id]?.mastery === 'mastered').length)
 function isCurrentScope(q: (typeof questions)[number]) {
   return mode.value === 'review' || demoMode.value || (['notes', 'removed'].includes(mode.value) && !selectedYear.value) || paperKey(q) === selectedPaper.value
 }
-function matchesQuestion(q: (typeof questions)[number], view = mode.value) {
+function matchesQuestion(q: (typeof questions)[number], view = mode.value, keepReviewed = false) {
   const item = activeProgress.value[q.id]
   const retainPriorStatus = autoHideDeadlines.value[q.id] && statusFilter.value !== 'mastered' && !isFavoriteFilter(statusFilter.value)
   const filterItem = retainPriorStatus ? autoHidePriorProgress.get(q.id) : item
@@ -131,7 +150,9 @@ function matchesQuestion(q: (typeof questions)[number], view = mode.value) {
     && (view !== 'notes' || hasNote(item))
     && (typeFilter.value === 'all' || q.questionTypes?.some(type => type.id === typeFilter.value))
     && (levelFilter.value === 'all' || q.level === levelFilter.value)
-    && matchesPracticeStatus(filterItem, statusFilter.value)
+    && (view !== 'review' || isFavoriteFilter(statusFilter.value) || Boolean(getMistakeReview(item)))
+    && (matchesPracticeStatus(filterItem, statusFilter.value, reviewNow.value)
+      || (keepReviewed && statusFilter.value === 'due' && queueIdSet.value.has(q.id) && isPending(item)))
     && (!keyword.value.trim() || `${catalog.searchText.get(q.id) ?? q.stem.toLowerCase()} ${view === 'notes' ? item?.note?.toLowerCase() ?? '' : ''}`.includes(keyword.value.trim().toLowerCase()))
 }
 function isListed(q: (typeof questions)[number], view = mode.value) {
@@ -157,9 +178,15 @@ function toggleGroup(id: string, event: Event) {
   const open = (event.target as HTMLDetailsElement).open
   expandedGroups.value = open ? [...new Set([...expandedGroups.value, id])] : expandedGroups.value.filter(value => value !== id)
 }
-const filtered = computed(() => sourceQuestions.value.filter(q => isCurrentScope(q) && matchesQuestion(q)))
 const queue = computed(() => queueIds.value.map(id => questionById.get(id)).filter(q => q !== undefined))
 const heading = computed(() => demoMode.value ? '错题示例' : mode.value === 'removed' ? (isBook ? '880 · 已移除题目' : '试卷 · 已移除题目') : mode.value === 'notes' ? (isBook ? '880 · 题目笔记' : '试卷 · 题目笔记') : mode.value === 'review' ? `${isBook ? '李林 880' : '试卷'} · ${practiceStatusLabels[statusFilter.value]}` : isBook ? '李林 880 · 按题型练习' : '数学二试卷错题本')
+const emptyReview = computed(() => {
+  if (keyword.value.trim()) return { title: '没有符合搜索条件的题目', detail: '试试更短的关键词，或清空搜索。' }
+  if (viewingFavorites.value) return { title: '暂无符合条件的收藏题', detail: '在题目下方直接点选收藏原因。' }
+  if (statusFilter.value === 'due') return { title: '暂时没有到期题目', detail: '下次复测时间可以在全部错题里查看。' }
+  if (statusFilter.value === 'graduated') return { title: '暂时没有彻底掌握的错题', detail: '点「彻底掌握」后，题目会收录到这里。' }
+  return { title: '暂无符合条件的错题', detail: '标记任一错因或答错选择题后，题目会收录到错题库。' }
+})
 const markedInQueue = computed(() => queue.value.filter(q => activeProgress.value[q.id]?.mastery).length)
 const paperScope = computed(() => {
   const selected = papers.value.find(item => item.id === selectedPaper.value)
@@ -181,7 +208,18 @@ function restartQueue() {
   updateQueue()
   round.value += 1
 }
-function updateQueue() { queueIds.value = filtered.value.filter(q => !hiddenMastered.value.has(q.id) || activeProgress.value[q.id]?.favorite).map(q => q.id) }
+function updateQueue(keepReviewed = false) {
+  const listed = sourceQuestions.value.filter(q => isCurrentScope(q) && matchesQuestion(q, mode.value, keepReviewed)
+    && (!hiddenMastered.value.has(q.id) || activeProgress.value[q.id]?.favorite))
+  if (statusFilter.value === 'due' && !keepReviewed) {
+    listed.sort((a, b) => (getMistakeReview(activeProgress.value[a.id])?.dueAt ?? 0) - (getMistakeReview(activeProgress.value[b.id])?.dueAt ?? 0))
+  } else if (statusFilter.value === 'due') {
+    const remaining = new Set(listed.map(q => q.id))
+    queueIds.value = [...queueIds.value.filter(id => remaining.delete(id)), ...remaining]
+    return
+  }
+  queueIds.value = listed.map(q => q.id)
+}
 function removeFromQueue(id: string) {
   const card = document.getElementById(id)
   const hadFocus = Boolean(card?.contains(document.activeElement))
@@ -198,8 +236,9 @@ function showHiddenMastered() {
 }
 restoreAutoHides()
 watch(statusFilter, value => { if (!resuming.value && (value === 'all' || value === 'mastered')) revealHidden() }, { flush: 'sync' })
-watch(mode, value => { statusFilter.value = value === 'review' ? 'pending' : 'all' })
+watch(mode, value => { statusFilter.value = value === 'review' ? 'bank' : 'all' })
 watch([mode, selectedYear, selectedPaper, keyword, statusFilter, typeFilter, levelFilter, demoMode], restartQueue, { immediate: true })
+watch(reviewNow, () => { if (statusFilter.value === 'due') updateQueue(true) })
 watch(selectedPaper, () => { typeFilter.value = 'all'; levelFilter.value = 'all' })
 watch(notice, () => {
   if (noticeTimer) window.clearTimeout(noticeTimer)
@@ -222,7 +261,7 @@ watch(() => [route.query.year, route.query.paper, route.query.question, route.qu
 async function selectView(view: 'all' | 'review' | 'notes' | 'removed', targetYear = ['notes', 'removed'].includes(view) ? '' : selectedYear.value, targetPaper = view === 'all' ? selectedPaper.value : '') {
   finishLocationTracking()
   directoryOpen.value = false
-  if (view === 'review') statusFilter.value = 'pending'
+  if (view === 'review') statusFilter.value = 'bank'
   else if (view !== mode.value) statusFilter.value = 'all'
   typeFilter.value = 'all'
   levelFilter.value = 'all'
@@ -231,7 +270,7 @@ async function selectView(view: 'all' | 'review' | 'notes' | 'removed', targetYe
 }
 async function selectFavorites() { await selectView('review'); statusFilter.value = 'favorites' }
 type ProgressPatch = Partial<Omit<QuestionProgress, 'deletedAt' | 'updatedAt'>>
-function persist(id: string, patch: ProgressPatch | ((previous: QuestionProgress) => ProgressPatch)) {
+function persist(id: string, patch: ProgressPatch | ((previous: QuestionProgress) => ProgressPatch | undefined)) {
   if (!demoMode.value) progress.value = mergeProgress(readPracticeProgress(), progress.value)
   const target = demoMode.value ? demoProgress : progress
   const previous = target.value[id] ?? { note: '', updatedAt: 0, reviews: 0 }
@@ -241,6 +280,7 @@ function persist(id: string, patch: ProgressPatch | ((previous: QuestionProgress
     return false
   }
   const changes = typeof patch === 'function' ? patch(previous) : patch
+  if (!changes) return false
   target.value = { ...target.value, [id]: { ...previous, ...changes, updatedAt: Date.now() } }
   if (!demoMode.value) {
     progress.value = mergeProgress(readPracticeProgress(), progress.value)
@@ -249,23 +289,30 @@ function persist(id: string, patch: ProgressPatch | ((previous: QuestionProgress
   }
   return true
 }
-function markPatch(current: QuestionProgress, mastery: Mastery): ProgressPatch {
-  return {
-    ...practiceMasteryPatch(current, mastery),
-    attemptedAt: Date.now(),
-    reviews: current.reviews + (mode.value === 'review' && !viewingFavorites.value ? 1 : 0),
-  }
+function markPatch(current: QuestionProgress, mastery: Mastery | 'graduate'): ProgressPatch | undefined {
+  const now = Date.now()
+  const patch = practiceMasteryPatch(current, mastery, now)
+  if (patch) return { ...patch, attemptedAt: now }
 }
-const missedPointNotice = '已标记「之前没有注意的点」，并加入收藏。'
-function mark(id: string, mastery: Mastery) {
+const missedPointNotice = '已标记错因并收藏，20 分钟后复测。'
+function mark(id: string, mastery: Mastery | 'graduate') {
   const previous = autoHidePriorProgress.has(id) ? autoHidePriorProgress.get(id) : activeProgress.value[id]
+  if (!persist(id, current => markPatch(current, mastery))) return
   cancelAutoHide(id)
   hiddenMastered.value.delete(id)
-  if (!persist(id, current => markPatch(current, mastery))) return
-  if (mastery === 'mastered') scheduleAutoHide(id, previous)
+  const updated = activeProgress.value[id]
+  const mistake = getMistakeReview(updated)
+  if (mastery === 'mastered' && !mistake) scheduleAutoHide(id, previous)
   else saveAutoHides()
-  if (statusFilter.value !== 'unmarked' && queueIdSet.value.has(id) && !matchesQuestion(questionById.get(id)!)) removeFromQueue(id)
-  notice.value = demoMode.value ? '示例状态已更新' : mastery === MISSED_POINT_MASTERY ? missedPointNotice : mastery === 'mastered' ? (activeProgress.value[id]?.favorite ? '已掌握，收藏仍保留。' : mode.value === 'removed' ? '已标记为掌握' : '已掌握，30 秒后自动隐藏；改标错因可取消。') : isBook ? '已加入 880 错题再练' : '已加入试卷错题再练'
+  // 到期题做完后留在本轮，方便对答案和写笔记；刷新本轮时只显示仍到期的题。
+  if (statusFilter.value !== 'unmarked' && queueIdSet.value.has(id) && !matchesQuestion(questionById.get(id)!, mode.value, true)) removeFromQueue(id)
+  refreshReviewTime()
+  if (demoMode.value) notice.value = '示例状态已更新'
+  else if (mastery === 'graduate') notice.value = '已彻底掌握，停止复测，错题记录仍保留。'
+  else if (mastery === MISSED_POINT_MASTERY) notice.value = missedPointNotice
+  else if (mastery === 'mastered' && mistake) notice.value = '本次复测通过，已安排下次复测。'
+  else if (mastery === 'mastered') notice.value = updated?.favorite ? '已掌握，收藏仍保留。' : mode.value === 'removed' ? '已标记为掌握' : '已掌握，30 秒后自动隐藏；改标错因可取消。'
+  else notice.value = '已记入错题库，20 分钟后复测。'
 }
 function changeFavorite(id: string, reason?: FavoriteReason) {
   cancelAutoHide(id)
@@ -281,7 +328,8 @@ function changeFavorite(id: string, reason?: FavoriteReason) {
   if (!updated?.favorite && updated?.mastery === 'mastered') scheduleAutoHide(id, updated)
   else saveAutoHides()
   const checkFilter = isFavoriteFilter(statusFilter.value) || (markedMissedPoint && statusFilter.value !== 'unmarked')
-  if (checkFilter && queueIdSet.value.has(id) && !matchesQuestion(questionById.get(id)!)) removeFromQueue(id)
+  if (checkFilter && queueIdSet.value.has(id) && !matchesQuestion(questionById.get(id)!, mode.value, true)) removeFromQueue(id)
+  if (markedMissedPoint) refreshReviewTime()
   notice.value = markedMissedPoint ? missedPointNotice : updated?.favorite ? '已更新收藏原因。' : '已取消收藏。'
 }
 function recordAttempt(id: string, correct: boolean | undefined) {
@@ -339,7 +387,7 @@ function exportBackup() {
   const link = document.createElement('a')
   link.href = url; link.download = '数学二错题复习进度.json'; link.click()
   window.setTimeout(() => URL.revokeObjectURL(url), 1000)
-  notice.value = '已导出做题状态、笔记、收藏和移除记录。'
+  notice.value = '已导出做题状态、复测计划、笔记、收藏和移除记录。'
 }
 async function importBackup(event: Event) {
   const input = event.target as HTMLInputElement
@@ -364,7 +412,7 @@ function syncProgress(event: Event) {
   if (key === PRACTICE_STORAGE_KEY || key === practiceAutoHideKey(props.collection) || key === null) {
     progress.value = readPracticeProgress()
     restoreAutoHides()
-    updateQueue()
+    updateQueue(true)
   }
   if (!key || key === PRACTICE_STORAGE_KEY || key.startsWith('math2-practice-location-')) refreshResumeLocations()
 }
@@ -423,12 +471,18 @@ async function resumeLastLocation() {
 }
 watch([keyword, statusFilter, typeFilter, levelFilter], () => { nextTick(scheduleLocationSave) })
 onMounted(() => {
+  window.addEventListener('focus', refreshReviewTime)
+  window.addEventListener('pageshow', refreshReviewTime)
+  document.addEventListener('visibilitychange', refreshReviewTime)
   window.addEventListener('storage', syncProgress)
   window.addEventListener(PRACTICE_REMOVALS_CHANGED_EVENT, syncProgress)
   window.addEventListener('afterprint', finishPdfExport)
   jumpToRoute()
 })
 onBeforeUnmount(() => {
+  window.removeEventListener('focus', refreshReviewTime)
+  window.removeEventListener('pageshow', refreshReviewTime)
+  document.removeEventListener('visibilitychange', refreshReviewTime)
   window.removeEventListener('storage', syncProgress)
   window.removeEventListener(PRACTICE_REMOVALS_CHANGED_EVENT, syncProgress)
   window.removeEventListener('afterprint', finishPdfExport)
@@ -448,7 +502,7 @@ onBeforeUnmount(() => {
           <div class="directory-brand"><div><strong>{{ isBook ? '李林 880' : '试卷题库' }}</strong><span>{{ retainedCount }} 道题 · {{ isBook ? '按章节与题型' : '按年份与套卷' }}</span></div></div>
           <nav class="collection-nav" aria-label="错题集合">
             <button :aria-pressed="mode === 'all'" :class="{ active: mode === 'all' }" @click="selectView('all')"><PracticeIcon name="book" />{{ isBook ? '章节练习' : '试卷练习' }}<span>{{ allDisplayCount }}</span></button>
-            <button :aria-pressed="mode === 'review' && !viewingFavorites" :class="{ active: mode === 'review' && !viewingFavorites }" @click="selectView('review')"><PracticeIcon name="repeat" />错题再练<span>{{ pendingCount }}</span></button>
+            <button :aria-pressed="mode === 'review' && !viewingFavorites" :class="{ active: mode === 'review' && !viewingFavorites }" @click="selectView('review')"><PracticeIcon name="repeat" />错题库<span>{{ bank.length }}</span></button>
             <button :aria-pressed="viewingFavorites" :class="{ active: viewingFavorites }" @click="selectFavorites"><PracticeIcon name="star" />我的收藏<span>{{ favoriteCount }}</span></button>
             <button :aria-pressed="mode === 'notes'" :class="{ active: mode === 'notes' }" @click="selectView('notes')"><PracticeIcon name="note" />题目笔记<span>{{ notedCount }}</span></button>
             <button :aria-pressed="mode === 'removed'" :class="{ active: mode === 'removed' }" @click="selectView('removed')"><PracticeIcon name="trash" />已移除题目<span>{{ removedCount }}</span></button>
@@ -475,7 +529,7 @@ onBeforeUnmount(() => {
       <main id="practice-main" tabindex="-1" @pointerdown="trackQuestionInteraction" @focusin="trackQuestionInteraction">
         <header class="workspace-heading">
           <div><p class="workspace-path">数学二<span>/</span>{{ isBook ? '880 题库' : '试卷题库' }}</p><h1>{{ workspaceTitle }}</h1><p class="workspace-subtitle">{{ workspaceSubtitle }}</p></div>
-          <div class="workspace-actions"><button v-if="mode === 'review'" class="text-button" @click="restartQueue"><PracticeIcon name="repeat" />重新开始本轮</button><button class="pdf-button" :disabled="!queue.length || exportingPdf" @click="exportPdf"><PracticeIcon name="download" />{{ exportingPdf ? '准备导出…' : '导出 PDF' }}</button></div>
+          <div class="workspace-actions"><button v-if="statusFilter === 'due'" class="text-button" @click="restartQueue"><PracticeIcon name="repeat" />刷新到期列表</button><button class="pdf-button" :disabled="!queue.length || exportingPdf" @click="exportPdf"><PracticeIcon name="download" />{{ exportingPdf ? '准备导出…' : '导出 PDF' }}</button></div>
         </header>
         <section class="resume-card" aria-label="最近做题位置" @pointerdown.capture="finishLocationTracking" @focusin="finishLocationTracking"><PracticeIcon name="clock" /><span class="resume-caption">继续做题</span><template v-if="resumeOptions.length"><label class="visually-hidden" for="resume-location">最近两次做题记录</label><select id="resume-location" v-model="selectedLocationContext" :disabled="resuming"><option v-for="option in resumeOptions" :key="option.key" :value="option.key">{{ option.label }}</option></select><button :disabled="resuming" @click="resumeLastLocation">{{ resuming ? '正在定位…' : '跳转' }}<PracticeIcon name="arrow" /></button></template><p v-else class="resume-empty">开始练习后，这里会保留最近两次做题位置。</p></section>
         <section v-if="!questions.length" class="preview-banner"><PracticeIcon name="book" /><div><strong>错题本已就绪，等待录入你的题目</strong><p>下方使用你提供的截图演示操作，年份尚未确认，不计入正式题库和复习统计。</p></div><button @click="demoMode = !demoMode">{{ demoMode ? '收起示例' : '体验示例' }}</button></section>
@@ -485,16 +539,16 @@ onBeforeUnmount(() => {
           <div class="chapter-filter-controls"><label>题型<select v-model="typeFilter" aria-label="按具体题型筛选"><option value="all">全部题型</option><option v-for="item in chapterTypes" :key="item.id" :value="item.id">{{ item.order }}. {{ item.title }}</option></select></label><label>分层<select v-model="levelFilter" aria-label="按原书基础综合拓展筛选"><option value="all">基础、综合与拓展</option><option v-for="level in ['基础题', '综合题', '拓展题']" :key="level" :value="level">{{ level }}</option></select></label></div>
           <a :href="`${baseUrl}${selectedChapter.sourceFile}`" target="_blank" rel="noopener">原分类总结<PracticeIcon name="arrow" /></a>
         </section>
-        <PracticeToolbar v-model:status="statusFilter" v-model:keyword="keyword" :count="queue.length" :marked="markedInQueue" :hidden="hiddenInScope" :removed="mode === 'removed'" :notes="mode === 'notes'" @reveal="showHiddenMastered" />
+        <PracticeToolbar v-model:status="statusFilter" v-model:keyword="keyword" :count="queue.length" :marked="markedInQueue" :hidden="mode === 'review' ? 0 : hiddenInScope" :removed="mode === 'removed'" :notes="mode === 'notes'" :review="mode === 'review'" :due-count="dueCount" :bank-count="bank.length" :graduated-count="graduatedCount" @reveal="showHiddenMastered" />
         <div v-if="queue.length" class="question-list">
-          <div v-if="mode === 'review'" class="year-questions review-questions"><PracticeQuestionCard v-for="(question, index) in queue" :key="`${round}-${question.id}`" :question="question" :index="index + 1" :progress="activeProgress[question.id]" :auto-hide-pending="Boolean(autoHideDeadlines[question.id])" :storage-failed="storageFailed" :print-mode="exportingPdf" :manageable="!demoMode" @remove="removeQuestion" @restore="restoreQuestion" @note-blur="refreshNotesQueue" @mark="mark" @favorite="changeFavorite" @attempt="recordAttempt" @note="saveNote" @preview="openImage" /></div>
+          <div v-if="mode === 'review'" class="year-questions review-questions"><PracticeQuestionCard v-for="(question, index) in queue" :key="`${round}-${question.id}`" :question="question" :index="index + 1" :progress="activeProgress[question.id]" :review-now="reviewNow" :auto-hide-pending="Boolean(autoHideDeadlines[question.id])" :storage-failed="storageFailed" :print-mode="exportingPdf" :manageable="!demoMode" @remove="removeQuestion" @restore="restoreQuestion" @note-blur="refreshNotesQueue" @mark="mark" @favorite="changeFavorite" @attempt="recordAttempt" @note="saveNote" @preview="openImage" /></div>
           <section v-for="group in mode === 'review' ? [] : yearGroups" :id="`practice-year-${group.id}`" :key="group.id" class="year-section" :class="{ 'single-paper': yearGroups.length === 1 }" :aria-labelledby="`year-title-${group.id}`">
             <header class="paper-heading"><div><span class="paper-label">{{ mode === 'removed' ? '已移除题目' : mode === 'notes' ? '有笔记的题目' : group.book ? '2027 版 · 原分类题型' : group.exerciseOnly ? '非真题配套练习' : group.mock ? '模拟卷与配套练习' : '真题与配套练习' }}</span><h2 :id="`year-title-${group.id}`">{{ group.title }}{{ mode === 'removed' ? ' · 已移除题目' : mode === 'notes' ? ' · 笔记题目' : '' }}</h2></div><span>{{ group.questions.length }} 题</span></header>
-            <section v-for="section in group.sections" :key="section.id" class="type-section" :aria-label="section.title || group.title"><h3 v-if="section.title" class="type-heading">{{ section.title }}<small>{{ section.questions.length }} 题</small></h3><div class="year-questions"><PracticeQuestionCard v-for="(question, index) in section.questions" :key="`${round}-${question.id}`" :question="question" :index="index + 1" :progress="activeProgress[question.id]" :auto-hide-pending="Boolean(autoHideDeadlines[question.id])" :storage-failed="storageFailed" :print-mode="exportingPdf" :show-note="mode === 'notes' || mode === 'removed'" :manageable="!demoMode" :removed="mode === 'removed'" @remove="removeQuestion" @restore="restoreQuestion" @note-blur="refreshNotesQueue" @mark="mark" @favorite="changeFavorite" @attempt="recordAttempt" @note="saveNote" @preview="openImage" /></div></section>
+            <section v-for="section in group.sections" :key="section.id" class="type-section" :aria-label="section.title || group.title"><h3 v-if="section.title" class="type-heading">{{ section.title }}<small>{{ section.questions.length }} 题</small></h3><div class="year-questions"><PracticeQuestionCard v-for="(question, index) in section.questions" :key="`${round}-${question.id}`" :question="question" :index="index + 1" :progress="activeProgress[question.id]" :review-now="reviewNow" :auto-hide-pending="Boolean(autoHideDeadlines[question.id])" :storage-failed="storageFailed" :print-mode="exportingPdf" :show-note="mode === 'notes' || mode === 'removed'" :manageable="!demoMode" :removed="mode === 'removed'" @remove="removeQuestion" @restore="restoreQuestion" @note-blur="refreshNotesQueue" @mark="mark" @favorite="changeFavorite" @attempt="recordAttempt" @note="saveNote" @preview="openImage" /></div></section>
           </section>
-          <footer class="paper-end"><strong>{{ mode === 'review' ? viewingFavorites ? '我的收藏 · 本页结束' : '错题再练 · 本轮结束' : mode === 'removed' ? '已移除题目 · 本页结束' : mode === 'notes' ? '笔记汇总 · 本页结束' : `${paperScope} · ${isBook ? '本章' : '本卷'}结束` }}</strong></footer>
+          <footer class="paper-end"><strong>{{ mode === 'review' ? heading + ' · 本页结束' : mode === 'removed' ? '已移除题目 · 本页结束' : mode === 'notes' ? '笔记汇总 · 本页结束' : `${paperScope} · ${isBook ? '本章' : '本卷'}结束` }}</strong></footer>
         </div>
-        <section v-else class="empty-state"><PracticeIcon :name="mode === 'review' ? 'check' : 'book'" /><h2>{{ mode === 'removed' ? '暂无符合条件的已移除题目' : mode === 'notes' ? '暂无符合条件的笔记题目' : mode === 'review' ? viewingFavorites ? '暂无符合条件的收藏题' : '这里暂时没有需要再练的题' : questions.length ? '没有符合筛选条件的题目' : '准备好收集你的第一道错题' }}</h2><p>{{ mode === 'removed' ? '移除的题目保留 5 小时，到期前可恢复；清理后不再显示。' : mode === 'notes' ? '在题目下方写下笔记后，会自动收集到这里；也可以调整目录、状态或搜索条件。' : mode === 'review' ? viewingFavorites ? '在题目下方直接点选收藏原因。' : '标记任一错因或答错选择题后，题目会收录到错题里。' : questions.length ? '试试其他目录、状态，或清空搜索关键词。' : '上传题目时附上年份，我会把题干、答案和解析一起录入。' }}</p><button v-if="mode !== 'all'" class="primary-button" @click="selectView('all')">{{ isBook ? '返回 880 章节' : '返回错题本' }}</button></section>
+        <section v-else class="empty-state"><PracticeIcon :name="mode === 'review' ? 'check' : 'book'" /><h2>{{ mode === 'removed' ? '暂无符合条件的已移除题目' : mode === 'notes' ? '暂无符合条件的笔记题目' : mode === 'review' ? emptyReview.title : questions.length ? '没有符合筛选条件的题目' : '准备好收集你的第一道错题' }}</h2><p>{{ mode === 'removed' ? '移除的题目保留 5 小时，到期前可恢复；清理后不再显示。' : mode === 'notes' ? '在题目下方写下笔记后，会自动收集到这里；也可以调整目录、状态或搜索条件。' : mode === 'review' ? emptyReview.detail : questions.length ? '试试其他目录、状态，或清空搜索关键词。' : '上传题目时附上年份，我会把题干、答案和解析一起录入。' }}</p><button v-if="mode === 'review' && statusFilter !== 'bank' && !viewingFavorites" class="primary-button" @click="statusFilter = 'bank'">查看全部错题</button><button v-else-if="mode !== 'all'" class="primary-button" @click="selectView('all')">{{ isBook ? '返回 880 章节' : '返回试卷练习' }}</button></section>
         <p v-if="notice" class="notice" role="status" aria-live="polite">{{ notice }}<button v-if="undoRemovalId && notice.startsWith('已移除')" @click="restoreQuestion(undoRemovalId)">撤销</button></p>
       </main>
     </div>
