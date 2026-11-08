@@ -38,7 +38,7 @@ const reviewCount = (filter: 'due' | 'bank' | 'graduated') => ({ due: props.dueC
       <button v-if="hidden" class="reveal-button" aria-label="重新显示已隐藏题目" @click="$emit('reveal')"><PracticeIcon name="eye" />已隐藏 {{ hidden }} 道<span>重新显示</span></button>
       <details v-if="!removed" class="practice-rules">
         <summary><PracticeIcon name="info" />练习规则</summary>
-        <div class="rules-panel"><p>标记错因或答错选择题后，题目会进入错题库。首次安排在 20 分钟后。</p><p>每次到期复测通过后，从当次通过时间起依次间隔 1、2、4、7、15、30 天。之后每 30 天复测一次，再次做错则从 20 分钟开始。</p><p>点「彻底掌握」会停止复测，题目仍留在错题库。普通题标记「掌握」后 30 秒隐藏，收藏题保留。</p><p>点「之前没有注意的点」可同时标记错因和收藏。未做过的题开始作答后仍留在本轮。</p></div>
+        <div class="rules-panel"><p>标记错因或答错选择题后，题目会进入错题库，1 天后首次复测。</p><p>每次到期复测通过后，从当次通过时间起依次间隔 2、4、7、15、30 天。之后每 30 天复测一次，再次做错则从 1 天开始。</p><p>点「彻底掌握」会停止复测，题目仍留在错题库。普通题标记「掌握」后 30 秒隐藏，收藏题保留。</p><p>点「之前没有注意的点」可同时标记错因和收藏。未做过的题开始作答后仍留在本轮。</p></div>
       </details>
     </div>
   </section>

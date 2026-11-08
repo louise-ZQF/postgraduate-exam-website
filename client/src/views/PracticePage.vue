@@ -294,7 +294,7 @@ function markPatch(current: QuestionProgress, mastery: Mastery | 'graduate'): Pr
   const patch = practiceMasteryPatch(current, mastery, now)
   if (patch) return { ...patch, attemptedAt: now }
 }
-const missedPointNotice = '已标记错因并收藏，20 分钟后复测。'
+const missedPointNotice = '已标记错因并收藏，1 天后复测。'
 function mark(id: string, mastery: Mastery | 'graduate') {
   const previous = autoHidePriorProgress.has(id) ? autoHidePriorProgress.get(id) : activeProgress.value[id]
   if (!persist(id, current => markPatch(current, mastery))) return
@@ -312,7 +312,7 @@ function mark(id: string, mastery: Mastery | 'graduate') {
   else if (mastery === MISSED_POINT_MASTERY) notice.value = missedPointNotice
   else if (mastery === 'mastered' && mistake) notice.value = '本次复测通过，已安排下次复测。'
   else if (mastery === 'mastered') notice.value = updated?.favorite ? '已掌握，收藏仍保留。' : mode.value === 'removed' ? '已标记为掌握' : '已掌握，30 秒后自动隐藏；改标错因可取消。'
-  else notice.value = '已记入错题库，20 分钟后复测。'
+  else notice.value = '已记入错题库，1 天后复测。'
 }
 function changeFavorite(id: string, reason?: FavoriteReason) {
   cancelAutoHide(id)

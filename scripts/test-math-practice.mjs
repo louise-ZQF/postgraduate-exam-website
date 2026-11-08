@@ -233,7 +233,7 @@ const oneReason = { ...restoredFavorite, ...togglePracticeFavorite(restoredFavor
 assert.equal(oneReason.favorite, true)
 assert.equal(togglePracticeFavorite(oneReason, 'favorite-idea').favorite, false)
 const wrongAt = 1_000_000
-const firstInterval = 20 * 60 * 1000
+const firstInterval = 24 * 60 * 60 * 1000
 const missedPoint = { ...oneReason, ...practiceMasteryPatch(oneReason, MISSED_POINT_MASTERY, wrongAt) }
 const restoredMissedPoint = mergeProgress({}, { q: missedPoint }).q
 assert.equal(matchesPracticeStatus(restoredMissedPoint, MISSED_POINT_MASTERY), true, '联动标记保留为错因')
@@ -243,11 +243,15 @@ assert.deepEqual(practiceMasteryPatch(restoredMissedPoint, MISSED_POINT_MASTERY)
 const removedMissedFavorite = { ...restoredMissedPoint, ...togglePracticeFavorite(restoredMissedPoint, MISSED_POINT_FAVORITE) }
 assert.equal(matchesPracticeStatus(removedMissedFavorite, MISSED_POINT_MASTERY), true, '取消该收藏标签仍保留错因')
 assert.equal(isReviewDue(marked.q2025, wrongAt), true, '旧错题直接进入第一轮复测')
+const legacyFirstReview = { ...missedPoint, mistake: { ...missedPoint.mistake, step: 0, dueAt: wrongAt + 20 * 60 * 1000 } }
+assert.deepEqual(normalizeProgress({ q: legacyFirstReview }).q.mistake, missedPoint.mistake, '原 20 分钟复测从原错题时间改排 1 天')
+const legacyLaterReview = { ...missedPoint, mistake: { ...missedPoint.mistake, step: 6, dueAt: wrongAt + 30 * firstInterval } }
+assert.deepEqual(normalizeProgress({ q: legacyLaterReview }).q.mistake, legacyLaterReview.mistake, '已排定的后续复测保留时间')
 assert.equal(isReviewDue(restoredMissedPoint, wrongAt + firstInterval - 1), false)
 assert.equal(isReviewDue(restoredMissedPoint, wrongAt + firstInterval), true)
 assert.equal(practiceMasteryPatch(restoredMissedPoint, 'mastered', wrongAt), undefined, '提前或重复点通过不会跳过复测')
 let passed = restoredMissedPoint
-for (const days of [1, 2, 4, 7, 15, 30, 30]) {
+for (const days of [2, 4, 7, 15, 30, 30]) {
   const now = passed.mistake.dueAt
   passed = { ...passed, ...practiceMasteryPatch(passed, 'mastered', now), updatedAt: now }
   assert.equal(passed.mistake.dueAt, now + days * 24 * 60 * 60 * 1000)
@@ -257,10 +261,10 @@ for (const days of [1, 2, 4, 7, 15, 30, 30]) {
   assert.equal(matchesPracticeStatus(passed, MISSED_POINT_FAVORITE), true)
   assert.equal(practiceMasteryPatch(passed, 'mastered', now), undefined)
 }
-assert.equal(passed.reviews, 7)
+assert.equal(passed.reviews, 6)
 const failAt = passed.mistake.dueAt
 const failedAgain = { ...passed, ...practiceMasteryPatch(passed, 'wrong', failAt), updatedAt: failAt }
-assert.equal(failedAgain.mistake.dueAt, failAt + firstInterval, '再次答错从 20 分钟开始')
+assert.equal(failedAgain.mistake.dueAt, failAt + firstInterval, '再次答错从 1 天开始')
 assert.equal(failedAgain.mistake.reason, MISSED_POINT_MASTERY, '自动判错保留已标记的错因')
 const graduateAt = failAt + 1
 const graduated = { ...failedAgain, ...practiceMasteryPatch(failedAgain, 'graduate', graduateAt), updatedAt: graduateAt }

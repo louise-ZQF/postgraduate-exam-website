@@ -76,7 +76,7 @@ type MistakeReview = { reason: ErrorReason; step: number; dueAt: number; updated
 export type QuestionProgress = { mastery?: Mastery; mistake?: MistakeReview; attemptedAt?: number; favorite?: boolean; favoriteReasons?: FavoriteReason[]; removed?: boolean; removedAt?: number; deletedAt?: number; note: string; updatedAt: number; reviews: number }
 export type PracticeProgress = Record<string, QuestionProgress>
 const day = 24 * 60 * 60 * 1000
-const reviewIntervals = [20 * 60 * 1000, day, 2 * day, 4 * day, 7 * day, 15 * day, 30 * day]
+const reviewIntervals = [day, 2 * day, 4 * day, 7 * day, 15 * day, 30 * day]
 export const PRACTICE_STORAGE_KEY = 'math2-practice-progress-v1'
 export const PRACTICE_PROGRESS_SAVED_EVENT = 'math2-practice-progress-saved'
 export const PRACTICE_REMOVALS_CHANGED_EVENT = 'math2-practice-removals-changed'
@@ -106,11 +106,14 @@ export function savePracticeAutoHides(collection: 'exams' | 'll880', state: Prac
 function normalizeMistake(value?: MistakeReview): MistakeReview | undefined {
   if (!value || typeof value !== 'object') return
   const reason = normalizeMastery(value.reason)
-  if (!reason || reason === 'mastered' || !Number.isInteger(value.step) || value.step < 0 || value.step >= reviewIntervals.length
+  if (!reason || reason === 'mastered' || !Number.isInteger(value.step) || value.step < 0 || value.step > reviewIntervals.length
     || !Number.isFinite(value.dueAt) || value.dueAt < 0 || value.dueAt > 8.64e15
     || !Number.isFinite(value.updatedAt) || value.updatedAt < 0) return
   const { step, dueAt, updatedAt, masteredAt } = value
-  return { reason, step, dueAt, updatedAt, ...(typeof masteredAt === 'number' && Number.isFinite(masteredAt) && masteredAt > 0 ? { masteredAt } : {}) }
+  if (typeof masteredAt === 'number' && Number.isFinite(masteredAt) && masteredAt > 0) return { reason, step, dueAt, updatedAt, masteredAt }
+  // 旧版第 0 轮是 20 分钟复测，改为从原做错时间起算 1 天。
+  if (step === 0) return { reason, step: 1, dueAt: Math.min(updatedAt + day, 8.64e15), updatedAt }
+  return { reason, step, dueAt, updatedAt }
 }
 
 export function normalizeProgress(value: unknown): PracticeProgress {
@@ -195,11 +198,11 @@ export function practiceMasteryPatch(item: QuestionProgress, mastery: Mastery | 
   if (mastery === 'mastered') {
     if (!previous || previous.masteredAt) return { mastery }
     if (previous.dueAt > now) return
-    const step = Math.min(previous.step + 1, reviewIntervals.length - 1)
-    return { mistake: { ...previous, step, dueAt: now + reviewIntervals[step], updatedAt: now }, reviews: item.reviews + 1 }
+    const step = Math.min(previous.step + 1, reviewIntervals.length)
+    return { mistake: { ...previous, step, dueAt: now + reviewIntervals[step - 1], updatedAt: now }, reviews: item.reviews + 1 }
   }
   const reason = mastery === 'wrong' && previous && !previous.masteredAt ? previous.reason : mastery
-  const mistake: MistakeReview = { reason, step: 0, dueAt: now + reviewIntervals[0], updatedAt: now }
+  const mistake: MistakeReview = { reason, step: 1, dueAt: now + reviewIntervals[0], updatedAt: now }
   if (mastery === MISSED_POINT_MASTERY) {
     const reasons = item.favoriteReasons ?? []
     return {
