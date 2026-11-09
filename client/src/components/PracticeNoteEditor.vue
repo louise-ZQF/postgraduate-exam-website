@@ -2,7 +2,7 @@
 import { computed, nextTick, ref } from 'vue'
 import MathMarkdown from './MathMarkdown.vue'
 import { noteFromClipboard } from '@/math/notePaste'
-import { repairFragmentedMath } from '@/math/markdownMath'
+import { formatNoteBold, repairFragmentedMath } from '@/math/markdownMath'
 
 const props = defineProps<{ modelValue: string; inputId: string; label: string; storageFailed: boolean }>()
 const emit = defineEmits<{ 'update:modelValue': [value: string]; blur: [] }>()
@@ -49,6 +49,13 @@ function format(command: typeof commands[number]) {
   const element = input.value
   let start = element?.selectionStart ?? props.modelValue.length
   let end = element?.selectionEnd ?? start
+  if (command.id === 'bold' && element && start !== end) {
+    const formatted = formatNoteBold(props.modelValue, start, end)
+    if (formatted.value === props.modelValue.slice(formatted.start, formatted.end)) return
+    element.setSelectionRange(formatted.start, formatted.end)
+    void insert(formatted.value)
+    return
+  }
   if (command.line && element) {
     start = props.modelValue.lastIndexOf('\n', start - 1) + 1
     const lineEnd = props.modelValue.indexOf('\n', end)

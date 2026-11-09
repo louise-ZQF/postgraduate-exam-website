@@ -1,4 +1,5 @@
 export type MarkdownMathToken = { latex: string; display: boolean }
+type ProtectedRange = { start: number; end: number; block: boolean }
 
 export function repairFragmentedMath(source: string, includeMathFences = false): string {
   const lines = source.replace(/\r\n?/g, '\n').split('\n')
@@ -70,10 +71,22 @@ export function normalizeNoteMath(value: string, context = ''): string {
 }
 
 const inlineMathCode = (value: string) => !/[\n$`\u3400-\u9fff]/.test(value) && (/^[A-Za-zα-ωΑ-Ω]$/.test(value) || /[α-ωΑ-Ω⁰¹²³⁴⁵⁶⁷⁸⁹ᵀ₀-₉]|[\w)]\s*[_^]|\\(?:frac|int|sum|alpha|beta|theta|sqrt)(?![a-zA-Z])/.test(value))
+const wrapBoldLines = (text: string) => text.replace(/^([ \t]*(?:(?:#{1,6}|[-+*]|\d+[.)]|>)[ \t]+)*)(\S[^\n]*?)([ \t]*)$/gm, '$1<strong>$2</strong>$3')
+
+function repairBoldAcrossMath(text: string, prefix: string, tokens: MarkdownMathToken[]): string {
+  if (!tokens.some(token => token.display)) return text
+  const mathPlaceholder = new RegExp(`${prefix}(\\d+)END`, 'g')
+  return text.replace(/(?<![\\*])\*\*(?!\*)([^*]+?)(?<!\\)\*\*(?!\*)/g, (match, body: string) => {
+    if (!/\n[ \t]*\n/.test(body) || /`|^ {0,3}~{3,}|<\/?(?:code|pre)\b/im.test(body)) return match
+    const containsDisplay = [...body.matchAll(mathPlaceholder)].some(token => tokens[Number(token[1])]?.display)
+    return containsDisplay ? wrapBoldLines(body) : match
+  })
+}
 
 export function protectMarkdownMath(source: string, automatic = false) {
   if (automatic) source = repairFragmentedMath(source, true)
   const tokens: MarkdownMathToken[] = []
+  const ranges: ProtectedRange[] = []
   let prefix = 'RENDEREDMATHTOKEN'
   while (source.includes(prefix)) prefix += 'X'
   let text = ''
@@ -82,7 +95,33 @@ export function protectMarkdownMath(source: string, automatic = false) {
     while (at > 0 && source[--at] === '\\') count++
     return count % 2 === 1
   }
-  const add = (latex: string, display: boolean) => `${prefix}${tokens.push({ latex: automatic ? normalizeNoteMath(latex, source) : latex.trim(), display }) - 1}END`
+  const add = (latex: string, display: boolean, start: number, end: number) => {
+    ranges.push({ start, end, block: display })
+    return `${prefix}${tokens.push({ latex: automatic ? normalizeNoteMath(latex, source) : latex.trim(), display }) - 1}END`
+  }
+  function addDelimited(latex: string, display: boolean, start: number, end: number) {
+    if (!automatic) return add(latex, display, start, end)
+    let math = latex.trim()
+    const leading = math.match(/^\*\*(?!\*)\s*/)
+    if (leading) math = math.slice(leading[0].length)
+    const trailing = math.match(/(?<![\\*])\*\*$/)
+    if (!trailing) return (leading ? '**' : '') + add(math, display, start, end)
+    math = math.slice(0, -2)
+    let depth = 0
+    let tail = ''
+    // 旧编辑器可能把加粗结束符和相邻的中文说明一起留在公式定界符内。
+    for (let i = 0; i < math.length; i++) {
+      if (math[i] === '\\') { i++; continue }
+      if (math[i] === '{') depth++
+      if (math[i] === '}') depth--
+      if (i > 0 && depth === 0 && /[\u3400-\u9fff]/.test(math[i])) {
+        tail = math.slice(i)
+        math = math.slice(0, i)
+        break
+      }
+    }
+    return (leading ? '**' : '') + add(math, display, start, end) + tail + '**'
+  }
   for (let i = 0; i < source.length;) {
     const rest = source.slice(i)
     const lineStart = i === 0 || source[i - 1] === '\n'
@@ -91,17 +130,24 @@ export function protectMarkdownMath(source: string, automatic = false) {
       if (fence) {
         const closing = new RegExp(`^ {0,3}${fence[1][0]}{${fence[1].length},}[ \\t]*$`, 'm').exec(rest.slice(fence[0].length))
         const end = closing ? fence[0].length + closing.index + closing[0].length : rest.length
-        text += automatic && closing && /^(math|latex|tex)$/i.test(fence[2].trim())
-          ? add(rest.slice(fence[0].length, fence[0].length + closing.index), true)
-          : rest.slice(0, end)
+        if (automatic && closing && /^(math|latex|tex)$/i.test(fence[2].trim())) {
+          text += addDelimited(rest.slice(fence[0].length, fence[0].length + closing.index), true, i, i + end)
+        } else {
+          ranges.push({ start: i, end: i + end, block: true })
+          text += rest.slice(0, end)
+        }
         i += end
         continue
       }
       const line = rest.split('\n', 1)[0]
-      const mathLine = line.replace(/\\(?:text|operatorname)\{[^}]*\}/g, '')
+      const emphasized = line.match(/^\s*<strong>(.*?)<\/strong>\s*$/)
+      const formulaLine = emphasized?.[1] ?? line
+      const mathLine = formulaLine.replace(/\\(?:text|operatorname)\{[^}]*\}/g, '')
       if (automatic && line.trim() && !/[\u3400-\u9fff`$]/.test(mathLine) && !/\\[([]|\\begin\{/.test(line)
-        && (/\\(?:frac|dfrac|tfrac|int|sum|prod|lim|sqrt|partial|infty)(?![a-zA-Z])/.test(line) || /[a-zA-Z][_^].*(?:=|<|>|\\)/.test(line) || /^\s*[A-Za-zα-ωΑ-Ω]\s*[=<>≤≥≠]\s*[-+\dA-Za-zα-ωΑ-Ω]/.test(line) || /[a-zA-Z]'*\([^\n)]*\)\s*=/.test(line) || (/[α-ωΑ-Ω]/.test(line) && /[=^_²ᵀ]/.test(line)))) {
-        text += add(line, true); i += line.length; continue
+        && (/\\(?:frac|dfrac|tfrac|int|sum|prod|lim|sqrt|partial|infty)(?![a-zA-Z])/.test(formulaLine) || /[a-zA-Z][_^].*(?:=|<|>|\\)/.test(formulaLine) || /^\s*[A-Za-zα-ωΑ-Ω]\s*[=<>≤≥≠]\s*[-+\dA-Za-zα-ωΑ-Ω]/.test(formulaLine) || /[a-zA-Z]'*\([^\n)]*\)\s*=/.test(formulaLine) || (/[α-ωΑ-Ω]/.test(formulaLine) && /[=^_²ᵀ]/.test(formulaLine)))) {
+        const token = addDelimited(formulaLine, true, i, i + line.length)
+        text += emphasized ? `<strong>${token}</strong>` : token
+        i += line.length; continue
       }
     }
     if (source[i] === '`') {
@@ -110,7 +156,7 @@ export function protectMarkdownMath(source: string, automatic = false) {
       while (end >= 0 && (source[end - 1] === '`' || source[end + run.length] === '`')) end = source.indexOf(run, end + run.length)
       if (end >= 0) {
         const content = source.slice(i + run.length, end)
-        text += automatic && inlineMathCode(content) ? add(content, false) : source.slice(i, end + run.length)
+        text += automatic && inlineMathCode(content) ? add(content, false, i, end + run.length) : source.slice(i, end + run.length)
         i = end + run.length; continue
       }
     }
@@ -129,7 +175,7 @@ export function protectMarkdownMath(source: string, automatic = false) {
       let end = source.indexOf(close, i + open.length)
       while (end >= 0 && (escaped(end) || (close === '$' && source[end + 1] === '$'))) end = source.indexOf(close, end + close.length)
       if (end >= 0 && (open !== '$' || !source.slice(i, end).includes('\n'))) {
-        text += add(source.slice(i + open.length, end), display); i = end + close.length; continue
+        text += addDelimited(source.slice(i + open.length, end), display, i, end + close.length); i = end + close.length; continue
       }
     }
     if (automatic && rest.startsWith('\\begin{') && !escaped(i)) {
@@ -138,12 +184,29 @@ export function protectMarkdownMath(source: string, automatic = false) {
         const name = env[0].slice(7, -1)
         const closing = `\\end{${name}}`
         const end = source.indexOf(closing, i + env[0].length)
-        if (end >= 0) { text += add(source.slice(i, end + closing.length), true); i = end + closing.length; continue }
+        if (end >= 0) { text += add(source.slice(i, end + closing.length), true, i, end + closing.length); i = end + closing.length; continue }
       }
     }
     text += source[i++]
   }
-  return { text, tokens, prefix }
+  return { text: automatic ? repairBoldAcrossMath(text, prefix, tokens) : text, tokens, prefix, ranges }
+}
+
+export function formatNoteBold(source: string, start: number, end: number) {
+  const { ranges } = protectMarkdownMath(source)
+  for (const range of ranges) {
+    if (range.start < start && start < range.end) start = range.start
+    if (range.start < end && end < range.end) end = range.end
+  }
+  let value = ''
+  let cursor = start
+  for (const range of ranges) {
+    if (!range.block || range.start < start || range.end > end) continue
+    value += wrapBoldLines(source.slice(cursor, range.start)) + source.slice(range.start, range.end)
+    cursor = range.end
+  }
+  value += wrapBoldLines(source.slice(cursor, end))
+  return { start, end, value }
 }
 
 export const escapeMathHtml = (value: string) => value.replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]!)

@@ -17,7 +17,8 @@ const { normalizeProgress, mergeProgress, isPending, isUnattempted, matchesPract
 const practiceQuestions = ['practice-questions.json', 'll880-questions.json'].flatMap(file => JSON.parse(readFileSync(resolve(root, 'client/src/content', file), 'utf8')))
 const { demoQuestion } = await loadModule('client/src/math/practiceDemo.ts')
 const { createPracticeCatalog, groupMistakesByChapter } = await loadModule('client/src/math/practiceCatalog.ts')
-const { protectMarkdownMath, escapeMathHtml, normalizeNoteMath, repairFragmentedMath } = await loadModule('client/src/math/markdownMath.ts')
+const { protectMarkdownMath, escapeMathHtml, formatNoteBold, normalizeNoteMath, repairFragmentedMath } = await loadModule('client/src/math/markdownMath.ts')
+const { noteMarkdown } = await loadModule('client/src/math/noteMarkdown.ts', { marked: import.meta.resolve('marked') })
 const examsCatalog = createPracticeCatalog(practiceQuestions, 'exams')
 const bookCatalog = createPracticeCatalog(practiceQuestions, 'll880')
 assert.equal(examsCatalog.questions.length, 475)
@@ -115,6 +116,22 @@ for (const [source, count] of noteCases) {
   assert.equal(protectedMath.tokens.length, count, source)
   for (const token of protectedMath.tokens) assert.doesNotThrow(() => katex.renderToString(token.latex, { displayMode: token.display, throwOnError: true, strict: 'ignore' }), token.latex)
 }
+const brokenBoldNote = '**我列出式\\[\n2\\sqrt{1-y^2}\\cdot\\frac{dy}{dt}注意这点非常重要**\n\\]子以后继续求导。'
+const repairedBold = protectMarkdownMath(brokenBoldNote, true)
+assert.equal(repairedBold.tokens[0].latex, String.raw`2\sqrt{1-y^2}\cdot\frac{dy}{dt}`, '公式末尾误入的粗体标记和说明移回正文')
+assert.match(noteMarkdown.parse(repairedBold.text), /<strong>我列出式\w+注意这点非常重要<\/strong>子以后/)
+assert.match(noteMarkdown.parse('因为**这个结论。**所以继续推导'), /因为<strong>这个结论。<\/strong>所以/)
+assert.match(noteMarkdown.parse('因为** 这一步 **所以继续推导'), /因为<strong>这一步<\/strong>所以/)
+assert.match(noteMarkdown.parse('`**中文。**`'), /<code>\*\*中文。\*\*<\/code>/)
+const acrossFormula = '第一步\n\n\\[\nx^2+1\n\\]\n\n第二步'
+const oldBold = protectMarkdownMath(`**${acrossFormula}**`, true)
+assert.match(noteMarkdown.parse(oldBold.text), /<strong>第一步<\/strong>[\s\S]+<strong>第二步<\/strong>/)
+const newBold = formatNoteBold(acrossFormula, 0, acrossFormula.length).value
+assert.equal(newBold, '<strong>第一步</strong>\n\n\\[\nx^2+1\n\\]\n\n<strong>第二步</strong>')
+const stopsInsideMath = formatNoteBold(acrossFormula, 0, acrossFormula.indexOf('^'))
+assert.equal(stopsInsideMath.value, '<strong>第一步</strong>\n\n\\[\nx^2+1\n\\]')
+const withCode = '第一步\n\n```text\n**字面量**\n```\n\n第二步'
+assert.equal(formatNoteBold(withCode, 0, withCode.length).value, '<strong>第一步</strong>\n\n```text\n**字面量**\n```\n\n<strong>第二步</strong>')
 assert.equal(escapeMathHtml('<img src=x onerror="alert(1)">'), '&lt;img src=x onerror=&quot;alert(1)&quot;&gt;')
 assert.equal(normalizeNoteMath('αTx=(αTx)T=xTα.', '转置'), 'α^{T}x=(α^{T}x)^{T}=x^{T}α.')
 assert.equal(normalizeNoteMath('(αTx)2=xT(ααT)x', '转置，平方'), '(α^{T}x)^{2}=x^{T}(αα^{T})x')

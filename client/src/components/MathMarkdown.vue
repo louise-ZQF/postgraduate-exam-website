@@ -5,6 +5,7 @@ import katex from 'katex'
 import { marked } from 'marked'
 import type { MathFormula } from '@/math/types'
 import { escapeMathHtml, protectMarkdownMath } from '@/math/markdownMath'
+import { noteMarkdown } from '@/math/noteMarkdown'
 
 const props = withDefaults(defineProps<{ source: string; inline?: boolean; compact?: boolean; formulas?: MathFormula[]; automatic?: boolean; breaks?: boolean }>(), {
   inline: false,
@@ -14,9 +15,10 @@ const props = withDefaults(defineProps<{ source: string; inline?: boolean; compa
 
 const html = computed(() => {
   const { text: protectedSource, tokens, prefix } = protectMarkdownMath(props.source.replace(/<!--\s*formula\s+[^\n]*?-->/g, ''), props.automatic)
+  const markdown = props.automatic ? noteMarkdown : marked
   const rendered = props.inline
-    ? marked.parseInline(protectedSource, { async: false, gfm: true }) as string
-    : marked.parse(protectedSource, { async: false, breaks: props.breaks, gfm: true }) as string
+    ? markdown.parseInline(protectedSource, { async: false, gfm: true }) as string
+    : markdown.parse(protectedSource, { async: false, breaks: props.breaks, gfm: true }) as string
   const sanitized = DOMPurify.sanitize(rendered, {
     FORBID_ATTR: ['id', 'style'],
     FORBID_TAGS: ['button', 'embed', 'form', 'iframe', 'input', 'object', 'script', 'style'],
