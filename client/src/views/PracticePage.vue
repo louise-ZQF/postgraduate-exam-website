@@ -8,7 +8,7 @@ import PracticeIcon from '@/components/PracticeIcon.vue'
 import PracticeToolbar from '@/components/PracticeToolbar.vue'
 import { usePracticeAutoHide } from '@/composables/usePracticeAutoHide'
 import { usePracticePosition } from '@/composables/usePracticePosition'
-import { createPracticeCatalog, groupMistakesByChapter, paperKey } from '@/math/practiceCatalog'
+import { createPracticeCatalog, groupMistakesByChapter, paperKey, practicePaperSeries } from '@/math/practiceCatalog'
 import ll880Chapters from '@/content/ll880-classification.json'
 import { demoQuestion } from '@/math/practiceDemo'
 import { hasNote, isFavoriteFilter, isPending, matchesPracticeStatus, mergeProgress, MISSED_POINT_FAVORITE, MISSED_POINT_MASTERY, normalizeProgress, PRACTICE_STORAGE_KEY, PRACTICE_PROGRESS_SAVED_EVENT, PRACTICE_REMOVALS_CHANGED_EVENT, REMOVED_RETENTION_MS, practiceAutoHideKey, practiceMasteryPatch, practiceStatusLabels, readPracticeProgress, savePracticeProgress, togglePracticeFavorite, type FavoriteReason, type Mastery, type PracticeStatus, type QuestionImage, type QuestionProgress, type PracticeQuestion, type PracticeProgress } from '@/math/practice'
@@ -69,12 +69,12 @@ const selectedYear = computed(() => {
 })
 const selectedPaper = computed(() => {
   if (!selectedYear.value) return ''
-  const group = questions.filter(q => String(q.year) === selectedYear.value)
+  const group = catalog.papers.filter(paper => String(paper.year) === selectedYear.value)
   const requested = String(route.query.paper ?? '')
-  if (group.some(q => paperKey(q) === requested)) return requested
+  if (group.some(paper => paper.id === requested)) return requested
   const linked = questionById.get(String(route.query.question ?? ''))
   if (linked && String(linked.year) === selectedYear.value) return paperKey(linked)
-  return group[0] ? paperKey(group[0]) : ''
+  return group[0]?.id ?? ''
 })
 const keyword = ref('')
 const statusFilter = ref<PracticeStatus>(route.query.view === 'review' ? 'pending' : 'all')
@@ -119,7 +119,8 @@ const notedCount = computed(() => visibleQuestions.value.filter(q => hasNote(pro
 const favoriteCount = computed(() => visibleQuestions.value.filter(q => progress.value[q.id]?.favorite).length)
 const hiddenInScope = computed(() => questions.filter(q => hiddenMastered.value.has(q.id) && isCurrentScope(q)).length)
 const workspaceTitle = computed(() => mode.value === 'all' ? (papers.value.find(paper => paper.id === selectedPaper.value)?.title.replace('李林880 · ', '') ?? heading.value) : mode.value === 'review' ? viewingFavorites.value ? '我的收藏' : '错题库' : mode.value === 'notes' ? '题目笔记' : '已移除题目')
-const workspaceSubtitle = computed(() => mode.value === 'removed' ? '移除满 5 小时后自动清理，到期前可恢复。' : mode.value === 'all' ? isBook ? `2027 版 · ${selectedChapter.value?.types.length ?? 0} 个题型` : selectedPaper.value.startsWith('zy2026-') ? '模拟试卷与配套练习' : '数学二真题与配套练习' : `${isBook ? '李林 880' : '试卷题库'} · ${selectedYear.value ? papers.value.find(paper => paper.id === selectedPaper.value)?.title ?? '' : '全部' + (isBook ? '章节' : '试卷')}`)
+const selectedMockPaper = computed(() => catalog.papers.some(paper => paper.id === selectedPaper.value && paper.series !== 'real'))
+const workspaceSubtitle = computed(() => mode.value === 'removed' ? '移除满 5 小时后自动清理，到期前可恢复。' : mode.value === 'all' ? isBook ? `2027 版 · ${selectedChapter.value?.types.length ?? 0} 个题型` : selectedMockPaper.value ? '模拟试卷与配套练习' : '数学二真题与配套练习' : `${isBook ? '李林 880' : '试卷题库'} · ${selectedYear.value ? papers.value.find(paper => paper.id === selectedPaper.value)?.title ?? '' : '全部' + (isBook ? '章节' : '试卷')}`)
 const masteredCount = computed(() => visibleQuestions.value.filter(q => progress.value[q.id]?.mastery === 'mastered').length)
 function isCurrentScope(q: (typeof questions)[number]) {
   return mode.value === 'review' || demoMode.value || (['notes', 'removed'].includes(mode.value) && !selectedYear.value) || paperKey(q) === selectedPaper.value
@@ -146,10 +147,9 @@ const directoryPapers = computed(() => ['removed', 'notes'].includes(mode.value)
 const directoryTotal = computed(() => papers.value.reduce((sum, item) => sum + item.count, 0))
 const bookDirectory = computed(() => directoryPapers.value.filter(item => item.book))
 const examDirectory = computed(() => directoryPapers.value.filter(item => !item.book))
-const examGroups = computed(() => [
-  { id: 'real', title: '真题', papers: examDirectory.value.filter(item => item.series === 'real') },
-  { id: 'zy2026', title: '2026 版张宇四套卷', papers: examDirectory.value.filter(item => item.series === 'zy2026') },
-].filter(group => group.papers.length))
+const examGroups = computed(() => practicePaperSeries.map(series => ({
+  ...series, papers: examDirectory.value.filter(paper => paper.series === series.id),
+})).filter(group => group.papers.length))
 const expandedGroups = ref<string[]>([])
 watch(selectedPaper, id => {
   const group = examGroups.value.find(group => group.papers.some(paper => paper.id === id))
@@ -479,9 +479,9 @@ onBeforeUnmount(() => {
           <template v-if="mode !== 'review' && !isBook">
             <div class="directory-heading">{{ mode === 'removed' ? '移除试卷' : mode === 'notes' ? '笔记试卷' : '试卷目录' }}<span>{{ examDirectory.length }} 张试卷</span></div>
             <details v-for="group in examGroups" :key="group.id" class="exam-folder" :open="expandedGroups.includes(group.id)" @toggle="toggleGroup(group.id, $event)">
-              <summary><span class="folder-chevron" aria-hidden="true"></span><span>{{ group.title }}</span><small>{{ group.papers.length }} {{ group.id === 'real' ? '年' : '套' }}</small></summary>
+              <summary><span class="folder-chevron" aria-hidden="true"></span><span>{{ group.title }}</span><small>{{ group.papers.length }} {{ group.unit }}</small></summary>
               <nav class="year-nav" :aria-label="`${group.title}试卷目录`">
-                <button v-for="item in group.papers" :key="item.id" :aria-pressed="selectedPaper === item.id" :class="{ active: selectedPaper === item.id }" @click="selectView(mode, String(item.year), item.id)"><span>{{ group.id === 'zy2026' ? item.title.split(' · ').at(-1) : item.title }}</span><span>{{ item.count }}</span></button>
+                <button v-for="item in group.papers" :key="item.id" :aria-pressed="selectedPaper === item.id" :class="{ active: selectedPaper === item.id }" @click="selectView(mode, String(item.year), item.id)"><span>{{ group.id === 'real' ? item.title : item.title.split(' · ').at(-1) }}</span><span>{{ item.count }}</span></button>
               </nav>
             </details>
           </template>

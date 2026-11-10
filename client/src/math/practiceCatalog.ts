@@ -2,6 +2,11 @@ import type { PracticeQuestion } from './practice'
 import type { PracticeCollection } from './practiceLocation'
 
 export const paperKey = (question: PracticeQuestion) => question.paperId ?? String(question.year)
+export const practicePaperSeries = [
+  { id: 'real', title: '真题', unit: '年' },
+  { id: 'zy2026', title: '2026 版张宇四套卷', unit: '套' },
+  { id: 'll2026', title: '2026 版李林四套卷', unit: '套' },
+] as const
 
 export function createPracticeCatalog(source: PracticeQuestion[], collection: PracticeCollection) {
   const questions = source.filter(q => collection === 'll880' ? q.bookId === 'll880' : !q.bookId).sort((a, b) =>
@@ -20,9 +25,11 @@ export function createPracticeCatalog(source: PracticeQuestion[], collection: Pr
     searchText.set(q.id, `${q.year} ${q.number} ${q.source} ${q.topic} ${q.stem} ${q.searchText ?? ''} ${q.level ?? ''} ${q.questionTypes?.map(type => type.title).join(' ') ?? ''}`.toLowerCase())
   }
   const papers = [...groups].map(([id, group]) => ({
-    id, year: group[0].year, book: Boolean(group[0].bookId), series: id.startsWith('zy2026-') ? 'zy2026' : 'real',
+    id, year: group[0].year, book: Boolean(group[0].bookId),
+    series: practicePaperSeries.find(series => id.startsWith(`${series.id}-`))?.id ?? 'real',
     title: group[0].paperTitle ?? `${group[0].year} 年`, questions: group,
-  }))
+  })).sort((a, b) => b.year - a.year
+    || practicePaperSeries.findIndex(series => series.id === a.series) - practicePaperSeries.findIndex(series => series.id === b.series))
   return { questions, papers, searchText }
 }
 

@@ -11070,5 +11070,337 @@
       }
     ],
     "sourceOrder": 22
+  },
+  {
+    "id": "math2-ll2026-set2-q1-original",
+    "year": 2026,
+    "paperId": "ll2026-set2",
+    "paperTitle": "2026 李林四套卷 · 第二套",
+    "number": "1",
+    "examNumber": "1",
+    "kind": "original",
+    "source": "2026 李林四套卷 · 第二套 · 第 1 题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 一元微分 / 斜渐近线",
+    "type": "choice",
+    "options": [
+      {
+        "key": "A",
+        "text": "$y=-x+1$"
+      },
+      {
+        "key": "B",
+        "text": "$y=x+1$"
+      },
+      {
+        "key": "C",
+        "text": "$y=-x-1$"
+      },
+      {
+        "key": "D",
+        "text": "$y=x-1$"
+      }
+    ],
+    "correctOption": "A",
+    "stem": "设 $\\lim_{x\\to\\infty}f'(x)=0$，且\n$$\n\\lim_{x\\to\\infty}\\left(\\frac{ax^2}{1+x}-bx-1\\right)\n=\\lim_{x\\to\\infty}[f(x+1)-f(x)].\n$$\n则曲线 $y=\\dfrac{ax^2}{1+x}$ 的斜渐近线方程为（　）。",
+    "answer": "**A**。",
+    "explanation": "由拉格朗日中值定理，$f(x+1)-f(x)=f'(\\xi)$，其中 $x<\\xi<x+1$，所以右侧极限为 0。左侧通分前先做除法，\n$$\n\\frac{ax^2}{1+x}-bx-1=(a-b)x-a-1+\\frac{a}{1+x}.\n$$\n因此 $a=b=-1$。由 $\\dfrac{-x^2}{1+x}=-x+1-\\dfrac1{1+x}$，得渐近线 $y=-x+1$。"
+  },
+  {
+    "id": "math2-ll2026-set2-q3-original",
+    "year": 2026,
+    "paperId": "ll2026-set2",
+    "paperTitle": "2026 李林四套卷 · 第二套",
+    "number": "3",
+    "examNumber": "3",
+    "kind": "original",
+    "source": "2026 李林四套卷 · 第二套 · 第 3 题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 定积分 / 定积分大小比较",
+    "type": "choice",
+    "options": [
+      {
+        "key": "A",
+        "text": "$I_3>I_1>I_2$"
+      },
+      {
+        "key": "B",
+        "text": "$I_3>I_2>I_1$"
+      },
+      {
+        "key": "C",
+        "text": "$I_1>I_2>I_3$"
+      },
+      {
+        "key": "D",
+        "text": "$I_2>I_3>I_1$"
+      }
+    ],
+    "correctOption": "A",
+    "stem": "设\n$$\nI_1=\\int_0^1\\ln(1+x)\\,dx,\\qquad\nI_2=\\int_0^1\\frac{\\arctan x}{1+x}\\,dx,\\qquad\nI_3=\\int_0^1\\sqrt{\\ln(1+x)}\\,dx.\n$$\n则（　）。",
+    "answer": "**A**。",
+    "explanation": "当 $0<x\\le1$ 时，$0<\\ln(1+x)<1$，所以 $\\sqrt{\\ln(1+x)}>\\ln(1+x)$。另外，\n$$\n\\ln(1+x)=\\int_0^x\\frac{dt}{1+t}>\\frac{x}{1+x}>\\frac{\\arctan x}{1+x}.\n$$\n分别积分，得 $I_3>I_1>I_2$。"
+  },
+  {
+    "id": "math2-ll2026-set2-q7-original",
+    "year": 2026,
+    "paperId": "ll2026-set2",
+    "paperTitle": "2026 李林四套卷 · 第二套",
+    "number": "7",
+    "examNumber": "7",
+    "kind": "original",
+    "source": "2026 李林四套卷 · 第二套 · 第 7 题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 一元微分 / 动点与面积变化率",
+    "type": "choice",
+    "options": [
+      {
+        "key": "A",
+        "text": "$\\dfrac12$"
+      },
+      {
+        "key": "B",
+        "text": "$\\dfrac13$"
+      },
+      {
+        "key": "C",
+        "text": "$\\dfrac14$"
+      },
+      {
+        "key": "D",
+        "text": "$\\dfrac15$"
+      }
+    ],
+    "correctOption": "D",
+    "stem": "已知平面上的点 $A(0,1)$ 和抛物线 $x=2\\sqrt y$。动点 $P$ 从坐标原点 $O$ 出发，沿抛物线移动。若直线段 $OA$、$AP$ 和抛物线所围图形的面积对时间 $t$ 的增大速率为 1，则当 $P$ 移动到点 $(6,9)$ 处时，$P$ 的横坐标的变动速率为（　）。",
+    "answer": "**D**。",
+    "explanation": "设动点横坐标为 $X$，则 $P=(X,X^2/4)$。所求面积等于直线 $AP$ 下方的梯形面积减去抛物线下方的面积，\n$$\nS(X)=\\frac{1+X^2/4}{2}X-\\int_0^X\\frac{u^2}{4}\\,du\n=\\frac X2+\\frac{X^3}{24}.\n$$\n于是 $1=\\dfrac{dS}{dt}=(\\dfrac12+\\dfrac{X^2}{8})\\dfrac{dX}{dt}$。代入 $X=6$，得 $\\dfrac{dX}{dt}=\\dfrac15$。"
+  },
+  {
+    "id": "math2-ll2026-set2-q8-original",
+    "year": 2026,
+    "paperId": "ll2026-set2",
+    "paperTitle": "2026 李林四套卷 · 第二套",
+    "number": "8",
+    "examNumber": "8",
+    "kind": "original",
+    "source": "2026 李林四套卷 · 第二套 · 第 8 题",
+    "sourceCategory": "mock",
+    "topic": "线性代数 / 线性方程组 / 非齐次方程组与伴随矩阵",
+    "type": "choice",
+    "options": [
+      {
+        "key": "A",
+        "text": "$AX=0$ 与 $A^*X=0$ 同解。"
+      },
+      {
+        "key": "B",
+        "text": "$A^*X=0$ 的解均是 $AX=0$ 的解，但二者不同解。"
+      },
+      {
+        "key": "C",
+        "text": "$AX=0$ 的解均是 $A^*X=0$ 的解，但二者不同解。"
+      },
+      {
+        "key": "D",
+        "text": "$AX=0$ 与 $A^*X=0$ 没有非零公共解。"
+      }
+    ],
+    "correctOption": "C",
+    "stem": "设 $A$ 为 3 阶矩阵，$\\alpha_1=(1,2,-2)^T$、$\\alpha_2=(2,1,-1)^T$、$\\alpha_3=(1,1,a)^T$（$a\\ne-1$）是非齐次线性方程组 $AX=b$ 的三个解，$A^*$ 是 $A$ 的伴随矩阵，则（　）。",
+    "answer": "**C**。",
+    "explanation": "$\\det(\\alpha_1,\\alpha_2,\\alpha_3)=-3(a+1)\\ne0$，所以三个向量线性无关。$\\alpha_1-\\alpha_2$、$\\alpha_1-\\alpha_3$ 是 $AX=0$ 的两个线性无关解，因此 $r(A)\\le1$。又因 $b\\ne0$，有 $A\\ne0$，故 $r(A)=1$。$A$ 的二阶子式全为 0，所以 $A^*=0$，任意向量都满足 $A^*X=0$。"
+  },
+  {
+    "id": "math2-ll2026-set2-q11-original",
+    "year": 2026,
+    "paperId": "ll2026-set2",
+    "paperTitle": "2026 李林四套卷 · 第二套",
+    "number": "11",
+    "examNumber": "11",
+    "kind": "original",
+    "source": "2026 李林四套卷 · 第二套 · 第 11 题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 极限与连续 / 隐函数与幂指型极限",
+    "type": "fill",
+    "stem": "设 $y=f(x)$ 由方程 $e^y+x=e\\cos(xy)$ 确定，则\n$$\n\\lim_{n\\to\\infty}\\left[f\\left(\\frac1n\\right)\\right]^{\\frac1{n(1-\\cos(1/n))}}\n=\\underline{\\qquad}.\n$$",
+    "answer": "$\\boxed{e^{-2/e}}$。",
+    "explanation": "令 $x=0$ 得 $f(0)=1$。方程两边对 $x$ 求导得 $e^y y'+1=-e\\sin(xy)(y+xy')$，代入 $x=0,y=1$，得 $f'(0)=-1/e$。对幂指式取对数，因为 $1-\\cos(1/n)\\sim1/(2n^2)$，故对数的极限为\n$$\n2\\lim_{n\\to\\infty}\\frac{\\ln f(1/n)-\\ln f(0)}{1/n}\n=2\\frac{f'(0)}{f(0)}=-\\frac2e.\n$$"
+  },
+  {
+    "id": "math2-ll2026-set2-q12-original",
+    "year": 2026,
+    "paperId": "ll2026-set2",
+    "paperTitle": "2026 李林四套卷 · 第二套",
+    "number": "12",
+    "examNumber": "12",
+    "kind": "original",
+    "source": "2026 李林四套卷 · 第二套 · 第 12 题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 极限与连续 / 反函数求导与零比零型极限",
+    "type": "fill",
+    "stem": "设 $x=f(y)$ 是单调可导函数 $y=g(x)$ 的反函数，且 $g(1)=2$、$g'(1)=-\\dfrac{\\sqrt3}{3}$，则\n$$\n\\lim_{y\\to2}(y-2)\\frac{f(y)-f(2)}{(\\ln y-\\ln2)^2}\n=\\underline{\\qquad}.\n$$",
+    "answer": "$\\boxed{-4\\sqrt3}$。",
+    "explanation": "$f'(2)=1/g'(1)=-\\sqrt3$，且 $\\ln y-\\ln2\\sim(y-2)/2$。将原式拆成\n$$\n\\lim_{y\\to2}\\frac{f(y)-f(2)}{y-2}\n\\left(\\frac{y-2}{\\ln y-\\ln2}\\right)^2\n=4f'(2)=-4\\sqrt3.\n$$"
+  },
+  {
+    "id": "math2-ll2026-set2-q13-original",
+    "year": 2026,
+    "paperId": "ll2026-set2",
+    "paperTitle": "2026 李林四套卷 · 第二套",
+    "number": "13",
+    "examNumber": "13",
+    "kind": "original",
+    "source": "2026 李林四套卷 · 第二套 · 第 13 题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 一元积分 / 带约束的面积最值",
+    "type": "fill",
+    "stem": "设 $a^2+b^2=1$（$a<0,b>0$），则曲线 $y=x^2+ax$ 与直线 $y=bx$ 所围区域面积的最大值为 $\\underline{\\qquad}$。",
+    "answer": "$\\boxed{\\dfrac{\\sqrt2}{3}}$。",
+    "explanation": "两个交点的横坐标为 $0$ 和 $b-a$，所以\n$$\nS=\\int_0^{b-a}[(b-a)x-x^2]\\,dx=\\frac{(b-a)^3}{6}.\n$$\n由 $(b-a)^2=2-(a+b)^2\\le2$，在 $a=-1/\\sqrt2,\\ b=1/\\sqrt2$ 时取到等号，故 $S_{\\max}=\\sqrt2/3$。"
+  },
+  {
+    "id": "math2-ll2026-set2-q14-original",
+    "year": 2026,
+    "paperId": "ll2026-set2",
+    "paperTitle": "2026 李林四套卷 · 第二套",
+    "number": "14",
+    "examNumber": "14",
+    "kind": "original",
+    "source": "2026 李林四套卷 · 第二套 · 第 14 题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 一元积分 / 三角函数积分与面积极限",
+    "type": "fill",
+    "stem": "设 $y=x\\cos^2x$ 在 $x\\in[0,n\\pi]$（$n=1,2,\\ldots$）上与 $x$ 轴所围图形的面积为 $S_n$，则\n$$\n\\lim_{n\\to\\infty}\\frac{S_n}{(n+1)^2}=\\underline{\\qquad}.\n$$",
+    "answer": "$\\boxed{\\dfrac{\\pi^2}{4}}$。",
+    "explanation": "降幂后，\n$$\nS_n=\\frac12\\int_0^{n\\pi}x\\,dx+\\frac12\\int_0^{n\\pi}x\\cos2x\\,dx.\n$$\n第二项用分部积分得 $\\dfrac12\\left[\\dfrac{x\\sin2x}{2}+\\dfrac{\\cos2x}{4}\\right]_0^{n\\pi}=0$。所以 $S_n=n^2\\pi^2/4$，所求极限为 $\\pi^2/4$。"
+  },
+  {
+    "id": "math2-ll2026-set2-q15-original",
+    "year": 2026,
+    "paperId": "ll2026-set2",
+    "paperTitle": "2026 李林四套卷 · 第二套",
+    "number": "15",
+    "examNumber": "15",
+    "kind": "original",
+    "source": "2026 李林四套卷 · 第二套 · 第 15 题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 一元积分 / 含参数的定积分极限",
+    "type": "fill",
+    "stem": "$$\n\\lim_{n\\to\\infty}n\\int_0^{2\\pi}e^{-x}\\sin nx\\,dx=\\underline{\\qquad}.\n$$",
+    "answer": "$\\boxed{1-e^{-2\\pi}}$。",
+    "explanation": "记 $I_n=\\int_0^{2\\pi}e^{-x}\\sin nx\\,dx$，$J_n=\\int_0^{2\\pi}e^{-x}\\cos nx\\,dx$。分别分部积分，\n$$\nI_n=nJ_n,\\qquad J_n=1-e^{-2\\pi}-nI_n.\n$$\n所以 $nI_n=\\dfrac{n^2(1-e^{-2\\pi})}{1+n^2}\\to 1-e^{-2\\pi}$。"
+  },
+  {
+    "id": "math2-ll2026-set2-q16-original",
+    "year": 2026,
+    "paperId": "ll2026-set2",
+    "paperTitle": "2026 李林四套卷 · 第二套",
+    "number": "16",
+    "examNumber": "16",
+    "kind": "original",
+    "source": "2026 李林四套卷 · 第二套 · 第 16 题",
+    "sourceCategory": "mock",
+    "topic": "线性代数 / 矩阵 / 列变换、相似与迹",
+    "type": "fill",
+    "stem": "设 $\\alpha_1,\\alpha_2,\\alpha_3$ 为线性无关的 3 维列向量，$A=(\\alpha_1,\\alpha_2,\\alpha_3)$。交换 $A$ 的第 2 列与第 3 列，再将第 2 列乘以 $-4$、第 3 列乘以 $-1$，得 $C$。若 $BA=C$，则 $\\operatorname{tr}(B)=\\underline{\\qquad}$。",
+    "answer": "$\\boxed{1}$。",
+    "explanation": "逐列写出\n$$\nC=(\\alpha_1,-4\\alpha_3,-\\alpha_2)\n=A\\begin{pmatrix}1&0&0\\\\0&0&-1\\\\0&-4&0\\end{pmatrix}=AD.\n$$\n因为 $A$ 可逆，$BA=AD$ 两边左乘 $A^{-1}$，得 $A^{-1}BA=D$。所以 $\\operatorname{tr}(B)=\\operatorname{tr}(D)=1$。"
+  },
+  {
+    "id": "math2-ll2026-set2-q17-original",
+    "year": 2026,
+    "paperId": "ll2026-set2",
+    "paperTitle": "2026 李林四套卷 · 第二套",
+    "number": "17",
+    "examNumber": "17",
+    "kind": "original",
+    "source": "2026 李林四套卷 · 第二套 · 第 17 题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 一元微分 / 函数方程与绝对值极值",
+    "type": "solution",
+    "stem": "设定义在 $(-\\infty,+\\infty)$ 内的连续函数 $f(x)$ 满足\n$$\nf(x)f(y)=f(x+y),\\qquad \\lim_{x\\to0}\\frac{1-f(x)}{x}=1.\n$$\n求 $F(x)=|x|f(x)$ 的极值。",
+    "answer": "$x=0$ 处取极小值 $0$，$x=1$ 处取极大值 $e^{-1}$。",
+    "explanation": "第一步，由连续性和给出的极限，得到 $f(0)=1$、$f'(0)=-1$。把函数方程代入导数定义，\n$$\nf'(x)=\\lim_{h\\to0}\\frac{f(x+h)-f(x)}h\n=f(x)\\lim_{h\\to0}\\frac{f(h)-1}h=-f(x).\n$$\n所以 $(e^xf(x))'=0$，结合 $f(0)=1$ 得 $f(x)=e^{-x}$。\n\n第二步，$x<0$ 时，$F'(x)=(x-1)e^{-x}<0$。$x>0$ 时，$F'(x)=(1-x)e^{-x}$，在 $(0,1)$ 上为正，在 $(1,+\\infty)$ 上为负。\n\n答案为 $x=0$ 处取极小值 $0$，$x=1$ 处取极大值 $e^{-1}$。"
+  },
+  {
+    "id": "math2-ll2026-set2-q18-original",
+    "year": 2026,
+    "paperId": "ll2026-set2",
+    "paperTitle": "2026 李林四套卷 · 第二套",
+    "number": "18",
+    "examNumber": "18",
+    "kind": "original",
+    "source": "2026 李林四套卷 · 第二套 · 第 18 题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 微分方程 / 换元与二阶常系数微分方程",
+    "type": "solution",
+    "stem": "设 $y(x)$ 满足\n$$\n4x\\frac{d^2y}{dx^2}+2(1-\\sqrt x)\\frac{dy}{dx}-6y=e^{-\\sqrt x}.\n$$\n\n（Ⅰ）作变换 $x=t^2$（$t>0$），将方程变换成 $y$ 关于 $t$ 的方程。\n\n（Ⅱ）若 $\\lim_{x\\to0^+}y(x)=0$、$\\lim_{x\\to+\\infty}y(x)=0$，求 $y(x)$。",
+    "answer": "（Ⅰ）$\\dfrac{d^2y}{dt^2}-\\dfrac{dy}{dt}-6y=e^{-t}$。\n\n（Ⅱ）$y(x)=\\dfrac14(e^{-2\\sqrt x}-e^{-\\sqrt x})$。",
+    "explanation": "第一问。由 $t=\\sqrt x$，得到\n$$\n\\frac{dy}{dx}=\\frac1{2\\sqrt x}\\frac{dy}{dt},\\qquad\n\\frac{d^2y}{dx^2}\n=-\\frac1{4x^{3/2}}\\frac{dy}{dt}+\\frac1{4x}\\frac{d^2y}{dt^2}.\n$$\n代回原方程，得 $\\boxed{\\dfrac{d^2y}{dt^2}-\\dfrac{dy}{dt}-6y=e^{-t}}$。\n\n第二问。特征方程 $r^2-r-6=0$ 的根为 $3,-2$。设特解为 $Ae^{-t}$，代回得 $-4A=1$。因此\n$$\ny=C_1e^{3t}+C_2e^{-2t}-\\frac14e^{-t}.\n$$\n由 $t\\to+\\infty$ 时 $y\\to0$，得 $C_1=0$。再由 $t\\to0^+$ 时 $y\\to0$，得 $C_2=\\frac14$。答案为\n$$\n\\boxed{y(x)=\\frac14(e^{-2\\sqrt x}-e^{-\\sqrt x})}.\n$$"
+  },
+  {
+    "id": "math2-ll2026-set2-q19-original",
+    "year": 2026,
+    "paperId": "ll2026-set2",
+    "paperTitle": "2026 李林四套卷 · 第二套",
+    "number": "19",
+    "examNumber": "19",
+    "kind": "original",
+    "source": "2026 李林四套卷 · 第二套 · 第 19 题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 微分方程 / 一阶线性微分方程与幂指型极限",
+    "type": "solution",
+    "stem": "设 $f(x)$ 满足\n$$\nf'(x)-\\frac1n f(x)=\\left(1+\\frac1n\\right)x-1-n,\\qquad f(0)=n^2,\n$$\n其中 $n$ 为正整数。\n\n（Ⅰ）求 $f(x)$。\n\n（Ⅱ）若 $f(x)$ 在点 $x=x_n$ 处取得极小值，求 $\\lim_{n\\to\\infty}x_n^n$。",
+    "answer": "（Ⅰ）$f(x)=n^2e^{x/n}-(n+1)x$。\n\n（Ⅱ）$\\displaystyle\\lim_{n\\to\\infty}x_n^n=e^{-1/2}$。",
+    "explanation": "第一问。$n$ 固定，对 $x$ 积分，积分因子为 $e^{-x/n}$。方程两边乘积分因子，\n$$\n(e^{-x/n}f(x))'=e^{-x/n}\\left[\\left(1+\\frac1n\\right)x-1-n\\right].\n$$\n右边对 $x$ 积分，用 $\\int xe^{-x/n}\\,dx=-nxe^{-x/n}-n^2e^{-x/n}+C$，得到\n$$\ne^{-x/n}f(x)=-(n+1)xe^{-x/n}+C.\n$$\n代入 $f(0)=n^2$，得 $\\boxed{f(x)=n^2e^{x/n}-(n+1)x}$。\n\n第二问。由 $f'(x)=ne^{x/n}-(n+1)=0$，得 $x_n=n\\ln(1+1/n)$。因为 $f''(x)=e^{x/n}>0$，这是极小值点。由泰勒公式，\n$$\nx_n=1-\\frac1{2n}+o\\!\\left(\\frac1n\\right).\n$$\n因此 $n\\ln x_n\\to-\\frac12$，所求极限为 $\\boxed{e^{-1/2}}$。"
+  },
+  {
+    "id": "math2-ll2026-set2-q20-original",
+    "year": 2026,
+    "paperId": "ll2026-set2",
+    "paperTitle": "2026 李林四套卷 · 第二套",
+    "number": "20",
+    "examNumber": "20",
+    "kind": "original",
+    "source": "2026 李林四套卷 · 第二套 · 第 20 题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 二重积分 / 二重积分与坐标转换",
+    "type": "solution",
+    "stem": "设\n$$\nD=\\left\\{(r,\\theta)\\,\\middle|\\,0\\le\\theta\\le\\frac{\\pi}{2},\\\n0\\le r\\le2\\cos\\theta,\\ 0\\le r\\le\\frac{2}{\\cos\\theta+\\sin\\theta}\\right\\}.\n$$\n计算 $I=\\iint_D(\\cos\\theta+\\sin\\theta)r^2\\,d\\theta\\,dr$。",
+    "answer": "$I=\\dfrac\\pi4+\\dfrac56$。",
+    "explanation": "第一步，换成直角坐标。区域在第一象限，满足 $(x-1)^2+y^2\\le1$ 和 $x+y\\le2$。被积式变为 $(x+y)\\,dx\\,dy$。圆弧和直线交于 $(1,1)$、$(2,0)$，按 $x=1$ 分段，\n$$\nI=\\int_0^1dx\\int_0^{\\sqrt{2x-x^2}}(x+y)\\,dy\n+\\int_1^2dx\\int_0^{2-x}(x+y)\\,dy.\n$$\n\n第二步，先对 $y$ 积分，得到\n$$\nI=\\int_0^1\\left[x\\sqrt{1-(x-1)^2}+x-\\frac{x^2}{2}\\right]dx\n+\\int_1^2\\left(2-\\frac{x^2}{2}\\right)dx.\n$$\n第一段把 $x$ 写成 $1+(x-1)$，根号项积分为 $\\pi/4-1/3$，后两项积分为 $1/3$。第二段积分为 $5/6$。答案为 $\\boxed{\\dfrac\\pi4+\\dfrac56}$。"
+  },
+  {
+    "id": "math2-ll2026-set2-q21-original",
+    "year": 2026,
+    "paperId": "ll2026-set2",
+    "paperTitle": "2026 李林四套卷 · 第二套",
+    "number": "21",
+    "examNumber": "21",
+    "kind": "original",
+    "source": "2026 李林四套卷 · 第二套 · 第 21 题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 定积分 / 积分不等式与递推数列",
+    "type": "solution",
+    "stem": "设 $f(x)$ 连续且严格单调递减。\n\n（Ⅰ）证明，当 $x\\in(0,1)$ 时，\n$$\nx\\int_0^1f(t)\\,dt<\\int_0^xf(t)\\,dt<xf(0).\n$$\n\n（Ⅱ）若 $\\int_0^1 f(t)\\,dt\\ge0$、$f(0)\\le1$、$x_0\\in(0,1)$，且\n$$\nx_n=\\int_0^{x_{n-1}}f(t)\\,dt\\qquad(n=1,2,\\ldots),\n$$\n证明 $\\lim_{n\\to\\infty}x_n$ 存在，并求其值。",
+    "answer": "（Ⅰ）所给的两个严格不等式均成立，证明见解析。\n\n（Ⅱ）$\\displaystyle\\lim_{n\\to\\infty}x_n=0$。",
+    "explanation": "第一问。严格递减给出\n$$\n\\frac1x\\int_0^x f(t)\\,dt>f(x)>\n\\frac1{1-x}\\int_x^1 f(t)\\,dt.\n$$\n全区间 $[0,1]$ 的平均值是这两段平均值的加权平均，所以比前一段的平均值小，得左边不等式。对 $0<t<x$ 有 $f(t)<f(0)$，积分得右边不等式。\n\n第二问。若 $x_{n-1}\\in(0,1)$，用第一问得\n$$\n0\\le x_{n-1}\\int_0^1f(t)\\,dt<x_n<x_{n-1}f(0)\\le x_{n-1}<1.\n$$\n由归纳法，$0<x_n<x_{n-1}$ 对所有 $n\\ge1$ 成立，所以数列单调有界。设极限为 $a$，由积分上限函数的连续性，$a=\\int_0^af(t)\\,dt$。若 $a>0$，则 $0<a<1$，由第一问得 $a<af(0)\\le a$，矛盾。因此 $\\boxed{\\lim_{n\\to\\infty}x_n=0}$。"
+  },
+  {
+    "id": "math2-ll2026-set2-q22-original",
+    "year": 2026,
+    "paperId": "ll2026-set2",
+    "paperTitle": "2026 李林四套卷 · 第二套",
+    "number": "22",
+    "examNumber": "22",
+    "kind": "original",
+    "source": "2026 李林四套卷 · 第二套 · 第 22 题",
+    "sourceCategory": "mock",
+    "topic": "线性代数 / 二次型 / 实对称矩阵与二次型",
+    "type": "solution",
+    "stem": "设实对称矩阵 $A=(a_{ij})_{3\\times3}$ 有二重特征值 1，且 $\\sum_{i=1}^3a_{ij}=0$（$j=1,2,3$）。\n\n（Ⅰ）记 $X=(x_1,x_2,x_3)^T$，求方程 $X^TAX=0$ 的全部解。\n\n（Ⅱ）求可逆矩阵 $P$，使得 $X^T(2E-A)X=\\|PX\\|$。",
+    "answer": "（Ⅰ）$X=c(1,1,1)^T$，其中 $c\\in\\mathbb R$。\n\n（Ⅱ）按题本 $X^T(2E-A)X=\\|PX\\|$，不存在满足条件的可逆矩阵 $P$。若按参考解析的 $\\|PX\\|^2$，可取 $P=\\operatorname{diag}(\\sqrt2,1,1)Q^T$，其中 $Q$ 见解析。",
+    "explanation": "第一问。各列元素之和为零，由对称性，各行元素之和也为零。设 $u=(1,1,1)^T$，则 $Au=0$。因此 $A$ 的特征值为 $0,1,1$。取首列为 $u/\\sqrt3$ 的正交矩阵 $Q$，使 $Q^TAQ=\\operatorname{diag}(0,1,1)$。令 $X=QY$，则 $X^TAX=y_2^2+y_3^2$。所以 $y_2=y_3=0$，全部解为 $\\boxed{X=c(1,1,1)^T,\\ c\\in\\mathbb R}$。\n\n第二问。题本右边写的是 $\\|PX\\|$。若按原式要求对所有 $X$ 成立，把任一非零 $X$ 换成 $2X$，左边乘 4，右边乘 2，而可逆 $P$ 保证 $\\|PX\\|>0$，因此无解。参考解析的计算对应右边为 $\\|PX\\|^2$ 的版本。\n\n按平方形式，取\n$$\nQ=\\begin{pmatrix}\n1/\\sqrt3&-1/\\sqrt2&1/\\sqrt6\\\\\n1/\\sqrt3&1/\\sqrt2&1/\\sqrt6\\\\\n1/\\sqrt3&0&-2/\\sqrt6\n\\end{pmatrix}.\n$$\n矩阵的后两列均与 $u$ 正交，是特征值 1 的单位特征向量。于是 $Q^T(2E-A)Q=\\operatorname{diag}(2,1,1)$，可取\n$$\n\\boxed{P=\\operatorname{diag}(\\sqrt2,1,1)\\,Q^T}.\n$$\n此时 $P^TP=2E-A$，所以 $X^T(2E-A)X=\\|PX\\|^2$。\n\n题干据《李林四套卷数二·第二套》题本录入，答案对照第二套参考解析第 31 至 42 页核对。"
   }
 ]
