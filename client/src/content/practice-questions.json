@@ -11142,6 +11142,41 @@
     "explanation": "当 $0<x\\le1$ 时，$0<\\ln(1+x)<1$，所以 $\\sqrt{\\ln(1+x)}>\\ln(1+x)$。另外，\n$$\n\\ln(1+x)=\\int_0^x\\frac{dt}{1+t}>\\frac{x}{1+x}>\\frac{\\arctan x}{1+x}.\n$$\n分别积分，得 $I_3>I_1>I_2$。"
   },
   {
+    "id": "math2-ll2026-set2-q4-original",
+    "year": 2026,
+    "paperId": "ll2026-set2",
+    "paperTitle": "2026 李林四套卷 · 第二套",
+    "number": "4",
+    "examNumber": "4",
+    "kind": "original",
+    "source": "2026 李林四套卷 · 第二套 · 第 4 题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 多元微分 / 全微分",
+    "type": "choice",
+    "options": [
+      {
+        "key": "A",
+        "text": "$(1+\\sin 2)\\,\\mathrm dx+\\,\\mathrm dy$"
+      },
+      {
+        "key": "B",
+        "text": "$(1+\\sin 2)\\,\\mathrm dx-\\,\\mathrm dy$"
+      },
+      {
+        "key": "C",
+        "text": "$(1+\\sin 2)\\,\\mathrm dx+\\dfrac12\\,\\mathrm dy$"
+      },
+      {
+        "key": "D",
+        "text": "$(1+\\sin 2)\\,\\mathrm dx-\\dfrac12\\,\\mathrm dy$"
+      }
+    ],
+    "correctOption": "C",
+    "stem": "设 $z(x,y)$ 满足 $\\dfrac{\\partial z}{\\partial x}=\\sin y+\\dfrac{1}{1-xy}$，$z(1,y)=\\sin y$，则 $\\mathrm dz\\big|_{(0,2)}$ 为（　）。",
+    "answer": "参考答案为 **C**。",
+    "explanation": "第一步，直接代入 $(0,2)$，得 $\\dfrac{\\partial z}{\\partial x}(0,2)=1+\\sin 2$。\n\n第二步，固定 $y$，对 $x$ 积分。积分常数可以是 $y$ 的函数，因为对 $x$ 求导时，$C(y)$ 的导数是 0。按参考解析的做法，\n$$\nz(x,y)=x\\sin y-\\frac1y\\ln|1-xy|+C(y).\n$$\n代入 $z(1,y)=\\sin y$，得 $C(y)=\\dfrac{\\ln|1-y|}{y}$。\n\n第三步，求 $\\dfrac{\\partial z}{\\partial y}(0,2)$ 时，$x$ 始终固定为 0，所以先写 $z(0,y)=\\dfrac{\\ln|1-y|}{y}$。在 $y=2$ 附近有 $|1-y|=y-1$，因此\n$$\n\\frac{\\partial z}{\\partial y}(0,2)\n=\\left[-\\frac{\\ln(y-1)}{y^2}+\\frac{1}{y(y-1)}\\right]_{y=2}\n=\\frac12.\n$$\n把两个偏导代入全微分公式，得 $(1+\\sin 2)\\,\\mathrm dx+\\dfrac12\\,\\mathrm dy$。\n\n题面说明。$y=2$ 时，$x=0$ 与 $x=1$ 之间隔着奇点 $x=\\tfrac12$。两侧的积分常数严格来说可以不同，原题条件无法唯一确定 $\\dfrac{\\partial z}{\\partial y}(0,2)$。参考解析按两侧共用同一个 $C(y)$ 处理，预期选 C。"
+  },
+  {
     "id": "math2-ll2026-set2-q7-original",
     "year": 2026,
     "paperId": "ll2026-set2",
@@ -11210,6 +11245,41 @@
     "stem": "设 $A$ 为 3 阶矩阵，$\\alpha_1=(1,2,-2)^T$、$\\alpha_2=(2,1,-1)^T$、$\\alpha_3=(1,1,a)^T$（$a\\ne-1$）是非齐次线性方程组 $AX=b$ 的三个解，$A^*$ 是 $A$ 的伴随矩阵，则（　）。",
     "answer": "**C**。",
     "explanation": "$\\det(\\alpha_1,\\alpha_2,\\alpha_3)=-3(a+1)\\ne0$，所以三个向量线性无关。$\\alpha_1-\\alpha_2$、$\\alpha_1-\\alpha_3$ 是 $AX=0$ 的两个线性无关解，因此 $r(A)\\le1$。又因 $b\\ne0$，有 $A\\ne0$，故 $r(A)=1$。$A$ 的二阶子式全为 0，所以 $A^*=0$，任意向量都满足 $A^*X=0$。"
+  },
+  {
+    "id": "math2-ll2026-set2-q9-original",
+    "year": 2026,
+    "paperId": "ll2026-set2",
+    "paperTitle": "2026 李林四套卷 · 第二套",
+    "number": "9",
+    "examNumber": "9",
+    "kind": "original",
+    "source": "2026 李林四套卷 · 第二套 · 第 9 题",
+    "sourceCategory": "mock",
+    "topic": "线性代数 / 特征值与相似矩阵 / 向量正交与对角化",
+    "type": "choice",
+    "options": [
+      {
+        "key": "A",
+        "text": "$r(A)=1$。"
+      },
+      {
+        "key": "B",
+        "text": "$r(A)=2$。"
+      },
+      {
+        "key": "C",
+        "text": "$A$ 必相似于对角矩阵。"
+      },
+      {
+        "key": "D",
+        "text": "$A$ 必与单位矩阵合同。"
+      }
+    ],
+    "correctOption": "C",
+    "stem": "设 $A$ 为 2 阶实矩阵，$\\alpha$ 与 $\\beta$ 是 $A$ 的两个单位实特征向量，且满足 $\\|\\alpha+\\beta\\|=\\|\\alpha-\\beta\\|$，则（　）。",
+    "answer": "**C**。",
+    "explanation": "第一步，把模长平方写成内积。对列向量 $v=(a,b)^T$，$v^T=(a,b)$，所以 $v^Tv=a^2+b^2=\\|v\\|^2$。转置的作用是把列向量横过来，用行乘列得到分量的平方和。\n\n把 $v$ 换成 $\\alpha+\\beta$，完整展开为\n$$\n\\begin{aligned}\n\\|\\alpha+\\beta\\|^2\n&=(\\alpha+\\beta)^T(\\alpha+\\beta)\\\\\n&=(\\alpha^T+\\beta^T)(\\alpha+\\beta)\\\\\n&=\\alpha^T\\alpha+\\alpha^T\\beta+\\beta^T\\alpha+\\beta^T\\beta\\\\\n&=\\|\\alpha\\|^2+2\\alpha^T\\beta+\\|\\beta\\|^2.\n\\end{aligned}\n$$\n最后一行用到 $\\alpha^T\\beta=\\beta^T\\alpha$。两者都等于对应分量相乘再相加，所以两个交叉项可以合并。同理，\n$$\n\\|\\alpha-\\beta\\|^2=\\|\\alpha\\|^2-2\\alpha^T\\beta+\\|\\beta\\|^2.\n$$\n两式相等，消去各自的平方项，得到 $4\\alpha^T\\beta=0$，所以 $\\alpha$ 与 $\\beta$ 正交。\n\n第二步，两个非零向量正交，所以线性无关。设对应的特征值为 $\\lambda_1,\\lambda_2$，令 $P=(\\alpha,\\beta)$，则 $P$ 可逆，并且\n$$\nAP=(\\lambda_1\\alpha,\\lambda_2\\beta)=P\\operatorname{diag}(\\lambda_1,\\lambda_2).\n$$\n左乘 $P^{-1}$，得到 $P^{-1}AP=\\operatorname{diag}(\\lambda_1,\\lambda_2)$，所以选 C。特征向量非零并不能保证对应的特征值非零，因此不能据此判定 $r(A)=1$ 或 $r(A)=2$。"
   },
   {
     "id": "math2-ll2026-set2-q11-original",
