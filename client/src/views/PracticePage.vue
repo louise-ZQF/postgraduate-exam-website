@@ -502,7 +502,7 @@ onBeforeUnmount(() => {
         <p class="print-summary print-only">{{ pdfTitle }} · 含答案解析与笔记</p>
         <section v-if="selectedChapter && mode !== 'review'" class="chapter-filters" aria-label="880题型筛选">
           <div class="chapter-filter-controls"><label>题型<select v-model="typeFilter" aria-label="按具体题型筛选"><option value="all">全部题型</option><option v-for="item in chapterTypes" :key="item.id" :value="item.id">{{ item.order }}. {{ item.title }}</option></select></label><label>分层<select v-model="levelFilter" aria-label="按原书基础综合拓展筛选"><option value="all">基础、综合与拓展</option><option v-for="level in ['基础题', '综合题', '拓展题']" :key="level" :value="level">{{ level }}</option></select></label></div>
-          <a :href="`${baseUrl}${selectedChapter.sourceFile}`" target="_blank" rel="noopener">原分类总结<PracticeIcon name="arrow" /></a>
+          <a v-if="selectedChapter.sourceFile" :href="`${baseUrl}${selectedChapter.sourceFile}`" target="_blank" rel="noopener">原分类总结<PracticeIcon name="arrow" /></a>
         </section>
         <PracticeToolbar v-model:status="statusFilter" v-model:keyword="keyword" :count="queue.length" :marked="markedInQueue" :hidden="viewingMistakes ? 0 : hiddenInScope" :removed="mode === 'removed'" :notes="mode === 'notes'" :mistake-book="viewingMistakes" @reveal="showHiddenMastered" />
         <div v-if="queue.length" class="question-list">
