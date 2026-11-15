@@ -94,6 +94,7 @@ let savedDocumentTitle = ''
 const importInput = ref<HTMLInputElement>()
 const queueIds = ref<string[]>([])
 const round = ref(0)
+const collapseRequest = ref(0)
 const activeProgress = computed(() => demoMode.value ? demoProgress.value : progress.value)
 const sourceQuestions = computed(() => demoMode.value ? [demoQuestion] : questions)
 const queueIdSet = computed(() => new Set(queueIds.value))
@@ -184,6 +185,16 @@ const displayGroups = computed(() => {
   return viewingFavorites.value ? [] : yearGroups.value
 })
 let noticeTimer: number | undefined
+
+async function collapseAllQuestions(trigger: HTMLButtonElement) {
+  const top = trigger.getBoundingClientRect().top
+  collapseRequest.value += 1
+  await nextTick()
+  // 前面的卡片缩短后，尽量让刚点击的按钮留在原来的视口位置。
+  if (trigger.isConnected) {
+    window.scrollBy({ top: trigger.getBoundingClientRect().top - top, behavior: 'instant' })
+  }
+}
 
 function restartQueue() {
   // 标记后先保留当前卡片，由独立计时器在 30 秒后移出。
@@ -506,10 +517,10 @@ onBeforeUnmount(() => {
         </section>
         <PracticeToolbar v-model:status="statusFilter" v-model:keyword="keyword" :count="queue.length" :marked="markedInQueue" :hidden="viewingMistakes ? 0 : hiddenInScope" :removed="mode === 'removed'" :notes="mode === 'notes'" :mistake-book="viewingMistakes" @reveal="showHiddenMastered" />
         <div v-if="queue.length" class="question-list">
-          <div v-if="viewingFavorites" class="year-questions review-questions"><PracticeQuestionCard v-for="(question, index) in queue" :key="`${round}-${question.id}`" :question="question" :index="index + 1" :progress="activeProgress[question.id]" :auto-hide-pending="Boolean(autoHideDeadlines[question.id])" :storage-failed="storageFailed" :print-mode="exportingPdf" :manageable="!demoMode" @remove="removeQuestion" @restore="restoreQuestion" @note-blur="refreshNotesQueue" @mark="mark" @favorite="changeFavorite" @attempt="recordAttempt" @note="saveNote" @preview="openImage" /></div>
+          <div v-if="viewingFavorites" class="year-questions review-questions"><PracticeQuestionCard v-for="(question, index) in queue" :key="`${round}-${question.id}`" :question="question" :index="index + 1" :progress="activeProgress[question.id]" :auto-hide-pending="Boolean(autoHideDeadlines[question.id])" :storage-failed="storageFailed" :print-mode="exportingPdf" :collapse-request="collapseRequest" @collapse-all="collapseAllQuestions" :manageable="!demoMode" @remove="removeQuestion" @restore="restoreQuestion" @note-blur="refreshNotesQueue" @mark="mark" @favorite="changeFavorite" @attempt="recordAttempt" @note="saveNote" @preview="openImage" /></div>
           <section v-for="group in displayGroups" :id="`practice-year-${group.id}`" :key="group.id" class="year-section" :class="{ 'single-paper': !viewingMistakes && displayGroups.length === 1 }" :aria-labelledby="`year-title-${group.id}`">
             <header class="paper-heading"><div><span class="paper-label">{{ group.label }}</span><h2 :id="`year-title-${group.id}`">{{ group.title }}{{ mode === 'removed' ? ' · 已移除题目' : mode === 'notes' ? ' · 笔记题目' : '' }}</h2></div><span>{{ group.questions.length }} 题</span></header>
-            <section v-for="section in group.sections" :key="section.id" class="type-section" :aria-label="section.title || group.title"><h3 v-if="section.title" class="type-heading">{{ section.title }}<small>{{ section.questions.length }} 题</small></h3><div class="year-questions"><PracticeQuestionCard v-for="(question, index) in section.questions" :key="`${round}-${question.id}`" :question="question" :index="index + 1" :progress="activeProgress[question.id]" :auto-hide-pending="!viewingMistakes && Boolean(autoHideDeadlines[question.id])" :storage-failed="storageFailed" :print-mode="exportingPdf" :show-note="mode === 'notes' || mode === 'removed'" :manageable="!demoMode" :mistake-book="viewingMistakes" :removed="mode === 'removed'" @remove-mistake="removeMistake" @remove="removeQuestion" @restore="restoreQuestion" @note-blur="refreshNotesQueue" @mark="mark" @favorite="changeFavorite" @attempt="recordAttempt" @note="saveNote" @preview="openImage" /></div></section>
+            <section v-for="section in group.sections" :key="section.id" class="type-section" :aria-label="section.title || group.title"><h3 v-if="section.title" class="type-heading">{{ section.title }}<small>{{ section.questions.length }} 题</small></h3><div class="year-questions"><PracticeQuestionCard v-for="(question, index) in section.questions" :key="`${round}-${question.id}`" :question="question" :index="index + 1" :progress="activeProgress[question.id]" :auto-hide-pending="!viewingMistakes && Boolean(autoHideDeadlines[question.id])" :storage-failed="storageFailed" :print-mode="exportingPdf" :collapse-request="collapseRequest" @collapse-all="collapseAllQuestions" :show-note="mode === 'notes' || mode === 'removed'" :manageable="!demoMode" :mistake-book="viewingMistakes" :removed="mode === 'removed'" @remove-mistake="removeMistake" @remove="removeQuestion" @restore="restoreQuestion" @note-blur="refreshNotesQueue" @mark="mark" @favorite="changeFavorite" @attempt="recordAttempt" @note="saveNote" @preview="openImage" /></div></section>
           </section>
           <footer class="paper-end"><strong>{{ mode === 'review' ? viewingFavorites ? '我的收藏 · 本页结束' : '错题库 · 本页结束' : mode === 'removed' ? '已移除题目 · 本页结束' : mode === 'notes' ? '笔记汇总 · 本页结束' : `${paperScope} · ${isBook ? '本章' : '本卷'}结束` }}</strong></footer>
         </div>

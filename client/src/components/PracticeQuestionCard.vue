@@ -3,12 +3,12 @@ import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import MathMarkdown from '@/components/MathMarkdown.vue'
 import PracticeIcon from '@/components/PracticeIcon.vue'
 import PracticeNoteEditor from '@/components/PracticeNoteEditor.vue'
-import { BookText, Calculator, CircleCheck, CircleX, Ellipsis, ExternalLink, Eye, NotebookText, RotateCcw, Star, Tag, Trash2 } from '@lucide/vue'
+import { BookText, Calculator, ChevronsDownUp, CircleCheck, CircleX, Ellipsis, ExternalLink, Eye, NotebookText, RotateCcw, Star, Tag, Trash2 } from '@lucide/vue'
 import arcDiagram from '@/assets/practice-figures/zy2026-set1-q5.svg?raw'
 import { favoriteReasonLabels, getMistakeReason, hasNote, manualErrorReasons, masteryLabels, MISSED_POINT_FAVORITE, MISSED_POINT_MASTERY, REMOVED_RETENTION_MS, type FavoriteReason, type ManualMastery, type PracticeQuestion, type QuestionImage, type QuestionProgress } from '@/math/practice'
 
-const props = defineProps<{ question: PracticeQuestion; index: number; progress?: QuestionProgress; storageFailed: boolean; showNote?: boolean; removed?: boolean; manageable?: boolean; mistakeBook?: boolean; printMode?: boolean; autoHidePending?: boolean }>()
-const emit = defineEmits<{ mark: [id: string, mastery: ManualMastery]; favorite: [id: string, reason?: FavoriteReason]; attempt: [id: string, correct: boolean | undefined]; note: [id: string, note: string]; noteBlur: []; remove: [id: string]; removeMistake: [id: string]; restore: [id: string]; preview: [image: QuestionImage, trigger: HTMLElement] }>()
+const props = defineProps<{ question: PracticeQuestion; index: number; progress?: QuestionProgress; storageFailed: boolean; showNote?: boolean; removed?: boolean; manageable?: boolean; mistakeBook?: boolean; printMode?: boolean; autoHidePending?: boolean; collapseRequest: number }>()
+const emit = defineEmits<{ mark: [id: string, mastery: ManualMastery]; favorite: [id: string, reason?: FavoriteReason]; attempt: [id: string, correct: boolean | undefined]; note: [id: string, note: string]; noteBlur: []; remove: [id: string]; removeMistake: [id: string]; restore: [id: string]; collapseAll: [trigger: HTMLButtonElement]; preview: [image: QuestionImage, trigger: HTMLElement] }>()
 const arcDiagramUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(arcDiagram)}`
 const figureUrl = (src: string) => src === 'practice-figures/zy2026-set1-q5.svg' ? arcDiagramUrl : `${import.meta.env.BASE_URL}${src}`
 function previewImage(picture: QuestionImage, event: MouseEvent) {
@@ -38,23 +38,22 @@ function cancelAutoCollapse() {
   collapseTimer = undefined
   collapseDeadline = 0
 }
+function closeAnswer() {
+  answerOpen.value = false
+  explanationOpen.value = false
+  cancelAutoCollapse()
+}
 function updateAutoCollapse() {
   // 后台标签页可能延迟执行定时器，恢复时也检查实际离开时长。
   if ((answerOpen.value || explanationOpen.value) && collapseDeadline && Date.now() >= collapseDeadline) {
-    answerOpen.value = false
-    explanationOpen.value = false
-    cancelAutoCollapse()
+    closeAnswer()
     return
   }
   if ((!answerOpen.value && !explanationOpen.value) || (answerInViewport && !document.hidden)) {
     cancelAutoCollapse()
   } else if (collapseTimer === undefined) {
     collapseDeadline = Date.now() + 60_000
-    collapseTimer = window.setTimeout(() => {
-      answerOpen.value = false
-      explanationOpen.value = false
-      cancelAutoCollapse()
-    }, 60_000)
+    collapseTimer = window.setTimeout(closeAnswer, 60_000)
   }
 }
 watch(answerPanel, panel => {
@@ -76,6 +75,12 @@ onBeforeUnmount(() => {
   document.removeEventListener('visibilitychange', updateAutoCollapse)
 })
 const noteOpen = ref(props.showNote ?? false)
+watch(() => props.collapseRequest, () => {
+  closeAnswer()
+  noteOpen.value = false
+  if (knowledgeMenu.value) knowledgeMenu.value.open = false
+  if (managementMenu.value) managementMenu.value.open = false
+})
 const notePresent = computed(() => hasNote(props.progress))
 const reasons = computed(() => props.progress?.favoriteReasons ?? [])
 const selectedOption = ref('')
@@ -111,7 +116,9 @@ const displayedMastery = computed(() => props.mistakeBook ? getMistakeReason(pro
     </fieldset>
     <p v-if="selectedOption && question.correctOption" class="choice-feedback" :class="selectedOption === question.correctOption ? 'correct' : 'incorrect'" role="status" aria-live="polite"><PracticeIcon :name="selectedOption === question.correctOption ? 'check' : 'unknown'" />{{ selectedOption === question.correctOption ? `回答正确，答案是 ${question.correctOption}` : `回答错误，你选了 ${selectedOption}，正确答案是 ${question.correctOption}` }}</p>
     <div class="question-actions">
-      <div class="reading-controls"><button class="note-toggle" :class="{ 'has-note': notePresent }" :aria-label="notePresent ? '查看错因笔记（已有笔记）' : '记录错因笔记'" :aria-expanded="noteOpen" :aria-controls="`note-${question.id}`" @click="noteOpen = !noteOpen"><NotebookText /><span>笔记</span></button><template v-if="question.answerAvailable !== false"><button class="answer-toggle" :class="{ active: answerOpen }" :aria-label="answerOpen ? '收起答案' : '查看答案'" :aria-expanded="answerOpen" :aria-controls="`answer-${question.id}`" @click="answerOpen = !answerOpen"><Eye />答案</button><button class="explanation-toggle" :class="{ active: explanationOpen }" :aria-label="explanationOpen ? '收起解析' : '查看解析'" :aria-expanded="explanationOpen" :aria-controls="`answer-${question.id}`" @click="explanationOpen = !explanationOpen"><BookText />解析</button></template></div>
+      <div class="reading-controls"><button class="note-toggle" :class="{ 'has-note': notePresent }" :aria-label="notePresent ? '查看错因笔记（已有笔记）' : '记录错因笔记'" :aria-expanded="noteOpen" :aria-controls="`note-${question.id}`" @click="noteOpen = !noteOpen"><NotebookText /><span>笔记</span></button><template v-if="question.answerAvailable !== false"><button class="answer-toggle" :class="{ active: answerOpen }" :aria-label="answerOpen ? '收起答案' : '查看答案'" :aria-expanded="answerOpen" :aria-controls="`answer-${question.id}`" @click="answerOpen = !answerOpen"><Eye />答案</button><button class="explanation-toggle" :class="{ active: explanationOpen }" :aria-label="explanationOpen ? '收起解析' : '查看解析'" :aria-expanded="explanationOpen" :aria-controls="`answer-${question.id}`" @click="explanationOpen = !explanationOpen"><BookText />解析</button></template>
+        <button type="button" class="collapse-all" title="收起当前列表所有题目的展开内容" @click="emit('collapseAll', $event.currentTarget as HTMLButtonElement)"><ChevronsDownUp aria-hidden="true" />一键收起</button>
+      </div>
       <div class="mastery-controls" role="group" :aria-label="`第 ${index} 题做题状态`">
         <button v-for="status in statuses" :key="status" :class="[status, { marked: displayedMastery === status }]" :aria-pressed="displayedMastery === status" :title="status === MISSED_POINT_MASTERY ? '同时标为错题并收藏' : undefined" @click="emit('mark', question.id, status)"><CircleCheck v-if="status === 'mastered'" /><Calculator v-else-if="status === 'calculation-error'" /><CircleX v-else />{{ masteryLabels[status] }}</button>
         <button v-if="mistakeBook && manageable" type="button" class="remove-mistake" title="移出错题库并将原题标为掌握" @click="emit('removeMistake', question.id)"><Trash2 aria-hidden="true" />删除错题</button>
@@ -165,6 +172,7 @@ summary::-webkit-details-marker { display: none; }
 .reading-controls, .mastery-controls, .favorite-controls { display: flex; align-items: center; }
 .reading-controls { gap: 14px; }.mastery-controls { flex-wrap: wrap; gap: 8px; margin-left: auto; }
 .reading-controls button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 40px; border: 0; border-radius: 7px; padding: 0 5px; background: transparent; color: var(--ink); font-size: 14px; font-weight: 600; }.reading-controls button:hover { background: #f7f8fb; }.reading-controls button.active { color: var(--accent-dark); }
+.reading-controls .collapse-all { color: var(--ink-soft); white-space: nowrap; }
 .reading-controls .note-toggle.has-note { color: var(--danger); background: var(--danger-tint); }
 .mastery-controls button, .favorite-reason { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 40px; border: 1px solid #dfe3e9; border-radius: 10px; padding: 0 14px; background: #fff; color: var(--ink-soft); font-size: 14px; font-weight: 600; white-space: nowrap; }
 .mastery-controls button:hover, .favorite-reason:hover { background: #f7f8fb; border-color: #c3cad5; }
