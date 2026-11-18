@@ -11474,6 +11474,76 @@
     "explanation": "第一问。各列元素之和为零，由对称性，各行元素之和也为零。设 $u=(1,1,1)^T$，则 $Au=0$。因此 $A$ 的特征值为 $0,1,1$。取首列为 $u/\\sqrt3$ 的正交矩阵 $Q$，使 $Q^TAQ=\\operatorname{diag}(0,1,1)$。令 $X=QY$，则 $X^TAX=y_2^2+y_3^2$。所以 $y_2=y_3=0$，全部解为 $\\boxed{X=c(1,1,1)^T,\\ c\\in\\mathbb R}$。\n\n第二问。题本右边写的是 $\\|PX\\|$。若按原式要求对所有 $X$ 成立，把任一非零 $X$ 换成 $2X$，左边乘 4，右边乘 2，而可逆 $P$ 保证 $\\|PX\\|>0$，因此无解。参考解析的计算对应右边为 $\\|PX\\|^2$ 的版本。\n\n按平方形式，取\n$$\nQ=\\begin{pmatrix}\n1/\\sqrt3&-1/\\sqrt2&1/\\sqrt6\\\\\n1/\\sqrt3&1/\\sqrt2&1/\\sqrt6\\\\\n1/\\sqrt3&0&-2/\\sqrt6\n\\end{pmatrix}.\n$$\n矩阵的后两列均与 $u$ 正交，是特征值 1 的单位特征向量。于是 $Q^T(2E-A)Q=\\operatorname{diag}(2,1,1)$，可取\n$$\n\\boxed{P=\\operatorname{diag}(\\sqrt2,1,1)\\,Q^T}.\n$$\n此时 $P^TP=2E-A$，所以 $X^T(2E-A)X=\\|PX\\|^2$。\n\n题干据《李林四套卷数二·第二套》题本录入，答案对照第二套参考解析第 31 至 42 页核对。"
   },
   {
+    "id": "math2-ll6-2027-set2-q5-original",
+    "year": 2027,
+    "paperId": "ll6-2027-set2",
+    "paperTitle": "2027 李林六套卷 · 第二套",
+    "number": "5",
+    "examNumber": "5",
+    "kind": "original",
+    "source": "2027 李林六套卷 · 第二套 · 第 5 题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 一元函数积分 / 反常积分的收敛与求值",
+    "type": "choice",
+    "stem": "设反常积分\n$$\nI=\\int_0^{+\\infty}\\left(\\frac{ax}{1+x^2}-\\frac1{1+2x}\\right)dx\n$$\n收敛，则（　）。",
+    "options": [
+      {
+        "key": "A",
+        "text": "$I=\\ln\\dfrac12$"
+      },
+      {
+        "key": "B",
+        "text": "$I=\\dfrac12\\ln2$"
+      },
+      {
+        "key": "C",
+        "text": "$I=-\\ln\\dfrac12$"
+      },
+      {
+        "key": "D",
+        "text": "$I=-\\dfrac12\\ln2$"
+      }
+    ],
+    "correctOption": "D",
+    "answer": "**D**。$a=\\dfrac12$，$I=-\\dfrac12\\ln2$。",
+    "explanation": "这题的第一步是利用“积分收敛”确定 $a$。\n\n当 $x$ 很大时，$\\dfrac{ax}{1+x^2}$ 接近 $\\dfrac a x$，$\\dfrac1{1+2x}$ 接近 $\\dfrac1{2x}$。如果两者相减后还剩下非零倍的 $1/x$，积分就会像 $\\int_1^{+\\infty}\\dfrac{dx}{x}$ 一样发散。因此必须让这部分抵消，得到 $a=\\dfrac12$。\n\n接着把积分上限暂时写成 $R$，代入 $a=\\dfrac12$ 后一起计算：\n$$\n\\begin{aligned}\nI_R&=\\int_0^R\\left(\\frac{x}{2(1+x^2)}-\\frac1{1+2x}\\right)dx\\\\\n&=\\left[\\frac14\\ln(1+x^2)-\\frac12\\ln(1+2x)\\right]_0^R\\\\\n&=\\frac14\\ln\\frac{1+R^2}{(1+2R)^2}.\n\\end{aligned}\n$$\n当 $R\\to+\\infty$ 时，对数里的分式趋于 $1/4$，所以\n$$\nI=\\frac14\\ln\\frac14=-\\frac12\\ln2.\n$$\n选 **D**。"
+  },
+  {
+    "id": "math2-ll6-2027-set2-q7-original",
+    "year": 2027,
+    "paperId": "ll6-2027-set2",
+    "paperTitle": "2027 李林六套卷 · 第二套",
+    "number": "7",
+    "examNumber": "7",
+    "kind": "original",
+    "source": "2027 李林六套卷 · 第二套 · 第 7 题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 二重积分 / 极坐标形式的积分换序",
+    "type": "choice",
+    "stem": "设 $f(x,y)$ 连续，\n$$\nI=\\int_0^{\\pi/2}d\\theta\\int_0^{\\sqrt{\\sin2\\theta}}f(\\theta,r)r\\,dr.\n$$\n则 $I$ 等于（　）。",
+    "options": [
+      {
+        "key": "A",
+        "text": "$\\displaystyle\\int_0^1dr\\int_{\\frac12\\arcsin r^2}^{\\frac\\pi2-\\frac12\\arcsin r^2}f(\\theta,r)r\\,d\\theta$"
+      },
+      {
+        "key": "B",
+        "text": "$\\displaystyle\\int_0^1dr\\int_{\\frac12\\arcsin r^2}^{-\\frac12\\arcsin r^2}f(\\theta,r)r\\,d\\theta$"
+      },
+      {
+        "key": "C",
+        "text": "$\\displaystyle\\int_0^1dr\\int_{-\\frac12\\arcsin r^2}^{\\frac12\\arcsin r^2}f(\\theta,r)r\\,d\\theta$"
+      },
+      {
+        "key": "D",
+        "text": "$\\displaystyle\\int_0^1dr\\int_{\\frac12\\arcsin r^2}^{\\pi-\\frac12\\arcsin r^2}f(\\theta,r)r\\,d\\theta$"
+      }
+    ],
+    "correctOption": "A",
+    "answer": "**A**。",
+    "explanation": "这题要做的是“同一块积分区域，改一个遍历方向”。先把原来的上下限写成条件：\n$$\n0\\le\\theta\\le\\frac\\pi2,\\qquad 0\\le r\\le\\sqrt{\\sin2\\theta}.\n$$\n原来是先固定 $\\theta$，让 $r$ 从 0 走到曲线上。换序后，要先看 $r$ 总共能取多大，再固定 $r$ 找 $\\theta$ 的左右端点。\n\n因为 $\\sin2\\theta$ 最大为 1，所以外层是 $0\\le r\\le1$。固定一个这样的 $r$，原条件变成\n$$\nr^2\\le\\sin2\\theta,\\qquad 0\\le2\\theta\\le\\pi.\n$$\n在 $[0,\\pi]$ 上，正弦先升后降。水平线 $r^2$ 与它相交的两个位置是 $\\arcsin(r^2)$ 和 $\\pi-\\arcsin(r^2)$，中间这一段都满足条件。因此\n$$\n\\arcsin(r^2)\\le2\\theta\\le\\pi-\\arcsin(r^2),\n$$\n两边除以 2，就得到内层 $\\theta$ 的范围。\n$$\nI=\\int_0^1dr\\int_{\\frac12\\arcsin(r^2)}^{\\frac\\pi2-\\frac12\\arcsin(r^2)}f(\\theta,r)r\\,d\\theta.\n$$\n原来被积式中的 $r$ 一起保留，选 **A**。"
+  },
+  {
     "id": "math2-ll6-2027-set2-q9-original",
     "year": 2027,
     "paperId": "ll6-2027-set2",
@@ -11506,7 +11576,7 @@
     ],
     "correctOption": "D",
     "answer": "**D**。",
-    "explanation": "令 $N=A-\\lambda_0E$。由相似关系，$N$ 的秩为 1，且 $N^2=0$，所以第 2、3、4 条成立。\n\n若 $\\alpha$ 是 $N$ 的非零列向量，则 $N\\alpha$ 是 $N^2$ 的对应列，故 $N\\alpha=0$，即 $A\\alpha=\\lambda_0\\alpha$，第 1 条也成立。\n\n四条全对，选 **D**。原作答选 B。"
+    "explanation": "先把特征值对应的“对角部分”扣掉，令 $N=A-\\lambda_0E$。因为 $A$ 与 $B$ 相似，$N$ 也就与下面这个矩阵相似：\n$$\nJ=B-\\lambda_0E=\\begin{pmatrix}0&1&0\\\\0&0&0\\\\0&0&0\\end{pmatrix}.\n$$\n$J$ 只有一个非零列，所以秩为 1；它再乘自己一次就变成零矩阵，即 $J^2=0$。相似关系把这些性质传给 $N$，于是\n$$\n\\operatorname{rank}N=1,\\qquad N^2=0,\\qquad N^3=0.\n$$\n这已经说明第 2、3、4 条都正确。\n\n再看第 1 条。若 $\\alpha$ 是 $N$ 的一个非零列向量，那么 $N\\alpha$ 正好就是 $N^2$ 中对应的那一列，所以 $N\\alpha=0$。将 $N$ 换回去，便是\n$$\n(A-\\lambda_0E)\\alpha=0\\quad\\Longrightarrow\\quad A\\alpha=\\lambda_0\\alpha.\n$$\n这就是特征向量的定义。因此四条全对，选 **D**。原作答选 B。"
   },
   {
     "id": "math2-ll6-2027-set2-q10-original",
@@ -11541,7 +11611,7 @@
     ],
     "correctOption": "D",
     "answer": "**D**。",
-    "explanation": "题设就是 $A^2\\alpha\\ne0$、$A^3\\alpha=0$。\n\n设 $c_1A\\alpha+c_2A^2\\alpha=0$，左乘 $A$，得 $c_1A^2\\alpha=0$，所以 $c_1=0$；代回得 $c_2=0$。因此 $A\\alpha,A^2\\alpha$ 线性无关，选 **D**。原作答选 B。"
+    "explanation": "先把文字条件翻译成矩阵等式。“$\\alpha$ 不是 $A^2X=0$ 的解”，就是 $A^2\\alpha\\ne0$；“$A\\alpha$ 是它的解”，就是 $A^2(A\\alpha)=A^3\\alpha=0$。\n\n要判断两个向量是否线性无关，就设它们的线性组合等于零，看系数能否被迫全为零。这里设\n$$\nc_1A\\alpha+c_2A^2\\alpha=0.\n$$\n为什么想到左乘 $A$？因为题设正好告诉我们 $A^3\\alpha=0$，这样就能消掉一项：\n$$\nc_1A^2\\alpha+c_2A^3\\alpha=0\n\\quad\\Longrightarrow\\quad c_1A^2\\alpha=0.\n$$\n$A^2\\alpha$ 是非零向量，所以 $c_1=0$。代回最初的式子，得 $c_2A^2\\alpha=0$，再得 $c_2=0$。\n\n只有两个系数全为零才成立，因此 $A\\alpha,A^2\\alpha$ 线性无关，选 **D**。原作答选 B。"
   },
   {
     "id": "math2-ll6-2027-set2-q12-original",
@@ -11557,7 +11627,7 @@
     "type": "fill",
     "stem": "函数 $f(x)=\\dfrac{e^x(1+\\sin x)}{1+\\cos x}$ 在区间 $\\left[0,\\dfrac{\\pi}{2}\\right]$ 上的平均值为______。",
     "answer": "$\\dfrac{2e^{\\pi/2}}{\\pi}$。",
-    "explanation": "先认出被积函数是一个乘积的导数：\n$$\n\\left(e^x\\tan\\frac{x}{2}\\right)'=\\frac{e^x(1+\\sin x)}{1+\\cos x}=f(x).\n$$\n平均值等于积分除以区间长度，所以\n$$\n\\frac{2}{\\pi}\\int_0^{\\pi/2}f(x)\\,dx\n=\\frac{2}{\\pi}\\left[e^x\\tan\\frac{x}{2}\\right]_0^{\\pi/2}\n=\\frac{2e^{\\pi/2}}{\\pi}.\n$$"
+    "explanation": "函数的平均值，就是“曲线下的积分”除以区间长度。这道题的区间长度是 $\\pi/2$，所以要求\n$$\n\\frac2\\pi\\int_0^{\\pi/2}\\frac{e^x(1+\\sin x)}{1+\\cos x}\\,dx.\n$$\n积分的突破口是半角公式。先把分式拆开：\n$$\n\\frac{1+\\sin x}{1+\\cos x}\n=\\frac1{1+\\cos x}+\\tan\\frac x2.\n$$\n又因为 $\\left(\\tan\\dfrac x2\\right)'=\\dfrac1{1+\\cos x}$，所以这两项正好来自乘积 $e^x\\tan(x/2)$ 的求导：\n$$\n\\left(e^x\\tan\\frac x2\\right)'\n=e^x\\tan\\frac x2+\\frac{e^x}{1+\\cos x}=f(x).\n$$\n现在直接代上下限，$\\tan(\\pi/4)=1$、$\\tan0=0$，于是平均值为\n$$\n\\frac2\\pi\\left[e^x\\tan\\frac x2\\right]_0^{\\pi/2}\n=\\frac{2e^{\\pi/2}}\\pi.\n$$"
   },
   {
     "id": "math2-ll6-2027-set2-q13-original",
@@ -11573,7 +11643,7 @@
     "type": "fill",
     "stem": "设二阶常系数线性齐次微分方程 $y''+ay'+by=0$ 的通解为 $y=(C_1+C_2x)e^x$。求微分方程 $y''+ay'+by=x$ 满足 $y(0)=2,\\ y'(0)=0$ 的解。",
     "answer": "$y=x+2-xe^x$。",
-    "explanation": "齐次通解对应特征方程 $(r-1)^2=0$，所以 $a=-2,b=1$。\n\n右边是 $x$，试特解 $y_p=mx+n$，代入得 $y_p=x+2$。于是\n$$\ny=(C_1+C_2x)e^x+x+2.\n$$\n用 $y(0)=2,y'(0)=0$ 得 $C_1=0,C_2=-1$，故 $y=x+2-xe^x$。"
+    "explanation": "先从齐次通解里读出方程的系数。出现 $(C_1+C_2x)e^x$，说明特征方程有两个相同的根 $r=1$，所以\n$$\nr^2+ar+b=(r-1)^2=r^2-2r+1.\n$$\n因此 $a=-2,b=1$，要解的方程是 $y''-2y'+y=x$。\n\n右边是一次多项式，先试一个同样的一次多项式作为特解，设 $y_p=mx+n$。代入后有\n$$\n0-2m+(mx+n)=x,\n$$\n比较 $x$ 的系数和常数项，得 $m=1,n=2$。所以非齐次方程的通解是\n$$\ny=(C_1+C_2x)e^x+x+2.\n$$\n最后用初值确定常数。由 $y(0)=2$，得 $C_1=0$；再求导，\n$$\ny'=(C_1+C_2+C_2x)e^x+1.\n$$\n代入 $y'(0)=0$，得 $C_2=-1$。所以 $y=x+2-xe^x$。"
   },
   {
     "id": "math2-ll6-2027-set2-q14-original",
@@ -11589,7 +11659,7 @@
     "type": "fill",
     "stem": "设 $f(x,y)=\\displaystyle\\int_{x/y}^{xy}(x-yt)\\varphi(t)\\,dt$，其中 $\\varphi(t)$ 可微，则先对 $x$、再对 $y$ 求偏导，在 $(2,1)$ 处的值为______。",
     "answer": "$0$。",
-    "explanation": "先对 $x$ 求导，下限项因 $x-y(x/y)=0$ 消失：\n$$\nf_x=\\int_{x/y}^{xy}\\varphi(t)\\,dt+(xy-xy^3)\\varphi(xy).\n$$\n再对 $y$ 求导并代入 $(2,1)$：积分项得 $4\\varphi(2)$，乘积项得 $-4\\varphi(2)$，含 $\\varphi'$ 的项因 $xy-xy^3=0$ 消失。\n\n两项抵消，答案为 $0$。"
+    "explanation": "这道题求导时，要同时考虑“上下限在动”和“被积函数里也有 $x,y$”。先对 $x$ 求导。\n\n上限是 $xy$，其导数是 $y$；把 $t=xy$ 代入被积函数，上限贡献为 $(x-xy^2)\\varphi(xy)\\cdot y$。下限是 $x/y$，但代入后 $x-y(x/y)=0$，所以这一项为零。积分内部对 $x$ 求导则留下 $\\varphi(t)$。合起来是\n$$\nf_x=\\int_{x/y}^{xy}\\varphi(t)\\,dt+(xy-xy^3)\\varphi(xy).\n$$\n接着对 $y$ 求导，分成这两部分分别算。\n\n积分项只需处理上下限，得到\n$$\nx\\varphi(xy)+\\frac{x}{y^2}\\varphi(x/y).\n$$\n代入 $(2,1)$ 后是 $4\\varphi(2)$。\n\n另一部分用乘积求导，得到\n$$\n(x-3xy^2)\\varphi(xy)+(xy-xy^3)x\\varphi'(xy).\n$$\n代入 $(2,1)$ 后，第一项是 $-4\\varphi(2)$，第二项的系数为零。\n\n两部分相加，$4\\varphi(2)-4\\varphi(2)=0$，所以答案是 $0$。"
   },
   {
     "id": "math2-ll6-2027-set2-q15-original",
@@ -11605,7 +11675,7 @@
     "type": "fill",
     "stem": "计算 $\\displaystyle\\int_0^1 dx\\int_0^{1-x}e^{(x+y)^2}\\,dy$。",
     "answer": "$\\dfrac{e-1}{2}$。",
-    "explanation": "内层令 $t=x+y$，再交换积分次序：\n$$\nI=\\int_0^1dx\\int_x^1e^{t^2}\\,dt\n=\\int_0^1dt\\int_0^te^{t^2}\\,dx\n=\\int_0^1te^{t^2}\\,dt\n=\\frac{e-1}{2}.\n$$"
+    "explanation": "如果直接对 $y$ 积分，$e^{(x+y)^2}$ 不容易求出原函数。因此先让指数里的 $x+y$ 变成一个变量，令 $t=x+y$。\n\n内层积分时 $x$ 固定，$dy=dt$。$y=0$ 时 $t=x$，$y=1-x$ 时 $t=1$，所以\n$$\nI=\\int_0^1dx\\int_x^1e^{t^2}\\,dt.\n$$\n现在积分区域是 $0\\le x\\le t\\le1$。改成先固定 $t$，那么 $t$ 从 0 到 1，而 $x$ 从 0 到 $t$。交换次序后，\n$$\nI=\\int_0^1dt\\int_0^te^{t^2}\\,dx\n=\\int_0^1te^{t^2}\\,dt.\n$$\n这里内层对 $x$ 积分时，$e^{t^2}$ 是常数，所以只是乘上区间长度 $t$。最后利用 $d(t^2)=2t\\,dt$，得\n$$\nI=\\frac12[e^{t^2}]_0^1=\\frac{e-1}{2}.\n$$"
   },
   {
     "id": "math2-ll6-2027-set2-q16-original",
@@ -11621,7 +11691,7 @@
     "type": "fill",
     "stem": "设\n$$\nf(x_1,x_2,x_3)=(2x_2+3x_3)^2+(x_1+3x_2+ax_3)^2+(x_1+ax_2-2x_3)^2\n$$\n是正定二次型，求 $a$ 的取值范围。",
     "answer": "$a\\ne1$。",
-    "explanation": "平方和正定，等价于三个一次式同时为零时只有零解。因此它们的系数矩阵必须可逆：\n$$\n\\det\\begin{pmatrix}\n0&2&3\\\\\n1&3&a\\\\\n1&a&-2\n\\end{pmatrix}=5(a-1)\\ne0.\n$$\n所以 $a\\ne1$。"
+    "explanation": "题目已经写成三个平方相加，所以函数值一定不小于零。要进一步“正定”，就要求只有 $X=0$ 时才能取到零。\n\n三个平方相加等于零，意味着每一个平方都等于零，即\n$$\n\\begin{cases}\n2x_2+3x_3=0,\\\\\nx_1+3x_2+ax_3=0,\\\\\nx_1+ax_2-2x_3=0.\n\\end{cases}\n$$\n因此问题变成“这个齐次方程组什么时候只有零解”。条件就是系数矩阵的行列式不为零：\n$$\n\\det\\begin{pmatrix}0&2&3\\\\1&3&a\\\\1&a&-2\\end{pmatrix}\n=-2(-2-a)+3(a-3)=5(a-1)\\ne0.\n$$\n所以 $a\\ne1$。若 $a=1$，方程组存在非零解，三个平方会同时为零，就无法正定。"
   },
   {
     "id": "math2-ll6-2027-set2-q17-original",
@@ -11637,7 +11707,7 @@
     "type": "solution",
     "stem": "设 $f(x)$ 连续，且 $\\displaystyle\\lim_{x\\to1}\\dfrac{f(x)}{x-1}=2$，求\n$$\n\\lim_{x\\to0}\n\\frac{\\displaystyle\\int_0^{x^2}e^u f(e^u-e^{x^2}+1)\\,du}\n{x^2\\ln(\\cos x)}.\n$$",
     "answer": "$2$。",
-    "explanation": "令 $t=e^u-e^{x^2}+1$，则 $dt=e^u\\,du$，分子变为\n$$\n\\int_{2-e^{x^2}}^1f(t)\\,dt.\n$$\n由已知，$t\\to1$ 时 $f(t)\\sim2(t-1)$，所以分子等价于\n$$\n\\int_{2-e^{x^2}}^12(t-1)\\,dt\n=-(e^{x^2}-1)^2\\sim-x^4.\n$$\n分母 $x^2\\ln(\\cos x)\\sim-x^4/2$，两者相除得 $2$。"
+    "explanation": "已知极限告诉我们，$t$ 靠近 1 时，$f(t)$ 可以用 $2(t-1)$ 来估计。因此先想办法把被积函数的自变量变成 $t$，令\n$$\nt=e^u-e^{x^2}+1,\\qquad dt=e^u\\,du.\n$$\n这里对 $u$ 积分时，$x$ 固定。$u=0$ 对应 $t=2-e^{x^2}$，$u=x^2$ 对应 $t=1$，所以分子变成\n$$\n\\int_{2-e^{x^2}}^1f(t)\\,dt.\n$$\n当 $x\\to0$ 时，整个积分区间都缩向 1，可以用 $f(t)\\sim2(t-1)$。于是分子等价于\n$$\n\\int_{2-e^{x^2}}^1 2(t-1)\\,dt\n=\\left[(t-1)^2\\right]_{2-e^{x^2}}^1\n=-(e^{x^2}-1)^2\\sim-x^4.\n$$\n注意这里的负号来自“上限处为 0，减去下限处的平方”。分母用 $\\ln(\\cos x)\\sim-x^2/2$，得\n$$\nx^2\\ln(\\cos x)\\sim-\\frac{x^4}{2}.\n$$\n分子分母的 $x^4$ 和负号约掉，极限就是 $2$。"
   },
   {
     "id": "math2-ll6-2027-set2-q19-original",
@@ -11653,7 +11723,7 @@
     "type": "solution",
     "stem": "求 $f(x,y)=e^x y^2(3-e^x-y^2)$ 在 $D=\\{(x,y)\\mid e^x+y^2\\le3\\}$ 上的最大值。",
     "answer": "最大值为 $1$，在 $(0,1)$ 和 $(0,-1)$ 处取得。",
-    "explanation": "令 $u=e^x,v=y^2,w=3-e^x-y^2$。在区域 $D$ 内，$u>0,v\\ge0,w\\ge0$，且 $u+v+w=3$。\n\n由基本不等式，\n$$\nf=uvw\\le\\left(\\frac{u+v+w}{3}\\right)^3=1.\n$$\n当 $u=v=w=1$ 时取等号，即 $x=0,y=\\pm1$。所以最大值为 $1$。"
+    "explanation": "看到 $e^x y^2(3-e^x-y^2)$，可以把三个因子分别记成\n$$\nu=e^x,\\qquad v=y^2,\\qquad w=3-e^x-y^2.\n$$\n为什么这样设？因为区域条件正好保证 $u>0,v\\ge0,w\\ge0$，而且这三个数的和固定为 3，函数就变成了 $f=uvw$。\n\n三个非负数的和固定时，乘积在三者相等时最大。由基本不等式，\n$$\nuvw\\le\\left(\\frac{u+v+w}{3}\\right)^3=1.\n$$\n接下来确认等号真的能取到。令 $u=v=w=1$，则 $e^x=1,y^2=1$，也就是 $x=0,y=\\pm1$。这两点都满足区域条件。\n\n所以最大值为 $1$，在 $(0,1)$ 和 $(0,-1)$ 处取得。"
   },
   {
     "id": "math2-ll6-2027-set2-q20-original",
@@ -11669,7 +11739,7 @@
     "type": "solution",
     "stem": "设 $D=\\{(x,y)\\mid x^2+y^2\\le1,\\ x\\ge0,\\ y\\ge0\\}$，计算\n$$\nI=\\iint_D\\left(\\sqrt[3]{x-y}+xy e^{x^2-y^2}\\right)\\,dx\\,dy.\n$$",
     "answer": "$\\dfrac{e+e^{-1}-2}{8}$。",
-    "explanation": "交换 $x,y$ 后区域不变，$\\sqrt[3]{x-y}$ 变号，因此这一项的积分为零。\n\n剩下的项先对 $y$ 积分：\n$$\n\\begin{aligned}\nI&=\\int_0^1xe^{x^2}\\left(\\int_0^{\\sqrt{1-x^2}}ye^{-y^2}\\,dy\\right)dx\\\\\n&=\\frac12\\int_0^1x\\left(e^{x^2}-e^{2x^2-1}\\right)dx\\\\\n&=\\frac{e-1}{4}-\\frac{e-e^{-1}}8\n=\\frac{e+e^{-1}-2}8.\n\\end{aligned}\n$$"
+    "explanation": "先处理看起来最麻烦的立方根。区域 $D$ 是第一象限的四分之一单位圆，交换 $x,y$ 后仍然是同一个区域。但 $\\sqrt[3]{x-y}$ 会变成 $\\sqrt[3]{y-x}=-\\sqrt[3]{x-y}$，对称位置的积分互相抵消，所以这一项的积分为零。\n\n只需计算剩下的 $xy e^{x^2-y^2}$。把 $x$ 固定，$y$ 从 0 到圆弧 $\\sqrt{1-x^2}$，因此\n$$\nI=\\int_0^1xe^{x^2}\\left(\\int_0^{\\sqrt{1-x^2}}ye^{-y^2}\\,dy\\right)dx.\n$$\n先算内层。因为 $(e^{-y^2})'=-2ye^{-y^2}$，所以\n$$\n\\int_0^{\\sqrt{1-x^2}}ye^{-y^2}\\,dy\n=\\frac12\\left(1-e^{x^2-1}\\right).\n$$\n代回去，再利用 $(e^{x^2})'=2xe^{x^2}$ 和 $(e^{2x^2-1})'=4xe^{2x^2-1}$，得到\n$$\n\\begin{aligned}\nI&=\\frac12\\int_0^1x\\left(e^{x^2}-e^{2x^2-1}\\right)dx\\\\\n&=\\left[\\frac14e^{x^2}-\\frac18e^{2x^2-1}\\right]_0^1\\\\\n&=\\frac{e-1}{4}-\\frac{e-e^{-1}}8\n=\\frac{e+e^{-1}-2}8.\n\\end{aligned}\n$$"
   },
   {
     "id": "math2-ll6-2027-set2-q21-original",
@@ -11685,7 +11755,7 @@
     "type": "solution",
     "stem": "设 $f(x)$ 在 $(-\\infty,+\\infty)$ 内二阶可导，且对任意 $h$ 有 $f(x+h)+f(x-h)-2f(x)\\ge0$。\n\n1. 证明 $f''(x)\\ge0$。\n2. 证明 $\\displaystyle\\int_0^1 f(x^n)\\,dx\\ge f\\!\\left(\\dfrac1{n+1}\\right)$，其中 $n$ 为正整数。",
     "answer": "（Ⅰ）$f''(x)\\ge0$。\n\n（Ⅱ）$\\displaystyle\\int_0^1f(x^n)\\,dx\\ge f\\!\\left(\\dfrac1{n+1}\\right)$。",
-    "explanation": "（Ⅰ）由二阶泰勒展开，\n$$\nf''(x)=\\lim_{h\\to0}\\frac{f(x+h)+f(x-h)-2f(x)}{h^2}\\ge0.\n$$\n（Ⅱ）$f''\\ge0$，所以图像在切线上方。取 $a=1/(n+1)$，有\n$$\nf(x^n)\\ge f(a)+f'(a)(x^n-a).\n$$\n两边在 $[0,1]$ 上积分，而 $\\int_0^1(x^n-a)\\,dx=0$，便得\n$$\n\\int_0^1f(x^n)\\,dx\\ge f(a)=f\\!\\left(\\frac1{n+1}\\right).\n$$"
+    "explanation": "（Ⅰ）题设里同时出现 $f(x+h)$ 和 $f(x-h)$，所以在 $x$ 处分别做二阶泰勒展开：\n$$\n\\begin{aligned}\nf(x+h)&=f(x)+f'(x)h+\\frac12f''(x)h^2+o(h^2),\\\\\nf(x-h)&=f(x)-f'(x)h+\\frac12f''(x)h^2+o(h^2).\n\\end{aligned}\n$$\n相加后，一阶项抵消；再减去 $2f(x)$，题设就变成\n$$\nf''(x)h^2+o(h^2)\\ge0.\n$$\n当 $h\\ne0$ 时，除以正数 $h^2$，再令 $h\\to0$，得 $f''(x)\\ge0$。\n\n（Ⅱ）第一问说明函数是凸的，也就是图像在每条切线的上方。因此对任意实数 $t$，在固定点 $a$ 处有\n$$\nf(t)\\ge f(a)+f'(a)(t-a).\n$$\n想让右边积分后只剩 $f(a)$，就把 $a$ 选成 $x^n$ 在 $[0,1]$ 上的平均值，即 $a=1/(n+1)$。将 $t=x^n$ 代入并积分：\n$$\n\\int_0^1f(x^n)\\,dx\n\\ge f(a)+f'(a)\\left(\\int_0^1x^n\\,dx-a\\right).\n$$\n因为 $\\int_0^1x^n\\,dx=1/(n+1)=a$，括号恰好为零，便得到所需不等式。"
   },
   {
     "id": "math2-ll6-2027-set2-q22-part2-original",
@@ -11701,6 +11771,6 @@
     "type": "solution",
     "stem": "设二次型\n$$\nf(x_1,x_2,x_3)=X^{\\mathsf T}AX=2x_1^2+2x_2^2+ax_3^2+2x_1x_2+2x_1x_3+2x_2x_3,\n$$\n其中 $A^{\\mathsf T}=A$、$\\operatorname{rank}(A)=3$。向量 $\\alpha=(1,b,1)^{\\mathsf T}$ 满足 $(\\lambda E-A^*)\\alpha=0$，其中 $b\\ne1$，$A^*$ 为 $A$ 的伴随矩阵。第（I）问已做对，所得 $a=2,\\ b=-2,\\ \\lambda=4$。\n\n第（II）问　求正交变换 $X=QY$，将二次型 $g(x_1,x_2,x_3)=X^{\\mathsf T}(A-A^*)X$ 化为标准形。",
     "answer": "$$\nQ=\n\\begin{pmatrix}\n1/\\sqrt3 & 1/\\sqrt6 & 1/\\sqrt2\\\\\n1/\\sqrt3 & -2/\\sqrt6 & 0\\\\\n1/\\sqrt3 & 1/\\sqrt6 & -1/\\sqrt2\n\\end{pmatrix},\n\\qquad\ng=3y_1^2-3y_2^2-3y_3^2.\n$$",
-    "explanation": "代入 $a=2$，$A$ 的特征值为 $4,1,1$，且 $|A|=4$。\n\n由 $A^*=4A^{-1}$，$A$ 的特征值 $\\mu$ 在 $A-A^*$ 中对应 $\\mu-4/\\mu$，因此新特征值为 $3,-3,-3$，特征向量沿用 $A$ 的。\n\n将 $(1,1,1)^{\\mathsf T}$、$(1,-2,1)^{\\mathsf T}$、$(1,0,-1)^{\\mathsf T}$ 单位化，按列组成答案中的 $Q$，就有 $Q^{\\mathsf T}(A-A^*)Q=\\operatorname{diag}(3,-3,-3)$。"
+    "explanation": "先利用第（Ⅰ）问的结果 $a=2$，写出\n$$\nA=\\begin{pmatrix}2&1&1\\\\1&2&1\\\\1&1&2\\end{pmatrix}.\n$$\n每行之和为 4，所以 $(1,1,1)^{\\mathsf T}$ 是特征值 4 的特征向量。对坐标之和为零的向量，$A$ 乘上去仍是原向量，因此另外两个特征值是 1。于是 $A$ 的特征值是 $4,1,1$，行列式为 $4$。\n\n题目要求处理的是 $A-A^*$。由 $AA^*=|A|E=4E$，如果 $Av=\\mu v$，就有\n$$\nA^*v=\\frac4\\mu v,\\qquad\n(A-A^*)v=\\left(\\mu-\\frac4\\mu\\right)v.\n$$\n也就是说，特征向量可以沿用，只需把特征值从 $\\mu$ 改成 $\\mu-4/\\mu$。将 $4,1,1$ 代入，得到 $3,-3,-3$。\n\n接下来选三个彼此垂直的特征向量，分别取\n$$\nv_1=(1,1,1)^{\\mathsf T},\\quad\nv_2=(1,-2,1)^{\\mathsf T},\\quad\nv_3=(1,0,-1)^{\\mathsf T}.\n$$\n它们的长度分别是 $\\sqrt3,\\sqrt6,\\sqrt2$。各自除以长度，按列组成答案中的正交矩阵 $Q$。\n\n最后令 $X=QY$。由于 $Q^{\\mathsf T}(A-A^*)Q=\\operatorname{diag}(3,-3,-3)$，所以\n$$\ng=Y^{\\mathsf T}\\operatorname{diag}(3,-3,-3)Y\n=3y_1^2-3y_2^2-3y_3^2.\n$$"
   }
 ]
