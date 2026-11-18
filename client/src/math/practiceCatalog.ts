@@ -6,6 +6,7 @@ export const practicePaperSeries = [
   { id: 'real', title: '真题', unit: '年' },
   { id: 'zy2026', title: '2026 版张宇四套卷', unit: '套' },
   { id: 'll2026', title: '2026 版李林四套卷', unit: '套' },
+  { id: 'll6-2027', title: '2027 版李林六套卷', unit: '套' },
 ] as const
 
 export function createPracticeCatalog(source: PracticeQuestion[], collection: PracticeCollection) {

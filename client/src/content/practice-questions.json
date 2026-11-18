@@ -11472,5 +11472,235 @@
     "stem": "设实对称矩阵 $A=(a_{ij})_{3\\times3}$ 有二重特征值 1，且 $\\sum_{i=1}^3a_{ij}=0$（$j=1,2,3$）。\n\n（Ⅰ）记 $X=(x_1,x_2,x_3)^T$，求方程 $X^TAX=0$ 的全部解。\n\n（Ⅱ）求可逆矩阵 $P$，使得 $X^T(2E-A)X=\\|PX\\|$。",
     "answer": "（Ⅰ）$X=c(1,1,1)^T$，其中 $c\\in\\mathbb R$。\n\n（Ⅱ）按题本 $X^T(2E-A)X=\\|PX\\|$，不存在满足条件的可逆矩阵 $P$。若按参考解析的 $\\|PX\\|^2$，可取 $P=\\operatorname{diag}(\\sqrt2,1,1)Q^T$，其中 $Q$ 见解析。",
     "explanation": "第一问。各列元素之和为零，由对称性，各行元素之和也为零。设 $u=(1,1,1)^T$，则 $Au=0$。因此 $A$ 的特征值为 $0,1,1$。取首列为 $u/\\sqrt3$ 的正交矩阵 $Q$，使 $Q^TAQ=\\operatorname{diag}(0,1,1)$。令 $X=QY$，则 $X^TAX=y_2^2+y_3^2$。所以 $y_2=y_3=0$，全部解为 $\\boxed{X=c(1,1,1)^T,\\ c\\in\\mathbb R}$。\n\n第二问。题本右边写的是 $\\|PX\\|$。若按原式要求对所有 $X$ 成立，把任一非零 $X$ 换成 $2X$，左边乘 4，右边乘 2，而可逆 $P$ 保证 $\\|PX\\|>0$，因此无解。参考解析的计算对应右边为 $\\|PX\\|^2$ 的版本。\n\n按平方形式，取\n$$\nQ=\\begin{pmatrix}\n1/\\sqrt3&-1/\\sqrt2&1/\\sqrt6\\\\\n1/\\sqrt3&1/\\sqrt2&1/\\sqrt6\\\\\n1/\\sqrt3&0&-2/\\sqrt6\n\\end{pmatrix}.\n$$\n矩阵的后两列均与 $u$ 正交，是特征值 1 的单位特征向量。于是 $Q^T(2E-A)Q=\\operatorname{diag}(2,1,1)$，可取\n$$\n\\boxed{P=\\operatorname{diag}(\\sqrt2,1,1)\\,Q^T}.\n$$\n此时 $P^TP=2E-A$，所以 $X^T(2E-A)X=\\|PX\\|^2$。\n\n题干据《李林四套卷数二·第二套》题本录入，答案对照第二套参考解析第 31 至 42 页核对。"
+  },
+  {
+    "id": "math2-ll6-2027-set2-q9-original",
+    "year": 2027,
+    "paperId": "ll6-2027-set2",
+    "paperTitle": "2027 李林六套卷 · 第二套",
+    "number": "9",
+    "examNumber": "9",
+    "kind": "original",
+    "source": "2027 李林六套卷 · 第二套 · 第 9 题",
+    "sourceCategory": "mock",
+    "topic": "线性代数 / 特征值与相似矩阵 / 相似矩阵与特征向量",
+    "type": "choice",
+    "stem": "设 3 阶矩阵 $A$ 相似于\n$$\nB=\\begin{pmatrix}\n\\lambda_0&1&0\\\\\n0&\\lambda_0&0\\\\\n0&0&\\lambda_0\n\\end{pmatrix},\n$$\n其中 $\\lambda_0$ 是 $A$ 的 3 重特征值。下列命题中正确的个数为（　）。\n\n1. $A-\\lambda_0E$ 的非零列向量是 $A$ 属于 $\\lambda_0$ 的特征向量。\n2. $\\operatorname{rank}(A-\\lambda_0E)=1$。\n3. $\\operatorname{rank}[(A-\\lambda_0E)^2]=0$。\n4. $\\operatorname{rank}[(A-\\lambda_0E)^3]=0$。",
+    "options": [
+      {
+        "key": "A",
+        "text": "1"
+      },
+      {
+        "key": "B",
+        "text": "2"
+      },
+      {
+        "key": "C",
+        "text": "3"
+      },
+      {
+        "key": "D",
+        "text": "4"
+      }
+    ],
+    "correctOption": "D",
+    "answer": "**D**。",
+    "explanation": "令 $N=A-\\lambda_0E$。由相似关系，$N$ 的秩为 1，且 $N^2=0$，所以第 2、3、4 条成立。\n\n若 $\\alpha$ 是 $N$ 的非零列向量，则 $N\\alpha$ 是 $N^2$ 的对应列，故 $N\\alpha=0$，即 $A\\alpha=\\lambda_0\\alpha$，第 1 条也成立。\n\n四条全对，选 **D**。原作答选 B。"
+  },
+  {
+    "id": "math2-ll6-2027-set2-q10-original",
+    "year": 2027,
+    "paperId": "ll6-2027-set2",
+    "paperTitle": "2027 李林六套卷 · 第二套",
+    "number": "10",
+    "examNumber": "10",
+    "kind": "original",
+    "source": "2027 李林六套卷 · 第二套 · 第 10 题",
+    "sourceCategory": "mock",
+    "topic": "线性代数 / 向量组 / 用矩阵乘法判断线性无关",
+    "type": "choice",
+    "stem": "设 $A$ 是 3 阶矩阵，3 维列向量 $\\alpha$ 不是方程组 $A^2X=0$ 的解，$A\\alpha$ 是方程组 $A^2X=0$ 的解。下列选项正确的是（　）。",
+    "options": [
+      {
+        "key": "A",
+        "text": "$\\alpha,A\\alpha$ 线性相关"
+      },
+      {
+        "key": "B",
+        "text": "$\\alpha,A^2\\alpha$ 线性相关"
+      },
+      {
+        "key": "C",
+        "text": "$A\\alpha,A^2\\alpha$ 线性相关"
+      },
+      {
+        "key": "D",
+        "text": "$A\\alpha,A^2\\alpha$ 线性无关"
+      }
+    ],
+    "correctOption": "D",
+    "answer": "**D**。",
+    "explanation": "题设就是 $A^2\\alpha\\ne0$、$A^3\\alpha=0$。\n\n设 $c_1A\\alpha+c_2A^2\\alpha=0$，左乘 $A$，得 $c_1A^2\\alpha=0$，所以 $c_1=0$；代回得 $c_2=0$。因此 $A\\alpha,A^2\\alpha$ 线性无关，选 **D**。原作答选 B。"
+  },
+  {
+    "id": "math2-ll6-2027-set2-q12-original",
+    "year": 2027,
+    "paperId": "ll6-2027-set2",
+    "paperTitle": "2027 李林六套卷 · 第二套",
+    "number": "12",
+    "examNumber": "12",
+    "kind": "original",
+    "source": "2027 李林六套卷 · 第二套 · 第 12 题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 一元函数积分 / 定积分求平均值",
+    "type": "fill",
+    "stem": "函数 $f(x)=\\dfrac{e^x(1+\\sin x)}{1+\\cos x}$ 在区间 $\\left[0,\\dfrac{\\pi}{2}\\right]$ 上的平均值为______。",
+    "answer": "$\\dfrac{2e^{\\pi/2}}{\\pi}$。",
+    "explanation": "先认出被积函数是一个乘积的导数：\n$$\n\\left(e^x\\tan\\frac{x}{2}\\right)'=\\frac{e^x(1+\\sin x)}{1+\\cos x}=f(x).\n$$\n平均值等于积分除以区间长度，所以\n$$\n\\frac{2}{\\pi}\\int_0^{\\pi/2}f(x)\\,dx\n=\\frac{2}{\\pi}\\left[e^x\\tan\\frac{x}{2}\\right]_0^{\\pi/2}\n=\\frac{2e^{\\pi/2}}{\\pi}.\n$$"
+  },
+  {
+    "id": "math2-ll6-2027-set2-q13-original",
+    "year": 2027,
+    "paperId": "ll6-2027-set2",
+    "paperTitle": "2027 李林六套卷 · 第二套",
+    "number": "13",
+    "examNumber": "13",
+    "kind": "original",
+    "source": "2027 李林六套卷 · 第二套 · 第 13 题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 微分方程 / 二阶常系数非齐次方程",
+    "type": "fill",
+    "stem": "设二阶常系数线性齐次微分方程 $y''+ay'+by=0$ 的通解为 $y=(C_1+C_2x)e^x$。求微分方程 $y''+ay'+by=x$ 满足 $y(0)=2,\\ y'(0)=0$ 的解。",
+    "answer": "$y=x+2-xe^x$。",
+    "explanation": "齐次通解对应特征方程 $(r-1)^2=0$，所以 $a=-2,b=1$。\n\n右边是 $x$，试特解 $y_p=mx+n$，代入得 $y_p=x+2$。于是\n$$\ny=(C_1+C_2x)e^x+x+2.\n$$\n用 $y(0)=2,y'(0)=0$ 得 $C_1=0,C_2=-1$，故 $y=x+2-xe^x$。"
+  },
+  {
+    "id": "math2-ll6-2027-set2-q14-original",
+    "year": 2027,
+    "paperId": "ll6-2027-set2",
+    "paperTitle": "2027 李林六套卷 · 第二套",
+    "number": "14",
+    "examNumber": "14",
+    "kind": "original",
+    "source": "2027 李林六套卷 · 第二套 · 第 14 题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 多元函数微分 / 双变限积分的混合偏导",
+    "type": "fill",
+    "stem": "设 $f(x,y)=\\displaystyle\\int_{x/y}^{xy}(x-yt)\\varphi(t)\\,dt$，其中 $\\varphi(t)$ 可微，则先对 $x$、再对 $y$ 求偏导，在 $(2,1)$ 处的值为______。",
+    "answer": "$0$。",
+    "explanation": "先对 $x$ 求导，下限项因 $x-y(x/y)=0$ 消失：\n$$\nf_x=\\int_{x/y}^{xy}\\varphi(t)\\,dt+(xy-xy^3)\\varphi(xy).\n$$\n再对 $y$ 求导并代入 $(2,1)$：积分项得 $4\\varphi(2)$，乘积项得 $-4\\varphi(2)$，含 $\\varphi'$ 的项因 $xy-xy^3=0$ 消失。\n\n两项抵消，答案为 $0$。"
+  },
+  {
+    "id": "math2-ll6-2027-set2-q15-original",
+    "year": 2027,
+    "paperId": "ll6-2027-set2",
+    "paperTitle": "2027 李林六套卷 · 第二套",
+    "number": "15",
+    "examNumber": "15",
+    "kind": "original",
+    "source": "2027 李林六套卷 · 第二套 · 第 15 题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 二重积分 / 三角形区域上的二重积分",
+    "type": "fill",
+    "stem": "计算 $\\displaystyle\\int_0^1 dx\\int_0^{1-x}e^{(x+y)^2}\\,dy$。",
+    "answer": "$\\dfrac{e-1}{2}$。",
+    "explanation": "内层令 $t=x+y$，再交换积分次序：\n$$\nI=\\int_0^1dx\\int_x^1e^{t^2}\\,dt\n=\\int_0^1dt\\int_0^te^{t^2}\\,dx\n=\\int_0^1te^{t^2}\\,dt\n=\\frac{e-1}{2}.\n$$"
+  },
+  {
+    "id": "math2-ll6-2027-set2-q16-original",
+    "year": 2027,
+    "paperId": "ll6-2027-set2",
+    "paperTitle": "2027 李林六套卷 · 第二套",
+    "number": "16",
+    "examNumber": "16",
+    "kind": "original",
+    "source": "2027 李林六套卷 · 第二套 · 第 16 题",
+    "sourceCategory": "mock",
+    "topic": "线性代数 / 二次型 / 平方和形式判正定",
+    "type": "fill",
+    "stem": "设\n$$\nf(x_1,x_2,x_3)=(2x_2+3x_3)^2+(x_1+3x_2+ax_3)^2+(x_1+ax_2-2x_3)^2\n$$\n是正定二次型，求 $a$ 的取值范围。",
+    "answer": "$a\\ne1$。",
+    "explanation": "平方和正定，等价于三个一次式同时为零时只有零解。因此它们的系数矩阵必须可逆：\n$$\n\\det\\begin{pmatrix}\n0&2&3\\\\\n1&3&a\\\\\n1&a&-2\n\\end{pmatrix}=5(a-1)\\ne0.\n$$\n所以 $a\\ne1$。"
+  },
+  {
+    "id": "math2-ll6-2027-set2-q17-original",
+    "year": 2027,
+    "paperId": "ll6-2027-set2",
+    "paperTitle": "2027 李林六套卷 · 第二套",
+    "number": "17",
+    "examNumber": "17",
+    "kind": "original",
+    "source": "2027 李林六套卷 · 第二套 · 第 17 题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 函数、极限与连续 / 变上限积分的极限",
+    "type": "solution",
+    "stem": "设 $f(x)$ 连续，且 $\\displaystyle\\lim_{x\\to1}\\dfrac{f(x)}{x-1}=2$，求\n$$\n\\lim_{x\\to0}\n\\frac{\\displaystyle\\int_0^{x^2}e^u f(e^u-e^{x^2}+1)\\,du}\n{x^2\\ln(\\cos x)}.\n$$",
+    "answer": "$2$。",
+    "explanation": "令 $t=e^u-e^{x^2}+1$，则 $dt=e^u\\,du$，分子变为\n$$\n\\int_{2-e^{x^2}}^1f(t)\\,dt.\n$$\n由已知，$t\\to1$ 时 $f(t)\\sim2(t-1)$，所以分子等价于\n$$\n\\int_{2-e^{x^2}}^12(t-1)\\,dt\n=-(e^{x^2}-1)^2\\sim-x^4.\n$$\n分母 $x^2\\ln(\\cos x)\\sim-x^4/2$，两者相除得 $2$。"
+  },
+  {
+    "id": "math2-ll6-2027-set2-q19-original",
+    "year": 2027,
+    "paperId": "ll6-2027-set2",
+    "paperTitle": "2027 李林六套卷 · 第二套",
+    "number": "19",
+    "examNumber": "19",
+    "kind": "original",
+    "source": "2027 李林六套卷 · 第二套 · 第 19 题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 多元函数微分 / 不等式约束下的最大值",
+    "type": "solution",
+    "stem": "求 $f(x,y)=e^x y^2(3-e^x-y^2)$ 在 $D=\\{(x,y)\\mid e^x+y^2\\le3\\}$ 上的最大值。",
+    "answer": "最大值为 $1$，在 $(0,1)$ 和 $(0,-1)$ 处取得。",
+    "explanation": "令 $u=e^x,v=y^2,w=3-e^x-y^2$。在区域 $D$ 内，$u>0,v\\ge0,w\\ge0$，且 $u+v+w=3$。\n\n由基本不等式，\n$$\nf=uvw\\le\\left(\\frac{u+v+w}{3}\\right)^3=1.\n$$\n当 $u=v=w=1$ 时取等号，即 $x=0,y=\\pm1$。所以最大值为 $1$。"
+  },
+  {
+    "id": "math2-ll6-2027-set2-q20-original",
+    "year": 2027,
+    "paperId": "ll6-2027-set2",
+    "paperTitle": "2027 李林六套卷 · 第二套",
+    "number": "20",
+    "examNumber": "20",
+    "kind": "original",
+    "source": "2027 李林六套卷 · 第二套 · 第 20 题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 二重积分 / 二重积分的对称性",
+    "type": "solution",
+    "stem": "设 $D=\\{(x,y)\\mid x^2+y^2\\le1,\\ x\\ge0,\\ y\\ge0\\}$，计算\n$$\nI=\\iint_D\\left(\\sqrt[3]{x-y}+xy e^{x^2-y^2}\\right)\\,dx\\,dy.\n$$",
+    "answer": "$\\dfrac{e+e^{-1}-2}{8}$。",
+    "explanation": "交换 $x,y$ 后区域不变，$\\sqrt[3]{x-y}$ 变号，因此这一项的积分为零。\n\n剩下的项先对 $y$ 积分：\n$$\n\\begin{aligned}\nI&=\\int_0^1xe^{x^2}\\left(\\int_0^{\\sqrt{1-x^2}}ye^{-y^2}\\,dy\\right)dx\\\\\n&=\\frac12\\int_0^1x\\left(e^{x^2}-e^{2x^2-1}\\right)dx\\\\\n&=\\frac{e-1}{4}-\\frac{e-e^{-1}}8\n=\\frac{e+e^{-1}-2}8.\n\\end{aligned}\n$$"
+  },
+  {
+    "id": "math2-ll6-2027-set2-q21-original",
+    "year": 2027,
+    "paperId": "ll6-2027-set2",
+    "paperTitle": "2027 李林六套卷 · 第二套",
+    "number": "21",
+    "examNumber": "21",
+    "kind": "original",
+    "source": "2027 李林六套卷 · 第二套 · 第 21 题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 一元函数积分 / 泰勒展开与积分不等式",
+    "type": "solution",
+    "stem": "设 $f(x)$ 在 $(-\\infty,+\\infty)$ 内二阶可导，且对任意 $h$ 有 $f(x+h)+f(x-h)-2f(x)\\ge0$。\n\n1. 证明 $f''(x)\\ge0$。\n2. 证明 $\\displaystyle\\int_0^1 f(x^n)\\,dx\\ge f\\!\\left(\\dfrac1{n+1}\\right)$，其中 $n$ 为正整数。",
+    "answer": "（Ⅰ）$f''(x)\\ge0$。\n\n（Ⅱ）$\\displaystyle\\int_0^1f(x^n)\\,dx\\ge f\\!\\left(\\dfrac1{n+1}\\right)$。",
+    "explanation": "（Ⅰ）由二阶泰勒展开，\n$$\nf''(x)=\\lim_{h\\to0}\\frac{f(x+h)+f(x-h)-2f(x)}{h^2}\\ge0.\n$$\n（Ⅱ）$f''\\ge0$，所以图像在切线上方。取 $a=1/(n+1)$，有\n$$\nf(x^n)\\ge f(a)+f'(a)(x^n-a).\n$$\n两边在 $[0,1]$ 上积分，而 $\\int_0^1(x^n-a)\\,dx=0$，便得\n$$\n\\int_0^1f(x^n)\\,dx\\ge f(a)=f\\!\\left(\\frac1{n+1}\\right).\n$$"
+  },
+  {
+    "id": "math2-ll6-2027-set2-q22-part2-original",
+    "year": 2027,
+    "paperId": "ll6-2027-set2",
+    "paperTitle": "2027 李林六套卷 · 第二套",
+    "number": "22（Ⅱ）",
+    "examNumber": "22",
+    "kind": "original",
+    "source": "2027 李林六套卷 · 第二套 · 第 22 题（Ⅱ）",
+    "sourceCategory": "mock",
+    "topic": "线性代数 / 二次型 / 正交变换化二次型",
+    "type": "solution",
+    "stem": "设二次型\n$$\nf(x_1,x_2,x_3)=X^{\\mathsf T}AX=2x_1^2+2x_2^2+ax_3^2+2x_1x_2+2x_1x_3+2x_2x_3,\n$$\n其中 $A^{\\mathsf T}=A$、$\\operatorname{rank}(A)=3$。向量 $\\alpha=(1,b,1)^{\\mathsf T}$ 满足 $(\\lambda E-A^*)\\alpha=0$，其中 $b\\ne1$，$A^*$ 为 $A$ 的伴随矩阵。第（I）问已做对，所得 $a=2,\\ b=-2,\\ \\lambda=4$。\n\n第（II）问　求正交变换 $X=QY$，将二次型 $g(x_1,x_2,x_3)=X^{\\mathsf T}(A-A^*)X$ 化为标准形。",
+    "answer": "$$\nQ=\n\\begin{pmatrix}\n1/\\sqrt3 & 1/\\sqrt6 & 1/\\sqrt2\\\\\n1/\\sqrt3 & -2/\\sqrt6 & 0\\\\\n1/\\sqrt3 & 1/\\sqrt6 & -1/\\sqrt2\n\\end{pmatrix},\n\\qquad\ng=3y_1^2-3y_2^2-3y_3^2.\n$$",
+    "explanation": "代入 $a=2$，$A$ 的特征值为 $4,1,1$，且 $|A|=4$。\n\n由 $A^*=4A^{-1}$，$A$ 的特征值 $\\mu$ 在 $A-A^*$ 中对应 $\\mu-4/\\mu$，因此新特征值为 $3,-3,-3$，特征向量沿用 $A$ 的。\n\n将 $(1,1,1)^{\\mathsf T}$、$(1,-2,1)^{\\mathsf T}$、$(1,0,-1)^{\\mathsf T}$ 单位化，按列组成答案中的 $Q$，就有 $Q^{\\mathsf T}(A-A^*)Q=\\operatorname{diag}(3,-3,-3)$。"
   }
 ]
