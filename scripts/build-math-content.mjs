@@ -40,7 +40,7 @@ function compactText(markdown) {
     .replace(/\$([^$\n]+)\$/g, '$1')
     .replace(/\\\((.*?)\\\)/g, '$1')
     .replace(/```[\s\S]*?```/g, ' ')
-    .replace(/<\/?(?:br|span|div|p|sup|sub|em|strong)\b[^>]*>/gi, ' ')
+    .replace(/<\/?(?:a|br|span|div|p|sup|sub|em|strong|h6|table|thead|tbody|tr|th|td)\b[^>]*>/gi, ' ')
     .replace(/^#{1,6}\s+/gm, '')
     .replace(/^[-*+]\s+/gm, '')
     .replace(/^\d+\.\s+/gm, '')
