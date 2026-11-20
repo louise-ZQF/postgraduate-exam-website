@@ -149,7 +149,12 @@ function symbolicQueryPart(query: string): string {
   return relation ? normalizeFormulaQuery(relation[0]) : ''
 }
 
-export function searchMathWithCount(query: string, limit = 8, relaxed = false): { results: MathSearchResult[]; total: number } {
+export function searchMathWithCount(
+  query: string,
+  limit = 8,
+  favoriteFormulaIds?: ReadonlySet<string>,
+  relaxed = false,
+): { results: MathSearchResult[]; total: number } {
   const trimmed = query.trim()
   if (!trimmed) return { results: [], total: 0 }
   const formulaQuery = symbolicQueryPart(trimmed)
@@ -206,8 +211,12 @@ export function searchMathWithCount(query: string, limit = 8, relaxed = false): 
   sorted.sort((a, b) => b.score - a.score || a.chapterId.localeCompare(b.chapterId)
       || (a.formula && b.formula && a.formula.topicId === b.formula.topicId ? a.formula.order - b.formula.order : 0)
       || a.resultId.localeCompare(b.resultId))
-  if (!sorted.length && !relaxed && !formulaQuery) return searchMathWithCount(query, limit, true)
+  if (!sorted.length && !relaxed && !formulaQuery) return searchMathWithCount(query, limit, favoriteFormulaIds, true)
   const useful = sorted[0]?.score >= 2500 ? sorted.filter((result) => result.score >= 1200) : sorted
+  if (favoriteFormulaIds?.size) {
+    const isFavoriteFormula = (result: MathSearchResult) => result.kind === 'formula' && favoriteFormulaIds.has(result.targetId)
+    useful.sort((a, b) => Number(isFavoriteFormula(b)) - Number(isFavoriteFormula(a)))
+  }
   return { results: useful.slice(0, limit), total: useful.length }
 }
 

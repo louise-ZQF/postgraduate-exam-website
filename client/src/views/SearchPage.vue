@@ -15,16 +15,15 @@ const starterQueries = ['曲率圆', '链式法则', '泰勒公式', '相似矩�
 const searchInput = ref<HTMLInputElement | null>(null)
 const query = ref(String(route.query.q ?? '').slice(0, 30))
 const visibleCount = ref(8)
-const searchState = computed(() => searchMathWithCount(query.value, visibleCount.value))
+const favoriteIds = ref(new Set(readFavorites().map((item) => item.targetId)))
+const searchState = computed(() => searchMathWithCount(query.value, visibleCount.value, favoriteIds.value))
 const results = computed(() => searchState.value.results)
-const favoriteIds = ref(new Set<string>())
 
 function refreshFavorites() {
-  favoriteIds.value = new Set(readFavorites().map((item) => item.id))
+  favoriteIds.value = new Set(readFavorites().map((item) => item.targetId))
 }
 
 onMounted(() => {
-  refreshFavorites()
   if (route.query.q) rememberSearch(String(route.query.q))
   window.addEventListener(FAVORITES_CHANGED_EVENT, refreshFavorites)
   window.addEventListener('storage', refreshFavorites)

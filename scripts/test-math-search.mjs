@@ -82,6 +82,18 @@ assert.equal(searchMathWithCount('推广的积分中值定理').results.some((it
 assert.equal(searchMathWithCount('量子场论').total, 0)
 assert.equal(normalizeFormulaQuery("f″(x)＞0"), normalizeFormulaQuery("f''(x)>0"))
 
+const savedDerivatives = ['calculus-1c3ic29', 'calculus-1sqcsqp-1']
+const unrelatedFavorite = 'calculus-hemipr-1'
+const favoriteFormulaIds = new Set([...savedDerivatives, unrelatedFavorite])
+const originalDerivatives = searchMathWithCount('高阶导', 100)
+const rankedDerivatives = searchMathWithCount('高阶导', 100, favoriteFormulaIds)
+assert.equal(rankedDerivatives.total, originalDerivatives.total)
+assert.deepEqual(searchMathWithCount('高阶导', 2, favoriteFormulaIds).results.map(result => result.targetId), savedDerivatives)
+assert.deepEqual(rankedDerivatives.results.slice(2).map(result => result.targetId),
+  originalDerivatives.results.filter(result => !savedDerivatives.includes(result.targetId)).map(result => result.targetId))
+assert.ok(!rankedDerivatives.results.some(result => result.targetId === unrelatedFavorite))
+assert.equal(searchMathWithCount('量子场论', 8, favoriteFormulaIds).total, 0)
+
 const ids = content.mathFormulas.map((formula) => formula.id)
 assert.equal(new Set(ids).size, ids.length, '公式 ID 必须唯一，旧收藏依赖这些 ID')
 const bareSymbolSuffix = /：(?:[A-Za-zα-ωΑ-Ω0-9]+|[A-Za-zα-ωΑ-Ω]_[A-Za-zα-ωΑ-Ω0-9-]+)$/
