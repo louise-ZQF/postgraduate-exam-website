@@ -21,6 +21,25 @@ button { transition: background .16s, color .16s, border-color .16s; }
   padding-inline-end: 16px;
 }
 .directory-content { min-height: 0; overflow-y: auto; padding: 2px 4px 10px; }
+.return-breakpoint {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 9px;
+  min-height: 50px;
+  margin: 0 4px 12px;
+  padding: 6px 9px;
+  border: 1px solid var(--study-rule);
+  border-radius: 7px;
+  background: var(--study-tint);
+  color: var(--study-accent);
+  text-align: left;
+}
+.return-breakpoint > span { display: grid; min-width: 0; }
+.return-breakpoint strong { font-size: 13px; font-weight: 650; }
+.return-breakpoint small { overflow: hidden; font-size: 11px; text-overflow: ellipsis; white-space: nowrap; }
+.return-breakpoint:hover:not(:disabled) { border-color: var(--study-accent); }
+.return-breakpoint:disabled { cursor: default; background: transparent; color: var(--study-muted); }
 .directory-brand {
   display: flex;
   align-items: baseline;
@@ -146,6 +165,7 @@ h1 { margin: 0; font-size: 26px; font-weight: 650; line-height: 1.4; letter-spac
 @media (max-width: 760px) {
   .practice-layout { display: block; width: calc(100% - 32px); padding-top: 14px; }
   .directory { position: static; max-height: none; border: 0; padding: 0; margin-bottom: 20px; }
+  .return-breakpoint { margin-inline: 0; }
   .mobile-directory {
     display: flex;
     align-items: center;

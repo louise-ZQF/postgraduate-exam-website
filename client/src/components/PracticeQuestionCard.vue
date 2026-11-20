@@ -3,12 +3,12 @@ import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import MathMarkdown from '@/components/MathMarkdown.vue'
 import PracticeIcon from '@/components/PracticeIcon.vue'
 import PracticeNoteEditor from '@/components/PracticeNoteEditor.vue'
-import { BookText, Calculator, ChevronsDownUp, CircleCheck, CircleX, Ellipsis, ExternalLink, Eye, NotebookText, RotateCcw, Star, Tag, Trash2 } from '@lucide/vue'
+import { Bookmark, BookText, Calculator, ChevronsDownUp, CircleCheck, CircleX, Ellipsis, ExternalLink, Eye, NotebookText, RotateCcw, Star, Tag, Trash2 } from '@lucide/vue'
 import arcDiagram from '@/assets/practice-figures/zy2026-set1-q5.svg?raw'
 import { favoriteReasonLabels, getMistakeReason, hasNote, manualErrorReasons, masteryLabels, MISSED_POINT_FAVORITE, MISSED_POINT_MASTERY, REMOVED_RETENTION_MS, type FavoriteReason, type ManualMastery, type PracticeQuestion, type QuestionImage, type QuestionProgress } from '@/math/practice'
 
-const props = defineProps<{ question: PracticeQuestion; index: number; progress?: QuestionProgress; storageFailed: boolean; showNote?: boolean; removed?: boolean; manageable?: boolean; mistakeBook?: boolean; printMode?: boolean; autoHidePending?: boolean; collapseRequest: number }>()
-const emit = defineEmits<{ mark: [id: string, mastery: ManualMastery]; favorite: [id: string, reason?: FavoriteReason]; attempt: [id: string, correct: boolean | undefined]; note: [id: string, note: string]; noteBlur: []; remove: [id: string]; removeMistake: [id: string]; restore: [id: string]; collapseAll: [trigger: HTMLButtonElement]; preview: [image: QuestionImage, trigger: HTMLElement] }>()
+const props = defineProps<{ question: PracticeQuestion; index: number; progress?: QuestionProgress; storageFailed: boolean; showNote?: boolean; removed?: boolean; manageable?: boolean; mistakeBook?: boolean; printMode?: boolean; autoHidePending?: boolean; breakpoint?: boolean; collapseRequest: number }>()
+const emit = defineEmits<{ mark: [id: string, mastery: ManualMastery]; favorite: [id: string, reason?: FavoriteReason]; attempt: [id: string, correct: boolean | undefined]; note: [id: string, note: string]; noteBlur: []; remove: [id: string]; removeMistake: [id: string]; restore: [id: string]; collapseAll: [trigger: HTMLButtonElement]; preview: [image: QuestionImage, trigger: HTMLElement]; toggleBreakpoint: [id: string] }>()
 const arcDiagramUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(arcDiagram)}`
 const figureUrl = (src: string) => src === 'practice-figures/zy2026-set1-q5.svg' ? arcDiagramUrl : `${import.meta.env.BASE_URL}${src}`
 function previewImage(picture: QuestionImage, event: MouseEvent) {
@@ -99,7 +99,12 @@ const displayedMastery = computed(() => props.mistakeBook ? getMistakeReason(pro
       <div class="question-source"><a v-if="question.sourceUrl" :href="question.sourceUrl" target="_blank" rel="noopener">{{ question.source }}<ExternalLink /></a><span v-else>{{ question.source }}</span><span v-if="question.exerciseIndex" class="exam-number">{{ question.paperId ? '原题' : '真题' }} {{ question.examNumber }} · 练习 {{ question.exerciseIndex }}</span></div>
       <span v-if="displayedMastery" class="mastery-record" :class="{ 'error-record': displayedMastery !== 'mastered' }" :title="`最近更新 ${lastUpdated}`">{{ displayedMastery === 'mastered' ? '已掌握' : masteryLabels[displayedMastery] }}<span v-if="lastUpdated"> · {{ lastUpdated }}</span></span>
       <details ref="knowledgeMenu" class="question-knowledge" @focusout="closeMenu" @keydown.esc="knowledgeMenu && (knowledgeMenu.open = false)"><summary><Tag /><span>相关知识点</span><small>{{ knowledgeItems.length }}</small></summary><div class="knowledge-panel"><strong>{{ question.topic }}</strong><p v-if="question.bookId" class="knowledge-level">{{ question.level }} · {{ question.type === 'choice' ? '选择题' : question.type === 'fill' ? '填空题' : '解答题' }}</p><div v-for="item in knowledgeItems" :key="item.title"><span>{{ item.title }}</span><small v-if="item.detail">{{ item.detail }}</small></div></div></details>
-      <details v-if="manageable && !mistakeBook" ref="managementMenu" class="question-management" @focusout="closeMenu" @keydown.esc="managementMenu && (managementMenu.open = false)"><summary aria-label="更多题目操作" title="更多操作"><Ellipsis /></summary><div class="management-panel"><button class="question-manage" :class="{ restore: removed }" @click="manageQuestion"><RotateCcw v-if="removed" /><Trash2 v-else />{{ removed ? '恢复题目' : '移除题目' }}</button></div></details>
+      <div v-if="manageable" class="question-meta-actions">
+        <button v-if="!printMode" class="breakpoint-toggle" :class="{ 'is-breakpoint': breakpoint }" type="button" @click="emit('toggleBreakpoint', question.id)">
+          <Bookmark aria-hidden="true" />{{ breakpoint ? '取消断点' : '设为断点' }}
+        </button>
+        <details v-if="!mistakeBook" ref="managementMenu" class="question-management" @focusout="closeMenu" @keydown.esc="managementMenu && (managementMenu.open = false)"><summary aria-label="更多题目操作" title="更多操作"><Ellipsis /></summary><div class="management-panel"><button class="question-manage" :class="{ restore: removed }" @click="manageQuestion"><RotateCcw v-if="removed" /><Trash2 v-else />{{ removed ? '恢复题目' : '移除题目' }}</button></div></details>
+      </div>
     </header>
     <h3 :id="`title-${question.id}`" class="visually-hidden">{{ question.year }} 年 {{ question.source }} {{ question.number }}题</h3>
     <p class="print-only print-topic">{{ question.topic }}</p>
@@ -157,7 +162,11 @@ summary { display: flex; align-items: center; justify-content: center; gap: 9px;
 summary::-webkit-details-marker { display: none; }
 .question-knowledge summary { border-radius: 7px; font-size: 14px; font-weight: 600; }.question-knowledge summary small { display: grid; place-items: center; width: 23px; height: 23px; border-radius: 50%; background: #f7f8fb; font-size: 11px; font-weight: 400; }
 .question-knowledge summary:hover, .question-knowledge[open] summary { color: var(--ink); }
-.question-management { margin-left: auto; }.question-management summary { width: 36px; border-radius: 7px; }.question-management summary:hover, .question-management[open] summary { background: #f7f8fb; }
+.question-meta-actions { display: flex; align-items: center; gap: 8px; margin-inline-start: auto; }
+.breakpoint-toggle { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 9px; border-radius: 7px; color: var(--ink-soft); font-size: 13px; white-space: nowrap; }
+.breakpoint-toggle:hover, .breakpoint-toggle.is-breakpoint { background: var(--study-tint); color: var(--study-accent); }
+.breakpoint-toggle.is-breakpoint svg { fill: currentColor; }
+.question-management summary { width: 36px; border-radius: 7px; }.question-management summary:hover, .question-management[open] summary { background: #f7f8fb; }
 .knowledge-panel, .management-panel { position: absolute; z-index: 5; top: calc(100% + 7px); border: 1px solid var(--line); border-radius: 10px; padding: 14px; background: #fff; box-shadow: 0 8px 24px #1f293712; }
 .knowledge-panel { left: 0; width: 300px; max-width: 70vw; font-size: 13px; line-height: 1.7; }.knowledge-panel strong { display: block; color: var(--ink); font-size: 13px; }.knowledge-panel > div { padding-top: 10px; margin-top: 10px; border-top: 1px solid var(--line); }.knowledge-panel small { display: block; margin-top: 3px; color: var(--muted); font-size: 11px; }.knowledge-level { margin: 6px 0 0; font-size: 12px; color: var(--muted); }
 .management-panel { right: 0; min-width: 150px; padding: 5px; }.question-manage { display: flex; align-items: center; gap: 9px; width: 100%; min-height: 38px; border: 0; border-radius: 6px; padding: 0 10px; background: #fff; color: var(--danger); font-size: 13px; }.question-manage:hover { background: var(--danger-tint); }.question-manage.restore { color: var(--accent-dark); }.question-manage.restore:hover { background: var(--accent-tint); }

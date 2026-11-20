@@ -16,6 +16,7 @@ export type PracticeLocation = {
 
 const locationKey = (collection: PracticeCollection) => `math2-practice-location-v1-${collection}`
 const historyKey = (collection: PracticeCollection) => `math2-practice-location-history-v1-${collection}`
+export const practiceBreakpointKey = (collection: PracticeCollection) => `math2-practice-breakpoint-v1-${collection}`
 const validId = (value: unknown): value is string => typeof value === 'string' && /^[a-zA-Z0-9_-]{1,120}$/.test(value)
 
 export function practiceLocationContext(location: PracticeLocation): string {
@@ -75,4 +76,24 @@ export function savePracticeLocation(collection: PracticeCollection, location: P
     return true
   }
   catch { return false }
+}
+
+export function readPracticeBreakpoint(collection: PracticeCollection): PracticeLocation | undefined {
+  try {
+    return normalizePracticeLocation(JSON.parse(localStorage.getItem(practiceBreakpointKey(collection)) ?? 'null'))
+  } catch { return undefined }
+}
+
+export function savePracticeBreakpoint(collection: PracticeCollection, location: PracticeLocation | undefined): boolean {
+  const key = practiceBreakpointKey(collection)
+  try {
+    if (location === undefined) {
+      localStorage.removeItem(key)
+    } else {
+      const normalized = normalizePracticeLocation(location)
+      if (!normalized) return false
+      localStorage.setItem(key, JSON.stringify(normalized))
+    }
+    return true
+  } catch { return false }
 }

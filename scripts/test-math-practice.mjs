@@ -39,7 +39,7 @@ assert.equal(liLinSixSet2.series, 'll6-2027')
 assert.deepEqual(liLinSixSet2.questions.filter(q => q.kind === 'original').map(q => q.examNumber), ['5', '7', '9', '10', '12', '13', '14', '15', '16', '17', '19', '20', '21', '22'])
 assert.equal(liLinSixSet2.questions.at(-1).number, '22（Ⅱ）')
 assert.deepEqual(liLinSixSet2.questions.filter(q => q.kind === 'exercise').map(q => [q.examNumber, q.exerciseIndex]), [['10', 1], ['10', 2], ['10', 3]])
-const { normalizePracticeLocation, practiceLocationContext, readPracticeLocation, readPracticeLocations, savePracticeLocation } = await loadModule('client/src/math/practiceLocation.ts', { './practice': practiceModuleUrl })
+const { normalizePracticeLocation, practiceBreakpointKey, practiceLocationContext, readPracticeBreakpoint, readPracticeLocation, readPracticeLocations, savePracticeBreakpoint, savePracticeLocation } = await loadModule('client/src/math/practiceLocation.ts', { './practice': practiceModuleUrl })
 const ids = new Set()
 for (const q of practiceQuestions) {
   assert.match(q.id, /^[a-zA-Z0-9_-]{1,120}$/)
@@ -189,7 +189,7 @@ for (const q of [...weak2025, ...originals2025, ...imported2023, ...liLinSet2.qu
 assert.ok(!ids.has(demoQuestion.id), '预览题不得混入正式题库')
 assert.equal(demoQuestion.correctOption, 'C')
 const storage = new Map()
-globalThis.localStorage = { getItem: key => storage.get(key) ?? null, setItem: (key, value) => storage.set(key, value) }
+globalThis.localStorage = { getItem: key => storage.get(key) ?? null, setItem: (key, value) => storage.set(key, value), removeItem: key => storage.delete(key) }
 assert.equal(readPracticeLocation('exams'), undefined)
 const checkpoint = { questionId: 'math2-2025-q4-original', view: 'all', year: '2025', paper: '2025', status: 'unmarked', type: 'all', level: 'all', keyword: '极限', offset: 180, updatedAt: 100 }
 assert.equal(savePracticeLocation('exams', checkpoint), true)
@@ -222,6 +222,20 @@ storage.set('math2-practice-location-history-v1-ll880', '{broken')
 assert.deepEqual(readPracticeLocations('ll880'), [checkpoint], '历史损坏时仍恢复旧记录')
 assert.equal(savePracticeLocation('ll880', notesCheckpoint), true)
 assert.deepEqual(readPracticeLocations('exams'), [anotherPaper, resumed], '试卷和880的两条历史相互隔离')
+assert.equal(readPracticeBreakpoint('exams'), undefined, '自动位置不会成为手动断点')
+assert.equal(savePracticeBreakpoint('exams', favoriteCheckpoint), true)
+assert.equal(savePracticeLocation('exams', laterNotes), true)
+assert.deepEqual(readPracticeBreakpoint('exams'), favoriteCheckpoint, '继续浏览不会覆盖手动断点')
+assert.equal(readPracticeBreakpoint('ll880'), undefined, '两个题库的手动断点互相独立')
+assert.equal(savePracticeBreakpoint('exams', { ...checkpoint, questionId: '../bad' }), false)
+assert.deepEqual(readPracticeBreakpoint('exams'), favoriteCheckpoint, '无效断点不能覆盖原记录')
+assert.equal(savePracticeBreakpoint('exams', anotherPaper), true)
+assert.deepEqual(readPracticeBreakpoint('exams'), anotherPaper)
+assert.equal(savePracticeBreakpoint('exams', undefined), true)
+assert.equal(readPracticeBreakpoint('exams'), undefined)
+assert.deepEqual(readPracticeLocation('exams'), laterNotes, '取消断点不会清空最近做题位置')
+storage.set(practiceBreakpointKey('ll880'), '{broken')
+assert.equal(readPracticeBreakpoint('ll880'), undefined)
 assert.deepEqual(readPracticeProgress(), Object.create(null))
 const marked = { q2025: { mastery: 'no-idea', note: '先判断导数奇偶性', updatedAt: 100, reviews: 0 } }
 const hideState = { q2025: { deadline: 30000, previous: marked.q2025 }, hidden: { deadline: 0 } }
