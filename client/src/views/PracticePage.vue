@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { Bookmark } from '@lucide/vue'
+import { Bookmark, X } from '@lucide/vue'
 import MathHeader from '@/components/MathHeader.vue'
 import PracticeQuestionCard from '@/components/PracticeQuestionCard.vue'
 import PracticeImagePreview from '@/components/PracticeImagePreview.vue'
@@ -13,7 +13,7 @@ import { createPracticeCatalog, groupMistakesByChapter, paperKey, practicePaperS
 import ll880Chapters from '@/content/ll880-classification.json'
 import { demoQuestion } from '@/math/practiceDemo'
 import { hasNote, isFavoriteFilter, isPending, matchesPracticeStatus, mergeProgress, MISSED_POINT_FAVORITE, MISSED_POINT_MASTERY, normalizeProgress, PRACTICE_STORAGE_KEY, PRACTICE_PROGRESS_SAVED_EVENT, PRACTICE_REMOVALS_CHANGED_EVENT, REMOVED_RETENTION_MS, practiceAutoHideKey, practiceMasteryPatch, practiceStatusLabels, readPracticeProgress, savePracticeProgress, togglePracticeFavorite, type FavoriteReason, type Mastery, type PracticeStatus, type QuestionImage, type QuestionProgress, type PracticeQuestion, type PracticeProgress } from '@/math/practice'
-import { practiceBreakpointKey, practiceLocationContext, readPracticeBreakpoint, readPracticeLocations, savePracticeBreakpoint, type PracticeLocation } from '@/math/practiceLocation'
+import { practiceBreakpointKey, practiceLocationContext, readPracticeBreakpoints, readPracticeLocations, savePracticeBreakpoints, type PracticeLocation } from '@/math/practiceLocation'
 
 const props = withDefaults(defineProps<{ collection?: 'exams' | 'll880'; source: PracticeQuestion[] }>(), { collection: 'exams' })
 const isBook = props.collection === 'll880'
@@ -28,11 +28,14 @@ const catalog = createPracticeCatalog(props.source, props.collection)
 const questions = catalog.questions
 const questionById = new Map([...questions, demoQuestion].map(q => [q.id, q]))
 const progress = ref<PracticeProgress>(readPracticeProgress())
-const breakpoint = ref(readPracticeBreakpoint(props.collection))
-const breakpointQuestion = computed(() => {
-  const id = breakpoint.value?.questionId
-  return id && !progress.value[id]?.deletedAt ? questionById.get(id) : undefined
-})
+const breakpoints = ref(readPracticeBreakpoints(props.collection))
+const breakpointIds = computed(() => new Set(breakpoints.value.map(item => item.questionId)))
+const breakpointEntries = computed(() => breakpoints.value.map(location => {
+  const question = questionById.get(location.questionId)
+  const label = question ? `${question.paperTitle || question.year + ' 年'} · ${question.number} 题` : '断点题目已不可用'
+  return { location, label, available: Boolean(question && !progress.value[location.questionId]?.deletedAt) }
+}))
+const latestBreakpoint = computed(() => breakpointEntries.value.find(entry => entry.available))
 const storedLocations = readPracticeLocations(props.collection).filter(location => questions.some(q => q.id === location.questionId) && !progress.value[location.questionId]?.deletedAt)
 const lastInteractedQuestion = questions.filter(q => !progress.value[q.id]?.removed && progress.value[q.id]?.updatedAt > 0).sort((a, b) => progress.value[b.id].updatedAt - progress.value[a.id].updatedAt)[0]
 const fallbackLocation: PracticeLocation | undefined = lastInteractedQuestion ? {
@@ -120,15 +123,18 @@ function currentLocation(id: string, offset = 0): PracticeLocation {
   }
 }
 
+function updateBreakpoints(id: string, location?: PracticeLocation) {
+  const next = readPracticeBreakpoints(props.collection).filter(item => item.questionId !== id)
+  if (location) next.unshift(location)
+  if (savePracticeBreakpoints(props.collection, next)) {
+    breakpoints.value = next
+    notice.value = location ? '已设为断点。' : '已取消断点。'
+  } else notice.value = '浏览器暂时无法保存断点。'
+}
+
 function toggleBreakpoint(id: string) {
   if (demoMode.value || !queueIdSet.value.has(id) || progress.value[id]?.deletedAt) return
-  const next = breakpoint.value?.questionId === id ? undefined : currentLocation(id)
-  if (!savePracticeBreakpoint(props.collection, next)) {
-    notice.value = '浏览器暂时无法保存断点。'
-    return
-  }
-  breakpoint.value = next
-  notice.value = next ? '已设为断点。' : '已取消断点。'
+  updateBreakpoints(id, breakpointIds.value.has(id) ? undefined : currentLocation(id))
 }
 
 const { interaction: trackQuestionInteraction, schedule: scheduleLocationSave, finish: finishLocationTracking, remember: rememberQuestion, isActive: locationPageActive } = usePracticePosition({
@@ -432,7 +438,7 @@ function syncProgress(event: Event) {
     updateQueue()
   }
   if (!key || key === PRACTICE_STORAGE_KEY || key.startsWith('math2-practice-location-')) refreshResumeLocations()
-  if (!key || key === practiceBreakpointKey(props.collection)) breakpoint.value = readPracticeBreakpoint(props.collection)
+  if (!key || key === practiceBreakpointKey(props.collection)) breakpoints.value = readPracticeBreakpoints(props.collection)
 }
 async function resumeLocation(saved: PracticeLocation | undefined, exact = false) {
   const original = questionById.get(saved?.questionId ?? '')
@@ -514,14 +520,29 @@ onBeforeUnmount(() => {
     <MathHeader hide-search />
     <div class="practice-layout">
       <aside class="directory" :aria-label="isBook ? '880章节与复习目录' : '试卷与复习目录'">
-        <button class="return-breakpoint" type="button" :disabled="!breakpointQuestion || resuming" @click="resumeLocation(breakpoint, true)">
+        <button class="return-breakpoint" type="button" :disabled="!latestBreakpoint || resuming" @click="resumeLocation(latestBreakpoint?.location, true)">
           <Bookmark aria-hidden="true" />
           <span>
             <strong>返回断点</strong>
-            <small v-if="breakpointQuestion">{{ breakpointQuestion.paperTitle || breakpointQuestion.year + ' 年' }} · {{ breakpointQuestion.number }} 题</small>
-            <small v-else>{{ breakpoint ? '断点题目已不可用' : '在题卡右上角设定' }}</small>
+            <small v-if="latestBreakpoint" :title="latestBreakpoint.label">{{ latestBreakpoint.label }}</small>
+            <small v-else>{{ breakpoints.length ? '断点题目已不可用' : '在题卡右上角设定' }}</small>
           </span>
         </button>
+        <details v-if="breakpointEntries.length" class="breakpoint-directory">
+          <summary><span class="folder-chevron" aria-hidden="true"></span>全部断点 <span>{{ breakpointEntries.length }}</span></summary>
+          <ul class="breakpoint-list">
+            <li v-for="entry in breakpointEntries" :key="entry.location.questionId">
+              <button type="button" class="breakpoint-jump" :disabled="!entry.available || resuming" :title="entry.label"
+                @click="resumeLocation(entry.location, true)">
+                {{ entry.label }}<small v-if="!entry.available">题目已不可用</small>
+              </button>
+              <button type="button" class="breakpoint-remove" :aria-label="`取消断点：${entry.label}`" title="取消断点"
+                @click="updateBreakpoints(entry.location.questionId)">
+                <X aria-hidden="true" />
+              </button>
+            </li>
+          </ul>
+        </details>
         <button class="mobile-directory" :aria-expanded="directoryOpen" aria-controls="directory-content" @click="directoryOpen = !directoryOpen">
           <PracticeIcon name="book" />{{ isBook ? '880 章节与复习目录' : '试卷与复习目录' }}<span class="folder-chevron" aria-hidden="true"></span>
         </button>
@@ -575,10 +596,10 @@ onBeforeUnmount(() => {
         </section>
         <PracticeToolbar v-model:status="statusFilter" v-model:keyword="keyword" :count="queue.length" :marked="markedInQueue" :hidden="viewingMistakes ? 0 : hiddenInScope" :removed="mode === 'removed'" :notes="mode === 'notes'" :mistake-book="viewingMistakes" @reveal="showHiddenMastered" />
         <div v-if="queue.length" class="question-list">
-          <div v-if="viewingFavorites" class="year-questions review-questions"><PracticeQuestionCard v-for="(question, index) in queue" :key="`${round}-${question.id}`" :question="question" :index="index + 1" :progress="activeProgress[question.id]" :breakpoint="breakpoint?.questionId === question.id" @toggle-breakpoint="toggleBreakpoint" :auto-hide-pending="Boolean(autoHideDeadlines[question.id])" :storage-failed="storageFailed" :print-mode="exportingPdf" :collapse-request="collapseRequest" @collapse-all="collapseAllQuestions" :manageable="!demoMode" @remove="removeQuestion" @restore="restoreQuestion" @note-blur="refreshNotesQueue" @mark="mark" @favorite="changeFavorite" @attempt="recordAttempt" @note="saveNote" @preview="openImage" /></div>
+          <div v-if="viewingFavorites" class="year-questions review-questions"><PracticeQuestionCard v-for="(question, index) in queue" :key="`${round}-${question.id}`" :question="question" :index="index + 1" :progress="activeProgress[question.id]" :breakpoint="breakpointIds.has(question.id)" @toggle-breakpoint="toggleBreakpoint" :auto-hide-pending="Boolean(autoHideDeadlines[question.id])" :storage-failed="storageFailed" :print-mode="exportingPdf" :collapse-request="collapseRequest" @collapse-all="collapseAllQuestions" :manageable="!demoMode" @remove="removeQuestion" @restore="restoreQuestion" @note-blur="refreshNotesQueue" @mark="mark" @favorite="changeFavorite" @attempt="recordAttempt" @note="saveNote" @preview="openImage" /></div>
           <section v-for="group in displayGroups" :id="`practice-year-${group.id}`" :key="group.id" class="year-section" :class="{ 'single-paper': !viewingMistakes && displayGroups.length === 1 }" :aria-labelledby="`year-title-${group.id}`">
             <header class="paper-heading"><div><span class="paper-label">{{ group.label }}</span><h2 :id="`year-title-${group.id}`">{{ group.title }}{{ mode === 'removed' ? ' · 已移除题目' : mode === 'notes' ? ' · 笔记题目' : '' }}</h2></div><span>{{ group.questions.length }} 题</span></header>
-            <section v-for="section in group.sections" :key="section.id" class="type-section" :aria-label="section.title || group.title"><h3 v-if="section.title" class="type-heading">{{ section.title }}<small>{{ section.questions.length }} 题</small></h3><div class="year-questions"><PracticeQuestionCard v-for="(question, index) in section.questions" :key="`${round}-${question.id}`" :question="question" :index="index + 1" :progress="activeProgress[question.id]" :breakpoint="breakpoint?.questionId === question.id" @toggle-breakpoint="toggleBreakpoint" :auto-hide-pending="!viewingMistakes && Boolean(autoHideDeadlines[question.id])" :storage-failed="storageFailed" :print-mode="exportingPdf" :collapse-request="collapseRequest" @collapse-all="collapseAllQuestions" :show-note="mode === 'notes' || mode === 'removed'" :manageable="!demoMode" :mistake-book="viewingMistakes" :removed="mode === 'removed'" @remove-mistake="removeMistake" @remove="removeQuestion" @restore="restoreQuestion" @note-blur="refreshNotesQueue" @mark="mark" @favorite="changeFavorite" @attempt="recordAttempt" @note="saveNote" @preview="openImage" /></div></section>
+            <section v-for="section in group.sections" :key="section.id" class="type-section" :aria-label="section.title || group.title"><h3 v-if="section.title" class="type-heading">{{ section.title }}<small>{{ section.questions.length }} 题</small></h3><div class="year-questions"><PracticeQuestionCard v-for="(question, index) in section.questions" :key="`${round}-${question.id}`" :question="question" :index="index + 1" :progress="activeProgress[question.id]" :breakpoint="breakpointIds.has(question.id)" @toggle-breakpoint="toggleBreakpoint" :auto-hide-pending="!viewingMistakes && Boolean(autoHideDeadlines[question.id])" :storage-failed="storageFailed" :print-mode="exportingPdf" :collapse-request="collapseRequest" @collapse-all="collapseAllQuestions" :show-note="mode === 'notes' || mode === 'removed'" :manageable="!demoMode" :mistake-book="viewingMistakes" :removed="mode === 'removed'" @remove-mistake="removeMistake" @remove="removeQuestion" @restore="restoreQuestion" @note-blur="refreshNotesQueue" @mark="mark" @favorite="changeFavorite" @attempt="recordAttempt" @note="saveNote" @preview="openImage" /></div></section>
           </section>
           <footer class="paper-end"><strong>{{ mode === 'review' ? viewingFavorites ? '我的收藏 · 本页结束' : '错题库 · 本页结束' : mode === 'removed' ? '已移除题目 · 本页结束' : mode === 'notes' ? '笔记汇总 · 本页结束' : `${paperScope} · ${isBook ? '本章' : '本卷'}结束` }}</strong></footer>
         </div>

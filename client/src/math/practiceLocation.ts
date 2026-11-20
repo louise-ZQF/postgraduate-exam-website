@@ -78,22 +78,29 @@ export function savePracticeLocation(collection: PracticeCollection, location: P
   catch { return false }
 }
 
-export function readPracticeBreakpoint(collection: PracticeCollection): PracticeLocation | undefined {
-  try {
-    return normalizePracticeLocation(JSON.parse(localStorage.getItem(practiceBreakpointKey(collection)) ?? 'null'))
-  } catch { return undefined }
+function normalizeBreakpoints(value: unknown): PracticeLocation[] {
+  const seen = new Set<string>()
+  return (Array.isArray(value) ? value : [value]).flatMap(item => {
+    const location = normalizePracticeLocation(item)
+    if (!location || seen.has(location.questionId)) return []
+    seen.add(location.questionId)
+    return [location]
+  })
 }
 
-export function savePracticeBreakpoint(collection: PracticeCollection, location: PracticeLocation | undefined): boolean {
+export function readPracticeBreakpoints(collection: PracticeCollection): PracticeLocation[] {
+  try {
+    return normalizeBreakpoints(JSON.parse(localStorage.getItem(practiceBreakpointKey(collection)) ?? 'null'))
+  } catch { return [] }
+}
+
+export function savePracticeBreakpoints(collection: PracticeCollection, locations: PracticeLocation[]): boolean {
+  const normalized = normalizeBreakpoints(locations)
+  if (normalized.length !== locations.length) return false
   const key = practiceBreakpointKey(collection)
   try {
-    if (location === undefined) {
-      localStorage.removeItem(key)
-    } else {
-      const normalized = normalizePracticeLocation(location)
-      if (!normalized) return false
-      localStorage.setItem(key, JSON.stringify(normalized))
-    }
+    if (normalized.length) localStorage.setItem(key, JSON.stringify(normalized))
+    else localStorage.removeItem(key)
     return true
   } catch { return false }
 }

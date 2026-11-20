@@ -41,6 +41,39 @@ button { transition: background .16s, color .16s, border-color .16s; }
 .return-breakpoint small { overflow: hidden; font-size: 11px; text-overflow: ellipsis; white-space: nowrap; }
 .return-breakpoint:hover:not(:disabled) { border-color: var(--accent-dark); }
 .return-breakpoint:disabled { cursor: default; background: transparent; color: var(--muted); }
+.breakpoint-directory { flex-shrink: 0; min-width: 0; margin: -8px 4px 8px; }
+.breakpoint-directory summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 9px;
+  color: var(--ink-soft);
+  font-size: 13px;
+  cursor: pointer;
+  list-style: none;
+}
+.breakpoint-directory summary::-webkit-details-marker { display: none; }
+.breakpoint-directory summary > span:last-child { margin-inline-start: auto; font-variant-numeric: tabular-nums; }
+.breakpoint-directory[open] .folder-chevron { transform: rotate(45deg); }
+.breakpoint-list {
+  max-height: min(30dvh, 232px);
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  list-style: none;
+}
+.breakpoint-list li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px; }
+.breakpoint-list li + li { border-top: 1px solid var(--line); }
+.breakpoint-jump, .breakpoint-remove { min-height: 44px; color: var(--accent-dark); }
+.breakpoint-jump { min-width: 0; padding: 5px 4px 5px 9px; text-align: left; font-size: 12px; overflow-wrap: anywhere; }
+.breakpoint-jump:disabled { cursor: default; color: var(--muted); }
+.breakpoint-jump small { display: block; }
+.breakpoint-remove { display: grid; width: 44px; place-items: center; color: var(--muted); }
+.breakpoint-remove svg { width: 14px; height: 14px; }
+.breakpoint-jump:hover:not(:disabled), .breakpoint-remove:hover { background: var(--accent-tint); color: var(--accent-dark); }
 .directory-brand {
   display: flex;
   align-items: baseline;
@@ -166,7 +199,7 @@ h1 { margin: 0; font-size: 26px; font-weight: 650; line-height: 1.4; letter-spac
 @media (max-width: 760px) {
   .practice-layout { display: block; width: calc(100% - 32px); padding-top: 14px; }
   .directory { position: static; max-height: none; border: 0; padding: 0; margin-bottom: 20px; }
-  .return-breakpoint { margin-inline: 0; }
+  .return-breakpoint, .breakpoint-directory { margin-inline: 0; }
   .mobile-directory {
     display: flex;
     align-items: center;
