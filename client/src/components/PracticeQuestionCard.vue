@@ -164,7 +164,7 @@ summary::-webkit-details-marker { display: none; }
 .question-knowledge summary:hover, .question-knowledge[open] summary { color: var(--ink); }
 .question-meta-actions { display: flex; align-items: center; gap: 8px; margin-inline-start: auto; }
 .breakpoint-toggle { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 9px; border-radius: 7px; color: var(--ink-soft); font-size: 13px; white-space: nowrap; }
-.breakpoint-toggle:hover, .breakpoint-toggle.is-breakpoint { background: var(--study-tint); color: var(--study-accent); }
+.breakpoint-toggle:hover, .breakpoint-toggle.is-breakpoint { background: var(--accent-tint); color: var(--accent-dark); }
 .breakpoint-toggle.is-breakpoint svg { fill: currentColor; }
 .question-management summary { width: 36px; border-radius: 7px; }.question-management summary:hover, .question-management[open] summary { background: #f7f8fb; }
 .knowledge-panel, .management-panel { position: absolute; z-index: 5; top: calc(100% + 7px); border: 1px solid var(--line); border-radius: 10px; padding: 14px; background: #fff; box-shadow: 0 8px 24px #1f293712; }

@@ -6,8 +6,8 @@
 </template>
 
 <style scoped>
-.brand { display: inline-flex; align-items: center; gap: 9px; width: max-content; min-height: 44px; color: var(--study-ink); }
-.brand-mark { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 6px; background: var(--study-accent); color: var(--paper); }
+.brand { display: inline-flex; align-items: center; gap: 9px; width: max-content; min-height: 44px; color: var(--ink); }
+.brand-mark { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 6px; background: var(--accent-tint); color: var(--accent); }
 .brand-mark svg { width: 21px; height: 21px; }
 b { font-size: 15px; font-weight: 680; letter-spacing: -.015em; }
 </style>
