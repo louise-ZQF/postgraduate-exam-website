@@ -30,6 +30,9 @@ const checks = [
   ['提水做功', 'calculus-4qs95x-1'],
   ['液体静压力', 'calculus-1djpxhg-1'],
   ['形心x坐标', 'calculus-2z1adl-2'],
+  ['曲率圆圆心横坐标', 'calculus-hemipr-1'],
+  ['曲率圆圆心纵坐标', 'calculus-hemipr-2'],
+  ['曲率圆半径', 'calculus-sbm3mh-2'],
   ['椭圆面积', 'calculus-5ysdno'],
   ['球的表面积', 'calculus-sse8ka'],
   ['二重积分换元', 'calculus-wkbq2e'],
@@ -70,6 +73,10 @@ for (const [query, expected] of checks) {
 assert.equal(searchMathWithCount("f''(x)>0").results.some((item) => item.resultId === 'calculus-convex-down'), false)
 assert.equal(searchMathWithCount("f''(x)<0").results.some((item) => item.resultId === 'calculus-convex-up'), false)
 assert.equal(searchMathWithCount('形心x坐标').results.some((item) => item.resultId === 'calculus-2z1adl-3'), false)
+assert.deepEqual(searchMathWithCount('曲率圆', 2).results.map((item) => [item.resultId, item.title]), [
+  ['calculus-hemipr-1', '曲率圆圆心的横坐标'],
+  ['calculus-hemipr-2', '曲率圆圆心的纵坐标'],
+])
 assert.equal(searchMathWithCount('二阶导数大于零').results.some((item) => item.resultId === 'calculus-convex-down'), false)
 assert.equal(searchMathWithCount('推广的积分中值定理').results.some((item) => item.resultId === 'calculus-1dh4te7-1'), false)
 assert.equal(searchMathWithCount('量子场论').total, 0)
@@ -77,4 +84,7 @@ assert.equal(normalizeFormulaQuery("f″(x)＞0"), normalizeFormulaQuery("f''(x)
 
 const ids = content.mathFormulas.map((formula) => formula.id)
 assert.equal(new Set(ids).size, ids.length, '公式 ID 必须唯一，旧收藏依赖这些 ID')
+const bareSymbolSuffix = /：(?:[A-Za-zα-ωΑ-Ω0-9]+|[A-Za-zα-ωΑ-Ω]_[A-Za-zα-ωΑ-Ω0-9-]+)$/
+assert.deepEqual(content.mathFormulas.filter((formula) => bareSymbolSuffix.test(formula.title)).map((formula) => formula.title), [],
+  '公式标题应说明含义，不能只在组名后拼接变量或符号')
 console.log(`搜索回归通过：${checks.length} 组首条命中、反向条件、无结果与 ID 检查`)

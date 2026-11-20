@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { ArrowUpRight, Search, Star, X } from '@lucide/vue'
 import MathHeader from '@/components/MathHeader.vue'
 import MathMarkdown from '@/components/MathMarkdown.vue'
 import { FAVORITES_CHANGED_EVENT, readFavorites, toggleFavorite } from '@/math/favorites'
@@ -10,6 +11,8 @@ import type { MathSearchResult } from '@/math/types'
 
 const route = useRoute()
 const router = useRouter()
+const starterQueries = ['曲率圆', '链式法则', '泰勒公式', '相似矩阵']
+const searchInput = ref<HTMLInputElement | null>(null)
 const query = ref(String(route.query.q ?? '').slice(0, 30))
 const visibleCount = ref(8)
 const searchState = computed(() => searchMathWithCount(query.value, visibleCount.value))
@@ -40,11 +43,18 @@ watch(() => route.query.q, (value) => {
 
 watch(query, () => { visibleCount.value = 8 })
 
-function submit() {
-  const q = query.value.trim()
+function submit(value = query.value) {
+  const q = value.trim()
   if (!q) return
+  query.value = q
   rememberSearch(q)
   router.replace({ name: 'home', query: { q } })
+}
+
+function clearSearch() {
+  query.value = ''
+  router.replace({ name: 'home' })
+  searchInput.value?.focus()
 }
 
 function toggleResultFavorite(result: MathSearchResult) {
@@ -69,24 +79,28 @@ function toggleResultFavorite(result: MathSearchResult) {
     <MathHeader hide-search />
     <main id="main-content">
       <section class="intro" aria-labelledby="page-title">
-        <h1 id="page-title">数学二公式知识库</h1>
-        <p>输入知识点、题目里的关键词或公式写法，直接看到结论、适用条件和原文位置。</p>
-        <form class="search-box" role="search" @submit.prevent="submit">
-          <label for="main-search">搜索公式与结论</label>
+        <h1 id="page-title">公式检索</h1>
+        <form class="search-box" role="search" aria-label="公式检索" @submit.prevent="submit()">
           <div class="search-control">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16.5 16.5 4 4"/></svg>
-            <input id="main-search" v-model="query" maxlength="30" autofocus autocomplete="off"
-              placeholder="例如：凹凸性、正定判定、f''(x)>0" />
-            <button type="submit">搜索</button>
+            <Search :size="18" aria-hidden="true" />
+            <input ref="searchInput" v-model="query" maxlength="30" autocomplete="off"
+              aria-label="搜索知识点、关键词或公式" placeholder="关键词或公式" />
+            <button v-if="query" class="clear-search" type="button" aria-label="清空搜索" title="清空搜索" @click="clearSearch">
+              <X :size="17" aria-hidden="true" />
+            </button>
+            <button class="submit-search" type="submit">搜索</button>
           </div>
         </form>
+        <div v-if="!query.trim()" class="sample-searches" aria-label="搜索示例">
+          <span>试着搜索</span>
+          <button v-for="example in starterQueries" :key="example" type="button" @click="submit(example)">{{ example }}</button>
+        </div>
       </section>
 
-      <section class="result-section" aria-labelledby="results-title">
+      <section v-if="query.trim()" class="result-section" aria-labelledby="results-title">
         <div class="result-heading">
           <h2 id="results-title">搜索结果</h2>
-          <span v-if="query.trim()" role="status">{{ searchState.total }} 条相关内容<span v-if="searchState.total > results.length"> · 当前显示 {{ results.length }} 条</span></span>
-          <span v-else>输入关键词后，即可从这里直达公式</span>
+          <span role="status">{{ searchState.total }} 条结果<span v-if="searchState.total > results.length"> · 显示 {{ results.length }} 条</span></span>
         </div>
 
         <div v-if="results.length" class="results">
@@ -99,23 +113,20 @@ function toggleResultFavorite(result: MathSearchResult) {
               <h3 v-html="highlightMatch(plainMathText(result.title), query)"></h3>
               <MathMarkdown v-if="result.formula" class="result-formula" :source="`\\[${result.formula.latex}\\]`" />
               <MathMarkdown v-if="result.snippet" class="result-context" :source="result.snippet" />
-              <span class="result-open">查看原文 <span aria-hidden="true">↗</span></span>
+              <span class="result-open">查看原文 <ArrowUpRight :size="14" aria-hidden="true" /></span>
             </RouterLink>
-            <button type="button" class="favorite-button" :class="{ active: favoriteIds.has(result.targetId) }"
+            <button type="button" class="favorite-button"
               :aria-pressed="favoriteIds.has(result.targetId)"
-              :aria-label="(favoriteIds.has(result.targetId) ? '取消收藏：' : result.kind === 'formula' ? '收藏此公式：' : '收藏本组：') + plainMathText(result.title)"
+              :aria-label="(result.kind === 'formula' ? '收藏公式：' : '收藏本组：') + plainMathText(result.title)"
+              :title="favoriteIds.has(result.targetId) ? '取消收藏' : '收藏'"
               @click="toggleResultFavorite(result)"
-            >{{ favoriteIds.has(result.targetId) ? '★ 已收藏' : result.kind === 'formula' ? '☆ 收藏此公式' : '☆ 收藏本组' }}</button>
+            ><Star :size="18" aria-hidden="true" /></button>
           </article>
         </div>
         <button v-if="searchState.total > visibleCount" class="show-more" type="button" @click="visibleCount += 8">查看更多结果</button>
-        <div v-if="!results.length && query.trim()" class="empty">
+        <div v-if="!results.length" class="empty">
           <h3>暂时没有找到匹配内容</h3>
           <p>试试缩短关键词，或换用公式的另一种写法。</p>
-        </div>
-        <div v-if="!query.trim()" class="empty quiet">
-          <h3>从一个线索开始</h3>
-          <p>比如“相似矩阵”“形心”，或者直接输入 <code>f''(x)&gt;0</code>。</p>
         </div>
       </section>
     </main>
@@ -123,62 +134,96 @@ function toggleResultFavorite(result: MathSearchResult) {
 </template>
 
 <style scoped>
-.search-page { min-height: 100vh; }
-main { width: min(1120px, calc(100% - 48px)); margin: 0 auto; padding: 48px 0 96px; }
-.intro { max-width: 100%; border: 1px solid #dfe7fa; border-radius: 18px; padding: 42px 40px; background: #eef3ff; }
-h1 { margin: 0; color: var(--ink); font-size: clamp(32px, 4.2vw, 52px); font-weight: 700; letter-spacing: -.035em; line-height: 1.28; }
-.intro > p { max-width: 780px; margin: 16px 0 0; color: var(--ink-soft); font-size: clamp(14px, 1.3vw, 16px); line-height: 1.8; }
-.search-box { max-width: 100%; margin-top: 30px; }
-.search-box label { display: block; margin-bottom: 11px; color: var(--accent-dark); font-size: 13px; font-weight: 700; letter-spacing: .04em; }
-.search-control { display: flex; align-items: center; min-height: 72px; border: 1px solid var(--line-strong); border-radius: 12px; padding: 8px 8px 8px 21px; background: var(--paper); box-shadow: 0 4px 16px #24314a04; }
-.search-control:focus-within { border-color: var(--accent); outline: 3px solid var(--focus-ring); }
-.search-control svg { width: 23px; flex: 0 0 auto; fill: none; stroke: var(--muted); stroke-width: 1.8; }
-.search-control input { min-width: 0; flex: 1; border: 0; outline: none; padding: 0 18px; background: transparent; color: var(--ink); font-size: 17px; }
-.search-control input::placeholder { color: var(--muted); }
-.search-control button { align-self: stretch; min-width: 104px; border: 0; border-radius: 8px; background: var(--accent); color: white; font-size: 16px; font-weight: 700; }
-.search-control button:hover { background: var(--accent-dark); }
-.result-section { margin-top: 40px; }
-.result-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; border-bottom: 1px solid var(--line-strong); padding-bottom: 15px; }
-.result-heading h2 { margin: 0; font-size: 23px; font-weight: 700; line-height: 1.4; }
-.result-heading > span { color: var(--muted); font-size: 13px; }
-.results { display: grid; gap: 16px; margin-top: 20px; }
-.result-card { position: relative; padding: 24px 28px; border: 1px solid var(--line); border-radius: 12px; background: var(--paper); }
-.result-link { display: block; max-width: 920px; }
-.result-path { color: var(--muted); font-size: 12px; }
-.result-path span { margin: 0 5px; color: var(--muted); }
-.result-card h3 { margin: 8px 0 4px; color: var(--ink); font-size: 21px; font-weight: 700; line-height: 1.5; }
-.result-link:hover h3, .result-link:hover .result-open { color: var(--accent-dark); }
-.result-formula { max-width: 780px; margin: 12px 0; color: var(--ink); }
-.result-formula :deep(.katex-display) { margin: 0; border: 0; border-radius: 6px; padding: 13px 16px; background: var(--surface-soft); text-align: left; }
-.result-context { max-width: 780px; margin: 9px 0 0; color: var(--ink-soft); font-size: 14px; line-height: 1.7; }
+.search-page { min-height: 100vh; background: var(--study-canvas); color: var(--study-ink); }
+main { width: min(860px, calc(100% - 48px)); margin: auto; padding: 42px 0 72px; }
+h1 {
+  margin: 0 0 16px;
+  color: var(--study-ink);
+  font-family: var(--serif);
+  font-size: clamp(28px, 3.8vw, 42px);
+  font-weight: 700;
+  line-height: 1.3;
+}
+.search-control {
+  display: flex;
+  min-height: 56px;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--study-rule);
+  border-radius: 9px;
+  padding: 4px 4px 4px 14px;
+  background: var(--paper);
+}
+.search-control:focus-within { border-color: var(--study-accent); box-shadow: 0 0 0 3px var(--study-focus); }
+.search-control > svg { flex: 0 0 auto; color: var(--study-muted); }
+.search-control input {
+  min-width: 0;
+  min-height: 44px;
+  flex: 1;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--study-ink);
+  font-size: 16px;
+}
+.search-control input::placeholder { color: var(--study-muted); }
+.search-control button { min-height: 44px; flex-shrink: 0; border-radius: 6px; }
+.clear-search { display: grid; width: 44px; place-items: center; color: var(--study-muted); }
+.clear-search:hover { background: var(--study-tint); }
+.submit-search {
+  min-width: 68px;
+  padding: 0 14px;
+  background: var(--study-accent);
+  color: white;
+  font-size: 14px;
+  font-weight: 650;
+}
+.submit-search:hover { background: var(--study-accent-hover); }
+.sample-searches { display: flex; flex-wrap: wrap; align-items: center; gap: 0 14px; margin-top: 5px; color: var(--study-muted); font-size: 13px; }
+.sample-searches button { min-height: 44px; color: var(--study-accent); text-decoration: underline; text-underline-offset: 4px; }
+.sample-searches button:hover { color: var(--study-accent-hover); }
+.result-section { margin-top: 24px; }
+.result-heading { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 2px 12px; padding-bottom: 10px; }
+.result-heading h2 { margin: 0; font-size: 18px; font-weight: 700; }
+.result-heading > span { color: var(--study-muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+.results { border: 1px solid var(--study-rule); border-radius: 10px; background: var(--paper); }
+.result-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 10px;
+  padding: 15px 16px 12px 20px;
+}
+.result-card + .result-card { border-top: 1px solid var(--study-rule); }
+.result-link { display: block; min-width: 0; }
+.result-path { color: var(--study-muted); font-size: 12px; }
+.result-path span { margin: 0 4px; }
+.result-card h3 { margin: 4px 0; color: var(--study-ink); font-size: 18px; font-weight: 700; line-height: 1.45; overflow-wrap: anywhere; }
+.result-link:hover h3, .result-link:hover .result-open { color: var(--study-accent); text-decoration: underline; text-underline-offset: 4px; }
+.result-formula { margin-top: 8px; }
+.result-formula :deep(.katex-display) { margin: 0; padding: 6px 10px; border-inline-start: 2px solid var(--study-rule); border-radius: 0; background: transparent; }
+.result-formula :deep(.katex-display > .katex) { text-align: start; }
+.result-context { margin-top: 5px; color: var(--study-muted); font-size: 14px; line-height: 1.65; overflow-wrap: anywhere; }
 .result-context :deep(p) { margin: 0; }
-.result-card :deep(mark) { border-radius: 2px; padding: 0 2px; background: #dce5ff; color: var(--ink); }
-.result-open { display: inline-flex; align-items: center; min-height: 36px; margin-top: 10px; color: var(--accent-dark); font-size: 13px; font-weight: 700; }
-.result-open span { margin-left: 6px; }
-.favorite-button { min-height: 44px; border: 1px solid var(--line-strong); border-radius: 6px; padding: 0 13px; background: var(--paper); color: var(--ink-soft); font-size: 13px; font-weight: 650; }
-.favorite-button:hover, .favorite-button.active { border-color: var(--accent); background: var(--accent-tint); color: var(--accent-dark); }
-.show-more { display: block; min-height: 44px; margin: 20px auto 0; border: 1px solid var(--line-strong); border-radius: 6px; padding: 0 22px; background: var(--paper); color: var(--accent-dark); font-weight: 700; }
-.show-more:hover { border-color: var(--accent); }
-.empty { margin-top: 20px; border: 1px solid var(--line); border-radius: 12px; padding: 32px; background: var(--paper); }
-.empty h3 { margin: 0 0 6px; font-size: 20px; font-weight: 650; }
-.empty p { margin: 0; color: var(--muted); font-size: 14px; }
-.empty code { color: var(--accent-dark); }
-@media (max-width: 700px) {
-  main { width: calc(100% - 32px); padding: 42px 0 72px; }
-  .intro { padding: 28px 22px; border-radius: 14px; }
-  h1 { font-size: clamp(27px, 7vw, 40px); }
-  .intro > p { margin-top: 16px; font-size: 16px; }
-  .search-box { margin-top: 28px; }
-  .search-control { min-height: 62px; padding-left: 13px; }
-  .search-control svg { width: 19px; }
-  .search-control input { padding: 0 9px; font-size: 16px; }
-  .search-control button { min-width: 69px; font-size: 14px; }
-  .result-section { margin-top: 44px; }
-  .result-heading { align-items: flex-start; flex-direction: column; gap: 2px; }
-  .result-heading h2 { font-size: 24px; }
-  .result-card { padding: 18px 16px; }
-  .result-card h3 { font-size: 20px; }
-  .result-formula :deep(.katex-display) { padding: 12px 8px; }
-  .empty { padding: 24px 18px; }
+.result-card :deep(mark) { border-radius: 2px; padding: 0 1px; background: var(--study-tint); color: var(--study-ink); }
+.result-open { display: inline-flex; min-height: 32px; align-items: center; gap: 4px; color: var(--study-accent); font-size: 13px; font-weight: 650; }
+.favorite-button { display: grid; width: 44px; height: 44px; place-items: center; border-radius: 7px; color: var(--study-muted); }
+.favorite-button:hover, .favorite-button[aria-pressed="true"] { background: var(--study-tint); color: var(--study-accent); }
+.favorite-button[aria-pressed="true"] :deep(svg) { fill: currentColor; }
+.show-more { display: block; min-height: 44px; margin: 16px auto 0; padding: 0 16px; border: 1px solid var(--study-rule); border-radius: 7px; background: var(--paper); color: var(--study-accent); font-weight: 650; }
+.show-more:hover { border-color: var(--study-accent); }
+.empty { border-block-start: 1px solid var(--study-rule); padding: 18px 0; }
+.empty h3 { margin: 0 0 4px; font-size: 18px; font-weight: 650; }
+.empty p { margin: 0; color: var(--study-muted); font-size: 14px; }
+@media (max-width: 680px) {
+  main { width: calc(100% - 32px); padding: 22px 0 46px; }
+  h1 { margin-bottom: 12px; }
+  .search-control { gap: 6px; padding-inline-start: 10px; }
+  .submit-search { min-width: 54px; padding: 0 8px; }
+  .result-section { margin-top: 20px; }
+  .result-card { gap: 2px; padding: 11px 6px 9px 12px; }
+  .result-card h3 { font-size: 16px; }
+  .result-formula :deep(.katex-display) { margin-inline: 0; }
+  .result-context { font-size: 13px; }
 }
 </style>

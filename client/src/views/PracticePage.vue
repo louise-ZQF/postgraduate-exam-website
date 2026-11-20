@@ -470,12 +470,14 @@ onBeforeUnmount(() => {
 <template>
   <div class="practice-page" :class="{ 'pdf-export': exportingPdf }">
     <PracticeImagePreview ref="imagePreview" />
+    <MathHeader hide-search />
     <div class="practice-layout">
       <aside class="directory" :aria-label="isBook ? '880章节与复习目录' : '试卷与复习目录'">
-        <MathHeader hide-search sidebar />
-        <button class="mobile-directory" :aria-expanded="directoryOpen" aria-controls="directory-content" @click="directoryOpen = !directoryOpen"><PracticeIcon name="book" />{{ isBook ? '880 章节与复习目录' : '试卷与复习目录' }}<span>{{ directoryOpen ? '收起' : '展开' }}</span></button>
+        <button class="mobile-directory" :aria-expanded="directoryOpen" aria-controls="directory-content" @click="directoryOpen = !directoryOpen">
+          <PracticeIcon name="book" />{{ isBook ? '880 章节与复习目录' : '试卷与复习目录' }}<span class="folder-chevron" aria-hidden="true"></span>
+        </button>
         <div id="directory-content" class="directory-content" :class="{ open: directoryOpen }">
-          <div class="directory-brand"><div><strong>{{ isBook ? '李林 880' : '试卷题库' }}</strong><span>{{ retainedCount }} 道题 · {{ isBook ? '按章节与题型' : '按年份与套卷' }}</span></div></div>
+          <div class="directory-brand"><strong>{{ isBook ? '李林 880' : '试卷题库' }}</strong><span>{{ retainedCount }} 题</span></div>
           <nav class="collection-nav" aria-label="错题集合">
             <button :aria-pressed="mode === 'all'" :class="{ active: mode === 'all' }" @click="selectView('all')"><PracticeIcon name="book" />{{ isBook ? '章节练习' : '试卷练习' }}<span>{{ allDisplayCount }}</span></button>
             <button :aria-pressed="viewingMistakes" :class="{ active: viewingMistakes }" @click="selectView('review')"><PracticeIcon name="repeat" />错题库<span>{{ pendingCount }}</span></button>
@@ -497,9 +499,16 @@ onBeforeUnmount(() => {
             </details>
           </template>
           <p v-if="!papers.length" class="directory-empty">题目上传后，这里会按真题年份和模拟卷套数生成目录。</p>
-          <div class="progress-card"><div><span>已掌握</span><strong>{{ masteredCount }} <small>/ {{ visibleQuestions.length }}</small></strong></div><progress :value="masteredCount" :max="visibleQuestions.length || 1" :aria-label="isBook ? '880掌握进度' : '试卷错题掌握进度'" /></div>
-          <div class="backup-actions"><button @click="exportBackup"><PracticeIcon name="download" />导出进度</button><button @click="importInput?.click()"><PracticeIcon name="upload" />恢复进度</button><input ref="importInput" class="visually-hidden" type="file" accept=".json,application/json" aria-label="选择进度备份" @change="importBackup" /></div>
-          <p class="storage-hint"><span class="saved-dot" aria-hidden="true"></span>进度自动保存在此浏览器</p>
+          <div class="progress-card">
+            <div class="progress-total"><span>已掌握</span><strong>{{ masteredCount }} <small>/ {{ visibleQuestions.length }}</small></strong></div>
+            <progress :value="masteredCount" :max="visibleQuestions.length || 1" :aria-label="isBook ? '880掌握进度' : '试卷错题掌握进度'" />
+            <div class="backup-actions">
+              <button type="button" @click="exportBackup"><PracticeIcon name="download" />导出进度</button>
+              <button type="button" @click="importInput?.click()"><PracticeIcon name="upload" />恢复进度</button>
+              <input ref="importInput" hidden type="file" accept=".json,application/json" aria-label="选择进度备份" @change="importBackup" />
+            </div>
+            <p class="storage-hint" :class="{ 'save-failed': storageFailed }">{{ storageFailed ? '进度保存失败' : '进度保存在此浏览器' }}</p>
+          </div>
         </div>
       </aside>
       <main id="practice-main" tabindex="-1" @pointerdown="trackQuestionInteraction" @focusin="trackQuestionInteraction">

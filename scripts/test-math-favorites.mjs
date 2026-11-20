@@ -50,6 +50,12 @@ assert.doesNotMatch(refreshed.context, /由 a\\le/)
 assert.equal(refreshed.latex, content.mathFormulas.find((item) => item.id === oldFavorite.id).latex)
 assert.equal(refreshed.addedAt, 123)
 
+const curvatureFavorite = { ...oldFavorite, id: 'calculus-hemipr-2', targetId: 'calculus-hemipr-2', title: '曲率：Y' }
+storage.set('math2-favorites-v2', JSON.stringify([curvatureFavorite]))
+const [renamedCurvature] = readFavorites()
+assert.equal(renamedCurvature.title, '曲率圆圆心的纵坐标')
+assert.equal(renamedCurvature.targetId, curvatureFavorite.targetId)
+
 storage.delete('math2-favorites-v2')
 const anchor = content.mathTopics.flatMap((topic) => topic.anchors).find((item) => item.legacyId === 'calculus-03-002-anchor-011')
 assert.ok(anchor)
