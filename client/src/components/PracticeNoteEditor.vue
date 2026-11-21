@@ -82,8 +82,14 @@ function chooseColor(color: NoteTextColor) {
   const element = input.value
   if (!element) return
   const edit = formatNoteColor(props.modelValue, element.selectionStart, element.selectionEnd, color)
-  if (!edit || edit.value === props.modelValue.slice(edit.start, edit.end)) {
+  if (!edit) {
     element.focus({ preventScroll: true })
+    return
+  }
+  if (edit.value === props.modelValue.slice(edit.start, edit.end)) {
+    element.focus({ preventScroll: true })
+    element.setSelectionRange(edit.start + edit.selectStart, edit.start + edit.selectEnd)
+    syncColor()
     return
   }
   element.setSelectionRange(edit.start, edit.end)
