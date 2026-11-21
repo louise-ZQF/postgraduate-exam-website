@@ -109,6 +109,8 @@ const html = computed(() => {
 .math-markdown :deep(img) { max-width: 100%; height: auto; border-radius: 6px; }
 .math-markdown :deep(a) { color: var(--accent-dark); text-decoration: underline; }
 .math-markdown :deep(mark) { padding: 1px 3px; background: var(--warning-tint); color: var(--ink); }
+.math-markdown :deep(.note-text-color),
+.math-markdown :deep(.note-text-color :is(.katex, strong, code, a, mark)) { color: var(--note-text-color, var(--ink)); }
 @media (max-width: 700px) { .math-markdown { font-size: 16px; line-height: 1.85; }.math-markdown :deep(h5) { font-size: 19px; }.math-markdown :deep(.katex-display) { margin-right: -5px; margin-left: -5px; padding: 11px 7px; }.math-markdown :deep(table) { display: block; overflow-x: auto; white-space: nowrap; } }
 .math-markdown.compact { font: inherit; line-height: inherit; }
 .math-markdown.compact :deep(p) { margin: 6px 0; }

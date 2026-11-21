@@ -143,7 +143,7 @@ export function protectMarkdownMath(source: string, automatic = false) {
       const emphasized = line.match(/^\s*<strong>(.*?)<\/strong>\s*$/)
       const formulaLine = emphasized?.[1] ?? line
       const mathLine = formulaLine.replace(/\\(?:text|operatorname)\{[^}]*\}/g, '')
-      if (automatic && line.trim() && !/[\u3400-\u9fff`$]/.test(mathLine) && !/\\[([]|\\begin\{/.test(line)
+      if (automatic && line.trim() && !line.includes('<span class="note-text-color ') && !/[\u3400-\u9fff`$]/.test(mathLine) && !/\\[([]|\\begin\{/.test(line)
         && (/\\(?:frac|dfrac|tfrac|int|sum|prod|lim|sqrt|partial|infty)(?![a-zA-Z])/.test(formulaLine) || /[a-zA-Z][_^].*(?:=|<|>|\\)/.test(formulaLine) || /^\s*[A-Za-zα-ωΑ-Ω]\s*[=<>≤≥≠]\s*[-+\dA-Za-zα-ωΑ-Ω]/.test(formulaLine) || /[a-zA-Z]'*\([^\n)]*\)\s*=/.test(formulaLine) || (/[α-ωΑ-Ω]/.test(formulaLine) && /[=^_²ᵀ]/.test(formulaLine)))) {
         const token = addDelimited(formulaLine, true, i, i + line.length)
         text += emphasized ? `<strong>${token}</strong>` : token

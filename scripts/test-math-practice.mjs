@@ -18,6 +18,9 @@ const practiceQuestions = ['practice-questions.json', 'll880-questions.json'].fl
 const { demoQuestion } = await loadModule('client/src/math/practiceDemo.ts')
 const { createPracticeCatalog, groupMistakesByChapter } = await loadModule('client/src/math/practiceCatalog.ts')
 const { protectMarkdownMath, escapeMathHtml, formatNoteBold, normalizeNoteMath, repairFragmentedMath } = await loadModule('client/src/math/markdownMath.ts')
+const { formatNoteColor, noteColorAt, noteColorLineBreak, removeEmptyNoteColors } = await loadModule('client/src/math/noteColor.ts', {
+  './markdownMath': moduleUrl('client/src/math/markdownMath.ts'),
+})
 const { noteMarkdown } = await loadModule('client/src/math/noteMarkdown.ts', { marked: import.meta.resolve('marked') })
 const examsCatalog = createPracticeCatalog(practiceQuestions, 'exams')
 const bookCatalog = createPracticeCatalog(practiceQuestions, 'll880')
@@ -141,6 +144,26 @@ const stopsInsideMath = formatNoteBold(acrossFormula, 0, acrossFormula.indexOf('
 assert.equal(stopsInsideMath.value, '<strong>第一步</strong>\n\n\\[\nx^2+1\n\\]')
 const withCode = '第一步\n\n```text\n**字面量**\n```\n\n第二步'
 assert.equal(formatNoteBold(withCode, 0, withCode.length).value, '<strong>第一步</strong>\n\n```text\n**字面量**\n```\n\n<strong>第二步</strong>')
+const redTyping = formatNoteColor('', 0, 0, 'red')
+assert.equal(redTyping.selectStart, redTyping.selectEnd)
+assert.equal(noteColorAt(redTyping.value, redTyping.selectStart), 'red')
+assert.equal(removeEmptyNoteColors(redTyping.value), '')
+const typed = redTyping.value.slice(0, redTyping.selectStart) + '第一步' + redTyping.value.slice(redTyping.selectEnd)
+const middle = typed.indexOf('一')
+const recolor = formatNoteColor(typed, middle, middle + 1, 'blue')
+assert.match(recolor.value, /note-color-red">第<\/span><span class="note-text-color note-color-blue">一<\/span><span class="note-text-color note-color-red">步<\/span>/)
+const defaultText = formatNoteColor(typed, middle, middle + 1, 'default')
+assert.match(defaultText.value, />第<\/span>一<span[^>]+>步<\/span>/)
+const twoLines = typed.slice(0, middle) + noteColorLineBreak(typed, middle) + typed.slice(middle)
+assert.match(noteMarkdown.parse(twoLines, { breaks: true }), />第<\/span><br><span[^>]+>一步<\/span>/)
+const coloredNote = formatNoteColor(acrossFormula, 0, acrossFormula.length, 'purple').value
+const protectedColor = protectMarkdownMath(coloredNote, true)
+assert.equal(protectedColor.tokens[0].latex, 'x^2+1')
+assert.match(noteMarkdown.parse(protectedColor.text), /note-color-purple">第一步<\/span>[\s\S]+note-color-purple">第二步<\/span>/)
+const mixedNote = '# 标题\n- 列表\n\n' + withCode
+const coloredMixedNote = formatNoteColor(mixedNote, 0, mixedNote.length, 'blue').value
+assert.match(noteMarkdown.parse(coloredMixedNote), /<h1><span[^>]+>标题<\/span><\/h1>[\s\S]*<li><span[^>]+>列表<\/span><\/li>/)
+assert.match(coloredMixedNote, /```text\n\*\*字面量\*\*\n```/)
 assert.equal(escapeMathHtml('<img src=x onerror="alert(1)">'), '&lt;img src=x onerror=&quot;alert(1)&quot;&gt;')
 assert.equal(normalizeNoteMath('αTx=(αTx)T=xTα.', '转置'), 'α^{T}x=(α^{T}x)^{T}=x^{T}α.')
 assert.equal(normalizeNoteMath('(αTx)2=xT(ααT)x', '转置，平方'), '(α^{T}x)^{2}=x^{T}(αα^{T})x')

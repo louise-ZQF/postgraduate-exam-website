@@ -3,6 +3,7 @@ import { computed, nextTick, ref } from 'vue'
 import MathMarkdown from './MathMarkdown.vue'
 import { noteFromClipboard } from '@/math/notePaste'
 import { formatNoteBold, repairFragmentedMath } from '@/math/markdownMath'
+import { formatNoteColor, noteColorAt, noteColorLineBreak, noteTextColors, removeEmptyNoteColors, type NoteTextColor } from '@/math/noteColor'
 
 const props = defineProps<{ modelValue: string; inputId: string; label: string; storageFailed: boolean }>()
 const emit = defineEmits<{ 'update:modelValue': [value: string]; blur: [] }>()
@@ -10,6 +11,7 @@ const mode = ref('split')
 const input = ref<HTMLTextAreaElement>()
 const root = ref<HTMLElement>()
 const feedback = ref('')
+const activeColor = ref<NoteTextColor>('default')
 const imageOpen = ref(false)
 const imageUrl = ref('')
 const limit = 10_000
@@ -32,7 +34,11 @@ const commands = [
 const savedLabel = computed(() => props.storageFailed ? '保存失败，请导出备份' : '自动保存')
 const repairedSource = computed(() => repairFragmentedMath(props.modelValue, true))
 
-function update(value: string) { feedback.value = ''; emit('update:modelValue', value) }
+function syncColor(value = props.modelValue) {
+  const element = input.value
+  if (element) activeColor.value = noteColorAt(value, element.selectionStart, element.selectionEnd)
+}
+function update(value: string) { feedback.value = ''; emit('update:modelValue', value); syncColor(value) }
 async function insert(value: string, selectStart = 0, selectEnd = value.length) {
   const element = input.value
   const start = element?.selectionStart ?? props.modelValue.length
@@ -44,6 +50,7 @@ async function insert(value: string, selectStart = 0, selectEnd = value.length) 
   await nextTick()
   input.value?.focus({ preventScroll: true })
   input.value?.setSelectionRange(start + selectStart, start + selectEnd)
+  syncColor(next)
 }
 function format(command: typeof commands[number]) {
   const element = input.value
@@ -71,7 +78,28 @@ function format(command: typeof commands[number]) {
   const content = command.line ? selected.split('\n').map((line, index) => `${command.id === 'ordered' ? `${index + 1}. ` : prefix}${line}`).join('\n') : prefix + selected + suffix
   void insert(content, command.line ? 0 : prefix.length, command.line ? content.length : prefix.length + selected.length)
 }
+function chooseColor(color: NoteTextColor) {
+  const element = input.value
+  if (!element) return
+  const edit = formatNoteColor(props.modelValue, element.selectionStart, element.selectionEnd, color)
+  if (!edit || edit.value === props.modelValue.slice(edit.start, edit.end)) {
+    element.focus({ preventScroll: true })
+    return
+  }
+  element.setSelectionRange(edit.start, edit.end)
+  void insert(edit.value, edit.selectStart, edit.selectEnd)
+}
+
 function keydown(event: KeyboardEvent) {
+  const element = input.value
+  if (event.key === 'Enter' && !event.isComposing && element && element.selectionStart === element.selectionEnd) {
+    const lineBreak = noteColorLineBreak(props.modelValue, element.selectionStart)
+    if (lineBreak) {
+      event.preventDefault()
+      void insert(lineBreak, lineBreak.length, lineBreak.length)
+      return
+    }
+  }
   if ((event.ctrlKey || event.metaKey) && ['b', 'i'].includes(event.key.toLowerCase())) {
     event.preventDefault()
     format(commands.find(command => command.id === (event.key.toLowerCase() === 'b' ? 'bold' : 'italic'))!)
@@ -97,7 +125,10 @@ function addImage() {
   imageUrl.value = ''
 }
 function blur(event: FocusEvent) {
-  if (!root.value?.contains(event.relatedTarget as Node | null)) emit('blur')
+  if (root.value?.contains(event.relatedTarget as Node | null)) return
+  const next = removeEmptyNoteColors(props.modelValue)
+  if (next !== props.modelValue) update(next)
+  emit('blur')
 }
 </script>
 
@@ -109,11 +140,23 @@ function blur(event: FocusEvent) {
       <div><button v-if="repairedSource !== modelValue" class="copy-button" @click="update(repairedSource)">整理粘贴格式</button><button class="copy-button" :disabled="!modelValue" @click="copy">复制 Markdown</button></div>
     </div>
     <div class="editor-frame">
-      <div v-if="mode !== 'preview'" class="editor-tools" role="toolbar" aria-label="笔记格式工具"><button v-for="command in commands" :key="command.id" :class="command.id" :title="command.title" :aria-label="command.title" @mousedown.prevent @click="format(command)">{{ command.label }}</button><button aria-label="插入图片链接" :aria-expanded="imageOpen" @click="imageOpen = !imageOpen">图片</button></div>
+      <div v-if="mode !== 'preview'" class="editor-tools" role="toolbar" aria-label="笔记格式工具">
+        <template v-for="command in commands" :key="command.id">
+          <button :class="command.id" :title="command.title" :aria-label="command.title" @mousedown.prevent @click="format(command)">{{ command.label }}</button>
+          <div v-if="command.id === 'italic'" class="editor-colors" role="group" aria-label="文字颜色">
+            <button v-for="color in noteTextColors" :key="color.id" type="button" class="color-swatch"
+              :class="`note-color-${color.id}`" :aria-pressed="activeColor === color.id"
+              :title="color.label" :aria-label="color.label" @mousedown.prevent @click="chooseColor(color.id)">
+              <span aria-hidden="true"></span>
+            </button>
+          </div>
+        </template>
+        <button aria-label="插入图片链接" :aria-expanded="imageOpen" @click="imageOpen = !imageOpen">图片</button>
+      </div>
       <form v-if="imageOpen" class="image-form" @submit.prevent="addImage"><label :for="`${inputId}-image`">图片地址</label><input :id="`${inputId}-image`" v-model="imageUrl" type="url" placeholder="https://…" /><button type="submit">插入</button><button type="button" @click="imageOpen = false">取消</button></form>
       <div class="editor-panes" :class="mode">
         <div v-if="mode !== 'edit'" class="note-preview" role="region" aria-label="笔记实时预览"><div class="pane-label">实时预览<span>Markdown + LaTeX</span></div><MathMarkdown v-if="modelValue.trim()" :source="modelValue" automatic breaks /><p v-else class="preview-empty">输入内容后，这里会实时显示公式和排版。</p></div>
-        <div v-if="mode !== 'preview'" class="note-source"><label class="pane-label" :for="inputId">编辑原文<span>{{ modelValue.length }} / 10000</span></label><textarea :id="inputId" ref="input" :aria-label="label" :value="modelValue" :maxlength="limit" spellcheck="false" placeholder="直接粘贴 GPT 的回答，或记录你的思路、推导和易错点。" @input="update(($event.target as HTMLTextAreaElement).value)" @keydown="keydown" @paste="paste" /></div>
+        <div v-if="mode !== 'preview'" class="note-source"><label class="pane-label" :for="inputId">编辑原文<span>{{ modelValue.length }} / 10000</span></label><textarea :id="inputId" ref="input" :aria-label="label" :value="modelValue" :maxlength="limit" spellcheck="false" placeholder="直接粘贴 GPT 的回答，或记录你的思路、推导和易错点。" @input="update(($event.target as HTMLTextAreaElement).value)" @focus="syncColor()" @click="syncColor()" @select="syncColor()" @keyup="syncColor()" @keydown="keydown" @paste="paste" /></div>
       </div>
     </div>
     <div class="editor-footer"><details><summary>粘贴与公式</summary><p>可直接粘贴 GPT 的 Markdown 或网页内容。支持常见公式、上下标和矩阵；复制带来的逐字换行会自动整理，普通代码块保持原样。</p></details><span v-if="feedback" role="status">{{ feedback }}</span></div>
@@ -129,4 +172,9 @@ function blur(event: FocusEvent) {
 
 .note-preview :deep(.reading-math) { display: inline-block; max-width: 100%; overflow-x: auto; overflow-y: hidden; padding: 2px 0; vertical-align: middle; }
 .note-preview :deep(table) { display: block; max-width: 100%; overflow-x: auto; }
+.editor-colors { display: flex; gap: 2px; margin-inline-start: 4px; padding-inline-start: 6px; border-inline-start: 1px solid var(--line-strong); }
+.editor-tools .color-swatch { display: grid; min-width: 34px; padding: 0; place-items: center; border: 1px solid transparent; }
+.color-swatch span { width: 14px; height: 14px; border-radius: 4px; background: var(--note-text-color, var(--ink)); }
+.editor-tools .color-swatch[aria-pressed="true"] { border-color: var(--line-strong); background: var(--paper); }
+@media (pointer: coarse) { .editor-tools .color-swatch { min-width: 42px; min-height: 44px; } }
 </style>

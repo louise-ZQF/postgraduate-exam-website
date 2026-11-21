@@ -42,6 +42,10 @@
   }
 
   * { box-sizing: border-box; }
+  .note-color-red { --note-text-color: #a3273b; }
+  .note-color-blue { --note-text-color: #2454be; }
+  .note-color-green { --note-text-color: #087451; }
+  .note-color-purple { --note-text-color: #6e3f98; }
   html { scroll-padding-top: 24px; }
   body {
     min-width: 0;
