@@ -9,6 +9,7 @@ export const noteTextColors = [
 ] as const
 
 export type NoteTextColor = typeof noteTextColors[number]['id']
+export type NoteTextSelection = { value: string; start: number; end: number }
 const closeColor = '</span>'
 const colorRunPattern = /<span class="note-text-color note-color-(red|blue|green|purple)">([\s\S]*?)<\/span>/g
 
@@ -39,6 +40,22 @@ export function noteColorLineBreak(source: string, cursor: number): string | und
   return closeColor + '\n' + openColor(color)
 }
 
+export function colorNoteInsertion(source: string, before: NoteTextSelection, color: NoteTextColor) {
+  const { value, start, end } = before
+  const suffix = value.slice(end)
+  const insertedEnd = source.length - suffix.length
+  if (source === value || insertedEnd <= start || !source.startsWith(value.slice(0, start)) || !source.endsWith(suffix)) return
+  if (noteColorAt(source, start, insertedEnd) === color) return
+  if (protectMarkdownMath(source).ranges.some(range => range.start < insertedEnd && start < range.end)) return
+
+  const edit = formatNoteColor(source, start, insertedEnd, color)
+  if (!edit) return
+  return {
+    value: source.slice(0, edit.start) + edit.value + source.slice(edit.end),
+    cursor: edit.start + edit.selectEnd,
+  }
+}
+
 function wrapColor(text: string, color: NoteTextColor): string {
   return text && color !== 'default' ? openColor(color) + text + closeColor : text
 }
@@ -64,17 +81,13 @@ function colorText(text: string, color: NoteTextColor, startsLine: boolean): str
 }
 
 export function formatNoteColor(source: string, start: number, end: number, color: NoteTextColor) {
-  const collapsed = start === end
+  if (start === end) return
   const runs = colorRuns(source)
   const { ranges } = protectMarkdownMath(source)
   for (const range of ranges) {
-    if (range.start < start && start < range.end) {
-      if (collapsed) return
-      start = range.start
-    }
+    if (range.start < start && start < range.end) start = range.start
     if (range.start < end && end < range.end) end = range.end
   }
-  if (collapsed && noteColorAt(source, start) === color) return
 
   const first = runs.find(run => run.start < start && start < run.end)
   const last = runs.find(run => run.start < end && end < run.end)
@@ -89,9 +102,7 @@ export function formatNoteColor(source: string, start: number, end: number, colo
     cursor = Math.min(end, run.end)
   }
   selected += source.slice(cursor, end)
-  const body = collapsed && color !== 'default'
-    ? openColor(color) + closeColor
-    : colorText(selected, color, start === 0 || source[start - 1] === '\n')
+  const body = colorText(selected, color, start === 0 || source[start - 1] === '\n')
   const hasOneRun = body === openColor(color) + selected + closeColor
   return {
     start: first?.start ?? start,

@@ -3,7 +3,7 @@ import { computed, nextTick, ref } from 'vue'
 import MathMarkdown from './MathMarkdown.vue'
 import { noteFromClipboard } from '@/math/notePaste'
 import { formatNoteBold, repairFragmentedMath } from '@/math/markdownMath'
-import { formatNoteColor, noteColorAt, noteColorLineBreak, noteTextColors, removeEmptyNoteColors, type NoteTextColor } from '@/math/noteColor'
+import { colorNoteInsertion, formatNoteColor, noteColorAt, noteColorLineBreak, noteTextColors, removeEmptyNoteColors, type NoteTextColor, type NoteTextSelection } from '@/math/noteColor'
 
 const props = defineProps<{ modelValue: string; inputId: string; label: string; storageFailed: boolean }>()
 const emit = defineEmits<{ 'update:modelValue': [value: string]; blur: [] }>()
@@ -11,7 +11,11 @@ const mode = ref('split')
 const input = ref<HTMLTextAreaElement>()
 const root = ref<HTMLElement>()
 const feedback = ref('')
-const activeColor = ref<NoteTextColor>('default')
+const cursorColor = ref<NoteTextColor>('default')
+const typingColor = ref<NoteTextColor>()
+const activeColor = computed(() => typingColor.value ?? cursorColor.value)
+let beforeInsertion: NoteTextSelection | undefined
+let beforeComposition: NoteTextSelection | undefined
 const imageOpen = ref(false)
 const imageUrl = ref('')
 const limit = 10_000
@@ -36,9 +40,37 @@ const repairedSource = computed(() => repairFragmentedMath(props.modelValue, tru
 
 function syncColor(value = props.modelValue) {
   const element = input.value
-  if (element) activeColor.value = noteColorAt(value, element.selectionStart, element.selectionEnd)
+  if (element) cursorColor.value = noteColorAt(value, element.selectionStart, element.selectionEnd)
 }
 function update(value: string) { feedback.value = ''; emit('update:modelValue', value); syncColor(value) }
+function inputSelection(element: HTMLTextAreaElement): NoteTextSelection {
+  return { value: element.value, start: element.selectionStart, end: element.selectionEnd }
+}
+function trackInsertion(event: InputEvent) {
+  beforeInsertion = event.inputType.startsWith('insert') && !event.isComposing
+    ? inputSelection(event.target as HTMLTextAreaElement)
+    : undefined
+}
+function startComposition(event: CompositionEvent) {
+  beforeInsertion = undefined
+  beforeComposition = inputSelection(event.target as HTMLTextAreaElement)
+}
+const noteInput = computed({
+  get: () => props.modelValue,
+  set(value: string) {
+    // v-model 等输入法确认后再提交，用组字前的选区确定新文字的范围。
+    const before = beforeComposition ?? beforeInsertion
+    beforeComposition = beforeInsertion = undefined
+    const element = input.value
+    const edit = before && typingColor.value !== undefined && colorNoteInsertion(value, before, typingColor.value)
+    if (edit && edit.value.length <= limit && element) {
+      value = element.value = edit.value
+      element.setSelectionRange(edit.cursor, edit.cursor)
+    }
+    if (value !== props.modelValue) update(value)
+    if (edit && edit.value.length > limit) feedback.value = '笔记接近 10000 字，本次输入已保存，颜色未添加。'
+  },
+})
 async function insert(value: string, selectStart = 0, selectEnd = value.length) {
   const element = input.value
   const start = element?.selectionStart ?? props.modelValue.length
@@ -81,6 +113,11 @@ function format(command: typeof commands[number]) {
 function chooseColor(color: NoteTextColor) {
   const element = input.value
   if (!element) return
+  typingColor.value = color
+  if (element.selectionStart === element.selectionEnd) {
+    element.focus({ preventScroll: true })
+    return
+  }
   const edit = formatNoteColor(props.modelValue, element.selectionStart, element.selectionEnd, color)
   if (!edit) {
     element.focus({ preventScroll: true })
@@ -98,7 +135,7 @@ function chooseColor(color: NoteTextColor) {
 
 function keydown(event: KeyboardEvent) {
   const element = input.value
-  if (event.key === 'Enter' && !event.isComposing && element && element.selectionStart === element.selectionEnd) {
+  if (event.key === 'Enter' && !event.isComposing && !beforeComposition && element && element.selectionStart === element.selectionEnd) {
     const lineBreak = noteColorLineBreak(props.modelValue, element.selectionStart)
     if (lineBreak) {
       event.preventDefault()
@@ -162,7 +199,7 @@ function blur(event: FocusEvent) {
       <form v-if="imageOpen" class="image-form" @submit.prevent="addImage"><label :for="`${inputId}-image`">图片地址</label><input :id="`${inputId}-image`" v-model="imageUrl" type="url" placeholder="https://…" /><button type="submit">插入</button><button type="button" @click="imageOpen = false">取消</button></form>
       <div class="editor-panes" :class="mode">
         <div v-if="mode !== 'edit'" class="note-preview" role="region" aria-label="笔记实时预览"><div class="pane-label">实时预览<span>Markdown + LaTeX</span></div><MathMarkdown v-if="modelValue.trim()" :source="modelValue" automatic breaks /><p v-else class="preview-empty">输入内容后，这里会实时显示公式和排版。</p></div>
-        <div v-if="mode !== 'preview'" class="note-source"><label class="pane-label" :for="inputId">编辑原文<span>{{ modelValue.length }} / 10000</span></label><textarea :id="inputId" ref="input" :aria-label="label" :value="modelValue" :maxlength="limit" spellcheck="false" placeholder="直接粘贴 GPT 的回答，或记录你的思路、推导和易错点。" @input="update(($event.target as HTMLTextAreaElement).value)" @focus="syncColor()" @click="syncColor()" @select="syncColor()" @keyup="syncColor()" @keydown="keydown" @paste="paste" /></div>
+        <div v-if="mode !== 'preview'" class="note-source"><label class="pane-label" :for="inputId">编辑原文<span>{{ modelValue.length }} / 10000</span></label><textarea :id="inputId" ref="input" v-model="noteInput" :aria-label="label" :maxlength="limit" spellcheck="false" placeholder="直接粘贴 GPT 的回答，或记录你的思路、推导和易错点。" @beforeinput="trackInsertion" @compositionstart="startComposition" @focus="syncColor()" @click="syncColor()" @select="syncColor()" @keyup="syncColor()" @keydown="keydown" @paste="paste" /></div>
       </div>
     </div>
     <div class="editor-footer"><details><summary>粘贴与公式</summary><p>可直接粘贴 GPT 的 Markdown 或网页内容。支持常见公式、上下标和矩阵；复制带来的逐字换行会自动整理，普通代码块保持原样。</p></details><span v-if="feedback" role="status">{{ feedback }}</span></div>

@@ -18,7 +18,7 @@ const practiceQuestions = ['practice-questions.json', 'll880-questions.json'].fl
 const { demoQuestion } = await loadModule('client/src/math/practiceDemo.ts')
 const { createPracticeCatalog, groupMistakesByChapter } = await loadModule('client/src/math/practiceCatalog.ts')
 const { protectMarkdownMath, escapeMathHtml, formatNoteBold, normalizeNoteMath, repairFragmentedMath } = await loadModule('client/src/math/markdownMath.ts')
-const { formatNoteColor, noteColorAt, noteColorLineBreak, removeEmptyNoteColors } = await loadModule('client/src/math/noteColor.ts', {
+const { colorNoteInsertion, formatNoteColor, noteColorAt, noteColorLineBreak, removeEmptyNoteColors } = await loadModule('client/src/math/noteColor.ts', {
   './markdownMath': moduleUrl('client/src/math/markdownMath.ts'),
 })
 const { noteMarkdown } = await loadModule('client/src/math/noteMarkdown.ts', { marked: import.meta.resolve('marked') })
@@ -144,19 +144,29 @@ const stopsInsideMath = formatNoteBold(acrossFormula, 0, acrossFormula.indexOf('
 assert.equal(stopsInsideMath.value, '<strong>第一步</strong>\n\n\\[\nx^2+1\n\\]')
 const withCode = '第一步\n\n```text\n**字面量**\n```\n\n第二步'
 assert.equal(formatNoteBold(withCode, 0, withCode.length).value, '<strong>第一步</strong>\n\n```text\n**字面量**\n```\n\n<strong>第二步</strong>')
-const redTyping = formatNoteColor('', 0, 0, 'red')
-assert.equal(redTyping.selectStart, redTyping.selectEnd)
-assert.equal(noteColorAt(redTyping.value, redTyping.selectStart), 'red')
-assert.equal(removeEmptyNoteColors(redTyping.value), '')
-const typed = redTyping.value.slice(0, redTyping.selectStart) + '第一步' + redTyping.value.slice(redTyping.selectEnd)
+const redTyping = colorNoteInsertion('第一步', { value: '', start: 0, end: 0 }, 'red')
+const typed = redTyping.value
+assert.equal(noteColorAt(typed, redTyping.cursor), 'red')
+assert.equal(removeEmptyNoteColors(typed.replace('第一步', '')), '')
 const middle = typed.indexOf('一')
 const recolor = formatNoteColor(typed, middle, middle + 1, 'blue')
 assert.match(recolor.value, /note-color-red">第<\/span><span class="note-text-color note-color-blue">一<\/span><span class="note-text-color note-color-red">步<\/span>/)
 const defaultText = formatNoteColor(typed, middle, middle + 1, 'default')
 assert.match(defaultText.value, />第<\/span>一<span[^>]+>步<\/span>/)
-const endColor = formatNoteColor(typed, typed.indexOf('</span>'), typed.indexOf('</span>'), 'default')
-assert.equal(endColor.value, typed)
-assert.equal(endColor.start + endColor.selectStart, typed.length)
+const earlierNote = '已有笔记'
+const noteEnd = earlierNote.length
+const newColor = colorNoteInsertion(earlierNote + '继续分析', { value: earlierNote, start: noteEnd, end: noteEnd }, 'red')
+assert.match(newColor.value, /^已有笔记<span[^>]+>继续分析<\/span>$/)
+assert.equal(noteColorAt(newColor.value, newColor.cursor), 'red')
+const continuedNote = newColor.value.slice(0, newColor.cursor) + '。' + newColor.value.slice(newColor.cursor)
+assert.equal(colorNoteInsertion(continuedNote, { value: newColor.value, start: newColor.cursor, end: newColor.cursor }, 'red'), undefined)
+const resumedDefault = colorNoteInsertion(continuedNote, { value: newColor.value, start: newColor.cursor, end: newColor.cursor }, 'default')
+assert.match(resumedDefault.value, /继续分析<\/span>。$/)
+assert.equal(noteColorAt(resumedDefault.value, resumedDefault.cursor), 'default')
+const replacedSelection = colorNoteInsertion('新建笔记', { value: earlierNote, start: 0, end: 2 }, 'purple')
+assert.match(replacedSelection.value, /^<span[^>]+>新建<\/span>笔记$/)
+const inlineFormula = '\\(x\\)'
+assert.equal(colorNoteInsertion('\\(xy\\)', { value: inlineFormula, start: 3, end: 3 }, 'blue'), undefined)
 const twoLines = typed.slice(0, middle) + noteColorLineBreak(typed, middle) + typed.slice(middle)
 assert.match(noteMarkdown.parse(twoLines, { breaks: true }), />第<\/span><br><span[^>]+>一步<\/span>/)
 const coloredNote = formatNoteColor(acrossFormula, 0, acrossFormula.length, 'purple').value
