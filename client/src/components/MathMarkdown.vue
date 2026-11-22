@@ -1,11 +1,29 @@
 <script lang="ts">
+import katex from 'katex'
 export const favoriteIcon = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m12 3 2.8 5.7 6.3.9-4.5 4.4 1.1 6.2-5.7-3-5.7 3 1.1-6.2L3.2 9.6l6-.9L12 3Z"/></svg>'
+const formulaCache = new Map<string, string>()
+
+function renderFormula(latex: string, displayMode: boolean): string {
+  const key = `${displayMode ? 'block' : 'inline'}:${latex}`
+  const cached = formulaCache.get(key)
+  if (cached !== undefined) return cached
+
+  const html = katex.renderToString(latex, { displayMode, throwOnError: false, trust: false, strict: 'ignore' })
+  // 限制缓存体积，长公式依然正常渲染。
+  if (html.length <= 12_000) {
+    if (formulaCache.size >= 256) {
+      const oldest = formulaCache.keys().next().value
+      if (oldest !== undefined) formulaCache.delete(oldest)
+    }
+    formulaCache.set(key, html)
+  }
+  return html
+}
 </script>
 
 <script setup lang="ts">
 import { computed } from 'vue'
 import DOMPurify from 'dompurify'
-import katex from 'katex'
 import { marked } from 'marked'
 import type { MathFormula } from '@/math/types'
 import { escapeMathHtml, protectMarkdownMath } from '@/math/markdownMath'
@@ -34,12 +52,12 @@ const html = computed(() => {
     const { latex: formula, display: displayMode } = token
     try {
       const readingFormula = props.compact && !displayMode ? `\\displaystyle ${formula.trim()}` : formula.trim()
-      const renderedFormula = katex.renderToString(readingFormula, { displayMode, throwOnError: false, trust: false, strict: 'ignore' })
+      const renderedFormula = renderFormula(readingFormula, displayMode)
       const items = props.formulas.filter((candidate) => candidate.sourceBlockIndex === Number(rawIndex))
       if (!items.length) return displayMode ? renderedFormula : `<span class="reading-math">${renderedFormula}</span>`
       return items.map((item) => {
         const safeTitle = item.title.replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char] ?? char)
-        const itemMath = items.length === 1 ? renderedFormula : katex.renderToString(item.latex, { displayMode, throwOnError: false, trust: false, strict: 'ignore' })
+        const itemMath = items.length === 1 ? renderedFormula : renderFormula(item.latex, displayMode)
         return `<span id="${item.id}" class="formula-unit${displayMode ? '' : ' inline-formula'}"><span class="formula-unit-math">${itemMath}</span><button class="reading-favorite formula-favorite-button" type="button" data-formula-id="${item.id}" aria-label="收藏公式：${safeTitle}" aria-pressed="false" title="收藏公式">${favoriteIcon}</button></span>`
       }).join('')
     } catch {

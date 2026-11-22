@@ -15,8 +15,8 @@ const router = createRouter({
   history: createWebHashHistory(),
   scrollBehavior: (to, from, savedPosition) => {
     if (savedPosition) return savedPosition
-    const section = String(to.query.section ?? '')
-    if (/^[a-z0-9-]+$/.test(section)) return { el: `#${section}`, top: 88 }
+    // 讲义在正文挂载并生成锚点后统一定位。
+    if (to.name === 'knowledge' && (to.query.section || to.params.topicId)) return undefined
     if (to.path === from.path) return undefined
     return { top: 0 }
   },

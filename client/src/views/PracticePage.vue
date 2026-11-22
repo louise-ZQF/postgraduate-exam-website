@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { computed, nextTick, onBeforeUnmount, onMounted, reactive, ref, watch } from 'vue'
+import { onBeforeRouteLeave, onBeforeRouteUpdate, useRoute, useRouter } from 'vue-router'
 import { Bookmark, X } from '@lucide/vue'
 import MathHeader from '@/components/MathHeader.vue'
 import PracticeQuestionCard from '@/components/PracticeQuestionCard.vue'
@@ -65,6 +65,9 @@ function refreshResumeLocations(selectNew = false) {
 }
 const resuming = ref(false)
 const demoProgress = ref<PracticeProgress>({})
+const noteDrafts = reactive(new Map<string, string>())
+let noteSaveTimer: number | undefined
+let noteSaveStarted = 0
 const demoMode = ref(questions.length === 0)
 const mode = computed(() => route.query.view === 'removed' ? 'removed' : route.query.view === 'notes' ? 'notes' : route.query.view === 'review' ? 'review' : 'all')
 const selectedYear = computed(() => {
@@ -86,6 +89,7 @@ const selectedPaper = computed(() => {
   return group[0]?.id ?? ''
 })
 const keyword = ref('')
+const normalizedKeyword = computed(() => keyword.value.trim().toLowerCase())
 const statusFilter = ref<PracticeStatus>(route.query.view === 'review' ? 'pending' : 'all')
 const viewingFavorites = computed(() => mode.value === 'review' && isFavoriteFilter(statusFilter.value))
 const viewingMistakes = computed(() => mode.value === 'review' && !viewingFavorites.value)
@@ -170,7 +174,7 @@ function matchesQuestion(q: (typeof questions)[number], view = mode.value) {
     && (typeFilter.value === 'all' || q.questionTypes?.some(type => type.id === typeFilter.value))
     && (levelFilter.value === 'all' || q.level === levelFilter.value)
     && matchesPracticeStatus(filterItem, statusFilter.value)
-    && (!keyword.value.trim() || `${catalog.searchText.get(q.id) ?? q.stem.toLowerCase()} ${view === 'notes' ? item?.note?.toLowerCase() ?? '' : ''}`.includes(keyword.value.trim().toLowerCase()))
+    && (!normalizedKeyword.value || `${catalog.searchText.get(q.id) ?? q.stem.toLowerCase()} ${view === 'notes' ? item?.note?.toLowerCase() ?? '' : ''}`.includes(normalizedKeyword.value))
 }
 function isListed(q: (typeof questions)[number], view = mode.value) {
   if (view === mode.value && isCurrentScope(q)) return queueIdSet.value.has(q.id)
@@ -236,9 +240,10 @@ function restartQueue() {
   round.value += 1
 }
 function updateQueue() {
-  queueIds.value = filtered.value
+  const next = filtered.value
     .filter(q => viewingMistakes.value || q.id === revealedBreakpointId.value || !hiddenMastered.value.has(q.id) || activeProgress.value[q.id]?.favorite)
     .map(q => q.id)
+  if (next.length !== queueIds.value.length || next.some((id, index) => queueIds.value[index] !== id)) queueIds.value = next
 }
 function removeFromQueue(id: string) {
   const card = document.getElementById(id)
@@ -257,10 +262,14 @@ function showHiddenMastered() {
 restoreAutoHides()
 watch(statusFilter, value => { if (!resuming.value && (value === 'all' || value === 'mastered')) revealHidden() }, { flush: 'sync' })
 watch(mode, value => { statusFilter.value = value === 'review' ? 'pending' : 'all' })
-watch([mode, selectedYear, selectedPaper, keyword, statusFilter, typeFilter, levelFilter, demoMode], () => {
+watch([mode, selectedYear, selectedPaper, demoMode], () => {
   if (!resuming.value) revealedBreakpointId.value = ''
   restartQueue()
 }, { immediate: true })
+watch([keyword, statusFilter, typeFilter, levelFilter], () => {
+  if (!resuming.value) revealedBreakpointId.value = ''
+  updateQueue()
+})
 watch(selectedPaper, () => { typeFilter.value = 'all'; levelFilter.value = 'all' })
 watch(notice, () => {
   if (noticeTimer) window.clearTimeout(noticeTimer)
@@ -359,8 +368,25 @@ function recordAttempt(id: string, correct: boolean | undefined) {
   if (correct === false) mark(id, 'wrong')
   else persist(id, { attemptedAt: Date.now() })
 }
-function saveNote(id: string, note: string) { persist(id, { note }) }
+function saveNote(id: string, note: string) {
+  if (demoMode.value) { persist(id, { note }); return }
+  noteDrafts.set(id, note)
+  const now = performance.now()
+  if (noteSaveTimer === undefined) noteSaveStarted = now
+  else window.clearTimeout(noteSaveTimer)
+  noteSaveTimer = window.setTimeout(flushNotes, Math.min(300, Math.max(0, 1500 - (now - noteSaveStarted))))
+}
+function flushNotes() {
+  if (noteSaveTimer !== undefined) window.clearTimeout(noteSaveTimer)
+  noteSaveTimer = undefined
+  for (const [id, note] of noteDrafts) {
+    persist(id, { note })
+    noteDrafts.delete(id)
+  }
+}
+function flushNotesWhenHidden() { if (document.hidden) flushNotes() }
 function refreshNotesQueue() {
+  flushNotes()
   // 清空笔记后等编辑结束再移出，避免输入途中卡片消失。
   if (mode.value === 'notes') updateQueue()
 }
@@ -405,6 +431,7 @@ function finishPdfExport() {
   flushAutoHides()
 }
 function exportBackup() {
+  flushNotes()
   const blob = new Blob([JSON.stringify({ version: 1, exportedAt: new Date().toISOString(), progress: progress.value }, null, 2)], { type: 'application/json' })
   const url = URL.createObjectURL(blob)
   const link = document.createElement('a')
@@ -420,6 +447,7 @@ async function importBackup(event: Event) {
     if (file.size > 5 * 1024 * 1024) throw new Error('文件过大')
     const data = JSON.parse(await file.text())
     if (data.version !== 1 || !data.progress || typeof data.progress !== 'object' || Array.isArray(data.progress)) throw new Error('备份格式不正确')
+    flushNotes()
     progress.value = mergeProgress(progress.value, normalizeProgress(data.progress))
     reconcileAutoHides()
     saveAutoHides()
@@ -499,16 +527,23 @@ async function resumeLocation(saved: PracticeLocation | undefined, exact = false
   }
 }
 watch([keyword, statusFilter, typeFilter, levelFilter], () => { nextTick(scheduleLocationSave) })
+onBeforeRouteLeave(flushNotes)
+onBeforeRouteUpdate(flushNotes)
 onMounted(() => {
   window.addEventListener('storage', syncProgress)
   window.addEventListener(PRACTICE_REMOVALS_CHANGED_EVENT, syncProgress)
   window.addEventListener('afterprint', finishPdfExport)
+  window.addEventListener('pagehide', flushNotes)
+  document.addEventListener('visibilitychange', flushNotesWhenHidden)
   jumpToRoute()
 })
 onBeforeUnmount(() => {
+  flushNotes()
   window.removeEventListener('storage', syncProgress)
   window.removeEventListener(PRACTICE_REMOVALS_CHANGED_EVENT, syncProgress)
   window.removeEventListener('afterprint', finishPdfExport)
+  window.removeEventListener('pagehide', flushNotes)
+  document.removeEventListener('visibilitychange', flushNotesWhenHidden)
   finishPdfExport()
   if (noticeTimer) window.clearTimeout(noticeTimer)
 })
@@ -596,10 +631,10 @@ onBeforeUnmount(() => {
         </section>
         <PracticeToolbar v-model:status="statusFilter" v-model:keyword="keyword" :count="queue.length" :marked="markedInQueue" :hidden="viewingMistakes ? 0 : hiddenInScope" :removed="mode === 'removed'" :notes="mode === 'notes'" :mistake-book="viewingMistakes" @reveal="showHiddenMastered" />
         <div v-if="queue.length" class="question-list">
-          <div v-if="viewingFavorites" class="year-questions review-questions"><PracticeQuestionCard v-for="(question, index) in queue" :key="`${round}-${question.id}`" :question="question" :index="index + 1" :progress="activeProgress[question.id]" :breakpoint="breakpointIds.has(question.id)" @toggle-breakpoint="toggleBreakpoint" :auto-hide-pending="Boolean(autoHideDeadlines[question.id])" :storage-failed="storageFailed" :print-mode="exportingPdf" :collapse-request="collapseRequest" @collapse-all="collapseAllQuestions" :manageable="!demoMode" @remove="removeQuestion" @restore="restoreQuestion" @note-blur="refreshNotesQueue" @mark="mark" @favorite="changeFavorite" @attempt="recordAttempt" @note="saveNote" @preview="openImage" /></div>
+          <div v-if="viewingFavorites" class="year-questions review-questions"><PracticeQuestionCard v-for="(question, index) in queue" :key="`${round}-${question.id}`" :question="question" :index="index + 1" :progress="activeProgress[question.id]" :note-drafts="noteDrafts" :breakpoint="breakpointIds.has(question.id)" @toggle-breakpoint="toggleBreakpoint" :auto-hide-pending="Boolean(autoHideDeadlines[question.id])" :storage-failed="storageFailed" :print-mode="exportingPdf" :collapse-request="collapseRequest" @collapse-all="collapseAllQuestions" :manageable="!demoMode" @remove="removeQuestion" @restore="restoreQuestion" @note-blur="refreshNotesQueue" @mark="mark" @favorite="changeFavorite" @attempt="recordAttempt" @note="saveNote" @preview="openImage" /></div>
           <section v-for="group in displayGroups" :id="`practice-year-${group.id}`" :key="group.id" class="year-section" :class="{ 'single-paper': !viewingMistakes && displayGroups.length === 1 }" :aria-labelledby="`year-title-${group.id}`">
             <header class="paper-heading"><div><span class="paper-label">{{ group.label }}</span><h2 :id="`year-title-${group.id}`">{{ group.title }}{{ mode === 'removed' ? ' · 已移除题目' : mode === 'notes' ? ' · 笔记题目' : '' }}</h2></div><span>{{ group.questions.length }} 题</span></header>
-            <section v-for="section in group.sections" :key="section.id" class="type-section" :aria-label="section.title || group.title"><h3 v-if="section.title" class="type-heading">{{ section.title }}<small>{{ section.questions.length }} 题</small></h3><div class="year-questions"><PracticeQuestionCard v-for="(question, index) in section.questions" :key="`${round}-${question.id}`" :question="question" :index="index + 1" :progress="activeProgress[question.id]" :breakpoint="breakpointIds.has(question.id)" @toggle-breakpoint="toggleBreakpoint" :auto-hide-pending="!viewingMistakes && Boolean(autoHideDeadlines[question.id])" :storage-failed="storageFailed" :print-mode="exportingPdf" :collapse-request="collapseRequest" @collapse-all="collapseAllQuestions" :show-note="mode === 'notes' || mode === 'removed'" :manageable="!demoMode" :mistake-book="viewingMistakes" :removed="mode === 'removed'" @remove-mistake="removeMistake" @remove="removeQuestion" @restore="restoreQuestion" @note-blur="refreshNotesQueue" @mark="mark" @favorite="changeFavorite" @attempt="recordAttempt" @note="saveNote" @preview="openImage" /></div></section>
+            <section v-for="section in group.sections" :key="section.id" class="type-section" :aria-label="section.title || group.title"><h3 v-if="section.title" class="type-heading">{{ section.title }}<small>{{ section.questions.length }} 题</small></h3><div class="year-questions"><PracticeQuestionCard v-for="(question, index) in section.questions" :key="`${round}-${question.id}`" :question="question" :index="index + 1" :progress="activeProgress[question.id]" :note-drafts="noteDrafts" :breakpoint="breakpointIds.has(question.id)" @toggle-breakpoint="toggleBreakpoint" :auto-hide-pending="!viewingMistakes && Boolean(autoHideDeadlines[question.id])" :storage-failed="storageFailed" :print-mode="exportingPdf" :collapse-request="collapseRequest" @collapse-all="collapseAllQuestions" :show-note="mode === 'notes' || mode === 'removed'" :manageable="!demoMode" :mistake-book="viewingMistakes" :removed="mode === 'removed'" @remove-mistake="removeMistake" @remove="removeQuestion" @restore="restoreQuestion" @note-blur="refreshNotesQueue" @mark="mark" @favorite="changeFavorite" @attempt="recordAttempt" @note="saveNote" @preview="openImage" /></div></section>
           </section>
           <footer class="paper-end"><strong>{{ mode === 'review' ? viewingFavorites ? '我的收藏 · 本页结束' : '错题库 · 本页结束' : mode === 'removed' ? '已移除题目 · 本页结束' : mode === 'notes' ? '笔记汇总 · 本页结束' : `${paperScope} · ${isBook ? '本章' : '本卷'}结束` }}</strong></footer>
         </div>

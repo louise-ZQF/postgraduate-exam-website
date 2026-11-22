@@ -1,80 +1,49 @@
 <script setup lang="ts">
+import { onBeforeUnmount, ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
 import AppFooter from '@/components/AppFooter.vue'
 import { isNavigating } from '@/router'
 import { usePracticeRemovalCleanup } from '@/composables/usePracticeRemovalCleanup'
 
 usePracticeRemovalCleanup()
+
+const route = useRoute()
+const showLoading = ref(false)
+let loadingTimer: number | undefined
+
+function clearLoadingTimer() {
+  if (loadingTimer !== undefined) window.clearTimeout(loadingTimer)
+  loadingTimer = undefined
+}
+
+watch(isNavigating, (pending) => {
+  clearLoadingTimer()
+  if (pending) loadingTimer = window.setTimeout(() => { showLoading.value = true }, 160)
+  else showLoading.value = false
+}, { immediate: true })
+
+onBeforeUnmount(clearLoadingTimer)
 </script>
 
 <template>
   <RouterView />
   <AppFooter />
 
-  <!-- 路由跳转时保留轻量提示，不遮挡阅读内容。 -->
-  <div
-    v-if="isNavigating"
-    class="route-loading-overlay"
-    aria-live="polite"
-    aria-label="正在加载页面"
-  >
-    <div class="route-loading-topbar"></div>
-    <div class="route-loading-center">
-      <div class="route-spinner"></div>
-      <div class="route-loading-text">正在加载，请稍候…</div>
+  <Transition name="route-progress">
+    <div v-if="showLoading" class="route-progress" role="status">
+      <div class="route-progress-track" aria-hidden="true"></div>
+      <span :class="route.matched.length ? 'route-loading-announcement' : 'route-loading-center'">正在加载页面…</span>
     </div>
-  </div>
+  </Transition>
 </template>
 
 <style scoped>
-.route-loading-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  pointer-events: none;
-  background: rgba(245, 246, 250, 0.32);
-}
-
-.route-loading-topbar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 3px;
-  width: 100%;
-  background: var(--accent);
-}
-
-@keyframes route-loading-slide {
-  0% { background-position: 100% 0; }
-  100% { background-position: -100% 0; }
-}
-
-.route-loading-center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-}
-
-.route-spinner {
-  width: 40px;
-  height: 40px;
-  border: 3px solid var(--line);
-  border-top-color: var(--accent);
-  border-radius: 50%;
-  animation: route-spin 0.8s linear infinite;
-}
-
-@keyframes route-spin {
-  to { transform: rotate(360deg); }
-}
-
-.route-loading-text {
-  font-size: 14px;
-  color: var(--ink-soft);
-  font-weight: 500;
-}
+.route-progress { position: fixed; inset: 0; z-index: 9999; pointer-events: none; }
+.route-progress-track { height: 3px; overflow: hidden; background: var(--accent-tint); }
+.route-progress-track::after { display: block; width: 36%; height: 100%; background: var(--accent); content: ''; animation: route-slide 1.2s ease-in-out infinite; }
+@keyframes route-slide { from { transform: translateX(-100%); } to { transform: translateX(280%); } }
+.route-progress-leave-active { transition: opacity 140ms ease-out; }
+.route-progress-leave-to { opacity: 0; }
+.route-loading-announcement { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.route-loading-center { position: absolute; top: 42%; width: 100%; text-align: center; color: var(--ink-soft); font-size: 14px; }
 </style>

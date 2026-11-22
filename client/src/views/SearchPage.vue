@@ -16,8 +16,8 @@ const searchInput = ref<HTMLInputElement | null>(null)
 const query = ref(String(route.query.q ?? '').slice(0, 30))
 const visibleCount = ref(8)
 const favoriteIds = ref(new Set(readFavorites().map((item) => item.targetId)))
-const searchState = computed(() => searchMathWithCount(query.value, visibleCount.value, favoriteIds.value))
-const results = computed(() => searchState.value.results)
+const searchState = computed(() => searchMathWithCount(query.value, Infinity, favoriteIds.value))
+const results = computed(() => searchState.value.results.slice(0, visibleCount.value))
 
 function refreshFavorites() {
   favoriteIds.value = new Set(readFavorites().map((item) => item.targetId))

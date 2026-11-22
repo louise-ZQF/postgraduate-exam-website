@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { ArrowLeft, Search, Star } from '@lucide/vue'
 import MathHeader from '@/components/MathHeader.vue'
@@ -15,6 +15,11 @@ const chapter = computed(() => mathChapters.find((item) => item.id === route.par
 const backToSearch = computed(() => ({ name: 'home', query: route.query.q ? { q: String(route.query.q) } : {} }))
 const query = ref(String(route.query.q ?? '').slice(0, 30))
 const searchToolbar = ref<HTMLElement | null>(null)
+const requestedSection = computed(() => {
+  const raw = String(route.query.section ?? route.params.topicId ?? '')
+  return legacyAnchorIds[raw] ?? raw
+})
+let highlightedSection: HTMLElement | null = null
 
 watch(() => route.query.q, (value) => { query.value = String(value ?? '').slice(0, 30) })
 
@@ -76,7 +81,6 @@ function handleArticleClick(event: MouseEvent) {
       summary: formula.displayContext ?? '', context: formula.displayContext ?? '', latex: formula.latex,
       chapterId: chapter.value.id, chapterTitle: chapter.value.title, partTitle: chapter.value.partTitle,
     })
-    decorateFavoriteButtons()
     return
   }
   const button = target.closest<HTMLButtonElement>('.anchor-favorite-button')
@@ -90,34 +94,30 @@ function handleArticleClick(event: MouseEvent) {
       summary: anchor.displaySummary ?? '', chapterId: chapter.value.id, chapterTitle: chapter.value.title,
       partTitle: chapter.value.partTitle,
     })
-    decorateFavoriteButtons()
     return
   }
 }
 
-async function scrollToRequestedSection() {
-  await nextTick()
-  await document.fonts.ready
-  await new Promise<void>((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => resolve())))
-  decorateFavoriteButtons()
-  document.querySelectorAll('.search-target').forEach((item) => item.classList.remove('search-target'))
-  const rawRequested = String(route.query.section ?? route.params.topicId ?? '')
-  const requested = legacyAnchorIds[rawRequested] ?? rawRequested
-  if (!requested) {
-    window.scrollTo({ top: 0, behavior: 'auto' })
-    return
-  }
-  const target = document.getElementById(requested)
+function scrollToRequestedSection(smooth = false) {
+  highlightedSection?.classList.remove('search-target')
+  const target = requestedSection.value ? document.getElementById(requestedSection.value) : null
+  highlightedSection = target
   if (target) {
     target.classList.add('search-target')
     const toolbarHeight = searchToolbar.value?.getBoundingClientRect().height ?? 70
-    window.scrollTo({ top: window.scrollY + target.getBoundingClientRect().top - toolbarHeight - 16, behavior: 'auto' })
+    const animate = smooth && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    window.scrollTo({ top: window.scrollY + target.getBoundingClientRect().top - toolbarHeight - 16, behavior: animate ? 'smooth' : 'instant' })
   }
 }
 
-watch(() => route.fullPath, scrollToRequestedSection, { flush: 'post' })
+watch([chapter, requestedSection], ([nextChapter], [previousChapter]) => {
+  if (route.name !== 'knowledge') return
+  if (nextChapter !== previousChapter) decorateFavoriteButtons()
+  scrollToRequestedSection(nextChapter === previousChapter)
+}, { flush: 'post' })
 
 onMounted(() => {
+  decorateFavoriteButtons()
   scrollToRequestedSection()
   window.addEventListener(FAVORITES_CHANGED_EVENT, decorateFavoriteButtons)
   window.addEventListener('storage', decorateFavoriteButtons)

@@ -5,9 +5,9 @@ import PracticeIcon from '@/components/PracticeIcon.vue'
 import PracticeNoteEditor from '@/components/PracticeNoteEditor.vue'
 import { Bookmark, BookText, Calculator, ChevronsDownUp, CircleCheck, CircleX, Ellipsis, ExternalLink, Eye, NotebookText, RotateCcw, Star, Tag, Trash2 } from '@lucide/vue'
 import arcDiagram from '@/assets/practice-figures/zy2026-set1-q5.svg?raw'
-import { favoriteReasonLabels, getMistakeReason, hasNote, manualErrorReasons, masteryLabels, MISSED_POINT_FAVORITE, MISSED_POINT_MASTERY, REMOVED_RETENTION_MS, type FavoriteReason, type ManualMastery, type PracticeQuestion, type QuestionImage, type QuestionProgress } from '@/math/practice'
+import { favoriteReasonLabels, getMistakeReason, manualErrorReasons, masteryLabels, MISSED_POINT_FAVORITE, MISSED_POINT_MASTERY, REMOVED_RETENTION_MS, type FavoriteReason, type ManualMastery, type PracticeQuestion, type QuestionImage, type QuestionProgress } from '@/math/practice'
 
-const props = defineProps<{ question: PracticeQuestion; index: number; progress?: QuestionProgress; storageFailed: boolean; showNote?: boolean; removed?: boolean; manageable?: boolean; mistakeBook?: boolean; printMode?: boolean; autoHidePending?: boolean; breakpoint?: boolean; collapseRequest: number }>()
+const props = defineProps<{ question: PracticeQuestion; index: number; progress?: QuestionProgress; noteDrafts: ReadonlyMap<string, string>; storageFailed: boolean; showNote?: boolean; removed?: boolean; manageable?: boolean; mistakeBook?: boolean; printMode?: boolean; autoHidePending?: boolean; breakpoint?: boolean; collapseRequest: number }>()
 const emit = defineEmits<{ mark: [id: string, mastery: ManualMastery]; favorite: [id: string, reason?: FavoriteReason]; attempt: [id: string, correct: boolean | undefined]; note: [id: string, note: string]; noteBlur: []; remove: [id: string]; removeMistake: [id: string]; restore: [id: string]; collapseAll: [trigger: HTMLButtonElement]; preview: [image: QuestionImage, trigger: HTMLElement]; toggleBreakpoint: [id: string] }>()
 const arcDiagramUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(arcDiagram)}`
 const figureUrl = (src: string) => src === 'practice-figures/zy2026-set1-q5.svg' ? arcDiagramUrl : `${import.meta.env.BASE_URL}${src}`
@@ -81,7 +81,8 @@ watch(() => props.collapseRequest, () => {
   if (knowledgeMenu.value) knowledgeMenu.value.open = false
   if (managementMenu.value) managementMenu.value.open = false
 })
-const notePresent = computed(() => hasNote(props.progress))
+const note = computed(() => props.noteDrafts.get(props.question.id) ?? props.progress?.note ?? '')
+const notePresent = computed(() => Boolean(note.value.trim()))
 const reasons = computed(() => props.progress?.favoriteReasons ?? [])
 const selectedOption = ref('')
 const removalDeadlineLabel = computed(() => props.removed && props.progress?.removedAt ? new Date(props.progress.removedAt + REMOVED_RETENTION_MS).toLocaleString('zh-CN', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false }) : '')
@@ -139,8 +140,8 @@ const displayedMastery = computed(() => props.mistakeBook ? getMistakeReason(pro
       <template v-else><template v-if="answerOpen || printMode"><h4>答案</h4><MathMarkdown :source="question.answer" compact /></template><template v-if="explanationOpen || printMode"><h4>解析</h4><MathMarkdown :source="question.explanation" compact /></template></template>
     </section>
     <p v-if="autoHidePending && !printMode" class="auto-hide-hint" role="status">已掌握，稍后自动隐藏；改标错因可取消。</p>
-    <section v-if="printMode && progress?.note?.trim()" class="print-note print-only"><h4>错因笔记</h4><MathMarkdown :source="progress.note" automatic breaks /></section>
-    <PracticeNoteEditor v-if="noteOpen" :id="`note-${question.id}`" :input-id="`note-input-${question.id}`" :label="`${question.source}的错因笔记`" :model-value="progress?.note ?? ''" :storage-failed="storageFailed" @update:model-value="emit('note', question.id, $event)" @blur="emit('noteBlur')" />
+    <section v-if="printMode && notePresent" class="print-note print-only"><h4>错因笔记</h4><MathMarkdown :source="note" automatic breaks /></section>
+    <PracticeNoteEditor v-if="noteOpen" :id="`note-${question.id}`" :input-id="`note-input-${question.id}`" :label="`${question.source}的错因笔记`" :model-value="note" :storage-failed="storageFailed" @update:model-value="emit('note', question.id, $event)" @blur="emit('noteBlur')" />
   </article>
 </template>
 

@@ -74,6 +74,7 @@ const searchableEntries = mathTopics.flatMap((topic) => {
     candidate,
     title: normalizeMathQuery(candidate.title),
     body: normalizeMathQuery(candidate.searchText),
+    path: normalizeMathQuery(topic.title),
   }))
 })
 
@@ -100,11 +101,9 @@ function matchTerms(fields: string[], terms: string[]): number {
   return terms.filter((term) => fields.some((field) => field.includes(term))).length
 }
 
-function chineseBigramCoverage(query: string, fields: string[]): number {
+function chineseBigrams(query: string): string[] {
   const chinese = query.match(/[\p{Script=Han}]{2,}/gu) ?? []
-  const bigrams = new Set(chinese.flatMap((chunk) => [...chunk.slice(0, -1)].map((_, index) => chunk.slice(index, index + 2))))
-  if (!bigrams.size) return 0
-  return [...bigrams].filter((bigram) => fields.some((field) => field.includes(bigram))).length / bigrams.size
+  return [...new Set(chinese.flatMap((chunk) => [...chunk.slice(0, -1)].map((_, index) => chunk.slice(index, index + 2))))]
 }
 
 function conflictsWithQuery(query: string, title: string): boolean {
@@ -117,7 +116,7 @@ function conflictsWithQuery(query: string, title: string): boolean {
   return false
 }
 
-function textualScore(query: string, terms: string[], title: string, aliases: string[], context: string, path: string, formula: boolean, relaxed: boolean): number {
+function textualScore(query: string, terms: string[], title: string, aliases: string[], context: string, path: string, formula: boolean, fallbackBigrams?: string[]): number {
   if (!query) return 0
   if (formula && conflictsWithQuery(query, title)) return 0
   if (title === query) return formula ? 3200 : 2900
@@ -131,9 +130,9 @@ function textualScore(query: string, terms: string[], title: string, aliases: st
   const pathHits = matchTerms([path], terms)
   const matched = matchTerms([title, ...aliases, context], terms)
   const coverage = terms.length ? matched / terms.length : 0
-  if (!matched || (terms.length > 1 && coverage < (relaxed ? 0.5 : 0.75))) {
-    if (!relaxed) return 0
-    const bigramCoverage = chineseBigramCoverage(query, [title, ...aliases])
+  if (!matched || (terms.length > 1 && coverage < (fallbackBigrams ? 0.5 : 0.75))) {
+    if (!fallbackBigrams?.length) return 0
+    const bigramCoverage = matchTerms([title, ...aliases], fallbackBigrams) / fallbackBigrams.length
     return bigramCoverage >= 0.6 ? Math.round(420 + bigramCoverage * 420) : 0
   }
   // 仅在严格匹配没有结果时放宽覆盖率；标题和别名仍明显高于正文、章节路径。
@@ -162,11 +161,13 @@ export function searchMathWithCount(
   const terms = queryTerms(textQuery)
   const normalizedQuery = normalizeMathQuery(textQuery)
   if (!terms.length && !formulaQuery) return { results: [], total: 0 }
+  const fallbackBigrams = relaxed ? chineseBigrams(normalizedQuery) : undefined
+  const doubleIntegral = normalizedQuery.includes('二重积分')
 
   const topics = formulaQuery ? [] : searchableEntries
-    .map(({ topic, candidate, title, body }) => {
-      if (normalizedQuery.includes('二重积分') && !topic.chapterTitle.includes('二重积分')) return null
-      const score = textualScore(normalizedQuery, terms, title, [], body, normalizeMathQuery(topic.title), false, relaxed)
+    .map(({ topic, candidate, title, body, path }) => {
+      if (doubleIntegral && !topic.chapterTitle.includes('二重积分')) return null
+      const score = textualScore(normalizedQuery, terms, title, [], body, path, false, fallbackBigrams)
       if (!score) return null
 
       return {
@@ -185,14 +186,14 @@ export function searchMathWithCount(
 
   const formulas = searchableFormulas.flatMap(({ formula, topic, title, fullTitle, aliases, context, path, latex, formulaAliases }) => {
     if (!topic) return []
-    if (normalizedQuery.includes('二重积分') && !topic.chapterTitle.includes('二重积分')) return []
+    if (doubleIntegral && !topic.chapterTitle.includes('二重积分')) return []
     let score = 0
     if (formulaQuery) {
       if (!latex.includes(formulaQuery) && !formulaAliases.some((alias) => alias.includes(formulaQuery))) return []
       score = latex === formulaQuery || formulaAliases.includes(formulaQuery) ? 3800 : 3300
-      if (normalizedQuery && terms.length) score += textualScore(normalizedQuery, terms, title, aliases, context, path, true, relaxed) / 10
+      if (normalizedQuery && terms.length) score += textualScore(normalizedQuery, terms, title, aliases, context, path, true, fallbackBigrams) / 10
     } else score = fullTitle === normalizedQuery ? 3200
-      : textualScore(normalizedQuery, terms, title, aliases, context, path, true, relaxed)
+      : textualScore(normalizedQuery, terms, title, aliases, context, path, true, fallbackBigrams)
     if (!score) return []
     return [{
       ...topic,

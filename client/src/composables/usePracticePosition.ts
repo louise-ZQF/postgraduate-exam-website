@@ -38,7 +38,11 @@ export function usePracticePosition(options: {
     if (timer) window.clearTimeout(timer)
     timer = window.setTimeout(() => { timer = undefined; rememberViewport(); scrollUntil = 0 }, 250)
   }
-  function enable() { tracking = true; rememberViewport(); scrollUntil = performance.now() + 800 }
+  function enable() {
+    tracking = true
+    scrollUntil = performance.now() + 800
+    schedule()
+  }
   function pauseNavigation(event: PointerEvent) {
     if (!(event.target as HTMLElement).closest?.('a, .directory button')) return
     if (timer) window.clearTimeout(timer)
