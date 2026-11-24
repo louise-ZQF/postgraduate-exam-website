@@ -28,6 +28,7 @@ import { marked } from 'marked'
 import type { MathFormula } from '@/math/types'
 import { escapeMathHtml, protectMarkdownMath } from '@/math/markdownMath'
 import { noteMarkdown } from '@/math/noteMarkdown'
+import { repairPastedTables } from '@/math/noteTable'
 
 const props = withDefaults(defineProps<{ source: string; inline?: boolean; compact?: boolean; formulas?: MathFormula[]; automatic?: boolean; breaks?: boolean }>(), {
   inline: false,
@@ -36,7 +37,8 @@ const props = withDefaults(defineProps<{ source: string; inline?: boolean; compa
 })
 
 const html = computed(() => {
-  const { text: protectedSource, tokens, prefix } = protectMarkdownMath(props.source.replace(/<!--\s*formula\s+[^\n]*?-->/g, ''), props.automatic)
+  const source = props.source.replace(/<!--\s*formula\s+[^\n]*?-->/g, '')
+  const { text: protectedSource, tokens, prefix } = protectMarkdownMath(props.automatic ? repairPastedTables(source) : source, props.automatic)
   const markdown = props.automatic ? noteMarkdown : marked
   const rendered = props.inline
     ? markdown.parseInline(protectedSource, { async: false, gfm: true }) as string

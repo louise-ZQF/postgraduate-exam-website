@@ -22,6 +22,9 @@ const { colorNoteInsertion, formatNoteColor, noteColorAt, noteColorLineBreak, re
   './markdownMath': moduleUrl('client/src/math/markdownMath.ts'),
 })
 const { noteMarkdown } = await loadModule('client/src/math/noteMarkdown.ts', { marked: import.meta.resolve('marked') })
+const { noteTableMarkdown, repairPastedTables } = await loadModule('client/src/math/noteTable.ts', {
+  './markdownMath': moduleUrl('client/src/math/markdownMath.ts'),
+})
 const examsCatalog = createPracticeCatalog(practiceQuestions, 'exams')
 const bookCatalog = createPracticeCatalog(practiceQuestions, 'll880')
 assert.equal(examsCatalog.questions.length, 510)
@@ -189,6 +192,27 @@ assert.equal(repairFragmentedMath('y\n=\n1\n\ny=10'), 'y=1\n\ny=10', '不能误�
 assert.equal(repairFragmentedMath('```js\ny\n=\n1\n```', true), '```js\ny\n=\n1\n```', '普通代码的换行保持原样')
 assert.equal(repairFragmentedMath('第一步\n第二步\nA\nB\nC'), '第一步\n第二步\nA\nB\nC', '不拼接普通分行文字')
 assert.equal(protectMarkdownMath('y\n=\n1', true).tokens[0].latex, 'y=1')
+const quadraticRows = [
+  ['条件', '秩', '正惯性指数', '规范形'],
+  [String.raw`\(a=1\)`, '2', '2', String.raw`\(z_1^2+z_2^2\)`],
+  [String.raw`\(a\ne1\)`, '3', '3', String.raw`\(z_1^2+z_2^2+z_3^2\)`],
+]
+const brokenTable = quadraticRows.flat().map(cell => '|   |\n| - |\n\n' + cell).join('\n\n')
+const brokenNote = '### 第三问：求规范形\n\n由第一问可知：\n\n' + brokenTable + '\n\n因此得到上述规范形。'
+const fixedNote = repairPastedTables(brokenNote)
+assert.equal(fixedNote, brokenNote.replace(brokenTable, noteTableMarkdown(quadraticRows)))
+assert.equal(repairPastedTables(fixedNote), fixedNote)
+const tableMath = protectMarkdownMath(fixedNote, true)
+const tableHtml = noteMarkdown.parse(tableMath.text, { gfm: true })
+assert.equal((tableHtml.match(/<th>/g) ?? []).length, 4)
+assert.equal((tableHtml.match(/<td>/g) ?? []).length, 8)
+assert.deepEqual(tableMath.tokens.map(token => token.latex), ['a=1', 'z_1^2+z_2^2', 'a\\ne1', 'z_1^2+z_2^2+z_3^2'])
+const fencedTable = '```text\n' + brokenTable + '\n```'
+assert.equal(repairPastedTables(fencedTable), fencedTable)
+assert.equal(repairPastedTables('| |\n| - |\n\n单独的空表'), '| |\n| - |\n\n单独的空表')
+const pipeCell = noteTableMarkdown([['表达式', '说明'], [String.raw`\(|x|+\left\|y\right\|\)`, 'A | B']])
+assert.match(pipeCell, /A \\\| B/)
+assert.equal(protectMarkdownMath(pipeCell).tokens[0].latex, String.raw`|x|+\left\|y\right\|`)
 for (const file of ['高等数学.md', '线性代数.md']) {
   const source = readFileSync(resolve(root, 'content/approved', file), 'utf8').replace(/<!--\s*formula\s+[^\n]*?-->/g, '')
   const legacy = [...source.matchAll(/\$\$[\s\S]*?\$\$|\\\[[\s\S]*?\\\]|\$[^$\n]+?\$|\\\([^\n]*?\\\)/g)].map(([token]) => (token.startsWith('$$') || token.startsWith('\\[') || token.startsWith('\\(') ? token.slice(2, -2) : token.slice(1, -1)).trim())

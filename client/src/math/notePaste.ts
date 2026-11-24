@@ -1,4 +1,7 @@
 import { katexHtmlToLatex } from './katexClipboard'
+import { noteTableMarkdown, repairPastedTables } from './noteTable'
+
+const delimitedMath = /^\s*```(?:math|latex|tex)\s*$|\\\([^]*?\\\)|\\\[[^]*?\\\]|\$\$[^]*?\$\$/m
 
 export function mathStructureToLatex(node: Node): string {
   if (node.nodeType === Node.TEXT_NODE) return node.textContent?.trim() ?? ''
@@ -36,10 +39,17 @@ export function mathStructureToLatex(node: Node): string {
 }
 
 export function noteFromClipboard(html: string, plain: string): string | undefined {
-  // GPT 的“复制”提供完整 Markdown 时，避免再从展示层反推，损坏原有公式和代码块。
-  if (/^\s*```(?:math|latex|tex)\s*$|\\\([^]*?\\\)|\\\[[^]*?\\\]|\$\$[^]*?\$\$/m.test(plain)) return
+  const repaired = repairPastedTables(plain)
+  if (repaired !== plain) return repaired
+  const hasDelimitedMath = delimitedMath.test(plain)
   if (!html) return
+  // 纯文本带公式时优先保留原始 Markdown，HTML 有完整表格时才取回丢失的行列。
+  if (hasDelimitedMath && !/<table[\s>]/i.test(html)) return
   const doc = new DOMParser().parseFromString(html, 'text/html')
+  const hasPlainTable = /^[ \t]*\|?[ \t]*:?-+:?[ \t]*\|[ \t]*:?-+:?[ \t]*(?:\||$)/m.test(plain)
+  const useHtmlTable = !hasPlainTable && [...doc.querySelectorAll('table')].some(table =>
+    table.rows.length > 1 && [...table.rows].some(row => row.cells.length > 1))
+  if (hasDelimitedMath && !useHtmlTable) return
   const mathNodes = [...doc.querySelectorAll('.katex-display, .katex, .katex-mathml, .katex-html, math, mjx-container, mjx-assistive-mml, .MathJax, [data-latex], [data-tex], script[type^="math/tex"]')]
   let recoveredMath = false
   for (const node of mathNodes) {
@@ -55,7 +65,7 @@ export function noteFromClipboard(html: string, plain: string): string | undefin
     node.replaceWith(doc.createTextNode(display ? `\n\n$$\n${latex}\n$$\n\n` : `\\(${latex}\\)`))
     recoveredMath = true
   }
-  if (!recoveredMath && /\$|\\[([]|\\(?:frac|int|begin)\b|^#{1,6} |^```/m.test(plain)) return
+  if (!recoveredMath && !useHtmlTable && /\$|\\[([]|\\(?:frac|int|begin)\b|^#{1,6} |^```/m.test(plain)) return
   if (!recoveredMath && !doc.querySelector('h1,h2,h3,strong,b,em,i,ul,ol,blockquote,pre,code,sup,sub,table,img')) return
   function children(node: Node): string { return [...node.childNodes].map(render).join('') }
   function render(node: Node): string {
@@ -68,11 +78,9 @@ export function noteFromClipboard(html: string, plain: string): string | undefin
       return `\n\n\`\`\`${language}\n${code.textContent?.trimEnd() ?? ''}\n\`\`\`\n\n`
     }
     if (tag === 'table') {
-      const rows = [...node.querySelectorAll('tr')].map(row => [...row.querySelectorAll('th,td')].map(cell => children(cell).trim().replace(/\|/g, '\\|').replace(/\n/g, ' ')))
-      if (!rows.length) return ''
-      const width = Math.max(...rows.map(row => row.length))
-      const line = (row: string[]) => `| ${Array.from({ length: width }, (_, i) => row[i] ?? '').join(' | ')} |`
-      return `\n\n${[line(rows[0]), line(Array(width).fill('---')), ...rows.slice(1).map(line)].join('\n')}\n\n`
+      const rows = [...(node as HTMLTableElement).rows].map(row => [...row.cells].map(children))
+      const table = noteTableMarkdown(rows)
+      return table ? '\n\n' + table + '\n\n' : ''
     }
     if (tag === 'ul' || tag === 'ol') return `\n${[...node.children].map((item, index) => `${tag === 'ol' ? `${index + 1}.` : '-'} ${children(item).trim()}`).join('\n')}\n`
     if (tag === 'img') {
@@ -92,5 +100,6 @@ export function noteFromClipboard(html: string, plain: string): string | undefin
     return ['p', 'div', 'section', 'article'].includes(tag) ? `\n${value}\n` : value
   }
   const result = children(doc.body).replace(/\n{3,}/g, '\n\n').trim()
+  if (hasDelimitedMath && !recoveredMath && !delimitedMath.test(result)) return
   return result || undefined
 }

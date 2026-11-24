@@ -2,6 +2,7 @@
 import { computed, nextTick, ref } from 'vue'
 import MathMarkdown from './MathMarkdown.vue'
 import { noteFromClipboard } from '@/math/notePaste'
+import { repairPastedTables } from '@/math/noteTable'
 import { formatNoteBold, repairFragmentedMath } from '@/math/markdownMath'
 import { colorNoteInsertion, formatNoteColor, noteColorAt, noteColorLineBreak, noteTextColors, removeEmptyNoteColors, type NoteTextColor, type NoteTextSelection } from '@/math/noteColor'
 
@@ -36,7 +37,7 @@ const commands = [
   { id: 'mathblock', title: '插入公式块', label: '公式块', prefix: '$$\n', suffix: '\n$$', placeholder: '\\int_0^x f(t)\\,dt', block: true },
 ]
 const savedLabel = computed(() => props.storageFailed ? '保存失败，请导出备份' : '自动保存')
-const repairedSource = computed(() => repairFragmentedMath(props.modelValue, true))
+const repairedSource = computed(() => repairFragmentedMath(repairPastedTables(props.modelValue), true))
 
 function syncColor(value = props.modelValue) {
   const element = input.value
@@ -215,6 +216,7 @@ function blur(event: FocusEvent) {
 
 .note-preview :deep(.reading-math) { display: inline-block; max-width: 100%; overflow-x: auto; overflow-y: hidden; padding: 2px 0; vertical-align: middle; }
 .note-preview :deep(table) { display: block; max-width: 100%; overflow-x: auto; }
+.note-preview :deep(:is(th, td) .reading-math) { overflow: visible; padding-block: .2em; }
 .editor-colors { display: flex; gap: 2px; margin-inline-start: 4px; padding-inline-start: 6px; border-inline-start: 1px solid var(--line-strong); }
 .editor-tools .color-swatch { display: grid; min-width: 34px; padding: 0; place-items: center; border: 1px solid transparent; }
 .color-swatch span { width: 14px; height: 14px; border-radius: 4px; background: var(--note-text-color, var(--ink)); }
