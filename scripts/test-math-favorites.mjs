@@ -20,7 +20,7 @@ const favoritesSource = readFileSync(favoritesPath, 'utf8').replace(
   "import { legacyAnchorIds, mathFormulas, mathTopics } from '@/generated/math2-content'",
   'const { legacyAnchorIds, mathFormulas, mathTopics } = globalThis.__mathFavoritesTestData',
 )
-const { readFavorites, toggleFavorite } = await importTranspiled(favoritesSource)
+const { favoriteDisplayTitle, favoriteTopicContent, favoriteTopicPreview, readFavorites, toggleFavorite } = await importTranspiled(favoritesSource)
 delete globalThis.__mathFavoritesTestData
 
 const storage = new Map()
@@ -80,4 +80,22 @@ assert.equal(refreshedTopic.context, undefined)
 const remaining = toggleFavorite({ ...refreshed, addedAt: undefined })
 assert.equal(remaining.some((item) => item.id === refreshed.id), true)
 assert.equal(remaining.some((item) => item.id === refreshedTopic.id), true)
-console.log('收藏回归通过：旧公式名称与数学说明更新、旧版整组收藏迁移、独立公式共存')
+
+for (const [id, name] of [['calculus-14nlaio-1', 'tan'], ['calculus-14nlaio-2', 'cot']]) {
+  const formula = content.mathFormulas.find(item => item.id === id)
+  assert.equal(favoriteDisplayTitle({ ...oldFavorite, ...formula }), '\\(\\' + name + '^2x\\) 的不定积分')
+}
+
+const tangent = favoriteTopicContent({ ...migrated, targetId: 'anchor-1ewqz1p' })
+assert.match(favoriteTopicPreview(tangent.markdown), /y-y_0=f'\(x_0\)/)
+assert.match(tangent.markdown, /法线斜率/)
+assert.doesNotMatch(tangent.markdown, /两条可写成/)
+const volume = favoriteTopicContent({ ...migrated, targetId: 'anchor-1x4bzwi' })
+assert.match(favoriteTopicPreview(volume.markdown), /V_x=\\pi\\int/)
+assert.match(volume.markdown, /V_y=2\\pi\\int/)
+const inverse = favoriteTopicContent({ ...migrated, targetId: 'calculus-02-002-anchor-004' })
+assert.equal(inverse.targetId, 'calculus-11k5gtx-1')
+assert.match(favoriteTopicPreview(inverse.markdown), /f\^\{-1\}/)
+assert.match(inverse.markdown, /\\frac\{d\^2x\}\{dy\^2\}/)
+assert.doesNotMatch(inverse.markdown, /幂指函数/)
+console.log('收藏回归通过：公式标题排版、旧收藏迁移、知识点正文与精确跳转')

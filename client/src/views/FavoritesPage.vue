@@ -2,20 +2,32 @@
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import MathHeader from '@/components/MathHeader.vue'
 import MathMarkdown from '@/components/MathMarkdown.vue'
-import { FAVORITES_CHANGED_EVENT, readFavorites, removeFavorite, type MathFavorite } from '@/math/favorites'
+import { FAVORITES_CHANGED_EVENT, favoriteDisplayTitle, favoriteTopicContent, favoriteTopicPreview, readFavorites, removeFavorite, type MathFavorite } from '@/math/favorites'
 import { connectShike, disconnectShike, shikeLinked, shikeSyncStatus } from '@/math/shikeSync'
 
 const favorites = ref<MathFavorite[]>([])
 const selectedChapter = ref('')
 const onlyFormulas = ref(false)
+const expandedTopics = ref(new Set<string>())
 const chapters = computed(() => [...new Map(favorites.value.map((item) => [item.chapterId, item.chapterTitle])).entries()])
 const visibleFavorites = computed(() => favorites.value
   .filter((item) => !selectedChapter.value || item.chapterId === selectedChapter.value)
   .filter((item) => !onlyFormulas.value || item.kind === 'formula')
-  .sort((a, b) => b.addedAt - a.addedAt))
+  .sort((a, b) => b.addedAt - a.addedAt)
+  .map(item => {
+    const topic = item.kind === 'topic' ? favoriteTopicContent(item) : undefined
+    const preview = topic?.markdown ? favoriteTopicPreview(topic.markdown) : ''
+    const heading = favoriteDisplayTitle(item)
+    const context = item.context || item.summary
+    return { item, topic, preview, heading, context: /^(?:公式\s*)+$/.test(context) ? '' : context }
+  }))
 
 function refresh() { favorites.value = readFavorites() }
 function remove(id: string) { favorites.value = removeFavorite(id) }
+function setTopicExpanded(id: string, event: Event) {
+  if ((event.currentTarget as HTMLDetailsElement).open) expandedTopics.value.add(id)
+  else expandedTopics.value.delete(id)
+}
 
 onMounted(() => {
   refresh()
@@ -56,14 +68,21 @@ onBeforeUnmount(() => {
       </div>
 
       <section v-if="visibleFavorites.length" class="favorite-list" aria-label="待背收藏">
-        <article v-for="item in visibleFavorites" :key="item.id">
+        <article v-for="{ item, topic, preview, heading, context } in visibleFavorites" :key="item.id">
           <div class="favorite-path">{{ item.partTitle }} <span aria-hidden="true">/</span> {{ item.chapterTitle }}</div>
-          <span class="favorite-kind">{{ item.kind === 'formula' ? '公式收藏' : '旧版知识点收藏' }}</span>
-          <h2><MathMarkdown :source="item.title" inline /></h2>
+          <span class="favorite-kind">{{ item.kind === 'formula' ? '公式收藏' : '知识点收藏' }}</span>
+          <h2><MathMarkdown :source="heading" inline /></h2>
           <MathMarkdown v-if="item.kind === 'formula' && item.latex" class="favorite-formula" :source="`\\[${item.latex}\\]`" />
-          <MathMarkdown v-if="item.context || item.summary" class="favorite-context" :source="item.context || item.summary" />
+          <template v-if="topic?.markdown">
+            <MathMarkdown v-if="preview && !expandedTopics.has(item.id)" class="favorite-topic-content" :source="preview" />
+            <details class="favorite-topic" :open="expandedTopics.has(item.id)" @toggle="setTopicExpanded(item.id, $event)">
+              <summary>{{ expandedTopics.has(item.id) ? '收起完整内容' : '展开完整内容' }}</summary>
+              <MathMarkdown v-if="expandedTopics.has(item.id)" class="favorite-topic-content" :source="topic.markdown" />
+            </details>
+          </template>
+          <MathMarkdown v-else-if="context" class="favorite-context" :source="context" />
           <div class="actions">
-            <RouterLink :to="{ name: 'knowledge', params: { chapterId: item.chapterId }, query: { section: item.targetId } }">查看原文 ↗</RouterLink>
+            <RouterLink :to="{ name: 'knowledge', params: { chapterId: item.chapterId }, query: { section: topic ? topic.targetId : item.targetId } }">{{ topic && !topic.targetId ? '查看所在章节 ↗' : '查看原文 ↗' }}</RouterLink>
             <button type="button" @click="remove(item.id)">已背会，移出待背</button>
           </div>
         </article>
@@ -105,6 +124,13 @@ article + article { border-top: 1px solid var(--line); }
 h2 { margin: 4px 0 8px; font-family: var(--serif); font-size: 24px; line-height: 1.5; }
 .favorite-formula { max-width: 760px; margin: 12px 0; }
 .favorite-formula :deep(.katex-display) { margin: 0; border: 0; border-radius: 6px; padding: 14px 17px; background: var(--surface-soft); text-align: left; }
+.favorite-formula :deep(.katex-display > .katex), .favorite-topic-content :deep(.katex-display > .katex) { text-align: left; }
+.favorite-topic-content { max-width: 760px; min-width: 0; }
+.favorite-topic-content :deep(.katex-display) { margin: 9px 0; padding: 12px; }
+.favorite-topic-content :deep(table) { display: block; overflow-x: auto; }
+.favorite-topic { margin-top: 5px; }
+.favorite-topic summary { width: fit-content; min-height: 44px; padding: 10px 3px; cursor: pointer; color: var(--accent-dark); font-size: 14px; font-weight: 650; }
+.favorite-topic summary:hover { text-decoration: underline; }
 .favorite-context { max-width: 760px; color: var(--ink-soft); font-size: 14px; line-height: 1.75; }
 .favorite-context :deep(p) { margin: 0; }
 .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 17px; }
