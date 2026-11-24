@@ -3,6 +3,7 @@ import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import MathHeader from '@/components/MathHeader.vue'
 import MathMarkdown from '@/components/MathMarkdown.vue'
 import { FAVORITES_CHANGED_EVENT, readFavorites, removeFavorite, type MathFavorite } from '@/math/favorites'
+import { connectShike, disconnectShike, shikeLinked, shikeSyncStatus } from '@/math/shikeSync'
 
 const favorites = ref<MathFavorite[]>([])
 const selectedChapter = ref('')
@@ -38,6 +39,12 @@ onBeforeUnmount(() => {
         </div>
         <span class="total">{{ favorites.length }} 条收藏</span>
       </header>
+
+      <div class="shike-sync">
+        <p role="status">{{ shikeSyncStatus }}</p>
+        <button v-if="shikeLinked" type="button" @click="disconnectShike">断开拾课</button>
+        <button v-else type="button" @click="connectShike">连接拾课</button>
+      </div>
 
       <div v-if="favorites.length" class="filters">
         <label for="chapter-filter">章节</label>
@@ -81,6 +88,10 @@ main { width: min(920px, calc(100% - 48px)); margin: 0 auto; padding: 58px 0 100
 h1 { margin: 0 0 9px; color: var(--ink); font-family: var(--serif); font-size: clamp(36px, 4.5vw, 54px); line-height: 1.3; }
 .page-header p { max-width: 670px; margin: 0; color: var(--ink-soft); font-size: 15px; }
 .total { color: var(--accent-dark); font-size: 13px; font-weight: 700; white-space: nowrap; }
+.shike-sync { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 16px 0; padding: 6px 12px; border: 1px solid var(--line); border-radius: 8px; color: var(--ink-soft); }
+.shike-sync p { margin: 0; font-size: 14px; }
+.shike-sync button { flex: none; min-height: 44px; padding: 4px 10px; border-radius: 6px; color: var(--accent-dark); font-weight: 650; }
+.shike-sync button:hover { background: var(--surface-soft); }
 .filters { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin: 25px 0 20px; color: var(--ink-soft); font-size: 14px; }
 .filters select { max-width: min(320px, 70vw); min-height: 44px; border: 1px solid var(--line-strong); border-radius: 6px; padding: 0 10px; background: var(--paper); color: var(--ink); }
 .formula-filter { display: inline-flex; align-items: center; gap: 7px; min-height: 44px; margin-left: 10px; cursor: pointer; }
