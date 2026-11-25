@@ -30,7 +30,7 @@ import { escapeMathHtml, protectMarkdownMath } from '@/math/markdownMath'
 import { noteMarkdown } from '@/math/noteMarkdown'
 import { repairPastedTables } from '@/math/noteTable'
 
-const props = withDefaults(defineProps<{ source: string; inline?: boolean; compact?: boolean; formulas?: MathFormula[]; automatic?: boolean; breaks?: boolean }>(), {
+const props = withDefaults(defineProps<{ source: string; inline?: boolean; compact?: boolean; formulas?: MathFormula[]; automatic?: boolean; breaks?: boolean; noteImages?: ReadonlyMap<string, string | null> }>(), {
   inline: false,
   compact: false,
   formulas: () => [],
@@ -48,7 +48,11 @@ const html = computed(() => {
     FORBID_TAGS: ['button', 'embed', 'form', 'iframe', 'input', 'object', 'script', 'style'],
     USE_PROFILES: { html: true },
   })
-  return sanitized.replace(new RegExp(`${prefix}(\\d+)END`, 'g'), (match, rawIndex: string) => {
+  const withImages = props.automatic ? sanitized.replace(/<img data-note-image="([0-9a-f-]{36})" alt="笔记图片">/g, (_match, id: string) => {
+    const url = props.noteImages?.get(id)
+    return url ? `<img src="${url}" alt="笔记图片">` : `<span>${url === null ? '此浏览器中找不到这张笔记图片' : '正在读取笔记图片…'}</span>`
+  }) : sanitized
+  return withImages.replace(new RegExp(`${prefix}(\\d+)END`, 'g'), (match, rawIndex: string) => {
     const token = tokens[Number(rawIndex)]
     if (!token) return match
     const { latex: formula, display: displayMode } = token

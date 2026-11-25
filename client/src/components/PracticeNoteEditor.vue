@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { computed, nextTick, ref } from 'vue'
+import { computed, nextTick, onBeforeUnmount, ref, shallowReactive, watch } from 'vue'
 import MathMarkdown from './MathMarkdown.vue'
 import { noteFromClipboard } from '@/math/notePaste'
+import { noteImageIds, readNoteImages, saveNoteImages, supportedNoteImage } from '@/math/noteImages'
 import { repairPastedTables } from '@/math/noteTable'
 import { formatNoteBold, repairFragmentedMath } from '@/math/markdownMath'
 import { colorNoteInsertion, formatNoteColor, noteColorAt, noteColorLineBreak, noteTextColors, removeEmptyNoteColors, type NoteTextColor, type NoteTextSelection } from '@/math/noteColor'
@@ -19,6 +20,9 @@ let beforeInsertion: NoteTextSelection | undefined
 let beforeComposition: NoteTextSelection | undefined
 const imageOpen = ref(false)
 const imageUrl = ref('')
+const savingImages = ref(false)
+let mounted = true
+onBeforeUnmount(() => { mounted = false })
 const limit = 10_000
 const modes = [{ id: 'split', title: '分屏' }, { id: 'edit', title: '仅编辑' }, { id: 'preview', title: '仅预览' }]
 const commands = [
@@ -38,6 +42,29 @@ const commands = [
 ]
 const savedLabel = computed(() => props.storageFailed ? '保存失败，请导出备份' : '自动保存')
 const repairedSource = computed(() => repairFragmentedMath(repairPastedTables(props.modelValue), true))
+
+const imageUrls = shallowReactive(new Map<string, string | null>())
+const imageIds = computed(() => noteImageIds([props.modelValue]).join(','))
+watch(imageIds, (references, _, onCleanup) => {
+  const ids = references ? references.split(',') : []
+  for (const [id, url] of imageUrls) {
+    if (ids.includes(id)) continue
+    if (url) URL.revokeObjectURL(url)
+    imageUrls.delete(id)
+  }
+  const unloaded = ids.filter(id => !imageUrls.has(id))
+  if (!unloaded.length) return
+  let active = true
+  onCleanup(() => { active = false })
+  void readNoteImages(unloaded).catch(() => new Map<string, Blob>()).then(images => {
+    if (!active) return
+    for (const id of unloaded) {
+      const blob = images.get(id)
+      imageUrls.set(id, blob ? URL.createObjectURL(blob) : null)
+    }
+  })
+}, { immediate: true })
+onBeforeUnmount(() => { for (const url of imageUrls.values()) if (url) URL.revokeObjectURL(url) })
 
 function syncColor(value = props.modelValue) {
   const element = input.value
@@ -72,7 +99,7 @@ const noteInput = computed({
     if (edit && edit.value.length > limit) feedback.value = '笔记接近 10000 字，本次输入已保存，颜色未添加。'
   },
 })
-async function insert(value: string, selectStart = 0, selectEnd = value.length) {
+async function insert(value: string, selectStart = 0, selectEnd = value.length, restoreFocus = true) {
   const element = input.value
   const start = element?.selectionStart ?? props.modelValue.length
   const end = element?.selectionEnd ?? start
@@ -81,7 +108,7 @@ async function insert(value: string, selectStart = 0, selectEnd = value.length) 
   mode.value = mode.value === 'preview' ? 'split' : mode.value
   update(next)
   await nextTick()
-  input.value?.focus({ preventScroll: true })
+  if (restoreFocus) input.value?.focus({ preventScroll: true })
   input.value?.setSelectionRange(start + selectStart, start + selectEnd)
   syncColor(next)
 }
@@ -149,9 +176,52 @@ function keydown(event: KeyboardEvent) {
     format(commands.find(command => command.id === (event.key.toLowerCase() === 'b' ? 'bold' : 'italic'))!)
   }
 }
+async function pasteImages(files: File[]) {
+  if (savingImages.value) return
+  if (files.some(file => !supportedNoteImage(file))) {
+    feedback.value = '请粘贴不超过 12 MB 的 PNG、JPEG、WebP 或 GIF 图片。'
+    return
+  }
+  const element = input.value
+  if (!element) return
+  const selection = inputSelection(element)
+  const images = new Map(files.map(file => [crypto.randomUUID(), file]))
+  const snippet = [...images.keys()].map(id => `![截图](note-image:${id})`).join('\n\n')
+  const content = `\n\n${snippet}\n\n`
+  if (selection.value.length - selection.end + selection.start + content.length > limit) {
+    feedback.value = '笔记已接近 10000 字，请留出空间后再粘贴图片。'
+    return
+  }
+  savingImages.value = true
+  feedback.value = ''
+  try {
+    await saveNoteImages(images)
+    if (!mounted) return
+    if (props.modelValue === selection.value) input.value?.setSelectionRange(selection.start, selection.end)
+    else input.value?.setSelectionRange(props.modelValue.length, props.modelValue.length)
+    if (mode.value === 'edit') mode.value = 'split'
+    void insert(content, content.length, content.length, document.activeElement === input.value)
+  } catch {
+    feedback.value = '图片未能保存到浏览器，请重试。'
+  } finally {
+    savingImages.value = false
+  }
+}
 function paste(event: ClipboardEvent) {
   const data = event.clipboardData
   if (!data) return
+  const files = Array.from(data.files).filter(file => file.type.startsWith('image/'))
+  if (!files.length) {
+    for (const item of Array.from(data.items)) {
+      const file = item.kind === 'file' && item.type.startsWith('image/') ? item.getAsFile() : null
+      if (file) files.push(file)
+    }
+  }
+  if (files.length) {
+    event.preventDefault()
+    void pasteImages(files)
+    return
+  }
   const plain = data.getData('text/plain')
   const converted = noteFromClipboard(data.getData('text/html'), plain)
   const cleaned = repairFragmentedMath(converted ?? plain, true)
@@ -199,11 +269,11 @@ function blur(event: FocusEvent) {
       </div>
       <form v-if="imageOpen" class="image-form" @submit.prevent="addImage"><label :for="`${inputId}-image`">图片地址</label><input :id="`${inputId}-image`" v-model="imageUrl" type="url" placeholder="https://…" /><button type="submit">插入</button><button type="button" @click="imageOpen = false">取消</button></form>
       <div class="editor-panes" :class="mode">
-        <div v-if="mode !== 'edit'" class="note-preview" role="region" aria-label="笔记实时预览"><div class="pane-label">实时预览<span>Markdown + LaTeX</span></div><MathMarkdown v-if="modelValue.trim()" :source="modelValue" automatic breaks /><p v-else class="preview-empty">输入内容后，这里会实时显示公式和排版。</p></div>
+        <div v-if="mode !== 'edit'" class="note-preview" role="region" aria-label="笔记实时预览"><div class="pane-label">实时预览<span>Markdown + LaTeX</span></div><MathMarkdown v-if="modelValue.trim()" :source="modelValue" :note-images="imageUrls" automatic breaks /><p v-else class="preview-empty">输入内容后，这里会实时显示公式和排版。</p></div>
         <div v-if="mode !== 'preview'" class="note-source"><label class="pane-label" :for="inputId">编辑原文<span>{{ modelValue.length }} / 10000</span></label><textarea :id="inputId" ref="input" v-model="noteInput" :aria-label="label" :maxlength="limit" spellcheck="false" placeholder="直接粘贴 GPT 的回答，或记录你的思路、推导和易错点。" @beforeinput="trackInsertion" @compositionstart="startComposition" @focus="syncColor()" @click="syncColor()" @select="syncColor()" @keyup="syncColor()" @keydown="keydown" @paste="paste" /></div>
       </div>
     </div>
-    <div class="editor-footer"><details><summary>粘贴与公式</summary><p>可直接粘贴 GPT 的 Markdown 或网页内容。支持常见公式、上下标和矩阵；复制带来的逐字换行会自动整理，普通代码块保持原样。</p></details><span v-if="feedback" role="status">{{ feedback }}</span></div>
+    <div class="editor-footer"><details><summary>粘贴与公式</summary><p>可以直接粘贴截图、Markdown 或网页内容。支持公式、上下标和矩阵，也会整理公式里的逐字换行。</p></details><span v-if="savingImages || feedback" role="status">{{ savingImages ? '正在保存图片…' : feedback }}</span></div>
   </section>
 </template>
 

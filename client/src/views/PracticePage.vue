@@ -8,6 +8,7 @@ import PracticeImagePreview from '@/components/PracticeImagePreview.vue'
 import PracticeIcon from '@/components/PracticeIcon.vue'
 import PracticeToolbar from '@/components/PracticeToolbar.vue'
 import WorkbookExport from '@/components/WorkbookExport.vue'
+import { backupNoteImages, noteBackupLimit, restoreNoteImages } from '@/math/noteImages'
 import { workbookPaperSections, workbookQuestion, type WorkbookSection } from '@/math/workbook'
 import { usePracticeAutoHide } from '@/composables/usePracticeAutoHide'
 import { usePracticePosition } from '@/composables/usePracticePosition'
@@ -420,31 +421,37 @@ function workbookSections(): WorkbookSection[] {
 }
 watch(exportingPdf, busy => { if (!busy) flushAutoHides() })
 
-function exportBackup() {
+async function exportBackup() {
   flushNotes()
-  const blob = new Blob([JSON.stringify({ version: 1, exportedAt: new Date().toISOString(), progress: progress.value }, null, 2)], { type: 'application/json' })
-  const url = URL.createObjectURL(blob)
-  const link = document.createElement('a')
-  link.href = url; link.download = '数学二错题复习进度.json'; link.click()
-  window.setTimeout(() => URL.revokeObjectURL(url), 1000)
-  notice.value = '已导出做题状态、笔记、收藏和移除记录。'
+  const snapshot = progress.value
+  try {
+    const noteImages = await backupNoteImages(Object.values(snapshot).map(item => item.note))
+    const blob = new Blob([JSON.stringify({ version: 1, exportedAt: new Date().toISOString(), progress: snapshot, noteImages }, null, 2)], { type: 'application/json' })
+    const url = URL.createObjectURL(blob)
+    const link = document.createElement('a')
+    link.href = url; link.download = '数学二错题复习进度.json'; link.click()
+    window.setTimeout(() => URL.revokeObjectURL(url), 1000)
+    notice.value = '已导出做题状态、笔记、收藏和移除记录。'
+  } catch { notice.value = '无法读取笔记图片，导出进度失败，请重试。' }
 }
 async function importBackup(event: Event) {
   const input = event.target as HTMLInputElement
   const file = input.files?.[0]
   if (!file) return
   try {
-    if (file.size > 5 * 1024 * 1024) throw new Error('文件过大')
+    if (file.size > noteBackupLimit) throw new Error('文件过大')
     const data = JSON.parse(await file.text())
     if (data.version !== 1 || !data.progress || typeof data.progress !== 'object' || Array.isArray(data.progress)) throw new Error('备份格式不正确')
+    const incoming = normalizeProgress(data.progress)
+    await restoreNoteImages(data.noteImages, Object.values(incoming).map(item => item.note))
     flushNotes()
-    progress.value = mergeProgress(progress.value, normalizeProgress(data.progress))
+    progress.value = mergeProgress(progress.value, incoming)
     reconcileAutoHides()
     saveAutoHides()
     storageFailed.value = !savePracticeProgress(progress.value)
     restartQueue()
     notice.value = '进度已恢复，同一道题保留较新的记录。'
-  } catch { notice.value = '无法恢复，请选择本页面导出的 JSON 进度备份（不超过 5 MB）。' }
+  } catch { notice.value = '无法恢复，请检查 JSON 进度备份及图片文件大小（总大小不超过 100 MB）。' }
   input.value = ''
 }
 function syncProgress(event: Event) {

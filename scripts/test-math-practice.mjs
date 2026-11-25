@@ -22,7 +22,16 @@ const { protectMarkdownMath, escapeMathHtml, formatNoteBold, normalizeNoteMath, 
 const { colorNoteInsertion, formatNoteColor, noteColorAt, noteColorLineBreak, removeEmptyNoteColors } = await loadModule('client/src/math/noteColor.ts', {
   './markdownMath': moduleUrl('client/src/math/markdownMath.ts'),
 })
-const { noteMarkdown } = await loadModule('client/src/math/noteMarkdown.ts', { marked: import.meta.resolve('marked') })
+const noteImagesModuleUrl = moduleUrl('client/src/math/noteImages.ts')
+const { noteMarkdown } = await loadModule('client/src/math/noteMarkdown.ts', { marked: import.meta.resolve('marked'), './noteImages': noteImagesModuleUrl })
+const { noteImageIds, restoreNoteImages, supportedNoteImage } = await import(noteImagesModuleUrl)
+const localImageId = '12345678-1234-1234-1234-123456789abc'
+const localImage = `![截图](note-image:${localImageId})`
+assert.deepEqual(noteImageIds([localImage, localImage, '![截图](note-image:invalid)']), [localImageId])
+assert.match(noteMarkdown.parse(localImage), new RegExp(`data-note-image="${localImageId}"`))
+assert.match(noteMarkdown.parse('![图](https://example.com/image.png)'), /src="https:\/\/example.com\/image.png"/)
+assert.equal(supportedNoteImage(new Blob(['test'], { type: 'image/svg+xml' })), false)
+await assert.rejects(restoreNoteImages({ [localImageId]: 'data:image/svg+xml;base64,PHN2Zz4=' }, [localImage]))
 const { noteTableMarkdown, repairPastedTables } = await loadModule('client/src/math/noteTable.ts', {
   './markdownMath': moduleUrl('client/src/math/markdownMath.ts'),
 })
