@@ -4,13 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="可全文搜索的考研数学二公式、结论与题型知识库" />
-    <!-- favicon 放在 public/ 根下，Vite 会原样复制到 dist/ 根目录。
-         - %BASE_URL% 由 Vite 在构建期替换为 vite.config.ts 里的 base（/postgraduate-exam-website/），
-           保证 GitHub Pages 二级目录部署时请求的是正确路径。
-         - svg: 现代 Chrome/Firefox/Edge 默认用 48/64px 高分辨率显示
-         - ico: 覆盖 Safari / 旧浏览器 / PWA 安装时的降级图标 -->
-    <link rel="icon" type="image/x-icon" href="%BASE_URL%favicon.ico?v=math-note-2" sizes="16x16 32x32 48x48" />
-    <link rel="icon" type="image/svg+xml" href="%BASE_URL%favicon.svg?v=math-note-3" sizes="any" />
+    <!-- 显式使用透明站标，覆盖浏览器缓存的旧图标。 -->
+    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVR4nGNgAAIAAAUAAXpeqz8AAAAASUVORK5CYII=" />
     <title>数学二知识库 · 公式与题型全文搜索</title>
     <script>
       // GitHub Pages 发布新版后，旧标签页可能仍引用已被替换的哈希资源。
