@@ -30,7 +30,8 @@ export function createPracticeCatalog(source: PracticeQuestion[], collection: Pr
     series: practicePaperSeries.find(series => id.startsWith(`${series.id}-`))?.id ?? 'real',
     title: group[0].paperTitle ?? `${group[0].year} 年`, questions: group,
   })).sort((a, b) => b.year - a.year
-    || practicePaperSeries.findIndex(series => series.id === a.series) - practicePaperSeries.findIndex(series => series.id === b.series))
+    || practicePaperSeries.findIndex(series => series.id === a.series) - practicePaperSeries.findIndex(series => series.id === b.series)
+    || a.id.localeCompare(b.id, 'en', { numeric: true }))
   return { questions, papers, searchText }
 }
 

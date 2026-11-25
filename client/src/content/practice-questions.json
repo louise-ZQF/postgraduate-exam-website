@@ -11823,5 +11823,442 @@
     "stem": "设二次型\n$$\nf(x_1,x_2,x_3)=X^{\\mathsf T}AX=2x_1^2+2x_2^2+ax_3^2+2x_1x_2+2x_1x_3+2x_2x_3,\n$$\n其中 $A^{\\mathsf T}=A$、$\\operatorname{rank}(A)=3$。向量 $\\alpha=(1,b,1)^{\\mathsf T}$ 满足 $(\\lambda E-A^*)\\alpha=0$，其中 $b\\ne1$，$A^*$ 为 $A$ 的伴随矩阵。第（I）问已做对，所得 $a=2,\\ b=-2,\\ \\lambda=4$。\n\n第（II）问　求正交变换 $X=QY$，将二次型 $g(x_1,x_2,x_3)=X^{\\mathsf T}(A-A^*)X$ 化为标准形。",
     "answer": "$$\nQ=\n\\begin{pmatrix}\n1/\\sqrt3 & 1/\\sqrt6 & 1/\\sqrt2\\\\\n1/\\sqrt3 & -2/\\sqrt6 & 0\\\\\n1/\\sqrt3 & 1/\\sqrt6 & -1/\\sqrt2\n\\end{pmatrix},\n\\qquad\ng=3y_1^2-3y_2^2-3y_3^2.\n$$",
     "explanation": "先利用第（Ⅰ）问的结果 $a=2$，写出\n$$\nA=\\begin{pmatrix}2&1&1\\\\1&2&1\\\\1&1&2\\end{pmatrix}.\n$$\n每行之和为 4，所以 $(1,1,1)^{\\mathsf T}$ 是特征值 4 的特征向量。对坐标之和为零的向量，$A$ 乘上去仍是原向量，因此另外两个特征值是 1。于是 $A$ 的特征值是 $4,1,1$，行列式为 $4$。\n\n题目要求处理的是 $A-A^*$。由 $AA^*=|A|E=4E$，如果 $Av=\\mu v$，就有\n$$\nA^*v=\\frac4\\mu v,\\qquad\n(A-A^*)v=\\left(\\mu-\\frac4\\mu\\right)v.\n$$\n也就是说，特征向量可以沿用，只需把特征值从 $\\mu$ 改成 $\\mu-4/\\mu$。将 $4,1,1$ 代入，得到 $3,-3,-3$。\n\n接下来选三个彼此垂直的特征向量，分别取\n$$\nv_1=(1,1,1)^{\\mathsf T},\\quad\nv_2=(1,-2,1)^{\\mathsf T},\\quad\nv_3=(1,0,-1)^{\\mathsf T}.\n$$\n它们的长度分别是 $\\sqrt3,\\sqrt6,\\sqrt2$。各自除以长度，按列组成答案中的正交矩阵 $Q$。\n\n最后令 $X=QY$。由于 $Q^{\\mathsf T}(A-A^*)Q=\\operatorname{diag}(3,-3,-3)$，所以\n$$\ng=Y^{\\mathsf T}\\operatorname{diag}(3,-3,-3)Y\n=3y_1^2-3y_2^2-3y_3^2.\n$$"
+  },
+  {
+    "id": "math2-ll6-2027-set3-q1-original",
+    "year": 2027,
+    "paperId": "ll6-2027-set3",
+    "paperTitle": "2027 李林六套卷数学二 · 第三套错题本",
+    "number": "1",
+    "examNumber": "1",
+    "kind": "original",
+    "source": "2027 李林六套卷数学二 · 第三套错题本 · 第 1 题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 函数、极限与连续 / 泰勒展开与无穷小阶数",
+    "type": "choice",
+    "options": [
+      {
+        "key": "A",
+        "text": "一阶无穷小量"
+      },
+      {
+        "key": "B",
+        "text": "二阶无穷小量"
+      },
+      {
+        "key": "C",
+        "text": "三阶无穷小量"
+      },
+      {
+        "key": "D",
+        "text": "四阶无穷小量"
+      }
+    ],
+    "correctOption": "D",
+    "stem": "当 $x\\to0$ 时，$1-\\cos(\\sin x)-\\frac12\\ln(1+x^2)$ 是关于 $x$ 的（ ）。",
+    "answer": "D（原选 B）。",
+    "explanation": "解析：先展开内层，再展开外层。\n\n$$\\sin x=x-\\frac{x^3}{6}+o(x^3),\\qquad \\sin^2x=x^2-\\frac{x^4}{3}+o(x^4).$$\n\n$$\\begin{aligned}\\cos(\\sin x)&=1-\\frac{\\sin^2x}{2}+\\frac{\\sin^4x}{24}+o(x^4)\\\\&=1-\\frac{x^2}{2}+\\frac{5x^4}{24}+o(x^4).\\end{aligned}$$\n\n$$\\ln(1+x^2)=x^2-\\frac{x^4}{2}+o(x^4).$$\n\n代入原式得\n\n$$\\frac{x^2}{2}-\\frac{5x^4}{24}-\\frac{x^2}{2}+\\frac{x^4}{4}+o(x^4)=\\frac{x^4}{24}+o(x^4).$$\n\n错因：二阶项抵消后没有继续展开。原式为偶函数，因此直接继续展开到四阶。第一个非零项出现即可停止。"
+  },
+  {
+    "id": "math2-ll6-2027-set3-q2-original",
+    "year": 2027,
+    "paperId": "ll6-2027-set3",
+    "paperTitle": "2027 李林六套卷数学二 · 第三套错题本",
+    "number": "2",
+    "examNumber": "2",
+    "kind": "original",
+    "source": "2027 李林六套卷数学二 · 第三套错题本 · 第 2 题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 一元函数微分 / 极限、驻点与极值",
+    "type": "choice",
+    "options": [
+      {
+        "key": "A",
+        "text": "驻点且为极大值点"
+      },
+      {
+        "key": "B",
+        "text": "驻点且为极小值点"
+      },
+      {
+        "key": "C",
+        "text": "不可导点"
+      },
+      {
+        "key": "D",
+        "text": "可导点但不是驻点"
+      }
+    ],
+    "correctOption": "B",
+    "stem": "设 $f(x)$ 在 $x=1$ 的某邻域内连续，且\n\n$$\\lim_{x\\to0}\\frac{\\ln[f(x+1)+e^{x^2}]}{x^2}=2,$$\n\n则 $x=1$ 是 $f(x)$ 的（ ）。",
+    "answer": "B（原选 B）。",
+    "explanation": "第一步，由分母趋于0、极限有限以及连续性，得 $\\ln[f(1)+1]=0$，即 $f(1)=0$。\n\n第二步，利用 $\\ln(1+u)\\sim u$：\n\n$$\\lim_{x\\to0}\\frac{f(x+1)+e^{x^2}-1}{x^2}=2.$$\n\n又 $e^{x^2}-1\\sim x^2$，所以\n\n$$\\lim_{x\\to0}\\frac{f(x+1)}{x^2}=1.$$\n\n第三步，用导数定义：\n\n$$f'(1)=\\lim_{x\\to0}\\frac{f(x+1)-f(1)}x=\\lim_{x\\to0}\\frac{f(x+1)}{x^2}\\cdot x=0.$$\n\n因此是驻点。由保号性，$x\\ne0$ 且充分接近0时，$f(x+1)>0=f(1)$，因此是极小值点。\n\n易错点：极限条件不能直接写成恒等式；题目只给连续，不能擅自求二阶导数。"
+  },
+  {
+    "id": "math2-ll6-2027-set3-q5-original",
+    "year": 2027,
+    "paperId": "ll6-2027-set3",
+    "paperTitle": "2027 李林六套卷数学二 · 第三套错题本",
+    "number": "5",
+    "examNumber": "5",
+    "kind": "original",
+    "source": "2027 李林六套卷数学二 · 第三套错题本 · 第 5 题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 多元函数微分 / 二元函数连续、偏导数存在、可微与偏导数连续",
+    "type": "choice",
+    "options": [
+      {
+        "key": "A",
+        "text": "偏导数不存在且不连续"
+      },
+      {
+        "key": "B",
+        "text": "偏导数存在但不连续"
+      },
+      {
+        "key": "C",
+        "text": "连续但不可微"
+      },
+      {
+        "key": "D",
+        "text": "可微但偏导数不连续"
+      }
+    ],
+    "correctOption": "D",
+    "stem": "设\n\n$$f(x,y)=\\begin{cases}(x^2+y^2)\\cos\\dfrac1{\\sqrt{x^2+y^2}},&x^2+y^2\\ne0,\\\\0,&x^2+y^2=0,\\end{cases}$$\n\n则 $f(x,y)$ 在点 $(0,0)$ 处（ ）。",
+    "answer": "D（原选 D）。",
+    "explanation": "第一步，判断函数连续：$|f(x,y)|\\le x^2+y^2\\to0=f(0,0)$。\n\n第二步，用偏导数定义：\n\n$$\\frac{\\partial f}{\\partial x}(0,0)=\\lim_{x\\to0}\\frac{f(x,0)-f(0,0)}x=\\lim_{x\\to0}x\\cos\\frac1{|x|}=0.$$\n\n同理 $\\dfrac{\\partial f}{\\partial y}(0,0)=0$，两个偏导数存在。\n\n第三步，判断可微。因为原点函数值与偏导数均为0，只需验证\n\n$$\\lim_{(x,y)\\to(0,0)}\\frac{f(x,y)}{\\sqrt{x^2+y^2}}=\\lim_{(x,y)\\to(0,0)}\\sqrt{x^2+y^2}\\cos\\frac1{\\sqrt{x^2+y^2}}=0.$$\n\n所以可微。\n\n第四步，判断偏导数连续。沿 $y=0,x>0$，\n\n$$\\frac{\\partial f}{\\partial x}(x,0)=2x\\cos\\frac1x+\\sin\\frac1x.$$\n\n第二项振荡，因此偏导函数在原点的极限不存在，偏导数不连续。\n\n### 连续、可导与可微 SOP\n\n一元函数（以0为例）：\n\n1. 函数连续：$\\lim_{x\\to0}f(x)=f(0)$。\n2. 导数存在：$f'(0)=\\lim_{x\\to0}\\frac{f(x)-f(0)}x$ 存在且有限。\n3. 函数可微：一元函数可导与可微等价。\n4. 导函数连续：$\\lim_{x\\to0}f'(x)=f'(0)$。\n\n二元函数（以原点为例）：\n\n1. 函数连续：$\\lim_{(x,y)\\to(0,0)}f(x,y)=f(0,0)$。\n2. 偏导数存在：分别计算 $\\lim_{x\\to0}\\frac{f(x,0)-f(0,0)}x$ 与 $\\lim_{y\\to0}\\frac{f(0,y)-f(0,0)}y$，要求存在且有限。\n3. 可微：判断下面的二重极限是否等于0：\n\n$$\\lim_{(x,y)\\to(0,0)}\\frac{f(x,y)-f(0,0)-\\dfrac{\\partial f}{\\partial x}(0,0)x-\\dfrac{\\partial f}{\\partial y}(0,0)y}{\\sqrt{x^2+y^2}}.$$\n\n4. 偏导数连续：分别判断偏导函数的二重极限是否等于原点的偏导数值。\n\n关系：偏导数在邻域存在且在该点连续 $\\Rightarrow$ 可微 $\\Rightarrow$ 连续且偏导数存在。不能反推。"
+  },
+  {
+    "id": "math2-ll6-2027-set3-q6-original",
+    "year": 2027,
+    "paperId": "ll6-2027-set3",
+    "paperTitle": "2027 李林六套卷数学二 · 第三套错题本",
+    "number": "6",
+    "examNumber": "6",
+    "kind": "original",
+    "source": "2027 李林六套卷数学二 · 第三套错题本 · 第 6 题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 一元函数积分 / 反常积分敛散性",
+    "type": "choice",
+    "options": [
+      {
+        "key": "A",
+        "text": "$\\displaystyle\\int_0^{+\\infty}\\frac{e^{1/x}}{x^4}\\,dx$"
+      },
+      {
+        "key": "B",
+        "text": "$\\displaystyle\\int_0^{\\pi/2}\\frac{1-\\cos x}{x^3}\\,dx$"
+      },
+      {
+        "key": "C",
+        "text": "$\\displaystyle\\int_{-\\infty}^0\\frac{e^{1/x}}{x^2+\\sin^2x}\\,dx$"
+      },
+      {
+        "key": "D",
+        "text": "$\\displaystyle\\int_0^{+\\infty}\\frac{e^{1/x}}{x^2+\\sin^2x}\\,dx$"
+      }
+    ],
+    "correctOption": "C",
+    "stem": "下列积分收敛的是（ ）。",
+    "answer": "C（原选 C）。",
+    "explanation": "A：$x\\to0^+$ 时 $e^{1/x}>1$，被积函数大于 $1/x^4$，发散。\n\nB：$x\\to0^+$ 时 $\\frac{1-\\cos x}{x^3}\\sim\\frac1{2x}$，发散。\n\nC：$x\\to-\\infty$ 时，$e^{1/x}\\to1$，$\\sin^2x$ 有界，故\n\n$$\\frac{e^{1/x}}{x^2+\\sin^2x}\\sim\\frac1{x^2},$$\n\n无穷端点收敛。$x\\to0^-$ 时，\n\n$$\\frac{e^{1/x}}{x^2+\\sin^2x}\\sim\\frac{e^{1/x}}{2x^2}\\to0.$$\n\n指数衰减快于幂函数，有限端点附近被积函数有界，故收敛。也可用 $\\int\\frac{e^{1/x}}{2x^2}dx=-\\frac12e^{1/x}+C$ 判断。\n\nD：$x\\to0^+$ 时，$e^{1/x}>1$，且 $x^2+\\sin^2x\\le2x^2$，故被积函数大于 $1/(2x^2)$，发散。\n\nSOP：先找所有反常端点，分别比较。无穷远抓大头，有限端点优先等价无穷小；幂次判别看整个被积函数，不是只看分母。有限端点附近有界可直接判收敛。"
+  },
+  {
+    "id": "math2-ll6-2027-set3-q7-original",
+    "year": 2027,
+    "paperId": "ll6-2027-set3",
+    "paperTitle": "2027 李林六套卷数学二 · 第三套错题本",
+    "number": "7",
+    "examNumber": "7",
+    "kind": "original",
+    "source": "2027 李林六套卷数学二 · 第三套错题本 · 第 7 题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 二重积分 / 二重积分比较大小",
+    "type": "choice",
+    "options": [
+      {
+        "key": "A",
+        "text": "$I_1<I_2<I_3$"
+      },
+      {
+        "key": "B",
+        "text": "$I_3<I_2<I_1$"
+      },
+      {
+        "key": "C",
+        "text": "$I_1<I_3<I_2$"
+      },
+      {
+        "key": "D",
+        "text": "$I_3<I_1<I_2$"
+      }
+    ],
+    "correctOption": "A",
+    "stem": "设 $D=\\{(x,y)\\mid(x-1)^2+(y-1)^2\\le1\\}$，$I_k=\\iint_D(x+y)^k\\,dxdy$，$k=1,2,3$，则正确的是（ ）。",
+    "answer": "A（原选 D）。",
+    "explanation": "第一步，区域是圆心 $(1,1)$、半径1的圆盘。令 $u=x-1,v=y-1$，区域变为 $D':u^2+v^2\\le1$，$x+y=u+v+2$。\n\n第二步，利用对称性消去奇次项：\n\n$$I_1=\\iint_{D'}2\\,dudv=2\\pi.$$\n\n$$\\begin{aligned}I_2&=\\iint_{D'}(u^2+v^2+4)\\,dudv\\\\&=2\\pi\\int_0^1(r^2+4)r\\,dr=\\frac92\\pi.\\end{aligned}$$\n\n$$\\begin{aligned}I_3&=\\iint_{D'}(6u^2+6v^2+8)\\,dudv\\\\&=2\\pi\\int_0^1(6r^2+8)r\\,dr=11\\pi.\\end{aligned}$$\n\n因此 $I_1<I_2<I_3$。\n\n易错点：区域中存在 $0<x+y<1$ 的部分，不能直接比较幂次。圆心偏移时，优先平移再使用对称性。"
+  },
+  {
+    "id": "math2-ll6-2027-set3-q8-original",
+    "year": 2027,
+    "paperId": "ll6-2027-set3",
+    "paperTitle": "2027 李林六套卷数学二 · 第三套错题本",
+    "number": "8",
+    "examNumber": "8",
+    "kind": "original",
+    "source": "2027 李林六套卷数学二 · 第三套错题本 · 第 8 题",
+    "sourceCategory": "mock",
+    "topic": "线性代数 / 线性方程组 / 秩与同解方程组",
+    "type": "choice",
+    "options": [
+      {
+        "key": "A",
+        "text": "若 $ABX=0$ 与 $BX=0$ 同解，则 $r(AB)=r(B)$。"
+      },
+      {
+        "key": "B",
+        "text": "若 $r(AB)=r(B)$，则 $ABX=0$ 与 $BX=0$ 同解。"
+      },
+      {
+        "key": "C",
+        "text": "若 $r(A)=n$，则 $ABX=0$ 与 $BX=0$ 同解。"
+      },
+      {
+        "key": "D",
+        "text": "若 $ABX=0$ 与 $BX=0$ 同解，则 $r(A)=n$。"
+      }
+    ],
+    "correctOption": "D",
+    "stem": "设 $A$ 为 $m\\times n$ 矩阵，$B$ 为 $n\\times s$ 矩阵，则下列选项错误的是（ ）。",
+    "answer": "D（原选 B）。",
+    "explanation": "A：同解则基础解系所含向量个数相同，即 $s-r(AB)=s-r(B)$，故正确。\n\nB：$BX=0$ 的解必然满足 $ABX=0$，又两者秩相同，基础解系所含向量个数相同，所以同解。正确。\n\nC：$r(A)=n$ 意味着 $AY=0$ 只有零解。令 $Y=BX$，则 $ABX=0\\Rightarrow BX=0$，故正确。\n\nD：取 $B=O$，两方程组对所有 $X$ 都成立，但 $A$ 可以不满秩。错误。\n\n结论：$ABX=0$ 与 $BX=0$ 同解 $\\Longleftrightarrow r(AB)=r(B)$。一般两个矩阵秩相等不能直接推出同解，还需要解的包含关系。"
+  },
+  {
+    "id": "math2-ll6-2027-set3-q10-original",
+    "year": 2027,
+    "paperId": "ll6-2027-set3",
+    "paperTitle": "2027 李林六套卷数学二 · 第三套错题本",
+    "number": "10",
+    "examNumber": "10",
+    "kind": "original",
+    "source": "2027 李林六套卷数学二 · 第三套错题本 · 第 10 题",
+    "sourceCategory": "mock",
+    "topic": "线性代数 / 特征值与相似矩阵 / 相似对角化与行最简形",
+    "type": "choice",
+    "options": [
+      {
+        "key": "A",
+        "text": "$a-b=0$"
+      },
+      {
+        "key": "B",
+        "text": "$a-c=0$"
+      },
+      {
+        "key": "C",
+        "text": "$a=c=0$"
+      },
+      {
+        "key": "D",
+        "text": "$a=b=c=0$"
+      }
+    ],
+    "correctOption": "C",
+    "stem": "实矩阵\n\n$$A=\\begin{pmatrix}1&0&0&0\\\\a&1&0&0\\\\1&b&2&0\\\\3&2&c&2\\end{pmatrix}$$\n\n与对角矩阵相似的充分必要条件为（ ）。",
+    "answer": "C（原选 D）。",
+    "explanation": "知识点：$n$ 阶矩阵相似对角化要求有 $n$ 个线性无关的特征向量。若特征多项式可分解为所讨论数域内的一次因式，对每个特征值 $\\lambda$，必须有\n\n$$n-r(A-\\lambda E)=\\lambda\\text{ 的重数}.$$\n\n实对称矩阵一定可正交相似对角化；具有 $n$ 个互不相同实特征值的实矩阵一定可实相似对角化。\n\n第一步：本题特征值为1、2，各二重，所以 $r(A-E)=r(A-2E)=2$。\n\n第二步：直接行化简 $A-2E$。\n\n$$\\begin{pmatrix}-1&0&0&0\\\\a&-1&0&0\\\\1&b&0&0\\\\3&2&c&0\\end{pmatrix}\\xrightarrow{R_1\\gets-R_1}\\begin{pmatrix}1&0&0&0\\\\a&-1&0&0\\\\1&b&0&0\\\\3&2&c&0\\end{pmatrix}$$\n\n$$\\xrightarrow{\\substack{R_2\\gets R_2-aR_1\\\\R_3\\gets R_3-R_1\\\\R_4\\gets R_4-3R_1}}\\begin{pmatrix}1&0&0&0\\\\0&-1&0&0\\\\0&b&0&0\\\\0&2&c&0\\end{pmatrix}$$\n\n$$\\xrightarrow{R_2\\gets-R_2}\\begin{pmatrix}1&0&0&0\\\\0&1&0&0\\\\0&b&0&0\\\\0&2&c&0\\end{pmatrix}\\xrightarrow{\\substack{R_3\\gets R_3-bR_2\\\\R_4\\gets R_4-2R_2}}\\begin{pmatrix}1&0&0&0\\\\0&1&0&0\\\\0&0&0&0\\\\0&0&c&0\\end{pmatrix}.$$\n\n秩为2当且仅当 $c=0$；否则交换第三、四行并除以 $c$，有三个主元。\n\n第三步：代入 $c=0$，求 $r(A-E)$。为了直接用行变换消元，先转置（转置不改变秩）。\n\n$$A-E=\\begin{pmatrix}0&0&0&0\\\\a&0&0&0\\\\1&b&1&0\\\\3&2&0&1\\end{pmatrix}.$$\n\n$$\\begin{aligned}(A-E)^T&=\\begin{pmatrix}0&a&1&3\\\\0&0&b&2\\\\0&0&1&0\\\\0&0&0&1\\end{pmatrix}\\\\&\\xrightarrow{\\substack{R_1\\gets R_1-R_3\\\\R_2\\gets R_2-bR_3}}\\begin{pmatrix}0&a&0&3\\\\0&0&0&2\\\\0&0&1&0\\\\0&0&0&1\\end{pmatrix}\\\\&\\xrightarrow{\\substack{R_1\\gets R_1-3R_4\\\\R_2\\gets R_2-2R_4}}\\begin{pmatrix}0&a&0&0\\\\0&0&0&0\\\\0&0&1&0\\\\0&0&0&1\\end{pmatrix}.\\end{aligned}$$\n\n若 $a=0$，交换行后行最简形为\n\n$$\\begin{pmatrix}0&0&1&0\\\\0&0&0&1\\\\0&0&0&0\\\\0&0&0&0\\end{pmatrix}.$$\n\n若 $a\\ne0$，第一行除以 $a$ 并调整行顺序后行最简形为\n\n$$\\begin{pmatrix}0&1&0&0\\\\0&0&1&0\\\\0&0&0&1\\\\0&0&0&0\\end{pmatrix}.$$\n\n因此 $a=0$。综上 $a=c=0$，$b$ 任意。\n\nSOP：求特征值与重数 → 套秩公式 → 初等行变换化行最简形 → 判断参数。不能额外要求所有非对角元为0。"
+  },
+  {
+    "id": "math2-ll6-2027-set3-q11-original",
+    "year": 2027,
+    "paperId": "ll6-2027-set3",
+    "paperTitle": "2027 李林六套卷数学二 · 第三套错题本",
+    "number": "11",
+    "examNumber": "11",
+    "kind": "original",
+    "source": "2027 李林六套卷数学二 · 第三套错题本 · 第 11 题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 一元函数微分 / 参数方程与隐函数求导",
+    "type": "fill",
+    "stem": "设 $y=y(x)$ 由\n\n$$\\begin{cases}x=\\displaystyle\\int_0^t2\\cos\\big((t-s)^2\\big)\\,ds,\\\\y=x\\sin y+e^{2t}\\end{cases}$$\n\n确定，则 $\\left.\\dfrac{dy}{dx}\\right|_{t=0}=$ ______。",
+    "answer": "$1+\\sin1$（原答1）。",
+    "explanation": "令 $u=t-s$，原式 $x=\\int_0^t2\\cos(u^2)du$，故 $\\dfrac{dx}{dt}=2\\cos(t^2)$。当 $t=0$ 时，$x=0,y=1,\\frac{dx}{dt}=2$。\n\n对第二式两边求导：\n\n$$\\frac{dy}{dt}=\\frac{dx}{dt}\\sin y+x\\cos y\\frac{dy}{dt}+2e^{2t}.$$\n\n代入 $t=0$：$\\frac{dy}{dt}=2\\sin1+2$。\n\n$$\\left.\\frac{dy}{dx}\\right|_{t=0}=\\frac{2\\sin1+2}{2}=1+\\sin1.$$\n\n错因：对 $x\\sin y$ 求导时漏项。参数方程先求 $dx/dt,dy/dt$，最后相除。"
+  },
+  {
+    "id": "math2-ll6-2027-set3-q12-original",
+    "year": 2027,
+    "paperId": "ll6-2027-set3",
+    "paperTitle": "2027 李林六套卷数学二 · 第三套错题本",
+    "number": "12",
+    "examNumber": "12",
+    "kind": "original",
+    "source": "2027 李林六套卷数学二 · 第三套错题本 · 第 12 题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 函数、极限与连续 / 变上限积分求极限",
+    "type": "fill",
+    "stem": "$$\\lim_{x\\to0}\\frac{\\displaystyle\\int_0^x\\left(\\sin t+t^2\\cos\\frac1t\\right)dt}{\\displaystyle(2+\\sin x)\\int_0^x\\ln(1+t)dt}=\\underline{\\qquad}.$$",
+    "answer": "$\\frac12$（原答正确）。",
+    "explanation": "分母 $(2+\\sin x)\\int_0^x\\ln(1+t)dt\\sim 2\\cdot\\frac{x^2}{2}=x^2$。\n\n分子第一项 $\\int_0^x\\sin t\\,dt=1-\\cos x\\sim\\frac{x^2}2$；第二项满足\n\n$$\\left|\\int_0^x t^2\\cos\\frac1t\\,dt\\right|\\le\\frac{|x|^3}{3}=o(x^2).$$\n\n故极限为 $1/2$。振荡项可以放缩成高阶无穷小。"
+  },
+  {
+    "id": "math2-ll6-2027-set3-q13-original",
+    "year": 2027,
+    "paperId": "ll6-2027-set3",
+    "paperTitle": "2027 李林六套卷数学二 · 第三套错题本",
+    "number": "13",
+    "examNumber": "13",
+    "kind": "original",
+    "source": "2027 李林六套卷数学二 · 第三套错题本 · 第 13 题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 一元函数微分 / 无极值与参数范围",
+    "type": "fill",
+    "stem": "设函数 $f(x)=x^3+3ax^2-ax-1$ 在 $(-\\infty,+\\infty)$ 内没有极值，则 $a$ 的取值范围为 ______。",
+    "answer": "$[-\\frac13,0]$（原答漏等号）。",
+    "explanation": "$$f'(x)=3x^2+6ax-a.$$\n\n因为二次项系数为正，无极值要求导数不变号，即 $f'(x)\\ge0$ 恒成立。\n\n$$\\Delta=(6a)^2-4\\cdot3\\cdot(-a)=12a(3a+1)\\le0.$$\n\n所以 $-\\frac13\\le a\\le0$。\n\n错因：无极值不等于无驻点，导数等于0但不变号时仍没有极值。"
+  },
+  {
+    "id": "math2-ll6-2027-set3-q14-original",
+    "year": 2027,
+    "paperId": "ll6-2027-set3",
+    "paperTitle": "2027 李林六套卷数学二 · 第三套错题本",
+    "number": "14",
+    "examNumber": "14",
+    "kind": "original",
+    "source": "2027 李林六套卷数学二 · 第三套错题本 · 第 14 题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 一元函数积分 / 平面面积与最值",
+    "type": "fill",
+    "stem": "设 $a^2+b^2=1$（$a<0,b>0$），则曲线 $y=x^2+ax$ 与直线 $y=bx$ 所围区域面积的最大值为 ______。",
+    "answer": "$\\frac{\\sqrt2}{3}$。",
+    "explanation": "求交点：$x^2+ax=bx\\Rightarrow x=0$ 或 $x=b-a$。区间内直线在上，抛物线在下。\n\n$$S=\\int_0^{b-a}[(b-a)x-x^2]dx=\\frac{(b-a)^3}{6}.$$\n\n由 $(b-a)^2\\le2(a^2+b^2)=2$，且 $b-a>0$，得 $b-a\\le\\sqrt2$。当 $b=-a=\\frac{\\sqrt2}2$ 时取等号。\n\n$$S_{\\max}=\\frac{(\\sqrt2)^3}{6}=\\frac{\\sqrt2}{3}.$$\n\n错因：先计算完整面积，再对面积表达式求最值；不能直接对被积函数求最值。"
+  },
+  {
+    "id": "math2-ll6-2027-set3-q15-original",
+    "year": 2027,
+    "paperId": "ll6-2027-set3",
+    "paperTitle": "2027 李林六套卷数学二 · 第三套错题本",
+    "number": "15",
+    "examNumber": "15",
+    "kind": "original",
+    "source": "2027 李林六套卷数学二 · 第三套错题本 · 第 15 题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 一元函数积分 / 反常积分计算",
+    "type": "fill",
+    "stem": "$$I=\\int_1^{+\\infty}\\left[\\ln\\left(1+\\frac1x\\right)-\\frac1{1+x}\\right]dx=\\underline{\\qquad}.$$",
+    "answer": "$1-\\ln2$。",
+    "explanation": "利用分部积分（也可先拆成 $\\ln(x+1)-\\ln x$）：\n\n$$\\begin{aligned}\\int\\left[\\ln\\left(1+\\frac1x\\right)-\\frac1{1+x}\\right]dx&=x\\ln\\left(1+\\frac1x\\right)+C.\\end{aligned}$$\n\n所以\n\n$$I=\\lim_{M\\to+\\infty}\\left[M\\ln\\left(1+\\frac1M\\right)-\\ln2\\right]=1-\\ln2.$$\n\n错因：必须合并原函数后统一取上限极限，不可把无穷大减无穷大直接抵消。"
+  },
+  {
+    "id": "math2-ll6-2027-set3-q16-original",
+    "year": 2027,
+    "paperId": "ll6-2027-set3",
+    "paperTitle": "2027 李林六套卷数学二 · 第三套错题本",
+    "number": "16",
+    "examNumber": "16",
+    "kind": "original",
+    "source": "2027 李林六套卷数学二 · 第三套错题本 · 第 16 题",
+    "sourceCategory": "mock",
+    "topic": "线性代数 / 矩阵 / 伴随矩阵与秩",
+    "type": "fill",
+    "stem": "设矩阵\n\n$$A=\\begin{pmatrix}1&0&3\\\\1&4&5\\\\0&0&2\\end{pmatrix},\\quad B=\\begin{pmatrix}1&2&1\\\\3&5&a\\\\2&5&7\\end{pmatrix},$$\n\n矩阵 $C$ 满足 $ACA^*=B,r(C)=2$，其中 $A^*$ 是 $A$ 的伴随矩阵，则 $a=$ ______。",
+    "answer": "$-2$（原答正确）。",
+    "explanation": "$|A|=8\\ne0$，所以 $A,A^*$ 都可逆。$r(B)=r(ACA^*)=r(C)=2$。\n\n对 $B$ 作初等行变换：\n\n$$\\begin{pmatrix}1&2&1\\\\3&5&a\\\\2&5&7\\end{pmatrix}\\xrightarrow{\\substack{R_2\\gets R_2-3R_1\\\\R_3\\gets R_3-2R_1}}\\begin{pmatrix}1&2&1\\\\0&-1&a-3\\\\0&1&5\\end{pmatrix}$$\n\n$$\\xrightarrow{R_3\\gets R_3+R_2}\\begin{pmatrix}1&2&1\\\\0&-1&a-3\\\\0&0&a+2\\end{pmatrix}.$$\n\n要使秩为2，必须 $a+2=0$，故 $a=-2$。"
+  },
+  {
+    "id": "math2-ll6-2027-set3-q17-original",
+    "year": 2027,
+    "paperId": "ll6-2027-set3",
+    "paperTitle": "2027 李林六套卷数学二 · 第三套错题本",
+    "number": "17",
+    "examNumber": "17",
+    "kind": "original",
+    "source": "2027 李林六套卷数学二 · 第三套错题本 · 第 17 题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 一元函数积分 / 绝对值积分与等价无穷小",
+    "type": "solution",
+    "stem": "问是否存在常数 $k$，使得 $x\\to0$ 时，$\\displaystyle\\int_0^{2x}|t-x|\\sin t\\,dt$ 与 $k|x|^3$ 是等价无穷小？若存在，求 $k$；若不存在，请说明理由。",
+    "answer": "存在，$k=1$。",
+    "explanation": "令 $I(x)=\\int_0^{2x}|t-x|\\sin t\\,dt$。当 $x>0$ 时，以 $t=x$ 为分界点：\n\n$$\\begin{aligned}I(x)&=\\int_0^x(x-t)\\sin t\\,dt+\\int_x^{2x}(t-x)\\sin t\\,dt\\\\&=x-2\\sin x-x\\cos2x+\\sin2x.\\end{aligned}$$\n\n泰勒展开：\n\n$$\\sin x=x-\\frac{x^3}{6}+o(x^3),\\quad \\cos2x=1-2x^2+o(x^2),\\quad\\sin2x=2x-\\frac43x^3+o(x^3).$$\n\n代入得到 $I(x)=x^3+o(x^3)$。当 $x<0$ 时，令 $t=-s$，可得 $I(x)=I(-x)$。所以\n\n$$I(x)=|x|^3+o(|x|^3),\\qquad\\lim_{x\\to0}\\frac{I(x)}{|x|^3}=1.$$\n\n故 $k=1$。错因：绝对值须分段，等价无穷小相除趋于1而不是0。"
+  },
+  {
+    "id": "math2-ll6-2027-set3-q18-original",
+    "year": 2027,
+    "paperId": "ll6-2027-set3",
+    "paperTitle": "2027 李林六套卷数学二 · 第三套错题本",
+    "number": "18",
+    "examNumber": "18",
+    "kind": "original",
+    "source": "2027 李林六套卷数学二 · 第三套错题本 · 第 18 题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 多元函数微分 / 全微分与二元函数极值",
+    "type": "solution",
+    "stem": "设可微函数 $f(x,y)$ 满足\n\n$$df(x,y)=(3x^2-2ax)dx+(3y^2-2ay)dy\\quad(a>0),$$\n\n且 $f(0,0)=0$。\n\n(I) 求 $f(x,y)$；(II) 若 $f(x,y)$ 有极小值为 $-8$，求 $a$。",
+    "answer": "$f(x,y)=x^3-ax^2+y^3-ay^2$；$a=3$（两问正确）。",
+    "explanation": "(I) 直接积分得 $f=x^3-ax^2+y^3-ay^2+C$，代入原点得 $C=0$。\n\n(II) 令两个一阶偏导数等于0：\n\n$$\\begin{cases}\\dfrac{\\partial f}{\\partial x}=x(3x-2a)=0,\\\\\\dfrac{\\partial f}{\\partial y}=y(3y-2a)=0.\\end{cases}$$\n\n得到四个驻点 $(0,0),(0,\\frac{2a}3),(\\frac{2a}3,0),(\\frac{2a}3,\\frac{2a}3)$。\n\n$$A_0=\\frac{\\partial^2 f}{\\partial x^2}=6x-2a,\\quad B_0=\\frac{\\partial^2 f}{\\partial x\\partial y}=0,\\quad C_0=\\frac{\\partial^2 f}{\\partial y^2}=6y-2a.$$\n\n原点为极大值点；两个混合驻点满足 $A_0C_0-B_0^2<0$，不是极值；$(\\frac{2a}3,\\frac{2a}3)$ 处两个纯二阶偏导均为 $2a>0$，为极小值点。\n\n$$f\\left(\\frac{2a}3,\\frac{2a}3\\right)=-\\frac{8a^3}{27}=-8\\Rightarrow a=3.$$\n\n易错点：联立驻点方程时不能直接除以 $x$ 或 $y$，否则漏解。"
+  },
+  {
+    "id": "math2-ll6-2027-set3-q19-original",
+    "year": 2027,
+    "paperId": "ll6-2027-set3",
+    "paperTitle": "2027 李林六套卷数学二 · 第三套错题本",
+    "number": "19",
+    "examNumber": "19",
+    "kind": "original",
+    "source": "2027 李林六套卷数学二 · 第三套错题本 · 第 19 题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 一元函数积分 / 积分几何应用与微分方程",
+    "type": "solution",
+    "stem": "设 $y=f(x)$ 在 $[0,1]$ 上有连续的导数，$f(0)=1,f'(x)>0$，若在区间 $[0,x]$ 上以 $y=f(x)$ 为曲边的曲边梯形面积为 $A(x)$，$y=f(x)$ 在 $[0,x]$ 上的弧长为 $S(x)$，且 $A(x)=S(x)$。\n\n(I) 求 $f(x)$ 的表达式；(II) 求 $y=f(x)$ 与 $x=0,y=0,x=1$ 所围图形绕 $y$ 轴旋转一周所得旋转体的体积。",
+    "answer": "$f(x)=\\frac{e^x+e^{-x}}2$；$V=2\\pi(1-\\frac1e)$。",
+    "explanation": "注：原题 $f'(x)>0$ 若包括 $x=0$ 则与面积弧长相等矛盾；按参考解答的意图理解为区间内部成立。\n\n第一步，列方程：\n\n$$\\int_0^x f(t)dt=\\int_0^x\\sqrt{1+[f'(t)]^2}\\,dt.$$\n\n两边求导，$f(x)=\\sqrt{1+[f'(x)]^2}$，因此 $y^2=1+(y')^2$。\n\n第二步，由内部 $y'>0$，可分离变量：\n\n$$\\frac{dy}{\\sqrt{y^2-1}}=dx,$$\n\n$$\\ln|y+\\sqrt{y^2-1}|=x+C.$$\n\n由 $y(0)=1$（取右极限）得 $C=0$。所以 $y+\\sqrt{y^2-1}=e^x$，两边利用共轭关系得到 $y-\\sqrt{y^2-1}=e^{-x}$。相加得 $y=(e^x+e^{-x})/2$。\n\n第三步，柱壳法求体积：\n\n$$\\begin{aligned}V&=2\\pi\\int_0^1xf(x)dx\\\\&=\\pi\\int_0^1x(e^x+e^{-x})dx\\\\&=\\pi[(x-1)e^x-(x+1)e^{-x}]_0^1\\\\&=2\\pi(1-e^{-1}).\\end{aligned}$$\n\n错因：正确建立方程后，没有完成分离变量与根式积分。"
+  },
+  {
+    "id": "math2-ll6-2027-set3-q20-original",
+    "year": 2027,
+    "paperId": "ll6-2027-set3",
+    "paperTitle": "2027 李林六套卷数学二 · 第三套错题本",
+    "number": "20",
+    "examNumber": "20",
+    "kind": "original",
+    "source": "2027 李林六套卷数学二 · 第三套错题本 · 第 20 题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 二重积分 / 二重积分分区与极坐标",
+    "type": "solution",
+    "stem": "设 $D=\\{(x,y)\\mid x^2+y^2\\le\\frac3{16}\\}$，计算\n\n$$I=\\iint_D\\min\\left\\{\\sqrt{\\frac3{16}-x^2-y^2},\\ 2(x^2+y^2)\\right\\}dxdy.$$",
+    "answer": "$\\frac{5\\pi}{192}$。",
+    "explanation": "区域为原点圆盘，直接使用极坐标：$0\\le\\theta\\le2\\pi,0\\le r\\le\\frac{\\sqrt3}4$。\n\n令 $\\sqrt{\\frac3{16}-r^2}=2r^2$，平方得 $r^2=\\frac18$（负根舍去）。\n\n$$\\begin{aligned}I&=2\\pi\\int_0^{1/\\sqrt8}2r^3dr+2\\pi\\int_{1/\\sqrt8}^{\\sqrt3/4}\\sqrt{\\frac3{16}-r^2}\\,rdr\\\\&=2\\pi\\left[\\frac{r^4}{2}\\right]_0^{1/\\sqrt8}+2\\pi\\left[-\\frac13\\left(\\frac3{16}-r^2\\right)^{3/2}\\right]_{1/\\sqrt8}^{\\sqrt3/4}\\\\&=\\frac\\pi{64}+\\frac\\pi{96}=\\frac{5\\pi}{192}.\\end{aligned}$$\n\n错因：基本幂函数积分，$\\int2r^3dr=\\frac12r^4+C$，不要写成 $\\frac25r^5$。"
+  },
+  {
+    "id": "math2-ll6-2027-set3-q21-original",
+    "year": 2027,
+    "paperId": "ll6-2027-set3",
+    "paperTitle": "2027 李林六套卷数学二 · 第三套错题本",
+    "number": "21",
+    "examNumber": "21",
+    "kind": "original",
+    "source": "2027 李林六套卷数学二 · 第三套错题本 · 第 21 题",
+    "sourceCategory": "mock",
+    "topic": "高等数学 / 微分方程 / 一阶线性微分方程、最值及数列极限",
+    "type": "solution",
+    "stem": "设 $f(x)$ 满足 $(1-x)f'(x)+nf(x)=n(1-x)^{n+1}$（$n$ 为正整数），且 $f(0)=0$。\n\n(I) 若 $f(x)$ 在 $(0,1)$ 内的最大值为 $M(n)$，求 $\\lim_{n\\to\\infty}M(n)$；\n\n(II) 在第(I)问的基础上，证明 $M(n)<\\frac1e$。",
+    "answer": "$1/e$；证明如下。",
+    "explanation": "第一步，化为一阶线性标准形式：\n\n$$f'(x)+\\frac n{1-x}f(x)=n(1-x)^n.$$\n\n第二步，求积分因子：$\\mu(x)=e^{\\int\\frac n{1-x}dx}=(1-x)^{-n}$。\n\n第三步，乘积分因子：\n\n$$[(1-x)^{-n}f(x)]'=n.$$\n\n两边积分：$(1-x)^{-n}f(x)=nx+C$，代入初值得 $C=0$，即 $f(x)=nx(1-x)^n$。\n\n第四步，求最大值：\n\n$$f'(x)=n(1-x)^{n-1}[1-(n+1)x].$$\n\n导数先正后负，故在 $x=\\frac1{n+1}$ 取最大值。\n\n$$M(n)=\\left(1-\\frac1{n+1}\\right)^{n+1},\\qquad\\lim_{n\\to\\infty}M(n)=\\frac1e.$$\n\n(II) 使用常用不等式 $\\ln(1-t)<-t$（$0<t<1$），得到\n\n$$\\ln M(n)=(n+1)\\ln\\left(1-\\frac1{n+1}\\right)<-1.$$\n\n所以 $M(n)<e^{-1}$。\n\n原卷未作答。优先掌握一阶线性方程固定步骤、求导判最值、重要极限与对数不等式。"
+  },
+  {
+    "id": "math2-ll6-2027-set3-q22-original",
+    "year": 2027,
+    "paperId": "ll6-2027-set3",
+    "paperTitle": "2027 李林六套卷数学二 · 第三套错题本",
+    "number": "22",
+    "examNumber": "22",
+    "kind": "original",
+    "source": "2027 李林六套卷数学二 · 第三套错题本 · 第 22 题",
+    "sourceCategory": "mock",
+    "topic": "线性代数 / 二次型 / 矩阵合同、二次型与迹",
+    "type": "solution",
+    "stem": "设矩阵\n\n$$A=\\begin{pmatrix}1&a&a\\\\a&1&a\\\\a&a&1\\end{pmatrix},\\qquad B=\\begin{pmatrix}1&1&0\\\\1&1&0\\\\0&0&3\\end{pmatrix}$$\n\n合同。\n\n(I) 求 $a$；(II) 求一个可逆矩阵 $C$，使得 $C^TAC=B$；(III) 在第(II)问基础上，若 $X=(x_1,x_2,x_3)^T$ 满足 $\\operatorname{tr}[A(CX)(CX)^T]=0$，求 $X$。",
+    "answer": "$a=-\\frac12$；$C=\\begin{pmatrix}1&2&1\\\\0&1&2\\\\0&1&0\\end{pmatrix}$（不唯一）；$X=k(1,-1,0)^T$，$k\\in\\mathbb R$。",
+    "explanation": "(I) 合同必同秩，$r(B)=2$，故 $r(A)=2$，$|A|=0$。\n\n$$|A|=(1-a)^2(1+2a)=0\\Rightarrow a=1\\text{ 或 }a=-\\frac12.$$\n\n$a=1$ 时全1矩阵的秩为1，舍去，故 $a=-\\frac12$。此时两个矩阵的正惯性指数均为2、负惯性指数均为0，确实合同。\n\n(II) 用配方法化二次型为规范型（避免复杂特征向量计算）：\n\n$$\\begin{aligned}f&=x_1^2+x_2^2+x_3^2-x_1x_2-x_2x_3-x_3x_1\\\\&=\\left(x_1-\\frac{x_2}2-\\frac{x_3}2\\right)^2+\\frac34(x_2-x_3)^2.\\end{aligned}$$\n\n$$g=(y_1+y_2)^2+3y_3^2.$$\n\n令\n\n$$\\begin{cases}x_1-\\frac{x_2}2-\\frac{x_3}2=y_1+y_2,\\\\\\frac{x_2-x_3}{2}=y_3,\\\\x_3=y_2.\\end{cases}$$\n\n解得 $x_3=y_2,x_2=y_2+2y_3,x_1=y_1+2y_2+y_3$。\n\n$$\\begin{pmatrix}x_1\\\\x_2\\\\x_3\\end{pmatrix}=\\begin{pmatrix}1&2&1\\\\0&1&2\\\\0&1&0\\end{pmatrix}\\begin{pmatrix}y_1\\\\y_2\\\\y_3\\end{pmatrix}.$$\n\n即 $X=CY$，$|C|=-2\\ne0$，满足 $C^TAC=B$。\n\n(III) 利用迹的性质：\n\n$$\\begin{aligned}\\operatorname{tr}[A(CX)(CX)^T]&=\\operatorname{tr}[(CX)^TA(CX)]\\\\&=X^TC^TACX=X^TBX\\\\&=(x_1+x_2)^2+3x_3^2=0.\\end{aligned}$$\n\n所以 $x_1+x_2=0,x_3=0$，即 $X=k(1,-1,0)^T$。\n\n易错点：合同变换矩阵必须可逆，不能把零特征值对应的缩放系数设为0。配方法是本题参考解答的简便方法。\n\n（原卷第三问编号重复为II，这里按第三问标记。）"
   }
 ]

@@ -28,12 +28,12 @@ const { noteTableMarkdown, repairPastedTables } = await loadModule('client/src/m
 })
 const examsCatalog = createPracticeCatalog(practiceQuestions, 'exams')
 const bookCatalog = createPracticeCatalog(practiceQuestions, 'll880')
-assert.equal(examsCatalog.questions.length, 510)
+assert.equal(examsCatalog.questions.length, 529)
 assert.equal(bookCatalog.questions.length, 929)
-assert.equal(examsCatalog.papers.length, 19)
+assert.equal(examsCatalog.papers.length, 20)
 assert.equal(bookCatalog.papers.length, 12)
 assert.equal(new Set([...examsCatalog.questions, ...bookCatalog.questions].map(q => q.id)).size, practiceQuestions.length)
-assert.equal(examsCatalog.papers.reduce((sum, paper) => sum + paper.questions.length, 0), 510)
+assert.equal(examsCatalog.papers.reduce((sum, paper) => sum + paper.questions.length, 0), 529)
 const group2025 = examsCatalog.papers.find(paper => paper.year === 2025).questions
 assert.equal(group2025[0].id, 'math2-2025-q4-original')
 assert.ok(examsCatalog.searchText.get('math2-2025-q4-original').includes('2025'))
@@ -56,6 +56,11 @@ assert.equal(liLinSixSet2.series, 'll6-2027')
 assert.deepEqual(liLinSixSet2.questions.filter(q => q.kind === 'original').map(q => q.examNumber), ['5', '7', '9', '10', '12', '13', '14', '15', '16', '17', '19', '20', '21', '22'])
 assert.equal(liLinSixSet2.questions.at(-1).number, '22（Ⅱ）')
 assert.deepEqual(liLinSixSet2.questions.filter(q => q.kind === 'exercise').map(q => [q.examNumber, q.exerciseIndex]), [['10', 1], ['10', 2], ['10', 3]])
+const liLinSixSet3 = examsCatalog.papers.find(paper => paper.id === 'll6-2027-set3')
+assert.deepEqual(examsCatalog.papers.filter(paper => paper.series === 'll6-2027').map(paper => paper.id), ['ll6-2027-set2', 'll6-2027-set3'])
+assert.deepEqual(liLinSixSet3.questions.map(q => Number(q.examNumber)), [1, 2, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22])
+assert.deepEqual(liLinSixSet3.questions.filter(q => q.type === 'choice').map(q => q.correctOption), ['D', 'B', 'D', 'C', 'A', 'D', 'C'])
+assert.deepEqual(workbookPaperSections(liLinSixSet3.questions, false).map(section => section.questions.length), [7, 6, 6])
 const { normalizePracticeLocation, practiceBreakpointKey, practiceLocationContext, readPracticeBreakpoints, readPracticeLocation, readPracticeLocations, savePracticeBreakpoints, savePracticeLocation } = await loadModule('client/src/math/practiceLocation.ts', { './practice': practiceModuleUrl })
 const ids = new Set()
 for (const q of practiceQuestions) {
@@ -250,7 +255,7 @@ assert.ok(imported2023.every(q => !q.bookId && q.paperTitle === '2023 年'))
 for (const q of imported2023.filter(q => q.kind === 'original')) assert.ok(q.explanation.includes('原错因记录'))
 for (const q of exercises2023) assert.ok(imported2023.some(original => original.kind === 'original' && original.questionTypes[0].id === q.questionTypes[0].id))
 assert.ok(imported2023.filter(q => q.examNumber === '19').every(q => q.source.includes('仅第一问') && !q.stem.includes('体积')), '第19题及其配套练习只导入第一问面积')
-for (const q of [...weak2025, ...originals2025, ...imported2023, ...liLinSet2.questions]) {
+for (const q of [...weak2025, ...originals2025, ...imported2023, ...liLinSet2.questions, ...liLinSixSet3.questions]) {
   for (const value of [q.stem, q.answer, q.explanation, ...(q.options ?? []).map(option => option.text)]) {
     for (const token of value.matchAll(/\$\$([\s\S]*?)\$\$|\$([^$\n]+?)\$/g)) {
       assert.doesNotThrow(() => katex.renderToString(token[1] ?? token[2], { displayMode: Boolean(token[1]), throwOnError: true, strict: 'ignore' }), `${q.id} 公式必须可渲染`)
