@@ -1,7 +1,14 @@
 <script setup lang="ts">
 import MathHeader from '@/components/MathHeader.vue'
 import MathMarkdown from '@/components/MathMarkdown.vue'
+import WorkbookExport from '@/components/WorkbookExport.vue'
 import notes from '@/content/linear-algebra-proofs.json'
+import { proofWorkbookSections } from '@/math/workbook'
+
+async function workbookSections() {
+  const { default: questions } = await import('@/content/practice-questions.json')
+  return proofWorkbookSections(questions as Parameters<typeof proofWorkbookSections>[0])
+}
 </script>
 
 <template>
@@ -10,8 +17,8 @@ import notes from '@/content/linear-algebra-proofs.json'
     <main>
       <RouterLink class="back-link" to="/">← 返回搜索</RouterLink>
       <header class="page-heading">
-        <h1>线代证明题专场</h1>
-        <p>{{ notes.title }}</p>
+        <div><h1>线代证明题专场</h1><p>{{ notes.title }}</p></div>
+        <WorkbookExport title="线代证明题专场" :sections="workbookSections" />
       </header>
       <MathMarkdown class="introduction" :source="notes.intro" />
       <section v-for="part in notes.sections" :id="part.id" :key="part.id" class="proof-part" :aria-labelledby="`${part.id}-heading`">
@@ -35,7 +42,7 @@ import notes from '@/content/linear-algebra-proofs.json'
 main { width: 100%; padding: 36px clamp(24px, 4vw, 72px) 80px; }
 .back-link { display: inline-flex; align-items: center; min-height: 44px; color: var(--accent-dark); font-size: 14px; font-weight: 650; }
 .back-link:hover { text-decoration: underline; }
-.page-heading { margin: 24px 0; }
+.page-heading { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; margin: 24px 0; }
 h1, h2, h3 { color: var(--ink); font-family: var(--serif); }
 h1 { margin: 0; font-size: clamp(38px, 4.5vw, 64px); line-height: 1.3; }
 .page-heading p { margin: 12px 0 0; color: var(--ink-soft); font-size: 18px; }

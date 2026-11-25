@@ -7,6 +7,8 @@ import PracticeQuestionCard from '@/components/PracticeQuestionCard.vue'
 import PracticeImagePreview from '@/components/PracticeImagePreview.vue'
 import PracticeIcon from '@/components/PracticeIcon.vue'
 import PracticeToolbar from '@/components/PracticeToolbar.vue'
+import WorkbookExport from '@/components/WorkbookExport.vue'
+import { workbookPaperSections, workbookQuestion, type WorkbookSection } from '@/math/workbook'
 import { usePracticeAutoHide } from '@/composables/usePracticeAutoHide'
 import { usePracticePosition } from '@/composables/usePracticePosition'
 import { createPracticeCatalog, groupMistakesByChapter, paperKey, practicePaperSeries } from '@/math/practiceCatalog'
@@ -103,8 +105,6 @@ const notice = ref('')
 const undoRemovalId = ref('')
 const storageFailed = ref(false)
 const exportingPdf = ref(false)
-const pdfTitle = ref('')
-let savedDocumentTitle = ''
 const importInput = ref<HTMLInputElement>()
 const queueIds = ref<string[]>([])
 const round = ref(0)
@@ -405,31 +405,21 @@ function restoreQuestion(id: string) {
   undoRemovalId.value = ''
   notice.value = '题目已恢复，做题状态、笔记和收藏已保留。'
 }
-async function exportPdf() {
-  if (!queue.value.length || exportingPdf.value) return
-  exportingPdf.value = true
-  pdfTitle.value = `${heading.value} · ${queue.value.length}题`
-  savedDocumentTitle = document.title
-  document.title = pdfTitle.value
-  await nextTick()
-  try {
-    await document.fonts.ready
-    await Promise.all(Array.from(document.querySelectorAll<HTMLImageElement>('#practice-main img')).map(img => {
-      img.loading = 'eager'
-      return img.decode().catch(() => undefined)
-    }))
-    window.print()
-  } catch {
-    finishPdfExport()
-    notice.value = '无法打开导出窗口，请重试。'
-  }
+const workbookTitle = computed(() => {
+  if (isBook) return `李林 880 · ${workspaceTitle.value}`
+  return mode.value === 'all' ? workspaceTitle.value : `数学二试卷 · ${workspaceTitle.value}`
+})
+function workbookSections(): WorkbookSection[] {
+  const includeSource = mode.value !== 'all' || isBook || queue.value.some(question => question.kind !== 'original')
+  if (!isBook && mode.value === 'all') return workbookPaperSections(queue.value, includeSource)
+  if (viewingFavorites.value) return [{ title: '', questions: queue.value.map(question => workbookQuestion(question, includeSource)) }]
+  return displayGroups.value.flatMap(group => group.sections.map(section => ({
+    title: displayGroups.value.length === 1 && group.title === workspaceTitle.value ? section.title : [group.title, section.title].filter(Boolean).join(' · '),
+    questions: section.questions.map(question => workbookQuestion(question, includeSource)),
+  })))
 }
-function finishPdfExport() {
-  if (!exportingPdf.value) return
-  exportingPdf.value = false
-  document.title = savedDocumentTitle
-  flushAutoHides()
-}
+watch(exportingPdf, busy => { if (!busy) flushAutoHides() })
+
 function exportBackup() {
   flushNotes()
   const blob = new Blob([JSON.stringify({ version: 1, exportedAt: new Date().toISOString(), progress: progress.value }, null, 2)], { type: 'application/json' })
@@ -532,7 +522,6 @@ onBeforeRouteUpdate(flushNotes)
 onMounted(() => {
   window.addEventListener('storage', syncProgress)
   window.addEventListener(PRACTICE_REMOVALS_CHANGED_EVENT, syncProgress)
-  window.addEventListener('afterprint', finishPdfExport)
   window.addEventListener('pagehide', flushNotes)
   document.addEventListener('visibilitychange', flushNotesWhenHidden)
   jumpToRoute()
@@ -541,16 +530,14 @@ onBeforeUnmount(() => {
   flushNotes()
   window.removeEventListener('storage', syncProgress)
   window.removeEventListener(PRACTICE_REMOVALS_CHANGED_EVENT, syncProgress)
-  window.removeEventListener('afterprint', finishPdfExport)
   window.removeEventListener('pagehide', flushNotes)
   document.removeEventListener('visibilitychange', flushNotesWhenHidden)
-  finishPdfExport()
   if (noticeTimer) window.clearTimeout(noticeTimer)
 })
 </script>
 
 <template>
-  <div class="practice-page" :class="{ 'pdf-export': exportingPdf }">
+  <div class="practice-page">
     <PracticeImagePreview ref="imagePreview" />
     <MathHeader hide-search />
     <div class="practice-layout">
@@ -619,22 +606,21 @@ onBeforeUnmount(() => {
       <main id="practice-main" tabindex="-1" @pointerdown="trackQuestionInteraction" @focusin="trackQuestionInteraction">
         <header class="workspace-heading">
           <div><p class="workspace-path">数学二<span>/</span>{{ isBook ? '880 题库' : '试卷题库' }}</p><h1>{{ workspaceTitle }}</h1><p class="workspace-subtitle">{{ workspaceSubtitle }}</p></div>
-          <div class="workspace-actions"><button class="pdf-button" :disabled="!queue.length || exportingPdf" @click="exportPdf"><PracticeIcon name="download" />{{ exportingPdf ? '准备导出…' : '导出 PDF' }}</button></div>
+          <div class="workspace-actions"><WorkbookExport v-model:busy="exportingPdf" :disabled="!queue.length" :title="workbookTitle" :sections="workbookSections" /></div>
         </header>
         <section class="resume-card" aria-label="最近做题位置" @pointerdown.capture="finishLocationTracking" @focusin="finishLocationTracking"><PracticeIcon name="clock" /><span class="resume-caption">继续做题</span><template v-if="resumeOptions.length"><label class="visually-hidden" for="resume-location">最近两次做题记录</label><select id="resume-location" v-model="selectedLocationContext" :disabled="resuming"><option v-for="option in resumeOptions" :key="option.key" :value="option.key">{{ option.label }}</option></select><button :disabled="resuming" @click="resumeLocation(lastLocation)">{{ resuming ? '正在定位…' : '跳转' }}<PracticeIcon name="arrow" /></button></template><p v-else class="resume-empty">开始练习后，这里会保留最近两次做题位置。</p></section>
         <section v-if="!questions.length" class="preview-banner"><PracticeIcon name="book" /><div><strong>错题本已就绪，等待录入你的题目</strong><p>下方使用你提供的截图演示操作，年份尚未确认，不计入正式题库和复习统计。</p></div><button @click="demoMode = !demoMode">{{ demoMode ? '收起示例' : '体验示例' }}</button></section>
         <p v-if="storageFailed" role="alert" class="storage-error">浏览器暂时无法保存进度，请立即导出备份以保留本次标记和笔记。</p>
-        <p class="print-summary print-only">{{ pdfTitle }} · 含答案解析与笔记</p>
         <section v-if="selectedChapter && mode !== 'review'" class="chapter-filters" aria-label="880题型筛选">
           <div class="chapter-filter-controls"><label>题型<select v-model="typeFilter" aria-label="按具体题型筛选"><option value="all">全部题型</option><option v-for="item in chapterTypes" :key="item.id" :value="item.id">{{ item.order }}. {{ item.title }}</option></select></label><label>分层<select v-model="levelFilter" aria-label="按原书基础综合拓展筛选"><option value="all">基础、综合与拓展</option><option v-for="level in ['基础题', '综合题', '拓展题']" :key="level" :value="level">{{ level }}</option></select></label></div>
           <a v-if="selectedChapter.sourceFile" :href="`${baseUrl}${selectedChapter.sourceFile}`" target="_blank" rel="noopener">原分类总结<PracticeIcon name="arrow" /></a>
         </section>
         <PracticeToolbar v-model:status="statusFilter" v-model:keyword="keyword" :count="queue.length" :marked="markedInQueue" :hidden="viewingMistakes ? 0 : hiddenInScope" :removed="mode === 'removed'" :notes="mode === 'notes'" :mistake-book="viewingMistakes" @reveal="showHiddenMastered" />
         <div v-if="queue.length" class="question-list">
-          <div v-if="viewingFavorites" class="year-questions review-questions"><PracticeQuestionCard v-for="(question, index) in queue" :key="`${round}-${question.id}`" :question="question" :index="index + 1" :progress="activeProgress[question.id]" :note-drafts="noteDrafts" :breakpoint="breakpointIds.has(question.id)" @toggle-breakpoint="toggleBreakpoint" :auto-hide-pending="Boolean(autoHideDeadlines[question.id])" :storage-failed="storageFailed" :print-mode="exportingPdf" :collapse-request="collapseRequest" @collapse-all="collapseAllQuestions" :manageable="!demoMode" @remove="removeQuestion" @restore="restoreQuestion" @note-blur="refreshNotesQueue" @mark="mark" @favorite="changeFavorite" @attempt="recordAttempt" @note="saveNote" @preview="openImage" /></div>
+          <div v-if="viewingFavorites" class="year-questions review-questions"><PracticeQuestionCard v-for="(question, index) in queue" :key="`${round}-${question.id}`" :question="question" :index="index + 1" :progress="activeProgress[question.id]" :note-drafts="noteDrafts" :breakpoint="breakpointIds.has(question.id)" @toggle-breakpoint="toggleBreakpoint" :auto-hide-pending="Boolean(autoHideDeadlines[question.id])" :storage-failed="storageFailed" :collapse-request="collapseRequest" @collapse-all="collapseAllQuestions" :manageable="!demoMode" @remove="removeQuestion" @restore="restoreQuestion" @note-blur="refreshNotesQueue" @mark="mark" @favorite="changeFavorite" @attempt="recordAttempt" @note="saveNote" @preview="openImage" /></div>
           <section v-for="group in displayGroups" :id="`practice-year-${group.id}`" :key="group.id" class="year-section" :class="{ 'single-paper': !viewingMistakes && displayGroups.length === 1 }" :aria-labelledby="`year-title-${group.id}`">
             <header class="paper-heading"><div><span class="paper-label">{{ group.label }}</span><h2 :id="`year-title-${group.id}`">{{ group.title }}{{ mode === 'removed' ? ' · 已移除题目' : mode === 'notes' ? ' · 笔记题目' : '' }}</h2></div><span>{{ group.questions.length }} 题</span></header>
-            <section v-for="section in group.sections" :key="section.id" class="type-section" :aria-label="section.title || group.title"><h3 v-if="section.title" class="type-heading">{{ section.title }}<small>{{ section.questions.length }} 题</small></h3><div class="year-questions"><PracticeQuestionCard v-for="(question, index) in section.questions" :key="`${round}-${question.id}`" :question="question" :index="index + 1" :progress="activeProgress[question.id]" :note-drafts="noteDrafts" :breakpoint="breakpointIds.has(question.id)" @toggle-breakpoint="toggleBreakpoint" :auto-hide-pending="!viewingMistakes && Boolean(autoHideDeadlines[question.id])" :storage-failed="storageFailed" :print-mode="exportingPdf" :collapse-request="collapseRequest" @collapse-all="collapseAllQuestions" :show-note="mode === 'notes' || mode === 'removed'" :manageable="!demoMode" :mistake-book="viewingMistakes" :removed="mode === 'removed'" @remove-mistake="removeMistake" @remove="removeQuestion" @restore="restoreQuestion" @note-blur="refreshNotesQueue" @mark="mark" @favorite="changeFavorite" @attempt="recordAttempt" @note="saveNote" @preview="openImage" /></div></section>
+            <section v-for="section in group.sections" :key="section.id" class="type-section" :aria-label="section.title || group.title"><h3 v-if="section.title" class="type-heading">{{ section.title }}<small>{{ section.questions.length }} 题</small></h3><div class="year-questions"><PracticeQuestionCard v-for="(question, index) in section.questions" :key="`${round}-${question.id}`" :question="question" :index="index + 1" :progress="activeProgress[question.id]" :note-drafts="noteDrafts" :breakpoint="breakpointIds.has(question.id)" @toggle-breakpoint="toggleBreakpoint" :auto-hide-pending="!viewingMistakes && Boolean(autoHideDeadlines[question.id])" :storage-failed="storageFailed" :collapse-request="collapseRequest" @collapse-all="collapseAllQuestions" :show-note="mode === 'notes' || mode === 'removed'" :manageable="!demoMode" :mistake-book="viewingMistakes" :removed="mode === 'removed'" @remove-mistake="removeMistake" @remove="removeQuestion" @restore="restoreQuestion" @note-blur="refreshNotesQueue" @mark="mark" @favorite="changeFavorite" @attempt="recordAttempt" @note="saveNote" @preview="openImage" /></div></section>
           </section>
           <footer class="paper-end"><strong>{{ mode === 'review' ? viewingFavorites ? '我的收藏 · 本页结束' : '错题库 · 本页结束' : mode === 'removed' ? '已移除题目 · 本页结束' : mode === 'notes' ? '笔记汇总 · 本页结束' : `${paperScope} · ${isBook ? '本章' : '本卷'}结束` }}</strong></footer>
         </div>
@@ -646,36 +632,3 @@ onBeforeUnmount(() => {
 </template>
 
 <style scoped src="@/styles/practice.css"></style>
-
-<style>
-@media print {
-  @page { size: A4; margin: 15mm; }
-  body { background: white !important; }
-  .pdf-export ~ .app-footer, .pdf-export .site-header, .pdf-export .directory,
-  .pdf-export .toolbar, .pdf-export .chapter-filters, .pdf-export .workspace-heading, .pdf-export .notice,
-  .pdf-export .question-management, .pdf-export .question-knowledge,
-  .pdf-export .display-hint,
-  .pdf-export .resume-card,
-  .pdf-export .storage-error, .pdf-export .paper-end, .route-loading-overlay { display: none !important; }
-  .pdf-export .practice-layout { display: block; width: 100%; margin: 0; padding: 0; }
-  .pdf-export .print-only { display: block !important; }
-  .pdf-export .print-summary { font-size: 16pt; font-weight: 700; margin: 0 0 14pt; }
-  .pdf-export .question-list { margin: 0; }
-  .pdf-export .year-questions { display: block; }
-  .pdf-export .question-card { border: 0; border-bottom: 1px solid #ccc; border-radius: 0; padding: 12pt 0; margin: 0; break-inside: avoid; }
-  .pdf-export .question-card:has(.question-source-images) { break-inside: auto; }
-  .pdf-export .source-images .image-preview-trigger { break-inside: avoid; padding: 0; }
-  .pdf-export .question-card h3, .pdf-export .options legend { display: none; }
-  .pdf-export .question-actions, .pdf-export .question-meta-actions, .pdf-export .choice-feedback,
-  .pdf-export .note-area, .pdf-export .option input, .pdf-export .option-result { display: none !important; }
-  .pdf-export .question-meta { break-after: avoid; }
-  .pdf-export .question-stem, .pdf-export .answer-panel, .pdf-export .print-note { font-size: 10.5pt; line-height: 1.6; }
-  .pdf-export .math-markdown { color: #000; font-size: 10.5pt !important; line-height: 1.6 !important; }
-  .pdf-export .katex-display, .pdf-export .reading-math { overflow: visible !important; break-inside: avoid; }
-  .pdf-export .options { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .pdf-export .option { font-size: 10.5pt; border-color: #ccc !important; background: white !important; color: #000 !important; min-height: 0; }
-  .pdf-export .question-figures img { max-height: 180pt; }
-  .pdf-export .print-note p { white-space: pre-wrap; overflow-wrap: anywhere; }
-  .pdf-export .paper-heading { display: flex !important; break-after: avoid; }
-}
-</style>

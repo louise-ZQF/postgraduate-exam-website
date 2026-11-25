@@ -4,15 +4,13 @@ import MathMarkdown from '@/components/MathMarkdown.vue'
 import PracticeIcon from '@/components/PracticeIcon.vue'
 import PracticeNoteEditor from '@/components/PracticeNoteEditor.vue'
 import { Bookmark, BookText, Calculator, ChevronsDownUp, CircleCheck, CircleX, Ellipsis, ExternalLink, Eye, NotebookText, RotateCcw, Star, Tag, Trash2 } from '@lucide/vue'
-import arcDiagram from '@/assets/practice-figures/zy2026-set1-q5.svg?raw'
+import { practiceImageUrl } from '@/math/practiceImage'
 import { favoriteReasonLabels, getMistakeReason, manualErrorReasons, masteryLabels, MISSED_POINT_FAVORITE, MISSED_POINT_MASTERY, REMOVED_RETENTION_MS, type FavoriteReason, type ManualMastery, type PracticeQuestion, type QuestionImage, type QuestionProgress } from '@/math/practice'
 
-const props = defineProps<{ question: PracticeQuestion; index: number; progress?: QuestionProgress; noteDrafts: ReadonlyMap<string, string>; storageFailed: boolean; showNote?: boolean; removed?: boolean; manageable?: boolean; mistakeBook?: boolean; printMode?: boolean; autoHidePending?: boolean; breakpoint?: boolean; collapseRequest: number }>()
+const props = defineProps<{ question: PracticeQuestion; index: number; progress?: QuestionProgress; noteDrafts: ReadonlyMap<string, string>; storageFailed: boolean; showNote?: boolean; removed?: boolean; manageable?: boolean; mistakeBook?: boolean; autoHidePending?: boolean; breakpoint?: boolean; collapseRequest: number }>()
 const emit = defineEmits<{ mark: [id: string, mastery: ManualMastery]; favorite: [id: string, reason?: FavoriteReason]; attempt: [id: string, correct: boolean | undefined]; note: [id: string, note: string]; noteBlur: []; remove: [id: string]; removeMistake: [id: string]; restore: [id: string]; collapseAll: [trigger: HTMLButtonElement]; preview: [image: QuestionImage, trigger: HTMLElement]; toggleBreakpoint: [id: string] }>()
-const arcDiagramUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(arcDiagram)}`
-const figureUrl = (src: string) => src === 'practice-figures/zy2026-set1-q5.svg' ? arcDiagramUrl : `${import.meta.env.BASE_URL}${src}`
 function previewImage(picture: QuestionImage, event: MouseEvent) {
-  emit('preview', { ...picture, src: figureUrl(picture.src) }, event.currentTarget as HTMLElement)
+  emit('preview', { ...picture, src: practiceImageUrl(picture.src) }, event.currentTarget as HTMLElement)
 }
 const answerOpen = ref(false)
 const explanationOpen = ref(false)
@@ -101,18 +99,17 @@ const displayedMastery = computed(() => props.mistakeBook ? getMistakeReason(pro
       <span v-if="displayedMastery" class="mastery-record" :class="{ 'error-record': displayedMastery !== 'mastered' }" :title="`最近更新 ${lastUpdated}`">{{ displayedMastery === 'mastered' ? '已掌握' : masteryLabels[displayedMastery] }}<span v-if="lastUpdated"> · {{ lastUpdated }}</span></span>
       <details ref="knowledgeMenu" class="question-knowledge" @focusout="closeMenu" @keydown.esc="knowledgeMenu && (knowledgeMenu.open = false)"><summary><Tag /><span>相关知识点</span><small>{{ knowledgeItems.length }}</small></summary><div class="knowledge-panel"><strong>{{ question.topic }}</strong><p v-if="question.bookId" class="knowledge-level">{{ question.level }} · {{ question.type === 'choice' ? '选择题' : question.type === 'fill' ? '填空题' : '解答题' }}</p><div v-for="item in knowledgeItems" :key="item.title"><span>{{ item.title }}</span><small v-if="item.detail">{{ item.detail }}</small></div></div></details>
       <div v-if="manageable" class="question-meta-actions">
-        <button v-if="!printMode" class="breakpoint-toggle" :class="{ 'is-breakpoint': breakpoint }" type="button" @click="emit('toggleBreakpoint', question.id)">
+        <button class="breakpoint-toggle" :class="{ 'is-breakpoint': breakpoint }" type="button" @click="emit('toggleBreakpoint', question.id)">
           <Bookmark aria-hidden="true" />{{ breakpoint ? '取消断点' : '设为断点' }}
         </button>
         <details v-if="!mistakeBook" ref="managementMenu" class="question-management" @focusout="closeMenu" @keydown.esc="managementMenu && (managementMenu.open = false)"><summary aria-label="更多题目操作" title="更多操作"><Ellipsis /></summary><div class="management-panel"><button class="question-manage" :class="{ restore: removed }" @click="manageQuestion"><RotateCcw v-if="removed" /><Trash2 v-else />{{ removed ? '恢复题目' : '移除题目' }}</button></div></details>
       </div>
     </header>
     <h3 :id="`title-${question.id}`" class="visually-hidden">{{ question.year }} 年 {{ question.source }} {{ question.number }}题</h3>
-    <p class="print-only print-topic">{{ question.topic }}</p>
     <p v-if="removalDeadlineLabel" class="removal-deadline">将于 {{ removalDeadlineLabel }} 自动清理</p>
-    <div v-if="question.questionImages?.length" class="source-images question-source-images"><button v-for="picture in question.questionImages" :key="picture.src" type="button" class="image-preview-trigger" :aria-label="`${picture.alt}，放大预览`" @click="previewImage(picture, $event)"><img :src="figureUrl(picture.src)" :alt="picture.alt" :width="picture.width" :height="picture.height" loading="lazy" decoding="async" /></button></div>
+    <div v-if="question.questionImages?.length" class="source-images question-source-images"><button v-for="picture in question.questionImages" :key="picture.src" type="button" class="image-preview-trigger" :aria-label="`${picture.alt}，放大预览`" @click="previewImage(picture, $event)"><img :src="practiceImageUrl(picture.src)" :alt="picture.alt" :width="picture.width" :height="picture.height" loading="lazy" decoding="async" /></button></div>
     <MathMarkdown v-else class="question-stem" :source="question.stem" compact />
-    <div v-if="question.figures?.length" class="question-figures"><figure v-for="figure in question.figures" :key="figure.src"><button type="button" class="image-preview-trigger" :aria-label="`${figure.alt}，放大预览`" @click="previewImage(figure, $event)"><img :src="figureUrl(figure.src)" :alt="figure.alt" :width="figure.width" :height="figure.height" loading="lazy" decoding="async" /></button><figcaption v-if="figure.caption">{{ figure.caption }}</figcaption></figure></div>
+    <div v-if="question.figures?.length" class="question-figures"><figure v-for="figure in question.figures" :key="figure.src"><button type="button" class="image-preview-trigger" :aria-label="`${figure.alt}，放大预览`" @click="previewImage(figure, $event)"><img :src="practiceImageUrl(figure.src)" :alt="figure.alt" :width="figure.width" :height="figure.height" loading="lazy" decoding="async" /></button><figcaption v-if="figure.caption">{{ figure.caption }}</figcaption></figure></div>
     <fieldset v-if="question.options?.length" class="options">
       <legend class="visually-hidden">第 {{ index }} 题，选择你的答案</legend>
       <label v-for="option in question.options" :key="option.key" class="option" :class="{ selected: selectedOption === option.key, correct: showResult && question.correctOption === option.key, wrong: showResult && selectedOption === option.key && question.correctOption !== option.key }">
@@ -135,12 +132,11 @@ const displayedMastery = computed(() => props.mistakeBook ? getMistakeReason(pro
         <button v-if="progress?.favorite" class="clear-favorite" type="button" aria-label="取消收藏" @click="emit('favorite', question.id)">{{ reasons.length ? '取消收藏' : '已收藏 · 取消' }}</button>
       </div>
     </div>
-    <section v-if="question.answerAvailable !== false && (answerOpen || explanationOpen || printMode)" :class="{ 'print-only': !answerOpen && !explanationOpen }" ref="answerPanel" :id="`answer-${question.id}`" class="answer-panel" aria-label="答案与解析">
-      <template v-if="question.answerImages?.length"><h4>原书答案与解析</h4><div class="source-images"><button v-for="picture in question.answerImages" :key="picture.src" type="button" class="image-preview-trigger" :aria-label="`${picture.alt}，放大预览`" @click="previewImage(picture, $event)"><img :src="figureUrl(picture.src)" :alt="picture.alt" :width="picture.width" :height="picture.height" loading="lazy" decoding="async" /></button></div></template>
-      <template v-else><template v-if="answerOpen || printMode"><h4>答案</h4><MathMarkdown :source="question.answer" compact /></template><template v-if="explanationOpen || printMode"><h4>解析</h4><MathMarkdown :source="question.explanation" compact /></template></template>
+    <section v-if="question.answerAvailable !== false && (answerOpen || explanationOpen)" ref="answerPanel" :id="`answer-${question.id}`" class="answer-panel" aria-label="答案与解析">
+      <template v-if="question.answerImages?.length"><h4>原书答案与解析</h4><div class="source-images"><button v-for="picture in question.answerImages" :key="picture.src" type="button" class="image-preview-trigger" :aria-label="`${picture.alt}，放大预览`" @click="previewImage(picture, $event)"><img :src="practiceImageUrl(picture.src)" :alt="picture.alt" :width="picture.width" :height="picture.height" loading="lazy" decoding="async" /></button></div></template>
+      <template v-else><template v-if="answerOpen"><h4>答案</h4><MathMarkdown :source="question.answer" compact /></template><template v-if="explanationOpen"><h4>解析</h4><MathMarkdown :source="question.explanation" compact /></template></template>
     </section>
-    <p v-if="autoHidePending && !printMode" class="auto-hide-hint" role="status">已掌握，稍后自动隐藏；改标错因可取消。</p>
-    <section v-if="printMode && notePresent" class="print-note print-only"><h4>错因笔记</h4><MathMarkdown :source="note" automatic breaks /></section>
+    <p v-if="autoHidePending" class="auto-hide-hint" role="status">已掌握，稍后自动隐藏；改标错因可取消。</p>
     <PracticeNoteEditor v-if="noteOpen" :id="`note-${question.id}`" :input-id="`note-input-${question.id}`" :label="`${question.source}的错因笔记`" :model-value="note" :storage-failed="storageFailed" @update:model-value="emit('note', question.id, $event)" @blur="emit('noteBlur')" />
   </article>
 </template>
@@ -197,5 +193,5 @@ summary::-webkit-details-marker { display: none; }
 .mastery-controls .marked:not(.mastered) { border-color: #e0959e; background: var(--danger-tint); color: var(--danger); }
 .mastery-controls .mastered.marked { border-color: #45b078; background: #dff9e9; color: #227346; }
 .answer-panel { margin: 16px 0 0; border-top: 1px solid var(--line); padding: 18px 0 4px; font-size: 16px; line-height: 1.8; }.answer-panel h4 { margin: 0 0 8px; color: var(--ink); font-size: 14px; font-weight: 600; }.answer-panel h4:not(:first-child) { margin-top: 18px; }.choice-feedback { display: flex; align-items: center; gap: 8px; margin: 0 0 16px; border-radius: 8px; padding: 10px 12px; font-size: 14px; line-height: 1.6; }.choice-feedback.correct { background: var(--success-tint); color: var(--success); }.choice-feedback.incorrect { background: var(--danger-tint); color: var(--danger); }
-.auto-hide-hint { margin: 10px 0 0; color: var(--muted); font-size: 12px; line-height: 1.7; }.print-only { display: none; }.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+.auto-hide-hint { margin: 10px 0 0; color: var(--muted); font-size: 12px; line-height: 1.7; }.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 </style>
