@@ -22,12 +22,18 @@ export interface GraphPoint {
   label?: string
   labelPosition?: 'left' | 'right' | 'above' | 'below'
   marker?: boolean
+  endpoint?: boolean
 }
 
 export interface IntegralDiagram {
   area: string
   arcLength?: string
   guides?: [x1: number, y1: number, x2: number, y2: number][]
+}
+
+interface GraphTick {
+  value: number
+  label: string
 }
 
 export interface FunctionGraph {
@@ -49,9 +55,33 @@ export interface FunctionGraph {
   verticalAsymptotes?: number[]
   horizontalAsymptotes?: number[]
   points?: GraphPoint[]
+  detail?: {
+    xTicks: GraphTick[]
+    yTicks: GraphTick[]
+    derivative: string
+    note: string
+  }
 }
 
 const segment = (from: number, to: number, fn: (x: number) => number): GraphSegment => ({ from, to, fn })
+const integerTicks = (...values: number[]): GraphTick[] => values.map(value => ({
+  value,
+  label: String(value).replace('-', '−'),
+}))
+const halfPiTicks: GraphTick[] = [
+  { value: -Math.PI / 2, label: '−π/2' },
+  { value: -Math.PI / 4, label: '−π/4' },
+  { value: 0, label: '0' },
+  { value: Math.PI / 4, label: 'π/4' },
+  { value: Math.PI / 2, label: 'π/2' },
+]
+const positivePiTicks: GraphTick[] = [
+  { value: 0, label: '0' },
+  { value: Math.PI / 4, label: 'π/4' },
+  { value: Math.PI / 2, label: 'π/2' },
+  { value: 3 * Math.PI / 4, label: '3π/4' },
+  { value: Math.PI, label: 'π' },
+]
 
 export const graphCategories: GraphCategory[] = ['二重积分曲线', '基本函数', '分式函数', '指数对数', '三角函数', '反三角函数']
 
@@ -330,10 +360,21 @@ export const functionGraphs: FunctionGraph[] = [
     domain: '[-1,1]',
     range: '[-π/2,π/2]',
     conclusion: '奇函数，在定义域上单调递增。',
-    xRange: [-1.5, 1.5],
-    yRange: [-2, 2],
-    segments: [segment(-1, 1, (x) => Math.asin(x))],
-    points: [{ x: 0, y: 0, label: 'O' }],
+    xRange: [-1.25, 1.25],
+    yRange: [-1.98, 1.98],
+    segments: [],
+    parametricSegments: [{ from: -Math.PI / 2, to: Math.PI / 2, x: Math.sin, y: t => t }],
+    points: [
+      { x: -1, y: -Math.PI / 2, label: '(−1, −π/2)', labelPosition: 'below', endpoint: true },
+      { x: 0, y: 0, label: '(0, 0)', labelPosition: 'above' },
+      { x: 1, y: Math.PI / 2, label: '(1, π/2)', labelPosition: 'above', endpoint: true },
+    ],
+    detail: {
+      xTicks: integerTicks(-1, 0, 1),
+      yTicks: halfPiTicks,
+      derivative: String.raw`\(\frac{1}{\sqrt{1-x^2}}\quad(-1<x<1)\)`,
+      note: '两个端点均取到，曲线在端点处有竖直切线。原点是拐点。',
+    },
   },
   {
     id: 'arccosine',
@@ -344,10 +385,21 @@ export const functionGraphs: FunctionGraph[] = [
     domain: '[-1,1]',
     range: '[0,π]',
     conclusion: '在定义域上单调递减，arccos(-x)=π-arccos x。',
-    xRange: [-1.5, 1.5],
-    yRange: [-0.5, 3.7],
-    segments: [segment(-1, 1, (x) => Math.acos(x))],
-    points: [{ x: 0, y: Math.PI / 2 }],
+    xRange: [-1.25, 1.25],
+    yRange: [-0.42, Math.PI + 0.42],
+    segments: [],
+    parametricSegments: [{ from: Math.PI, to: 0, x: Math.cos, y: t => t }],
+    points: [
+      { x: -1, y: Math.PI, label: '(−1, π)', labelPosition: 'above', endpoint: true },
+      { x: 0, y: Math.PI / 2, label: '(0, π/2)', labelPosition: 'above' },
+      { x: 1, y: 0, label: '(1, 0)', labelPosition: 'below', endpoint: true },
+    ],
+    detail: {
+      xTicks: integerTicks(-1, 0, 1),
+      yTicks: positivePiTicks,
+      derivative: String.raw`\(-\frac{1}{\sqrt{1-x^2}}\quad(-1<x<1)\)`,
+      note: String.raw`两个端点均取到，曲线在端点处有竖直切线。\(\arcsin x+\arccos x=\pi/2\)。`,
+    },
   },
   {
     id: 'arctangent',
@@ -362,7 +414,17 @@ export const functionGraphs: FunctionGraph[] = [
     yRange: [-2, 2],
     segments: [segment(-6, 6, (x) => Math.atan(x))],
     horizontalAsymptotes: [-Math.PI / 2, Math.PI / 2],
-    points: [{ x: 0, y: 0, label: 'O' }],
+    points: [
+      { x: -1, y: -Math.PI / 4, label: '(−1, −π/4)', labelPosition: 'below' },
+      { x: 0, y: 0, label: '(0, 0)', labelPosition: 'above' },
+      { x: 1, y: Math.PI / 4, label: '(1, π/4)', labelPosition: 'right' },
+    ],
+    detail: {
+      xTicks: integerTicks(-4, -2, -1, 0, 1, 2, 4),
+      yTicks: halfPiTicks,
+      derivative: String.raw`\(\frac{1}{1+x^2}\)`,
+      note: '图中虚线表示水平渐近线，函数值始终在两条虚线之间。原点是拐点。',
+    },
   },
   {
     id: 'arccotangent',
@@ -377,6 +439,16 @@ export const functionGraphs: FunctionGraph[] = [
     yRange: [-0.4, 3.6],
     segments: [segment(-6, 6, (x) => Math.PI / 2 - Math.atan(x))],
     horizontalAsymptotes: [0, Math.PI],
-    points: [{ x: 0, y: Math.PI / 2 }],
+    points: [
+      { x: -1, y: 3 * Math.PI / 4, label: '(−1, 3π/4)', labelPosition: 'above' },
+      { x: 0, y: Math.PI / 2, label: '(0, π/2)', labelPosition: 'below' },
+      { x: 1, y: Math.PI / 4, label: '(1, π/4)', labelPosition: 'below' },
+    ],
+    detail: {
+      xTicks: integerTicks(-4, -2, -1, 0, 1, 2, 4),
+      yTicks: positivePiTicks,
+      derivative: String.raw`\(-\frac{1}{1+x^2}\)`,
+      note: String.raw`图中虚线表示水平渐近线。采用值域 \((0,\pi)\) 的约定，此时 \(\arctan x+\operatorname{arccot}x=\pi/2\)。`,
+    },
   },
 ]

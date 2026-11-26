@@ -1,14 +1,16 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, nextTick, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import MathHeader from '@/components/MathHeader.vue'
 import MathMarkdown from '@/components/MathMarkdown.vue'
 import FunctionPlot from '@/components/FunctionPlot.vue'
-import { functionGraphs, graphCategories, type GraphCategory } from '@/math/functionGraphs'
+import { functionGraphs, graphCategories, type FunctionGraph, type GraphCategory } from '@/math/functionGraphs'
 
 const route = useRoute()
 const selectedCategory = ref<'全部' | GraphCategory>(graphCategories.find((category) => category === route.query.category) ?? '全部')
 const graphQuery = ref('')
+const plotDialog = ref<HTMLDialogElement>()
+const enlargedGraph = ref<FunctionGraph | null>(null)
 
 const filteredGraphs = computed(() => {
   const keyword = graphQuery.value.trim().toLowerCase()
@@ -21,6 +23,12 @@ const filteredGraphs = computed(() => {
 
 function categoryCount(category: GraphCategory) {
   return functionGraphs.filter((graph) => graph.category === category).length
+}
+
+async function enlargeGraph(graph: FunctionGraph) {
+  enlargedGraph.value = graph
+  await nextTick()
+  plotDialog.value?.showModal()
 }
 </script>
 
@@ -65,7 +73,7 @@ function categoryCount(category: GraphCategory) {
           <p>当前显示 {{ filteredGraphs.length }} 幅</p>
         </div>
 
-        <div v-if="filteredGraphs.length" class="graph-grid">
+        <div v-if="filteredGraphs.length" class="graph-grid" :class="{ 'detail-grid': filteredGraphs.every(graph => graph.detail) }">
           <article v-for="(graph, index) in filteredGraphs" :id="graph.id" :key="graph.id" class="graph-card" :class="{ 'integral-card': graph.diagram }">
             <header>
               <span class="graph-index">{{ String(index + 1).padStart(2, '0') }}</span>
@@ -73,15 +81,21 @@ function categoryCount(category: GraphCategory) {
               <strong v-if="!graph.diagram"><MathMarkdown :source="graph.formula" inline /></strong>
             </header>
             <div class="graph-body">
-              <FunctionPlot :graph="graph" />
+              <div v-if="graph.detail" class="graph-preview">
+                <FunctionPlot :graph="graph" />
+                <button type="button" class="enlarge-graph" :aria-label="`放大${graph.title}图像`" @click="enlargeGraph(graph)">放大图像</button>
+              </div>
+              <FunctionPlot v-else :graph="graph" />
               <div class="graph-facts">
                 <MathMarkdown v-if="graph.diagram" class="integral-formulas" :source="graph.formula" compact />
                 <dl>
                   <div class="graph-domain"><dt>{{ graph.diagram ? '参数范围' : '定义域' }}</dt><dd><MathMarkdown :source="graph.domain" inline /></dd></div>
                   <div v-if="graph.diagram?.arcLength"><dt>弧长</dt><dd><MathMarkdown :source="graph.diagram.arcLength" inline /></dd></div>
                   <div><dt>{{ graph.diagram ? '围成面积' : '值域' }}</dt><dd><MathMarkdown :source="graph.range" inline /></dd></div>
+                  <div v-if="graph.detail" class="graph-derivative"><dt>导数</dt><dd><MathMarkdown :source="graph.detail.derivative" inline /></dd></div>
                 </dl>
                 <p class="conclusion"><MathMarkdown :source="graph.conclusion" inline /></p>
+                <p v-if="graph.detail" class="graph-note"><MathMarkdown :source="graph.detail.note" inline /></p>
                 <div v-if="graph.region" class="integral-region"><MathMarkdown :source="graph.region" compact /></div>
               </div>
             </div>
@@ -95,6 +109,20 @@ function categoryCount(category: GraphCategory) {
         </div>
       </section>
     </main>
+
+    <dialog ref="plotDialog" class="plot-dialog" aria-labelledby="plot-dialog-title" @close="enlargedGraph = null" @click.self="plotDialog?.close()">
+      <div v-if="enlargedGraph" class="plot-dialog-content">
+        <header>
+          <div>
+            <h2 id="plot-dialog-title">{{ enlargedGraph.title }}</h2>
+            <MathMarkdown :source="enlargedGraph.formula" inline />
+          </div>
+          <button type="button" class="enlarge-graph" autofocus @click="plotDialog?.close()">关闭</button>
+        </header>
+        <FunctionPlot :graph="enlargedGraph" />
+        <p class="graph-note"><MathMarkdown :source="enlargedGraph.detail?.note ?? ''" inline /></p>
+      </div>
+    </dialog>
   </div>
 </template>
 
@@ -127,8 +155,14 @@ h1 em { color: var(--brand-600); font-style: normal; }
 .atlas-heading h2 { margin: 6px 0 0; font-family: ui-serif, "Songti SC", STSong, serif; font-size: 32px; }
 .atlas-heading p { margin: 0; color: var(--ink-400); font-size: 12px; }
 .graph-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.graph-grid.detail-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .graph-card { min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 10px; padding: 16px; background: var(--paper); }
 .graph-card :deep(.function-plot) { max-width: 340px; margin: 0 auto; }
+.graph-preview { display: grid; justify-items: end; }
+.graph-preview :deep(.function-plot) { max-width: none; }
+.enlarge-graph { min-height: 44px; padding: 6px 12px; border: 1px solid var(--line-strong); border-radius: 6px; background: var(--paper); color: var(--accent-dark); font-size: 13px; font-weight: 650; }
+.enlarge-graph:hover { border-color: var(--accent); background: var(--accent-tint); }
+.enlarge-graph:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .graph-card:hover { border-color: var(--line-strong); }
 .graph-card header { display: grid; grid-template-columns: 24px minmax(0, 1fr) auto; align-items: center; gap: 8px; margin-bottom: 8px; }
 .graph-index { color: var(--accent-dark); font-family: ui-monospace, monospace; font-size: 11px; font-weight: 800; }
@@ -139,6 +173,16 @@ h1 em { color: var(--brand-600); font-style: normal; }
 .graph-card dl div { display: flex; justify-content: space-between; gap: 10px; border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; background: var(--surface-soft); }
 .graph-card dt { flex: 0 0 auto; color: var(--ink-400); font-size: 11px; white-space: nowrap; }
 .graph-card dd { margin: 0; color: var(--ink-800); font-family: Georgia, "Times New Roman", serif; font-size: 12px; }
+.graph-card dl .graph-derivative { grid-column: 1 / -1; align-items: baseline; justify-content: start; gap: 14px; }
+.graph-derivative dd { font-size: 14px; }
+.graph-note { margin: 8px 0 0; color: var(--ink-600); font-size: 13px; line-height: 1.7; }
+.graph-facts:has(.graph-note) .conclusion { min-height: 0; }
+.plot-dialog { width: min(860px, calc(100vw - 24px)); max-width: none; max-height: calc(100dvh - 24px); margin: auto; padding: 0; overflow: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--paper); color: var(--ink-950); }
+.plot-dialog::backdrop { background: rgba(17, 24, 39, .48); }
+.plot-dialog-content { padding: clamp(12px, 3vw, 28px); }
+.plot-dialog-content header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 12px; color: var(--accent-dark); }
+.plot-dialog-content h2 { margin: 0 0 4px; color: var(--ink-950); font-size: 22px; }
+.plot-dialog-content :deep(.function-plot) { width: min(100%, 110dvh); margin-inline: auto; }
 .conclusion { min-height: 48px; margin: 12px 0 0; border-left: 3px solid var(--accent); padding: 5px 0 5px 12px; color: var(--ink-soft); font-size: 13px; line-height: 1.7; }
 .integral-region { margin-top: 12px; padding: 10px 12px; border-radius: 6px; background: var(--surface-soft); color: var(--ink-800); font-size: 13px; }
 .graph-card header strong { max-width: min(160px, 100%); overflow-x: auto; }
@@ -160,7 +204,7 @@ h1 em { color: var(--brand-600); font-style: normal; }
 .empty-state strong { color: var(--ink-800); font-size: 20px; }.empty-state p { color: var(--ink-400); }.empty-state button { border: 0; border-radius: 10px; padding: 10px 16px; background: var(--brand-700); color: white; }
 @media (max-width: 1100px) { .graph-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 980px) { .graphs-hero { grid-template-columns: 1fr; gap: 28px; }.hero-summary { width: fit-content; } }
-@media (max-width: 720px) { .graph-grid { grid-template-columns: 1fr; } }
+@media (max-width: 720px) { .graph-grid, .graph-grid.detail-grid { grid-template-columns: 1fr; } }
 @media (max-width: 840px) { .integral-card .graph-body { grid-template-columns: 1fr; gap: 0; } }
 @media (max-width: 600px) { .graphs-hero { width: calc(100% - 36px); padding: 42px 0 34px; }.graphs-hero h1 { font-size: 39px; }.hero-copy p { font-size: 14px; }.hero-summary strong { font-size: 42px; }.graph-tools { position: relative; top: auto; padding: 14px 18px; }.atlas { width: calc(100% - 28px); padding: 44px 0 64px; }.graph-card { padding: 16px 12px; }.graph-card header { grid-template-columns: 28px 1fr; }.graph-card header strong { grid-column: 2; justify-self: start; }.graph-card dl { grid-template-columns: 1fr; }.atlas-heading h2 { font-size: 27px; } }
 </style>
