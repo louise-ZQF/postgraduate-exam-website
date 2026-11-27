@@ -2228,6 +2228,20 @@
     "explanation": "第一问，原式的对数要求 $x>0,y>0$。令 $u=\\frac{y}{x}$，用复合函数求导法则得到\n\n$$\n\\frac{\\partial z}{\\partial x}=yf(u)-\\frac{y^2}{x}f'(u),\\qquad\n\\frac{\\partial z}{\\partial y}=xf(u)+yf'(u).\n$$\n\n故 $x\\frac{\\partial z}{\\partial x}+y\\frac{\\partial z}{\\partial y}=2xyf(u)$。与题设比较：\n\n$$\n2xyf(u)=y^2\\ln\\!\\left(\\frac{y}{x}\\right),\\qquad f(u)=\\frac12u\\ln u.\n$$\n\n因此 $f(x)=\\frac{x\\ln x}{2}$，$x>0$。\n\n第二问，$f(x)<0$ 在 $0<x<1$ 上成立；$x\\to0^+$ 时 $f(x)\\to0$，且 $f(1)=0$。面积为\n\n$$\nS=-\\frac12\\int_0^1x\\ln x\\,dx\n=-\\frac12\\left[\\frac{x^2}{2}\\ln x-\\frac{x^2}{4}\\right]_0^1=\\frac18.\n$$\n\n下端按极限处理，$x^2\\ln x\\to0$。绕 $x$ 轴旋转的体积为 $V=\\frac\\pi4 J$，其中 $J=\\int_0^1x^2(\\ln x)^2dx$。分部积分两次：\n\n$$\nJ=\\left[\\frac{x^3}{3}(\\ln x)^2\\right]_0^1\n-\\frac23\\int_0^1x^2\\ln x\\,dx,\n$$\n\n$$\n\\int_0^1x^2\\ln x\\,dx\n=\\left[\\frac{x^3}{3}\\ln x\\right]_0^1-\\frac13\\int_0^1x^2dx=-\\frac19.\n$$\n\n边界项均为0，故 $J=\\frac{2}{27}$，$V=\\frac{\\pi}{54}$。面积应取上下边界之差；旋转体积用半径平方，不会带入函数值的负号。"
   },
   {
+    "id": "math2-2014-q21-exercise2",
+    "year": 2014,
+    "number": "21-2",
+    "examNumber": "21",
+    "exerciseIndex": 2,
+    "kind": "exercise",
+    "source": "2014 年数学三真题 · 第 10 题",
+    "topic": "高等数学 / 一元积分 / 平面区域面积与左右边界",
+    "type": "fill",
+    "stem": "设 $D$ 是由曲线 $xy+1=0$ 与直线 $y+x=0$ 及 $y=2$ 围成的有界区域，则 $D$ 的面积为 ______。",
+    "answer": "$\\dfrac32-\\ln 2$。",
+    "explanation": "把两条边界写成 $x=-1/y$ 和 $x=-y$。它们交于 $y=\\pm 1$，与 $y=2$ 围成的区域对应 $1\\le y\\le 2$。在区间内取 $y=3/2$，得到 $-2/3>-3/2$，所以右边界是 $x=-1/y$，左边界是 $x=-y$。\n\n对 $y$ 积分，按右减左列式：\n\n$$\nS=\\int_1^2\\left(-\\frac1y-(-y)\\right)dy=\\left[\\frac{y^2}{2}-\\ln y\\right]_1^2=\\frac32-\\ln 2.\n$$"
+  },
+  {
     "id": "math2-2014-q22-exercise1",
     "year": 2014,
     "number": "22-1",
